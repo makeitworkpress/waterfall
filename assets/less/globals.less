@@ -1,0 +1,61 @@
+/**
+ * Global Style Rules
+ * Determines reusable classes and general styling
+ */
+
+
+/* Reusable classes & Modifiers 
+----------------------*/
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.padding {
+    padding: @grid-space;
+}
+
+.padding-vertical {
+    padding: @grid-space 0;
+}
+
+.padding-horizontal {
+    padding: 0 @grid-space;
+}
+
+.hidden {
+    visiblity: hidden;
+}
+
+.none {
+    display: none;
+}
+
+
+/* Image Styling
+----------------------*/
+img, a img {
+    display: block;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    &.alignright {
+        float: right; 
+        margin: 0 0 1em 1em;
+    }
+    &.alignleft {
+        float: left; 
+        margin: 0 1em 1em 0;
+    }
+    &.aligncenter {
+        display: block; 
+        margin: 0 auto;
+    }
+}
+
+
+/* Video Styling
+----------------------*/

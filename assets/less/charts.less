@@ -1,0 +1,104 @@
+/**
+ * Chart Styling Rules
+ *
+ * @package WA
+ * @since version 1.0.0
+ */
+
+/**
+ * General Rules
+ */
+svg {
+    max-height: 80vh;
+    max-width: 100%;
+    text {
+        color: @dark-grey;
+    }
+}
+.wp-level-selector, .wp-legend, .wp-reset, .wp-map, .wd-selector, .wd-map-selector, .we-label, .ci-logo, .ci-map, 
+.dm-material, .dm-legend, .dp-company, .dp-pump-section, .do-logo, .do-legend, .dq-legend, .dq-logo, #dp-reset, #dm-house,
+.to-legend, .to-logo, .tp-legend, .tp-logo, .tm-section, .tm-method text, #tm-reset, .price-bar, #to-reset, .to-bar, #tp-reset,
+.bf-legend, .bf-logo, .svg-reset, .bv-logo, .ba-logo, .ba-legend, .be-company, .bf-icon, .br-company, .br-legend, .bf-footprint {
+    cursor: pointer;
+    transition: all 333ms ease-out;
+    &:hover {
+        opacity: 1 !important;
+    }
+    &:focus {
+        outline: none !important;
+    }
+}
+
+.bf-bar, .be-bar, .br-bar {
+    transition: all 333ms ease-out;
+    &:hover {
+        opacity: 1 !important;
+    }
+}
+
+/**
+ * Water Prices Map
+ */
+.wp-level-selector:hover, .bv-logo:hover {
+    fill-opacity: 1 !important;
+}
+
+/**
+ * Companies Introduction Map
+ */
+.ci-map, .ci-map polygon, .ci-map path {
+    transition: all 333ms ease-out;
+    &:hover {
+        fill: @flat-blue;
+    }
+}
+
+/**
+ * Water Origins Chart
+ */
+.price-bar-background {
+    transition: all 333ms ease-out;
+    .price-bar:hover & {
+        fill: @dark-blue; 
+    }
+}
+
+/**
+ * Charts on load
+ */
+.svg-chart.loading {
+    min-height: 320px;
+    position: relative;
+    width: 100%;
+    &:after {
+        background: url("http://onskraanwater.nl/wp-content/uploads/2015/04/logo-animated-blue.gif") center center no-repeat @flat-blue;
+        border-radius: 50%;
+        content: '';
+        display: block;
+        height: 120px;
+        left: 50%;
+        margin: -60px 0 0 -60px;
+        opacity: 0.44;
+        position: absolute;
+        top: 50%;
+        width: 120px;
+    }
+    &:before {
+        color: #aaa;
+        content: 'Laden...';
+        font-size: 12px;
+        height: 18px;
+        left: 50%;
+        margin: 70px 0 0 -60px;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        width: 120px;
+    }
+}
+.svg-chart.loaded {
+    width: auto;
+    &:after, &:before {
+        display: none;
+    }
+}

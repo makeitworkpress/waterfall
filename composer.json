@@ -1,0 +1,12 @@
+{
+    "name": "makeitworkpress/composer",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-components.git"
+        }
+    ],
+    "require": {
+        "makeitworkpress/wp-components": "master"
+    }
+}

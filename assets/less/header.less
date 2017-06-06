@@ -1,0 +1,52 @@
+/**
+ * Styling Rules for the Header
+ */ 
+
+/* Main Header Styling 
+------------------------*/
+.header {
+    background: @white;
+    height: 100px;
+    padding: @grid-space @grid-space; 
+    position: absolute;
+    transition: all 333ms cubic-bezier(.82, .01, .59, 1);
+    width: 100%;
+    z-index: 999;
+    .header-transparent & {
+        background: transparent;
+    }
+}
+
+/* Menu Items
+------------------------*/
+.navigation {
+    a {
+        color: @dark-blue;
+        display: block;
+        line-height: 50px;
+        padding: 0 @grid-space;
+        @media screen and (max-width: 480px) {
+            font-size: 16px;
+            padding: 0 5px;
+        }
+        .header-transparent & {
+            color: @white;
+        }
+        .header-sticky & {
+            color: @dark-blue;
+        }        
+    }
+    li {
+        display: inline-block;
+    }
+}
+
+.branding {
+    padding-left: 25px;
+    @media screen and (max-width: 480px) {
+        padding-left: 0;
+    }
+}
+.logo img {
+    max-height: 50px;
+}

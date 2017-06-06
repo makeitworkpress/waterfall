@@ -1,0 +1,43 @@
+/**
+ * Footer Styling Rules
+ * 
+ * @since 1.0
+ * @package WA
+ */
+
+/* Footer
+----------------*/
+.footer {
+    background: @flat-blue;
+    color: @f-grey;
+    h1, h2, h3, h4, h5, h6 {
+        color: @f-grey;
+    }
+    a {
+        color: @white;
+    }
+}
+
+/* Socket
+----------------*/
+.socket {
+    background: @dark-blue;
+    color: @f-grey;
+    position: relative;
+    &:before {
+        background: url('../images/footer-wave.svg') repeat-x;
+        content: '';
+        display: block;
+        height: 7px;
+        position: absolute;
+        top: -7px;
+        width: 100%;
+    }
+}
+
+.sitebuilder {
+    margin-left: @grid-space;
+    .fa {
+        margin-right: @fa-space;
+    }
+}
