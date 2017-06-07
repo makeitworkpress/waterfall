@@ -1,6 +1,7 @@
 <?php 
     /**
-     * Displays the default page 
+     * Template Name: Fullwidth Page
+     * Displays a fullwidth page. Usefull when using elementor or other pagebuilders 
      *
      * Retrieves our header
      */

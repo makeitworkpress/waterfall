@@ -1,0 +1,4 @@
+*.log
+/.htaccess
+/license.txt
+vendor/

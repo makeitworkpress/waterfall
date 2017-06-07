@@ -88,6 +88,12 @@ class Waterfall {
             });
         }
         
+        
+        /**
+         * Our executing is hooked in after_setup_theme, so (child) themes can add configurations if they want
+         */
+        add_action('after_setup_theme', array($this, 'execute'), 10);        
+        
     }    
     
     /**
@@ -96,13 +102,18 @@ class Waterfall {
      * @param string    $type               The type of configurations to add. Accepts optimize, enqueue, register, route, settings and language
      * @param array     $configurations     The configurations that you want to add to this type
      */
-    public function register( $type = '', Array $configurations = [] ) {
+    public function register( $type = '', $configurations = [] ) {
         
         // A type should be registered
         if( ! $type )
             return new WP_Error('type_missing', __('Please define a type', 'waterfall'));
         
-        $this->configurations[$type] = $configurations;
+        // If we already have configurations, we merge the arrays
+        if( isset($this->configurations[$type]) && is_array($this->configurations[$type]) )
+            $configurations = array_merge($this->configurations[$type], $configurations);
+        
+        // Set our configurations
+        $this->configurations[$type] = apply_filters('waterfall_' . $type, $configurations);
  
     }
     
@@ -116,20 +127,45 @@ class Waterfall {
         /**
          * Execute our class actions
          */
-        $methods = [
-            'enqueue'   => 'WP_Enqueue',
-            'optimize'  => 'WP_Optimize', 
-            'register'  => 'WP_Register', 
-            'route'     => 'WP_Router', 
-            'settings'  => 'Divergent'
-        ];
+        $methods = apply_filters( 'waterfall_execute_methods', [
+            'enqueue'   => 'WP_Enqueue\Enqueue',
+            'optimize'  => 'WP_Optimize\Optimize', 
+            'register'  => 'WP_Register\Register', 
+            'routes'    => 'Router', 
+            'divergent' => 'Divergent\Divergent'
+        ] );
         
-        foreach($methods as $key => $method ) {
+        foreach($methods as $key => $class ) {
             
+            // If we have a type executed, it should match a key
             if( $type && $type != $key )
                 continue;
             
+            // We should have the settings for the type
+            if( ! isset($this->configurations[$key]) || ! $this->configurations[$key] )
+                continue;
             
+            // Our divergent is something different
+            if( $key == 'divergent' ) {
+                
+                // Default parameters
+                $this->configurations[$key]['params'] = isset($this->configurations[$key]['params']) ? $this->configurations[$key]['params'] : array();
+                
+                // Divergent framework
+                $divergent = $class::instance($this->configurations[$key]['params']);
+                
+                // Walk through all the option types
+                foreach( $this->configurations[$key] as $target => $options ) {
+
+                    if( $target == 'params' )
+                        continue;
+                    
+                    $divergent->add( $target, $options );    
+                }
+                
+            } else {
+                $execute = new $class($this->configurations[$key]);   
+            }   
             
         }
             

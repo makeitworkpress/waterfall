@@ -1,12 +1,32 @@
 {
-    "name": "makeitworkpress/composer",
+    "name": "waterfall",
     "repositories": [
         {
             "type": "vcs",
+            "url": "https://github.com/makeitworkpress/divergent-framework.git"
+        },        
+        {
+            "type": "vcs",
             "url": "https://github.com/makeitworkpress/wp-components.git"
-        }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-enqueue.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-optimize.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-register.git"
+        }        
     ],
     "require": {
-        "makeitworkpress/wp-components": "master"
+        "divergent": "dev-master",
+        "wp-components": "dev-master",
+        "wp-enqueue": "dev-master",
+        "wp-optimize": "dev-master",
+        "wp-register": "dev-master"
     }
 }
