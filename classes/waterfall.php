@@ -55,8 +55,6 @@ class Waterfall {
          * Basic theme supports
          */
 		add_theme_support( 'post-thumbnails' ); 
-		add_theme_support( 'custom-background' ); 
-		add_theme_support( 'custom-header' ); 
 		add_theme_support( 'html5', ['comment-list', 'comment-form', 'search-form', 'caption'] );
         
         /**
@@ -80,13 +78,40 @@ class Waterfall {
                 $return = [];
                 
                 foreach($templates as $template) {
-                    $return[] = 'templates/' . $template . 'php';    
+                    $return[] = 'templates/' . $template;    
                 }
                 
                 return $return;
                 
             });
-        }
+        } 
+        
+        /**
+         * Add our lay-out classes to the body
+         */
+        add_filter( 'body_class', function($classes) {
+            
+            $class = 'default';
+
+            $customize = get_theme_option('customizer');
+
+            if( is_page() ) {
+                $class = isset($customize['page_layout']) ? $customize['page_layout'] : 'default'; 
+            }
+
+            if( is_archive() ) {
+                $class = isset($customize['archive_layout']) ? $customize['page_layout'] : 'default';    
+            }
+
+            if( is_single() ) {
+                $class = isset($customize['post_layout']) ? $customize['page_layout'] : 'default';     
+            }
+
+            $classes[] = apply_filters('waterfall_layout_class', 'waterfall-' . $class . '-layout');
+            
+            return $classes;
+            
+        } );
         
         
         /**
@@ -125,6 +150,11 @@ class Waterfall {
     public function execute( $type = '') {
         
         /**
+         * General filter for changing configurations upon execution
+         */
+        $this->configurations = apply_filters('waterfall_configurations_execute', $this->configurations);
+        
+        /**
          * Execute our class actions
          */
         $methods = apply_filters( 'waterfall_execute_methods', [
@@ -132,7 +162,7 @@ class Waterfall {
             'optimize'  => 'WP_Optimize\Optimize', 
             'register'  => 'WP_Register\Register', 
             'routes'    => 'Router', 
-            'divergent' => 'Divergent\Divergent'
+            'options'   => 'Divergent\Divergent'
         ] );
         
         foreach($methods as $key => $class ) {
@@ -146,7 +176,7 @@ class Waterfall {
                 continue;
             
             // Our divergent is something different
-            if( $key == 'divergent' ) {
+            if( $key == 'options' ) {
                 
                 // Default parameters
                 $this->configurations[$key]['params'] = isset($this->configurations[$key]['params']) ? $this->configurations[$key]['params'] : array();

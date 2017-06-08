@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/divergent-framework.git",
-                "reference": "50415c257d2cd04c7980296100d975e16131e1ab"
+                "reference": "28c01afa37ba82c12b8527e744358dca2f6c5247"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/divergent-framework/zipball/50415c257d2cd04c7980296100d975e16131e1ab",
-                "reference": "50415c257d2cd04c7980296100d975e16131e1ab",
+                "url": "https://api.github.com/repos/makeitworkpress/divergent-framework/zipball/28c01afa37ba82c12b8527e744358dca2f6c5247",
+                "reference": "28c01afa37ba82c12b8527e744358dca2f6c5247",
                 "shasum": ""
             },
             "type": "library",
@@ -25,7 +25,7 @@
                 "source": "https://github.com/makeitworkpress/divergent-framework/tree/master",
                 "issues": "https://github.com/makeitworkpress/divergent-framework/issues"
             },
-            "time": "2017-06-07T15:15:57+00:00"
+            "time": "2017-06-08T15:00:43+00:00"
         },
         {
             "name": "wp-components",

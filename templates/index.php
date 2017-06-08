@@ -4,12 +4,12 @@
      *
      * Retrieves our header
      */
-    get_header(); 
+    get_theme_header(); 
 ?>
 
 <?php 
     /**
      * Retrieves our footer
      */
-    get_footer(); 
+    get_theme_footer(); 
 ?>

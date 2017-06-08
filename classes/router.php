@@ -83,10 +83,10 @@ class Router {
             }
             
             // Register our custom routes
-            foreach( $routes as $template => $route ) {
+            foreach( $routes as $name => $route ) {
 
                 // Adds the rewrite rule
-                add_rewrite_rule( $prefix . $route['route'] . '?$', 'index.php?template=' . $template, 'top' );
+                add_rewrite_rule( $prefix . $route . '?$', 'index.php?template=' . $name, 'top' );
                 
             }
             
@@ -107,11 +107,14 @@ class Router {
             global $wp_query;
             $name = get_query_var('template');
             
-            if( $name && file_exists($routes[$name]['template']) ) {
-                $template = $routes[$name]['template'];
+            if( $name ) {
+                $template = locate_template( 'templates/' . $name . '.php' );
+                
+                if( $template )
+                    return new WP_Error( 'missing_template', __('The template does not exist', 'waterfall') );
                     
                 $wp_query->is_404 = false;
-                $wp_query->is_page = true;
+                $wp_query->is_custom = true;
             }
             
             return $template;
