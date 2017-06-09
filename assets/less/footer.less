@@ -7,7 +7,7 @@
 
 /* Footer
 ----------------*/
-.footer {
+.molecule-footer-sidebars {
     background: @flat-blue;
     color: @f-grey;
     h1, h2, h3, h4, h5, h6 {
@@ -16,28 +16,20 @@
     a {
         color: @white;
     }
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 /* Socket
 ----------------*/
-.socket {
+.molecule-footer-socket {
     background: @dark-blue;
     color: @f-grey;
+    line-height: @grid-space * 2;
     position: relative;
-    &:before {
-        background: url('../images/footer-wave.svg') repeat-x;
-        content: '';
-        display: block;
-        height: 7px;
-        position: absolute;
-        top: -7px;
-        width: 100%;
-    }
-}
-
-.sitebuilder {
-    margin-left: @grid-space;
-    .fa {
-        margin-right: @fa-space;
+    a {
+        color: @white;
     }
 }

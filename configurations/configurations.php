@@ -206,6 +206,7 @@ $configurations['options']  = array(
                         'type'          => 'image',
                     ),
                     array(
+                        'description'   => __('Choose a logo for use in the socket, preferably with height of 50px.', 'waterfall'),
                         'default'       => '',
                         'id'            => 'footer_logo',
                         'title'         => __('Footer Logo Image', 'waterfall'),
@@ -340,11 +341,10 @@ $configurations['options']  = array(
                         'default'       => '',
                         'id'            => 'header_background_image',
                         'title'         => __('Header Background Image', 'waterfall'),
-                        'transport'     => 'postMessage',
                         'type'          => 'image'
                     ), 
                     array(
-                        'css'           => '.header .menu > li a',
+                        'css'           => '.header .menu > li > a',
                         'default'       => '',
                         'id'            => 'navigation_link_color',
                         'title'         => __('Navigation Link Color', 'waterfall'),
@@ -352,7 +352,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ), 
                     array(
-                        'css'           => '.header .menu > li a:hover',
+                        'css'           => '.header .menu > li > a:hover',
                         'default'       => '',
                         'id'            => 'navigation_link_hover_color',
                         'title'         => __('Navigation Link Hover and Active Color', 'waterfall'),
@@ -361,7 +361,7 @@ $configurations['options']  = array(
                     ), 
                     array(
                         'css'           => array( 
-                            'selector' => '.header .menu > li a:hover, .header .menu > li.current-menu-item a, .header .menu > li.current-menu-ancestor a', 
+                            'selector' => '.header .menu > li > a:hover, .header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a', 
                             'property' => 'background-color' 
                         ),
                         'default'       => '',
@@ -400,71 +400,7 @@ $configurations['options']  = array(
             array(
                 'id'            => 'styling_content',
                 'title'         => __('Styling Content', 'waterfall'),
-                'fields'    => array( 
-                    array(
-                        'css'           => array( 'selector' => '.footer', 'property' => 'background-color' ),
-                        'default'       => '',
-                        'id'            => 'footer_background',
-                        'title'         => __('Footer Background Color', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'colorpicker'
-                    ),
-                    array(
-                        'css'           => '.socket',
-                        'default'       => '',
-                        'id'            => 'socket_background',
-                        'title'         => __('Footer Background Image', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'image'
-                    ), 
-                    array(
-                        'css'           => '.footer a',
-                        'default'       => '',
-                        'id'            => 'footer_link_color',
-                        'title'         => __('Footer Link Color', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'colorpicker'
-                    ), 
-                    array(
-                        'css'           => '.footer a:hover',
-                        'default'       => '',
-                        'id'            => 'footer_link_hover_color',
-                        'title'         => __('Footer Link Hover Color', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'colorpicker'
-                    ),      
-                    array(
-                        'css'           => array( 'selector' => '.socket', 'property' => 'background-color' ),
-                        'default'       => '',
-                        'id'            => 'socket_background',
-                        'title'         => __('Socket Background Color', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'colorpicker'
-                    ),
-                    array(
-                        'css'           => '.socket',
-                        'default'       => '',
-                        'id'            => 'socket_background',
-                        'title'         => __('Socket Background Image', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'image'
-                    ),    
-                    array(
-                        'css'           => '.socket a',
-                        'default'       => '',
-                        'id'            => 'socket_link_color',
-                        'title'         => __('Socket Link Color', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'colorpicker'
-                    ),
-                    array(
-                        'css'           => '.socket a:hover',
-                        'default'       => '',
-                        'id'            => 'socket_link_hover_color',
-                        'title'         => __('Socket Link Hover Color', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'colorpicker'
-                    )     
+                'fields'    => array(    
                 )              
             ),    
             array(
@@ -530,7 +466,7 @@ $configurations['options']  = array(
                         'type'          => 'checkbox'
                     ),    
                     array(
-                        'css'           => array( 'selector' => '.footer', 'property' => 'background-color' ),
+                        'css'           => array( 'selector' => '.molecule-footer-sidebars', 'property' => 'background-color' ),
                         'default'       => '',
                         'id'            => 'footer_background',
                         'title'         => __('Footer Background Color', 'waterfall'),
@@ -538,7 +474,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),
                     array(
-                        'css'           => '.footer',
+                        'css'           => '.molecule-footer-sidebars',
                         'default'       => '',
                         'id'            => 'footer_background_image',
                         'title'         => __('Footer Background Image', 'waterfall'),
@@ -546,7 +482,7 @@ $configurations['options']  = array(
                         'type'          => 'image'
                     ), 
                     array(
-                        'css'           => '.footer a',
+                        'css'           => '.molecule-footer-sidebars a',
                         'default'       => '',
                         'id'            => 'footer_link_color',
                         'title'         => __('Footer Link Color', 'waterfall'),
@@ -554,7 +490,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ), 
                     array(
-                        'css'           => '.footer a:hover',
+                        'css'           => '.molecule-footer-sidebars a:hover',
                         'default'       => '',
                         'id'            => 'footer_link_hover_color',
                         'title'         => __('Footer Link Hover Color', 'waterfall'),
@@ -562,7 +498,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),      
                     array(
-                        'css'           => array( 'selector' => '.socket', 'property' => 'background-color' ),
+                        'css'           => array( 'selector' => '.molecule-footer-socket', 'property' => 'background-color' ),
                         'default'       => '',
                         'id'            => 'socket_background',
                         'title'         => __('Socket Background Color', 'waterfall'),
@@ -570,7 +506,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),
                     array(
-                        'css'           => '.socket',
+                        'css'           => '.molecule-footer-socket',
                         'default'       => '',
                         'id'            => 'socket_background_image',
                         'title'         => __('Socket Background Image', 'waterfall'),
@@ -578,7 +514,7 @@ $configurations['options']  = array(
                         'type'          => 'image'
                     ),    
                     array(
-                        'css'           => '.socket a',
+                        'css'           => '.molecule-footer-socket a',
                         'default'       => '',
                         'id'            => 'socket_link_color',
                         'title'         => __('Socket Link Color', 'waterfall'),
@@ -586,7 +522,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),
                     array(
-                        'css'           => '.socket a:hover',
+                        'css'           => '.molecule-footer-socket a:hover',
                         'default'       => '',
                         'id'            => 'socket_link_hover_color',
                         'title'         => __('Socket Link Hover Color', 'waterfall'),

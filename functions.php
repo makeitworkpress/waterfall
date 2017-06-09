@@ -30,6 +30,7 @@ spl_autoload_register( function($classname) {
 /**
  * Include basic utility functions and our configurations
  */
+require_once( get_template_directory() . '/functions/templates.php' );
 require_once( get_template_directory() . '/functions/utilities.php' );
 require_once( get_template_directory() . '/configurations/configurations.php' );
 

@@ -42,6 +42,23 @@ function get_theme_option( $type = '', $key = '' ) {
 }
 
 /**
+ * Retrieves the main microscheme for a theme
+ */
+function get_main_schema() {
+    
+    $schema = 'http://schema.org/WebPageElement';
+    
+    if( is_single() || is_archive() )
+        $schema = 'https://schema.org/Blog';
+        
+    if( is_single() || is_archive() )
+        $schema = 'https://schema.org/SearchResultsPage';
+        
+    return $schema;
+    
+}
+
+/**
  * Checks if we are displaying a custom template
  * Works properly after the template_include hook.
  */
