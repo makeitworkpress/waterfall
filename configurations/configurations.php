@@ -291,6 +291,12 @@ $configurations['options']  = array(
                     ),
                     array(
                         'default'       => '',
+                        'id'            => 'header_search',
+                        'title'         => __('Add a Search Icon to the Menu', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
+                    array(
+                        'default'       => '',
                         'id'            => 'header_social',
                         'title'         => __('Add Social Icons to the Menu', 'waterfall'),
                         'type'          => 'checkbox'
@@ -542,44 +548,36 @@ $configurations['options']  = array(
         'screen'        => array('page', 'post'),    
         'sections'      => array(
             array(
-                'icon'      => 'web_asset',
-                'id'        => 'header',
-                'title'     => __('Site Header', 'waterfall'),
-                'fields'    => array(                   
-                    array(
-                        'default'       => '',
-                        'id'            => 'transparent_header',
-                        'title'         => __('Header Transparency', 'waterfall'),
-                        'type'          => 'checkbox',
-                        'options'   => array( 
-                            array( 'id' => 'transparent', 'label' => __('Transparent Header', 'waterfall') )
-                        )
-                    ),
-                    array(
-                        'default'       => '',
-                        'id'            => 'disable_header',
-                        'title'         => __('Disable Header', 'waterfall'),
-                        'type'          => 'checkbox',
-                        'options'   => array( 
-                            array( 'id' => 'disable', 'label' => __('Disable the display of the header', 'waterfall') )
-                        )
-                    )    
-                )              
-            ),
-            array(
+                'description' => __('The page header is the header within your content, display the title and more.', 'waterfall'),
                 'icon'      => 'remove_from_queue',
                 'id'        => 'page_header',
-                'title'     => __('Page Header', 'waterfall'),
-                'fields'    => array(   
-                    array(
+                'title'     => __('Page Header Settings', 'waterfall'),
+                'fields'    => array(  
+                     array(
+                        'columns'       => 'half',
                         'id'            => 'page_header_subtitle',
                         'title'         => __('Subtitle Page Header', 'waterfall'),
                         'type'          => 'input'
-                    ), 
+                    ),    
+                    array(
+                        'columns'       => 'fourth',
+                        'id'            => 'page_header_disable',
+                        'title'         => __('Disable Page Header', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'       => array( array('id' => 'disable', 'label' => __('Disable page header', 'waterfall') ) )
+                    ),
+                    array(
+                        'columns'       => 'fourth',
+                        'id'            => 'page_header_parallax',
+                        'title'         => __('Parallax Page Header', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'       => array( array('id' => 'enable', 'label' => __('Enable parallax scrolling effect', 'waterfall') ) )
+                    ),     
                     array(
                         'css'           => '.entry-header',
                         'columns'       => 'half',
                         'id'            => 'page_header_background',
+                        'multiple'      => false,
                         'title'         => __('Custom Background for the Page Header', 'waterfall'),
                         'type'          => 'background'
                     ),     
@@ -591,16 +589,18 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ), 
                     array(
+                        'css'           => '.entry-header:after',
                         'columns'       => 'fourth',
                         'id'            => 'page_header_overlay',
                         'title'         => __('Overlay Color Page Header', 'waterfall'),
                         'type'          => 'colorpicker'
                     ),   
                     array(
-                        'columns'       => 'half',
+                        'columns'       => 'third',
                         'default'       => 'background',
                         'id'            => 'page_header_featured',
                         'title'         => __('Position of Featured Image', 'waterfall'),
+                        'description'   => __('This overwrites the related setting in the customizer.', 'waterfall'),
                         'type'          => 'select',
                         'options'       => array(
                             'background'    => __('As background of the page header', 'waterfall'),
@@ -610,27 +610,72 @@ $configurations['options']  = array(
                         )
                     ), 
                     array(
-                        'columns'       => 'half',
+                        'columns'       => 'third',
                         'default'       => 'default',
                         'id'            => 'page_header_height',
                         'title'         => __('Mininum Height Page Header', 'waterfall'),
+                        'description'   => __('This overwrites the related setting in the customizer.', 'waterfall'),
                         'type'          => 'select',
                         'options'       => array(
                             'default'   => __('No mininum height', 'waterfall'),
-                            'full'      => __('Fullscreen mininum  height', 'waterfall'),
-                            'normal'    => __('Three quarter of screen mininum height', 'waterfall'),
-                            'half'      => __('Half of screen mininum height', 'waterfall'),
-                            'third'     => __('Third of screen mininum height', 'waterfall'),
-                            'quarter'   => __('Quarter of screen mininum height', 'waterfall')
+                            'full'      => __('Fullscreen height', 'waterfall'),
+                            'normal'    => __('Three quarter of screen height', 'waterfall'),
+                            'half'      => __('Half of screen height', 'waterfall'),
+                            'third'     => __('Third of screen height', 'waterfall'),
+                            'quarter'   => __('Quarter of screen height', 'waterfall')
+                        )
+                    ),
+                    array(
+                        'columns'       => 'third',
+                        'default'       => 'default',
+                        'id'            => 'page_header_scroll',
+                        'title'         => __('Show Scroll Button', 'waterfall'),
+                        'description'   => __('This overwrites the related setting in the customizer.', 'waterfall'),
+                        'type'          => 'select',
+                        'options'       => array(
+                            'none'      => __('No button', 'waterfall'),
+                            'default'   => __('Default button', 'waterfall'),
+                            'arrow'     => __('Downwards Arrow', 'waterfall')
                         )
                     ),     
                 )              
             ),    
             array(
-                'icon'      => 'video_label',
+                'icon'      => 'web_asset',
                 'id'        => 'footer',
-                'title'     => __('Site Footer', 'waterfall'),
-                'fields'    => array(                   
+                'title'     => __('Layout', 'waterfall'),
+                'fields'    => array( 
+                    array(
+                        'default'       => '',
+                        'id'            => 'content_width',
+                        'title'         => __('Page Content Width', 'waterfall'),
+                        'description'   => __('Define the content width of a page. Useful if using a pagebuilder with full-width sections.', 'waterfall'),
+                        'type'          => 'select',
+                        'options'   => array( 
+                            'default'   => __('Default width'),
+                            'full'      => __('Full width')
+                        )
+                    ),    
+                    array(
+                        'columns'       => 'half',
+                        'default'       => '',
+                        'id'            => 'transparent_header',
+                        'title'         => __('Header Transparency', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'   => array( 
+                            array( 'id' => 'transparent', 'label' => __('Transparent Header', 'waterfall') )
+                        )
+                    ),
+                    array(
+                        'columns'       => 'half',
+                        'default'       => '',
+                        'id'            => 'disable_header',
+                        'title'         => __('Disable Header', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'   => array( 
+                            array( 'id' => 'disable', 'label' => __('Disable the display of the header', 'waterfall') )
+                        )
+                    ),    
                     array(
                         'default'       => '',
                         'id'            => 'disable_footer',

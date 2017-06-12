@@ -15,13 +15,16 @@
 <div class="entry-search-results">
     <div class="container">
         <?php
+        
             global $wp_query;
+        
+            WP_Components\Build::atom('search');
 
             // Build the overview with posts
             waterfall_posts( array(
                 'image'         => array( 'link' => 'post', 'size' => 'thumbnail', 'rounded' => true, 'enlarge' => true ),
                 'postsAppear'   => 'bottom',
-                'query'         => $wp_query
+                'query'         => $wp_query,
             ) );
 
         ?>

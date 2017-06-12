@@ -37,7 +37,7 @@ require_once( get_template_directory() . '/configurations/configurations.php' );
 /**
  * Boot our components
  */
-$components = new WP_Components\Build();
+$components = new WP_Components\Boot();
 
 /**
  * Boot our theme

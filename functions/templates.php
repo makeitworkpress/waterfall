@@ -33,6 +33,11 @@ function waterfall_header_elements() {
                 'hamburger'     => get_theme_option('customizer', 'header_hamburger_menu') 
             )                
         );
+        
+        // Search icon
+        if( get_theme_option('customizer', 'header_search') ) {
+            $atoms['search'] = array( 'ajax' => true, 'collapse'=> true, 'float' => get_theme_option('customizer', 'header_menu_float') );
+        }        
 
 
         // Social icons
@@ -52,15 +57,15 @@ function waterfall_header_elements() {
                     'urls'      => $urls
                 );
 
-                // Reset the order for right floats
-                if( get_theme_option('customizer', 'header_menu_float') == 'right') {
-                    $menu = $atoms['menu'];
-                    unset($atoms['menu']);
-                    $atoms['menu'] = $menu;
-                }
-
             }
         }
+        
+        // Reset the order for right floats
+        if( get_theme_option('customizer', 'header_menu_float') == 'right') {
+            $menu = $atoms['menu'];
+            unset($atoms['menu']);
+            $atoms['menu'] = $menu;
+        }      
 
         $container = get_theme_option('customizer', 'header_width');
 
@@ -205,5 +210,97 @@ function waterfall_posts( $args = array() ) {
  * @param array $args The array with arguments to display header content, resembling the posts-header molecule arguments from vendor/wp-components/molecules
  */
 function waterfall_content_header( $args = array() ) {
+ 
+    // Heading disabled
+    $disable    = get_theme_option('meta', 'page_header_disable');
+
+    if( isset($disable['disable']) && $disable['disable'] )
+        return;      
+    
+    $default = array(
+        'atoms' => array(
+            'title' => array('tag' => 'h1')
+        ),
+        'style' => 'entry-header'
+    );
+      
+    $args = wp_parse_args( $default, $args ); 
+    
+    /**
+     *  Meta values
+     */
+    
+    // Parallax
+    $parallax = get_theme_option('meta', 'page_header_parallax'); 
+    
+    if( isset($parallax['enable']) && $parallax['enable'] )
+        $args['parallax'] = true;  
+    
+    // Scroll-button
+    $scroll   = get_theme_option('meta', 'page_header_scroll');  
+    
+    if( $scroll == 'default' ) {
+        $args['atoms']['scroll'] = array('icon' => false);
+    } elseif( $scroll == 'arrow' ) {
+        $args['atoms']['scroll'] = array('icon' => 'angle-down');    
+    }
+    
+    // Subtitle
+    $subtitle   = get_theme_option('meta', 'page_header_subtitle');
+
+    if( $subtitle )
+        $args['atoms']['description'] = array('description' => $subtitle);
+    
+    // Featured image
+    $featured       = get_theme_option('meta', 'page_header_featured');
+    $featuredArgs   = array('size' => 'full');
+    
+    if( $featured == 'before' ) { 
+        $image = array( 'image' => $featuredArgs );
+        $args['atoms'] = $image + $args['atoms'];
+    } elseif( $featured == 'after' ) {
+        $args['atoms']['image'] = $featuredArgs;    
+    } elseif( $featured == 'background' ) {
+        $args['background'] = get_the_post_thumbnail_url( null, 'hd' );
+    }    
+    
+    $args['height'] = get_theme_option('meta', 'page_header_height');
+
+    /**
+     * Build our post header with the arguments
+     */
+    WP_Components\Build::molecule( 'post-header', $args );
+    
+}
+
+/**
+ * Renders the page or post content
+ */
+function waterfall_content() {
+    
+    $width = get_theme_option('meta', 'content_width');
+    
+    // Default width
+    if( $width == 'default' || ! $width )
+        echo '<div class="container">';
+    
+    // Our content
+    WP_Components\Build::atom( 'content', array('style' => 'entry-content') );
+
+    // Default width
+    if( $width == 'default')
+        echo '</div>';    
+    
+}
+
+/**
+ * Renders the page or post content
+ * 
+ * @param array $args The array with arguments to display header content, resembling the posts-footer molecule arguments from vendor/wp-components/molecules 
+ */
+function waterfall_content_footer( $args = array() ) {
+    
+    // Our content
+    WP_Components\Build::molecule( 'post-footer', $args );
     
 }
