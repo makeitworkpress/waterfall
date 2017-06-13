@@ -10,13 +10,17 @@
 .molecule-footer-sidebars {
     background: @flat-blue;
     color: @f-grey;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;     
+    overflow: hidden;   
     h1, h2, h3, h4, h5, h6 {
         color: @f-grey;
     }
     a {
         color: @white;
     }
-    .container {
+    .components-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -29,6 +33,7 @@
     background: @dark-blue;
     color: @f-grey;
     line-height: @grid-space * 2;
+    overflow: hidden;
     position: relative;
     a {
         color: @white;

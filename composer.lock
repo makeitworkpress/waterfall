@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/divergent-framework.git",
-                "reference": "4ab77e50b17b1e877713c79891aa71f527ecfbab"
+                "reference": "e520d66cdcb75a6ecbabc12654563236dd13347c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/divergent-framework/zipball/4ab77e50b17b1e877713c79891aa71f527ecfbab",
-                "reference": "4ab77e50b17b1e877713c79891aa71f527ecfbab",
+                "url": "https://api.github.com/repos/makeitworkpress/divergent-framework/zipball/e520d66cdcb75a6ecbabc12654563236dd13347c",
+                "reference": "e520d66cdcb75a6ecbabc12654563236dd13347c",
                 "shasum": ""
             },
             "type": "library",
@@ -25,7 +25,7 @@
                 "source": "https://github.com/makeitworkpress/divergent-framework/tree/master",
                 "issues": "https://github.com/makeitworkpress/divergent-framework/issues"
             },
-            "time": "2017-06-09T16:00:36+00:00"
+            "time": "2017-06-13T15:32:56+00:00"
         },
         {
             "name": "wp-components",
@@ -33,12 +33,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "b1ffa531a181fa95e0574accc15b2ef117d451bc"
+                "reference": "bf6cce205158cbced8b3f1cbe3099f5edf4ebb59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/b1ffa531a181fa95e0574accc15b2ef117d451bc",
-                "reference": "b1ffa531a181fa95e0574accc15b2ef117d451bc",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/bf6cce205158cbced8b3f1cbe3099f5edf4ebb59",
+                "reference": "bf6cce205158cbced8b3f1cbe3099f5edf4ebb59",
                 "shasum": ""
             },
             "type": "library",
@@ -46,7 +46,7 @@
                 "source": "https://github.com/makeitworkpress/wp-components/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-components/issues"
             },
-            "time": "2017-06-12T14:37:36+00:00"
+            "time": "2017-06-13T16:06:51+00:00"
         },
         {
             "name": "wp-enqueue",
@@ -96,12 +96,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-register.git",
-                "reference": "8984a993b62a268ae8c3795dc35e94cd0cf6739d"
+                "reference": "5ddd5a5744967c3dc8bf77f41690ff6c3d670f28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/8984a993b62a268ae8c3795dc35e94cd0cf6739d",
-                "reference": "8984a993b62a268ae8c3795dc35e94cd0cf6739d",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/5ddd5a5744967c3dc8bf77f41690ff6c3d670f28",
+                "reference": "5ddd5a5744967c3dc8bf77f41690ff6c3d670f28",
                 "shasum": ""
             },
             "type": "library",
@@ -109,7 +109,7 @@
                 "source": "https://github.com/makeitworkpress/wp-register/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-register/issues"
             },
-            "time": "2017-06-07T12:01:49+00:00"
+            "time": "2017-06-13T12:24:07+00:00"
         }
     ],
     "packages-dev": [],

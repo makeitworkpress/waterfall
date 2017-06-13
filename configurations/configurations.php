@@ -124,12 +124,14 @@ $configurations['options']  = array(
                         'type'          => 'repeatable',
                         'fields'        => array(
                             array(
+                                'columns'       => 'half',
                                 'id'            => 'url',
                                 'title'         => __('Url to Social Network', 'waterfall'),
                                 'type'          => 'input',    
                                 'subtype'       => 'url' 
                             ),
                             array(
+                                'columns'       => 'half',
                                 'id'            => 'network',
                                 'title'         => __('Type of Social Network', 'waterfall'),
                                 'type'          => 'select',    
@@ -169,7 +171,7 @@ $configurations['options']  = array(
     'customizer' => array(
         'description'   => __('Customizer settings for the Waterfall theme', 'waterfall'),
         'id'            => 'waterfall_customizer',
-        'title'         => __('Waterfall Options', 'waterfall'),
+        'title'         => __('Waterfall', 'waterfall'),
         'sections'      => array(
             array(
                 'id'            => 'branding',
@@ -215,31 +217,27 @@ $configurations['options']  = array(
                 )              
             ),
             array(
-                'id'        => 'layout',
-                'title'     => __('Lay-Out', 'waterfall'),
-                'fields'    => array(                   
+                'id'        => 'archives',
+                'title'     => __('Archives', 'waterfall'),
+                'fields'    => array(
                     array(
-                        'choices'       => array(
-                            'full'      => __('Fullwidth', 'waterfall'),
-                            'left'      => __('Left Sidebar', 'waterfall'),
-                            'right'     => __('Right Sidebar', 'waterfall')
-                        ),
-                        'default'       => 'full',
-                        'description'   => __('Choose the sidebar lay-out for pages.', 'waterfall'),
-                        'id'            => 'page_layout',
-                        'title'         => __('Page Lay-Out', 'waterfall'),
-                        'type'          => 'select'
-                    ),
+                        'default'       => true,
+                        'id'            => 'archives_title',
+                        'title'         => __('Display Title', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
                     array(
-                        'default'       => 'full',
-                        'description'   => __('Choose the sidebar lay-out for posts.', 'waterfall'),
-                        'id'            => 'post_layout',
+                        'default'       => 'third',
+                        'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
+                        'id'            => 'archives_grid',
                         'choices'       => array(
-                            'full'      => __('Fullwidth', 'waterfall'),
-                            'left'      => __('Left Sidebar', 'waterfall'),
-                            'right'     => __('Right Sidebar', 'waterfall')
+                            'full'      => __('No columns', 'waterfall'),
+                            'half'      => __('Two columns', 'waterfall'),
+                            'third'     => __('Three columns', 'waterfall'),
+                            'fourth'    => __('Four columns', 'waterfall'),
+                            'fifth'    => __('Five columns', 'waterfall')
                         ),
-                        'title'         => __('Posts Lay-Out', 'waterfall'),
+                        'title'         => __('Archives Grid', 'waterfall'),
                         'type'          => 'select'
                     ),
                     array(
@@ -253,22 +251,20 @@ $configurations['options']  = array(
                         ),
                         'title'         => __('Archives Lay-Out', 'waterfall'),
                         'type'          => 'select'
-                    ),
+                    ),     
                     array(
-                        'default'       => 'third',
-                        'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
-                        'id'            => 'archives_grid',
+                        'default'       => 'container',
+                        'description'   => __('Width of grid in posts archives.', 'waterfall'),
+                        'id'            => 'archives_width',
                         'choices'       => array(
-                            'full'      => __('No columns', 'waterfall'),
-                            'half'      => __('Two columns', 'waterfall'),
-                            'third'     => __('Three columns', 'waterfall'),
-                            'fourth'    => __('Four columns', 'waterfall')
+                            'container' => __('Default', 'waterfall'),
+                            'full'      => __('Fullwidth', 'waterfall'),
                         ),
-                        'title'         => __('Archives Lay-Out', 'waterfall'),
+                        'title'         => __('Archives Width', 'waterfall'),
                         'type'          => 'select'
-                    )    
+                    )      
                 )              
-            ),    
+            ),  
             array(
                 'id'            => 'style_header',
                 'title'         => __('Header', 'waterfall'),
@@ -404,11 +400,187 @@ $configurations['options']  = array(
                 )              
             ),
             array(
-                'id'            => 'styling_content',
-                'title'         => __('Styling Content', 'waterfall'),
-                'fields'    => array(    
+                'id'            => 'content_styling',
+                'title'         => __('Content Styling', 'waterfall'),
+                'fields'    => array(
+                )
+            ),
+            array(
+                'id'            => 'page_content',
+                'title'         => __('Page Content', 'waterfall'),
+                'fields'    => array(
+                    array(
+                        'default'       => 'after',
+                        'id'            => 'page_header_featured',
+                        'title'         => __('Pages Featured Image Position', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'background'    => __('As background of the content header', 'waterfall'),
+                            'before'        => __('Before the page title in the content header', 'waterfall'),
+                            'after'         => __('After the page title in the content header', 'waterfall'),
+                            'none'          => __('Do not use the featured image in the content header', 'waterfall')
+                        )
+                    ),
+                    array(
+                        'default'       => 'half',
+                        'id'            => 'page_header_height',
+                        'title'         => __('Pages Content Header Minimum Height', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'default'   => __('No mininum height', 'waterfall'),
+                            'full'      => __('Fullscreen height', 'waterfall'),
+                            'normal'    => __('Three quarter of screen height', 'waterfall'),
+                            'half'      => __('Half of screen height', 'waterfall'),
+                            'third'     => __('Third of screen height', 'waterfall'),
+                            'quarter'   => __('Quarter of screen height', 'waterfall')
+                        )
+                    ),   
+                    array(
+                        'default'       => '',
+                        'id'            => 'page_header_parallax',
+                        'title'         => __('Enable the parallax effect to page content headers', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ), 
+                    array(
+                        'default'       => 'none',
+                        'id'            => 'page_header_scroll',
+                        'title'         => __('Enable the scroll button in page content headers', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'none'      => __('No button', 'waterfall'),
+                            'default'   => __('Default button', 'waterfall'),
+                            'arrow'     => __('Downwards Arrow', 'waterfall')
+                        )
+                    ),    
+                    array(
+                        'choices'       => array(
+                            'full'      => __('Fullwidth', 'waterfall'),
+                            'left'      => __('Left Sidebar', 'waterfall'),
+                            'right'     => __('Right Sidebar', 'waterfall')
+                        ),
+                        'default'       => 'full',
+                        'description'   => __('Choose the sidebar lay-out for pages.', 'waterfall'),
+                        'id'            => 'page_layout',
+                        'title'         => __('Page Lay-Out', 'waterfall'),
+                        'type'          => 'select'
+                    )   
                 )              
-            ),    
+            ),
+            array(
+                'id'            => 'post_content',
+                'title'         => __('Post Content', 'waterfall'),
+                'fields'    => array(
+                     array(
+                        'default'       => 'after',
+                        'id'            => 'post_header_featured',
+                        'title'         => __('Posts Featured Image Position', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'background'    => __('As background of the content header', 'waterfall'),
+                            'before'        => __('Before the page title in the content header', 'waterfall'),
+                            'after'         => __('After the page title in the content header', 'waterfall'),
+                            'none'          => __('Do not use the featured image in the content header', 'waterfall')
+                        )
+                    ),   
+                    array(
+                        'default'       => 'half',
+                        'id'            => 'post_header_height',
+                        'title'         => __('Posts Content Header Minimum Height', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'default'   => __('No mininum height', 'waterfall'),
+                            'full'      => __('Fullscreen height', 'waterfall'),
+                            'normal'    => __('Three quarter of screen height', 'waterfall'),
+                            'half'      => __('Half of screen height', 'waterfall'),
+                            'third'     => __('Third of screen height', 'waterfall'),
+                            'quarter'   => __('Quarter of screen height', 'waterfall')
+                        )
+                    ),    
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_header_parallax',
+                        'title'         => __('Enable the parallax effect to post content headers', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
+                    array(
+                        'default'       => 'none',
+                        'id'            => 'post_header_scroll',
+                        'title'         => __('Enable the scroll button in page content headers', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'none'      => __('No button', 'waterfall'),
+                            'default'   => __('Default button', 'waterfall'),
+                            'arrow'     => __('Downwards Arrow', 'waterfall')
+                        )
+                    ),      
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_header_date',
+                        'title'         => __('Show a date in post content headers', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_header_terms',
+                        'title'         => __('Show tags and categories in post content headers', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),
+                    array(
+                        'default'       => false,
+                        'id'            => 'post_header_author',
+                        'title'         => __('Show the author in post content headers', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
+                    array(
+                        'default'       => 'full',
+                        'description'   => __('Choose the sidebar lay-out for posts.', 'waterfall'),
+                        'id'            => 'post_layout',
+                        'choices'       => array(
+                            'full'      => __('Fullwidth', 'waterfall'),
+                            'left'      => __('Left Sidebar', 'waterfall'),
+                            'right'     => __('Right Sidebar', 'waterfall')
+                        ),
+                        'title'         => __('Posts Lay-Out', 'waterfall'),
+                        'type'          => 'select'
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_related',
+                        'title'         => __('Show related posts', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_related_text',
+                        'title'         => __('Title above Related Posts', 'waterfall'),
+                        'type'          => 'input'
+                    ),     
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_footer_author',
+                        'title'         => __('Show the author in the post content footer', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_footer_share',
+                        'title'         => __('Show sharing buttons in posts', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_footer_pagination',
+                        'title'         => __('Show posts pagination', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_footer_comments',
+                        'title'         => __('Show comments in the post content footer', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
+                )
+            ),
             array(
                 'id'            => 'styling_footer',
                 'title'         => __('Footer', 'waterfall'),
@@ -548,10 +720,10 @@ $configurations['options']  = array(
         'screen'        => array('page', 'post'),    
         'sections'      => array(
             array(
-                'description' => __('The page header is the header within your content, display the title and more.', 'waterfall'),
+                'description' => __('The page header is the header within your content, displaying the title and more.', 'waterfall'),
                 'icon'      => 'remove_from_queue',
                 'id'        => 'page_header',
-                'title'     => __('Page Header Settings', 'waterfall'),
+                'title'     => __('Page Header', 'waterfall'),
                 'fields'    => array(  
                      array(
                         'columns'       => 'half',
@@ -560,19 +732,12 @@ $configurations['options']  = array(
                         'type'          => 'input'
                     ),    
                     array(
-                        'columns'       => 'fourth',
+                        'columns'       => 'half',
                         'id'            => 'page_header_disable',
                         'title'         => __('Disable Page Header', 'waterfall'),
                         'type'          => 'checkbox',
                         'options'       => array( array('id' => 'disable', 'label' => __('Disable page header', 'waterfall') ) )
-                    ),
-                    array(
-                        'columns'       => 'fourth',
-                        'id'            => 'page_header_parallax',
-                        'title'         => __('Parallax Page Header', 'waterfall'),
-                        'type'          => 'checkbox',
-                        'options'       => array( array('id' => 'enable', 'label' => __('Enable parallax scrolling effect', 'waterfall') ) )
-                    ),     
+                    ),   
                     array(
                         'css'           => '.entry-header',
                         'columns'       => 'half',
@@ -583,7 +748,7 @@ $configurations['options']  = array(
                     ),     
                     array(
                         'columns'       => 'fourth',
-                        'css'           => '.entry-header h1, .entry-header h2, .entry-header',
+                        'css'           => '.entry-header h1, .entry-header h2, .entry-header, .entry-header a',
                         'id'            => 'page_header_color',
                         'title'         => __('Custom Text Color Page Header', 'waterfall'),
                         'type'          => 'colorpicker'
@@ -594,68 +759,28 @@ $configurations['options']  = array(
                         'id'            => 'page_header_overlay',
                         'title'         => __('Overlay Color Page Header', 'waterfall'),
                         'type'          => 'colorpicker'
-                    ),   
-                    array(
-                        'columns'       => 'third',
-                        'default'       => 'background',
-                        'id'            => 'page_header_featured',
-                        'title'         => __('Position of Featured Image', 'waterfall'),
-                        'description'   => __('This overwrites the related setting in the customizer.', 'waterfall'),
-                        'type'          => 'select',
-                        'options'       => array(
-                            'background'    => __('As background of the page header', 'waterfall'),
-                            'before'        => __('Before the page title in the page header', 'waterfall'),
-                            'after'         => __('After the page title in the page header', 'waterfall'),
-                            'none'          => __('Do not use the featured image in the page header', 'waterfall')
-                        )
-                    ), 
-                    array(
-                        'columns'       => 'third',
-                        'default'       => 'default',
-                        'id'            => 'page_header_height',
-                        'title'         => __('Mininum Height Page Header', 'waterfall'),
-                        'description'   => __('This overwrites the related setting in the customizer.', 'waterfall'),
-                        'type'          => 'select',
-                        'options'       => array(
-                            'default'   => __('No mininum height', 'waterfall'),
-                            'full'      => __('Fullscreen height', 'waterfall'),
-                            'normal'    => __('Three quarter of screen height', 'waterfall'),
-                            'half'      => __('Half of screen height', 'waterfall'),
-                            'third'     => __('Third of screen height', 'waterfall'),
-                            'quarter'   => __('Quarter of screen height', 'waterfall')
-                        )
-                    ),
-                    array(
-                        'columns'       => 'third',
-                        'default'       => 'default',
-                        'id'            => 'page_header_scroll',
-                        'title'         => __('Show Scroll Button', 'waterfall'),
-                        'description'   => __('This overwrites the related setting in the customizer.', 'waterfall'),
-                        'type'          => 'select',
-                        'options'       => array(
-                            'none'      => __('No button', 'waterfall'),
-                            'default'   => __('Default button', 'waterfall'),
-                            'arrow'     => __('Downwards Arrow', 'waterfall')
-                        )
-                    ),     
+                    )    
                 )              
-            ),    
+            ),
+            array(
+                'description' => __('The page header is the footer within your content, displaying comments and share buttons in posts.', 'waterfall'),
+                'icon'      => 'remove_from_queue',
+                'id'        => 'page_footer',
+                'title'     => __('Page Footer', 'waterfall'),
+                'fields'    => array(    
+                    array(
+                        'id'            => 'page_footer_disable',
+                        'title'         => __('Disable Page Footer', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'       => array( array('id' => 'disable', 'label' => __('Disable page footer', 'waterfall') ) )
+                    ),
+                )
+            ),
             array(
                 'icon'      => 'web_asset',
                 'id'        => 'footer',
                 'title'     => __('Layout', 'waterfall'),
-                'fields'    => array( 
-                    array(
-                        'default'       => '',
-                        'id'            => 'content_width',
-                        'title'         => __('Page Content Width', 'waterfall'),
-                        'description'   => __('Define the content width of a page. Useful if using a pagebuilder with full-width sections.', 'waterfall'),
-                        'type'          => 'select',
-                        'options'   => array( 
-                            'default'   => __('Default width'),
-                            'full'      => __('Full width')
-                        )
-                    ),    
+                'fields'    => array(   
                     array(
                         'columns'       => 'half',
                         'default'       => '',
@@ -678,6 +803,17 @@ $configurations['options']  = array(
                     ),    
                     array(
                         'default'       => '',
+                        'id'            => 'content_width',
+                        'title'         => __('Page Content Width', 'waterfall'),
+                        'description'   => __('Define the content width of a page. Useful if using a pagebuilder with full-width sections.', 'waterfall'),
+                        'type'          => 'select',
+                        'options'   => array( 
+                            'default'   => __('Default width'),
+                            'full'      => __('Full width')
+                        )
+                    ),   
+                    array(
+                        'default'       => '',
                         'id'            => 'disable_footer',
                         'title'         => __('Disable Footer', 'waterfall'),
                         'type'          => 'checkbox',
@@ -692,6 +828,16 @@ $configurations['options']  = array(
 );
     
 $configurations['register'] = array(
+    'imageSizes' => array(
+        array('name' => 'ld', 'width' => 640, 'height' => 360, 'crop' => true),
+        array('name' => 'sd', 'width' => 854, 'height' => 480, 'crop' => true),
+        array('name' => 'hd-half', 'width' => 1280, 'height' => 360, 'crop' => true),
+        array('name' => 'hd', 'width' => 1280, 'height' => 720, 'crop' => true),
+        array('name' => 'fhd-half', 'width' => 1920, 'height' => 540, 'crop' => true),
+        array('name' => 'fhd', 'width' => 1920, 'height' => 1080, 'crop' => true),
+        array('name' => 'qhd', 'width' => 2560, 'height' => 1440, 'crop' => true),
+        array('name' => 'uhd', 'width' => 3840, 'height' => 2160, 'crop' => true),
+    ),
     'menus' => array(
         'header-menu' => __('Header Menu', 'waterfall'),
         'footer-menu' => __('Footer Menu', 'waterfall')

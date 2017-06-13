@@ -19,6 +19,9 @@ while( have_posts() ) {
     
             // The content of our post
             waterfall_content();
+    
+            // Related posts
+            waterfall_related(); 
         
             // The footer of our post
             waterfall_content_footer(); 
