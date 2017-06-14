@@ -32,12 +32,12 @@ function waterfall_header_elements() {
                 'float'         => get_theme_option('customizer', 'header_menu_float'),
                 'hamburger'     => get_theme_option('customizer', 'header_hamburger_menu') 
             )                
-        );
+        ); 
         
         // Search icon
         if( get_theme_option('customizer', 'header_search') ) {
             $atoms['search'] = array( 'ajax' => true, 'collapse'=> true, 'float' => get_theme_option('customizer', 'header_menu_float') );
-        }        
+        }          
 
 
         // Social icons
@@ -58,7 +58,7 @@ function waterfall_header_elements() {
                 );
 
             }
-        }
+        }        
         
         // Reset the order for right floats
         if( get_theme_option('customizer', 'header_menu_float') == 'right') {
@@ -68,10 +68,12 @@ function waterfall_header_elements() {
         }      
 
         $container = get_theme_option('customizer', 'header_width');
+        $headroom = get_theme_option('customizer', 'header_headroom');
         
-        $args = apply_filters( 'waterfall_footer_args', array(
+        $args = apply_filters( 'waterfall_header_args', array(
             'atoms'         => apply_filters('waterfall_header_atoms', $atoms),
             'container'     => $container == 'container' ? true : false,
+            'headroom'      => $headroom ? true : false,
             'fixed'         => get_theme_option('customizer', 'header_fixed'),
             'style'         => 'header',
             'transparent'   => isset($transparent['transparent']) ? $transparent['transparent'] : false
@@ -192,9 +194,17 @@ function waterfall_footer_elements() {
  */
 function waterfall_archive_title() {
     
+    $breadcrumbs = get_theme_option('customizer', 'archive_breadcrumbs');
+    
+    if( $breadcrumbs ) {
+        $atoms['breadcrumbs'] = array();    
+    }
+    
+    $atoms['archive-title'] = array();
+    
     $args = apply_filters('waterfall_archive_title_args', array(
-        'atoms' => array('archive-title' => array()),
-        'style' => 'entry-archive-header'
+        $atoms,
+        'style' => 'entry-archive-header main-header'
     ) );
     
     WP_Components\Build::molecule( 'post-header', $args );    
@@ -225,7 +235,17 @@ function waterfall_content_header() {
         return;      
      
     // Default arguments
-    $args = array('style' => 'entry-header'); 
+    $args = array('style' => 'main-header entry-header'); 
+    
+    if( is_page() ) {
+        $breadcrumbs = get_theme_option('customizer', 'page_header_breadcrumbs');    
+    } elseif( is_single() ) {
+        $breadcrumbs = get_theme_option('customizer', 'post_header_breadcrumbs');
+    }
+    
+    if( $breadcrumbs ) {
+        $args['atoms']['breadcrumbs'] = array('archive' => false);  
+    }    
     
     // Title
     $args['atoms']['title'] = array('tag' => 'h1');   
@@ -233,19 +253,19 @@ function waterfall_content_header() {
     /**
      *  Meta and customizer values
      */
-    if( is_single ) {
+    if( is_single() ) {
         
         $date = get_theme_option('customizer', 'post_header_date');
         $terms = get_theme_option('customizer', 'post_header_terms');    
         
         // Time
         if( $terms ) {
-            $args['atoms']['date'] = array();    
+            $args['atoms']['date'] = array('style' => 'entry-time');    
         }
         
         // Terms
         if( $terms ) {
-            $args['atoms']['termlist'] = array();    
+            $args['atoms']['termlist'] = array('style' => 'entry-meta');    
         }        
         
     }
@@ -260,13 +280,11 @@ function waterfall_content_header() {
     // Featured image
     if( is_page() ) {
         $featured = get_theme_option('customizer', 'page_header_featured');
-        $customizerSize = get_theme_option('customizer', 'page_header_size');
+        $featuredArgs = array( 'size' => get_theme_option('customizer', 'page_header_size') );
     } elseif( is_single() ) {
         $featured = get_theme_option('customizer', 'post_header_featured');
-        $customizerSize = get_theme_option('customizer', 'post_header_size');
+        $featuredArgs = array( 'size' => get_theme_option('customizer', 'post_header_size') );
     }
-
-    $featuredArgs   = array('size' => 'hd');
     
     if( $featured == 'before' ) { 
         $image = array( 'image' => $featuredArgs );
@@ -337,7 +355,7 @@ function waterfall_content() {
     $width = get_theme_option('meta', 'content_width');
     $container = $width == 'default' || ! $width ? true : false;
     
-    echo '<div class="entry-content">';
+    echo '<div class="main-content entry-content">';
     
     if($container)
         echo '<div class="components-container">';
@@ -355,7 +373,7 @@ function waterfall_content() {
     } 
     
     if( $position == 'left' || $position == 'right' )
-        WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar)) ); 
+        WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'main-sidebar') ); 
     
     if($container)
         echo '</div>';
@@ -395,7 +413,7 @@ function waterfall_related() {
             'view'          => 'grid',
         ) );
         
-        echo '<aside class="related-posts">';
+        echo '<aside class="main-related">';
         echo '<div class="components-container">';
         
         $title = get_theme_option('customizer', 'post_related_text');
@@ -423,7 +441,7 @@ function waterfall_content_footer() {
         return;       
     
     $args = array(
-        'style' => 'entry-footer'
+        'style' => 'main-footer entry-footer'
     );
 
     

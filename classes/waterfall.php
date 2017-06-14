@@ -91,24 +91,29 @@ class Waterfall {
          * Add our lay-out classes to the body
          */
         add_filter( 'body_class', function($classes) {
+
+            $customize = get_theme_option('customizer');         
+            $sidebar = 'default';
             
-            $class = 'default';
+            // Default layout class
+            if( isset($customize['layout']) ) {
+                $classes[] = apply_filters('waterfall_layout_class', 'waterfall-' . $customize['layout'] . '-layout');    
+            }
 
-            $customize = get_theme_option('customizer');
-
+            // Sidebar lay-out classes
             if( is_page() ) {
-                $class = isset($customize['page_layout']) ? $customize['page_layout'] : 'default'; 
+                $sidebar = isset($customize['page_layout']) ? $customize['page_layout'] : 'default'; 
             }
 
             if( is_archive() ) {
-                $class = isset($customize['archive_layout']) ? $customize['page_layout'] : 'default';    
+                $sidebar = isset($customize['archive_layout']) ? $customize['archive_layout'] : 'default';    
             }
 
             if( is_single() ) {
-                $class = isset($customize['post_layout']) ? $customize['page_layout'] : 'default';     
+                $sidebar = isset($customize['post_layout']) ? $customize['post_layout'] : 'default';     
             }
 
-            $classes[] = apply_filters('waterfall_layout_class', 'waterfall-' . $class . '-layout');
+            $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');
             
             return $classes;
             

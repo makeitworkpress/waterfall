@@ -34,13 +34,11 @@
     display: none;
 }
 
-
 /* Image Styling
 ----------------------*/
-img, a img {
+img {
     display: block;
     height: auto;
-    max-height: 100%;
     max-width: 100%;
     &.alignright {
         float: right; 
@@ -56,6 +54,29 @@ img, a img {
     }
 }
 
+/* Input and Forms
+------------------------------*/
+input, textarea, select {
+    border: 1px solid @f-grey;
+    border-radius: @radius;
+    line-height: @grid-space;
+    margin: 0;
+    padding: @grid-space/4 @grid-space/2;
+    width: 100%;
+    &:focus {
+        border: 1px solid @grey;
+        outline: none;
+    }
+}
 
-/* Video Styling
-----------------------*/
+input[type="radio"], input[type="checkbox"] {
+    margin: 0 @grid-space/4 0 0;
+    width: auto;
+}
+
+input[type="submit"], input[type="submit"].button {
+    background-color: @flat-red;
+    border-radius: @radius;
+    border: none;
+    width: auto;
+}

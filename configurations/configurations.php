@@ -39,7 +39,7 @@ $configurations['options']  = array(
                         'type'          => 'typography'
                     ),    
                     array(
-                        'columns'        => 'half',
+                        'columns'       => 'half',
                         'id'            => 'heading1_typography',
                         'title'         => __('Heading 1', 'waterfall'),
                         'type'          => 'typography'
@@ -217,54 +217,21 @@ $configurations['options']  = array(
                 )              
             ),
             array(
-                'id'        => 'archives',
-                'title'     => __('Archives', 'waterfall'),
-                'fields'    => array(
+                'id'            => 'general_layout',
+                'title'         => __('Layout', 'waterfall'),
+                'fields'    => array(                   
                     array(
-                        'default'       => true,
-                        'id'            => 'archives_title',
-                        'title'         => __('Display Title', 'waterfall'),
-                        'type'          => 'checkbox'
-                    ),    
-                    array(
-                        'default'       => 'third',
-                        'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
-                        'id'            => 'archives_grid',
+                        'default'       => 'default',
+                        'id'            => 'layout',
+                        'title'         => __('Layout', 'waterfall'),
+                        'type'          => 'select',
                         'choices'       => array(
-                            'full'      => __('No columns', 'waterfall'),
-                            'half'      => __('Two columns', 'waterfall'),
-                            'third'     => __('Three columns', 'waterfall'),
-                            'fourth'    => __('Four columns', 'waterfall'),
-                            'fifth'    => __('Five columns', 'waterfall')
-                        ),
-                        'title'         => __('Archives Grid', 'waterfall'),
-                        'type'          => 'select'
-                    ),
-                    array(
-                        'default'       => 'full',
-                        'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
-                        'id'            => 'archives_layout',
-                        'choices'       => array(
-                            'full'      => __('Fullwidth', 'waterfall'),
-                            'left'      => __('Left Sidebar', 'waterfall'),
-                            'right'     => __('Right Sidebar', 'waterfall')
-                        ),
-                        'title'         => __('Archives Lay-Out', 'waterfall'),
-                        'type'          => 'select'
-                    ),     
-                    array(
-                        'default'       => 'container',
-                        'description'   => __('Width of grid in posts archives.', 'waterfall'),
-                        'id'            => 'archives_width',
-                        'choices'       => array(
-                            'container' => __('Default', 'waterfall'),
-                            'full'      => __('Fullwidth', 'waterfall'),
-                        ),
-                        'title'         => __('Archives Width', 'waterfall'),
-                        'type'          => 'select'
-                    )      
+                            'default' => __('Default Layout', 'waterfall'),
+                            'boxed'   => __('Boxed Layout', 'waterfall'),
+                        )    
+                    )   
                 )              
-            ),  
+            ),    
             array(
                 'id'            => 'style_header',
                 'title'         => __('Header', 'waterfall'),
@@ -285,12 +252,18 @@ $configurations['options']  = array(
                         'title'         => __('Fixed Header', 'waterfall'),
                         'type'          => 'checkbox'
                     ),
+                     array(
+                        'default'       => '',
+                        'id'            => 'header_headroom',
+                        'title'         => __('Collapse Header when Scrolling', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
                     array(
                         'default'       => '',
                         'id'            => 'header_search',
                         'title'         => __('Add a Search Icon to the Menu', 'waterfall'),
                         'type'          => 'checkbox'
-                    ),    
+                    ),     
                     array(
                         'default'       => '',
                         'id'            => 'header_social',
@@ -326,7 +299,7 @@ $configurations['options']  = array(
                         'type'          => 'select',
                         'choices'       => array(
                             'always'    => __('Always Display', 'waterfall'),
-                            'tablets'   => __('Display on Tablets (<1024px)', 'waterfall'),
+                            'tablet'    => __('Display on Tablets (<1024px)', 'waterfall'),
                             'mobile'    => __('Display on Mobile (<768px)', 'waterfall'),
                         ),
                     ),     
@@ -398,11 +371,219 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     )    
                 )              
-            ),
+            ),   
             array(
                 'id'            => 'content_styling',
                 'title'         => __('Content Styling', 'waterfall'),
                 'fields'    => array(
+                    array(
+                        'css'           => array( 'selector' => '.main-header', 'property' => 'background-color' ),
+                        'default'       => '',
+                        'id'            => 'content_header',
+                        'title'         => __('Background Color Content Header', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-header h1, .main-header h2, .main-header h3, .main-header h4',
+                        'default'       => '',
+                        'id'            => 'content_header_title',
+                        'title'         => __('Title Color Content Header', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-header',
+                        'default'       => '',
+                        'id'            => 'content_header_text',
+                        'title'         => __('Text Color Content Header', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),     
+                    array(
+                        'css'           => '.main-header a',
+                        'default'       => '',
+                        'id'            => 'content_header_link',
+                        'title'         => __('Link Color Content Header', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-header a:hover',
+                        'default'       => '',
+                        'id'            => 'content_header_link_hover',
+                        'title'         => __('Link Hover Color Content Header', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
+                    array(
+                        'css'           => '.main-header .entry-meta a, .main-header .entry-time',
+                        'default'       => '',
+                        'id'            => 'content_header_meta',
+                        'title'         => __('Meta Color Content Header', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),        
+                    array(
+                        'css'           => array( 'selector' => '.main-content', 'property' => 'background-color' ),
+                        'default'       => '',
+                        'id'            => 'content_main',
+                        'title'         => __('Background Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-content h1, .main-header h2, .main-header h3, .main-header h4',
+                        'default'       => '',
+                        'id'            => 'content_main_title',
+                        'title'         => __('Title Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-content',
+                        'default'       => '',
+                        'id'            => 'content_main_text',
+                        'title'         => __('Text Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),     
+                    array(
+                        'css'           => '.main-content a',
+                        'default'       => '',
+                        'id'            => 'content_main_link',
+                        'title'         => __('Link Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-content a:hover',
+                        'default'       => '',
+                        'id'            => 'content_main_link_hover',
+                        'title'         => __('Link Hover Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
+                    array(
+                        'css'           => array( 'selector' => '.main-sidebar', 'property' => 'background-color' ),
+                        'default'       => '',
+                        'id'            => 'content_sidebar',
+                        'title'         => __('Background Color Main Sidebar', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-content h1, .main-header h2, .main-header h3, .main-header h4, .main-header h5',
+                        'default'       => '',
+                        'id'            => 'content_main_title',
+                        'title'         => __('Title Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-content',
+                        'default'       => '',
+                        'id'            => 'content_main_text',
+                        'title'         => __('Text Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),     
+                    array(
+                        'css'           => '.main-content a',
+                        'default'       => '',
+                        'id'            => 'content_main_link',
+                        'title'         => __('Link Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-content a:hover',
+                        'default'       => '',
+                        'id'            => 'content_main_link_hover',
+                        'title'         => __('Link Hover Color Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
+                    array(
+                        'css'           => array( 'selector' => '.main-related', 'property' => 'background-color' ),
+                        'default'       => '',
+                        'id'            => 'content_related',
+                        'title'         => __('Background Color Related Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-related h1, .main-related h2, .main-related h3, .main-related h4, .main-related h5',
+                        'default'       => '',
+                        'id'            => 'content_related_title',
+                        'title'         => __('Title Color Related Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-related',
+                        'default'       => '',
+                        'id'            => 'content_related_text',
+                        'title'         => __('Text Color Related Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),     
+                    array(
+                        'css'           => '.main-related a',
+                        'default'       => '',
+                        'id'            => 'content_related_link',
+                        'title'         => __('Link Color Related Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-related a:hover',
+                        'default'       => '',
+                        'id'            => 'content_related_link_hover',
+                        'title'         => __('Link Hover Related Main Content', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
+                    array(
+                        'css'           => array( 'selector' => '.main-footer', 'property' => 'background-color' ),
+                        'default'       => '',
+                        'id'            => 'content_footer',
+                        'title'         => __('Background Color Content Footer', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-footer h1, .main-footer h2, .main-footer h3, .main-footer h4, .main-footer h5',
+                        'default'       => '',
+                        'id'            => 'content_footer_title',
+                        'title'         => __('Title Color Content Footer', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-footer',
+                        'default'       => '',
+                        'id'            => 'content_footer_text',
+                        'title'         => __('Text Color Content Footer', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),     
+                    array(
+                        'css'           => '.main-footer a',
+                        'default'       => '',
+                        'id'            => 'content_footer_link',
+                        'title'         => __('Link Color Content Footer', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.main-footer a:hover',
+                        'default'       => '',
+                        'id'            => 'content_footer_link_hover',
+                        'title'         => __('Link Hover Color Content Footer', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
                 )
             ),
             array(
@@ -412,7 +593,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => 'after',
                         'id'            => 'page_header_featured',
-                        'title'         => __('Pages Featured Image Position', 'waterfall'),
+                        'title'         => __('Featured Image Position', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => array(
                             'background'    => __('As background of the content header', 'waterfall'),
@@ -421,6 +602,34 @@ $configurations['options']  = array(
                             'none'          => __('Do not use the featured image in the content header', 'waterfall')
                         )
                     ),
+                    array(
+                        'default'       => 'half-hd',
+                        'id'            => 'page_header_size',
+                        'title'         => __('Size Featured Image', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'thumbnail'     => __('Thumbnail', 'waterfall'),
+                            'medium'        => __('Medium', 'waterfall'),
+                            'large'         => __('Large', 'waterfall'),
+                            'full'          => __('Fullsize', 'waterfall'),
+                            'ld'            => __('LD (640x360)', 'waterfall'),
+                            'sd'            => __('SD (854x480)', 'waterfall'),
+                            'hd'            => __('HD (1280x720)', 'waterfall'),
+                            'fhd'           => __('FHD (1920x1080)', 'waterfall'),
+                            'qhd'           => __('QHD (2560x1440)', 'waterfall'),
+                            'uhd'           => __('UHD (3840x2560)', 'waterfall'),
+                            'half-ld'       => __('Half LD (640x240)', 'waterfall'),
+                            'half-sd'       => __('Half SD (854x360)', 'waterfall'),
+                            'half-hd'       => __('Half HD (1280x540)', 'waterfall'),
+                            'half-fhd'      => __('Half FHD (1920x720)', 'waterfall'),
+                            'half-qhd'      => __('Half QHD (2560x1080)', 'waterfall'),
+                            'half-uhd'      => __('Half UHD (3840x1440)', 'waterfall'),
+                            'square-ld'     => __('Square (360x360)', 'waterfall'),
+                            'square-sd'     => __('Square (480x480)', 'waterfall'),
+                            'square-hd'     => __('Square (720x720)', 'waterfall'),
+                            'square-fhd'    => __('Square (1080x1080)', 'waterfall'),  
+                        )
+                    ),    
                     array(
                         'default'       => 'half',
                         'id'            => 'page_header_height',
@@ -451,6 +660,12 @@ $configurations['options']  = array(
                             'default'   => __('Default button', 'waterfall'),
                             'arrow'     => __('Downwards Arrow', 'waterfall')
                         )
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'page_header_breadcrumbs',
+                        'title'         => __('Display Breadcrumbs', 'waterfall'),
+                        'type'          => 'checkbox'
                     ),    
                     array(
                         'choices'       => array(
@@ -481,7 +696,35 @@ $configurations['options']  = array(
                             'after'         => __('After the page title in the content header', 'waterfall'),
                             'none'          => __('Do not use the featured image in the content header', 'waterfall')
                         )
-                    ),   
+                    ),
+                    array(
+                        'default'       => 'half-hd',
+                        'id'            => 'post_header_size',
+                        'title'         => __('Size Featured Image', 'waterfall'),
+                        'type'          => 'select',
+                        'choices'       => array(
+                            'thumbnail'     => __('Thumbnail', 'waterfall'),
+                            'medium'        => __('Medium', 'waterfall'),
+                            'large'         => __('Large', 'waterfall'),
+                            'full'          => __('Fullsize', 'waterfall'),
+                            'ld'            => __('LD (640x360)', 'waterfall'),
+                            'sd'            => __('SD (854x480)', 'waterfall'),
+                            'hd'            => __('HD (1280x720)', 'waterfall'),
+                            'fhd'           => __('FHD (1920x1080)', 'waterfall'),
+                            'qhd'           => __('QHD (2560x1440)', 'waterfall'),
+                            'uhd'           => __('UHD (3840x2560)', 'waterfall'),
+                            'half-ld'       => __('Half LD (640x240)', 'waterfall'),
+                            'half-sd'       => __('Half SD (854x360)', 'waterfall'),
+                            'half-hd'       => __('Half HD (1280x540)', 'waterfall'),
+                            'half-fhd'      => __('Half FHD (1920x720)', 'waterfall'),
+                            'half-qhd'      => __('Half QHD (2560x1080)', 'waterfall'),
+                            'half-uhd'      => __('Half UHD (3840x1440)', 'waterfall'),
+                            'square-ld'     => __('Square (360x360)', 'waterfall'),
+                            'square-sd'     => __('Square (480x480)', 'waterfall'),
+                            'square-hd'     => __('Square (720x720)', 'waterfall'),
+                            'square-fhd'    => __('Square (1080x1080)', 'waterfall'),  
+                        )
+                    ),    
                     array(
                         'default'       => 'half',
                         'id'            => 'post_header_height',
@@ -512,7 +755,13 @@ $configurations['options']  = array(
                             'default'   => __('Default button', 'waterfall'),
                             'arrow'     => __('Downwards Arrow', 'waterfall')
                         )
-                    ),      
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_header_breadcrumbs',
+                        'title'         => __('Display Breadcrumbs', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
                     array(
                         'default'       => '',
                         'id'            => 'post_header_date',
@@ -581,6 +830,61 @@ $configurations['options']  = array(
                     ),    
                 )
             ),
+            array(
+                'id'        => 'archives',
+                'title'     => __('Archives', 'waterfall'),
+                'fields'    => array(
+                    array(
+                        'default'       => true,
+                        'id'            => 'archives_title',
+                        'title'         => __('Display Title', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'archives_breadcrumbs',
+                        'title'         => __('Display Breadcrumbs', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),     
+                    array(
+                        'default'       => 'third',
+                        'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
+                        'id'            => 'archives_grid',
+                        'choices'       => array(
+                            'full'      => __('No columns', 'waterfall'),
+                            'half'      => __('Two columns', 'waterfall'),
+                            'third'     => __('Three columns', 'waterfall'),
+                            'fourth'    => __('Four columns', 'waterfall'),
+                            'fifth'    => __('Five columns', 'waterfall')
+                        ),
+                        'title'         => __('Archives Grid', 'waterfall'),
+                        'type'          => 'select'
+                    ),
+                    array(
+                        'default'       => 'full',
+                        'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
+                        'id'            => 'archives_layout',
+                        'choices'       => array(
+                            'full'      => __('Fullwidth', 'waterfall'),
+                            'left'      => __('Left Sidebar', 'waterfall'),
+                            'right'     => __('Right Sidebar', 'waterfall')
+                        ),
+                        'title'         => __('Archives Lay-Out', 'waterfall'),
+                        'type'          => 'select'
+                    ),     
+                    array(
+                        'default'       => 'container',
+                        'description'   => __('Width of grid in posts archives.', 'waterfall'),
+                        'id'            => 'archives_width',
+                        'choices'       => array(
+                            'container' => __('Default', 'waterfall'),
+                            'full'      => __('Fullwidth', 'waterfall'),
+                        ),
+                        'title'         => __('Archives Width', 'waterfall'),
+                        'type'          => 'select'
+                    )      
+                )              
+            ),     
             array(
                 'id'            => 'styling_footer',
                 'title'         => __('Footer', 'waterfall'),
@@ -829,14 +1133,22 @@ $configurations['options']  = array(
     
 $configurations['register'] = array(
     'imageSizes' => array(
+        array('name' => 'square-ld', 'width' => 360, 'height' => 360, 'crop' => true),
+        array('name' => 'square-sd', 'width' => 480, 'height' => 480, 'crop' => true),
+        array('name' => 'square-hd', 'width' => 720, 'height' => 720, 'crop' => true),
+        array('name' => 'square-fhd', 'width' => 1080, 'height' => 1080, 'crop' => true),
+        array('name' => 'half-ld', 'width' => 640, 'height' => 240, 'crop' => true),
         array('name' => 'ld', 'width' => 640, 'height' => 360, 'crop' => true),
+        array('name' => 'half-sd', 'width' => 854, 'height' => 360, 'crop' => true),
         array('name' => 'sd', 'width' => 854, 'height' => 480, 'crop' => true),
-        array('name' => 'hd-half', 'width' => 1280, 'height' => 360, 'crop' => true),
+        array('name' => 'half-hd', 'width' => 1280, 'height' => 480, 'crop' => true),
         array('name' => 'hd', 'width' => 1280, 'height' => 720, 'crop' => true),
-        array('name' => 'fhd-half', 'width' => 1920, 'height' => 540, 'crop' => true),
+        array('name' => 'half-fhd', 'width' => 1920, 'height' => 720, 'crop' => true),
         array('name' => 'fhd', 'width' => 1920, 'height' => 1080, 'crop' => true),
+        array('name' => 'half-qhd', 'width' => 2560, 'height' => 1080, 'crop' => true),
         array('name' => 'qhd', 'width' => 2560, 'height' => 1440, 'crop' => true),
-        array('name' => 'uhd', 'width' => 3840, 'height' => 2160, 'crop' => true),
+        array('name' => 'half-uhd', 'width' => 3840, 'height' => 1440, 'crop' => true),
+        array('name' => 'uhd', 'width' => 3840, 'height' => 2160, 'crop' => true)
     ),
     'menus' => array(
         'header-menu' => __('Header Menu', 'waterfall'),

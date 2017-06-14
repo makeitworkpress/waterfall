@@ -5,48 +5,51 @@
 /* Main Header Styling 
 ------------------------*/
 .header {
-    background: @white;
-    height: 100px;
-    padding: @grid-space @grid-space; 
-    position: absolute;
-    transition: all 333ms cubic-bezier(.82, .01, .59, 1);
-    width: 100%;
-    z-index: 999;
-    .header-transparent & {
-        background: transparent;
+    border-bottom: 1px solid @f-grey;
+    top: inherit;
+    .atom-logo {
+        margin: @grid-space/4 0;
+        img {
+            max-height: @grid-space * 2;
+            width: auto;
+        }
     }
-}
-
-/* Menu Items
-------------------------*/
-.navigation {
-    a {
-        color: @dark-blue;
-        display: block;
-        line-height: 50px;
+    .atom-menu, .atom-social, .atom-search {
+        height: @grid-space*2;
+        margin: @grid-space/4 0;    
+    }    
+    .atom-menu > ul > li > a {
+        line-height: @grid-space * 2;
+    } 
+    .atom-social {
+        padding: @grid-space/2 0;
+    }
+    .atom-menu-hamburger {
+        margin: 17px 4px;
+    }
+    .atom-search-expanded {
+        background: #fff;
+        bottom: 0;
         padding: 0 @grid-space;
-        @media screen and (max-width: 480px) {
-            font-size: 16px;
-            padding: 0 5px;
-        }
-        .header-transparent & {
-            color: @white;
-        }
-        .header-sticky & {
-            color: @dark-blue;
-        }        
+        position: absolute;
+        right: 0;
+        width: 100%;
+        z-index: 999;
     }
-    li {
-        display: inline-block;
+    .atom-search-results {
+        h4 {
+            font-size: 1em;
+            font-weight: normal;
+        }
+        .atom-type {
+            color: @grey;
+            font-size: 0.8em;
+        }
     }
 }
 
-.branding {
-    padding-left: 25px;
-    @media screen and (max-width: 480px) {
-        padding-left: 0;
+.molecule-header-top.molecule-header-transparent {
+    .menu > li > a, .atom-search-expand {
+        color: #fff;
     }
-}
-.logo img {
-    max-height: 50px;
 }
