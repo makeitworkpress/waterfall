@@ -33,12 +33,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "b9c38aadbff3029a898e0a48b1d1912f03f67565"
+                "reference": "936399940ce74a9fc87e168bae0f7f4ad5a63356"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/b9c38aadbff3029a898e0a48b1d1912f03f67565",
-                "reference": "b9c38aadbff3029a898e0a48b1d1912f03f67565",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/936399940ce74a9fc87e168bae0f7f4ad5a63356",
+                "reference": "936399940ce74a9fc87e168bae0f7f4ad5a63356",
                 "shasum": ""
             },
             "type": "library",
@@ -46,7 +46,7 @@
                 "source": "https://github.com/makeitworkpress/wp-components/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-components/issues"
             },
-            "time": "2017-06-14T15:16:41+00:00"
+            "time": "2017-06-15T14:53:39+00:00"
         },
         {
             "name": "wp-enqueue",

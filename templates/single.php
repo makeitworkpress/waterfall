@@ -15,16 +15,26 @@ while( have_posts() ) {
         
         <?php
             // The header of our article
+            do_action('waterfall_before_post_header');
+    
             waterfall_content_header();
+    
+            do_action('waterfall_before_post_content');
     
             // The content of our post
             waterfall_content();
     
+            do_action('waterfall_before_post_related');
+    
             // Related posts
             waterfall_related(); 
+    
+            do_action('waterfall_before_post_footer');
         
             // The footer of our post
             waterfall_content_footer(); 
+    
+            do_action('waterfall_after_post_footer');
 
         ?>
 

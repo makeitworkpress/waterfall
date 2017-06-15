@@ -5,20 +5,30 @@
  * @package WA
  */
 
+/* General
+---------------*/
+.molecule-footer-socket, .molecule-footer-sidebars {
+    color: @f-grey;
+    overflow: hidden;
+    padding: @grid-space 0;
+    a {
+        color: @white;
+        &:hover {
+            color: @d-grey;
+        }
+    }
+}
+
 /* Footer
 ----------------*/
 .molecule-footer-sidebars {
     background: @flat-blue;
-    color: @f-grey;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;     
-    overflow: hidden;   
+    justify-content: space-between;   
+    padding-top: @grid-space * 2;
     h1, h2, h3, h4, h5, h6 {
         color: @f-grey;
-    }
-    a {
-        color: @white;
     }
     .components-container {
         display: flex;
@@ -31,11 +41,6 @@
 ----------------*/
 .molecule-footer-socket {
     background: @dark-blue;
-    color: @f-grey;
+    font-size: @small-fontsize;
     line-height: @grid-space * 2;
-    overflow: hidden;
-    position: relative;
-    a {
-        color: @white;
-    }
 }

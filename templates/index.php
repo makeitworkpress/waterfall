@@ -14,30 +14,40 @@
 
     // Build the header for our archive page 
     if( $title ) {
-        waterfall_archive_title();
+        
+        do_action('waterfall_before_archive_header');
+        
+        waterfall_archive_header();
+        
+        do_action('waterfall_after_archive_header');
     }
 
 ?>
 
-<div class="entry-archive">
+<div class="main-content">
     <?php if($width != 'full') { ?>
-        <div class="container">
-    <?php } 
+        <div class="components-container">
+    <?php }
+    
+        do_action('waterfall_before_archive_posts');
         
         global $wp_query;
 
         // Build the overview with posts
         waterfall_posts( array(
-            'image'         => array( 'link' => 'post', 'size' => 'medium'),
+            'image'         => array( 'link' => 'post', 'size' => 'medium', 'enlarge' => 'true'),
             'postsAppear'   => 'bottom',
             'postsGrid'     => $grid,
+            'style'         => 'entry-archive',
             'view'          => 'grid',
             'query'         => $wp_query
         ) );
     
         // Sidebars
         if( $sidebar == 'left' || $sidebar == 'right' )
-            WP_Components/Build::molecule( 'sidebar', array('sidebars' => array('archive')) );
+            WP_Components/Build::molecule( 'sidebar', array('sidebars' => array('archive'), 'style' => 'entry-sidebar') );
+    
+        do_action('waterfall_after_archive_posts');
 
     if($width != 'full') { ?>
         </div>

@@ -58,11 +58,11 @@ h3 {
 
 
 h4 {
-    font-size: @heading-fontsize/2.4;
+    font-size: @heading-fontsize/3;
 }
 
 h5, h6 {
-    font-size: @heading-fontsize/3;
+    font-size: @heading-fontsize/4;
 }
 
 /* General Elements
@@ -70,7 +70,10 @@ h5, h6 {
 a {
     color: @flat-blue;
     text-decoration: none;
-    transition: all 333ms ease-out;
+    transition: all 350ms ease-out;
+    &:hover {
+        color: lighten(@flat-blue, 20%);
+    }
 }
 
 p {
@@ -78,29 +81,27 @@ p {
 }
 
 blockquote {
-}
-
-/* Content Specific Elements 
-----------------------*/
-h1.entry-title {
-    font-size: 78px;
-    @media screen and (max-width: 1024px) {
-        font-size: 56px;
-    }
-    @media screen and (max-width: 768px) {
-        font-size: 40px;
+    font-size: 1.25em;
+    margin: 1em 0;
+    line-height: @heading-lineheight;
+    padding: 1.5em 0;
+    &:before, &:after {
+        content: none;
     }    
-}
-.subtitle {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 300;
+    p {
+        font-size: 1.25em;
+        line-height: @heading-lineheight;
+        margin: 0;
+        max-width: 100%;       
+    }
 }
 
-/* Modifiers
-----------------------*/
-.source-sans-pro {
-    font-family: 'Source Sans Pro', sans-serif;
+code {
+    background: @f-grey;
+    overflow-x: scroll;
+    padding: @grid-space;
 }
-.ubuntu {
-    font-family: 'Ubuntu', sans-serif;
+
+label {
+    font-weight: bold;
 }

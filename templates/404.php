@@ -10,16 +10,13 @@
 <article class="waterfall-nothing-found">
 
     <?php
-        $args = apply_filters( 'waterfall_404_header_args', array(
-            'atoms' => array( 
-                'title' => array('tag' => 'h1', 'title' => __('Woops! Nothing found here...', 'waterfall')), 
-                'description' => array('description' => __('Try visiting another page or searching.', 'waterfall')), 
-                'search' => array() 
-            ),
-            'height' => 'normal',
-            'style' => 'main-header'
-        ) );
-        WP_Components\Build::molecule( 'post-header', $args );
+        
+        do_action('waterfall_before_404_header');
+    
+        waterfall_404_header();
+    
+        do_action('waterfall_after_404_header');
+    
     ?>
 
 </article>

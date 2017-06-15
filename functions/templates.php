@@ -30,15 +30,15 @@ function waterfall_header_elements() {
             'menu'  => array( 
                 'args'          => array('theme_location' => 'header-menu'), 
                 'float'         => get_theme_option('customizer', 'header_menu_float'),
-                'hamburger'     => get_theme_option('customizer', 'header_hamburger_menu') 
+                'hamburger'     => get_theme_option('customizer', 'header_hamburger_menu'),
+                'view'          => 'dark'
             )                
-        ); 
+        );
         
         // Search icon
         if( get_theme_option('customizer', 'header_search') ) {
-            $atoms['search'] = array( 'ajax' => true, 'collapse'=> true, 'float' => get_theme_option('customizer', 'header_menu_float') );
-        }          
-
+            $atoms['menu']['search'] = true;
+        }           
 
         // Social icons
         if( get_theme_option('customizer', 'header_social') ) {
@@ -51,11 +51,7 @@ function waterfall_header_elements() {
                     $urls[$network['network']] = $network['url'];
                 }
 
-                $atoms['social'] = array(
-                    'rounded'   => true,
-                    'float'     => get_theme_option('customizer', 'header_menu_float'),
-                    'urls'      => $urls
-                );
+                $atoms['menu']['social'] = $urls;
 
             }
         }        
@@ -192,7 +188,7 @@ function waterfall_footer_elements() {
 /**
  * Renders the archive titles
  */
-function waterfall_archive_title() {
+function waterfall_archive_header() {
     
     $breadcrumbs = get_theme_option('customizer', 'archive_breadcrumbs');
     
@@ -300,7 +296,16 @@ function waterfall_content_header() {
         $author     = get_theme_option('customizer', 'post_header_author');
         
         if( $author ) {
-            $args['atoms']['author'] = array( 'imageFloat' => 'left' ); 
+            
+            global $post;
+            
+            $args['atoms']['author'] = array(
+                'avatar'        => get_avatar($post->post_author, 64),
+                'description'   => false, 
+                'imageFloat'    => 'left', 
+                'prepend'       => __('Article by ', 'waterfall'),
+                'style'         => 'entry-author'
+            ); 
         }
     }
     
@@ -355,13 +360,13 @@ function waterfall_content() {
     $width = get_theme_option('meta', 'content_width');
     $container = $width == 'default' || ! $width ? true : false;
     
-    echo '<div class="main-content entry-content">';
+    echo '<div class="main-content">';
     
     if($container)
         echo '<div class="components-container">';
     
     // Our content
-    WP_Components\Build::atom( 'content' );
+    WP_Components\Build::atom( 'content', array('style' => 'entry-content') );
 
     // Sidebars
     if( is_page() ) {
@@ -373,7 +378,7 @@ function waterfall_content() {
     } 
     
     if( $position == 'left' || $position == 'right' )
-        WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'main-sidebar') ); 
+        WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'entry-sidebar') ); 
     
     if($container)
         echo '</div>';
@@ -387,41 +392,62 @@ function waterfall_content() {
  */
 function waterfall_related() {
 
-    $related = get_theme_option('customizer', 'post_related');
+    $related    = get_theme_option('customizer', 'post_related');
+    $paginate  = get_theme_option('customizer', 'post_related_pagination');
     
-    if( $related ) {
-        
-        global $post;
-        
-        // Base query
-        $query = array( 'post__not_in' => array($post->ID), 'posts_per_page' => 3, 'post_type' => $post->post_type );
-        
-        // Include only categories from post
-        $categories = get_the_category($post->ID);
-        
-        if( $categories ) {
-            foreach($categories as $term) {
-                $query['cat'][] = $term->term_id;     
-            }
-        }
-        
-        $args = apply_filters('waterfall_related_args', array( 
-            'args'          => $query,
-            'pagination'    => false,
-            'postsAppear'   => 3,
-            'postsGrid'     => 'third',
-            'view'          => 'grid',
-        ) );
+    if( $related || $paginate ) {
         
         echo '<aside class="main-related">';
         echo '<div class="components-container">';
         
-        $title = get_theme_option('customizer', 'post_related_text');
+        if( $related ) {
         
-        if( $title )
-            echo '<h3>' . $title . '</h3>';
+            global $post;
+
+            // Base query
+            $query = array( 'post__not_in' => array($post->ID), 'posts_per_page' => 3, 'post_type' => $post->post_type );
+
+            // Include only categories from post
+            $categories = get_the_category($post->ID);
+
+            if( $categories ) {
+                foreach($categories as $term) {
+                    $query['cat'][] = $term->term_id;     
+                }
+            }
+
+            $args = apply_filters('waterfall_related_args', array( 
+                'args'          => $query,
+                'contentAtoms'  => array(),
+                'footerAtoms'   => array( 'button' => array('iconAfter' => 'angle-right', 'iconVisible' => 'hover', 'label' => __('View Post', 'waterfall'), 'size' => 'small') ),
+                'image'         => array( 'link' => 'post', 'size' => 'square-ld', 'enlarge' => true ),
+                'pagination'    => false,
+                'postsAppear'   => 'bottom',
+                'postsGrid'     => 'third',
+                'view'          => 'grid',
+            ) );       
         
-        WP_Components\Build::molecule( 'posts', $args );
+            $title = get_theme_option('customizer', 'post_related_text');
+
+            if( $title )
+                echo '<h3>' . $title . '</h3>';
+
+            WP_Components\Build::molecule( 'posts', $args );
+                              
+        } 
+    
+        if( $paginate ) {
+            
+            $args = array();
+
+            $args = apply_filters('waterfall_related_paginate_args', array( 
+                'type' => 'post', 
+                'prev' => sprintf( __('&lsaquo; Previous Article %s', 'waterfall'), '<span>%title</span>'), 
+                'next' => sprintf( __('Next Article &rsaquo; %s', 'waterfall'), '<span>%title</span>') 
+            ) );
+            
+            WP_Components\Build::atom( 'pagination', $args );
+        }          
         
         echo '</div>';
         echo '</aside>';
@@ -443,13 +469,11 @@ function waterfall_content_footer() {
     $args = array(
         'style' => 'main-footer entry-footer'
     );
-
     
     /**
      * Retrieve our values
      */
     $author     = get_theme_option('customizer', 'post_footer_author');
-    $paginate   = get_theme_option('customizer', 'post_footer_pagination');
     $share      = get_theme_option('customizer', 'post_footer_share');
     $comments   = get_theme_option('customizer', 'post_footer_comments');
 
@@ -457,13 +481,8 @@ function waterfall_content_footer() {
         $args['atoms']['share'] = array( 'fixed' => true );
     }
     
-    if( $paginate ) {
-        
-        $args['atoms']['pagination'] = array( 'type' => 'post' );
-    }    
-    
     if( $author ) {
-        $args['atoms']['author'] = array( 'imageFloat' => 'left' );
+        $args['atoms']['author'] = array( 'imageFloat' => 'left', 'style' => 'entry-author' );
     }      
     
     if( $comments ) {
@@ -474,5 +493,24 @@ function waterfall_content_footer() {
     
     // Our content
     WP_Components\Build::molecule( 'post-footer', $args );
+    
+}
+
+/**
+ * Renders the header for content
+ */
+function waterfall_404_header() {
+    
+    $args = apply_filters( 'waterfall_404_header_args', array(
+        'atoms' => array( 
+            'title' => array('tag' => 'h1', 'title' => __('Woops! Nothing found here...', 'waterfall')), 
+            'description' => array('description' => __('Try visiting another page or searching.', 'waterfall')), 
+            'search' => array() 
+        ),
+        'height' => 'normal',
+        'style' => 'main-header'
+    ) );
+    
+    WP_Components\Build::molecule( 'post-header', $args ); 
     
 }

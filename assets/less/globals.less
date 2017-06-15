@@ -42,15 +42,46 @@ img {
     max-width: 100%;
     &.alignright {
         float: right; 
-        margin: 0 0 1em 1em;
+        margin: 0 0 1.5em 1.5em;
     }
     &.alignleft {
         float: left; 
-        margin: 0 1em 1em 0;
+        margin: 0 1.5em 1.5em 0;
     }
     &.aligncenter {
         display: block; 
         margin: 0 auto;
+    }
+}
+
+figcaption {
+    color: @grey;
+    font-size: @small-fontsize;
+    text-align: center;
+}
+
+/* Other Elements
+------------------------------*/
+hr {
+	border: 1px solid @d-grey;
+	clear: both;
+    margin: 1.5em 0;
+}
+
+table {
+    border: 1px solid @e-grey;
+	border-collapse: collapse;
+	border-spacing: 0;    
+    margin-bottom: 1.5em;
+    width: 100%;
+    th {
+        border-bottom: 1px solid @e-grey;
+    }
+    td {
+        padding: 4px 8px;
+        &:nth-child(2n+1) {
+            background: @f-grey;
+        }
     }
 }
 
@@ -59,12 +90,13 @@ img {
 input, textarea, select {
     border: 1px solid @f-grey;
     border-radius: @radius;
-    line-height: @grid-space;
+    line-height: @grid-space * 1.5;
     margin: 0;
-    padding: @grid-space/4 @grid-space/2;
+    min-height: @grid-space * 1.5;
+    padding: 0 @grid-space/2;
     width: 100%;
     &:focus {
-        border: 1px solid @grey;
+        border: 1px solid @d-grey;
         outline: none;
     }
 }
@@ -78,5 +110,9 @@ input[type="submit"], input[type="submit"].button {
     background-color: @flat-red;
     border-radius: @radius;
     border: none;
+    color: @white;
     width: auto;
+    &:hover {
+        cursor: pointer;
+    }
 }

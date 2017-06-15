@@ -14,11 +14,18 @@ while( have_posts() ) {
     <article <?php post_class(); ?> itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
         
         <?php
+            
+            do_action('waterfall_before_page_header');
+            
             // The header of our article
             waterfall_content_header();
     
+            do_action('waterfall_before_page_content');
+    
             // The content of our container
             waterfall_content(); 
+    
+            do_action('waterfall_after_page_content');
 
         ?>
 

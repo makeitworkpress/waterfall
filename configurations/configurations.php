@@ -380,7 +380,7 @@ $configurations['options']  = array(
                         'css'           => array( 'selector' => '.main-header', 'property' => 'background-color' ),
                         'default'       => '',
                         'id'            => 'content_header',
-                        'title'         => __('Background Color Content Header', 'waterfall'),
+                        'title'         => __('Content Header Background Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -388,7 +388,7 @@ $configurations['options']  = array(
                         'css'           => '.main-header h1, .main-header h2, .main-header h3, .main-header h4',
                         'default'       => '',
                         'id'            => 'content_header_title',
-                        'title'         => __('Title Color Content Header', 'waterfall'),
+                        'title'         => __('Content Header Title Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -396,7 +396,7 @@ $configurations['options']  = array(
                         'css'           => '.main-header',
                         'default'       => '',
                         'id'            => 'content_header_text',
-                        'title'         => __('Text Color Content Header', 'waterfall'),
+                        'title'         => __('Content Header Text Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),     
@@ -404,7 +404,7 @@ $configurations['options']  = array(
                         'css'           => '.main-header a',
                         'default'       => '',
                         'id'            => 'content_header_link',
-                        'title'         => __('Link Color Content Header', 'waterfall'),
+                        'title'         => __('Content Header Link Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -412,7 +412,7 @@ $configurations['options']  = array(
                         'css'           => '.main-header a:hover',
                         'default'       => '',
                         'id'            => 'content_header_link_hover',
-                        'title'         => __('Link Hover Color Content Header', 'waterfall'),
+                        'title'         => __('Content Header Link Hover Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),    
@@ -420,7 +420,7 @@ $configurations['options']  = array(
                         'css'           => '.main-header .entry-meta a, .main-header .entry-time',
                         'default'       => '',
                         'id'            => 'content_header_meta',
-                        'title'         => __('Meta Color Content Header', 'waterfall'),
+                        'title'         => __('Content Header Meta Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),        
@@ -428,7 +428,7 @@ $configurations['options']  = array(
                         'css'           => array( 'selector' => '.main-content', 'property' => 'background-color' ),
                         'default'       => '',
                         'id'            => 'content_main',
-                        'title'         => __('Background Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Background Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -436,7 +436,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content h1, .main-header h2, .main-header h3, .main-header h4',
                         'default'       => '',
                         'id'            => 'content_main_title',
-                        'title'         => __('Title Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Title Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -444,7 +444,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content',
                         'default'       => '',
                         'id'            => 'content_main_text',
-                        'title'         => __('Text Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Text Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),     
@@ -452,7 +452,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content a',
                         'default'       => '',
                         'id'            => 'content_main_link',
-                        'title'         => __('Link Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Link Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -460,7 +460,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content a:hover',
                         'default'       => '',
                         'id'            => 'content_main_link_hover',
-                        'title'         => __('Link Hover Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Link Hover Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),    
@@ -468,7 +468,7 @@ $configurations['options']  = array(
                         'css'           => array( 'selector' => '.main-sidebar', 'property' => 'background-color' ),
                         'default'       => '',
                         'id'            => 'content_sidebar',
-                        'title'         => __('Background Color Main Sidebar', 'waterfall'),
+                        'title'         => __('Main Sidebar Background Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -476,7 +476,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content h1, .main-header h2, .main-header h3, .main-header h4, .main-header h5',
                         'default'       => '',
                         'id'            => 'content_main_title',
-                        'title'         => __('Title Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Title Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -484,7 +484,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content',
                         'default'       => '',
                         'id'            => 'content_main_text',
-                        'title'         => __('Text Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Text Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),     
@@ -492,7 +492,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content a',
                         'default'       => '',
                         'id'            => 'content_main_link',
-                        'title'         => __('Link Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Link Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -500,7 +500,7 @@ $configurations['options']  = array(
                         'css'           => '.main-content a:hover',
                         'default'       => '',
                         'id'            => 'content_main_link_hover',
-                        'title'         => __('Link Hover Color Main Content', 'waterfall'),
+                        'title'         => __('Main Content Link Hover Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),    
@@ -508,7 +508,7 @@ $configurations['options']  = array(
                         'css'           => array( 'selector' => '.main-related', 'property' => 'background-color' ),
                         'default'       => '',
                         'id'            => 'content_related',
-                        'title'         => __('Background Color Related Content', 'waterfall'),
+                        'title'         => __('Related Content Background Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -516,7 +516,7 @@ $configurations['options']  = array(
                         'css'           => '.main-related h1, .main-related h2, .main-related h3, .main-related h4, .main-related h5',
                         'default'       => '',
                         'id'            => 'content_related_title',
-                        'title'         => __('Title Color Related Content', 'waterfall'),
+                        'title'         => __('Related Content Title Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -524,7 +524,7 @@ $configurations['options']  = array(
                         'css'           => '.main-related',
                         'default'       => '',
                         'id'            => 'content_related_text',
-                        'title'         => __('Text Color Related Content', 'waterfall'),
+                        'title'         => __('Related Content Text Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),     
@@ -532,7 +532,7 @@ $configurations['options']  = array(
                         'css'           => '.main-related a',
                         'default'       => '',
                         'id'            => 'content_related_link',
-                        'title'         => __('Link Color Related Content', 'waterfall'),
+                        'title'         => __('Related Content Link Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -540,7 +540,7 @@ $configurations['options']  = array(
                         'css'           => '.main-related a:hover',
                         'default'       => '',
                         'id'            => 'content_related_link_hover',
-                        'title'         => __('Link Hover Related Main Content', 'waterfall'),
+                        'title'         => __('Related Main Content Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),    
@@ -548,7 +548,7 @@ $configurations['options']  = array(
                         'css'           => array( 'selector' => '.main-footer', 'property' => 'background-color' ),
                         'default'       => '',
                         'id'            => 'content_footer',
-                        'title'         => __('Background Color Content Footer', 'waterfall'),
+                        'title'         => __('Content Footer Background Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -556,7 +556,7 @@ $configurations['options']  = array(
                         'css'           => '.main-footer h1, .main-footer h2, .main-footer h3, .main-footer h4, .main-footer h5',
                         'default'       => '',
                         'id'            => 'content_footer_title',
-                        'title'         => __('Title Color Content Footer', 'waterfall'),
+                        'title'         => __('Content Footer Title Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -564,7 +564,7 @@ $configurations['options']  = array(
                         'css'           => '.main-footer',
                         'default'       => '',
                         'id'            => 'content_footer_text',
-                        'title'         => __('Text Color Content Footer', 'waterfall'),
+                        'title'         => __('Content Footer Text Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),     
@@ -572,7 +572,7 @@ $configurations['options']  = array(
                         'css'           => '.main-footer a',
                         'default'       => '',
                         'id'            => 'content_footer_link',
-                        'title'         => __('Link Color Content Footer', 'waterfall'),
+                        'title'         => __('Content Footer Link Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -580,7 +580,7 @@ $configurations['options']  = array(
                         'css'           => '.main-footer a:hover',
                         'default'       => '',
                         'id'            => 'content_footer_link_hover',
-                        'title'         => __('Link Hover Color Content Footer', 'waterfall'),
+                        'title'         => __('Content Footer Link Hover Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),    
@@ -803,7 +803,13 @@ $configurations['options']  = array(
                         'id'            => 'post_related_text',
                         'title'         => __('Title above Related Posts', 'waterfall'),
                         'type'          => 'input'
-                    ),     
+                    ), 
+                    array(
+                        'default'       => '',
+                        'id'            => 'post_related_pagination',
+                        'title'         => __('Show post pagination', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),    
                     array(
                         'default'       => '',
                         'id'            => 'post_footer_author',
@@ -815,13 +821,7 @@ $configurations['options']  = array(
                         'id'            => 'post_footer_share',
                         'title'         => __('Show sharing buttons in posts', 'waterfall'),
                         'type'          => 'checkbox'
-                    ),
-                    array(
-                        'default'       => '',
-                        'id'            => 'post_footer_pagination',
-                        'title'         => __('Show posts pagination', 'waterfall'),
-                        'type'          => 'checkbox'
-                    ),    
+                    ),   
                     array(
                         'default'       => '',
                         'id'            => 'post_footer_comments',
@@ -1024,6 +1024,53 @@ $configurations['options']  = array(
         'screen'        => array('page', 'post'),    
         'sections'      => array(
             array(
+                'icon'      => 'web_asset',
+                'id'        => 'footer',
+                'title'     => __('Layout', 'waterfall'),
+                'fields'    => array(   
+                    array(
+                        'columns'       => 'half',
+                        'default'       => '',
+                        'id'            => 'transparent_header',
+                        'title'         => __('Header Transparency', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'   => array( 
+                            array( 'id' => 'transparent', 'label' => __('Transparent Header', 'waterfall') )
+                        )
+                    ),
+                    array(
+                        'columns'       => 'half',
+                        'default'       => '',
+                        'id'            => 'disable_header',
+                        'title'         => __('Disable Header', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'   => array( 
+                            array( 'id' => 'disable', 'label' => __('Disable the display of the header', 'waterfall') )
+                        )
+                    ),    
+                    array(
+                        'default'       => '',
+                        'id'            => 'content_width',
+                        'title'         => __('Page Content Width', 'waterfall'),
+                        'description'   => __('Define the content width of a page. Useful if using a pagebuilder with full-width sections.', 'waterfall'),
+                        'type'          => 'select',
+                        'options'   => array( 
+                            'default'   => __('Default width'),
+                            'full'      => __('Full width')
+                        )
+                    ),   
+                    array(
+                        'default'       => '',
+                        'id'            => 'disable_footer',
+                        'title'         => __('Disable Footer', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'   => array( 
+                            array( 'id' => 'disable', 'label' => __('Disable the display of the footer', 'waterfall') )
+                        )
+                    )    
+                )              
+            ),    
+            array(
                 'description' => __('The page header is the header within your content, displaying the title and more.', 'waterfall'),
                 'icon'      => 'remove_from_queue',
                 'id'        => 'page_header',
@@ -1079,54 +1126,7 @@ $configurations['options']  = array(
                         'options'       => array( array('id' => 'disable', 'label' => __('Disable page footer', 'waterfall') ) )
                     ),
                 )
-            ),
-            array(
-                'icon'      => 'web_asset',
-                'id'        => 'footer',
-                'title'     => __('Layout', 'waterfall'),
-                'fields'    => array(   
-                    array(
-                        'columns'       => 'half',
-                        'default'       => '',
-                        'id'            => 'transparent_header',
-                        'title'         => __('Header Transparency', 'waterfall'),
-                        'type'          => 'checkbox',
-                        'options'   => array( 
-                            array( 'id' => 'transparent', 'label' => __('Transparent Header', 'waterfall') )
-                        )
-                    ),
-                    array(
-                        'columns'       => 'half',
-                        'default'       => '',
-                        'id'            => 'disable_header',
-                        'title'         => __('Disable Header', 'waterfall'),
-                        'type'          => 'checkbox',
-                        'options'   => array( 
-                            array( 'id' => 'disable', 'label' => __('Disable the display of the header', 'waterfall') )
-                        )
-                    ),    
-                    array(
-                        'default'       => '',
-                        'id'            => 'content_width',
-                        'title'         => __('Page Content Width', 'waterfall'),
-                        'description'   => __('Define the content width of a page. Useful if using a pagebuilder with full-width sections.', 'waterfall'),
-                        'type'          => 'select',
-                        'options'   => array( 
-                            'default'   => __('Default width'),
-                            'full'      => __('Full width')
-                        )
-                    ),   
-                    array(
-                        'default'       => '',
-                        'id'            => 'disable_footer',
-                        'title'         => __('Disable Footer', 'waterfall'),
-                        'type'          => 'checkbox',
-                        'options'   => array( 
-                            array( 'id' => 'disable', 'label' => __('Disable the display of the footer', 'waterfall') )
-                        )
-                    )    
-                )              
-            )    
+            )   
         )
     )
 );

@@ -18,12 +18,154 @@
 
 /* General
 ----------------------*/
-.entry-header {
-    background-position: center center;
-    background-size: cover;
+
+.main-header, .main-content, .main-related, .main-footer {
+    padding: @grid-space 0;
+}
+
+/* Header Section 
+----------------------*/
+.main-header {
     overflow: hidden;
-    position: relative;
     .description {
         font-size: 24px;
+    }
+    .atom-breadcrumbs {
+        font-size: @small-fontsize;
+    }
+    .atom-image {
+        margin: @grid-space/2 -50%;
+        text-align: center;
+        img {
+            display: inline-block;
+        }
+    }
+    .atom-author {
+        padding: @grid-space/2 0;
+        h4 {
+            font-size: 1em;
+            line-height: @grid-space * 2;
+        }
+    }
+}
+
+.entry-meta, .entry-time {
+    color: @grey;
+    font-size: @small-fontsize;
+    display: inline-block;
+    margin-right: @grid-space/4;
+    text-transform: uppercase;
+    vertical-align: top;
+    i {
+        color: @dark-grey;
+    }
+    a {
+        color: @grey;
+        &:hover {
+            color: @dark-grey;
+        }
+    }
+}
+
+/* Main Content Section
+----------------------*/
+.entry-content {
+    p, h3, h4, h5, h6, ol, ul, pre, code, ins, mark, cite, em, b, strong, i {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 720px;
+    }
+    ul {
+        list-style: disc;
+        margin: 0 0 1.5em 1.5em;
+    }
+    ol {
+        list-style: decimal;
+        margin: 0 0 1.5em 1.5em;
+    }
+    img {
+        margin-bottom: 1.5em;
+    }
+    .wp-caption {
+        margin-bottom: 1.5em;
+        max-width: 100%;
+        img {
+            margin-bottom: 0.5em;
+        }
+    }  
+}
+
+/* Sidebars */
+.waterfall-left-sidebar, .waterfall-right-sidebar {
+    .main-content, .main-content > .components-container { 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .entry-content, .entry-archive {
+        width: 70%;    
+    }
+    .entry-sidebar {
+        width: 26%;
+    }
+}
+
+.waterfall-left-sidebar {
+    .entry-content {
+        order: 1;   
+    }    
+    .entry-sidebar {
+        order: 0;  
+    }
+}
+
+.widget {
+    padding-bottom: @grid-space;
+    &:last-child {
+        padding-bottom: 0;
+    }
+}
+
+/* Related Section 
+----------------------*/
+.main-related {
+    .molecule-posts-grid .has-post-thumbnail {
+        .molecule-post-content {
+            background: linear-gradient(to top, #000, rgba(0,0,0,0));    
+        }
+        .atom-button {
+            background: none;
+            border: 2px solid @white;
+        }         
+    }
+    .molecule-post-content {
+        bottom: 0;
+        top: inherit;
+        .atom-button {
+            background: none;
+            border: 2px solid @flat-blue;
+            float: right;
+            &:hover {
+                background: @flat-blue;
+                border-color: @flat-blue;
+                color: @white;
+            }            
+        }        
+    }
+    .atom-pagination-post {
+        a {
+            color: @grey;
+            line-height: @heading-lineheight;
+            &:hover {
+                transform: translate(-@grid-space/4, 0);
+            }
+            &:last-child:hover {
+                transform: translate(@grid-space/4, 0);    
+            }
+        }
+        span {
+            color: @flat-blue;
+            font-size: 1.5em;
+        }
     }
 }
