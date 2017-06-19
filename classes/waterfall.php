@@ -115,7 +115,7 @@ class Waterfall {
             }            
 
             if( is_single() ) {
-                $sidebar = isset($customize['post_layout']) ? $customize['post_layout'] : 'default';     
+                $sidebar = isset($customize['single_layout']) ? $customize['single_layout'] : 'default';     
             }
 
             $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');

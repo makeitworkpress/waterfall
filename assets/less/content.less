@@ -33,9 +33,11 @@
     .atom-breadcrumbs {
         font-size: @small-fontsize;
     }
-    .atom-image {
+    &.components-center-align .atom-image {
         margin: @grid-space/2 -50%;
-        text-align: center;
+    }
+    .atom-image {
+        margin: @grid-space/2 0;
         img {
             display: inline-block;
         }
@@ -180,5 +182,13 @@
             color: @flat-blue;
             font-size: 1.5em;
         }
+    }
+}
+
+/* Footer Section 
+----------------------*/
+.main-footer {
+    .atom-comments {
+        padding: @grid-space 0;
     }
 }

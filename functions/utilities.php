@@ -77,7 +77,7 @@ function is_custom() {
  * Retrieves all image sizes for this theme
  */
 function get_image_sizes() {
-    return array(
+    return apply_filters( 'waterfall_image_sizes', array(
         'thumbnail'     => __('Thumbnail', 'waterfall'),
         'medium'        => __('Medium', 'waterfall'),
         'large'         => __('Large', 'waterfall'),
@@ -98,5 +98,100 @@ function get_image_sizes() {
         'square-sd'     => __('Square SD (480x480)', 'waterfall'),
         'square-hd'     => __('Square HD (720x720)', 'waterfall'),
         'square-fhd'    => __('Square FHD (1080x1080)', 'waterfall')          
-    );
+    ) );
+}
+
+/**
+ * Retrieves the default grid columns of the grid system
+ */
+function get_column_options() {
+    return apply_filters( 'waterfall_column_options', array(
+        'full'      => __('No columns', 'waterfall'),
+        'half'      => __('Two columns', 'waterfall'),
+        'third'     => __('Three columns', 'waterfall'),
+        'fourth'    => __('Four columns', 'waterfall'),
+        'fifth'     => __('Five columns', 'waterfall')
+    ) );
+}
+
+/**
+ * Retrieve options for displaying the sidebar
+ */
+function get_sidebar_options() {
+    return apply_filters( 'waterfall_sidebar_options', array(
+        'full'      => __('No Sidebars', 'waterfall'),
+        'left'      => __('Left Sidebar', 'waterfall'),
+        'right'     => __('Right Sidebar', 'waterfall')
+    ) );      
+}
+
+/**
+ * Retrieve options for container/fullwidth
+ */
+function get_container_options() {
+    return apply_filters( 'waterfall_container_options', array(
+        ''          => __('Select Option', 'waterfall'),
+        'default'   => __('Default', 'waterfall'),
+        'full'      => __('Fullwidth', 'waterfall')
+    ) );  
+}
+                         
+/**
+ * Retrieves screen heights
+ */
+function get_height_options() {
+    return apply_filters( 'waterfall_height_options', array(
+        'default'   => __('No minimum height', 'waterfall'),
+        'full'      => __('Fullscreen height', 'waterfall'),
+        'normal'    => __('Three quarter of screen height', 'waterfall'),
+        'half'      => __('Half of screen height', 'waterfall'),
+        'third'     => __('Third of screen height', 'waterfall'),
+        'quarter'   => __('Quarter of screen height', 'waterfall')
+    ) );  
+}
+
+/**
+ * Retrieves alignments
+ */
+function get_align_options() {
+    return apply_filters( 'waterfall_align_options', array(
+        'left'    => __('Left', 'waterfall'),
+        'center'  => __('Center', 'waterfall'),
+        'right'   => __('Right', 'waterfall')
+    ) );  
+}
+
+/**
+ * Retrieves button options
+ */
+function get_button_options() {
+    return apply_filters( 'waterfall_button_options', array(
+        'none'      => __('No button', 'waterfall'),
+        'default'   => __('Default button', 'waterfall'),
+        'arrow'     => __('Downwards Arrow', 'waterfall')
+    ) );  
+}
+
+/**
+ * Retrieves background options
+ */
+function get_background_options() {
+    return apply_filters( 'waterfall_background_options', array(
+        'background'    => __('As background of the content header', 'waterfall'),
+        'before'        => __('Before the page title in the content header', 'waterfall'),
+        'after'         => __('After the page title in the content header', 'waterfall'),
+        'none'          => __('Do not use the featured image in the content header', 'waterfall')
+    ) );  
+}
+
+/**
+ * Retrieves float options
+ */
+function get_float_options() {
+    return apply_filters( 'waterfall_float_options', array(
+        'center' => __('Center', 'waterfall'),
+        'left'   => __('Left', 'waterfall'),
+        'none'   => __('None', 'waterfall'),
+        'right'  => __('Right', 'waterfall')
+    ) );  
 }
