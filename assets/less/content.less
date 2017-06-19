@@ -20,7 +20,7 @@
 ----------------------*/
 
 .main-header, .main-content, .main-related, .main-footer {
-    padding: @grid-space 0;
+    padding: @grid-space;
 }
 
 /* Header Section 
@@ -108,15 +108,28 @@
     .entry-sidebar {
         width: 26%;
     }
+    @media screen and (max-width: 768px) {
+        .entry-content, .entry-archive, .entry-sidebar {
+            width: 100%;
+        }
+        .entry-sidebar {
+            margin-top: @grid-space;
+        }
+    }
 }
 
 .waterfall-left-sidebar {
-    .entry-content {
+    .entry-content, .entry-archive {
         order: 1;   
     }    
     .entry-sidebar {
         order: 0;  
     }
+    @media screen and (max-width: 768px) {
+        .entry-content, .entry-archive, .entry-sidebar {
+            order: 0;
+        }
+    }    
 }
 
 .widget {

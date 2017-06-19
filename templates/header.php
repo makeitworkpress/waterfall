@@ -35,4 +35,5 @@
         ?>
 
         <main class="content" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="<?php echo get_main_schema(); ?>">
-   
+            
+            <?php do_action('waterfall_main_content_begin'); ?>

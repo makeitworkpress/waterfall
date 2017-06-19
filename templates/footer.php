@@ -3,6 +3,8 @@
  * Displays the footer of the page
  */
 ?>      
+            <?php do_action('waterfall_main_content_end'); ?>
+
         </main>
         
         <?php

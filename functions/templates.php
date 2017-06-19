@@ -68,7 +68,7 @@ function waterfall_header_elements() {
         
         $args = apply_filters( 'waterfall_header_args', array(
             'atoms'         => apply_filters('waterfall_header_atoms', $atoms),
-            'container'     => $container == 'container' ? true : false,
+            'container'     => $container == 'default' ? true : false,
             'headroom'      => $headroom ? true : false,
             'fixed'         => get_theme_option('customizer', 'header_fixed'),
             'style'         => 'header',
@@ -90,98 +90,101 @@ function waterfall_footer_elements() {
     /**
      * Retrieves and displays our footer
      */
-    $disable = is_singular() ? get_theme_option('meta', 'disable_footer') : '';
-    $disable = $disable ? $disable : array('disable' => false);
+    $disable    = is_singular() ? get_theme_option('meta', 'disable_footer') : '';
+    $disable    = $disable ? $disable : array('disable' => false);
+    
+    $sidebars   = get_theme_option('customizer', 'footer_display_sidebars');  
+    $socket     = get_theme_option('customizer', 'footer_display_socket');  
 
-    if( ! $disable['disable'] ) {
+    // We should display the footer
+    if( ! $disable['disable'] || ($sidebars === false && $socket === false) ) 
+        return;
 
-        $atoms          = array();
-        $container      = get_theme_option('customizer', 'footer_width');
-        $copyright      = get_theme_option('customizer', 'footer_copyright');
-        $logo           = get_theme_option('customizer', 'footer_logo');
-        $menu           = get_theme_option('customizer', 'footer_menu');
-        $sidebarGrid    = get_theme_option('customizer', 'footer_sidebars');
-        $social         = get_theme_option('customizer', 'footer_social');
+    $atoms          = array();
+    $container      = get_theme_option('customizer', 'footer_width');
+    $copyright      = get_theme_option('customizer', 'footer_copyright');
+    $logo           = get_theme_option('customizer', 'footer_logo');
+    $menu           = get_theme_option('customizer', 'footer_menu');
+    $sidebarGrid    = $sidebars === false ? 'none' : get_theme_option('customizer', 'footer_sidebars');
+    $social         = get_theme_option('customizer', 'footer_social');
 
-        switch( $sidebarGrid ) {
-            case 'full':
-                $sidebars = array('footer-one' => 'full');
-                break;
-            case 'half':
-                $sidebars = array('footer-one' => 'half', 'footer-two' => 'half');
-                break;
-            case 'third':
-                $sidebars = array('footer-one' => 'third', 'footer-two' => 'third', 'footer-three' => 'third');
-                break;
-            case 'fourth':
-                $sidebars = array('footer-one' => 'fourth', 'footer-two' => 'fourth', 'footer-three' => 'fourth', 'footer-four' => 'fourth');
-                break;
-            case 'fifth':
-                $sidebars = array('footer-one' => 'fifth', 'footer-two' => 'fifth', 'footer-three' => 'fifth', 'footer-four' => 'fifth', 'footer-five' => 'fifth');
-                break;
-            default:
-                $sidebars = array();
-        }
-        
-        // Logo
-        if( $logo ) {
-
-            $atoms['logo'] = array(
-                'float'     => 'center',
-                'image'     => $logo
-            );
-        }       
-
-        // Copyright Message
-        if( $copyright ) {
-            $atoms['copyright'] = array(
-                'float'     => 'left',
-                'name'      => get_theme_option('customizer', 'footer_copyright_name'),
-                'schema'    => get_theme_option('customizer', 'footer_copyright_schema')
-            );
-        }
-
-        // Social Icons
-        if( $social ) {
-
-            $networks = get_theme_option('options', 'social_networks');
-
-            if( $networks ) {
-
-                foreach( $networks as $network ) {
-                    $urls[$network['network']] = $network['url'];
-                }
-
-                $atoms['social'] = array(
-                    'rounded'   => true,
-                    'float'     => 'right',
-                    'urls'      => $urls
-                );
-
-            }                
-        }
-
-
-        // Menu
-        if( $menu ) {
-            $atoms['menu'] = array(
-                'args'          => array('theme_location' => 'footer-menu'), 
-                'float'         => 'right',
-                'hamburger'     => 'none' 
-            );
-        }
-        
-        $args = apply_filters( 'waterfall_footer_args', array(
-            'atoms'         => apply_filters('waterfall_footer_atoms', $atoms),
-            'sidebars'      => $sidebars,
-            'container'     => $container == 'container' ? true : false,
-            'style'         => 'footer'
-        ) );
-
-        // Build the footer! 
-        WP_Components\Build::molecule( 'footer', $args );
-
+    switch( $sidebarGrid ) {
+        case 'full':
+            $sidebars = array('footer-one' => 'full');
+            break;
+        case 'half':
+            $sidebars = array('footer-one' => 'half', 'footer-two' => 'half');
+            break;
+        case 'third':
+            $sidebars = array('footer-one' => 'third', 'footer-two' => 'third', 'footer-three' => 'third');
+            break;
+        case 'fourth':
+            $sidebars = array('footer-one' => 'fourth', 'footer-two' => 'fourth', 'footer-three' => 'fourth', 'footer-four' => 'fourth');
+            break;
+        case 'fifth':
+            $sidebars = array('footer-one' => 'fifth', 'footer-two' => 'fifth', 'footer-three' => 'fifth', 'footer-four' => 'fifth', 'footer-five' => 'fifth');
+            break;
+        default:
+            $sidebars = array();
     }
+
+    // Logo
+    if( $logo && $socket !== false ) {
+
+        $atoms['logo'] = array(
+            'float'     => 'center',
+            'image'     => $logo
+        );
+    }       
+
+    // Copyright Message
+    if( $copyright && $socket !== false ) {
+        $atoms['copyright'] = array(
+            'float'     => 'left',
+            'name'      => get_theme_option('customizer', 'footer_copyright_name'),
+            'schema'    => get_theme_option('customizer', 'footer_copyright_schema')
+        );
+    }
+
+    // Social Icons
+    if( $social && $socket !== false ) {
+
+        $networks = get_theme_option('options', 'social_networks');
+
+        if( $networks ) {
+
+            foreach( $networks as $network ) {
+                $urls[$network['network']] = $network['url'];
+            }
+
+            $atoms['social'] = array(
+                'rounded'   => true,
+                'float'     => 'right',
+                'urls'      => $urls
+            );
+
+        }                
+    }
+
+
+    // Menu
+    if( $menu && $socket !== false ) {
+        $atoms['menu'] = array(
+            'args'          => array('theme_location' => 'footer-menu'), 
+            'float'         => 'right',
+            'hamburger'     => 'none' 
+        );
+    }
+
+    $args = apply_filters( 'waterfall_footer_args', array(
+        'atoms'         => apply_filters('waterfall_footer_atoms', $atoms),
+        'sidebars'      => $sidebars,
+        'container'     => $container == 'full' ? false : true,
+        'style'         => 'footer'
+    ) );
+
+    // Build the footer! 
+    WP_Components\Build::molecule( 'footer', $args );
     
 }
 
@@ -190,34 +193,101 @@ function waterfall_footer_elements() {
  */
 function waterfall_archive_header() {
     
-    $breadcrumbs = get_theme_option('customizer', 'archive_breadcrumbs');
+    $types = array('archive', 'search');
     
+    foreach( $types as $type ) {
+        $condition = 'is_' . $type;
+        
+        if( $condition() ) {
+            $breadcrumbs = get_theme_option('customizer', $type . '_breadcrumbs');
+            $style       = get_theme_option('customizer', $type . '_breadcrumbs');
+            $header      = get_theme_option('customizer', $type . '_header');
+            $width       = get_theme_option('customizer', $type . '_header_width');            
+        }
+        
+    }
+    
+    // Return if we do not want to show the header
+    if( $header === false ) 
+        return;
+
+    // Breadcrumbs
     if( $breadcrumbs ) {
         $atoms['breadcrumbs'] = array();    
     }
     
-    $atoms['archive-title'] = array();
+    // Default title
+    $atoms['archive-title'] = array();    
+    
+    // Add searchform
+    if( is_search() ) {     
+        $atoms['search'] = array();
+    }
     
     $args = apply_filters('waterfall_archive_title_args', array(
-        $atoms,
-        'style' => 'entry-archive-header main-header'
+        'atoms'     => $atoms,
+        'container' => $width == 'full' ? false : true,
+        'style'     => 'entry-archive-header main-header'
     ) );
     
     WP_Components\Build::molecule( 'post-header', $args );    
 }
 
 /**
- * Renders the posts grid
- * 
- * @param array $args The array with arguments to display posts, resembling the posts molecule arguments from vendor/wp-components/molecules
+ * Renders the posts within an archive
  */
-function waterfall_posts( $args = array() ) {
+function waterfall_archive_posts() {
     
-    $args = apply_filters( 'waterfall_posts_args', $args );
+    $types = array('archive', 'search');
     
-    WP_Components\Build::molecule( 'posts', $args );    
+    foreach( $types as $type ) {
+        $condition = 'is_' . $type;
+        
+        if( $condition() ) {
+            $columns     = get_theme_option('customizer', $type . '_grid_columns');         
+            $content     = get_theme_option('customizer', $type . '_grid_content');         
+            $image       = get_theme_option('customizer', $type . '_grid_image');         
+            $imageFloat  = get_theme_option('customizer', $type . '_grid_image_float');         
+            $layout      = get_theme_option('customizer', $type . '_layout');         
+            $style       = get_theme_option('customizer', $type . '_grid_style');         
+            $width       = get_theme_option('customizer', $type . '_grid_width'); 
+            
+            $location    = $type;
+        }
+        
+    }
+    
+    global $wp_query;
+    
+    $args = apply_filters( 'waterfall_archive_posts_args', array(
+        'contentAtoms'  => $content == 'none' ? array() : array( 'content' => array('type' => 'excerpt') ),
+        'image'         => array( 'link' => 'post', 'size' => $image ? $image : 'medium', 'enlarge' => 'true', 'float' => $imageFloat ? $imageFloat : 'none' ),
+        'postsAppear'   => 'bottom',
+        'postsGrid'     => $columns ? $columns : 'third',
+        'style'         => 'entry-archive',
+        'view'          => $style ? $style : 'grid',
+        'query'         => $wp_query    
+    ) );    
+    
+    
+    /** 
+     * The actual output for this section
+     */
+    if( $width != 'full' )
+        echo '<div class="components-container">';
+    
+        // The posts
+        WP_Components\Build::molecule( 'posts', $args );
+    
+        // The sidebar
+        if( $layout == 'left' || $layout == 'right' )
+            WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($location), 'style' => 'entry-sidebar') );    
+    
+    if( $width != 'full' )
+        echo '</div>';    
     
 }
+
 
 /**
  * Renders the header for content
@@ -233,12 +303,35 @@ function waterfall_content_header() {
     // Default arguments
     $args = array('style' => 'main-header entry-header'); 
     
-    if( is_page() ) {
-        $breadcrumbs = get_theme_option('customizer', 'page_header_breadcrumbs');    
-    } elseif( is_single() ) {
-        $breadcrumbs = get_theme_option('customizer', 'post_header_breadcrumbs');
-    }
+    /**
+     * Conditional settings
+     */
+    $types = array('page', 'single');
     
+    foreach( $types as $type ) {
+        $condition = 'is_' . $type;
+        
+        if( $condition() ) {
+            $args['align']      = get_theme_option('customizer', $type . '_header_parallax');
+            $args['height']     = get_theme_option('customizer', $type . '_header_height');
+            $args['parallax']   = get_theme_option('customizer', $type . '_header_parallax');
+            $breadcrumbs        = get_theme_option('customizer', $type . '_header_breadcrumbs');
+            $featured           = get_theme_option('customizer', $type . '_header_featured');
+            $featuredArgs       = array( 'size' => get_theme_option('customizer', $type . '_header_size') );        
+            $scroll             = get_theme_option('customizer', $type . '_header_scroll');
+            
+            // Date and time
+            $author             = get_theme_option('customizer', $type . '_header_author');            
+            $date               = get_theme_option('customizer', $type . '_header_date');
+            $terms              = get_theme_option('customizer', $type . '_header_terms'); 
+            
+        }
+    }
+            
+                                               
+    /**
+     * Elements
+     */
     if( $breadcrumbs ) {
         $args['atoms']['breadcrumbs'] = array('archive' => false);  
     }    
@@ -246,42 +339,21 @@ function waterfall_content_header() {
     // Title
     $args['atoms']['title'] = array('tag' => 'h1');   
     
-    /**
-     *  Meta and customizer values
-     */
-    if( is_single() ) {
-        
-        $date = get_theme_option('customizer', 'post_header_date');
-        $terms = get_theme_option('customizer', 'post_header_terms');    
-        
-        // Time
-        if( $terms ) {
-            $args['atoms']['date'] = array('style' => 'entry-time');    
-        }
-        
-        // Terms
-        if( $terms ) {
-            $args['atoms']['termlist'] = array('style' => 'entry-meta');    
-        }        
-        
-    }
-
-    
-    // Subtitle
-    $subtitle   = get_theme_option('meta', 'page_header_subtitle');
-
-    if( $subtitle )
+    // Subtitle  
+    if( get_theme_option('meta', 'page_header_subtitle') )
         $args['atoms']['description'] = array('description' => $subtitle);
-    
-    // Featured image
-    if( is_page() ) {
-        $featured = get_theme_option('customizer', 'page_header_featured');
-        $featuredArgs = array( 'size' => get_theme_option('customizer', 'page_header_size') );
-    } elseif( is_single() ) {
-        $featured = get_theme_option('customizer', 'post_header_featured');
-        $featuredArgs = array( 'size' => get_theme_option('customizer', 'post_header_size') );
+        
+    // Time
+    if( $terms ) {
+        $args['atoms']['date'] = array('style' => 'entry-time');    
     }
-    
+
+    // Terms
+    if( $terms ) {
+        $args['atoms']['termlist'] = array('style' => 'entry-meta');    
+    }             
+
+    // Featured image
     if( $featured == 'before' ) { 
         $image = array( 'image' => $featuredArgs );
         $args['atoms'] = $image + $args['atoms'];
@@ -289,54 +361,23 @@ function waterfall_content_header() {
         $args['atoms']['image'] = $featuredArgs;    
     } elseif( $featured == 'background' ) {
         $args['background'] = get_the_post_thumbnail_url( null, 'hd' );
-    }  
-    
-    // Author
-    if( is_single() ) {
-        $author     = get_theme_option('customizer', 'post_header_author');
+    } 
+                                               
         
-        if( $author ) {
-            
-            global $post;
-            
-            $args['atoms']['author'] = array(
-                'avatar'        => get_avatar($post->post_author, 64),
-                'description'   => false, 
-                'imageFloat'    => 'left', 
-                'prepend'       => __('Article by ', 'waterfall'),
-                'style'         => 'entry-author'
-            ); 
-        }
-    }
-    
-    /**
-     * Meta styling
-     */
-    
-    // Parallax
-    if( is_page() ) {
-        $parallax = get_theme_option('customizer', 'page_header_parallax');
-    } elseif( is_single() ) {
-        $parallax = get_theme_option('customizer', 'post_header_height');
-    }    
-    
-    if( (isset($parallax['enable']) && $parallax['enable']) || $parallax == true )
-        $args['parallax'] = true;      
-    
-    // Height
-    if( is_page() ) {
-        $args['height'] = get_theme_option('customizer', 'page_header_height');
-    } elseif( is_single() ) {
-        $args['height'] = get_theme_option('customizer', 'post_header_height');
-    }
-    
+    if( $author ) {
+
+        global $post;
+
+        $args['atoms']['author'] = array(
+            'avatar'        => get_avatar($post->post_author, 64),
+            'description'   => false, 
+            'imageFloat'    => 'left', 
+            'prepend'       => __('Article by ', 'waterfall'),
+            'style'         => 'entry-author'
+        ); 
+    }                                                
+   
     // Scroll-button
-    if( is_page() ) {
-        $scroll = get_theme_option('customizer', 'page_header_scroll');
-    } elseif( is_single() ) {
-        $scroll = get_theme_option('customizer', 'post_header_scroll');
-    }
-    
     if( $scroll == 'default' ) {
         $args['atoms']['scroll'] = array('icon' => false);
     } elseif( $scroll == 'arrow' ) {
@@ -373,8 +414,8 @@ function waterfall_content() {
         $position = get_theme_option('customizer', 'page_layout');
         $sidebar = 'page';
     } elseif( is_single() ) {
-        $position = get_theme_option('customizer', 'post_layout');
-        $sidebar = 'post';
+        $position = get_theme_option('customizer', 'single_layout');
+        $sidebar = 'single';
     } 
     
     if( $position == 'left' || $position == 'right' )
@@ -392,8 +433,8 @@ function waterfall_content() {
  */
 function waterfall_related() {
 
-    $related    = get_theme_option('customizer', 'post_related');
-    $paginate  = get_theme_option('customizer', 'post_related_pagination');
+    $related    = get_theme_option('customizer', 'single_related');
+    $paginate  = get_theme_option('customizer', 'single_related_pagination');
     
     if( $related || $paginate ) {
         
@@ -427,7 +468,7 @@ function waterfall_related() {
                 'view'          => 'grid',
             ) );       
         
-            $title = get_theme_option('customizer', 'post_related_text');
+            $title = get_theme_option('customizer', 'single_related_text');
 
             if( $title )
                 echo '<h3>' . $title . '</h3>';
@@ -461,7 +502,7 @@ function waterfall_related() {
 function waterfall_content_footer() {
     
     // Heading disabled
-    $disable    = get_theme_option('meta', 'page_footer_disable');
+    $disable = get_theme_option('meta', 'page_footer_disable');
 
     if( isset($disable['disable']) && $disable['disable'] )
         return;       
@@ -473,12 +514,19 @@ function waterfall_content_footer() {
     /**
      * Retrieve our values
      */
-    $author     = get_theme_option('customizer', 'post_footer_author');
-    $share      = get_theme_option('customizer', 'post_footer_share');
-    $comments   = get_theme_option('customizer', 'post_footer_comments');
+    $author     = get_theme_option('customizer', 'single_footer_author');
+    $share      = get_theme_option('customizer', 'single_footer_share');
+    $comments   = get_theme_option('customizer', 'single_footer_comments');
 
     if( $share ) {
         $args['atoms']['share'] = array( 'fixed' => true );
+        $networks = array('facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket');
+        
+        // Networks should be enabled
+        foreach($networks as $network) {
+            if( get_theme_option( 'customizer', 'single_share_' . $network ) )
+                $args['atoms']['share']['enabled'][] = $network;
+        }
     }
     
     if( $author ) {

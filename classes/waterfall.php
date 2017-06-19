@@ -109,6 +109,10 @@ class Waterfall {
             if( is_archive() ) {
                 $sidebar = isset($customize['archive_layout']) ? $customize['archive_layout'] : 'default';    
             }
+            
+            if( is_search() ) {
+                $sidebar = isset($customize['search_layout']) ? $customize['search_layout'] : 'default';    
+            }            
 
             if( is_single() ) {
                 $sidebar = isset($customize['post_layout']) ? $customize['post_layout'] : 'default';     
