@@ -351,7 +351,7 @@ function waterfall_content_header() {
     }    
     
     // Title
-    $args['atoms']['title'] = array('tag' => 'h1');   
+    $args['atoms']['title'] = array('tag' => 'h1', 'style' => 'entry-title');   
     
     // Subtitle  
     if( $subtitle )

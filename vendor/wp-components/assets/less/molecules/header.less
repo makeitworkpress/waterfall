@@ -1,0 +1,37 @@
+// main: ../components.less
+
+/**
+ * Styling for the header
+ */
+.molecule-header {
+    .molecule-header-primary, .molecule-header-socket, .molecule-header-top {
+        &:after {
+            clear: both;  
+            content: "";
+            display: table;     
+        }  
+    }
+}
+
+.molecule-header-top-atoms,
+.molecule-header-atoms,
+.molecule-header-socket-atoms {
+    width: 100%;
+}
+
+.molecule-header-fixed {
+    background: #fff;
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.molecule-header-transparent {
+    background: transparent;
+    border: none;
+    &.molecule-header-scrolled {
+        background: #fff;
+    }
+}

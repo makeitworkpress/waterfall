@@ -1,0 +1,36 @@
+/* Icon Field */
+.divergent-icons {
+    border: 1px solid @wp-grey;
+    max-height: 240px;
+    overflow: scroll;
+}
+.divergent-icons-title, .divergent-typography-title {
+    color: @wp-greyborder;
+    font-size: 12px;
+    margin: 0;
+    padding: @grid-space/4 @grid-space/2 0 @grid-space/2;
+}
+.divergent-icons-icon, .divergent-typography-font {
+    border-bottom: 1px solid @wp-grey;
+    border-right: 1px solid @wp-grey; 
+    float: left;
+    height: 28px;
+    margin: 0;
+    width: 28px;
+    label {
+        font-size: 16px;
+        height: 28px;
+        i {
+            line-height: 28px;
+        }
+        margin: 0;
+        text-align: center;
+    }
+    input {
+        display: none;
+    }
+    input:checked ~ label, label:hover {
+        background-color: @wp-blue;
+        color: @white;
+    }
+}

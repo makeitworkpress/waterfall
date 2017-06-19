@@ -1,0 +1,117 @@
+[
+    {
+        "name": "wp-enqueue",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-enqueue.git",
+            "reference": "5f1d2dea811dd109311ec54e65109dd89e2b40c9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/5f1d2dea811dd109311ec54e65109dd89e2b40c9",
+            "reference": "5f1d2dea811dd109311ec54e65109dd89e2b40c9",
+            "shasum": ""
+        },
+        "time": "2017-06-07T12:01:26+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-enqueue/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-enqueue/issues"
+        }
+    },
+    {
+        "name": "wp-optimize",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-optimize.git",
+            "reference": "63591c26310e541fa38746fb1e27d8d726859cf3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-optimize/zipball/63591c26310e541fa38746fb1e27d8d726859cf3",
+            "reference": "63591c26310e541fa38746fb1e27d8d726859cf3",
+            "shasum": ""
+        },
+        "time": "2017-06-07T12:01:43+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-optimize/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-optimize/issues"
+        }
+    },
+    {
+        "name": "wp-register",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-register.git",
+            "reference": "5ddd5a5744967c3dc8bf77f41690ff6c3d670f28"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/5ddd5a5744967c3dc8bf77f41690ff6c3d670f28",
+            "reference": "5ddd5a5744967c3dc8bf77f41690ff6c3d670f28",
+            "shasum": ""
+        },
+        "time": "2017-06-13T12:24:07+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-register/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-register/issues"
+        }
+    },
+    {
+        "name": "wp-components",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-components.git",
+            "reference": "019695704038e2e15dc787d7345abae102988c67"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/019695704038e2e15dc787d7345abae102988c67",
+            "reference": "019695704038e2e15dc787d7345abae102988c67",
+            "shasum": ""
+        },
+        "time": "2017-06-19T15:20:31+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-components/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-components/issues"
+        }
+    },
+    {
+        "name": "divergent",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/divergent-framework.git",
+            "reference": "0872260ba7be31894b38819bd384f3bd02478c97"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/divergent-framework/zipball/0872260ba7be31894b38819bd384f3bd02478c97",
+            "reference": "0872260ba7be31894b38819bd384f3bd02478c97",
+            "shasum": ""
+        },
+        "time": "2017-06-19T16:06:08+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/divergent-framework/tree/master",
+            "issues": "https://github.com/makeitworkpress/divergent-framework/issues"
+        }
+    }
+]

@@ -63,3 +63,11 @@ $theme->register( 'register', $configurations['register'] );
  * Register the theme framework with several options
  */
 $theme->register( 'options',  $configurations['options'] );
+
+/**
+ * Register the theme optimizations
+ */
+$optimizations = get_theme_option( 'options', 'optimizations' );
+
+if( $optimizations )
+    $theme->register( 'optimize', $optimizations );

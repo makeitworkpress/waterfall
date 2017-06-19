@@ -174,7 +174,7 @@ class Waterfall {
             'register'  => 'WP_Register\Register', 
             'routes'    => 'Router', 
             'options'   => 'Divergent\Divergent'
-        ] );
+        ] );   
         
         foreach($methods as $key => $class ) {
             
@@ -205,6 +205,8 @@ class Waterfall {
                 }
                 
             } else {
+
+                
                 $execute = new $class($this->configurations[$key]);   
             }   
             

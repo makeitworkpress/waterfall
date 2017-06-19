@@ -1,0 +1,208 @@
+// main: components.less
+
+/**
+ * Global classes
+ */
+
+/* Appearing classes */
+.components-bottom-appear,
+.components-left-appear,
+.components-right-appear,
+.components-top-appear {
+    visibility: hidden;
+}
+
+/* Parallax */
+.components-parallax {
+    background-attachment: fixed;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* Heights */
+.components-full-height {
+    min-height: 100vh;
+}
+
+.components-normal-height {
+    min-height: 75vh;
+}
+
+.components-half-height {
+    min-height: 50vh;
+}
+
+.components-third-height {
+    min-height: 33vh;
+}
+
+.components-quarter-height {
+    min-height: 25vh;
+}
+
+.components-full-height, 
+.components-normal-height, 
+.components-half-height,
+.components-third-height,
+.components-quarter-height {
+    align-items: center;
+    display: flex;
+    padding: 32px 0;
+}
+
+/* Aligns */
+.components-center-align {
+    text-align: center;
+    .components-left-float, .components-right-float {
+        float: none;
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+.components-left-align {
+    text-align: left;
+}
+
+.components-right-align {
+    text-align: right;
+}
+
+/* Floats */
+.components-center-float {
+    align-items: flex-start;
+    clear: both;
+    display: flex;
+    justify-content: center;
+}
+
+.components-left-float {
+    float: left;
+    margin-right: 16px;
+}
+
+.components-right-float {
+    float: right;
+    margin-left: 16px;
+}
+
+/* Display */
+.components-block-display {
+    display: block;
+}
+
+.components-hidden-display {
+    visibility: hidden;
+}
+
+.components-inline-display {
+    display: inline;
+}
+
+.components-inline-block-display {
+    display: inline-block;
+}
+
+.components-none-display {
+    display: none;
+}
+
+/* Loading Areas */
+.components-loading {
+    position: relative;
+    &:after {
+        background: rgba(255, 255, 255, 0.5);
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+    }
+}
+
+.components-loading-element {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+/**
+ * Rounded values
+ */
+.components-rounded {
+    border-radius: 50px;
+    &.atom-social, &.atom-share {
+        border-radius: 0;
+    }
+    .atom-network {
+        border-radius: 25px;    
+    }
+    .atom-term {
+        border-radius: 50px;
+    }
+    img {
+        border-radius: 50%;
+    }
+}
+
+/**
+ * Positions. @todo someday, make this dry!
+ */
+.components-position-bottom-center {
+    align-items: flex-end;
+    display: flex;
+    justify-content: center;
+}
+
+.components-position-bottom-left {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.components-position-bottom-right {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.components-position-middle-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.components-position-middle-left {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.components-position-middle-right {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.components-position-top-center {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+}
+
+.components-position-top-left {
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.components-position-top-right {
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-end;
+}

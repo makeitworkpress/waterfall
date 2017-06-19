@@ -169,13 +169,28 @@ $configurations['options']  = array(
                 'title'     => __('Optimizations', 'waterfall'),
                 'fields'    => array(                   
                     array (
-                        'id'            => 'text_field_value',
-                        'title'         => __('Example Title', 'waterfall'),
-                        'description'   => __('Example Description', 'waterfall'),
-                        'type'          => 'input',
-                        'subtype'       => 'email',
-                        'sanitize'      => 'enabled',
-                        'default'       => 'awesome@henk.nl'
+                        'id'            => 'optimizations',
+                        'title'         => __('Enable Optimizations', 'waterfall'),
+                        'description'   => __('Enables different optimizations, which can speed up your website.', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'       => array(
+                            array( 'id' => 'blockExternalHTTP', 'label' => __('Block external HTTP connections', 'waterfall') ),
+                            array( 'id' => 'deferCSS', 'label' => __('Defer the loading of CSS', 'waterfall') ),
+                            array( 'id' => 'deferJS', 'label' => __('Defer the loading of JavaScript', 'waterfall') ),
+                            array( 'id' => 'disableEmbed', 'label' => __('Disable embed JavaScripts', 'waterfall') ),
+                            array( 'id' => 'disableComments', 'label' => __('Disable comments', 'waterfall') ),
+                            array( 'id' => 'disableRestApi', 'label' => __('Disable the JSON REST Api', 'waterfall') ),
+                            array( 'id' => 'disableXMLRPC', 'label' => __('Disable XMLRPC', 'waterfall') ),
+                            array( 'id' => 'jqueryToFooter', 'label' => __('Move jQuery to footer', 'waterfall') ),
+                            array( 'id' => 'removeEmoji', 'label' => __('Remove Emoji Scripts', 'waterfall') ),
+                            array( 'id' => 'removeFeeds', 'label' => __('Remove Feeds', 'waterfall') ),
+                            array( 'id' => 'removeHeartbeat', 'label' => __('Remove the Heartbeatscript ', 'waterfall') ),
+                            array( 'id' => 'removejQuery', 'label' => __('Remove jQuery', 'waterfall') ),
+                            array( 'id' => 'removeShortlinks', 'label' => __('Remove shortlinks', 'waterfall') ),
+                            array( 'id' => 'removeVersionNumbers', 'label' => __('Remove version numbers from scripts and styles.', 'waterfall') ),
+                            array( 'id' => 'removeWLWManifest', 'label' => __('Remove the Windows Live Writer Manifest', 'waterfall') ),
+                            array( 'id' => 'removeWPVersion', 'label' => __('Remove WordPress Version', 'waterfall') ),
+                        )
                     ),     
                 )              
             )    
