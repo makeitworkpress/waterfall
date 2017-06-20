@@ -384,7 +384,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ), 
                     array(
-                        'css'           => '.header .menu > li > a:hover',
+                        'css'           => '.header .menu > li > a:hover, .header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a',
                         'default'       => '',
                         'id'            => 'navigation_link_hover_color',
                         'title'         => __('Navigation Link Hover and Active Color', 'waterfall'),
