@@ -1485,7 +1485,7 @@ $configurations['options']  = array(
                         'id'            => 'page_related_disable',
                         'title'         => __('Disable Page Related Section', 'waterfall'),
                         'type'          => 'checkbox',
-                        'options'       => array( array('id' => 'disable', 'label' => __('Disable page footer', 'waterfall') ) )
+                        'options'       => array( array('id' => 'disable', 'label' => __('Disable related', 'waterfall') ) )
                     ),     
                     array(
                         'columns'       => 'third',
