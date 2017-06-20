@@ -69,29 +69,6 @@
         }
     },
     {
-        "name": "wp-components",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "76b87b8d986a27aa6c28ec3848498a4a89433c9c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/76b87b8d986a27aa6c28ec3848498a4a89433c9c",
-            "reference": "76b87b8d986a27aa6c28ec3848498a4a89433c9c",
-            "shasum": ""
-        },
-        "time": "2017-06-20T08:08:47+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-components/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-components/issues"
-        }
-    },
-    {
         "name": "divergent",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -112,6 +89,29 @@
         "support": {
             "source": "https://github.com/makeitworkpress/divergent-framework/tree/master",
             "issues": "https://github.com/makeitworkpress/divergent-framework/issues"
+        }
+    },
+    {
+        "name": "wp-components",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-components.git",
+            "reference": "b2c9902d58c7efea520567dd070fa0ef251e23d4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/b2c9902d58c7efea520567dd070fa0ef251e23d4",
+            "reference": "b2c9902d58c7efea520567dd070fa0ef251e23d4",
+            "shasum": ""
+        },
+        "time": "2017-06-20T10:31:37+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-components/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-components/issues"
         }
     }
 ]
