@@ -153,6 +153,7 @@ $configurations['options']  = array(
                                 'columns'       => 'half',
                                 'id'            => 'network',
                                 'title'         => __('Type of Social Network', 'waterfall'),
+                                'placeholder'   => __('Select a network', 'waterfall'),
                                 'type'          => 'select',    
                                 'options'       => array(
                                     'email'         => __('Email', 'waterfall'), 
