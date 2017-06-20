@@ -376,7 +376,7 @@ $configurations['options']  = array(
                         'type'          => 'image'
                     ), 
                     array(
-                        'css'           => '.header .menu > li > a',
+                        'css'           => '.header .menu > li > a, .atom-search-expand',
                         'default'       => '',
                         'id'            => 'navigation_link_color',
                         'title'         => __('Navigation Link Color', 'waterfall'),
@@ -419,8 +419,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),    
                     array(
-                        'css'           => array('selector' => '.header .sub-menu', 'property' => 'background-color' 
-                        ),
+                        'css'           => array('selector' => '.header .sub-menu', 'property' => 'background-color'),
                         'default'       => '',
                         'id'            => 'navigation_submenu_background',
                         'title'         => __('Drop-down Menu Background Color', 'waterfall'),
