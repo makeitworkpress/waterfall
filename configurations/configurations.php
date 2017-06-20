@@ -22,7 +22,13 @@ $configurations['options']  = array(
                 'icon'      => 'format_size',
                 'id'        => 'typography',
                 'title'     => __('Typography', 'waterfall'),
-                'fields'    => array(                   
+                'fields'    => array( 
+                    array(
+                        'css'           => 'body',
+                        'id'            => 'body_typography',
+                        'title'         => __('General Font', 'waterfall'),
+                        'type'          => 'typography'
+                    ),     
                     array(
                         'css'           => '.header',
                         'id'            => 'header_menu_typography',

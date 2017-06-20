@@ -244,7 +244,7 @@ function waterfall_archive_posts() {
     foreach( $types as $type ) {
         $condition = 'is_' . $type;
         
-        if( $condition() ) {
+        if( $condition() || ( is_home() && $type == 'archive') ) {
             $button      = get_theme_option('customizer', $type . '_grid_button');         
             $label       = get_theme_option('customizer', $type . '_grid_label');         
             $columns     = get_theme_option('customizer', $type . '_grid_columns');         
