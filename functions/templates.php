@@ -9,15 +9,16 @@
  */
 function waterfall_header_elements() {
     
-    $disable    = get_theme_option('meta', 'disable_header'); 
+    $disable    = is_singular() ? get_theme_option('meta', 'disable_header') : '';
+    $disable    = $disable ? $disable : array('disable' => false);    
     $customizer = get_theme_option('customizer', 'header_disable');
 
     // Our header is only shown if enabled
-    if( (isset($disable['disable']) && $disable['disable']) || $customizer === true )
+    if( $disable['disable'] == true || $customizer === true )
         return; 
         
     $logo = get_theme_option('customizer', 'logo');
-    $transparent = get_theme_option('meta', 'transparent_header') ? get_theme_option('meta', 'transparent_header') : get_theme_option('customizer', 'header_transparent');
+    $transparent = is_singular() && get_theme_option('meta', 'transparent_header') ? get_theme_option('meta', 'transparent_header') : get_theme_option('customizer', 'header_transparent');;
 
     // Default header items
     $atoms = array(
