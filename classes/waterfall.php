@@ -118,8 +118,11 @@ class Waterfall {
                 $sidebar = isset($customize['single_layout']) ? $customize['single_layout'] : 'default';     
             }
             
-            if( get_theme_option('meta', 'content_width') == 'full' ) {
+            $full = get_theme_option('meta', 'content_width');
+            
+            if( isset($full['full']) && $full['full'] ) {
                 $sidebar = 'default';
+                $classes[] = 'waterfall-fullwidth-content';
             }
 
             $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');

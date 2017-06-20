@@ -1430,7 +1430,18 @@ $configurations['options']  = array(
                 'icon'      => 'web_asset',
                 'id'        => 'footer',
                 'title'     => __('Layout', 'waterfall'),
-                'fields'    => array(   
+                'fields'    => array( 
+                    array(
+                        'columns'       => 'half',
+                        'default'       => '',
+                        'id'            => 'content_width',
+                        'title'         => __('Fullwidth Main Content', 'waterfall'),
+                        'description'   => __('Makes the main content fullwidth without any padding. Useful if using page-builders.', 'waterfall'),
+                        'type'          => 'checkbox',
+                        'options'       => array( 
+                            array( 'id' => 'full', 'label' => __('Enable Fullwidth Content', 'waterfall') )
+                        )
+                    ),   
                     array(
                         'columns'       => 'half',
                         'default'       => '',
@@ -1439,18 +1450,9 @@ $configurations['options']  = array(
                         'title'         => __('Header Transparency', 'waterfall'),
                         'type'          => 'checkbox',
                         'options'   => array( 
-                            array( 'id' => 'transparent', 'label' => __('Transparent Header', 'waterfall') )
+                            array( 'id' => 'transparent', 'label' => __('Enable Transparent Header', 'waterfall') )
                         )
                     ),   
-                    array(
-                        'columns'       => 'half',
-                        'default'       => '',
-                        'id'            => 'content_width',
-                        'title'         => __('Page Content Width', 'waterfall'),
-                        'description'   => __('Define the content width of a page. Useful if using a pagebuilder with full-width sections.', 'waterfall'),
-                        'type'          => 'select',
-                        'options'       => get_container_options()
-                    ),
                     array(
                         'columns'       => 'half',
                         'description'   => __('The Header is the main header of the site, usually containing the main navigation.', 'waterfall'),

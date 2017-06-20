@@ -412,12 +412,12 @@ function waterfall_content_header() {
  */
 function waterfall_content() {
     
-    $width = is_page() ? get_theme_option('customizer', 'page_content_width') : get_theme_option('customizer', 'single_content_width');
-    $width = get_theme_option('meta', 'content_width') ? get_theme_option('meta', 'content_width') : $width;
+    $customizer = is_page() ? get_theme_option('customizer', 'page_content_width') : get_theme_option('customizer', 'single_content_width');
+    $full       = get_theme_option('meta', 'content_width');
     
     echo '<div class="main-content">';
     
-    if( $width != 'full' )
+    if( $customizer != 'full' && (isset($full['full']) && ! $full['full']) )
         echo '<div class="components-container">';
     
     // Our content
@@ -432,10 +432,10 @@ function waterfall_content() {
         $sidebar = 'single';
     } 
     
-    if( ($position == 'left' || $position == 'right') && get_theme_option('meta', 'content_width') != 'full' )
+    if( ($position == 'left' || $position == 'right') && (isset($full['full']) && ! $full['full']) )
         WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'entry-sidebar') ); 
     
-    if( $width != 'full' )
+    if( $customizer != 'full' && (isset($full['full']) && ! $full['full']) )
         echo '</div>';
     
     echo '</div>';
