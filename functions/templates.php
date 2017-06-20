@@ -305,7 +305,7 @@ function waterfall_content_header() {
  
     // Heading disabled
     $customizer = is_page() ? get_theme_option('customizer', 'page_header_disable') : get_theme_option('customizer', 'page_header_disable');
-    $disable    = get_theme_option('meta', 'page_footer_disable');
+    $disable    = get_theme_option('meta', 'page_header_disable');
 
     if( (isset($disable['disable']) && $disable['disable']) || $customizer === true )
         return;      
