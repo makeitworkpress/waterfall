@@ -421,7 +421,7 @@ function waterfall_content() {
         echo '<div class="components-container">';
     
     // Our content
-    WP_Components\Build::atom( 'content', array('style' => 'entry-content') );
+    WP_Components\Build::atom( 'content', array('style' => 'entry-content editable-content') );
 
     // Sidebars
     if( is_page() ) {
