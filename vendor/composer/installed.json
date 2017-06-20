@@ -69,29 +69,6 @@
         }
     },
     {
-        "name": "divergent",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/divergent-framework.git",
-            "reference": "0872260ba7be31894b38819bd384f3bd02478c97"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/divergent-framework/zipball/0872260ba7be31894b38819bd384f3bd02478c97",
-            "reference": "0872260ba7be31894b38819bd384f3bd02478c97",
-            "shasum": ""
-        },
-        "time": "2017-06-19T16:06:08+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/divergent-framework/tree/master",
-            "issues": "https://github.com/makeitworkpress/divergent-framework/issues"
-        }
-    },
-    {
         "name": "wp-components",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -112,6 +89,29 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-components/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-components/issues"
+        }
+    },
+    {
+        "name": "divergent",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/divergent-framework.git",
+            "reference": "e663097c80d29289a6b4262bad32c4c3a2407a23"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/divergent-framework/zipball/e663097c80d29289a6b4262bad32c4c3a2407a23",
+            "reference": "e663097c80d29289a6b4262bad32c4c3a2407a23",
+            "shasum": ""
+        },
+        "time": "2017-06-20T08:40:21+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/divergent-framework/tree/master",
+            "issues": "https://github.com/makeitworkpress/divergent-framework/issues"
         }
     }
 ]
