@@ -432,7 +432,7 @@ function waterfall_content() {
         $sidebar = 'single';
     } 
     
-    if( $position == 'left' || $position == 'right' )
+    if( ($position == 'left' || $position == 'right') && get_theme_option('meta', 'content_width') != 'full' )
         WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'entry-sidebar') ); 
     
     if( $width != 'full' )

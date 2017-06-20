@@ -105,9 +105,10 @@
         justify-content: space-between;
     }
     .entry-content, .entry-archive {
-        width: 70%;    
+        flex-grow: 1;  
     }
     .entry-sidebar {
+        padding: 0 0 0 @grid-space;
         width: 26%;
     }
     @media screen and (max-width: 768px) {
@@ -125,7 +126,8 @@
         order: 1;   
     }    
     .entry-sidebar {
-        order: 0;  
+        order: 0; 
+        padding: 0 @grid-space 0 0;
     }
     @media screen and (max-width: 768px) {
         .entry-content, .entry-archive, .entry-sidebar {
