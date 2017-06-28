@@ -1609,7 +1609,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ), 
                     array(
-                        'css'           => '.main-header:after',
+                        'css'           => array( 'property' => 'background-color', 'selector' => '.main-header:after' ),
                         'columns'       => 'fourth',
                         'id'            => 'page_header_overlay',
                         'title'         => __('Overlay Color Page Header', 'waterfall'),
