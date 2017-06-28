@@ -19,20 +19,8 @@
     .atom-menu {
         height: @grid-space*2;
         margin: @grid-space/4 0;
-        .atom-search-expanded {
-            input {
-                border: none;
-            }
-            .atom-search-expand, .fa-circle-o-notch {
-                color: @white;
-            }
-            .fa-circle-o-notch {
-                top: @grid-space/2;
-            }
-            &:after {
-                background: rgba(0, 0, 0, 0.8);
-                height: 80px;
-            }
+        .atom-search-expanded .fa-circle-o-notch {
+            top: @grid-space/2;
         }
     }    
     .atom-menu > ul > li > a {
