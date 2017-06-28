@@ -426,7 +426,7 @@ function waterfall_content() {
     
     echo '<div class="main-content">';
     
-    if( $customizer != 'full' && (isset($full['full']) && ! $full['full']) )
+    if( $customizer != 'full' && ( isset($full['full']) && ! $full['full'] ) || ($customizer != 'full' && ! $full) )
         echo '<div class="components-container">';
     
     // Our content
