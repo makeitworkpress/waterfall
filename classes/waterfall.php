@@ -93,8 +93,8 @@ class Waterfall {
          */
         add_filter( 'body_class', function($classes) {
 
-            $customize = get_theme_option('customizer');         
-            $sidebar = 'default';
+            $customize = get_theme_option('customizer'); 
+            $sidebar   = 'default';
             
             // Default layout class
             if( isset($customize['layout']) ) {
@@ -116,6 +116,11 @@ class Waterfall {
 
             if( is_single() ) {
                 $sidebar = isset($customize['single_layout']) ? $customize['single_layout'] : 'default';     
+            }
+            
+            // Pages with an overlay
+            if( is_singular() &&  get_theme_option('meta', 'page_header_overlay') ) {
+                $classes[] = 'waterfall-content-header-overlay';
             }
             
             $full = get_theme_option('meta', 'content_width');

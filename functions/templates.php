@@ -7,7 +7,7 @@
 /**
  * Renders the header elements
  */
-function waterfall_header_elements() {
+function waterfall_header() {
     
     $disable    = is_singular() ? get_theme_option('meta', 'disable_header') : '';
     $disable    = $disable ? $disable : array('disable' => false);    
@@ -86,7 +86,7 @@ function waterfall_header_elements() {
 /**
  * Renders the footer elements
  */
-function waterfall_footer_elements() {
+function waterfall_footer() {
     
     /**
      * Retrieves and displays our footer
@@ -199,7 +199,7 @@ function waterfall_archive_header() {
     foreach( $types as $type ) {
         $condition = 'is_' . $type;
         
-        if( $condition() ) {
+        if( $condition() || ( is_home() && $type == 'archive') ) {
             $align          = get_theme_option('customizer', $type . '_header_align');
             $breadcrumbs    = get_theme_option('customizer', $type . '_breadcrumbs');
             $disable        = get_theme_option('customizer', $type . '_header_disable');
@@ -245,17 +245,16 @@ function waterfall_archive_posts() {
     foreach( $types as $type ) {
         $condition = 'is_' . $type;
         
-        if( $condition() || ( is_home() && $type == 'archive') ) {
-            $button      = get_theme_option('customizer', $type . '_grid_button');         
-            $label       = get_theme_option('customizer', $type . '_grid_label');         
+        if( $condition() || ( is_home() && $type == 'archive') ) {        
+            $label       = get_theme_option('customizer', $type . '_grid_button_label');         
             $columns     = get_theme_option('customizer', $type . '_grid_columns');         
             $content     = get_theme_option('customizer', $type . '_grid_content');         
             $image       = get_theme_option('customizer', $type . '_grid_image');         
             $imageFloat  = get_theme_option('customizer', $type . '_grid_image_float');         
             $height      = get_theme_option('customizer', $type . '_grid_height');         
-            $layout      = get_theme_option('customizer', $type . '_layout');         
-            $style       = get_theme_option('customizer', $type . '_grid_style');         
-            $type        = get_theme_option('customizer', $type . '_grid_type');         
+            $layout      = get_theme_option('customizer', $type . '_layout');  
+            $postType    = get_theme_option('customizer', $type . '_grid_type');  
+            $style       = get_theme_option('customizer', $type . '_grid_style');                
             $width       = get_theme_option('customizer', $type . '_grid_width'); 
             $location    = $type;
         }
@@ -266,10 +265,10 @@ function waterfall_archive_posts() {
     
     $args = apply_filters( 'waterfall_archive_posts_args', array(
         'contentAtoms'      => $content == 'none' ? array() : array( 'content' => array('type' => 'excerpt') ),
-        'headerAtoms'       => $type 
+        'headerAtoms'       => $postType 
             ? array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ), 'type' => array('style' => 'entry-meta') ) 
             : array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ) ),
-        'footerAtoms'       => $button ? array( 'button' => array( 'link' => 'post', 'label' => $label, 'size' => 'small', 'float' => 'right') ) : array(),
+        'footerAtoms'       => array( 'button' => array( 'link' => 'post', 'label' => $label, 'size' => 'small', 'float' => 'right') ),
         'image'             => array( 'link' => 'post', 'size' => $image ? $image : 'medium', 'enlarge' => 'true', 'float' => $imageFloat ? $imageFloat : 'none' ),
         'postsAppear'       => 'bottom',
         'postsGrid'         => $columns ? $columns : 'third',
@@ -323,12 +322,15 @@ function waterfall_content_header() {
         $condition = 'is_' . $type;
         
         if( $condition() ) {
+            
             $args['align']      = get_theme_option('customizer', $type . '_header_align');
-            $args['height']     = get_theme_option('customizer', $type . '_header_height');
+            $args['height']     = has_post_thumbnail() 
+                ? get_theme_option('customizer', $type . '_header_height_image') 
+                : get_theme_option('customizer', $type . '_header_height');
             $args['parallax']   = get_theme_option('customizer', $type . '_header_parallax');
             $breadcrumbs        = get_theme_option('customizer', $type . '_header_breadcrumbs');
             $featured           = get_theme_option('customizer', $type . '_header_featured');
-            $featuredArgs       = array( 'size' => get_theme_option('customizer', $type . '_header_size') );        
+            $featuredArgs       = array( 'size' => get_theme_option('customizer', $type . '_header_size') ); 
             $scroll             = get_theme_option('customizer', $type . '_header_scroll');
             $subtitle           = get_theme_option('meta', 'page_header_subtitle');
             $width              = get_theme_option('customizer', $type . '_header_width');
@@ -342,7 +344,11 @@ function waterfall_content_header() {
     }
     
     // Container
-    $args['container'] = $width == 'full' ? false : true;       
+    $args['container'] = $width == 'full' ? false : true; 
+    
+    // Custom height when having an image
+    if( has_post_thumbnail() )
+        
                                                
     /**
      * Elements
@@ -416,23 +422,21 @@ function waterfall_content() {
     $customizer = is_page() ? get_theme_option('customizer', 'page_content_width') : get_theme_option('customizer', 'single_content_width');
     $full       = get_theme_option('meta', 'content_width');
     
+    $position   = is_page() ? get_theme_option('customizer', 'page_layout') : get_theme_option('customizer', 'single_layout');
+    $readable   = is_page() ? get_theme_option('customizer', 'page_content_readable') : get_theme_option('customizer', 'single_content_readable');
+    $sidebar    = is_page() ? 'page' : 'single';
+    
+    $style      = $readable ? 'entry-content readable-content' : 'entry-content';
+    
     echo '<div class="main-content">';
     
     if( $customizer != 'full' && (isset($full['full']) && ! $full['full']) )
         echo '<div class="components-container">';
     
     // Our content
-    WP_Components\Build::atom( 'content', array('style' => 'entry-content editable-content') );
-
-    // Sidebars
-    if( is_page() ) {
-        $position = get_theme_option('customizer', 'page_layout');
-        $sidebar = 'page';
-    } elseif( is_single() ) {
-        $position = get_theme_option('customizer', 'single_layout');
-        $sidebar = 'single';
-    } 
+    WP_Components\Build::atom( 'content', array('style' => $style) );
     
+    // Sidebars
     if( ($position == 'left' || $position == 'right') && (isset($full['full']) && ! $full['full']) )
         WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'entry-sidebar') ); 
     
@@ -450,13 +454,18 @@ function waterfall_related() {
 
     $disable    = get_theme_option('meta', 'page_related_disable');
     $customizer = get_theme_option('customizer', 'single_related_disable');
-    $related    = get_theme_option('customizer', 'single_related');
-    $paginate   = get_theme_option('customizer', 'single_related_pagination');
     
+    $related    = get_theme_option('customizer', 'single_related');
+    $button     = get_theme_option('customizer', 'single_related_button');
     $grid       = get_theme_option('customizer', 'single_related_grid');
     $height     = get_theme_option('customizer', 'single_related_height');
     $number     = get_theme_option('customizer', 'single_related_number');
+    $title      = get_theme_option('customizer', 'single_related_text');
     $width      = get_theme_option('customizer', 'single_related_width');
+    
+    $paginate   = get_theme_option('customizer', 'single_related_pagination');
+    $prev       = get_theme_option('customizer', 'single_related_pagination_prev');
+    $next       = get_theme_option('customizer', 'single_related_pagination_next');   
     
     if( (isset($disable['disable']) && $disable['disable']) || $customizer === true )
         return;
@@ -487,15 +496,23 @@ function waterfall_related() {
             $args = apply_filters('waterfall_related_args', array( 
                 'args'          => $query,
                 'contentAtoms'  => array(),
-                'footerAtoms'   => array( 'button' => array('iconAfter' => 'angle-right', 'iconVisible' => 'hover', 'label' => __('View Post', 'waterfall'), 'size' => 'small') ),
+                'footerAtoms'   => array(
+                    'button' => array(
+                        'iconAfter'     => 'angle-right', 
+                        'iconVisible'   => 'hover', 
+                        'label'         => $button, 
+                        'size'          => 'small'
+                    ) 
+                ),
                 'image'         => array( 'link' => 'post', 'size' => 'square-ld', 'enlarge' => true ),
                 'pagination'    => false,
                 'postsAppear'   => 'bottom',
                 'postsGrid'     => $grid ? $grid : 'third',
                 'postsInlineStyle'  => $height ? 'min-height:' . $height . 'px;' : '',
                 'view'          => 'grid',
-            ) );       
+            ) ); 
         
+            // Title
             $title = get_theme_option('customizer', 'single_related_text');
 
             if( $title )
@@ -511,8 +528,8 @@ function waterfall_related() {
 
             $args = apply_filters('waterfall_related_paginate_args', array( 
                 'type' => 'post', 
-                'prev' => sprintf( __('&lsaquo; Previous Article %s', 'waterfall'), '<span>%title</span>'), 
-                'next' => sprintf( __('Next Article &rsaquo; %s', 'waterfall'), '<span>%title</span>') 
+                'prev' => '<span>' . $prev . '</span>%title', 
+                'next' => '<span>' . $next . '</span>%title' 
             ) );
             
             WP_Components\Build::atom( 'pagination', $args );
@@ -557,7 +574,7 @@ function waterfall_content_footer() {
     // Sharing Buttons
     if( $share ) {
         $args['atoms']['share'] = array( 'fixed' => true );
-        $networks = array('facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket');
+        $networks = array('facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp');
         
         // Networks should be enabled
         foreach($networks as $network) {

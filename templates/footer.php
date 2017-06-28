@@ -12,7 +12,7 @@
             do_action('waterfall_before_footer');
             
             // Echoes the footer elements. Can be found in functions/templates.php. 
-            waterfall_footer_elements();
+            waterfall_footer();
 
             do_action('waterfall_after_footer');
 

@@ -28,7 +28,7 @@
             do_action('waterfall_before_header');
         
             // Echoes the header elements. Can be found in functions/templates.php. 
-            waterfall_header_elements();
+            waterfall_header();
         
             do_action('waterfall_after_header');
         

@@ -71,7 +71,7 @@
 
 /* Main Content Section
 ----------------------*/
-.editable-content {
+.readable-content {
     p, h3, h4, h5, h6, ol, ul, pre, code, ins, mark, cite, em, b, strong, i {
         margin-left: auto;
         margin-right: auto;
@@ -95,6 +95,11 @@
             margin-bottom: 0.5em;
         }
     }  
+}
+
+/* Content that is edited by elementor does not have a padding */
+.elementor-page .main-content {
+    padding: 0;
 }
 
 /* Sidebars */
@@ -172,18 +177,18 @@
     }
     .atom-pagination-post {
         a {
-            color: @grey;
+            font-size: 1.5rem;
             line-height: @heading-lineheight;
-            &:hover {
-                transform: translate(-@grid-space/4, 0);
-            }
-            &:last-child:hover {
-                transform: translate(@grid-space/4, 0);    
-            }
         }
+        a[rel="prev"]:hover {
+            transform: translate(@grid-space/4, 0);
+        }
+        a[rel="next"]:last-child:hover {
+            transform: translate(-@grid-space/4, 0);    
+        }       
         span {
-            color: @flat-blue;
-            font-size: 1.5em;
+            color: @grey;
+            font-size: 1rem;
         }
     }
 }
