@@ -344,11 +344,7 @@ function waterfall_content_header() {
     }
     
     // Container
-    $args['container'] = $width == 'full' ? false : true; 
-    
-    // Custom height when having an image
-    if( has_post_thumbnail() )
-        
+    $args['container'] = $width == 'full' ? false : true;   
                                                
     /**
      * Elements
