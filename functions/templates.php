@@ -436,7 +436,7 @@ function waterfall_content() {
     if( ($position == 'left' || $position == 'right') && (isset($full['full']) && ! $full['full']) )
         WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'entry-sidebar') ); 
     
-    if( $customizer != 'full' && (isset($full['full']) && ! $full['full']) )
+    if( $customizer != 'full' && (isset($full['full']) && ! $full['full']) || ($customizer != 'full' && ! $full) )
         echo '</div>';
     
     echo '</div>';
