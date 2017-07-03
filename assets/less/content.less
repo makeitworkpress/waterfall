@@ -90,30 +90,33 @@
         margin-left: auto;
         margin-right: auto;
         max-width: 768px;
-    }
-    ul {
-        list-style: disc;
-        margin: 0 0 1.5em 1.5em;
-    }
-    ol {
-        list-style: decimal;
-        margin: 0 0 1.5em 1.5em;
-    }
-    img {
-        margin-bottom: 1.5em;
-    }
-    .wp-caption {
-        margin-bottom: 1.5em;
-        max-width: 100%;
-        img {
-            margin-bottom: 0.5em;
-        }
     }  
 }
 
-/* Content that is edited by elementor does not have a padding */
-.elementor-page .main-content {
-    padding: 0;
+.main-content {
+    .entry-content {
+        ul {
+            list-style: disc;
+            margin: 0 0 1.5em 1.5em;
+        }
+        ol {
+            list-style: decimal;
+            margin: 0 0 1.5em 1.5em;
+        }
+        img {
+            margin-bottom: 1.5em;
+        }
+        .wp-caption {
+            margin-bottom: 1.5em;
+            max-width: 100%;
+            img {
+                margin-bottom: 0.5em;
+            }
+        }
+    }
+    .elementor-page & {
+        padding: 0;    
+    }
 }
 
 /* Sidebars */
