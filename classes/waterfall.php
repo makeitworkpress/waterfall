@@ -58,6 +58,7 @@ class Waterfall {
 		add_theme_support( 'post-thumbnails' ); 
         add_theme_support( 'title-tag' );
 		add_theme_support( 'html5', ['comment-list', 'comment-form', 'search-form', 'caption'] );
+         add_theme_support( 'woocommerce' );
         
         /**
          * Flush our rewrite rules for new posts

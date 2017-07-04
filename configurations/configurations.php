@@ -1657,4 +1657,19 @@ $configurations['register'] = array(
     ),    
 );
 
+// We add additional settings if Woocommerce is active
+if( class_exists( 'WooCommerce' ) ) {
+    
+    $configurations['register']['sidebars'][] = array(
+        'id'            => 'product-archive', 
+        'name'          => __('Woocommerce Product Archive', 'textdomain'), 
+        'description'   => __('The sidebar for product archives, also known as the shop page.', 'textdomain') 
+    );
+    $configurations['register']['sidebars'][] = array(
+        'id'            => 'product', 
+        'name'          => __('Woocommerce Product Sidebar', 'textdomain'), 
+        'description'   => __('The sidebar for products.', 'textdomain') 
+    );
+}
+
 $configurations = apply_filters('waterfall_configurations', $configurations);

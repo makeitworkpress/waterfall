@@ -51,7 +51,7 @@ function get_main_schema() {
     if( is_single() || is_archive() )
         $schema = 'https://schema.org/Blog';
         
-    if( is_single() || is_archive() )
+    if( is_search() )
         $schema = 'https://schema.org/SearchResultsPage';
         
     return $schema;

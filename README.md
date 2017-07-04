@@ -1,2 +1,2 @@
 # waterfall
-A Simple Procedural Wordpress Theming Framework
+A Simple but Extended Wordpress Theming Framework

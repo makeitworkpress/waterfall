@@ -4,15 +4,15 @@
 
 /* Content Wrappers
 ----------------------*/
-.content {
+.main {
     overflow: hidden;
 }
 
-.molecule-header-fixed ~ .content {
+.molecule-header-fixed ~ .main {
     padding-top: 80px;
 }
 
-.molecule-header-transparent ~ .content {
+.molecule-header-transparent ~ .main {
     padding-top: 0 !important;
 }
 
@@ -94,28 +94,29 @@
 }
 
 .main-content {
-    .entry-content {
-        ul {
-            list-style: disc;
-            margin: 0 0 1.5em 1.5em;
-        }
-        ol {
-            list-style: decimal;
-            margin: 0 0 1.5em 1.5em;
-        }
-        img {
-            margin-bottom: 1.5em;
-        }
-        .wp-caption {
-            margin-bottom: 1.5em;
-            max-width: 100%;
-            img {
-                margin-bottom: 0.5em;
-            }
-        }
-    }
     .elementor-page & {
         padding: 0;    
+    }
+}
+
+.content {
+    ul {
+        list-style: disc;
+        margin: 0 0 1.5em 1.5em;
+    }
+    ol {
+        list-style: decimal;
+        margin: 0 0 1.5em 1.5em;
+    }
+    img {
+        margin-bottom: 1.5em;
+    }
+    .wp-caption {
+        margin-bottom: 1.5em;
+        max-width: 100%;
+        img {
+            margin-bottom: 0.5em;
+        }
     }
 }
 
@@ -126,34 +127,34 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    .entry-content, .entry-archive {
+    .content {
         flex-grow: 1;
         width: 74%;
     }
-    .entry-sidebar {
+    .sidebar {
         padding: 0 0 0 @grid-space;
         width: 26%;
     }
     @media screen and (max-width: 768px) {
-        .entry-content, .entry-archive, .entry-sidebar {
+        .content, .sidebar {
             width: 100%;
         }
-        .entry-sidebar {
+        .sidebar {
             margin-top: @grid-space;
         }
     }
 }
 
 .waterfall-left-sidebar {
-    .entry-content, .entry-archive {
+    .content {
         order: 1;   
     }    
-    .entry-sidebar {
+    .sidebar {
         order: 0; 
         padding: 0 @grid-space 0 0;
     }
     @media screen and (max-width: 768px) {
-        .entry-content, .entry-archive, .entry-sidebar {
+        .content, .sidebar {
             order: 0;
         }
     }    
