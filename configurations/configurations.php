@@ -12,7 +12,7 @@ if( get_theme_option('customizer', 'lightbox') ) {
     $configurations['enqueue'][] = array( 
         'handle' => 'waterfall', 
         'src' => get_template_directory_uri() . '/assets/js/waterfall.min.js', 
-        array('jquery', 'swipebox') 
+        array('jquery', 'photoswipe') 
     );
 }
 
@@ -686,19 +686,7 @@ $configurations['options']  = array(
                         'id'            => 'header_transparent',
                         'title'         => __('Transparent Header', 'waterfall'),
                         'type'          => 'checkbox'
-                    ),     
-                    array(
-                        'default'       => '',
-                        'id'            => 'header_search',
-                        'title'         => __('Add a Search Icon to the Menu', 'waterfall'),
-                        'type'          => 'checkbox'
-                    ),     
-                    array(
-                        'default'       => '',
-                        'id'            => 'header_social',
-                        'title'         => __('Add Social Icons to the Menu', 'waterfall'),
-                        'type'          => 'checkbox'
-                    ),
+                    ), 
                     array(
                         'default'       => 'left',
                         'id'            => 'header_logo_float',
@@ -709,7 +697,13 @@ $configurations['options']  = array(
                             'left'      => __('Left', 'waterfall'),
                             'right'     => __('Right', 'waterfall'),
                         ),
-                    ),    
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'header_disable_logo',
+                        'title'         => __('Disable Header Logo', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),        
                     array(
                         'default'       => 'right',
                         'id'            => 'header_menu_float',
@@ -722,8 +716,33 @@ $configurations['options']  = array(
                         ),
                     ),
                     array(
+                        'default'       => '',
+                        'id'            => 'header_menu_search',
+                        'title'         => __('Add a Search Icon to the Menu', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ), 
+                    array(
+                        'default'       => '',
+                        'id'            => 'header_menu_cart',
+                        'title'         => __('Add a Shopping Cart to the Menu', 'waterfall'),
+                        'description'   => __('Requires the WooCommerce plugin.', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),     
+                    array(
+                        'default'       => '',
+                        'id'            => 'header_menu_social',
+                        'title'         => __('Add Social Icons to the Menu', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),     
+                    array(
+                        'default'       => '',
+                        'id'            => 'header_disable_menu',
+                        'title'         => __('Disable Header Menu', 'waterfall'),
+                        'type'          => 'checkbox'
+                    ),     
+                    array(
                         'default'       => 'mobile',
-                        'id'            => 'header_hamburger_menu',
+                        'id'            => 'header_menu_hamburger',
                         'title'         => __('Display of Hamburger Menu', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => array(
@@ -735,16 +754,16 @@ $configurations['options']  = array(
                     array(
                         'default'       => 'default',
                         'id'            => 'header_menu_style',
-                        'title'         => __('Menu Style', 'waterfall'),
+                        'title'         => __('Mobile Menu Style', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => array(
                             'default'   => __('Default', 'waterfall'),
-                            'dark'      => __('Dark', 'waterfall'),
-                            'fixed'     => __('Dark Always Mobile', 'waterfall'),
-                            'left'      => __('Left Always Mobile', 'waterfall'),
-                            'right'     => __('Right Always Mobile', 'waterfall'),
+                            'dark'      => __('Dark Mobile', 'waterfall'),
+                            'fixed'     => __('Dark Hamburger', 'waterfall'),
+                            'left'      => __('Left Slide', 'waterfall'),
+                            'right'     => __('Right Slide', 'waterfall'),
                         ),
-                    ),    
+                    ),     
                     array(
                         'css'           => array( 'selector' => '.header', 'property' => 'background-color' ),
                         'default'       => '',

@@ -16,9 +16,12 @@ function waterfall_header() {
     // Our header is only shown if enabled
     if( $disable['disable'] == true || $customizer === true )
         return; 
-        
-    $logo = get_theme_option('customizer', 'logo');
-    $transparent = is_singular() && get_theme_option('meta', 'transparent_header') ? get_theme_option('meta', 'transparent_header') : get_theme_option('customizer', 'header_transparent');;
+    
+    // Default attributes
+    $logo           = get_theme_option('customizer', 'logo');
+    $transparent    = is_singular() && get_theme_option('meta', 'transparent_header') 
+        ? get_theme_option('meta', 'transparent_header') 
+        : get_theme_option('customizer', 'header_transparent');
 
     // Default header items
     $atoms = array(
@@ -31,19 +34,16 @@ function waterfall_header() {
         ),
         'menu'  => array( 
             'args'          => array('theme_location' => 'header-menu'), 
+            'cart'          => get_theme_option('customizer', 'header_menu_cart') ? true : false, 
             'float'         => get_theme_option('customizer', 'header_menu_float'),
-            'hamburger'     => get_theme_option('customizer', 'header_hamburger_menu'),
+            'hamburger'     => get_theme_option('customizer', 'header_menu_hamburger'),
+            'search'        => get_theme_option('customizer', 'header_menu_search') ? true : false,
             'view'          => get_theme_option('customizer', 'header_menu_style')
         )                
     );
 
-    // Search icon
-    if( get_theme_option('customizer', 'header_search') ) {
-        $atoms['menu']['search'] = true;
-    }           
-
     // Social icons
-    if( get_theme_option('customizer', 'header_social') ) {
+    if( get_theme_option('customizer', 'header_menu_social') ) {
 
         $networks = get_theme_option('options', 'social_networks');
 
@@ -63,15 +63,20 @@ function waterfall_header() {
         $menu = $atoms['menu'];
         unset($atoms['menu']);
         $atoms['menu'] = $menu;
-    }      
+    } 
+    
+    
+    // Disable logo or menu
+    if( get_theme_option('customizer', 'header_disable_logo') )
+        unset( $atoms['logo'] );    
 
-    $container = get_theme_option('customizer', 'header_width');
-    $headroom = get_theme_option('customizer', 'header_headroom');
+    if( get_theme_option('customizer', 'header_disable_menu') )
+        unset( $atoms['menu'] );  
 
     $args = apply_filters( 'waterfall_header_args', array(
         'atoms'         => apply_filters('waterfall_header_atoms', $atoms),
-        'container'     => $container == 'default' ? true : false,
-        'headroom'      => $headroom ? true : false,
+        'container'     => get_theme_option('customizer', 'header_width') == 'default' ? true : false,
+        'headroom'      => get_theme_option('customizer', 'header_headroom') ? true : false,
         'fixed'         => get_theme_option('customizer', 'header_fixed'),
         'style'         => 'header',
         'transparent'   => isset($transparent['transparent']) ? $transparent['transparent'] : $transparent

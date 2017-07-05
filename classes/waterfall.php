@@ -82,7 +82,7 @@ class Waterfall {
             
             // Slider support
             if( get_theme_option('customizer', 'product_slider') )
-                add_theme_support( 'wc-product-gallery-slider' );            
+                add_theme_support( 'wc-product-gallery-slider' );
         }
         
         /**
@@ -177,7 +177,6 @@ class Waterfall {
             if( is_singular('product') && class_exists('WooCommerce') ) {
                 $sidebar = isset($customize['product_layout']) ? $customize['product_layout'] : 'default';     
             }
-            
             
             // WooCommerce Product Archives
             if( is_archive('product') && class_exists('WooCommerce') ) {

@@ -92,7 +92,7 @@ html.swipebox-html.swipebox-touch {
 
 #swipebox-bottom-bar,
 #swipebox-top-bar {
-    height: 32px;
+    height: @grid-space;
     left: 0;
     opacity: 0.95;
     position: absolute;
@@ -146,7 +146,7 @@ html.swipebox-html.swipebox-touch {
 }
 
 #swipebox-prev {
-  background-position: -32px 13px;
+  background-position: -@grid-space 13px;
   float: left;
 }
 
@@ -160,7 +160,7 @@ html.swipebox-html.swipebox-touch {
   right: @grid-space/2;
   position: absolute;
   z-index: 9999;
-  background-position: 32px -5px;   
+  background-position: @grid-space -5px;   
 }
 
 .swipebox-no-close-button #swipebox-close {
@@ -273,7 +273,6 @@ html.swipebox-html.swipebox-touch {
 #swipebox-top-bar {
   color: white !important;
   font-size: 15px;
-  line-height: 43px;
+  line-height: @grid-space;
   font-family: Helvetica, Arial, sans-serif;
 }
-
