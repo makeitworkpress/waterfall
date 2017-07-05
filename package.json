@@ -1,0 +1,19 @@
+{
+    "license": "GPL-3.0",
+    "name": "Waterfall",
+    "version": "1.0.0",
+    "author": "Michiel Tramper",
+    "description": "The package for the Waterfall theme",
+    "dependencies": {
+        "swipebox": "brutaldesign/swipebox"    
+    },
+    "devDependencies": {
+        "browserify": "latest",
+        "uglify-js": "latest",
+        "watchify": "latest"
+    },
+    "repository" : {
+        "type": "git",    
+        "url": "https://github.com/makeitworkpress/waterfall.git"    
+    }  
+}

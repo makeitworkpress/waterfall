@@ -20,13 +20,18 @@
         {
             "type": "vcs",
             "url": "https://github.com/makeitworkpress/wp-register.git"
-        }        
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-router.git"
+        }         
     ],
     "require": {
         "divergent": "dev-master",
         "wp-components": "dev-master",
         "wp-enqueue": "dev-master",
         "wp-optimize": "dev-master",
-        "wp-register": "dev-master"
+        "wp-register": "dev-master",
+        "wp-router": "dev-master"
     }
 }

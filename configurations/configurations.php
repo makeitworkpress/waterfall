@@ -2,10 +2,19 @@
 /**
  * Contains the basic configurations for the theme
  */
-
 $configurations['enqueue'] = array(
     array( 'handle' => 'waterfall', 'src' => get_template_directory_uri() . '/assets/css/waterfall.min.css' ),
 );
+
+// If we have lightbox in the configurations
+if( get_theme_option('customizer', 'lightbox') ) {
+    $configurations['enqueue'][] = array( 'handle' => 'swipebox', 'src' => get_template_directory_uri() . '/assets/js/vendor/swipebox.min.js' );
+    $configurations['enqueue'][] = array( 
+        'handle' => 'waterfall', 
+        'src' => get_template_directory_uri() . '/assets/js/waterfall.min.js', 
+        array('jquery', 'swipebox') 
+    );
+}
 
 $configurations['language'] = 'waterfall';
 
@@ -622,8 +631,8 @@ $configurations['options']  = array(
                 )
             ), 
             array(
-                'id'            => 'general_layout',
-                'title'         => __('Layout', 'waterfall'),
+                'id'            => 'general_settings',
+                'title'         => __('General', 'waterfall'),
                 'fields'    => array(                   
                     array(
                         'default'       => 'default',
@@ -634,7 +643,13 @@ $configurations['options']  = array(
                             'default' => __('Default Layout', 'waterfall'),
                             'boxed'   => __('Boxed Layout', 'waterfall'),
                         )    
-                    )   
+                    ),
+                    array(
+                        'default'       => '',
+                        'id'            => 'lightbox',
+                        'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
+                        'type'          => 'checkbox'
+                    )     
                 )              
             ),    
             array(
@@ -1145,9 +1160,17 @@ $configurations['options']  = array(
                         'description'   => __('Width of header in posts archives.', 'waterfall'),
                         'id'            => 'archive_header_width',
                         'choices'       => get_container_options(),
-                        'title'         => __('Archives Width', 'waterfall'),
+                        'title'         => __('Archives Header Width', 'waterfall'),
                         'type'          => 'select'
                     ),
+                    array(
+                        'default'       => 'default',
+                        'description'   => __('Width of header in posts archives.', 'waterfall'),
+                        'id'            => 'archive_header_height',
+                        'choices'       => get_height_options(),
+                        'title'         => __('Archives Header Height', 'waterfall'),
+                        'type'          => 'select'
+                    ),    
                     array(
                         'default'       => 'left',
                         'id'            => 'archive_header_align',
@@ -1269,9 +1292,17 @@ $configurations['options']  = array(
                         'description'   => __('Width of header in search archives.', 'waterfall'),
                         'id'            => 'search_header_width',
                         'choices'       => get_container_options(),
-                        'title'         => __('Search Page Width', 'waterfall'),
+                        'title'         => __('Search Page Header Width', 'waterfall'),
                         'type'          => 'select'
                     ),
+                    array(
+                        'default'       => 'default',
+                        'description'   => __('Height of header in search archives.', 'waterfall'),
+                        'id'            => 'search_header_height',
+                        'choices'       => get_height_options(),
+                        'title'         => __('Search Page Header Height', 'waterfall'),
+                        'type'          => 'select'
+                    ),    
                     array(
                         'default'       => 'left',
                         'id'            => 'search_header_align',
@@ -1659,7 +1690,116 @@ $configurations['register'] = array(
 
 // We add additional settings if Woocommerce is active
 if( class_exists( 'WooCommerce' ) ) {
-    
+    $configurations['options']['customizer']['sections'][] = array(
+        'id'            => 'woocommerce_archive',
+        'title'         => __('WooCommerce Archives', 'waterfall'),
+        'fields'    => array(       
+            array(
+                'default'       => '',
+                'id'            => 'product_archive_header_disable',
+                'title'         => __('Disable Product Archive Header', 'waterfall'),
+                'type'          => 'checkbox'
+            ),
+            array(
+                'default'       => '',
+                'id'            => 'product_archive_header_breadcrumbs',
+                'title'         => __('Display Breadcrumbs in Product Archive', 'waterfall'),
+                'type'          => 'checkbox'
+            ),       
+            array(
+                'default'       => 'default',
+                'description'   => __('Width of header in product archives.', 'waterfall'),
+                'id'            => 'product_archive_header_width',
+                'choices'       => get_container_options(),
+                'title'         => __('Product Archive Header Width', 'waterfall'),
+                'type'          => 'select'
+            ),
+            array(
+                'default'       => 'default',
+                'description'   => __('Height of header in product archives.', 'waterfall'),
+                'id'            => 'product_archive_header_height',
+                'choices'       => get_height_options(),
+                'title'         => __('Product Archive Header Height', 'waterfall'),
+                'type'          => 'select'
+            ),
+            array(
+                'default'       => 'left',
+                'id'            => 'product_archive_header_align',
+                'title'         => __('Product Archive Header Text Align', 'waterfall'),
+                'description'   => __('How should text be aligned within the product archive header?', 'waterfall'),
+                'type'          => 'select',
+                'choices'       => get_align_options()
+            ),
+            array(
+                'default'       => 'left',
+                'description'   => __('Choose the sidebar lay-out for the product archives.', 'waterfall'),
+                'id'            => 'product_archive_layout',
+                'choices'       => get_sidebar_options(),
+                'title'         => __('Sidebar Lay-Out', 'waterfall'),
+                'type'          => 'select'
+            ), 
+            array(
+                'default'       => 'default',
+                'description'   => __('Width of the grid with the products and sidebar.', 'waterfall'),
+                'id'            => 'product_archive_width',
+                'choices'       => get_container_options(),
+                'title'         => __('Product Archive Width', 'waterfall'),
+                'type'          => 'select'
+            )        
+        )         
+    );
+    $configurations['options']['customizer']['sections'][] = array(
+        'id'            => 'woocommerce_product',
+        'title'         => __('WooCommerce Product', 'waterfall'),
+        'fields'    => array(       
+            array(
+                'default'       => '',
+                'id'            => 'product_breadcrumbs',
+                'title'         => __('Display Breadcrumbs in Single Products', 'waterfall'),
+                'type'          => 'checkbox'
+            ),       
+            array(
+                'default'       => 'full',
+                'description'   => __('Choose the sidebar lay-out for a single product.', 'waterfall'),
+                'id'            => 'product_layout',
+                'choices'       => get_sidebar_options(),
+                'title'         => __('Sidebar Lay-Out', 'waterfall'),
+                'type'          => 'select'
+            ), 
+            array(
+                'default'       => 'default',
+                'description'   => __('Width of the product Display.', 'waterfall'),
+                'id'            => 'product_width',
+                'choices'       => get_container_options(),
+                'title'         => __('Single Product Width', 'waterfall'),
+                'type'          => 'select'
+            ),        
+            array(
+                'default'       => '',
+                'id'            => 'product_breadcrumbs',
+                'title'         => __('Display Breadcrumbs in Single Products', 'waterfall'),
+                'type'          => 'checkbox'
+            ),
+            array(
+                'default'       => '',
+                'id'            => 'product_zoom',
+                'title'         => __('Enable product image zoom', 'waterfall'),
+                'type'          => 'checkbox'
+            ),
+            array(
+                'default'       => '',
+                'id'            => 'product_slider',
+                'title'         => __('Enable product images slider', 'waterfall'),
+                'type'          => 'checkbox'
+            ),
+            array(
+                'default'       => '',
+                'id'            => 'product_lightbox',
+                'title'         => __('Enable product images lightbox', 'waterfall'),
+                'type'          => 'checkbox'
+            )          
+        )         
+    );    
     $configurations['register']['sidebars'][] = array(
         'id'            => 'product-archive', 
         'name'          => __('Woocommerce Product Archive', 'textdomain'), 

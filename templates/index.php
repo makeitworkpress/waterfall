@@ -7,7 +7,8 @@
     get_theme_header(); 
 
     do_action('waterfall_before_archive_header');
-        
+      
+    // Build the header for the archive
     waterfall_archive_header();
         
     do_action('waterfall_after_archive_header');

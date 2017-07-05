@@ -203,6 +203,7 @@ function waterfall_archive_header() {
             $align          = get_theme_option('customizer', $type . '_header_align');
             $breadcrumbs    = get_theme_option('customizer', $type . '_breadcrumbs');
             $disable        = get_theme_option('customizer', $type . '_header_disable');
+            $height         = get_theme_option('customizer', $type . '_header_height');            
             $width          = get_theme_option('customizer', $type . '_header_width');            
         }
         
@@ -229,6 +230,7 @@ function waterfall_archive_header() {
         'atoms'     => $atoms,
         'align'     => $align,
         'container' => $width == 'full' ? false : true,
+        'height'    => $height,
         'style'     => 'main-header'
     ) );
     
@@ -653,15 +655,20 @@ function waterfall_404_header() {
  */
 function waterfall_single_product() {
     
-    $customizer = get_theme_option('customizer', 'product_content_width');
-    $position   = get_theme_option('customizer', 'product_layout');
+    $breadcrumbs = get_theme_option('customizer', 'product_breadcrumbs');
+    $layout      = get_theme_option('customizer', 'product_layout');
+    $width       = get_theme_option('customizer', 'product_width');
 
     echo '<div class="main-content">';
     
-    if( $customizer != 'full')
+    if( $width != 'full' )
         echo '<div class="components-container">';
     
-        WP_Components\Build::atom('breadcrumbs', apply_filters('waterfall_single_product_breadcrumbs', array('taxonomy' => true, 'archive' => true)) );
+        if( $breadcrumbs )
+            WP_Components\Build::atom(
+                'breadcrumbs', 
+                apply_filters( 'waterfall_single_product_breadcrumbs', ['taxonomy' => true, 'archive' => true] ) 
+            );
     
         do_action('waterfall_before_single_product_content');
     
@@ -681,13 +688,13 @@ function waterfall_single_product() {
         do_action('waterfall_after_single_product_content');
     
         // Sidebars
-        if( ($position == 'left' || $position == 'right') && (isset($full['full']) && ! $full['full']) )
-            WP_Components\Build::molecule( 'sidebar', array('sidebars' => array('product'), 'style' => 'sidebar') ); 
+        if( $layout == 'left' || $layout == 'right' )
+            WP_Components\Build::molecule( 'sidebar', ['sidebars' => ['product'], 'style' => 'sidebar'] ); 
     
         do_action('waterfall_after_single_product_sidebar');
     
     
-    if( $customizer != 'full' )
+    if( $width != 'full' )
         echo '</div>';
     
     echo '</div>';    
@@ -699,10 +706,10 @@ function waterfall_single_product() {
 function waterfall_product_archive_header() {
     
     $align          = get_theme_option('customizer', 'product_archive_header_align');
-    $breadcrumbs    = get_theme_option('customizer', 'product_archive_breadcrumbs');
+    $breadcrumbs    = get_theme_option('customizer', 'product_archive_header_breadcrumbs');
     $disable        = get_theme_option('customizer', 'product_archive_header_disable');
-    $width          = get_theme_option('customizer', 'product_archive_header_width');            
-
+    $height         = get_theme_option('customizer', 'product_archive_header_height');
+    $width          = get_theme_option('customizer', 'product_archive_header_width');
     
     // Return if we do not want to show the header
     if( $disable === true ) 
@@ -715,19 +722,20 @@ function waterfall_product_archive_header() {
     
     // Default title
     if ( apply_filters( 'woocommerce_show_page_title', true ) ) {
-        $atoms['archive-title'] = array('style' => 'woocommerce-products-header__title page-title', 'custom' => 'CUSTOM');    
+        $atoms['archive-title'] = array('style' => 'woocommerce-products-header__title page-title', 'custom' => woocommerce_page_title(false) );    
     }
     
     // Add custom action as a a string
     ob_start();
-    do_action( 'woocommerce_archive_description' );
+        do_action( 'woocommerce_archive_description' );
     $string = ob_get_clean();
-    $atoms['string'] = $string;
+    $atoms['string'] = array( 'string' => $string );
     
     $args = apply_filters('waterfall_archive_title_args', array(
         'atoms'     => $atoms,
         'align'     => $align,
         'container' => $width == 'full' ? false : true,
+        'height'    => $height,
         'style'     => 'main-header woocommerce-products-header'
     ) );
     
@@ -740,8 +748,8 @@ function waterfall_product_archive_header() {
  */
 function waterfall_product_archive_posts() {
     
-    $layout      = get_theme_option('customizer', 'product_archive_posts_layout');                
-    $width       = get_theme_option('customizer', 'product_archive_posts_width');  
+    $layout      = get_theme_option('customizer', 'product_archive_layout');                
+    $width       = get_theme_option('customizer', 'product_archive_width');  
     
     /** 
      * The actual output for this section

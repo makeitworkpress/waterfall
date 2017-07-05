@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b03bba80b05a08e2dbe1014b93784e0",
+    "content-hash": "156de1017cf591065b096322a71ca852",
     "packages": [
         {
             "name": "divergent",
@@ -33,12 +33,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "819b60e5d6ee03df29c031304c7fe22216c91b61"
+                "reference": "5d778d1735efb55d708bd6160e50a552df1ef3b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/819b60e5d6ee03df29c031304c7fe22216c91b61",
-                "reference": "819b60e5d6ee03df29c031304c7fe22216c91b61",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/5d778d1735efb55d708bd6160e50a552df1ef3b3",
+                "reference": "5d778d1735efb55d708bd6160e50a552df1ef3b3",
                 "shasum": ""
             },
             "type": "library",
@@ -46,7 +46,7 @@
                 "source": "https://github.com/makeitworkpress/wp-components/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-components/issues"
             },
-            "time": "2017-07-04T15:44:49+00:00"
+            "time": "2017-07-05T07:40:22+00:00"
         },
         {
             "name": "wp-enqueue",
@@ -110,6 +110,27 @@
                 "issues": "https://github.com/makeitworkpress/wp-register/issues"
             },
             "time": "2017-06-13T12:24:07+00:00"
+        },
+        {
+            "name": "wp-router",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-router.git",
+                "reference": "0a146462d99d26b4060f30e7c7a3be635b9be1a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/0a146462d99d26b4060f30e7c7a3be635b9be1a5",
+                "reference": "0a146462d99d26b4060f30e7c7a3be635b9be1a5",
+                "shasum": ""
+            },
+            "type": "library",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-router/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-router/issues"
+            },
+            "time": "2017-07-05T08:59:59+00:00"
         }
     ],
     "packages-dev": [],
@@ -120,7 +141,8 @@
         "wp-components": 20,
         "wp-enqueue": 20,
         "wp-optimize": 20,
-        "wp-register": 20
+        "wp-register": 20,
+        "wp-router": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
