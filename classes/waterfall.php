@@ -52,6 +52,13 @@ class Waterfall {
     private function initialize() {
         
         /**
+         * Include basic utility functions and our configurations
+         */
+        require_once( get_template_directory() . '/functions/templates.php' );
+        require_once( get_template_directory() . '/functions/utilities.php' );
+        require_once( get_template_directory() . '/configurations/configurations.php' );        
+        
+        /**
          * Our executing is hooked in after_setup_theme, so (child) themes can add configurations if they want
          */
         add_action('after_setup_theme', array($this, 'execute'), 10);           
