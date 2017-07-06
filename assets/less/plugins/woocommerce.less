@@ -107,6 +107,9 @@
         th {
             border: none;
         }
+        &.shop_table {
+            margin-bottom: @grid-space;
+        }
         &.shop_attributes {
             th {
                 text-align: right;
@@ -248,6 +251,13 @@
 }
 
 /* Payments */
+.woocommerce-checkout {
+    margin-bottom: @grid-space;
+    #customer_details {
+        margin-bottom: @grid-space;
+    }
+}
+
 #add_payment_method #payment, .woocommerce-cart #payment, .woocommerce-checkout #payment {
     background: @f-grey;
 }
@@ -258,4 +268,9 @@
 }
 .woocommerce-cart table.cart img {
     margin: 0 @grid-space/2;
+}
+
+/* Order */
+.woocommerce-order-details {
+    margin-bottom: @grid-space;
 }
