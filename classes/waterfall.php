@@ -137,7 +137,7 @@ class Waterfall {
         
         // If we already have configurations, we merge the arrays
         if( isset($this->configurations[$type]) && is_array($this->configurations[$type]) )
-            $configurations = wp_parse_args( $this->configurations[$type], $configurations );
+            $configurations = wp_parse_args( $configurations, $this->configurations[$type] );
         
         // Set our configurations
         $this->configurations[$type] = apply_filters('waterfall_' . $type, $configurations);
