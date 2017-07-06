@@ -293,7 +293,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ), 
                     array(
-                        'css'           => '.molecule-header-top.molecule-header-transparent .menu > li > a, .molecule-header-top.molecule-header-transparent .atom-search-expand',
+                        'css'           => '.molecule-header-top.molecule-header-transparent .menu > li > a, .molecule-header-top.molecule-header-transparent .atom-search-expand, .molecule-header-top.molecule-header-transparent .atom-menu-hamburger span',
                         'default'       => '',
                         'id'            => 'navigation_link_transparent_color',
                         'title'         => __('Navigation Link Color Transparent Header', 'waterfall'),
@@ -301,7 +301,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),
                     array(
-                        'css'           => '.molecule-header-top.molecule-header-transparent .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .atom-search-expand:hover',
+                        'css'           => '.molecule-header-top.molecule-header-transparent .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .atom-search-expand:hover, .molecule-header-top.molecule-header-transparent .atom-menu-hamburger:hover span',
                         'default'       => '',
                         'id'            => 'navigation_link_transparent_hover_color',
                         'title'         => __('Navigation Link Hover Transparent Header', 'waterfall'),
