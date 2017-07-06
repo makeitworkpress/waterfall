@@ -36,31 +36,3 @@ $components = new WP_Components\Boot();
  * Boot our theme
  */
 $theme = Waterfall::instance();
-
-/**
- * Register theme language domain
- */
-$theme->register( 'language', $configurations['language'] );
-
-/**
- * Register styles
- */
-$theme->register( 'enqueue', $configurations['enqueue'] );
-
-/**
- * Register custom fonts
- */
-$theme->register( 'register', $configurations['register'] );
-
-/**
- * Register the theme framework with several options
- */
-$theme->register( 'options',  $configurations['options'] );
-
-/**
- * Register the theme optimizations
- */
-$optimizations = get_theme_option( 'options', 'optimizations' );
-
-if( $optimizations )
-    $theme->register( 'optimize', $optimizations );
