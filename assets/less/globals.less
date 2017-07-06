@@ -79,9 +79,12 @@ table {
     }
     td {
         padding: 4px 8px;
-        &:nth-child(2n+1) {
-            background: @f-grey;
-        }
+    }
+    tr:nth-child(even) {
+        background: @f-grey;       
+    }
+    thead tr {
+        background: #fff !important;
     }
 }
 
@@ -98,6 +101,10 @@ input, textarea, select {
         border: 1px solid @d-grey;
         outline: none;
     }
+}
+
+textarea {
+    padding: @grid-space/2;
 }
 
 input[type="radio"], input[type="checkbox"] {

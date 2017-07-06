@@ -130,6 +130,16 @@
         .sidebar {
             margin-top: @grid-space;
         }
+        /* The WooCommerce sidebar is on always on top */
+        &.woocommerce {
+            .content {
+                order: 1;
+            }
+            .sidebar {
+                order: 0;
+                margin: 0 0 @grid-space 0;
+            }
+        }
     }
 }
 

@@ -1,3 +1,6 @@
 *.log
+*.git
+*.gitignore
+*git/
 /.htaccess
 /license.txt

@@ -69,8 +69,6 @@ class Waterfall {
          */
         if( class_exists('WooCommerce') ) {
             add_theme_support( 'woocommerce' );
-            remove_filter( 'woocommerce_short_description', 'prepend_attachment' ); // Removes the missing attachment message bug
-            remove_filter( 'the_content', 'prepend_attachment' ); // Removes the missing attachment message bug
             
             // Customizer support
             if( get_theme_option('customizer', 'product_zoom') )
@@ -188,17 +186,7 @@ class Waterfall {
             return $classes;
             
         } );
-        
-        /**
-         * Adds a custom lightbox template if these are enabled
-         */
-        if( get_theme_option('customizer', 'lightbox') ) {
-            add_action('wp_footer', function() {
-                get_template_part( 'templates/partials/photoswipe' );
-            });
-        }
-     
-        
+    
     }    
     
     /**

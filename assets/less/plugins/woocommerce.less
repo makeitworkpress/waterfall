@@ -1,0 +1,261 @@
+/**
+ * Styling for WooCommerce
+ */
+
+/* Cart Count Styling */
+.atom-menu-item-cart-count {
+    background: @flat-red;
+}
+
+
+/* Single Products */
+.single-product {
+    .atom-breadcrumbs {
+        margin-bottom: 1.5rem;    
+    }
+}
+
+
+/* General Styling */
+.woocommerce {
+    
+    /* Woocommerce messages */
+    .woocommerce-message {
+        border-top-color: @flat-blue;
+        &:before {
+            color: @flat-blue;    
+        }
+    }    
+    
+    .woocommerce-error {
+        border-top-color: @flat-red;
+        margin: 0 0 2em;
+        &:before {
+            color: @flat-red;
+        }
+    }
+    
+    /* Buttons */
+    input, button, a {
+        &.button {
+            background-color: @flat-blue;
+            color: #fff;
+            line-height: @grid-space*1.5;
+            min-height: @grid-space*1.5;
+            padding: 0 1em;
+            &:hover {
+                background-color: lighten(@flat-blue, 5%);
+                color: #fff;
+            }
+            &.alt {
+                background-color: @flat-red;
+                &:hover {
+                    background-color: lighten(@flat-red, 2%);
+                }
+            }
+            &.loading:after {
+                top: 0;
+            }
+        }
+    }
+    
+    /* Add to cart message */
+    a.added_to_cart {
+        color: @grey;
+        padding: 0.5em 0.25em;;
+    }
+    
+    /* Sales Button */
+    span.onsale {
+        background-color: @dark-blue;
+        left: inherit;
+        height: 3.5em;
+        right: 0;
+        top: 0;
+        width: 3.5em;
+    }
+    
+    /* Remove button */
+    a.remove {
+        color: @flat-red !important;
+        &:hover {
+            background-color: @flat-red;
+            color: #fff !important;
+        }
+    }
+    
+    /* Forms */
+    form {
+        .form-row {
+            .required {
+                color: @flat-red;
+                text-decoration: none;
+            }
+            &.woocommerce-invalid {
+                .select2-container, input.input-text, select {
+                    border-color: @flat-red;
+                }
+                label {
+                    color: @flat-red;
+                }
+            }
+        }
+    }
+    
+    /* Tables */
+    table { 
+        th {
+            border: none;
+        }
+        &.shop_attributes {
+            th {
+                text-align: right;
+            }
+            tr:nth-child(even) th, tr:nth-child(even) td {
+                background: none;
+            }
+        }
+    }
+    
+    /* Single Products */
+    div.product {
+        p.price {
+            color: @flat-red;
+            font-size: 1.5em;
+            ins {
+                text-decoration: none;
+            }
+        }
+        .flex-control-nav {
+            height: auto;
+            position: static;
+        }
+        .woocommerce-tabs {
+            ul.tabs {
+                margin: 0;
+                padding-left: 0;
+                &:before {
+                    border-bottom: 1px solid @e-grey;
+                }
+                li {
+                    background-color: @f-grey;
+                    border-color: @e-grey;
+                    border-radius: 0;
+                    margin: 0;
+                    padding: 0 @grid-space/2;
+                    &:after, &:before {
+                        display: none;
+                    }
+                }
+            }
+            .panel {
+                border: 1px solid @e-grey;
+                border-top: none;
+                padding: @grid-space @grid-space/2;
+                h2 {
+                    font-size: 1.5em;
+                }
+                p:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        div.images {
+            img {
+                margin-bottom: 0;
+            }
+        }
+        .related, .upsells {
+            background: @f-grey;
+            margin: 0 -50vw -@grid-space -50vw;
+            padding: @grid-space*2 50vw @grid-space/2 50vw;
+            ul.products {
+                margin-bottom: 0;
+            }
+        }        
+    }
+    
+    /* Product Meta */
+    .product_meta {
+        color: @grey;
+        font-size: @small-fontsize;
+    }    
+    
+    /* Products Overview */
+    ul.products li.product {
+        .star-rating {
+            color: @flat-yellow;
+        }
+        .onsale {
+            margin: 0; 
+            right: 1em;
+            top: 1em;
+        }
+        .price {
+            color: @flat-blue;
+            del {
+                display: inline;
+            }
+            ins {
+                text-decoration: none;
+            }
+        }
+    }
+    
+    /* Widgets */
+    .widget_layered_nav ul li.chosen a:before {
+        color: @flat-red;
+    }
+
+}
+
+/* Woocommerce pages */
+.woocommerce-page {
+    .readable-content {
+        p, h3, h4, h5, h6, ol, ul, pre, code, ins, mark, cite, em, b, strong, i {
+            max-width: none;
+        }   
+    }
+}
+
+/* Acount Page */
+.woocommerce-account {
+    .woocommerce-MyAccount-navigation {
+        ul {
+            list-style: none;
+            margin: 0;
+        }
+        li {
+            a {
+                background: @f-grey;
+                border: 1px solid @e-grey;
+                border-bottom: none;
+                display: block;
+                padding: 1em 0.75em;
+            }
+            &.is-active a, a:hover {
+                background: #fff;
+                border-right: 1px solid transparent;
+            }
+            &:last-child a {
+                border-bottom: 1px solid @e-grey;
+            }
+        }
+    }
+    .woocommerce-MyAccount-content {
+        margin-top: @grid-space/2;
+    }
+}
+
+/* Payments */
+#add_payment_method #payment, .woocommerce-cart #payment, .woocommerce-checkout #payment {
+    background: @f-grey;
+}
+
+/* Cart */
+.woocommerce-cart-form {
+    margin-bottom: @grid-space;
+}
+.woocommerce-cart table.cart img {
+    margin: 0 @grid-space/2;
+}
