@@ -1830,5 +1830,3 @@ if( class_exists( 'WooCommerce' ) ) {
         'description'   => __('The sidebar for products.', 'textdomain') 
     );
 }
-
-$configurations = apply_filters('waterfall_configurations', $configurations);

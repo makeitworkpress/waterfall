@@ -52,43 +52,21 @@ class Waterfall {
     private function initialize() {
         
         /**
-         * Include basic utility functions and our configurations
+         * Include basic utility and template functions
          */
         require_once( get_template_directory() . '/functions/templates.php' );
         require_once( get_template_directory() . '/functions/utilities.php' );
-        require_once( get_template_directory() . '/configurations/configurations.php' );        
         
         /**
-         * Our executing is hooked in after_setup_theme, so (child) themes can add configurations if they want
+         * Load standard configurations
+         */
+        $this->configure();
+        
+        /**
+         * The execution of our configurations is hooked in after_setup_theme, 
+         * so (child) themes can add configurations if they want
          */
         add_action('after_setup_theme', array($this, 'execute'), 10);           
-        
-        /**
-         * Basic theme supports
-         */
-        add_theme_support( 'custom-background' ); 
-		add_theme_support( 'post-thumbnails' ); 
-        add_theme_support( 'title-tag' );
-		add_theme_support( 'html5', ['comment-list', 'comment-form', 'search-form', 'caption'] );
-        
-        /**
-         * Adds support for WooCommerce
-         */
-        if( class_exists('WooCommerce') ) {
-            add_theme_support( 'woocommerce' );
-            
-            // Customizer support
-            if( get_theme_option('customizer', 'product_zoom') )
-                add_theme_support( 'wc-product-gallery-zoom' );
-            
-            // Lightbox Support
-            if( get_theme_option('customizer', 'product_lightbox') && ! get_theme_option('customizer', 'lightbox') )
-                add_theme_support( 'wc-product-gallery-lightbox' );
-            
-            // Slider support
-            if( get_theme_option('customizer', 'product_slider') )
-                add_theme_support( 'wc-product-gallery-slider' );
-        }
         
         /**
          * Flush our rewrite rules for new posts
@@ -98,103 +76,52 @@ class Waterfall {
         });
         
         /**
-         * Redefine where to look for our templates
+         * Initialize the view component so templates are load and additional settings are added
          */
-        $files = apply_filters(
-            'waterfall_templates', 
-            ['index', '404', 'archive', 'author', 'category', 'tag', 'taxonomy', 'date', 'home', 'frontpage', 'page', 'paged', 'search', 'single', 'singular', 'attachment']
-        );
-        
-        foreach( $files as $type ) {
-            add_action("{$type}_template_hierarchy", function($templates) {
-                
-                $return = [];
-                
-                foreach($templates as $template) {
-                    $return[] = 'templates/' . $template;    
-                }
-                
-                return $return;
-                
-            });
-        } 
-        
-        /**
-         * Add our lay-out classes to the body
-         */
-        add_filter( 'body_class', function($classes) {
-
-            
-            /**
-             * Inbuild
-             */
-            $customize = get_theme_option('customizer'); 
-            $sidebar   = 'default';
-            
-            // Default layout class for boxed and non-boxed
-            if( isset($customize['layout']) ) {
-                $classes[] = 'waterfall-' . $customize['layout'] . '-layout';    
-            }
-            
-            // Initialize lightbox
-            if( isset($customize['lightbox']) ) {
-                $classes[] = 'waterfall-lightbox';
-            }
-
-            // Sidebar lay-out classes
-            if( is_page() ) {
-                $sidebar = isset($customize['page_layout']) ? $customize['page_layout'] : 'default'; 
-            }
-
-            // Default archives
-            if( is_archive() ) {
-                $sidebar = isset($customize['archive_layout']) ? $customize['archive_layout'] : 'default'; 
-            }           
-            
-            // Search Archives
-            if( is_search() ) {
-                $sidebar = isset($customize['search_layout']) ? $customize['search_layout'] : 'default';    
-            }            
-
-            // Single Posts
-            if( is_single() ) {
-                $sidebar = isset($customize['single_layout']) ? $customize['single_layout'] : 'default';     
-            }            
-            
-            // Pages with an overlay
-            if( is_singular() &&  get_theme_option('meta', 'page_header_overlay') ) {
-                $classes[] = 'waterfall-content-header-overlay';
-            }
-            
-            $full = get_theme_option('meta', 'content_width');
-            
-            if( isset($full['full']) && $full['full'] ) {
-                $sidebar = 'default';
-                $classes[] = 'waterfall-fullwidth-content';
-            }
-            
-            
-            /**
-             * WooCommerce
-             */
-             
-            // WooCommerce single Products
-            if( is_singular('product') && class_exists('WooCommerce') ) {
-                $sidebar = isset($customize['product_layout']) ? $customize['product_layout'] : 'default';     
-            }
-            
-            // WooCommerce Product Archives
-            if( is_archive('product') && class_exists('WooCommerce') ) {
-                $sidebar = isset($customize['product_archive_layout']) ? $customize['product_archive_layout'] : 'default'; 
-            }            
-
-            $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');
-            
-            return $classes;
-            
-        } );
+        $view = new Waterfall_View();
     
-    }    
+    }
+    
+    /**
+     * Loads and set-up our configurations
+     */
+    private function configure() {
+        
+        // Load our configurations file
+        require_once( get_template_directory() . '/configurations/configurations.php' );
+        
+        // Make configurations filterable
+        $configurations = apply_filters('waterfall_configurations', $configurations);
+
+        /**
+         * Register theme language domain
+         */
+        $this->register( 'language', $configurations['language'] );
+
+        /**
+         * Register styles
+         */
+        $this->register( 'enqueue', $configurations['enqueue'] );
+
+        /**
+         * Register custom fonts
+         */
+        $this->register( 'register', $configurations['register'] );
+
+        /**
+         * Register the theme framework with several options
+         */
+        $this->register( 'options',  $configurations['options'] );
+
+        /**
+         * Register the theme optimizations
+         */
+        $optimizations = get_theme_option( 'options', 'optimizations' );
+
+        if( $optimizations )
+            $this->register( 'optimize', $optimizations );
+        
+    }
     
     /**
      * Adds certain configurations for initializing the theme
@@ -215,7 +142,8 @@ class Waterfall {
         // Set our configurations
         $this->configurations[$type] = apply_filters('waterfall_' . $type, $configurations);
  
-    }
+    }    
+    
     
     /**
      * Executes all registrations
@@ -293,6 +221,6 @@ class Waterfall {
             load_theme_textdomain( $this->configurations['language'], $path );   
         }
         
-    } 
+    }
     
 }
