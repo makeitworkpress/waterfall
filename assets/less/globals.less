@@ -108,7 +108,7 @@ textarea {
 }
 
 input[type="radio"], input[type="checkbox"] {
-    margin: 0 @grid-space/4 0 0 !important;
+    margin: 0 @grid-space/8 0 0 !important;
     min-height: inherit;
     width: auto;
 }
@@ -118,8 +118,10 @@ input[type="submit"], input[type="submit"].button {
     border-radius: @radius;
     border: none;
     color: @white;
+    transition: all 300ms ease-out;
     width: auto;
     &:hover {
         cursor: pointer;
+        opacity: 0.8;
     }
 }

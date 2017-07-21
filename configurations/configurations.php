@@ -649,7 +649,83 @@ $configurations['options']  = array(
                         'title'         => __('Socket Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    )    
+                    ),
+                    array(
+                        'css'           => array( 
+                            'selector' => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt', 
+                            'property' => 'background-color' 
+                        ),
+                        'default'       => '',
+                        'id'            => 'primary_button_background',
+                        'title'         => __('Primary Button Background Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => array( 
+                            'selector' => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover', 
+                            'property' => 'background-color' 
+                        ),
+                        'default'       => '',
+                        'id'            => 'primary_button_background_hover',
+                        'title'         => __('Primary Button Background Hover Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
+                    array(
+                        'css'           => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt',
+                        'default'       => '',
+                        'id'            => 'primary_button_color',
+                        'title'         => __('Primary Button Text Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover',
+                        'default'       => '',
+                        'id'            => 'primary_button_color_hover',
+                        'title'         => __('Primary Button Text Hover Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
+                    array(
+                        'css'           => array( 
+                            'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button', 
+                            'property' => 'background-color' 
+                        ),
+                        'default'       => '',
+                        'id'            => 'secondary_button_background',
+                        'title'         => __('Secondary Button Background Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => array( 
+                            'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover', 
+                            'property' => 'background-color' 
+                        ),
+                        'default'       => '',
+                        'id'            => 'secondary_button_background_hover',
+                        'title'         => __('Secondary Button Background Hover Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
+                    array(
+                        'css'           => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button',
+                        'default'       => '',
+                        'id'            => 'secondary_button_color',
+                        'title'         => __('Secondary Button Text Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover, .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover',
+                        'default'       => '',
+                        'id'            => 'secondary_button_color_hover',
+                        'title'         => __('Secondary Button Text Hover Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),    
                 )
             ), 
             array(
@@ -742,14 +818,7 @@ $configurations['options']  = array(
                         'id'            => 'header_menu_search',
                         'title'         => __('Add a Search Icon to the Menu', 'waterfall'),
                         'type'          => 'checkbox'
-                    ), 
-                    array(
-                        'default'       => '',
-                        'id'            => 'header_menu_cart',
-                        'title'         => __('Add a Shopping Cart to the Menu', 'waterfall'),
-                        'description'   => __('Requires the WooCommerce plugin.', 'waterfall'),
-                        'type'          => 'checkbox'
-                    ),     
+                    ),    
                     array(
                         'default'       => '',
                         'id'            => 'header_menu_social',
@@ -1734,7 +1803,14 @@ if( class_exists( 'WooCommerce' ) ) {
     $configurations['options']['customizer']['sections'][] = array(
         'id'            => 'woocommerce_archive',
         'title'         => __('WooCommerce Archives', 'waterfall'),
-        'fields'    => array(       
+        'fields'    => array(
+            array(
+                'default'       => '',
+                'id'            => 'header_menu_cart',
+                'title'         => __('Add a Shopping Cart to the Menu', 'waterfall'),
+                'description'   => __('Requires the WooCommerce plugin.', 'waterfall'),
+                'type'          => 'checkbox'
+            ),       
             array(
                 'default'       => '',
                 'id'            => 'product_archive_header_disable',
