@@ -177,10 +177,10 @@ function get_button_options() {
  */
 function get_background_options() {
     return apply_filters( 'waterfall_background_options', array(
-        'background'    => __('As background of the content header', 'waterfall'),
-        'before'        => __('Before the page title in the content header', 'waterfall'),
-        'after'         => __('After the page title in the content header', 'waterfall'),
-        'none'          => __('Do not use the featured image in the content header', 'waterfall')
+        'background'    => __('As background of the title section', 'waterfall'),
+        'before'        => __('Before the page title in the title section', 'waterfall'),
+        'after'         => __('After the page title in the title section', 'waterfall'),
+        'none'          => __('Do not use the featured image in the title section', 'waterfall')
     ) );  
 }
 

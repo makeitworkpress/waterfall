@@ -262,8 +262,8 @@ $configurations['options']  = array(
                 )              
             ),   
             array(
-                'id'            => 'color_styling',
-                'title'         => __('Colors', 'waterfall'),
+                'id'            => 'colors_header',
+                'title'         => __('Header Colors', 'waterfall'),
                 'fields'    => array(
                     array(
                         'css'           => '.header .menu > li > a, .atom-search-expand',
@@ -310,6 +310,28 @@ $configurations['options']  = array(
                     ),
                     array(
                         'css'           => array(
+                            'selector' => '.atom-menu-hamburger span',
+                            'property' => 'background-color'
+                        ),
+                        'default'       => '',
+                        'id'            => 'navigation_hamburger_normal_color',
+                        'title'         => __('Hamburger Menu Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => array(
+                            'selector' => '.atom-menu-hamburger:hover span',
+                            'property' => 'background-color'
+                        ),
+                        'default'       => '',
+                        'id'            => 'navigation_hamburger_normal_hover_color',
+                        'title'         => __('Hamburger Menu Hover Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),                     
+                    array(
+                        'css'           => array(
                             'selector' => '.molecule-header-top.molecule-header-transparent .atom-menu-hamburger span',
                             'property' => 'background-color'
                         ),
@@ -353,55 +375,67 @@ $configurations['options']  = array(
                         'title'         => __('Drop-down Menu Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),    
+                    ), 
+                )              
+            ),   
+            array(
+                'id'            => 'colors_title_section',
+                'title'         => __('Title Section Colors', 'waterfall'),
+                'fields'    => array(                    
                     array(
                         'css'           => array( 'selector' => '.main-header', 'property' => 'background-color' ),
                         'default'       => '',
-                        'id'            => 'content_header',
-                        'title'         => __('Content Header Background Color', 'waterfall'),
+                        'id'            => 'title_section',
+                        'title'         => __('Title Section Background Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
                     array(
                         'css'           => '.main-header h1, .main-header h2, .main-header h3, .main-header h4',
                         'default'       => '',
-                        'id'            => 'content_header_title',
-                        'title'         => __('Content Header Title Color', 'waterfall'),
+                        'id'            => 'title_section_title',
+                        'title'         => __('Title Section Title Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
                     array(
                         'css'           => '.main-header',
                         'default'       => '',
-                        'id'            => 'content_header_text',
-                        'title'         => __('Content Header Text Color', 'waterfall'),
+                        'id'            => 'title_section_text',
+                        'title'         => __('Title Section Text Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),     
                     array(
                         'css'           => '.main-header a',
                         'default'       => '',
-                        'id'            => 'content_header_link',
-                        'title'         => __('Content Header Link Color', 'waterfall'),
+                        'id'            => 'title_section_link',
+                        'title'         => __('Title Section Link Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
                     array(
                         'css'           => '.main-header a:hover',
                         'default'       => '',
-                        'id'            => 'content_header_link_hover',
-                        'title'         => __('Content Header Link Hover', 'waterfall'),
+                        'id'            => 'title_section_link_hover',
+                        'title'         => __('Title Section Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),    
                     array(
                         'css'           => '.main-header .entry-meta a, .main-header .entry-time',
                         'default'       => '',
-                        'id'            => 'content_header_meta',
-                        'title'         => __('Content Header Meta Color', 'waterfall'),
+                        'id'            => 'title_section_meta',
+                        'title'         => __('Title Section Meta Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),        
+                    ),
+                )              
+            ),   
+            array(
+                'id'            => 'colors_main_content',
+                'title'         => __('Main Content Colors', 'waterfall'),
+                'fields'    => array(                      
                     array(
                         'css'           => array( 'selector' => '.main-content', 'property' => 'background-color' ),
                         'default'       => '',
@@ -481,7 +515,13 @@ $configurations['options']  = array(
                         'title'         => __('Main Content Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),    
+                    ),
+                )              
+            ),   
+            array(
+                'id'            => 'colors_related_content',
+                'title'         => __('Related Content Colors', 'waterfall'),
+                'fields'    => array(                      
                     array(
                         'css'           => array( 'selector' => '.main-related', 'property' => 'background-color' ),
                         'default'       => '',
@@ -553,7 +593,13 @@ $configurations['options']  = array(
                         'title'         => __('Related Posts with Featured Image Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),     
+                    ),
+                )              
+            ),   
+            array(
+                'id'            => 'colors_content_footer',
+                'title'         => __('Content Footer Colors', 'waterfall'),
+                'fields'    => array(                    
                     array(
                         'css'           => array( 'selector' => '.main-footer', 'property' => 'background-color' ),
                         'default'       => '',
@@ -561,7 +607,7 @@ $configurations['options']  = array(
                         'title'         => __('Content Footer Background Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),
+                    ),                      
                     array(
                         'css'           => '.main-footer h1, .main-footer h2, .main-footer h3, .main-footer h4, .main-footer h5',
                         'default'       => '',
@@ -594,6 +640,12 @@ $configurations['options']  = array(
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
+                )              
+            ),   
+            array(
+                'id'            => 'colors_footer',
+                'title'         => __('Footer Colors', 'waterfall'),
+                'fields'    => array(                    
                     array(
                         'css'           => array( 'selector' => '.molecule-footer-sidebars', 'property' => 'background-color' ),
                         'default'       => '',
@@ -650,9 +702,15 @@ $configurations['options']  = array(
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
+                )              
+            ),   
+            array(
+                'id'            => 'colors_buttons',
+                'title'         => __('Button Colors', 'waterfall'),
+                'fields'    => array(                      
                     array(
                         'css'           => array( 
-                            'selector' => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt', 
+                            'selector' => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, .header .atom-menu-item-cart a.checkout', 
                             'property' => 'background-color' 
                         ),
                         'default'       => '',
@@ -663,7 +721,7 @@ $configurations['options']  = array(
                     ),
                     array(
                         'css'           => array( 
-                            'selector' => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover', 
+                            'selector' => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, .header .atom-menu-item-cart a.checkout:hover', 
                             'property' => 'background-color' 
                         ),
                         'default'       => '',
@@ -673,7 +731,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),    
                     array(
-                        'css'           => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt',
+                        'css'           => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, , .header .atom-menu-item-cart a.checkout',
                         'default'       => '',
                         'id'            => 'primary_button_color',
                         'title'         => __('Primary Button Text Color', 'waterfall'),
@@ -681,7 +739,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),
                     array(
-                        'css'           => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover',
+                        'css'           => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, , .header .atom-menu-item-cart a.checkout:hover',
                         'default'       => '',
                         'id'            => 'primary_button_color_hover',
                         'title'         => __('Primary Button Text Hover Color', 'waterfall'),
@@ -690,7 +748,7 @@ $configurations['options']  = array(
                     ),    
                     array(
                         'css'           => array( 
-                            'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button', 
+                            'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button', 
                             'property' => 'background-color' 
                         ),
                         'default'       => '',
@@ -701,7 +759,7 @@ $configurations['options']  = array(
                     ),
                     array(
                         'css'           => array( 
-                            'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover', 
+                            'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover', 
                             'property' => 'background-color' 
                         ),
                         'default'       => '',
@@ -711,7 +769,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),    
                     array(
-                        'css'           => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button',
+                        'css'           => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button',
                         'default'       => '',
                         'id'            => 'secondary_button_color',
                         'title'         => __('Secondary Button Text Color', 'waterfall'),
@@ -719,7 +777,7 @@ $configurations['options']  = array(
                         'type'          => 'colorpicker'
                     ),
                     array(
-                        'css'           => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover, .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover',
+                        'css'           => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover, .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover',
                         'default'       => '',
                         'id'            => 'secondary_button_color_hover',
                         'title'         => __('Secondary Button Text Hover Color', 'waterfall'),
@@ -879,7 +937,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => '',
                         'id'            => 'page_header_disable',
-                        'title'         => __('Disable content header', 'waterfall'),
+                        'title'         => __('Disable Title Section', 'waterfall'),
                         'type'          => 'checkbox'
                     ),    
                     array(
@@ -899,7 +957,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => 'quarter',
                         'id'            => 'page_header_height',
-                        'title'         => __('Content Header Minimum Height', 'waterfall'),
+                        'title'         => __('Title Section Minimum Height', 'waterfall'),
                         'description'   => __('This will be the minimum height when a page does not have a featured image.', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_height_options()
@@ -907,7 +965,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => 'half',
                         'id'            => 'page_header_height_image',
-                        'title'         => __('Content Header with Featured Image Minimum Height', 'waterfall'),
+                        'title'         => __('Title Section with Featured Image Minimum Height', 'waterfall'),
                         'description'   => __('This will be the minimum height when a page has a featured image.', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_height_options()
@@ -917,21 +975,21 @@ $configurations['options']  = array(
                         'description'   => __('Width of the header of the content.', 'waterfall'),
                         'id'            => 'page_header_width',
                         'choices'       => get_container_options(),
-                        'title'         => __('Content Header Width', 'waterfall'),
+                        'title'         => __('Title Section Width', 'waterfall'),
                         'type'          => 'select'
                     ),      
                     array(
                         'default'       => 'left',
                         'id'            => 'page_header_align',
-                        'title'         => __('Content Header Text Align', 'waterfall'),
-                        'description'   => __('How should text be aligned within the content header?', 'waterfall'),
+                        'title'         => __('Title Section Text Align', 'waterfall'),
+                        'description'   => __('How should text be aligned within the Title Section?', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_align_options()
                     ),   
                     array(
                         'default'       => '',
                         'id'            => 'page_header_parallax',
-                        'title'         => __('Enable the parallax effect to page content headers', 'waterfall'),
+                        'title'         => __('Enable the parallax effect to page Title Sections', 'waterfall'),
                         'type'          => 'checkbox'
                     ), 
                     array(
@@ -943,7 +1001,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => 'none',
                         'id'            => 'page_header_scroll',
-                        'title'         => __('Enable the scroll button in content headers', 'waterfall'),
+                        'title'         => __('Enable the scroll button in Title Sections', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_button_options()
                     ),
@@ -979,7 +1037,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => '',
                         'id'            => 'single_header_disable',
-                        'title'         => __('Disable content header', 'waterfall'),
+                        'title'         => __('Disable Title Section', 'waterfall'),
                         'type'          => 'checkbox'
                     ),     
                     array(
@@ -999,7 +1057,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => 'quarter',
                         'id'            => 'single_header_height',
-                        'title'         => __('Content Header Minimum Height', 'waterfall'),
+                        'title'         => __('Title Section Minimum Height', 'waterfall'),
                         'description'   => __('This will be the minimum height when a page does not have a featured image.', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_height_options()
@@ -1007,7 +1065,7 @@ $configurations['options']  = array(
                     array(
                         'default'       => 'half',
                         'id'            => 'single_header_height_image',
-                        'title'         => __('Content Header with Featured Image Minimum Height', 'waterfall'),
+                        'title'         => __('Title Section with Featured Image Minimum Height', 'waterfall'),
                         'description'   => __('This will be the minimum height when a page has a featured image.', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_height_options()
@@ -1017,21 +1075,21 @@ $configurations['options']  = array(
                         'description'   => __('Width of the header of the content.', 'waterfall'),
                         'id'            => 'single_header_width',
                         'choices'       => get_container_options(),
-                        'title'         => __('Content Header Width', 'waterfall'),
+                        'title'         => __('Title Section Width', 'waterfall'),
                         'type'          => 'select'
                     ),     
                     array(
                         'default'       => 'left',
                         'id'            => 'single_header_align',
-                        'title'         => __('Content Header Text Align', 'waterfall'),
-                        'description'   => __('How should text be aligned within the content header?', 'waterfall'),
+                        'title'         => __('Title Section Text Align', 'waterfall'),
+                        'description'   => __('How should text be aligned within the Title Section?', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_align_options()
                     ),    
                     array(
                         'default'       => '',
                         'id'            => 'single_header_parallax',
-                        'title'         => __('Enable the parallax effect to content headers', 'waterfall'),
+                        'title'         => __('Enable the parallax effect to Title Sections', 'waterfall'),
                         'type'          => 'checkbox'
                     ),
                     array(
@@ -1043,25 +1101,25 @@ $configurations['options']  = array(
                     array(
                         'default'       => '',
                         'id'            => 'single_header_date',
-                        'title'         => __('Show a date in post content headers', 'waterfall'),
+                        'title'         => __('Show a date in post Title Sections', 'waterfall'),
                         'type'          => 'checkbox'
                     ),
                     array(
                         'default'       => '',
                         'id'            => 'single_header_terms',
-                        'title'         => __('Show tags and categories in post content headers', 'waterfall'),
+                        'title'         => __('Show tags and categories in post Title Sections', 'waterfall'),
                         'type'          => 'checkbox'
                     ),
                     array(
                         'default'       => false,
                         'id'            => 'single_header_author',
-                        'title'         => __('Show the author in post content headers', 'waterfall'),
+                        'title'         => __('Show the author in post Title Sections', 'waterfall'),
                         'type'          => 'checkbox'
                     ),    
                     array(
                         'default'       => 'none',
                         'id'            => 'single_header_scroll',
-                        'title'         => __('Enable the scroll button in content headers', 'waterfall'),
+                        'title'         => __('Enable the scroll button in Title Sections', 'waterfall'),
                         'type'          => 'select',
                         'choices'       => get_button_options()
                     ),
