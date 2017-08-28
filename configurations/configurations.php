@@ -43,19 +43,19 @@ $configurations['options']  = array(
                         'id'            => 'header_menu_typography',
                         'title'         => __('Header Navigation Menu', 'waterfall'),
                         'type'          => 'typography'
-                    ), 
-                    array(
-                        'css'           => '.main-header h1',
-                        'id'            => 'main_heading_typography',
-                        'title'         => __('Main Heading', 'waterfall'),
-                        'type'          => 'typography'
                     ),
                     array(
                         'css'           => '.main-content',
                         'id'            => 'content_typography',
                         'title'         => __('Main Content', 'waterfall'),
                         'type'          => 'typography'
-                    ),    
+                    ),                     
+                    array(
+                        'css'           => '.main-header h1',
+                        'id'            => 'main_heading_typography',
+                        'title'         => __('Title Section Headings', 'waterfall'),
+                        'type'          => 'typography'
+                    ),   
                     array(
                         'css'           => 'h1',
                         'columns'       => 'third',
@@ -379,8 +379,8 @@ $configurations['options']  = array(
                 )              
             ),   
             array(
-                'id'            => 'colors_title_section',
-                'title'         => __('Title Section Colors', 'waterfall'),
+                'id'            => 'colors_main_content',
+                'title'         => __('Main Content Colors', 'waterfall'),
                 'fields'    => array(                    
                     array(
                         'css'           => array( 'selector' => '.main-header', 'property' => 'background-color' ),
@@ -429,13 +429,7 @@ $configurations['options']  = array(
                         'title'         => __('Title Section Meta Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),
-                )              
-            ),   
-            array(
-                'id'            => 'colors_main_content',
-                'title'         => __('Main Content Colors', 'waterfall'),
-                'fields'    => array(                      
+                    ),                     
                     array(
                         'css'           => array( 'selector' => '.main-content', 'property' => 'background-color' ),
                         'default'       => '',
@@ -515,13 +509,7 @@ $configurations['options']  = array(
                         'title'         => __('Main Content Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),
-                )              
-            ),   
-            array(
-                'id'            => 'colors_related_content',
-                'title'         => __('Related Content Colors', 'waterfall'),
-                'fields'    => array(                      
+                    ),                    
                     array(
                         'css'           => array( 'selector' => '.main-related', 'property' => 'background-color' ),
                         'default'       => '',
@@ -593,13 +581,7 @@ $configurations['options']  = array(
                         'title'         => __('Related Posts with Featured Image Link Hover', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
-                    ),
-                )              
-            ),   
-            array(
-                'id'            => 'colors_content_footer',
-                'title'         => __('Content Footer Colors', 'waterfall'),
-                'fields'    => array(                    
+                    ),                   
                     array(
                         'css'           => array( 'selector' => '.main-footer', 'property' => 'background-color' ),
                         'default'       => '',
