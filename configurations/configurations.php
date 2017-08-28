@@ -380,7 +380,7 @@ $configurations['options']  = array(
             ),   
             array(
                 'id'            => 'colors_main_content',
-                'title'         => __('Main Content Colors', 'waterfall'),
+                'title'         => __('Content Colors', 'waterfall'),
                 'fields'    => array(                    
                     array(
                         'css'           => array( 'selector' => '.main-header', 'property' => 'background-color' ),
