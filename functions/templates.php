@@ -44,17 +44,10 @@ function waterfall_header() {
 
     // Social icons
     if( get_theme_option('customizer', 'header_menu_social') ) {
-
-        $networks = get_theme_option('options', 'social_networks');
+        $networks = get_social_networks();
 
         if( $networks ) {
-
-            foreach( $networks as $network ) {
-                $urls[$network['network']] = $network['url'];
-            }
-
-            $atoms['menu']['social'] = $urls;
-
+            $atoms['menu']['social'] = $networks;
         }
     }        
 
@@ -136,7 +129,6 @@ function waterfall_footer() {
 
     // Logo
     if( $logo && $socket !== false ) {
-
         $atoms['logo'] = array(
             'float'     => 'center',
             'image'     => $logo
@@ -155,20 +147,14 @@ function waterfall_footer() {
     // Social Icons
     if( $social && $socket !== false ) {
 
-        $networks = get_theme_option('options', 'social_networks');
+        $networks = get_social_networks();
 
         if( $networks ) {
-
-            foreach( $networks as $network ) {
-                $urls[$network['network']] = $network['url'];
-            }
-
             $atoms['social'] = array(
                 'rounded'   => true,
                 'float'     => 'right',
-                'urls'      => $urls
+                'urls'      => $networks
             );
-
         }                
     }
 
@@ -178,6 +164,7 @@ function waterfall_footer() {
         $atoms['menu'] = array(
             'args'          => array('theme_location' => 'footer-menu'), 
             'float'         => 'right',
+            'dropdown'      => false,
             'hamburger'     => 'none' 
         );
     }

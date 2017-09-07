@@ -195,3 +195,30 @@ function get_float_options() {
         'right'  => __('Right', 'waterfall')
     ) );  
 }
+
+/**
+ * Retrieves social networks
+ */
+function get_social_networks() {
+    $networks   = array(
+        'telephone'     => __('Telephone', 'waterfall'), 
+        'email'         => __('Email', 'waterfall'), 
+        'facebook'      => __('Facebook', 'waterfall'), 
+        'instagram'     => __('Instagram', 'waterfall'), 
+        'twitter'       => __('Twitter', 'waterfall'), 
+        'linkedin'      => __('LinkedIn', 'waterfall'), 
+        'google-plus'   => __('Google Plus', 'waterfall'), 
+        'pinterest'     => __('Pinterest', 'waterfall'), 
+        'reddit'        => __('Reddit', 'waterfall'),   
+        'whatsapp'      => __('Whatsapp', 'waterfall')           
+    );
+    $options    = get_theme_option('customizer');
+    $urls       = array();
+    
+    foreach( $networks as $network => $label ) {
+        if( isset($options[$network]) && $options[$network] )
+            $urls[$network] = $options[$network];        
+    }
+    
+    return $urls;
+}
