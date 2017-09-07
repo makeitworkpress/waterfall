@@ -1,3 +1,7 @@
+/**
+ * These repositories are here for reference
+ * Repositories are now included using submodules
+ */
 {
     "name": "waterfall",
     "repositories": [
@@ -25,13 +29,5 @@
             "type": "vcs",
             "url": "https://github.com/makeitworkpress/wp-router.git"
         }         
-    ],
-    "require": {
-        "divergent": "dev-master",
-        "wp-components": "dev-master",
-        "wp-enqueue": "dev-master",
-        "wp-optimize": "dev-master",
-        "wp-register": "dev-master",
-        "wp-router": "dev-master"
-    }
+    ]
 }

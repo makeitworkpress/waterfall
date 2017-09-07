@@ -277,7 +277,7 @@ $configurations['options']  = array(
                         'css'           => '.header .menu > li > a:hover, .header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a',
                         'default'       => '',
                         'id'            => 'navigation_link_hover_color',
-                        'title'         => __('Navigation Link Hover and Active Color', 'waterfall'),
+                        'title'         => __('Navigation Link Hover Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ), 
@@ -376,6 +376,21 @@ $configurations['options']  = array(
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ), 
+                    array(
+                        'css'           => array( 'selector' => '.header', 'property' => 'background-color' ),
+                        'default'       => '',
+                        'id'            => 'header_background',
+                        'title'         => __('Header Background Color', 'waterfall'),
+                        'transport'     => 'postMessage',
+                        'type'          => 'colorpicker'
+                    ),
+                    array(
+                        'css'           => '.header',
+                        'default'       => '',
+                        'id'            => 'header_background_image',
+                        'title'         => __('Header Background Image', 'waterfall'),
+                        'type'          => 'image'
+                    )                    
                 )              
             ),   
             array(
@@ -546,7 +561,7 @@ $configurations['options']  = array(
                         'css'           => '.main-related a:hover',
                         'default'       => '',
                         'id'            => 'content_related_link_hover',
-                        'title'         => __('Related Main Content Link Hover', 'waterfall'),
+                        'title'         => __('Related Content Link Hover Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),
@@ -570,7 +585,7 @@ $configurations['options']  = array(
                         'css'           => '.main-related .has-post-thumbnail a',
                         'default'       => '',
                         'id'            => 'content_related_posts_featured_link',
-                        'title'         => __('Related Posts with Featured Image Link Color', 'waterfall'),
+                        'title'         => __('Related Posts Featured Image Link Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ), 
@@ -578,7 +593,7 @@ $configurations['options']  = array(
                         'css'           => '.main-related .has-post-thumbnail a:hover',
                         'default'       => '',
                         'id'            => 'content_related_posts_featured_link_hover',
-                        'title'         => __('Related Posts with Featured Image Link Hover', 'waterfall'),
+                        'title'         => __('Related Posts Featured Image Link Hover Color', 'waterfall'),
                         'transport'     => 'postMessage',
                         'type'          => 'colorpicker'
                     ),                   
@@ -878,8 +893,8 @@ $configurations['options']  = array(
                         'type'          => 'select',
                         'choices'       => array(
                             'always'    => __('Always Display', 'waterfall'),
-                            'tablet'    => __('Display on Tablets (<1024px)', 'waterfall'),
-                            'mobile'    => __('Display on Mobile (<768px)', 'waterfall'),
+                            'tablet'    => __('Display on Tablets', 'waterfall'),
+                            'mobile'    => __('Display on Mobile', 'waterfall'),
                         ),
                     ),
                     array(
@@ -894,21 +909,6 @@ $configurations['options']  = array(
                             'left'      => __('Left Slide', 'waterfall'),
                             'right'     => __('Right Slide', 'waterfall'),
                         ),
-                    ),     
-                    array(
-                        'css'           => array( 'selector' => '.header', 'property' => 'background-color' ),
-                        'default'       => '',
-                        'id'            => 'header_background',
-                        'title'         => __('Header Background Color', 'waterfall'),
-                        'transport'     => 'postMessage',
-                        'type'          => 'colorpicker'
-                    ),
-                    array(
-                        'css'           => '.header',
-                        'default'       => '',
-                        'id'            => 'header_background_image',
-                        'title'         => __('Header Background Image', 'waterfall'),
-                        'type'          => 'image'
                     )  
                 )              
             ),    

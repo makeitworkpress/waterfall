@@ -1,0 +1,15 @@
+[submodule "classes/wp-components"]
+	path = classes/wp-components
+	url = ../wp-components.git
+[submodule "classes/wp-register"]
+	path = classes/wp-register
+	url = ../wp-register
+[submodule "classes/wp-enqueue"]
+	path = classes/wp-enqueue
+	url = ../wp-enqueue
+[submodule "classes/wp-router"]
+	path = classes/wp-router
+	url = ../wp-router.git
+[submodule "classes/divergent-framework"]
+	path = classes/divergent-framework
+	url = ../divergent-framework.git
