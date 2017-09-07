@@ -26,6 +26,15 @@ function get_theme_option( $type = '', $key = '' ) {
     switch( $type ) {
         case 'customizer':
             $options = get_theme_mod('waterfall_customizer');
+            break;        
+        case 'colors':
+            $options = get_theme_mod('waterfall_colors');
+            break;        
+        case 'layout':
+            $options = get_theme_mod('waterfall_layout');
+            break;        
+        case 'typography':
+            $options = get_theme_mod('waterfall_typography');
             break;
         case 'meta':
             $options = get_post_meta( get_the_ID(), 'waterfall_meta', true);

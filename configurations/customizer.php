@@ -85,7 +85,7 @@ $customizer = array(
                 array(
                     'css'           => array('selector' => 'body', 'property' => 'background-color'),
                     'default'       => '',
-                    'id'            => 'lazyload',
+                    'id'            => 'background_color',
                     'title'         => __('Background Color', 'waterfall'),
                     'type'          => 'colorpicker',
                     'transport'     => 'postMessage'
@@ -691,7 +691,7 @@ $colors = array(
             'fields'    => array(                      
                 array(
                     'css'           => array( 
-                        'selector' => '.input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, .header .atom-menu-item-cart a.button.checkout', 
+                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, .header .atom-menu-item-cart a.button.checkout', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -702,7 +702,7 @@ $colors = array(
                 ),
                 array(
                     'css'           => array( 
-                        'selector' => '.input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, .header .atom-menu-item-cart a.button.checkout:hover', 
+                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, .header .atom-menu-item-cart a.button.checkout:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -712,7 +712,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),    
                 array(
-                    'css'           => '.input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, , .header .atom-menu-item-cart a.button.checkout',
+                    'css'           => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, , .header .atom-menu-item-cart a.button.checkout',
                     'default'       => '',
                     'id'            => 'primary_button_color',
                     'title'         => __('Primary Button Text Color', 'waterfall'),
@@ -720,7 +720,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'css'           => '.input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, , .header .atom-menu-item-cart a.button.checkout:hover',
+                    'css'           => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, , .header .atom-menu-item-cart a.button.checkout:hover',
                     'default'       => '',
                     'id'            => 'primary_button_color_hover',
                     'title'         => __('Primary Button Text Hover Color', 'waterfall'),
@@ -845,7 +845,21 @@ $layout = array(
                     'id'            => 'header_menu_search',
                     'title'         => __('Add a Search Icon to the Menu', 'waterfall'),
                     'type'          => 'checkbox'
-                ),    
+                ),
+                array(
+                    'default'       => __('Nothing found!', 'waterfall'),
+                    'id'            => 'header_menu_none',
+                    'title'         => __('Nothing Found Search Text', 'waterfall'),
+                    'description'   => __('Text when nothing is found in search', 'waterfall'),
+                    'type'          => 'input'
+                ),
+                array(
+                    'default'       => __('View All Results', 'waterfall'),
+                    'id'            => 'header_menu_all',
+                    'title'         => __('All Results Search Text', 'waterfall'),
+                    'description'   => __('Text for link to all the results', 'waterfall'),
+                    'type'          => 'input'
+                ),                
                 array(
                     'default'       => '',
                     'id'            => 'header_menu_social',
