@@ -79,6 +79,17 @@ class Waterfall {
          * Initialize the view component so templates are load and additional settings are added
          */
         $view = new Waterfall_View();
+        
+        /**
+         * Adapt some of the customizer sections
+         */
+        add_action( 'customize_register', function($wp_customize) {
+            $wp_customize->get_section('background_image')->title = __( 'Theme Backgrounds' );
+            $wp_customize->get_section('background_image')->priority = 110;
+            $wp_customize->get_section('static_front_page')->title = __( 'General Settings' );
+            $wp_customize->get_section('static_front_page')->priority = 1;
+            $wp_customize->remove_section('colors');
+        }, 20 );
     
     }
     
@@ -88,52 +99,41 @@ class Waterfall {
     private function configure() {
         
         // Load our configurations file
-        require_once( get_template_directory() . '/configurations/configurations.php' );
+        require_once( get_template_directory() . '/configurations/customizer.php' );
+        require_once( get_template_directory() . '/configurations/enqueue.php' );
+        require_once( get_template_directory() . '/configurations/postmeta.php' );
+        require_once( get_template_directory() . '/configurations/register.php' );
         
-        // Make configurations filterable
-        $configurations = apply_filters('waterfall_configurations', $configurations);
-
-        /**
-         * Register theme language domain
-         */
-        $this->register( 'language', $configurations['language'] );
-
-        /**
-         * Register styles
-         */
-        $this->register( 'enqueue', $configurations['enqueue'] );
-
-        /**
-         * Register custom fonts
-         */
-        $this->register( 'register', $configurations['register'] );
-
-        /**
-         * Register the theme framework with several options
-         */
-        $this->register( 'options',  $configurations['options'] );
-
-        /**
-         * Register the theme optimizations
-         */
-        $optimizations = get_theme_option( 'options', 'optimizations' );
-
-        if( $optimizations )
-            $this->register( 'optimize', $optimizations );
+        // Make configurations filterable at early moment
+        $configurations = apply_filters('waterfall_configurations', array(
+            'language'  => 'waterfall', 
+            'enqueue'   => $enqueue, 
+            'register'  => $register, 
+            'options'   => array(
+                array('frame' => 'customizer', 'fields' => $customizer),
+                array('frame' => 'customizer', 'fields' => $colors),
+                array('frame' => 'meta', 'fields' => $postmeta),
+            ) 
+        ));
+        
+        // Register our configurations so that they can be executed
+        foreach( $configurations as $key => $configuration ) {
+            $this->register( $key, $configuration );    
+        }
         
     }
     
     /**
      * Adds certain configurations for initializing the theme
      *
-     * @param string    $type               The type of configurations to add. Accepts optimize, enqueue, register, route, settings and language
+     * @param string    $type               The type of configurations to add. Accepts enqueue, register, route, options and language
      * @param array     $configurations     The configurations that you want to add to this type
      */
     public function register( $type = '', $configurations = [] ) {
         
         // A type should be registered
         if( ! $type )
-            return new WP_Error('type_missing', __('Please define a type', 'waterfall'));
+            return new WP_Error('type_missing', __('Please define a configuration type', 'waterfall'));
         
         // If we already have configurations, we merge the arrays
         if( isset($this->configurations[$type]) && is_array($this->configurations[$type]) )
@@ -150,7 +150,7 @@ class Waterfall {
      *
      * @param string $type If defined, executes a specific registration, otherwise executes all
      */
-    public function execute( $type = '') {
+    public function execute( $type = '' ) {
         
         /**
          * General filter for changing configurations upon execution
@@ -162,45 +162,48 @@ class Waterfall {
          */
         $methods = apply_filters( 'waterfall_execute_methods', [
             'enqueue'   => 'WP_Enqueue\Enqueue',
-            'optimize'  => 'WP_Optimize\Optimize', 
             'register'  => 'WP_Register\Register', 
             'routes'    => 'WP_Router\Router', 
-            'options'   => 'Divergent\Divergent'
-        ] );   
+            'options'   => 'WP_Custom_Fields\Framework'
+        ] );
         
-        foreach($methods as $key => $class ) {
+        /**
+         * Loop through our configurations and execute given methods
+         */
+        foreach( $this->configurations as $key => $configurations ) {
             
             // If we have a type executed, it should match a key
             if( $type && $type != $key )
+                continue;            
+            
+            // The method should be set
+            if( ! isset($methods[$key]) )
                 continue;
             
-            // We should have the settings for the type
-            if( ! isset($this->configurations[$key]) || ! $this->configurations[$key] )
-                continue;
+            // And the class should exist
+            if( ! class_exists($methods[$key]) )
+                var_dump('DOES NOT EXIST');
             
-            // Our divergent is something different
             if( $key == 'options' ) {
                 
                 // Default parameters
-                $this->configurations[$key]['params'] = isset($this->configurations[$key]['params']) ? $this->configurations[$key]['params'] : array();
+                $this->configurations['options']['params'] = isset($this->configurations['options']['params']) ? $this->configurations['options']['params'] : array();
                 
                 // Divergent framework
-                $divergent = $class::instance($this->configurations[$key]['params']);
+                $execute = WP_Custom_Fields\Framework::instance($this->configurations[$key]['params']);
                 
                 // Walk through all the option types
-                foreach( $this->configurations[$key] as $target => $options ) {
+                foreach( $this->configurations['options'] as $key => $options ) {
 
-                    if( $target == 'params' )
+                    if( $key == 'params' )
                         continue;
                     
-                    $divergent->add( $target, $options );    
-                }
+                    $execute->add( $options['frame'], $options['fields'] );    
+                }                
                 
             } else {
-
-                
-                $execute = new $class($this->configurations[$key]);   
-            }   
+                $execute = new $methods[$key]( $this->configurations[$key] );    
+            }
             
         }
     

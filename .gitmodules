@@ -10,6 +10,6 @@
 [submodule "classes/wp-router"]
 	path = classes/wp-router
 	url = ../wp-router.git
-[submodule "classes/divergent-framework"]
-	path = classes/divergent-framework
-	url = ../divergent-framework.git
+[submodule "classes/wp-custom-fields"]
+	path = classes/wp-custom-fields
+	url = ../wp-custom-fields.git
