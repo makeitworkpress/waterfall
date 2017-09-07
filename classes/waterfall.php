@@ -84,9 +84,9 @@ class Waterfall {
          * Adapt some of the customizer sections
          */
         add_action( 'customize_register', function($wp_customize) {
-            $wp_customize->get_section('background_image')->title = __( 'Theme Backgrounds' );
+            $wp_customize->get_section('background_image')->title = __( 'Background' );
             $wp_customize->get_section('background_image')->priority = 110;
-            $wp_customize->get_section('static_front_page')->title = __( 'General Settings' );
+            $wp_customize->get_section('static_front_page')->title = __( 'General' );
             $wp_customize->get_section('static_front_page')->priority = 1;
             $wp_customize->remove_section('colors');
         }, 20 );
@@ -110,9 +110,11 @@ class Waterfall {
             'enqueue'   => $enqueue, 
             'register'  => $register, 
             'options'   => array(
-                array('frame' => 'customizer', 'fields' => $customizer),
-                array('frame' => 'customizer', 'fields' => $colors),
-                array('frame' => 'meta', 'fields' => $postmeta),
+                'customizerGeneral' => array('frame' => 'customizer', 'fields' => $customizer),
+                'colorsPanel'       => array('frame' => 'customizer', 'fields' => $colors),
+                'layoutPanel'       => array('frame' => 'customizer', 'fields' => $layout),
+                'typographyPanel'   => array('frame' => 'customizer', 'fields' => $typography),
+                'postMeta'          => array('frame' => 'meta', 'fields' => $postmeta),
             ) 
         ));
         
@@ -182,7 +184,7 @@ class Waterfall {
             
             // And the class should exist
             if( ! class_exists($methods[$key]) )
-                var_dump('DOES NOT EXIST');
+                continue;
             
             if( $key == 'options' ) {
                 

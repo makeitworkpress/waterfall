@@ -2,8 +2,88 @@
 /**
  * Loads our customizer configurations
  */
+
+// Adds general settings
+$customizer = array(
+    'description'   => __('Customizer settings for the Waterfall theme', 'waterfall'),
+    'id'            => 'waterfall_customizer',
+    'title'         => __('Waterfall', 'waterfall'),
+    'sections'      => array(
+        array(
+            'id'            => 'static_front_page',
+            'title'         => __('General', 'waterfall'),
+            'fields'    => array(                   
+                array(
+                    'default'       => 'default',
+                    'id'            => 'layout',
+                    'title'         => __('Layout', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => array(
+                        'default' => __('Default Layout', 'waterfall'),
+                        'boxed'   => __('Boxed Layout', 'waterfall'),
+                    )    
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => 'lightbox',
+                    'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => 'lazyload',
+                    'title'         => __('Lazyload Featured Images, Improving Performance', 'waterfall'),
+                    'type'          => 'checkbox'
+                )                  
+            )              
+        ),        
+        array(
+            'id'            => 'title_tagline',
+            'priority'      => 2,
+            'title'         => __('Site Identity', 'waterfall'),
+            'fields'    => array(                   
+                array(
+                    'default'       => '',
+                    'id'            => 'logo',
+                    'title'         => __('Logo Image', 'waterfall'),
+                    'type'          => 'image',
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => 'logo_transparent',
+                    'title'         => __('Transparent Logo Image', 'waterfall'),
+                    'description'   => __('This logo is used if you have set up a transparent header.', 'waterfall'),
+                    'type'          => 'image',
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => 'logo_mobile',
+                    'title'         => __('Mobile Logo Image', 'waterfall'),
+                    'description'   => __('This logo is loaded by mobile agents', 'waterfall'),
+                    'type'          => 'image',
+                ), 
+                array(
+                    'default'       => '',
+                    'id'            => 'logo_mobile_transparent',
+                    'title'         => __('Transparent Mobile Logo Image', 'waterfall'),
+                    'description'   => __('This logo is loaded by mobile agents and if you have a transparent header set up.', 'waterfall'),
+                    'type'          => 'image',
+                ),
+                array(
+                    'description'   => __('Choose a logo for use in the socket, preferably with height of 50px.', 'waterfall'),
+                    'default'       => '',
+                    'id'            => 'footer_logo',
+                    'title'         => __('Footer Logo Image', 'waterfall'),
+                    'type'          => 'image',
+                )    
+            )              
+        )
+    )
+);
+
+// Adds color panels
 $colors = array(
-    'description'   => __('Customizer Colors Panel for the Waterfall theme.', 'waterfall'),
+    'description'   => __('Adjust the colors of all of the theme sections.', 'waterfall'),
     'id'            => 'waterfall_colors',
     'title'         => __('Theme Colors', 'waterfall'),
     'panel'         => true,
@@ -22,7 +102,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ), 
                 array(
-                    'css'           => '.header .menu > li > a:hover, .header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a',
+                    'css'           => '.header .menu > li > a:hover, .atom-search-expand:hover',
                     'default'       => '',
                     'id'            => 'navigation_link_hover_color',
                     'title'         => __('Navigation Link Hover Color', 'waterfall'),
@@ -31,15 +111,34 @@ $colors = array(
                 ), 
                 array(
                     'css'           => array( 
-                        'selector' => '.header .menu > li > a:hover, .header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a', 
+                        'selector' => '.header .menu > li > a:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
                     'id'            => 'navigation_link_hover_background',
-                    'title'         => __('Navigation Link Hover and Active Background Color', 'waterfall'),
+                    'title'         => __('Navigation Link Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ), 
+                ),
+                array(
+                    'css'           => '.header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a',
+                    'default'       => '',
+                    'id'            => 'navigation_link_active_color',
+                    'title'         => __('Navigation Link Active Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
+                array(
+                    'css'           => array( 
+                        'selector' => '.header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a', 
+                        'property' => 'background-color' 
+                    ),
+                    'default'       => '',
+                    'id'            => 'navigation_link_active_background',
+                    'title'         => __('Navigation Link Active Background Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
                 array(
                     'css'           => '.molecule-header-top.molecule-header-transparent .menu > li > a, .molecule-header-top.molecule-header-transparent .atom-search-expand',
                     'default'       => '',
@@ -123,7 +222,22 @@ $colors = array(
                     'title'         => __('Drop-down Menu Link Hover', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                )                   
+                ),
+                array(
+                    'css'           => array( 'selector' => '.header', 'property' => 'background-color' ),
+                    'default'       => '',
+                    'id'            => 'header_background',
+                    'title'         => __('Header Background Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),
+                array(
+                    'css'           => '.header',
+                    'default'       => '',
+                    'id'            => 'header_background_image',
+                    'title'         => __('Header Background Image', 'waterfall'),
+                    'type'          => 'image'
+                )  
             )              
         ),   
         array(
@@ -440,7 +554,7 @@ $colors = array(
             'fields'    => array(                      
                 array(
                     'css'           => array( 
-                        'selector' => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, .header .atom-menu-item-cart a.checkout', 
+                        'selector' => '.input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, .header .atom-menu-item-cart a.checkout', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -451,7 +565,7 @@ $colors = array(
                 ),
                 array(
                     'css'           => array( 
-                        'selector' => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, .header .atom-menu-item-cart a.checkout:hover', 
+                        'selector' => '.input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, .header .atom-menu-item-cart a.checkout:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -461,7 +575,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),    
                 array(
-                    'css'           => '.input[type="submit"], input[type="submit"].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, , .header .atom-menu-item-cart a.checkout',
+                    'css'           => '.input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, a.button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, , .header .atom-menu-item-cart a.checkout',
                     'default'       => '',
                     'id'            => 'primary_button_color',
                     'title'         => __('Primary Button Text Color', 'waterfall'),
@@ -469,7 +583,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'css'           => '.input[type="submit"]:hover, input[type="submit"].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, , .header .atom-menu-item-cart a.checkout:hover',
+                    'css'           => '.input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, a.button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, , .header .atom-menu-item-cart a.checkout:hover',
                     'default'       => '',
                     'id'            => 'primary_button_color_hover',
                     'title'         => __('Primary Button Text Hover Color', 'waterfall'),
@@ -478,7 +592,7 @@ $colors = array(
                 ),    
                 array(
                     'css'           => array( 
-                        'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button', 
+                        'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -489,7 +603,7 @@ $colors = array(
                 ),
                 array(
                     'css'           => array( 
-                        'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover', 
+                        'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -499,7 +613,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),    
                 array(
-                    'css'           => '.elementor-button, .woocommerce input.button, .woocommerce input[type="submit"].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button',
+                    'css'           => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button',
                     'default'       => '',
                     'id'            => 'secondary_button_color',
                     'title'         => __('Secondary Button Text Color', 'waterfall'),
@@ -507,7 +621,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'css'           => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type="submit"].button:hover, .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover',
+                    'css'           => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover, .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover',
                     'default'       => '',
                     'id'            => 'secondary_button_color_hover',
                     'title'         => __('Secondary Button Text Hover Color', 'waterfall'),
@@ -519,95 +633,13 @@ $colors = array(
     )
 );
 
-$customizer = array(
-    'description'   => __('Customizer settings for the Waterfall theme', 'waterfall'),
-    'id'            => 'waterfall_customizer',
-    'title'         => __('Waterfall', 'waterfall'),
+// Adds settings for the layout
+$layout = array(
+    'description'   => __('Adjust extensive settings and elements for various parts of the website here.', 'waterfall'),
+    'id'            => 'waterfall_layout',
+    'title'         => __('Layout & Elements', 'waterfall'),
+    'panel'         => true,
     'sections'      => array(
-        array(
-            'id'            => 'static_front_page',
-            'title'         => __('General', 'waterfall'),
-            'fields'    => array(                   
-                array(
-                    'default'       => 'default',
-                    'id'            => 'layout',
-                    'title'         => __('Layout', 'waterfall'),
-                    'type'          => 'select',
-                    'choices'       => array(
-                        'default' => __('Default Layout', 'waterfall'),
-                        'boxed'   => __('Boxed Layout', 'waterfall'),
-                    )    
-                ),
-                array(
-                    'default'       => '',
-                    'id'            => 'lightbox',
-                    'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
-                    'type'          => 'checkbox'
-                )     
-            )              
-        ),        
-        array(
-            'id'            => 'title_tagline',
-            'priority'      => 2,
-            'title'         => __('Site Identity', 'waterfall'),
-            'fields'    => array(                   
-                array(
-                    'default'       => '',
-                    'id'            => 'logo',
-                    'title'         => __('Logo Image', 'waterfall'),
-                    'type'          => 'image',
-                ),
-                array(
-                    'default'       => '',
-                    'id'            => 'logo_transparent',
-                    'title'         => __('Transparent Logo Image', 'waterfall'),
-                    'description'   => __('This logo is used if you have set up a transparent header.', 'waterfall'),
-                    'type'          => 'image',
-                ),
-                array(
-                    'default'       => '',
-                    'id'            => 'logo_mobile',
-                    'title'         => __('Mobile Logo Image', 'waterfall'),
-                    'description'   => __('This logo is loaded by mobile agents', 'waterfall'),
-                    'type'          => 'image',
-                ), 
-                array(
-                    'default'       => '',
-                    'id'            => 'logo_mobile_transparent',
-                    'title'         => __('Transparent Mobile Logo Image', 'waterfall'),
-                    'description'   => __('This logo is loaded by mobile agents and if you have a transparent header set up.', 'waterfall'),
-                    'type'          => 'image',
-                ),
-                array(
-                    'description'   => __('Choose a logo for use in the socket, preferably with height of 50px.', 'waterfall'),
-                    'default'       => '',
-                    'id'            => 'footer_logo',
-                    'title'         => __('Footer Logo Image', 'waterfall'),
-                    'type'          => 'image',
-                )    
-            )              
-        ),
-        array(
-            'id'            => 'background_image',
-            'title'         => __('Theme Backgrounds', 'waterfall'),
-            'fields'    => array(
-                array(
-                    'css'           => array( 'selector' => '.header', 'property' => 'background-color' ),
-                    'default'       => '',
-                    'id'            => 'header_background',
-                    'title'         => __('Header Background Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ),
-                array(
-                    'css'           => '.header',
-                    'default'       => '',
-                    'id'            => 'header_background_image',
-                    'title'         => __('Header Background Image', 'waterfall'),
-                    'type'          => 'image'
-                )                
-            )
-        ),    
         array(
             'id'            => 'style_header',
             'title'         => __('Header', 'waterfall'),
@@ -1482,13 +1514,13 @@ $customizer = array(
                     'type'          => 'image'
                 )   
             )              
-        )    
+        )
     )
-);
-
+); 
+    
 // We add additional settings if Woocommerce is active
 if( class_exists( 'WooCommerce' ) ) {
-    $customizer['sections'][] = array(
+    $layout['sections'][] = array(
         'id'            => 'woocommerce_archive',
         'title'         => __('WooCommerce Archives', 'waterfall'),
         'fields'    => array(
@@ -1553,7 +1585,7 @@ if( class_exists( 'WooCommerce' ) ) {
             )        
         )         
     );
-    $customizer['sections'][] = array(
+    $layout['sections'][] = array(
         'id'            => 'woocommerce_product',
         'title'         => __('WooCommerce Product', 'waterfall'),
         'fields'    => array(       
@@ -1606,3 +1638,294 @@ if( class_exists( 'WooCommerce' ) ) {
         )         
     );
 }
+
+// Adds typography
+$typography = array(
+    'description'   => __('Adjust the typography at various locations here.', 'waterfall'),
+    'id'            => 'waterfall_typography',
+    'title'         => __('Typography', 'waterfall'),
+    'panel'         => true,
+    'priority'      => 20,
+    'sections'      => array(
+        array(
+            'id'            => 'general_typography',
+            'title'         => __('General', 'waterfall'),
+            'fields'    => array(                   
+                array(
+                    'default'       => '',
+                    'css'           => 'body',
+                    'id'            => 'body_typography',
+                    'title'         => __('General Font', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'body',
+                    'id'            => 'body_typography_color',
+                    'title'         => __('General Font Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
+                array(
+                    'default'       => '',
+                    'css'           => '.header',
+                    'id'            => 'header_menu_typography',
+                    'title'         => __('Header Navigation Menu', 'waterfall'),
+                    'type'          => 'typography'
+                ), 
+                array(
+                    'default'       => '',
+                    'css'           => '.header',
+                    'id'            => 'header_menu_typography_color',
+                    'title'         => __('Header Navigation Menu Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
+                array(
+                    'default'       => '',
+                    'css'           => '.main-content',
+                    'id'            => 'content_typography',
+                    'title'         => __('Main Content', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.main-content',
+                    'id'            => 'content_typography_color',
+                    'title'         => __('Main Content Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
+                array(
+                    'default'       => '',
+                    'css'           => '.entry-meta',
+                    'id'            => 'meta_typography',
+                    'title'         => __('Meta', 'waterfall'),
+                    'description'   => __('Meta are secondary text blocks such as the date and category of a post.', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.entry-meta',
+                    'id'            => 'meta_typography_color',
+                    'title'         => __('Meta Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
+                array(
+                    'default'       => '',
+                    'css'           => 'blockquote',
+                    'id'            => 'blockquote_typography',
+                    'title'         => __('Blockquotes', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'blockquote',
+                    'id'            => 'blockquote_typography_color',
+                    'title'         => __('Blockquotes Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                )                
+            )              
+        ),         
+        array(
+            'id'            => 'headings_typography',
+            'title'         => __('Headings', 'waterfall'),
+            'fields'    => array(                   
+                array(
+                    'default'       => '',
+                    'css'           => '.page .main-header h1',
+                    'id'            => 'page_heading_typography',
+                    'title'         => __('Page Title Headings', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.page .main-header h1',
+                    'id'            => 'page_heading_typography_color',
+                    'title'         => __('Page Title Heading Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => '.post .main-header h1',
+                    'id'            => 'post_heading_typography',
+                    'title'         => __('Post Title Headings', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.post .main-header h1',
+                    'id'            => 'post_heading_typography_color',
+                    'title'         => __('Post Title Heading Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => 'h1',
+                    'columns'       => 'third',
+                    'id'            => 'heading1_typography',
+                    'title'         => __('Heading 1', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'h1',
+                    'id'            => 'heading1_typography_color',
+                    'title'         => __('Heading 1 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => 'h2',
+                    'columns'        => 'third',
+                    'id'            => 'heading2_typography',
+                    'title'         => __('Heading 2', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'h2',
+                    'id'            => 'heading2_typography_color',
+                    'title'         => __('Heading 2 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => 'h3',
+                    'columns'        => 'third',
+                    'id'            => 'heading3_typography',
+                    'title'         => __('Heading 3', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'h3',
+                    'id'            => 'heading3_typography_color',
+                    'title'         => __('Heading 3 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
+                array(
+                    'default'       => '',
+                    'css'           => 'h4',
+                    'columns'        => 'third',
+                    'id'            => 'heading4_typography',
+                    'title'         => __('Heading 4', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'h4',
+                    'id'            => 'heading4_typography_color',
+                    'title'         => __('Heading 4 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
+                array(
+                    'default'       => '',
+                    'css'           => 'h5',
+                    'columns'        => 'third',
+                    'id'            => 'heading5_typography',
+                    'title'         => __('Heading 5', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'h5',
+                    'id'            => 'heading5_typography_color',
+                    'title'         => __('Heading 5 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => 'h6',
+                    'columns'       => 'third',
+                    'id'            => 'heading6_typography',
+                    'title'         => __('Heading 6', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'h6',
+                    'id'            => 'heading6_typography_color',
+                    'title'         => __('Heading 6 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                )                
+            )              
+        ),        
+        array(
+            'id'            => 'footer_typography',
+            'title'         => __('Footer', 'waterfall'),
+            'fields'    => array(                   
+                array(
+                    'default'       => '',
+                    'css'           => '.footer',
+                    'id'            => 'footer_typography',
+                    'title'         => __('Footer Content', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.footer',
+                    'id'            => 'footer_typography_color',
+                    'title'         => __('Footer Content Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => '.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6',
+                    'id'            => 'footer_titles',
+                    'title'         => __('Footer Titles', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6',
+                    'id'            => 'footer_titles_color',
+                    'title'         => __('Footer Titles Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => '.molecule-footer-socket',
+                    'id'            => 'socket_typography',
+                    'title'         => __('Socket Content', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.molecule-footer-socket',
+                    'id'            => 'socket_typography_color',
+                    'title'         => __('Footer Titles Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => '.molecule-footer-socket .atom-menu',
+                    'id'            => 'socket_menu_typography',
+                    'title'         => __('Socket Navigation Menu', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.molecule-footer-socket .atom-menu',
+                    'id'            => 'socket_menu_typography_color',
+                    'title'         => __('Socket Navigation Menu Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                )                
+            )              
+        )
+    )
+);
