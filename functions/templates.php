@@ -18,7 +18,7 @@ function waterfall_header() {
         return; 
     
     // Default attributes
-    $logo           = get_theme_option('customizer', 'logo');
+    $logo           = is_numeric( get_theme_option('customizer', 'logo') ) ? wp_get_attachment_image_src( get_theme_option('customizer', 'logo'), 'large' ) : false;
     $transparent    = is_singular() && get_theme_option('meta', 'transparent_header') 
         ? get_theme_option('meta', 'transparent_header') 
         : get_theme_option('layout', 'header_transparent');
@@ -27,10 +27,12 @@ function waterfall_header() {
     $atoms = array(
         'logo'  => array( 
             'float'             => get_theme_option('layout', 'header_logo_float'),
-            'image'             => $logo ? $logo : get_template_directory_uri() . '/assets/img/waterfall.png', 
+            'logoHeight'        => $logo ? $logo[2] : '',
+            'image'             => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
             'mobile'            => get_theme_option('customizer', 'logo_mobile'), 
             'mobileTransparent' => get_theme_option('customizer', 'logo_mobile_transparent'), 
-            'transparent'       => get_theme_option('customizer', 'logo_transparent')
+            'transparent'       => get_theme_option('customizer', 'logo_transparent'),
+            'logoWidth'         => $logo ? $logo[1] : ''
         ),
         'menu'  => array( 
             'all'           => get_theme_option('layout', 'header_menu_all') ? get_theme_option('layout', 'header_menu_all') : __('View All Results', 'waterfall'), 
@@ -130,10 +132,14 @@ function waterfall_footer() {
     }
 
     // Logo
-    if( $logo && $socket !== false ) {
+    if( is_numeric($logo) && $socket !== false ) {
+        $logo = wp_get_attachment_image_src( $logo, 'medium' );
+        
         $atoms['logo'] = array(
-            'float'     => 'center',
-            'image'     => $logo
+            'float'         => 'center',
+            'logoHeight'    => $logo[2],
+            'logoWidth'     => $logo[1],
+            'image'         => $logo[0]
         );
     }       
 

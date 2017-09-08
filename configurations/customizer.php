@@ -46,7 +46,7 @@ $customizer = array(
                     'default'       => '',
                     'id'            => 'logo',
                     'title'         => __('Logo Image', 'waterfall'),
-                    'type'          => 'image',
+                    'type'          => 'media',
                 ),
                 array(
                     'default'       => '',
@@ -74,7 +74,7 @@ $customizer = array(
                     'default'       => '',
                     'id'            => 'footer_logo',
                     'title'         => __('Footer Logo Image', 'waterfall'),
-                    'type'          => 'image',
+                    'type'          => 'media',
                 )    
             )              
         ),
