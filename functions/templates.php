@@ -273,7 +273,7 @@ function waterfall_archive_header() {
  */
 function waterfall_archive_posts() {
     
-    $properties = array( 'button_label', 'columns', 'image', 'image_float', 'height', 'type', 'style', 'width');
+    $properties = array( 'button_label', 'columns', 'content', 'image', 'image_float', 'height', 'type', 'style', 'width');
     $types      = array( 'archive', 'search' );
     
     foreach( $types as $type ) {
@@ -292,7 +292,7 @@ function waterfall_archive_posts() {
     global $wp_query;
     
     $args = apply_filters( 'waterfall_archive_posts_args', array(
-        'contentAtoms'      => $content == 'none' ? array() : array( 'content' => array('type' => 'excerpt') ),
+        'contentAtoms'      => $settings['content'] == 'none' ? array() : array( 'content' => array('type' => 'excerpt') ),
         'headerAtoms'       => $settings['type'] 
             ? array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ), 'type' => array('style' => 'entry-meta') ) 
             : array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ) ),
@@ -312,10 +312,10 @@ function waterfall_archive_posts() {
             'lazyload'  => get_theme_option('customizer', 'lazyload') 
         ),
         'postsAppear'       => 'bottom',
-        'postsGrid'         => $columns ? $columns : 'third',
-        'postsInlineStyle'  => $height ? 'min-height:' . $height . 'px;' : '',
+        'postsGrid'         => $settings['columns'] ? $columns : 'third',
+        'postsInlineStyle'  => $settings['height'] ? 'min-height:' . $settings['height'] . 'px;' : '',
         'style'             => 'content',
-        'view'              => $style ? $style : 'grid',
+        'view'              => $settings['style'] ? $settings['style'] : 'grid',
         'query'             => $wp_query    
     ) );    
     
@@ -323,8 +323,9 @@ function waterfall_archive_posts() {
     /** 
      * The actual output for this section
      */
-    if( $width != 'full' )
-        echo '<div class="components-container">';
+    if( $settings['width'] != 'full' ) { ?>
+        <div class="components-container">
+    <?php }
     
         do_action('waterfall_before_archive_posts');
     
@@ -334,16 +335,15 @@ function waterfall_archive_posts() {
         do_action('waterfall_after_archive_posts');
     
         // The sidebar
-        if( $layout == 'left' || $layout == 'right' )
+        if( $settings['layout'] == 'left' || $settings['layout'] == 'right' )
             WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($location), 'style' => 'sidebar') );
     
         do_action('waterfall_after_archive_sidebar');
     
-    if( $width != 'full' )
-        echo '</div>';    
-    
+    if( $settings['width'] != 'full' ) { ?>
+        </div>    
+    <?php }
 }
-
 
 /**
  * Renders the header for content
