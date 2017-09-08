@@ -171,9 +171,71 @@ $colors = array(
     'priority'      => 10,
     'sections'      => array(
        array(
+            'id'            => 'colors_general',
+            'title'         => __('General Colors', 'waterfall'),
+            'fields'    => array(        
+                array(
+                    'default'       => '',
+                    'css'           => 'body',
+                    'id'            => 'body_typography_color',
+                    'title'         => __('General Font Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => 'a',
+                    'id'            => 'body_link_color',
+                    'title'         => __('Link Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
+                array(
+                    'default'       => '',
+                    'css'           => 'a:hover',
+                    'id'            => 'body_link_hover_color',
+                    'title'         => __('Link Hover Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'blockquote',
+                    'id'            => 'blockquote_typography_color',
+                    'title'         => __('Blockquotes Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),
+            )
+       ),
+       array(
             'id'            => 'colors_header',
             'title'         => __('Header Colors', 'waterfall'),
             'fields'    => array(
+                array(
+                    'css'           => array( 'selector' => '.header', 'property' => 'background-color' ),
+                    'default'       => '',
+                    'id'            => 'header_background',
+                    'title'         => __('Header Background Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),
+                array(
+                    'css'           => '.header',
+                    'default'       => '',
+                    'id'            => 'header_background_image',
+                    'title'         => __('Header Background Image', 'waterfall'),
+                    'type'          => 'image'
+                ),
+                array(
+                    'css'           => array( 'selector' => '.header .menu', 'property' => 'background-color' ),
+                    'default'       => '',
+                    'id'            => 'navigation_background',
+                    'title'         => __('Menu Background Color', 'waterfall'),
+                    'description'   => __('This color also applies to the default mobile menu.', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                
                 array(
                     'css'           => '.header .menu > li > a, .atom-search-expand',
                     'default'       => '',
@@ -311,22 +373,7 @@ $colors = array(
                     'title'         => __('Drop-down Menu Link Hover Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ),                
-                array(
-                    'css'           => array( 'selector' => '.header', 'property' => 'background-color' ),
-                    'default'       => '',
-                    'id'            => 'header_background',
-                    'title'         => __('Header Background Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ),
-                array(
-                    'css'           => '.header',
-                    'default'       => '',
-                    'id'            => 'header_background_image',
-                    'title'         => __('Header Background Image', 'waterfall'),
-                    'type'          => 'image'
-                )  
+                )
             )              
         ),   
         array(
@@ -774,7 +821,7 @@ $colors = array(
 $layout = array(
     'description'   => __('Adjust extensive settings and elements for various parts of the website here.', 'waterfall'),
     'id'            => 'waterfall_layout',
-    'title'         => __('Layout & Elements', 'waterfall'),
+    'title'         => __('Theme Elements', 'waterfall'),
     'panel'         => true,
     'sections'      => array(
         array(
@@ -800,6 +847,12 @@ $layout = array(
                     'title'         => __('Fixed Header', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
+                array(
+                    'default'       => '',
+                    'id'            => 'header_border',
+                    'title'         => __('Disable Header Bottom Border', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                 
                 array(
                     'default'       => '',
                     'id'            => 'header_headroom',
@@ -871,11 +924,11 @@ $layout = array(
                     'id'            => 'header_disable_menu',
                     'title'         => __('Disable Header Menu', 'waterfall'),
                     'type'          => 'checkbox'
-                ),     
+                ),               
                 array(
                     'default'       => 'mobile',
                     'id'            => 'header_menu_hamburger',
-                    'title'         => __('Display of Hamburger Menu', 'waterfall'),
+                    'title'         => __('Display of Mobile Menu', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => array(
                         'always'    => __('Always Display', 'waterfall'),
@@ -886,14 +939,15 @@ $layout = array(
                 array(
                     'default'       => 'default',
                     'id'            => 'header_menu_style',
-                    'title'         => __('Mobile Menu Style', 'waterfall'),
+                    'title'         => __('Header Menu Style', 'waterfall'),
+                    'description'   => __('Some styles always show a hamburger menu, while others are only visible in the mobile menu.', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => array(
                         'default'   => __('Default', 'waterfall'),
-                        'dark'      => __('Dark Mobile', 'waterfall'),
-                        'fixed'     => __('Dark Hamburger', 'waterfall'),
-                        'left'      => __('Left Slide', 'waterfall'),
-                        'right'     => __('Right Slide', 'waterfall'),
+                        'dark'      => __('Dark (Mobile)', 'waterfall'),
+                        'fixed'     => __('Fixed (Hamburger)', 'waterfall'),
+                        'left'      => __('Left (Hamburger)', 'waterfall'),
+                        'right'     => __('Right (Hamburger)', 'waterfall'),
                     ),
                 )  
             )              
@@ -1000,7 +1054,7 @@ $layout = array(
         ),
         array(
             'id'            => 'single_content',
-            'title'         => __('Single Posts', 'waterfall'),
+            'title'         => __('Posts', 'waterfall'),
             'fields'    => array(
                 array(
                     'default'       => '',
@@ -1130,7 +1184,7 @@ $layout = array(
                 ),    
                 array(
                     'default'       => '',
-                    'id'            => 'single_related',
+                    'id'            => 'single_related_posts',
                     'title'         => __('Show related posts', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
@@ -1287,7 +1341,7 @@ $layout = array(
                 ),
                 array(
                     'default'       => '',
-                    'id'            => 'archive_breadcrumbs',
+                    'id'            => 'archive_header_breadcrumbs',
                     'title'         => __('Display Breadcrumbs', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
@@ -1419,7 +1473,7 @@ $layout = array(
                 ),
                 array(
                     'default'       => '',
-                    'id'            => 'search_breadcrumbs',
+                    'id'            => 'search_header_breadcrumbs',
                     'title'         => __('Display Breadcrumbs', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
@@ -1561,13 +1615,13 @@ $layout = array(
                 ),
                 array(
                     'default'       => __('Woops! Nothing found here...', 'waterfall'),
-                    'id'            => '404_title',
+                    'id'            => '404_header_title',
                     'title'         => __('Default 404 Title', 'waterfall'),
                     'type'          => 'input'
                 ),
                 array(
                     'default'       => __('Try visiting another page or searching.', 'waterfall'),
-                    'id'            => '404_description',
+                    'id'            => '404_header_description',
                     'title'         => __('Default 404 Description', 'waterfall'),
                     'type'          => 'input'
                 ),     
@@ -1655,15 +1709,7 @@ $layout = array(
                     'id'            => 'footer_social',
                     'title'         => __('Display Social Icons', 'waterfall'),
                     'type'          => 'checkbox'
-                ),
-                array(
-                    'css'           => '.molecule-footer-sidebars',
-                    'default'       => '',
-                    'id'            => 'footer_background_image',
-                    'title'         => __('Footer Background Image', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'image'
-                )   
+                ) 
             )              
         )
     )
@@ -1672,16 +1718,22 @@ $layout = array(
 // We add additional settings if Woocommerce is active
 if( class_exists( 'WooCommerce' ) ) {
     $layout['sections'][] = array(
-        'id'            => 'woocommerce_archive',
-        'title'         => __('WooCommerce Archives', 'waterfall'),
-        'fields'    => array(
+        'id'            => 'woocommerce_header',
+        'title'         => __('WooCommerce Header', 'waterfall'),
+        'fields'        => array(
             array(
                 'default'       => '',
                 'id'            => 'header_menu_cart',
                 'title'         => __('Add a Shopping Cart to the Menu', 'waterfall'),
                 'description'   => __('Requires the WooCommerce plugin.', 'waterfall'),
                 'type'          => 'checkbox'
-            ),       
+            )           
+        )
+    );
+    $layout['sections'][] = array(
+        'id'            => 'woocommerce_archive',
+        'title'         => __('WooCommerce Archives', 'waterfall'),
+        'fields'    => array(     
             array(
                 'default'       => '',
                 'id'            => 'product_archive_header_disable',
@@ -1739,13 +1791,7 @@ if( class_exists( 'WooCommerce' ) ) {
     $layout['sections'][] = array(
         'id'            => 'woocommerce_product',
         'title'         => __('WooCommerce Product', 'waterfall'),
-        'fields'    => array(       
-            array(
-                'default'       => '',
-                'id'            => 'product_breadcrumbs',
-                'title'         => __('Display Breadcrumbs in Single Products', 'waterfall'),
-                'type'          => 'checkbox'
-            ),       
+        'fields'    => array(             
             array(
                 'default'       => 'full',
                 'description'   => __('Choose the sidebar lay-out for a single product.', 'waterfall'),
@@ -1808,15 +1854,7 @@ $typography = array(
                     'id'            => 'body_typography',
                     'title'         => __('General Font', 'waterfall'),
                     'type'          => 'typography'
-                ),
-                array(
-                    'default'       => '',
-                    'css'           => 'body',
-                    'id'            => 'body_typography_color',
-                    'title'         => __('General Font Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ),                 
+                ),               
                 array(
                     'default'       => '',
                     'css'           => '.header',
@@ -1824,6 +1862,13 @@ $typography = array(
                     'title'         => __('Header Navigation Menu', 'waterfall'),
                     'type'          => 'typography'
                 ),                
+                array(
+                    'default'       => '',
+                    'css'           => '.atom-breadcrumbs',
+                    'id'            => 'breadcrumbs_typography',
+                    'title'         => __('Breadcrumbs', 'waterfall'),
+                    'type'          => 'typography'
+                ),               
                 array(
                     'default'       => '',
                     'css'           => '.main-content',
@@ -1845,14 +1890,6 @@ $typography = array(
                     'id'            => 'blockquote_typography',
                     'title'         => __('Blockquotes', 'waterfall'),
                     'type'          => 'typography'
-                ),
-                array(
-                    'default'       => '',
-                    'css'           => 'blockquote',
-                    'id'            => 'blockquote_typography_color',
-                    'title'         => __('Blockquotes Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
                 )                
             )              
         ),         
@@ -1862,16 +1899,34 @@ $typography = array(
             'fields'    => array(                   
                 array(
                     'default'       => '',
-                    'css'           => '.page .main-header h1',
+                    'css'           => 'h1.page-title, .page h1.entry-title',
                     'id'            => 'page_heading_typography',
                     'title'         => __('Page Title Headings', 'waterfall'),
+                    'description'   => __('Determines the typography for headings in pages, 404 pages and archives.', 'waterfall'),
                     'type'          => 'typography'
                 ),               
                 array(
                     'default'       => '',
-                    'css'           => '.post .main-header h1',
+                    'css'           => '.single h1.entry-title',
                     'id'            => 'post_heading_typography',
                     'title'         => __('Post Title Headings', 'waterfall'),
+                    'description'   => __('Determines the typography for headings in post articles.', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.single-product h1.product_title',
+                    'id'            => 'product_heading_typography',
+                    'title'         => __('Product Title Headings', 'waterfall'),
+                    'description'   => __('Determines the typography for headings in products.', 'waterfall'),
+                    'type'          => 'typography'
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => '.widget-title',
+                    'id'            => 'widget_title_typography',
+                    'title'         => __('Widget Titles', 'waterfall'),
+                    'description'   => __('Determines the typography for widget headings.', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
@@ -1881,15 +1936,7 @@ $typography = array(
                     'id'            => 'heading1_typography',
                     'title'         => __('Heading 1', 'waterfall'),
                     'type'          => 'typography'
-                ),
-                array(
-                    'default'       => '',
-                    'css'           => 'h1',
-                    'id'            => 'heading1_typography_color',
-                    'title'         => __('Heading 1 Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ),                
+                ),               
                 array(
                     'default'       => '',
                     'css'           => 'h2',

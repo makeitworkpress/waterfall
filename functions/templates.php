@@ -9,45 +9,67 @@
  */
 function waterfall_header() {
     
-    $disable    = is_singular() ? get_theme_option('meta', 'disable_header') : '';
+    $disable    = is_singular() ? get_theme_option( 'meta', 'disable_header' ) : false;
     $disable    = $disable ? $disable : array('disable' => false);    
-    $customizer = get_theme_option('layout', 'header_disable');
+    $customizer = get_theme_option( 'layout', 'header_disable' );
 
     // Our header is only shown if enabled
     if( $disable['disable'] == true || $customizer === true )
         return; 
     
-    // Default attributes
+    /**
+     * Default attributes
+     */   
+    $properties = array( 
+        'border',
+        'disable_logo',
+        'disable_menu',
+        'fixed',
+        'logo_float',
+        'headroom',
+        'menu_all',
+        'menu_cart',
+        'menu_float',
+        'menu_hamburger',
+        'menu_none',
+        'menu_search',
+        'menu_social',
+        'menu_style',
+        'transparent', 
+        'width' 
+    );
+    $settings = get_element_properties( $properties, 'header_' );
+    
+    // Grab the logo
     $logo           = is_numeric( get_theme_option('customizer', 'logo') ) ? wp_get_attachment_image_src( get_theme_option('customizer', 'logo'), 'large' ) : false;
-    $transparent    = is_singular() && get_theme_option('meta', 'transparent_header') 
-        ? get_theme_option('meta', 'transparent_header') 
-        : get_theme_option('layout', 'header_transparent');
 
-    // Default header items
+    /**
+     * Default header items
+     */
     $atoms = array(
         'logo'  => array( 
-            'float'             => get_theme_option('layout', 'header_logo_float'),
-            'logoHeight'        => $logo ? $logo[2] : '',
+            'float'             => $settings['logo_float'] ? $settings['logo_float'] : 'left',
+            'logoHeight'        => $logo ? $logo[2] : 64,
             'image'             => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
             'mobile'            => get_theme_option('customizer', 'logo_mobile'), 
             'mobileTransparent' => get_theme_option('customizer', 'logo_mobile_transparent'), 
             'transparent'       => get_theme_option('customizer', 'logo_transparent'),
-            'logoWidth'         => $logo ? $logo[1] : ''
+            'logoWidth'         => $logo ? $logo[1] : 306
         ),
         'menu'  => array( 
-            'all'           => get_theme_option('layout', 'header_menu_all') ? get_theme_option('layout', 'header_menu_all') : __('View All Results', 'waterfall'), 
+            'all'           => $settings['menu_all'] ? $settings['menu_all'] : __('View All Results', 'waterfall'), 
             'args'          => array('theme_location' => 'header-menu'), 
-            'cart'          => get_theme_option('layout', 'header_menu_cart') ? true : false, 
-            'float'         => get_theme_option('layout', 'header_menu_float'),
-            'hamburger'     => get_theme_option('layout', 'header_menu_hamburger'),
-            'none'          => get_theme_option('layout', 'header_menu_none') ? get_theme_option('layout', 'header_menu_none') : __('Nothing found!', 'waterfall'),
-            'search'        => get_theme_option('layout', 'header_menu_search') ? true : false,
-            'view'          => get_theme_option('layout', 'header_menu_style')
+            'cart'          => $settings['menu_cart'] ? true : false, 
+            'float'         => $settings['menu_float'] ? $settings['menu_float'] : 'right',
+            'hamburger'     => $settings['menu_hamburger'] ? $settings['menu_hamburger'] : 'mobile',
+            'none'          => $settings['menu_none'] ? $settings['menu_none'] : __('Nothing found!', 'waterfall'),
+            'search'        => $settings['menu_search'] ? true : false,
+            'view'          => $settings['menu_style'] ? $settings['menu_style'] : 'default'
         )                
     );
 
     // Social icons
-    if( get_theme_option('layout', 'header_menu_social') ) {
+    if( $settings['menu_social'] ) {
         $networks = get_social_networks();
 
         if( $networks ) {
@@ -56,32 +78,34 @@ function waterfall_header() {
     }        
 
     // Reset the order for right floats
-    if( get_theme_option('layout', 'header_menu_float') == 'right') {
+    if( $settings['menu_float'] == 'right') {
         $menu = $atoms['menu'];
         unset($atoms['menu']);
         $atoms['menu'] = $menu;
     } 
     
-    
     // Disable logo or menu
-    if( get_theme_option('layout', 'header_disable_logo') )
+    if( $settings['disable_logo'] )
         unset( $atoms['logo'] );    
 
-    if( get_theme_option('layout', 'header_disable_menu') )
-        unset( $atoms['menu'] );  
+    if( $settings['disable_menu'] )
+        unset( $atoms['menu'] ); 
+    
+    // Set-up our transparency
+    $meta           = is_singular() ? get_theme_option('meta', 'transparent_header') : array();
+    $transparent    = isset($meta['transparent']) && $meta['transparent'] ? $meta['transparent'] : $settings['transparent'];  
 
     $args = apply_filters( 'waterfall_header_args', array(
-        'atoms'         => apply_filters('waterfall_header_atoms', $atoms),
-        'container'     => get_theme_option('layout', 'header_width') == 'default' ? true : false,
-        'headroom'      => get_theme_option('layout', 'header_headroom') ? true : false,
-        'fixed'         => get_theme_option('layout', 'header_fixed'),
-        'style'         => 'header',
-        'transparent'   => isset($transparent['transparent']) ? $transparent['transparent'] : $transparent
+        'atoms'         => $atoms,
+        'container'     => $settings['width'] == 'default' ? true : false,
+        'headroom'      => $settings['headroom'],
+        'fixed'         => $settings['fixed'],
+        'style'         => $settings['border'] ? 'header waterfall-no-border' : 'header',
+        'transparent'   => $transparent
     ) );
 
     // Build the header! 
     WP_Components\Build::molecule( 'header', $args );
-
     
 }
 
@@ -93,48 +117,55 @@ function waterfall_footer() {
     /**
      * Retrieves and displays our footer
      */
-    $disable    = is_singular() ? get_theme_option('meta', 'disable_footer') : '';
-    $disable    = $disable ? $disable : array('disable' => false);
-    
-    $sidebars   = get_theme_option('layout', 'footer_display_sidebars');  
-    $socket     = get_theme_option('layout', 'footer_display_socket');  
+    $disable    = is_singular() ? get_theme_option('meta', 'disable_footer') : false;
+    $disable    = $disable ? $disable : array('disable' => false); 
 
-    // We should display the footer
-    if( $disable['disable'] === true || ($sidebars === false && $socket === false) ) 
+    // We should not display the footer if disabled
+    if( $disable['disable'] === true ) 
         return;
 
-    $atoms          = array();
-    $container      = get_theme_option('layout', 'footer_width');
-    $copyright      = get_theme_option('layout', 'footer_copyright');
-    $logo           = get_theme_option('layout', 'footer_logo');
-    $menu           = get_theme_option('layout', 'footer_menu');
-    $sidebarGrid    = $sidebars === false ? 'none' : get_theme_option('layout', 'footer_sidebars');
-    $social         = get_theme_option('layout', 'footer_social');
+    
+    /*
+     * Default properties
+     */
+    $atoms      = array();
+    $properties = array('copyright', 'display_sidebars', 'display_socket', 'logo', 'menu', 'sidebars', 'social', 'width');
+    $settings   = get_element_properties( $properties, 'footer_' );
+    
+    // Return if both sidebars and socket are disabled
+    if( $settings['display_sidebars'] === false && $settings['display_socket'] === false )
+        return;
 
-    switch( $sidebarGrid ) {
+    /**
+     * Sidebars
+     */
+    switch( $settings['sidebars'] ) {
         case 'full':
-            $sidebars = array('footer-one' => 'full');
+            $sidebarGrid = array('footer-one' => 'full');
             break;
         case 'half':
-            $sidebars = array('footer-one' => 'half', 'footer-two' => 'half');
+            $sidebarGrid = array('footer-one' => 'half', 'footer-two' => 'half');
             break;
         case 'third':
-            $sidebars = array('footer-one' => 'third', 'footer-two' => 'third', 'footer-three' => 'third');
+            $sidebarGrid = array('footer-one' => 'third', 'footer-two' => 'third', 'footer-three' => 'third');
             break;
         case 'fourth':
-            $sidebars = array('footer-one' => 'fourth', 'footer-two' => 'fourth', 'footer-three' => 'fourth', 'footer-four' => 'fourth');
+            $sidebarGrid = array('footer-one' => 'fourth', 'footer-two' => 'fourth', 'footer-three' => 'fourth', 'footer-four' => 'fourth');
             break;
         case 'fifth':
-            $sidebars = array('footer-one' => 'fifth', 'footer-two' => 'fifth', 'footer-three' => 'fifth', 'footer-four' => 'fifth', 'footer-five' => 'fifth');
+            $sidebarGrid = array('footer-one' => 'fifth', 'footer-two' => 'fifth', 'footer-three' => 'fifth', 'footer-four' => 'fifth', 'footer-five' => 'fifth');
             break;
         default:
-            $sidebars = array();
+            $sidebarGrid = array('footer-one' => 'third', 'footer-two' => 'third', 'footer-three' => 'third');
     }
+    
+    // We do not have sidebars if we have disabled them.
+    if( $settings['display_sidebars'] == false )
+        $sidebarGrid = array();    
 
     // Logo
-    if( is_numeric($logo) && $socket !== false ) {
-        $logo = wp_get_attachment_image_src( $logo, 'medium' );
-        
+    if( is_numeric($settings['logo']) && $socket !== false ) {
+        $logo = wp_get_attachment_image_src( $settings['logo'], 'medium' );
         $atoms['logo'] = array(
             'float'         => 'center',
             'logoHeight'    => $logo[2],
@@ -144,7 +175,7 @@ function waterfall_footer() {
     }       
 
     // Copyright Message
-    if( $copyright && $socket !== false ) {
+    if( $settings['copyright'] && $settings['display_socket'] !== false ) {
         $atoms['copyright'] = array(
             'float'     => 'left',
             'name'      => get_theme_option('layout', 'footer_copyright_name'),
@@ -153,7 +184,7 @@ function waterfall_footer() {
     }
 
     // Social Icons
-    if( $social && $socket !== false ) {
+    if( $settings['social'] && $settings['display_socket'] !== false ) {
 
         $networks = get_social_networks();
 
@@ -168,7 +199,7 @@ function waterfall_footer() {
 
 
     // Menu
-    if( $menu && $socket !== false ) {
+    if( $settings['menu'] && $settings['display_socket'] !== false ) {
         $atoms['menu'] = array(
             'args'          => array('theme_location' => 'footer-menu'), 
             'float'         => 'right',
@@ -178,9 +209,9 @@ function waterfall_footer() {
     }
 
     $args = apply_filters( 'waterfall_footer_args', array(
-        'atoms'         => apply_filters('waterfall_footer_atoms', $atoms),
-        'sidebars'      => $sidebars,
-        'container'     => $container == 'full' ? false : true,
+        'atoms'         => $atoms,
+        'sidebars'      => $sidebarGrid,
+        'container'     => $settings['width'] == 'full' ? false : true,
         'style'         => 'footer'
     ) );
 
@@ -194,27 +225,27 @@ function waterfall_footer() {
  */
 function waterfall_archive_header() {
     
-    $types = array('archive', 'search');
+    /**
+     * Default properties
+     */
+    $properties = array('align', 'breadcrumbs', 'disable', 'height', 'width' );
+    $types      = array('archive', 'search');
     
     foreach( $types as $type ) {
         $condition = 'is_' . $type;
         
         if( $condition() || ( is_home() && $type == 'archive') ) {
-            $align          = get_theme_option('layout', $type . '_header_align');
-            $breadcrumbs    = get_theme_option('layout', $type . '_breadcrumbs');
-            $disable        = get_theme_option('layout', $type . '_header_disable');
-            $height         = get_theme_option('layout', $type . '_header_height');            
-            $width          = get_theme_option('layout', $type . '_header_width');            
+            $settings = get_element_properties( $properties, $type . '_header_' );          
         }
         
     }
     
     // Return if we do not want to show the header
-    if( $disable === true ) 
+    if( $settings['disable'] === true ) 
         return;
 
     // Breadcrumbs
-    if( $breadcrumbs ) {
+    if( $settings['breadcrumbs'] ) {
         $atoms['breadcrumbs'] = array();    
     }
     
@@ -226,11 +257,11 @@ function waterfall_archive_header() {
         $atoms['search'] = array();
     }
     
-    $args = apply_filters('waterfall_archive_header_args', array(
+    $args = apply_filters( 'waterfall_archive_header_args', array(
         'atoms'     => $atoms,
-        'align'     => $align,
-        'container' => $width == 'full' ? false : true,
-        'height'    => $height,
+        'align'     => $settings['align'],
+        'container' => $settings['width'] == 'full' ? false : true,
+        'height'    => $settings['height'],
         'style'     => 'main-header'
     ) );
     
@@ -242,40 +273,42 @@ function waterfall_archive_header() {
  */
 function waterfall_archive_posts() {
     
-    $types = array('archive', 'search');
+    $properties = array( 'button_label', 'columns', 'image', 'image_float', 'height', 'type', 'style', 'width');
+    $types      = array( 'archive', 'search' );
     
     foreach( $types as $type ) {
         $condition = 'is_' . $type;
         
-        if( $condition() || ( is_home() && $type == 'archive') ) {        
-            $label       = get_theme_option('layout', $type . '_grid_button_label');         
-            $columns     = get_theme_option('layout', $type . '_grid_columns');         
-            $content     = get_theme_option('layout', $type . '_grid_content');         
-            $image       = get_theme_option('layout', $type . '_grid_image');         
-            $imageFloat  = get_theme_option('layout', $type . '_grid_image_float');         
-            $height      = get_theme_option('layout', $type . '_grid_height');         
-            $layout      = get_theme_option('layout', $type . '_layout');  
-            $postType    = get_theme_option('layout', $type . '_grid_type');  
-            $style       = get_theme_option('layout', $type . '_grid_style');                
-            $width       = get_theme_option('layout', $type . '_grid_width'); 
-            $location    = $type;
+        if( $condition() || ( is_home() && $type == 'archive') ) { 
+            
+            $settings           = get_element_properties( $properties, $type , '_grid_' );
+            $settings['layout'] = get_theme_option('layout', $type . '_layout');
+            $location           = $type;
         }
         
     }
     
+    // Retrieve our global query.
     global $wp_query;
     
     $args = apply_filters( 'waterfall_archive_posts_args', array(
         'contentAtoms'      => $content == 'none' ? array() : array( 'content' => array('type' => 'excerpt') ),
-        'headerAtoms'       => $postType 
+        'headerAtoms'       => $settings['type'] 
             ? array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ), 'type' => array('style' => 'entry-meta') ) 
             : array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ) ),
-        'footerAtoms'       => array( 'button' => array( 'link' => 'post', 'label' => $label, 'size' => 'small', 'float' => 'right') ),
+        'footerAtoms'       => array( 
+            'button' => array( 
+                'float' => 'right',
+                'link'  => 'post', 
+                'label' => $settings['button_label'] ? $settings['button_label'] : __('View Post', 'waterfall'), 
+                'size'  => 'small'
+            ) 
+        ),
         'image'             => array( 
             'link'      => 'post', 
-            'size'      => $image ? $image : 'medium', 
+            'size'      => $settings['image'] ? $settings['image'] : 'medium', 
             'enlarge'   => 'true', 
-            'float'     => $imageFloat ? $imageFloat : 'none', 
+            'float'     => $settings['image_float'] ? $settings['image_float'] : 'none', 
             'lazyload'  => get_theme_option('customizer', 'lazyload') 
         ),
         'postsAppear'       => 'bottom',
@@ -323,50 +356,56 @@ function waterfall_content_header() {
 
     if( (isset($disable['disable']) && $disable['disable']) || $customizer === true )
         return;      
-     
-    // Default arguments
-    $args = array(
-        'lazyload'  => get_theme_option('customizer', 'lazyload'),
-        'style'     => 'main-header entry-header'
-    );
-    
+
     /**
      * Conditional settings
      */
-    $types = array('page', 'single');
+    $properties = array( 'align', 'author', 'breadcrumbs', 'date', 'featured', 'parallax', 'scroll', 'size', 'terms', 'width' );
+    $types      = array( 'page', 'single' );
     
     foreach( $types as $type ) {
         $condition = 'is_' . $type;
         
         if( $condition() ) {
             
-            $args['align']      = get_theme_option('layout', $type . '_header_align');
-            $args['height']     = has_post_thumbnail() 
+            $settings = get_element_properties( $properties, $type . '_header_' );
+            $settings['height']         = has_post_thumbnail() 
                 ? get_theme_option('layout', $type . '_header_height_image') 
-                : get_theme_option('layout', $type . '_header_height');
-            $args['parallax']   = get_theme_option('layout', $type . '_header_parallax');
-            $breadcrumbs        = get_theme_option('layout', $type . '_header_breadcrumbs');
-            $featured           = get_theme_option('layout', $type . '_header_featured');
-            $featuredArgs       = array( 'size' => get_theme_option('layout', $type . '_header_size'), 'lazyload' => get_theme_option('customizer', 'lazyload') ); 
-            $scroll             = get_theme_option('layout', $type . '_header_scroll');
-            $subtitle           = get_theme_option('meta', 'page_header_subtitle');
-            $width              = get_theme_option('layout', $type . '_header_width');
+                : get_theme_option('layout', $type . '_header_height'); 
+            $settings['subtitle']       = get_theme_option('meta', 'page_header_subtitle'); 
             
-            // Author, date and time
-            $author             = get_theme_option('layout', $type . '_header_author');            
-            $date               = get_theme_option('layout', $type . '_header_date');
-            $terms              = get_theme_option('layout', $type . '_header_terms'); 
+            $settings['featuredArgs']   = array( 
+                'size'      => $settings['size'] ? $settings['size'] : 'half-hd', 
+                'lazyload'  => get_theme_option( 'customizer', 'lazyload' ) 
+            );            
             
         }
+        
     }
     
-    // Container
-    $args['container'] = $width == 'full' ? false : true;   
+     
+    /**
+     * Default arguments
+     */
+    $args = array(
+        'lazyload'  => get_theme_option( 'customizer', 'lazyload' ),
+        'style'     => 'main-header entry-header'
+    );    
+
+    
+    /** 
+     * Default attributes
+     */
+    $args['align']      = $settings['align'] ? $settings['align'] : 'left';   
+    $args['container']  = $settings['width'] == 'full' ? false : true;   
+    $args['height']     = $settings['height'] ? $settings['height'] : true;   
+    $args['parallax']   = $settings['parallax'];   
                                                
+    
     /**
      * Elements
      */
-    if( $breadcrumbs ) {
+    if( $settings['breadcrumbs'] ) {
         $args['atoms']['breadcrumbs'] = array('archive' => false);  
     }    
     
@@ -374,31 +413,32 @@ function waterfall_content_header() {
     $args['atoms']['title'] = array('tag' => 'h1', 'style' => 'entry-title');   
     
     // Subtitle  
-    if( $subtitle )
+    if( $settings['subtitle']  )
         $args['atoms']['description'] = array( 'description' =>  $subtitle );
         
     // Time
-    if( $date ) {
+    if( $settings['date']  ) {
         $args['atoms']['date'] = array( 'style' => 'entry-time' );    
     }
 
     // Terms
-    if( $terms ) {
+    if( $settings['terms']  ) {
         $args['atoms']['termlist'] = array( 'style' => 'entry-meta' );    
     }             
 
     // Featured image
-    if( $featured == 'before' ) { 
-        $image = array( 'image' => $featuredArgs );
-        $args['atoms'] = $image + $args['atoms'];
+    $featured = $settings['featured'] ? $settings['featured'] : 'after';
+    
+    if( $featured == 'before' ) {
+        $args['atoms'] = array( 'image' => $settings['featuredArgs'] ) + $args['atoms'];
     } elseif( $featured == 'after' ) {
-        $args['atoms']['image'] = $featuredArgs;    
+        $args['atoms']['image'] = $settings['featuredArgs'];    
     } elseif( $featured == 'background' ) {
         $args['background'] = get_the_post_thumbnail_url( null, 'hd' );
     } 
                                                
         
-    if( $author ) {
+    if( $settings['author'] ) {
 
         global $post;
 
@@ -412,9 +452,9 @@ function waterfall_content_header() {
     }                                                
    
     // Scroll-button
-    if( $scroll == 'default' ) {
+    if( $settings['scroll'] == 'default' ) {
         $args['atoms']['scroll'] = array('icon' => false);
-    } elseif( $scroll == 'arrow' ) {
+    } elseif( $settings['scroll'] == 'arrow' ) {
         $args['atoms']['scroll'] = array('icon' => 'angle-down');    
     }     
     
@@ -434,36 +474,39 @@ function waterfall_content() {
     
     $customizer = is_page() ? get_theme_option('layout', 'page_content_width') : get_theme_option('layout', 'single_content_width');
     $full       = get_theme_option('meta', 'content_width');
-    
     $position   = is_page() ? get_theme_option('layout', 'page_layout') : get_theme_option('layout', 'single_layout');
     $readable   = is_page() ? get_theme_option('layout', 'page_content_readable') : get_theme_option('layout', 'single_content_readable');
     $sidebar    = is_page() ? 'page' : 'single';
+    $style      = $readable ? 'entry-content readable-content content' : 'entry-content content'; ?>
     
-    $style      = $readable ? 'entry-content readable-content content' : 'entry-content content';
+    <div class="main-content">
     
-    echo '<div class="main-content">';
+        <?php if( $customizer != 'full' && ( isset($full['full']) && ! $full['full'] ) || ($customizer != 'full' && ! $full) ) { ?>
+            <div class="components-container">
+        <?php } ?>
     
-    if( $customizer != 'full' && ( isset($full['full']) && ! $full['full'] ) || ($customizer != 'full' && ! $full) )
-        echo '<div class="components-container">';
+        <?php
+            do_action('waterfall_before_the_content');
+
+            // Our content
+            WP_Components\Build::atom( 'content', array('style' => $style) );
+
+            do_action('waterfall_after_the_content');
+
+            // Sidebars
+            if( ($position == 'left' || $position == 'right') && (isset($full['full']) && ! $full['full']) )
+                WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'sidebar') ); 
+
+            do_action('waterfall_after_single_sidebars');
+        ?>
     
-    do_action('waterfall_before_the_content');
+        <?php if( $customizer != 'full' && ( isset($full['full']) && ! $full['full'] ) || ($customizer != 'full' && ! $full) ) { ?>
+            </div>
+        <?php } ?>
     
-    // Our content
-    WP_Components\Build::atom( 'content', array('style' => $style) );
-    
-    do_action('waterfall_after_the_content');
-    
-    // Sidebars
-    if( ($position == 'left' || $position == 'right') && (isset($full['full']) && ! $full['full']) )
-        WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($sidebar), 'style' => 'sidebar') ); 
-    
-    do_action('waterfall_after_single_sidebars');
-    
-    if( $customizer != 'full' && (isset($full['full']) && ! $full['full']) || ($customizer != 'full' && ! $full) )
-        echo '</div>';
-    
-    echo '</div>';
-    
+    </div>
+
+    <?php  
 }
 
 /**
@@ -474,92 +517,98 @@ function waterfall_related() {
     $disable    = get_theme_option('meta', 'page_related_disable');
     $customizer = get_theme_option('layout', 'single_related_disable');
     
-    $related    = get_theme_option('layout', 'single_related');
-    $button     = get_theme_option('layout', 'single_related_button');
-    $grid       = get_theme_option('layout', 'single_related_grid');
-    $height     = get_theme_option('layout', 'single_related_height');
-    $number     = get_theme_option('layout', 'single_related_number');
-    $title      = get_theme_option('layout', 'single_related_text');
-    $width      = get_theme_option('layout', 'single_related_width');
-    
-    $paginate   = get_theme_option('layout', 'single_related_pagination');
-    $prev       = get_theme_option('layout', 'single_related_pagination_prev');
-    $next       = get_theme_option('layout', 'single_related_pagination_next');   
-    
     if( (isset($disable['disable']) && $disable['disable']) || $customizer === true )
         return;
     
-    if( $related || $paginate ) {
-        
-        echo '<aside class="main-related">';
-        
-        if( $width != 'full' )
-            echo '<div class="components-container">';
-        
-        if( $related ) {
-        
-            global $post;
-
-            // Base query
-            $query = array( 'post__not_in' => array($post->ID), 'posts_per_page' => $number ? $number : 3, 'post_type' => $post->post_type );
-
-            // Include only categories from post
-            $categories = get_the_category($post->ID);
-
-            if( $categories ) {
-                foreach($categories as $term) {
-                    $query['cat'][] = $term->term_id;     
-                }
-            }
-
-            $args = apply_filters('waterfall_related_args', array( 
-                'args'          => $query,
-                'contentAtoms'  => array(),
-                'footerAtoms'   => array(
-                    'button' => array(
-                        'iconAfter'     => 'angle-right', 
-                        'iconVisible'   => 'hover', 
-                        'label'         => $button, 
-                        'size'          => 'small'
-                    ) 
-                ),
-                'image'         => array( 'link' => 'post', 'size' => 'square-ld', 'enlarge' => true, 'lazyload' => get_theme_option('customizer', 'lazyload') ),
-                'pagination'    => false,
-                'postsAppear'   => 'bottom',
-                'postsGrid'     => $grid ? $grid : 'third',
-                'postsInlineStyle'  => $height ? 'min-height:' . $height . 'px;' : '',
-                'view'          => 'grid',
-            ) ); 
-        
-            // Title
-            $title = get_theme_option('layout', 'single_related_text');
-
-            if( $title )
-                echo '<h3>' . $title . '</h3>';
-
-            WP_Components\Build::molecule( 'posts', $args );
-                              
-        } 
+    // Properties
+    $properties = array( 'posts', 'button', 'grid', 'height', 'number', 'pagination', 'pagination_next', 'pagination_prev', 'text', 'width' );
+    $settings   = get_element_properties( $properties, 'single_related_' );    
     
-        if( $paginate ) {
-            
-            $args = array();
+    if( $settings['posts'] || $settings['pagination'] ) { ?>
+        
+        <aside class="main-related">
+        
+            <?php if( $width != 'full' ) { ?> 
+                <div class="components-container">
+            <?php } ?>
+                    
+            <?php 
+        
+                if( $settings['posts'] ) {
 
-            $args = apply_filters('waterfall_related_paginate_args', array( 
-                'type' => 'post', 
-                'prev' => '<span>' . $prev . '</span>%title', 
-                'next' => '<span>' . $next . '</span>%title' 
-            ) );
+                    global $post;
+
+                    // Base query
+                    $query = array( 
+                        'post__not_in'      => array($post->ID), 
+                        'posts_per_page'    => $settings['number'] ? $settings['number'] : 3, 
+                        'post_type'         => $post->post_type 
+                    );
+
+                    // Include only categories from post
+                    $categories = get_the_category($post->ID);
+
+                    if( $categories ) {
+                        foreach($categories as $term) {
+                            $query['cat'][] = $term->term_id;     
+                        }
+                    }
+
+                    $args = apply_filters('waterfall_related_args', array( 
+                        'args'              => $query,
+                        'contentAtoms'      => array(),
+                        'footerAtoms'       => array(
+                            'button' => array(
+                                'iconAfter'     => 'angle-right', 
+                                'iconVisible'   => 'hover', 
+                                'label'         => $settings['button'] ? $settings['button'] : __( 'View Post', 'waterfall' ), 
+                                'size'          => 'small'
+                            ) 
+                        ),
+                        'image'             => array( 
+                            'link'      => 'post', 
+                            'size'      => 'square-ld', 
+                            'enlarge'   => true, 
+                            'lazyload'  => get_theme_option('customizer', 'lazyload') 
+                        ),
+                        'pagination'        => false,
+                        'postsAppear'       => 'bottom',
+                        'postsGrid'         => $settings['grid'] ? $settings['grid'] : 'third',
+                        'postsInlineStyle'  => $settings['height'] ? 'min-height:' . $settings['height'] . 'px;' : '',
+                        'view'              => 'grid',
+                    ) ); 
+
+                if( $settings['title'] ) {
+        ?>
+            <h3><?php esc_html_e( $title ); ?></h3>
+        <?php 
+                }
             
-            WP_Components\Build::atom( 'pagination', $args );
-        }          
+                WP_Components\Build::molecule( 'posts', $args );
+                              
+            } 
+    
+            // Pagination
+            if( $settings['pagination'] ) {
+
+                $args = array();
+
+                $args = apply_filters('waterfall_related_paginate_args', array( 
+                    'type' => 'post', 
+                    'prev' => '<span>' . $settings['pagination_prev'] . '</span>%title', 
+                    'next' => '<span>' . $settings['pagination_next'] . '</span>%title' 
+                ) );
+
+                WP_Components\Build::atom( 'pagination', $args );
+            }          
         
-        if( $width != 'full' )
-            echo '</div>';
+        if( $width != 'full' ) { ?>
+            </div>
+        <?php } ?>
         
-        echo '</aside>';
+        </aside>
         
-    }
+    <?php }
     
 }
 
@@ -579,19 +628,17 @@ function waterfall_content_footer() {
     /**
      * Retrieve our values
      */
-    $author     = get_theme_option('layout', 'single_footer_author');
-    $comments   = get_theme_option('layout', 'single_footer_comments');
-    $share      = get_theme_option('layout', 'single_footer_share');
-    $width      = get_theme_option('layout', 'single_footer_width');
+    $properties = array('author', 'comments', 'share', 'width');
+    $settings   = get_element_properties( $properties, 'single_footer_' );
     
     // Default arguments
     $args = array(
-        'container' => $width == 'full' ? false : true,
+        'container' => $settings['width'] == 'full' ? false : true,
         'style' => 'main-footer entry-footer'
     );
         
     // Sharing Buttons
-    if( $share ) {
+    if( $settings['share'] ) {
         $args['atoms']['share'] = array( 'fixed' => true );
         $networks = array('facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp');
         
@@ -603,12 +650,12 @@ function waterfall_content_footer() {
     }
     
     // Author
-    if( $author ) {
+    if( $settings['author'] ) {
         $args['atoms']['author'] = array( 'imageFloat' => 'left', 'style' => 'entry-author' );
     }      
     
     // Comments
-    if( $comments ) {
+    if( $settings['comments'] ) {
         $args['atoms']['comments'] = array( 'closedText' => __('Comments are closed.', 'waterfall') );
     }    
     
@@ -624,31 +671,30 @@ function waterfall_content_footer() {
  */
 function waterfall_404_header() {
     
-    $height         =  get_theme_option('layout', '404_header_height');
-    $width          =  get_theme_option('layout', '404_header_width');
-    $align          =  get_theme_option('layout', '404_header_align');
-    $title          =  get_theme_option('layout', '404_title');
-    $description    =  get_theme_option('layout', '404_description');
-    $breadcrumbs    =  get_theme_option('layout', '404_header_breadcrumbs');
-    $search         =  get_theme_option('layout', '404_header_search');
+    $properties     = array( 'align', 'breadcrumbs', 'height', 'title', 'search', 'width' );
+    $settings       = get_element_properties( $properties, '404_header_' );
     
     $args = array(
-        'align'     => $align,
+        'align'     => $settings['align'],
         'atoms'     => array(),
-        'height'    => $height,
+        'height'    => $settings['height'],
         'style'     => 'main-header'        
     );
     
     // Breadcrumbs
-    if( $breadcrumbs )
-       $args['atoms']['breadcrumbs'] = array();
+    if( $settings['breadcrumbs'] )
+       $args['atoms']['breadcrumbs']    = array();
     
     // YUP
-    $args['atoms']['title']         = array( 'tag' => 'h1', 'title' => $title ? $title : __('Woops! Nothing found here...', 'waterfall') ); 
-    $args['atoms']['description']   = array( 'description' => $description ? $description : __('Try visiting another page or searching.', 'waterfall') ); 
+    $args['atoms']['title']             = array( 
+        'style' => 'page-title', 
+        'tag'   => 'h1', 
+        'title' => $settings['title'] ? $settings['title'] : __('Woops! Nothing found here...', 'waterfall') 
+    ); 
+    $args['atoms']['description']       = array( 'description' => $settings['description'] ? $settings['description'] : __('Try visiting another page or searching.', 'waterfall') ); 
     
     // Search
-    if( $search )
+    if( $settings['search'] )
         $args['atoms']['search'] = array();
     
     $args = apply_filters( 'waterfall_404_header_args', $args );
@@ -662,49 +708,64 @@ function waterfall_404_header() {
  */
 function waterfall_single_product() {
     
-    $breadcrumbs = get_theme_option('layout', 'product_breadcrumbs');
-    $layout      = get_theme_option('layout', 'product_layout');
-    $width       = get_theme_option('layout', 'product_width');
+    $properties     = array( 'breadcrumbs', 'layout', 'width' );
+    $settings       = get_element_properties( $properties, 'product_' ); ?>
 
-    echo '<div class="main-content">';
+    <div class="main-content">
     
-    if( $width != 'full' )
-        echo '<div class="components-container">';
+        <?php if( $width != 'full' ) { ?>
+            <div class="components-container">
+        <?php } ?>
     
-        if( $breadcrumbs )
-            WP_Components\Build::atom(
-                'breadcrumbs', 
-                apply_filters( 'waterfall_single_product_breadcrumbs', ['taxonomy' => true, 'archive' => true] ) 
-            );
-    
-        do_action('waterfall_before_single_product_content');
-    
-        echo '<div class="content">';
+        <?php 
+                                            
+            if( $settings['breadcrumbs'] )
+                WP_Components\Build::atom(
+                    'breadcrumbs', 
+                    apply_filters( 'waterfall_single_product_breadcrumbs', ['taxonomy' => true, 'archive' => true] ) 
+                );
 
-            /**
-             * Retrieves the loop for the single product from woocommerce
-             */
-            while ( have_posts() ) : the_post();
+            do_action('waterfall_before_single_product_content');
+        
+        ?>
+    
+        <div class="content">
 
-                wc_get_template_part( 'content', 'single-product' );
+            <?php
+                                            
+                /**
+                 * Retrieves the loop for the single product from woocommerce
+                 */
+                while ( have_posts() ) : the_post();
 
-            endwhile; // end of the loop.
+                    wc_get_template_part( 'content', 'single-product' );
+
+                endwhile; // end of the loop.
+                                            
+            ?>
     
-        echo '</div>';
+        </div>
     
-        do_action('waterfall_after_single_product_content');
+        <?php 
+                                            
+            do_action('waterfall_after_single_product_content');
+
+            // Sidebars
+            if( $settings['layout'] == 'left' || $settings['layout'] == 'right' )
+                WP_Components\Build::molecule( 'sidebar', ['sidebars' => ['product'], 'style' => 'sidebar'] ); 
+
+            do_action('waterfall_after_single_product_sidebar');
+                                            
+        ?>
     
-        // Sidebars
-        if( $layout == 'left' || $layout == 'right' )
-            WP_Components\Build::molecule( 'sidebar', ['sidebars' => ['product'], 'style' => 'sidebar'] ); 
     
-        do_action('waterfall_after_single_product_sidebar');
+    <?php if( $width != 'full' ) { ?>
+        </div>
+    <?php } ?>    
     
+    </div>
     
-    if( $width != 'full' )
-        echo '</div>';
-    
-    echo '</div>';    
+<?php
 }
 
 /**
@@ -712,18 +773,17 @@ function waterfall_single_product() {
  */
 function waterfall_product_archive_header() {
     
-    $align          = get_theme_option('layout', 'product_archive_header_align');
-    $breadcrumbs    = get_theme_option('layout', 'product_archive_header_breadcrumbs');
     $disable        = get_theme_option('layout', 'product_archive_header_disable');
-    $height         = get_theme_option('layout', 'product_archive_header_height');
-    $width          = get_theme_option('layout', 'product_archive_header_width');
     
     // Return if we do not want to show the header
     if( $disable === true ) 
         return;
+    
+    $properties     = array( 'align', 'breadcrumbs', 'height', 'width' );
+    $settings       = get_element_properties( $properties, 'product_archive_header_' );    
 
     // Breadcrumbs
-    if( $breadcrumbs ) {
+    if( $settings['breadcrumbs'] ) {
         $atoms['breadcrumbs'] = array();    
     }
     
@@ -734,15 +794,14 @@ function waterfall_product_archive_header() {
     
     // Add custom action as a a string
     ob_start();
-        do_action( 'woocommerce_archive_description' );
-    $string = ob_get_clean();
-    $atoms['string'] = array( 'string' => $string );
+    do_action( 'woocommerce_archive_description' );
+    $atoms['string'] = array( 'string' => ob_get_clean() );
     
     $args = apply_filters('waterfall_archive_title_args', array(
         'atoms'     => $atoms,
-        'align'     => $align,
-        'container' => $width == 'full' ? false : true,
-        'height'    => $height,
+        'align'     => $settings['align'],
+        'container' => $settings['width'] == 'full' ? false : true,
+        'height'    => $settings['height'],
         'style'     => 'main-header woocommerce-products-header'
     ) );
     
@@ -755,18 +814,21 @@ function waterfall_product_archive_header() {
  */
 function waterfall_product_archive_posts() {
     
-    $layout      = get_theme_option('layout', 'product_archive_layout');                
-    $width       = get_theme_option('layout', 'product_archive_width');  
+    $properties     = array( 'layout', 'width' );
+    $settings       = get_element_properties( $properties, 'product_archive_' );     
     
     /** 
      * The actual output for this section
      */
-    if( $width != 'full' )
-        echo '<div class="components-container">';
+    if( $settings['width'] != 'full' ) { ?>
+        <div class="components-container">
+    <?php } ?>        
     
-        do_action('waterfall_before_product_archive_posts');
+    <?php do_action('waterfall_before_product_archive_posts'); ?>
     
-        echo '<div class="content">';
+    <div class="content">
+        
+        <?php 
 
             if ( have_posts() ) :
 
@@ -817,9 +879,12 @@ function waterfall_product_archive_posts() {
                 do_action( 'woocommerce_no_products_found' );
 
             endif;
+        
+        ?>
     
-        echo '</div>';
+    </div>
     
+    <?php
         do_action('waterfall_after_product_archive_posts');
     
         // The sidebar
@@ -827,9 +892,9 @@ function waterfall_product_archive_posts() {
             WP_Components\Build::molecule( 'sidebar', array('sidebars' => array('product-archive'), 'style' => 'sidebar') );
 
         do_action('waterfall_after_product_archive_sidebar');    
-    
-    
-    if( $width != 'full' )
-        echo '</div>';    
-    
+    ?>
+            
+    <?php if( $width != 'full' ) { ?>
+        </div>
+    <?php }
 }

@@ -23,7 +23,7 @@ $postmeta = array(
                     'description'   => __('Makes the main content fullwidth without any padding. Useful if using page-builders.', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'       => array( 
-                        array( 'id' => 'full', 'label' => __('Enable Fullwidth Content', 'waterfall') )
+                        'full' => array( 'label' => __('Enable Fullwidth Content', 'waterfall') )
                     )
                 ),   
                 array(
@@ -34,7 +34,7 @@ $postmeta = array(
                     'title'         => __('Header Transparency', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'   => array( 
-                        array( 'id' => 'transparent', 'label' => __('Enable Transparent Header', 'waterfall') )
+                        'transparent' => array( 'label' => __('Enable Transparent Header', 'waterfall') )
                     )
                 ),   
                 array(
@@ -44,7 +44,7 @@ $postmeta = array(
                     'title'         => __('Disable Header', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'   => array( 
-                        array( 'id' => 'disable', 'label' => __('Disable the header', 'waterfall') )
+                        'disable' => array( 'label' => __('Disable the header', 'waterfall') )
                     )
                 ),
                 array(
@@ -54,7 +54,7 @@ $postmeta = array(
                     'title'         => __('Disable Footer', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'   => array( 
-                        array( 'id' => 'disable', 'label' => __('Disable the footer', 'waterfall') )
+                        'disable' => array( 'label' => __('Disable the footer', 'waterfall') )
                     )
                 ),    
                 array(
@@ -63,7 +63,9 @@ $postmeta = array(
                     'id'            => 'page_header_disable',
                     'title'         => __('Disable Title Header', 'waterfall'),
                     'type'          => 'checkbox',
-                    'options'       => array( array('id' => 'disable', 'label' => __('Disable title header', 'waterfall') ) )
+                    'options'       => array( 
+                        'disable' => array('label' => __('Disable title header', 'waterfall') ) 
+                    )
                 ),
                 array(
                     'columns'       => 'fifth',
@@ -71,7 +73,9 @@ $postmeta = array(
                     'id'            => 'page_related_disable',
                     'title'         => __('Disable Page Related Section', 'waterfall'),
                     'type'          => 'checkbox',
-                    'options'       => array( array('id' => 'disable', 'label' => __('Disable related section', 'waterfall') ) )
+                    'options'       => array( 
+                        'disable' => array( 'label' => __('Disable related section', 'waterfall') ) 
+                    )
                 ),     
                 array(
                     'columns'       => 'fifth',
@@ -79,7 +83,9 @@ $postmeta = array(
                     'id'            => 'page_footer_disable',
                     'title'         => __('Disable Page Content Footer', 'waterfall'),
                     'type'          => 'checkbox',
-                    'options'       => array( array('id' => 'disable', 'label' => __('Disable page footer', 'waterfall') ) )
+                    'options'       => array( 
+                        'disable' => array( 'label' => __('Disable page footer', 'waterfall') ) 
+                    )
                 )   
             )              
         ),    

@@ -231,3 +231,20 @@ function get_social_networks() {
     
     return $urls;
 }
+
+/**
+ * Retrieves element layout properties for the theme from an array of properties
+ *
+ * @param   array   $properties The array with properties
+ * @param   string  $prefix     A possible prefix that is used to get saved properties
+ * @return  array   $settings   The array with properties as keys and received property values as values
+ */
+function get_element_properties( $properties = array(), $prefix = '' ) {
+    $settings = array();
+    
+    foreach( $properties as $property ) {
+        $settings[$property] = get_theme_option('layout', $prefix . $property);        
+    }
+    
+    return $settings;
+}

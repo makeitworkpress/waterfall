@@ -60,6 +60,7 @@ class Waterfall_View {
              * Inbuild
              */
             $customize = get_theme_option('customizer'); 
+            $layout    = get_theme_option('layout');
             $sidebar   = 'default';
             
             // Default layout class for boxed and non-boxed
@@ -74,22 +75,22 @@ class Waterfall_View {
 
             // Sidebar lay-out classes
             if( is_page() ) {
-                $sidebar = isset($customize['page_layout']) ? $customize['page_layout'] : 'default'; 
+                $sidebar = isset($layout['page_layout']) ? $layout['page_layout'] : 'default'; 
             }
 
             // Default archives
             if( is_archive() ) {
-                $sidebar = isset($customize['archive_layout']) ? $customize['archive_layout'] : 'default'; 
+                $sidebar = isset($layout['archive_layout']) ? $layout['archive_layout'] : 'default'; 
             }           
             
             // Search Archives
             if( is_search() ) {
-                $sidebar = isset($customize['search_layout']) ? $customize['search_layout'] : 'default';    
+                $sidebar = isset($layout['search_layout']) ? $layout['search_layout'] : 'default';    
             }            
 
             // Single Posts
             if( is_single() ) {
-                $sidebar = isset($customize['single_layout']) ? $customize['single_layout'] : 'default';     
+                $sidebar = isset($layout['single_layout']) ? $layout['single_layout'] : 'default';     
             }            
             
             // Pages with an overlay
@@ -147,15 +148,15 @@ class Waterfall_View {
             add_theme_support( 'woocommerce' );
             
             // Customizer support
-            if( get_theme_option('customizer', 'product_zoom') )
+            if( get_theme_option('layout', 'product_zoom') )
                 add_theme_support( 'wc-product-gallery-zoom' );
             
             // Lightbox Support
-            if( get_theme_option('customizer', 'product_lightbox') && ! get_theme_option('customizer', 'lightbox') )
+            if( get_theme_option('layout', 'product_lightbox') && ! get_theme_option('customizer', 'lightbox') )
                 add_theme_support( 'wc-product-gallery-lightbox' );
             
             // Slider support
-            if( get_theme_option('customizer', 'product_slider') )
+            if( get_theme_option('layout', 'product_slider') )
                 add_theme_support( 'wc-product-gallery-slider' );
         }        
     }    

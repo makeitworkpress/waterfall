@@ -11,6 +11,9 @@
     color: @f-grey;
     overflow: hidden;
     padding: @grid-space;
+    @media screen and (max-width: 767px) {
+        padding: @grid-space @grid-space/2;   
+    }
     a {
         color: @white;
         &:hover {
