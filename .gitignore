@@ -1,6 +1,8 @@
 *.log
 *.git
+*.gitmodules
 *.gitignore
 *git/
+*vendor/
 /.htaccess
 /license.txt
