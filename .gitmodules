@@ -13,3 +13,6 @@
 [submodule "classes/wp-custom-fields"]
 	path = classes/wp-custom-fields
 	url = ../wp-custom-fields.git
+[submodule "classes/wp-updater"]
+	path = classes/wp-updater
+	url = https://github.com/makeitworkpress/wp-updater.git
