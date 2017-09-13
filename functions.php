@@ -25,11 +25,6 @@ spl_autoload_register( function($classname) {
 } );
 
 /**
- * Boot our components used within the theme
- */
-$components = new WP_Components\Boot();
-
-/**
  * Boot our theme
  */
 $theme = Waterfall::instance();

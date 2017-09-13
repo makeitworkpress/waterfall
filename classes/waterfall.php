@@ -52,21 +52,30 @@ class Waterfall {
     private function initialize() {
         
         /**
+         * Enables our theme to be updated through an external repository
+         */
+        $this->updater = new WP_Updater\Boot( array('source' => 'https://github.com/makeitworkpress/waterfall') );
+        
+        
+        /**
          * Include basic utility and template functions
          */
         require_once( get_template_directory() . '/functions/templates.php' );
         require_once( get_template_directory() . '/functions/utilities.php' );
+        
         
         /**
          * Load standard configurations
          */
         $this->configure();
         
+        
         /**
          * The execution of our configurations is hooked in after_setup_theme, 
-         * so (child) themes can add configurations if they want
+         * so (child) themes can add configurations if they want on an earlier point
          */
         add_action('after_setup_theme', array($this, 'execute'), 10);           
+        
         
         /**
          * Flush our rewrite rules for new posts
@@ -75,13 +84,21 @@ class Waterfall {
             flush_rewrite_rules();    
         });
         
+        
+        /**
+         * Initialize our components
+         */
+        $this->components   = new WP_Components\Boot();        
+        
+        
         /**
          * Initialize the view component so templates are load and additional settings are added
          */
-        $view = new Waterfall_View();
+        $this->view         = new Waterfall_View();
+        
         
         /**
-         * Adapt some of the customizer sections
+         * Adapt some of the customizer sections with custom names
          */
         add_action( 'customize_register', function($wp_customize) {
             $wp_customize->get_section('background_image')->title = __( 'Background' );
@@ -126,7 +143,8 @@ class Waterfall {
     }
     
     /**
-     * Adds certain configurations for initializing the theme
+     * Adds certain configurations for the theme and makes them filterable.
+     * This allows child themes to register custom configurations or overwrite current configurations
      *
      * @param string    $type               The type of configurations to add. Accepts enqueue, register, route, options and language
      * @param array     $configurations     The configurations that you want to add to this type
@@ -148,7 +166,7 @@ class Waterfall {
     
     
     /**
-     * Executes all registrations
+     * Executes all configuration registrations, so that the configurtions have effect.
      *
      * @param string $type If defined, executes a specific registration, otherwise executes all
      */
