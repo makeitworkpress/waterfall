@@ -1,0 +1,18 @@
+[submodule "classes/wp-updater"]
+	path = classes/wp-updater
+	url = https://github.com/makeitworkpress/wp-updater
+[submodule "classes/wp-custom-fields"]
+	path = classes/wp-custom-fields
+	url = https://github.com/makeitworkpress/wp-custom-fields
+[submodule "classes/wp-components"]
+	path = classes/wp-components
+	url = https://github.com/makeitworkpress/wp-components
+[submodule "classes/wp-router"]
+	path = classes/wp-router
+	url = https://github.com/makeitworkpress/wp-router
+[submodule "classes/wp-register"]
+	path = classes/wp-register
+	url = https://github.com/makeitworkpress/wp-register
+[submodule "classes/wp-enqueue"]
+	path = classes/wp-enqueue
+	url = https://github.com/makeitworkpress/wp-enqueue
