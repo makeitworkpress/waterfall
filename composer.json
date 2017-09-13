@@ -1,13 +1,9 @@
-/**
- * These repositories are here for reference
- * Repositories are now included using submodules
- */
 {
     "name": "waterfall",
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/makeitworkpress/divergent-framework.git"
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git"
         },        
         {
             "type": "vcs",
@@ -19,15 +15,23 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/makeitworkpress/wp-optimize.git"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/makeitworkpress/wp-register.git"
         },
         {
             "type": "vcs",
             "url": "https://github.com/makeitworkpress/wp-router.git"
-        }         
-    ]
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-updater.git"
+        }        
+    ],
+    "require": {
+        "wp-custom-fields": "dev-master",
+        "wp-components": "dev-master",
+        "wp-enqueue": "dev-master",
+        "wp-register": "dev-master",
+        "wp-router": "dev-master",
+        "wp-updater": "dev-master"
+    }    
 }
