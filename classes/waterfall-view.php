@@ -75,22 +75,22 @@ class Waterfall_View {
 
             // Sidebar lay-out classes
             if( is_page() ) {
-                $sidebar = isset($layout['page_layout']) ? $layout['page_layout'] : 'default'; 
+                $sidebar = isset($layout['page_sidebar_layout']) ? $layout['page_sidebar_layout'] : 'default'; 
             }
 
             // Default archives
             if( is_archive() ) {
-                $sidebar = isset($layout['archive_layout']) ? $layout['archive_layout'] : 'default'; 
+                $sidebar = isset($layout['archive_sidebar_layout']) ? $layout['archive_sidebar_layout'] : 'default'; 
             }           
             
             // Search Archives
             if( is_search() ) {
-                $sidebar = isset($layout['search_layout']) ? $layout['search_layout'] : 'default';    
+                $sidebar = isset($layout['search_sidebar_layout']) ? $layout['search_sidebar_layout'] : 'default';    
             }            
 
             // Single Posts
             if( is_single() ) {
-                $sidebar = isset($layout['single_layout']) ? $layout['single_layout'] : 'default';     
+                $sidebar = isset($layout['single_sidebar_layout']) ? $layout['single_sidebar_layout'] : 'default';     
             }            
             
             // Pages with an overlay
@@ -112,12 +112,12 @@ class Waterfall_View {
              
             // WooCommerce single Products
             if( is_singular('product') && class_exists('WooCommerce') ) {
-                $sidebar = isset($customize['product_layout']) ? $customize['product_layout'] : 'default';     
+                $sidebar = isset($customize['product_sidebar_layout']) ? $customize['product_sidebar_layout'] : 'default';     
             }
             
             // WooCommerce Product Archives
             if( is_archive('product') && class_exists('WooCommerce') ) {
-                $sidebar = isset($customize['product_archive_layout']) ? $customize['product_archive_layout'] : 'default'; 
+                $sidebar = isset($customize['product_archive_sidebar_layout']) ? $customize['product_archive_sidebar_layout'] : 'default'; 
             }            
 
             $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');

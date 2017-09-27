@@ -8,10 +8,10 @@
 <html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="<?php bloginfo('description'); ?>">
-        <link href="//www.google-analytics.com" rel="dns-prefetch">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="<?php bloginfo('description'); ?>" />
+        <link href="//www.google-analytics.com" rel="dns-prefetch" />
 
 		<?php 
             /**
@@ -26,14 +26,15 @@
         <?php
         
             do_action('waterfall_before_header');
-        
-            // Echoes the header elements. Can be found in functions/templates.php. 
-            waterfall_header();
+
+            // Echoes the header elements. 
+            $header = new Views\Header();
+            $header->header();
         
             do_action('waterfall_after_header');
         
         ?>
 
-        <main class="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="<?php echo get_main_schema(); ?>">
+        <main class="main" itemscope="itemscope" itemtype="<?php echo get_main_schema(); ?>">
             
             <?php do_action('waterfall_main_content_begin'); ?>

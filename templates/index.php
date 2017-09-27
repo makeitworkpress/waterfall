@@ -6,10 +6,13 @@
      */
     get_theme_header(); 
 
+    // Displays the archive
+    $archive = new Views\Index('archive');
+
     do_action('waterfall_before_archive_header');
       
     // Build the header for the archive
-    waterfall_archive_header();
+    $archive->header();
         
     do_action('waterfall_after_archive_header');
 
@@ -17,15 +20,36 @@
 
 <div class="main-content">
     
-    <?php
-    
-        do_action('waterfall_before_archive_posts');
+    <?php 
+        do_action('waterfall_archive_main_content_begin'); 
+    ?>
 
-        // Build the overview with posts
-        waterfall_archive_posts();
+    <?php if( $archive->contentContainer ) { ?>
+        <div class="components-container">    
+    <?php } ?>
 
-        do_action('waterfall_after_archive_posts');
-    
+        <?php
+
+            do_action('waterfall_before_archive_posts');
+
+            // Displays the grid with our posts
+            $archive->posts();
+
+            do_action('waterfall_after_archive_posts');
+
+            // Displays our optional sidebar
+            $archive->sidebar();
+
+            do_action('waterfall_after_archive_sidebar');
+
+        ?>
+
+    <?php if( $archive->contentContainer ) { ?>
+        </div>    
+    <?php } ?>    
+
+    <?php 
+        do_action('waterfall_archive_main_content_end');
     ?>
 
 </div>

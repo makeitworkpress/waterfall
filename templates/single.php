@@ -11,30 +11,76 @@ while( have_posts() ) {
         
     the_post(); ?>
 
-    <article <?php post_class(); ?> itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/Blogposting">
-        
+    <article <?php post_class(); ?> itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+
         <?php
+
+            // Initialize our post
+            $single = new Views\Singular( 'post' );
+            $single->structuredData();
+
             // The header of our article
-            do_action('waterfall_before_post_header');
+            do_action('waterfall_before_' . $single->type . '_header');
     
-            waterfall_content_header();
+            $single->header();
     
-            do_action('waterfall_before_post_content');
+            do_action('waterfall_before_' . $single->type . '_content');
+
+        ?>
+
+        <div class="main-content">
+
+            <?php
+                do_action('waterfall_' . $single->type . '_main_content_begin');
+            ?>
+        
+            <?php if( $single->contentContainer ) { ?>
+                <div class="components-container">    
+            <?php } ?>            
+
+            <?php 
+
+                do_action('waterfall_before_' . $single->type . '_content');
+
+                // The content of our post
+                single->content();
+
+                do_action('waterfall_after_' . $single->type . '_content');
+
+                // The sidebar
+                single->sidebar();
+
+                do_action('waterfall_after_' . $single->type . '_sidebar');
+
+            ?>
+
+            <?php if( $single->contentContainer ) { ?>
+                </div>    
+            <?php } ?>
+            
+            <?php
+                do_action('waterfall_' . $single->type . '_main_content_end');
+            ?>
+            
+        </div>
+
+        <?php
+
+            if( $single->relatedSection ) {
     
-            // The content of our post
-            waterfall_content();
-    
-            do_action('waterfall_before_post_related');
+            do_action('waterfall_before_' . $single->type . '_related');
     
             // Related posts
-            waterfall_related(); 
+            single->related();
+
+            }
     
-            do_action('waterfall_before_post_footer');
+            do_action('waterfall_before_' . $single->type . '_footer');
         
             // The footer of our post
-            waterfall_content_footer(); 
+            single->footer();
     
-            do_action('waterfall_after_post_footer');
+            do_action('waterfall_after_' . $single->type . '_footer');
 
         ?>
 

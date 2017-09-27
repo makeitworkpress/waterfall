@@ -11,7 +11,7 @@ while( have_posts() ) {
         
     the_post(); ?>
 
-    <article <?php post_class(); ?> itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+    <article <?php post_class(); ?> itemprop="mainEntity" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
         
         <?php
             

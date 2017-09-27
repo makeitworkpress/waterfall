@@ -821,7 +821,7 @@ $colors = array(
 $layout = array(
     'description'   => __('Adjust extensive settings and elements for various parts of the website here.', 'waterfall'),
     'id'            => 'waterfall_layout',
-    'title'         => __('Theme Elements', 'waterfall'),
+    'title'         => __('Theme Layout', 'waterfall'),
     'panel'         => true,
     'sections'      => array(
         array(
@@ -1046,7 +1046,7 @@ $layout = array(
                     'choices'       => get_sidebar_options(),
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out for pages.', 'waterfall'),
-                    'id'            => 'page_layout',
+                    'id'            => 'page_sidebar_layout',
                     'title'         => __('Sidebar Lay-Out', 'waterfall'),
                     'type'          => 'select'
                 )   
@@ -1163,7 +1163,7 @@ $layout = array(
                 array(
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out for posts.', 'waterfall'),
-                    'id'            => 'single_layout',
+                    'id'            => 'single_sidebar_layout',
                     'choices'       => get_sidebar_options(),
                     'title'         => __('Sidebar Lay-Out', 'waterfall'),
                     'type'          => 'select'
@@ -1372,7 +1372,7 @@ $layout = array(
                 array(
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
-                    'id'            => 'archive_layout',
+                    'id'            => 'archive_sidebar_layout',
                     'choices'       => get_sidebar_options(),
                     'title'         => __('Sidebar Lay-Out', 'waterfall'),
                     'type'          => 'select'
@@ -1380,7 +1380,7 @@ $layout = array(
                 array(
                     'default'       => 'default',
                     'description'   => __('Width of grid in posts archives.', 'waterfall'),
-                    'id'            => 'archive_grid_width',
+                    'id'            => 'archive_content_width',
                     'choices'       => get_container_options(),
                     'title'         => __('Archives Width', 'waterfall'),
                     'type'          => 'select'
@@ -1388,7 +1388,7 @@ $layout = array(
                 array(
                     'default'       => 'grid',
                     'description'   => __('Style of posts in archives.', 'waterfall'),
-                    'id'            => 'archive_grid_style',
+                    'id'            => 'archive_content_style',
                     'choices'       => array(
                         'grid'      => __('Grid', 'waterfall'),
                         'list'      => __('List', 'waterfall'),
@@ -1399,7 +1399,7 @@ $layout = array(
                 array(
                     'default'       => 'third',
                     'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
-                    'id'            => 'archive_grid_columns',
+                    'id'            => 'archive_content_columns',
                     'choices'       => get_column_options(),
                     'title'         => __('Archives Columns', 'waterfall'),
                     'type'          => 'select'
@@ -1407,7 +1407,7 @@ $layout = array(
                 array(
                     'default'       => 'none',
                     'description'   => __('Excerpt within archive posts.', 'waterfall'),
-                    'id'            => 'archive_grid_content',
+                    'id'            => 'archive_content_content',
                     'choices'       => array(
                         'excerpt'   => __('Excerpt', 'waterfall'),
                         'none'      => __('No excerpt', 'waterfall'),
@@ -1418,35 +1418,35 @@ $layout = array(
                 array(
                     'default'       => '',
                     'description'   => __('Shows the post type under the title of each post.', 'waterfall'),
-                    'id'            => 'archive_grid_type',
+                    'id'            => 'archive_content_type',
                     'title'         => __('Archive Post Type in Posts', 'waterfall'),
                     'type'          => 'checkbox'
                 ),    
                 array(
                     'default'       => '',
                     'description'   => __('Shows a button within posts.', 'waterfall'),
-                    'id'            => 'archive_grid_button',
+                    'id'            => 'archive_content_button',
                     'title'         => __('Archive Posts Button', 'waterfall'),
                     'type'          => 'number'
                 ),
                 array(
                     'default'       => __('View Post', 'waterfall'),
                     'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
-                    'id'            => 'archive_grid_button_label',
+                    'id'            => 'archive_content_button_label',
                     'title'         => __('Archive Posts Button Label', 'waterfall'),
                     'type'          => 'input'
                 ),    
                 array(
                     'default'       => '',
                     'description'   => __('Minimum height of posts in the archive.', 'waterfall'),
-                    'id'            => 'archive_grid_height',
+                    'id'            => 'archive_content_height',
                     'title'         => __('Archive Posts Height', 'waterfall'),
                     'type'          => 'number'
                 ),    
                 array(
                     'default'       => 'square-ld',
                     'description'   => __('Featured Image size within archive posts.', 'waterfall'),
-                    'id'            => 'archive_grid_image',
+                    'id'            => 'archive_content_image',
                     'choices'       => get_image_sizes(),
                     'title'         => __('Archives Featured Image Size', 'waterfall'),
                     'type'          => 'select'
@@ -1454,7 +1454,7 @@ $layout = array(
                 array(
                     'default'       => 'none',
                     'description'   => __('Float of featured image within the posts.', 'waterfall'),
-                    'id'            => 'archive_grid_image_float',
+                    'id'            => 'archive_content_image_float',
                     'choices'       => get_float_options(),
                     'title'         => __('Archive Featured Image Float', 'waterfall'),
                     'type'          => 'select'
@@ -1504,7 +1504,7 @@ $layout = array(
                 array(
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out for the search page.', 'waterfall'),
-                    'id'            => 'search_layout',
+                    'id'            => 'search_sidebar_layout',
                     'choices'       => get_sidebar_options(),
                     'title'         => __('Sidebar Lay-Out', 'waterfall'),
                     'type'          => 'select'
@@ -1512,7 +1512,7 @@ $layout = array(
                 array(
                     'default'       => 'default',
                     'description'   => __('Width of the grid for search results.', 'waterfall'),
-                    'id'            => 'search_grid_width',
+                    'id'            => 'search_content_width',
                     'choices'       => get_container_options(),
                     'title'         => __('Search Page Width', 'waterfall'),
                     'type'          => 'select'
@@ -1520,7 +1520,7 @@ $layout = array(
                 array(
                     'default'       => 'list',
                     'description'   => __('Style of posts in the search page.', 'waterfall'),
-                    'id'            => 'search_grid_style',
+                    'id'            => 'search_content_style',
                     'choices'       => array(
                         'grid'      => __('Grid', 'waterfall'),
                         'list'      => __('List', 'waterfall'),
@@ -1531,7 +1531,7 @@ $layout = array(
                 array(
                     'default'       => 'full',
                     'description'   => __('Amount of grid columns for search page posts.', 'waterfall'),
-                    'id'            => 'search_grid_columns',
+                    'id'            => 'search_content_columns',
                     'choices'       => get_column_options(),
                     'title'         => __('Search Page Columns', 'waterfall'),
                     'type'          => 'select'
@@ -1539,7 +1539,7 @@ $layout = array(
                 array(
                     'default'       => 'excerpt',
                     'description'   => __('Excerpt within search page results.', 'waterfall'),
-                    'id'            => 'search_grid_content',
+                    'id'            => 'search_content_content',
                     'choices'       => array(
                         'excerpt'   => __('Excerpt', 'waterfall'),
                         'none'      => __('No excerpt', 'waterfall'),
@@ -1550,28 +1550,28 @@ $layout = array(
                 array(
                     'default'       => '',
                     'description'   => __('Shows the post type under the title of each result.', 'waterfall'),
-                    'id'            => 'search_grid_type',
+                    'id'            => 'search_content_type',
                     'title'         => __('Search Post Type in Results', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
                 array(
                     'default'       => __('View Post', 'waterfall'),
                     'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
-                    'id'            => 'search_grid_button_label',
+                    'id'            => 'search_content_button_label',
                     'title'         => __('Search Page Results Button Label', 'waterfall'),
                     'type'          => 'input'
                 ),     
                 array(
                     'default'       => '',
                     'description'   => __('Minimum height of results in the search page.', 'waterfall'),
-                    'id'            => 'search_grid_height',
+                    'id'            => 'search_content_height',
                     'title'         => __('Search Page Results Height', 'waterfall'),
                     'type'          => 'number'
                 ),    
                 array(
                     'default'       => 'thumbnail',
                     'description'   => __('Featured Image size within search page results.', 'waterfall'),
-                    'id'            => 'search_grid_image',
+                    'id'            => 'search_content_image',
                     'choices'       => get_image_sizes(),
                     'title'         => __('Search Page Results Image Size', 'waterfall'),
                     'type'          => 'select'
@@ -1579,7 +1579,7 @@ $layout = array(
                 array(
                     'default'       => 'left',
                     'description'   => __('Float of featured image within the results.', 'waterfall'),
-                    'id'            => 'search_grid_image_float',
+                    'id'            => 'search_content_image_float',
                     'choices'       => get_float_options(),
                     'title'         => __('Search Page Featured Image Float', 'waterfall'),
                     'type'          => 'select'
@@ -1643,6 +1643,12 @@ $layout = array(
             'id'            => 'styling_footer',
             'title'         => __('Footer', 'waterfall'),
             'fields'    => array(
+                array(
+                    'default'       => '',
+                    'id'            => 'footer_disable',
+                    'title'         => __('Disable Footer', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                
                 array(
                     'default'       => 'default',
                     'id'            => 'footer_width',
@@ -1773,7 +1779,7 @@ if( class_exists( 'WooCommerce' ) ) {
             array(
                 'default'       => 'left',
                 'description'   => __('Choose the sidebar lay-out for the product archives.', 'waterfall'),
-                'id'            => 'product_archive_layout',
+                'id'            => 'product_archive_sidebar_layout',
                 'choices'       => get_sidebar_options(),
                 'title'         => __('Sidebar Lay-Out', 'waterfall'),
                 'type'          => 'select'
@@ -1795,7 +1801,7 @@ if( class_exists( 'WooCommerce' ) ) {
             array(
                 'default'       => 'full',
                 'description'   => __('Choose the sidebar lay-out for a single product.', 'waterfall'),
-                'id'            => 'product_layout',
+                'id'            => 'product_sidebar_layout',
                 'choices'       => get_sidebar_options(),
                 'title'         => __('Sidebar Lay-Out', 'waterfall'),
                 'type'          => 'select'

@@ -1,51 +1,5 @@
 [
     {
-        "name": "wp-components",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "07308b86205a64e5e7fefd4ccfc1392764f3fea4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/07308b86205a64e5e7fefd4ccfc1392764f3fea4",
-            "reference": "07308b86205a64e5e7fefd4ccfc1392764f3fea4",
-            "shasum": ""
-        },
-        "time": "2017-09-13T12:29:18+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-components/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-components/issues"
-        }
-    },
-    {
-        "name": "wp-custom-fields",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "fdd2dddb58f6af3728759b147100d6533213888e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/fdd2dddb58f6af3728759b147100d6533213888e",
-            "reference": "fdd2dddb58f6af3728759b147100d6533213888e",
-            "shasum": ""
-        },
-        "time": "2017-09-13T12:29:28+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
-        }
-    },
-    {
         "name": "wp-enqueue",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -135,6 +89,52 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-updater/issues"
+        }
+    },
+    {
+        "name": "wp-custom-fields",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
+            "reference": "fdd2dddb58f6af3728759b147100d6533213888e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/fdd2dddb58f6af3728759b147100d6533213888e",
+            "reference": "fdd2dddb58f6af3728759b147100d6533213888e",
+            "shasum": ""
+        },
+        "time": "2017-09-13T12:29:28+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
+        }
+    },
+    {
+        "name": "wp-components",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-components.git",
+            "reference": "86922fbc18dfcde4943fc0e2d460b718c641d6be"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/86922fbc18dfcde4943fc0e2d460b718c641d6be",
+            "reference": "86922fbc18dfcde4943fc0e2d460b718c641d6be",
+            "shasum": ""
+        },
+        "time": "2017-09-27T09:57:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-components/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-components/issues"
         }
     }
 ]

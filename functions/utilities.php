@@ -6,6 +6,7 @@
 
 /**
  * Retrieves the theme header
+* Replaces the standard get_header call that WordPress uses
  */
 function get_theme_header() {
     get_template_part('templates/header');
@@ -13,6 +14,7 @@ function get_theme_header() {
 
 /**
  * Retrieves the theme footer
+ * Replaces the standard get_footer call that WordPress uses
  */
 function get_theme_footer() {
     get_template_part('templates/footer');
@@ -20,9 +22,18 @@ function get_theme_footer() {
 
 /**
  * Retrieves a certain setting for the theme
+ *
+ * @param   string    $type     The type of options to retrieve
+ * @param   mixed     $key      The array of option keys or single option key to retrieve
+ * @param   string    $prefix   A common prefix for the option
+ *
+ * @return mixed    $options The array with options; 
  */
-function get_theme_option( $type = '', $key = '' ) {
+function get_theme_option( $type = '', $key = array(), $prefix = '' ) {
+
+    $options = '';
     
+    // Determine our source
     switch( $type ) {
         case 'customizer':
             $options = get_theme_mod('waterfall_customizer');
@@ -43,8 +54,14 @@ function get_theme_option( $type = '', $key = '' ) {
             $options = get_option('waterfall_options');
     }
     
-    if( $key )
-        $options = isset($options[$key]) ? $options[$key] : '';
+    // Switch option type, whether to receive a single option or multiple at once
+    if( is_array($key) ) {
+        foreach( $array as $key ) {
+            $options[$key] = isset($options[$prefix . $key]) ? $options[$prefix . $key] : '';
+        }        
+    } elseif( $key ) {
+        $options = isset($options[$prefix . $key]) ? $options[$prefix . $key] : '';
+    }
     
     return $options;
     
@@ -206,7 +223,9 @@ function get_float_options() {
 }
 
 /**
- * Retrieves social networks
+ * Retrieves our social networks
+ *
+ * @return array $urls The array with social network urls as values, and their sanitized names as keys
  */
 function get_social_networks() {
     $networks   = array(
@@ -230,21 +249,4 @@ function get_social_networks() {
     }
     
     return $urls;
-}
-
-/**
- * Retrieves element layout properties for the theme from an array of properties
- *
- * @param   array   $properties The array with properties
- * @param   string  $prefix     A possible prefix that is used to get saved properties
- * @return  array   $settings   The array with properties as keys and received property values as values
- */
-function get_element_properties( $properties = array(), $prefix = '' ) {
-    $settings = array();
-    
-    foreach( $properties as $property ) {
-        $settings[$property] = get_theme_option('layout', $prefix . $property);        
-    }
-    
-    return $settings;
 }
