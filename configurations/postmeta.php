@@ -40,7 +40,7 @@ $postmeta = array(
                 array(
                     'columns'       => 'fifth',
                     'description'   => __('The Header is the main header of the site, usually containing the main navigation.', 'waterfall'),
-                    'id'            => 'disable_header',
+                    'id'            => 'header_disable',
                     'title'         => __('Disable Header', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'   => array( 
@@ -50,7 +50,7 @@ $postmeta = array(
                 array(
                     'columns'       => 'fifth',
                     'description'   => __('The Footer is the main footer of the site, usually containing widgets, copyright and more.', 'waterfall'),
-                    'id'            => 'disable_footer',
+                    'id'            => 'footer_disable',
                     'title'         => __('Disable Footer', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'   => array( 
@@ -60,7 +60,7 @@ $postmeta = array(
                 array(
                     'columns'       => 'fifth',
                     'description'   => __('The Title Header usually shows elements such as the title, the featured image and so forth.', 'waterfall'),
-                    'id'            => 'page_header_disable',
+                    'id'            => 'content_header_disable',
                     'title'         => __('Disable Title Header', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'       => array( 
@@ -70,7 +70,7 @@ $postmeta = array(
                 array(
                     'columns'       => 'fifth',
                     'description'   => __('The Related Section usually contains related posts and post navigation.', 'waterfall'),
-                    'id'            => 'page_related_disable',
+                    'id'            => 'content_related_disable',
                     'title'         => __('Disable Page Related Section', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'       => array( 
@@ -80,7 +80,7 @@ $postmeta = array(
                 array(
                     'columns'       => 'fifth',
                     'description'   => __('The Content Footer usually shows elements such as comments, the author and so forth.', 'waterfall'),
-                    'id'            => 'page_footer_disable',
+                    'id'            => 'content_footer_disable',
                     'title'         => __('Disable Page Content Footer', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'       => array( 

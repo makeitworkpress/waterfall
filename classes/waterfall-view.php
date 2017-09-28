@@ -75,50 +75,53 @@ class Waterfall_View {
 
             // Sidebar lay-out classes
             if( is_page() ) {
-                $sidebar = isset($layout['page_sidebar_layout']) ? $layout['page_sidebar_layout'] : 'default'; 
+                $sidebar = isset($layout['page_sidebar_position']) ? $layout['page_sidebar_position'] : 'default'; 
             }
 
             // Default archives
             if( is_archive() ) {
-                $sidebar = isset($layout['archive_sidebar_layout']) ? $layout['archive_sidebar_layout'] : 'default'; 
-            }           
+                $sidebar = isset($layout['archive_sidebar_position']) ? $layout['archive_sidebar_position'] : 'default'; 
+            }
             
             // Search Archives
             if( is_search() ) {
-                $sidebar = isset($layout['search_sidebar_layout']) ? $layout['search_sidebar_layout'] : 'default';    
-            }            
+                $sidebar = isset($layout['search_sidebar_position']) ? $layout['search_sidebar_position'] : 'default';  
+            } 
 
             // Single Posts
             if( is_single() ) {
-                $sidebar = isset($layout['single_sidebar_layout']) ? $layout['single_sidebar_layout'] : 'default';     
-            }            
-            
-            // Pages with an overlay
-            if( is_singular() &&  get_theme_option('meta', 'page_header_overlay') ) {
-                $classes[] = 'waterfall-content-header-overlay';
-            }
-            
-            $full = get_theme_option('meta', 'content_width');
-            
-            if( isset($full['full']) && $full['full'] ) {
-                $sidebar = 'default';
-                $classes[] = 'waterfall-fullwidth-content';
-            }
-            
+                $sidebar = isset($layout['single_sidebar_position']) ? $layout['single_sidebar_position'] : 'default';     
+            } 
             
             /**
              * WooCommerce
              */
              
             // WooCommerce single Products
-            if( is_singular('product') && class_exists('WooCommerce') ) {
-                $sidebar = isset($customize['product_sidebar_layout']) ? $customize['product_sidebar_layout'] : 'default';     
-            }
+            // if( class_exists('WooCommerce') && is_product() ) {
+            //     $sidebar = isset($customize['product_sidebar_position']) ? $customize['product_sidebar_position'] : 'default';     
+            // }
             
-            // WooCommerce Product Archives
-            if( is_archive('product') && class_exists('WooCommerce') ) {
-                $sidebar = isset($customize['product_archive_sidebar_layout']) ? $customize['product_archive_sidebar_layout'] : 'default'; 
-            }            
+            // // WooCommerce Product Archives
+            // if( class_exists('WooCommerce') && is_shop() ) {
+            //     $sidebar = isset($customize['product_archive_sidebar_position']) ? $customize['product_archive_sidebar_position'] : 'default'; 
+            // }            
+            
+            // Pages with an overlay
+            if( is_singular() ) {
+
+                if( get_theme_option('meta', 'page_header_overlay') ) {
+                    $classes[] = 'waterfall-content-header-overlay';
+                }
+                
+                $full = get_theme_option('meta', 'content_width');
+                
+                if( isset($full['full']) && $full['full'] ) {
+                    $sidebar    = 'default';
+                    $classes[]  = 'waterfall-fullwidth-content';
+                }
+
+            }
 
             $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');
             
@@ -148,15 +151,15 @@ class Waterfall_View {
             add_theme_support( 'woocommerce' );
             
             // Customizer support
-            if( get_theme_option('layout', 'product_zoom') )
+            if( get_theme_option('layout', 'product_content_zoom') )
                 add_theme_support( 'wc-product-gallery-zoom' );
             
             // Lightbox Support
-            if( get_theme_option('layout', 'product_lightbox') && ! get_theme_option('customizer', 'lightbox') )
+            if( get_theme_option('layout', 'product_content_lightbox') && ! get_theme_option('customizer', 'lightbox') )
                 add_theme_support( 'wc-product-gallery-lightbox' );
             
             // Slider support
-            if( get_theme_option('layout', 'product_slider') )
+            if( get_theme_option('layout', 'product_content_slider') )
                 add_theme_support( 'wc-product-gallery-slider' );
         }        
     }    

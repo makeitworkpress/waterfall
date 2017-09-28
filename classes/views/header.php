@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the class for initiating a new header
+ * Contains the class for initiating a new site header
  */
 namespace Views;
 use WP_Components as WP_Components;
@@ -11,31 +11,28 @@ class Header extends Base {
      * Sets the properties for the heading
      */
     protected function setProperties() {
-        $this->properties = apply_filters( array(
+        $this->properties = apply_filters( 'waterfall_header_properties', array(
             'customizer' => array( 'logo', 'logo_transparent', 'logo_mobile', 'logo_mobile_transparent' ),
             'layout' => array(
-                'border',
-                'disable_logo',
-                'disable_menu',
-                'fixed',
-                'logo_float',
-                'headroom',
-                'menu_all',
-                'menu_cart',
-                'menu_float',
-                'menu_hamburger',
-                'menu_none',
-                'menu_search',
-                'menu_social',
-                'menu_style',
-                'transparent', 
-                'width'   
+                'header_border',
+                'header_disable_logo',
+                'header_disable_menu',
+                'header_fixed',
+                'header_logo_float',
+                'header_headroom',
+                'header_menu_all',
+                'header_menu_cart',
+                'header_menu_float',
+                'header_menu_hamburger',
+                'header_menu_none',
+                'header_menu_search',
+                'header_menu_social',
+                'header_menu_style',
+                'header_transparent', 
+                'header_width'   
             ),
-            'meta' => array( 'transparent' )                                      
-        ), 'waterfall_header_properties' );
-
-        // Sets our header prefix
-        $this->prefix = 'header_';
+            'meta' => array( 'transparent_header' )                                      
+        ) );
 
     }
 
@@ -45,7 +42,7 @@ class Header extends Base {
     public function header() {
 
         // Return if the header is disabled
-        if( $this->disabled() ) {
+        if( $this->disabled('header', '') ) {
             return;
         }
 
@@ -62,7 +59,7 @@ class Header extends Base {
         // Default header items
         $atoms = array(
             'logo'  => array( 
-                'float'             => $this->layout['logo_float'] ? $this->layout['logo_float'] : 'left',
+                'float'             => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
                 'logoHeight'        => $logo ? $logo[2] : 64,
                 'image'             => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
                 'mobile'            => $this->customizer['logo_mobile'], 
@@ -71,19 +68,19 @@ class Header extends Base {
                 'logoWidth'         => $logo ? $logo[1] : 306
             ),
             'menu'  => array( 
-                'all'           => $this->layout['menu_all'] ? $this->layout['menu_all'] : __('View All Results', 'waterfall'), 
+                'all'           => $this->layout['header_menu_all'] ? $this->layout['header_menu_all'] : __('View All Results', 'waterfall'), 
                 'args'          => array('theme_location' => 'header-menu'), 
-                'cart'          => $this->layout['menu_cart'] ? true : false, 
-                'float'         => $this->layout['menu_float'] ? $this->layout['menu_float'] : 'right',
-                'hamburger'     => $this->layout['menu_hamburger'] ? $this->layout['menu_hamburger'] : 'mobile',
-                'none'          => $this->layout['menu_none'] ? $this->layout['menu_none'] : __('Nothing found!', 'waterfall'),
-                'search'        => $this->layout['menu_search'] ? true : false,
-                'view'          => $this->layout['menu_style'] ? $this->layout['menu_style'] : 'default'
+                'cart'          => $this->layout['header_menu_cart'] ? true : false, 
+                'float'         => $this->layout['header_menu_float'] ? $this->layout['header_menu_float'] : 'right',
+                'hamburger'     => $this->layout['header_menu_hamburger'] ? $this->layout['header_menu_hamburger'] : 'mobile',
+                'none'          => $this->layout['header_menu_none'] ? $this->layout['header_menu_none'] : __('Nothing found!', 'waterfall'),
+                'search'        => $this->layout['header_menu_search'] ? true : false,
+                'view'          => $this->layout['header_menu_style'] ? $this->layout['header_menu_style'] : 'default'
             )                
         );
     
         // Social icons
-        if( $this->layout['menu_social'] ) {
+        if( $this->layout['header_menu_social'] ) {
             $networks = get_social_networks();
     
             if( $networks ) {
@@ -92,28 +89,28 @@ class Header extends Base {
         }        
     
         // Reset the order for right floats
-        if( $this->layout['menu_float'] == 'right') {
+        if( $this->layout['header_menu_float'] == 'right') {
             $menu = $atoms['menu'];
             unset($atoms['menu']);
             $atoms['menu'] = $menu;
         } 
         
         // Disable logo or menu
-        if( $this->layout['disable_logo'] )
+        if( $this->layout['header_disable_logo'] )
             unset( $atoms['logo'] );    
     
-        if( $this->layout['disable_menu'] )
-            unset( $atoms['menu'] ); 
+        if( $this->layout['header_disable_menu'] )
+            unset( $atoms['menu'] );
         
         // Set-up our transparency
-        $transparent    = isset($this->meta['transparent']) && $this->meta['transparent'] ? $this->meta['transparent'] : $this->layout['transparent'];  
+        $transparent    = isset($this->meta['transparent_header']['transparent']) && $this->meta['transparent_header']['transparent'] ? true : $this->layout['header_transparent'];  
     
         $args = apply_filters( 'waterfall_header_args', array(
             'atoms'         => $atoms,
-            'container'     => $this->layout['width'] == 'default' ? true : false,
-            'headroom'      => $this->layout['headroom'],
-            'fixed'         => $this->layout['fixed'],
-            'style'         => $this->layout['border'] ? 'header waterfall-no-border' : 'header',
+            'container'     => $this->layout['header_width'] == 'default' ? true : false,
+            'headroom'      => $this->layout['header_headroom'],
+            'fixed'         => $this->layout['header_fixed'],
+            'style'         => $this->layout['header_border'] ? 'header waterfall-no-border' : 'header',
             'transparent'   => $transparent
         ) );
     

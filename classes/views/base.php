@@ -5,21 +5,14 @@
 namespace Views;
 
 abstract class Base {
-
-    /**
-     * Contains our optional prefix
-     *
-     * @access protected
-     */
-    protected $prefix; 
     
     /**
      * The current type we are looking at
      * This is used to make a distinction between archives and search or pages and posts, as they share similar settings.
      *
-     * @access protected
+     * @access public
      */
-     private $type;    
+    public $type;    
 
     /**
      * Contains the list of our custom properties for each view controller
@@ -47,23 +40,8 @@ abstract class Base {
      *
      * @access protected
      */
-    protected $meta;
-
-    /**
-     * Contains our condition for the width of our content section in archives or singulars
-     *
-     * @access public
-     */
-    public $contentContainer;
-     
-    /**
-     * Contains the condition for the width of our overall content structure and sidebar place
-     *
-     * @access public
-     */
-    public $mainContainer;     
-          
-
+    protected $meta;   
+  
     /**
      * The initial state of our class
      *
@@ -77,6 +55,8 @@ abstract class Base {
         // Determine odd layout properties that can occur for archives and singulars
         $this->contentContainer = true;
         $this->mainContainer    = false; // In the future, this allows us to have a more flexible placement of the sidebar        
+        $this->relatedContainer = true;      
+        $this->relatedSection   = true;      
         $this->mainLayout();
     }
 
@@ -99,20 +79,25 @@ abstract class Base {
 
         // Sets general customizer properties
         if( isset($this->properties['customizer']) ) {
-            $this->customizer   = apply_filters( 'waterfall_customizer_properties', get_theme_option('meta', $this->properties['customizer']), get_called_class() );
+            $this->customizer   = apply_filters( 'waterfall_customizer_properties', get_theme_option('customizer', $this->properties['customizer']), get_called_class() );
         }
 
         // Sets layout customizer properties
         if( isset($this->properties['layout']) ) {
-            $this->layout       = apply_filters( 'waterfall_layout_properties', get_theme_option('layout', $this->properties['layout'], $this->type . $this->prefix), get_called_class() );    
+            $prefix             = $this->type ? $this->type . '_' : '';
+            $this->layout       = apply_filters( 'waterfall_layout_properties', get_theme_option('layout', $this->properties['layout'], $prefix), get_called_class() );    
         }        
 
     }
 
     /**
-     * Examines whether an module is disabled
+     * Examines whether an module is disabled.
+     * The parameters can be used to do a manual check
+     *
+     * @param string $prefix    The current prefix, such as single_related or header_
+     * @param string $context   An optional context which is used for singular items
      */
-    protected function disabled() {
+    protected function disabled( $prefix = '', $context = 'content_') {
         
         $customizer     = false;
         $disabled       = false;
@@ -120,12 +105,13 @@ abstract class Base {
         
         // For singular items
         if( is_singular() ) {
-            $disable    = get_theme_option( 'meta', '', '', 'disable_' . str_replace('_', '', $this->prefix) );
+            $disable    = get_theme_option( 'meta', $context . $prefix . '_disable' );
             $meta       = $disable ? $disable : $meta;
         }
 
         // General (most likely used for the general header and footer)
-        $customizer = get_theme_option( 'layout', '', '', $this->type . $this->prefix . '_disable' );    
+        $prefix     = $this->type ? $this->type . '_' . $prefix : $prefix; // If a type is defined, this will have a different prefix
+        $customizer = get_theme_option( 'layout', $prefix . '_disable' );    
 
         if( $meta['disable'] == true || $customizer === true ) {
             $disabled   = true;
@@ -140,12 +126,34 @@ abstract class Base {
      */
      private function mainLayout() {
 
+        /**
+         * Determines the settings for the content section
+         */
         // Look if our display of content inside .main-content should be fullwidth or not
-        $contentWidth           = get_theme_option( 'layout', $this->type . '_content_width' );
-        $metaContentWidth       = get_theme_option( 'meta', 'content_width' );
+        $contentWidth               = get_theme_option( 'layout', $this->type . '_content_width' );
+        $metaContentWidth           = get_theme_option( 'meta', 'content_width' );
 
         if( $contentWidth == 'full' || (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) {
             $this->contentContainer = false;
+        }
+
+        /**
+         * Determines the appearance and width for the related section
+         */
+        $relatedWidth               = get_theme_option( 'layout', $this->type . '_related_width' );
+
+        if( $relatedWidth == 'full' ) {
+            $this->relatedContainer = false;
+        }
+
+        // Pages never have a related section
+        if( is_page() ) {
+            $this->relatedSection   = false;
+        } 
+
+        // And obviously, we also bail out if disabled
+        if( $this->disabled('related') ) {
+            $this->relatedSection   = false;
         }
 
      }

@@ -58,11 +58,9 @@ class Waterfall {
         
         
         /**
-         * Include basic utility and template functions
+         * Include basic utility functions
          */
-        require_once( get_template_directory() . '/functions/templates.php' );
-        require_once( get_template_directory() . '/functions/utilities.php' );
-        
+        require_once( get_template_directory() . '/functions/utilities.php' ); 
         
         /**
          * Load standard configurations

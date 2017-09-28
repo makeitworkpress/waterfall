@@ -19,10 +19,6 @@
 ?>
 
 <div class="main-content">
-    
-    <?php 
-        do_action('waterfall_archive_main_content_begin'); 
-    ?>
 
     <?php if( $archive->contentContainer ) { ?>
         <div class="components-container">    
@@ -46,11 +42,7 @@
 
     <?php if( $archive->contentContainer ) { ?>
         </div>    
-    <?php } ?>    
-
-    <?php 
-        do_action('waterfall_archive_main_content_end');
-    ?>
+    <?php } ?>
 
 </div>
 

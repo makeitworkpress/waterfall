@@ -10,10 +10,15 @@
 <article class="waterfall-nothing-found">
 
     <?php
+
+        /**
+         * Initializes our 404 page
+         */
+        $nothing = new Views\Nothing('404');
         
         do_action('waterfall_before_404_header');
     
-        waterfall_404_header();
+        $nothing->header();
     
         do_action('waterfall_after_404_header');
     

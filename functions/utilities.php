@@ -27,11 +27,11 @@ function get_theme_footer() {
  * @param   mixed     $key      The array of option keys or single option key to retrieve
  * @param   string    $prefix   A common prefix for the option
  *
- * @return mixed    $options The array with options; 
+ * @return  mixed    $options   The array with options; 
  */
-function get_theme_option( $type = '', $key = array(), $prefix = '' ) {
+function get_theme_option( $type = '', $key = '', $prefix = '' ) {
 
-    $options = '';
+    $options    = '';
     
     // Determine our source
     switch( $type ) {
@@ -56,14 +56,15 @@ function get_theme_option( $type = '', $key = array(), $prefix = '' ) {
     
     // Switch option type, whether to receive a single option or multiple at once
     if( is_array($key) ) {
-        foreach( $array as $key ) {
-            $options[$key] = isset($options[$prefix . $key]) ? $options[$prefix . $key] : '';
+        $formatted = array();
+        foreach( $key as $value ) {
+            $formatted[$value] = isset($options[$prefix . $value]) ? $options[$prefix . $value] : false;
         }        
     } elseif( $key ) {
-        $options = isset($options[$prefix . $key]) ? $options[$prefix . $key] : '';
+        $formatted = isset($options[$prefix . $key]) ? $options[$prefix . $key] : false;
     }
     
-    return $options;
+    return isset($formatted) ? $formatted : $options;
     
 }
 

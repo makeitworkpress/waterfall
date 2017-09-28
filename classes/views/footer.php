@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the class for initiating a new header
+ * Contains the class for initiating a new site footer
  */
 namespace Views;
 use WP_Components as WP_Components;
@@ -11,18 +11,20 @@ class Footer extends Base {
      * Sets the properties for the footer
      */
     protected function setProperties() {
-        $this->properties = apply_filters( array(
-            'customizer' => array(
-                'logo',   
-                'logo_transparent',             
-                'logo_mobile',               
-                'logo_mobile_transparent'  
-            ),
-            'layout' => array( 'copyright', 'copyright_name', 'copyright_schema', 'display_sidebars', 'display_socket', 'logo', 'menu', 'sidebars', 'social', 'width' ),                                    
-        ), 'waterfall_footer_properties' );
-
-        // Sets our header prefix
-        $this->prefix = 'footer_';
+        $this->properties = apply_filters( 'waterfall_footer_properties', array(
+            'layout' => array( 
+                'footer_copyright', 
+                'footer_copyright_name', 
+                'footer_copyright_schema', 
+                'footer_display_sidebars', 
+                'footer_display_socket', 
+                'footer_logo', 
+                'footer_menu', 
+                'footer_sidebars', 
+                'footer_social', 
+                'footer_width' 
+            ),                                    
+        ) );
 
     }
 
@@ -32,7 +34,7 @@ class Footer extends Base {
     public function footer() {
 
         // Return if the footer is disabled
-        if( $this->disabled() ) {
+        if( $this->disabled('footer', '') ) {
             return;
         }
 
@@ -45,7 +47,7 @@ class Footer extends Base {
         $atoms = array();
 
         // Sidebars
-        switch( $this->layout['sidebars'] ) {
+        switch( $this->layout['footer_sidebars'] ) {
             case 'full':
                 $sidebarGrid = array('footer-one' => 'full');
                 break;
@@ -66,13 +68,13 @@ class Footer extends Base {
         }
 
         // We do not have sidebars
-        if( $this->layout['display_sidebars'] == false ) {
+        if( $this->layout['footer_display_sidebars'] == false ) {
             $sidebarGrid = array();
         }
 
         // Logo
-        if( is_numeric($this->layout['logo']) ) {
-            $logo = wp_get_attachment_image_src( $this->layout['logo'], 'medium' );
+        if( is_numeric($this->layout['footer_logo']) ) {
+            $logo = wp_get_attachment_image_src( $this->layout['footer_logo'], 'medium' );
             $atoms['logo'] = array(
                 'float'         => 'center',
                 'logoHeight'    => $logo[2],
@@ -82,16 +84,16 @@ class Footer extends Base {
         }       
 
         // Copyright Message
-        if( $this->layout['copyright'] ) {
+        if( $this->layout['footer_copyright'] ) {
             $atoms['copyright'] = array(
                 'float'     => 'left',
-                'name'      => $this->layout['copyright_name'],
-                'schema'    => $this->layout['copyright_schema'] ? $this->layout['copyright_schema'] : 'http://schema.org/Organization'
+                'name'      => $this->layout['footer_copyright_name'],
+                'schema'    => $this->layout['footer_copyright_schema'] ? $this->layout['footer_copyright_schema'] : 'http://schema.org/Organization'
             );
         }
 
         // Social Icons
-        if( $this->layout['social'] ) {
+        if( $this->layout['footer_social'] ) {
             $networks = get_social_networks();
             if( $networks ) {
                 $atoms['social'] = array(
@@ -103,7 +105,7 @@ class Footer extends Base {
         }
 
         // Menu
-        if( $this->layout['menu'] ) {
+        if( $this->layout['footer_menu'] ) {
             $atoms['menu'] = array(
                 'args'          => array('theme_location' => 'footer-menu'), 
                 'float'         => 'right',
@@ -113,14 +115,14 @@ class Footer extends Base {
         }        
 
         // We should not have any atoms in the socket if it is disabled.
-        if( $this->layout['display_socket'] == false ) {
+        if( $this->layout['footer_display_socket'] == false ) {
             $atoms = array();
         }        
    
         $args = apply_filters( 'waterfall_footer_args', array(
             'atoms'         => $atoms,
             'sidebars'      => $sidebarGrid,
-            'container'     => $this->layout['width'] == 'full' ? false : true,
+            'container'     => $this->layout['footer_width'] == 'full' ? false : true,
             'style'         => 'footer'
         ) );
     

@@ -6,12 +6,15 @@
      */
     get_theme_header(); 
 
+    // Initialize our shop archive
+    $shop = new Views\Shop('product_archive');
+
     do_action('waterfall_before_product_archive_header');
         
     /**
      * Displays the default header for WooCommerce Pages
      */
-    waterfall_product_archive_header();
+    $shop->header();
         
     do_action('waterfall_after_product_archive_header');
 
@@ -19,17 +22,35 @@
 
 <div class="main-content">
 
-    <?php
-        
-        do_action('waterfall_before_product_archive_posts');
-    
-        /**
-         * Displays the default post-loop from WooCommerce
-         */
-        waterfall_product_archive_posts();
+    <?php if( $shop->contentContainer ) { ?>
+        <div class="components-container">    
+    <?php } ?> 
 
-        do_action('waterfall_after_product_archive_posts');
-    ?>
+        <?php
+            do_action('waterfall_before_product_archive_posts');
+        ?>         
+
+        <div class="content">
+            <?php
+            
+                /**
+                * Displays the default post-loop from WooCommerce
+                */
+                $shop->posts();
+            ?>
+        </div>
+
+        <?php 
+            do_action('waterfall_after_product_archive_posts');
+
+            $shop->sidebar();
+
+            do_action('waterfall_after_product_archive_sidebar');
+        ?>
+
+    <?php if( $shop->contentContainer ) { ?>
+        </div>    
+    <?php } ?>      
     
 </div>
 

@@ -6,13 +6,49 @@
  */
 get_theme_header(); 
 
-do_action('waterfall_before_single_product');
+/**
+ * Initiate our new product
+ */
+$productView = new Views\Product('product'); ?>
 
-waterfall_single_product();
+<div class="main-content">
 
-do_action('waterfall_after_single_product');
+    <?php if( $productView->contentContainer ) { ?>
+        <div class="components-container">
+    <?php } ?>
 
+        <?php
+            $productView->breadcrumbs();
+            
+            do_action('waterfall_before_product_content');
+        ?>
 
+        <div class="content">
+
+            <?php      
+                /**
+                * Retrieves the loop for the single product from woocommerce
+                */
+                $productView->content();                                  
+            ?>
+    
+        </div> 
+
+        <?php
+            do_action('waterfall_after_product_content');
+
+            $productView->sidebar();
+
+            do_action('waterfall_after_product_sidebar');
+        ?>
+
+    <?php if( $productView->contentContainer ) { ?>
+        </div>
+    <?php } ?>
+
+</div>
+
+<?php 
 /**
  * Retrieves our footer
  */
