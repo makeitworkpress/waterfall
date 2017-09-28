@@ -69,29 +69,6 @@
         }
     },
     {
-        "name": "wp-updater",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-updater.git",
-            "reference": "d6700c3b347da0a1fd9e882c681b8a0ea69341f4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/d6700c3b347da0a1fd9e882c681b8a0ea69341f4",
-            "reference": "d6700c3b347da0a1fd9e882c681b8a0ea69341f4",
-            "shasum": ""
-        },
-        "time": "2017-09-13T12:29:49+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-updater/issues"
-        }
-    },
-    {
         "name": "wp-custom-fields",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -135,6 +112,29 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-components/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-components/issues"
+        }
+    },
+    {
+        "name": "wp-updater",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-updater.git",
+            "reference": "47d036cb5cbbe73f76f50357d1b256139e8acf19"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/47d036cb5cbbe73f76f50357d1b256139e8acf19",
+            "reference": "47d036cb5cbbe73f76f50357d1b256139e8acf19",
+            "shasum": ""
+        },
+        "time": "2017-09-28T12:53:59+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-updater/issues"
         }
     }
 ]
