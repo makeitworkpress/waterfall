@@ -90,7 +90,7 @@ class Waterfall_View {
 
             // Single Posts
             if( is_single() ) {
-                $sidebar = isset($layout['single_sidebar_position']) ? $layout['single_sidebar_position'] : 'default';     
+                $sidebar = isset($layout['post_sidebar_position']) ? $layout['post_sidebar_position'] : 'default';     
             } 
             
             /**

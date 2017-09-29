@@ -842,6 +842,13 @@ $layout = array(
                     'choices'       => get_container_options()
                 ),
                 array(
+                    'css'           => array('selector' => '.molecule-header-atoms', 'property' => array('min-height', 'line-height') ),
+                    'default'       => '',
+                    'id'            => 'header_height',
+                    'title'         => __('Header Minumum Height', 'waterfall'),
+                    'type'          => 'dimension'
+                ),                
+                array(
                     'default'       => '',
                     'id'            => 'header_fixed',
                     'title'         => __('Fixed Header', 'waterfall'),
@@ -1752,7 +1759,7 @@ $layout = array(
                     'default'       => get_bloginfo('name'),
                     'id'            => 'footer_copyright_name',
                     'title'         => __('Copyright Message', 'waterfall'),
-                    'type'          => 'text'
+                    'type'          => 'textarea'
                 ),    
                 array(
                     'choices'       => array(

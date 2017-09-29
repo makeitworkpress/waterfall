@@ -221,6 +221,7 @@ class Styling extends Base {
     private function formatField( $field ) {
         
         // Default values;
+        $uniques            = array();
         $properties         = array();
         $field['values']    = isset($field['values']) && $field['values'] ? $field['values'] : '';
         
@@ -291,12 +292,13 @@ class Styling extends Base {
                 break;               
                 
             // Dimensions field
+            case 'dimension':
             case 'dimensions':
                 
                 $properties['padding'] = '';
                 
                 if( ! $field['values'] ) {
-                    $properties['border'] = '';
+                    $properties['padding'] = '';
                 } else {
                 
                     if( isset($field['borders']) ) {
@@ -362,7 +364,7 @@ class Styling extends Base {
                         $properties['line-height']   = $field['values']['line_spacing']['amount'] . $field['values']['line_spacing']['unit'];
                     }
 
-                    if( $field['values']['font_weight'] ) {
+                    if( isset($field['values']['font_weight']) && $field['values']['font_weight'] ) {
                         $properties['font-weight']   = $field['values']['font_weight'];
                     }
 
@@ -398,20 +400,29 @@ class Styling extends Base {
         }
         
         /**
-         * If we have a custom single property for the CSS, we us it with the values from the properties
-         * This thus only works with some of the fields which have single properties (box-shadow, colorpicker, media, image, upload) and not all fields
+         * If we have a custom string or array property for the CSS, we us it with the values from the properties
+         * This thus only works with some of the fields which have single properties (box-shadow, dimensions, colorpicker, media, image, upload) and not all fields
          */
-        if( isset($field['css']['property']) ) {
+        if( isset($field['css']['property']) && count($properties) == 1 ) {
             $values     = implode('', $properties);
             $properties = array();
-            $properties[$field['css']['property']] = $values;
+
+            if( is_array($field['css']['property']) ) {
+                foreach( $field['css']['property'] as $property ) {
+                    $properties[$property] = $values;
+                }
+            } else {
+                $properties[$field['css']['property']] = $values;
+            }
         }
         
-        // Only unique properties
-        $properties = array_unique($properties);        
+        // Only unique properties. Similar properties are overwritten by the last one.
+        foreach($properties as $property => $value) {
+            $uniques[$property] = $value;
+        }     
 
-        // Save the final properties to the fields array
-        $this->fields[$field['id']]['properties'] = $properties;
+        // Save the final properties to the fields array. This is then later processed to output css.
+        $this->fields[$field['id']]['properties'] = $uniques;
         
     }
     
@@ -442,7 +453,7 @@ class Styling extends Base {
                 if( $key == 'google' ) {
 
                     // Font weights, grouped per font so we can support multiple fonts settings with the same fonts, but different weights.
-                    if( $field['values']['font_weight'] && in_array($field['values']['font_weight'], $set[$field['values']['font']]['weights']) ) {
+                    if( isset($field['values']['font_weight']) && $field['values']['font_weight'] && in_array($field['values']['font_weight'], $set[$field['values']['font']]['weights']) ) {
                         $italic = $field['values']['italic'] && in_array('italic', $set[$field['values']['font']]['styles']) ? 'i' : '';
                         $weights[$field['values']['font']][] = $field['values']['font_weight'] . $italic; 
                     } else {
@@ -456,7 +467,7 @@ class Styling extends Base {
                     $normals = array();
                     
                     // Normal fonts
-                    if( $field['values']['load']['normal'] ) {
+                    if( isset($field['values']['load']['normal']) && $field['values']['load']['normal'] ) {
                         $normals = $set[$field['values']['font']]['weights'];
                         
                         // Weights are merged because we might have another italic weight.
@@ -464,7 +475,7 @@ class Styling extends Base {
                     }  
 
                     // Italic fonts, if available
-                    if( $field['values']['load']['italic'] && in_array('italic', $set[$field['values']['font']]['styles']) ) { 
+                    if( isset($field['values']['load']['italic']) && $field['values']['load']['italic'] && in_array('italic', $set[$field['values']['font']]['styles']) ) { 
                         foreach( $set[$field['values']['font']]['weights'] as $weight ) {
                             $italics[] = $weight . 'i'; 
                         }

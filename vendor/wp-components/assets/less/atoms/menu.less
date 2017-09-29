@@ -127,7 +127,7 @@
     .menu {
         li > a {
             display: block;
-            line-height: 50px;
+            line-height: inherit;
             padding: 0 16px;
             &:focus {
                 outline: none;
@@ -145,6 +145,7 @@
             }
         }
         .search-form {
+            line-height: normal;
             position: absolute;
             right: 8px;
             top: 100%;
@@ -152,9 +153,13 @@
                 min-width: 320px;
             }
         }
+        .atom-search-expand {
+            padding: 0 16px;
+        }
         .atom-search-results {
+            line-height: normal;
             right: 8px;
-            top: 200%;
+            top: ~"calc(100% + 48px)";
         }        
     }
     .sub-menu {
@@ -216,7 +221,7 @@
     .atom-menu-indicator & {
         content: '\f107';
         font-family: 'FontAwesome';
-        line-height: 50px;
+        line-height: inherit;
         margin-left: 7px;  
         transition: 350ms ease-out;        
     }
@@ -402,13 +407,14 @@
         margin-left: 0;
     }
     .sub-menu {
+        line-height: normal;
         min-width: 280px;
         padding: 16px;
     }
     .woocommerce-mini-cart .woocommerce-mini-cart-item {
         border-bottom: 1px solid #eee;
         overflow: hidden;
-        padding: 4px 0 4px 32px;
+        padding: 8px 0 8px 32px;
         a {
             padding: 0;
         }

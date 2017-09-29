@@ -191,12 +191,17 @@ class Singular extends Base {
      */
     public function sidebar() {
 
+        // If we have a fullwidth lay-out, our sidebar is removed.
+        if( ! $this->contentContainer ) {
+            return;
+        }
+
         // Retrieve our properties for the sidebar
         if( ! isset($this->layout) ) {
             $this->getProperties();     
         }   
         
-        if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' ) {
+        if( $this->layout['sidebar_position'] != 'full' ) {
             WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );
         }
 

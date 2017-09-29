@@ -148,7 +148,8 @@ function get_sidebar_options() {
     return apply_filters( 'waterfall_sidebar_options', array(
         'full'      => __('No Sidebars', 'waterfall'),
         'left'      => __('Left Sidebar', 'waterfall'),
-        'right'     => __('Right Sidebar', 'waterfall')
+        'right'     => __('Right Sidebar', 'waterfall'),
+        'bottom'    => __('Bottom Sidebar', 'waterfall'),
     ) );      
 }
 
