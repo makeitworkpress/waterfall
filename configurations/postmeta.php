@@ -16,18 +16,18 @@ $postmeta = array(
             'title'     => __('Layout', 'waterfall'),
             'fields'    => array( 
                 array(
-                    'columns'       => 'half',
+                    'columns'       => 'fourth',
                     'default'       => '',
                     'id'            => 'content_width',
                     'title'         => __('Fullwidth Main Content', 'waterfall'),
-                    'description'   => __('Makes the main content fullwidth without any padding. Useful if using page-builders.', 'waterfall'),
+                    'description'   => __('Makes the main content fullwidth without any padding and sidebars. Useful if using page-builders.', 'waterfall'),
                     'type'          => 'checkbox',
                     'options'       => array( 
                         'full' => array( 'label' => __('Enable Fullwidth Content', 'waterfall') )
                     )
                 ),   
                 array(
-                    'columns'       => 'half',
+                    'columns'       => 'fourth',
                     'default'       => '',
                     'description'   => __('Give this post or page a transparent header.', 'waterfall'),
                     'id'            => 'transparent_header',
@@ -38,7 +38,7 @@ $postmeta = array(
                     )
                 ),   
                 array(
-                    'columns'       => 'fifth',
+                    'columns'       => 'fourth',
                     'description'   => __('The Header is the main header of the site, usually containing the main navigation.', 'waterfall'),
                     'id'            => 'header_disable',
                     'title'         => __('Disable Header', 'waterfall'),
@@ -48,7 +48,7 @@ $postmeta = array(
                     )
                 ),
                 array(
-                    'columns'       => 'fifth',
+                    'columns'       => 'fourth',
                     'description'   => __('The Footer is the main footer of the site, usually containing widgets, copyright and more.', 'waterfall'),
                     'id'            => 'footer_disable',
                     'title'         => __('Disable Footer', 'waterfall'),
@@ -58,7 +58,7 @@ $postmeta = array(
                     )
                 ),    
                 array(
-                    'columns'       => 'fifth',
+                    'columns'       => 'fourth',
                     'description'   => __('The Title Header usually shows elements such as the title, the featured image and so forth.', 'waterfall'),
                     'id'            => 'content_header_disable',
                     'title'         => __('Disable Title Header', 'waterfall'),
@@ -68,7 +68,17 @@ $postmeta = array(
                     )
                 ),
                 array(
-                    'columns'       => 'fifth',
+                    'columns'       => 'fourth',
+                    'description'   => __('The sidebar is usually shown left or right of your pages.', 'waterfall'),
+                    'id'            => 'content_sidebar_disable',
+                    'title'         => __('Disable Sidebar', 'waterfall'),
+                    'type'          => 'checkbox',
+                    'options'       => array( 
+                        'disable' => array( 'label' => __('Disable sidebar', 'waterfall') ) 
+                    )
+                ),                
+                array(
+                    'columns'       => 'fourth',
                     'description'   => __('The Related Section usually contains related posts and post navigation.', 'waterfall'),
                     'id'            => 'content_related_disable',
                     'title'         => __('Disable Page Related Section', 'waterfall'),
@@ -78,7 +88,7 @@ $postmeta = array(
                     )
                 ),     
                 array(
-                    'columns'       => 'fifth',
+                    'columns'       => 'fourth',
                     'description'   => __('The Content Footer usually shows elements such as comments, the author and so forth.', 'waterfall'),
                     'id'            => 'content_footer_disable',
                     'title'         => __('Disable Page Content Footer', 'waterfall'),
