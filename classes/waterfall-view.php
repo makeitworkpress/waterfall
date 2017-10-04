@@ -80,7 +80,14 @@ class Waterfall_View {
 
             // Default archives
             if( is_archive() ) {
-                $sidebar = isset($layout['archive_sidebar_position']) ? $layout['archive_sidebar_position'] : 'default'; 
+
+                global $wp_query;
+
+                if( class_exists('WooCommerce') && $wp_query->query['post_type'] == 'product' ) {
+                    $sidebar = isset($layout['product_archive_sidebar_position']) ? $layout['product_archive_sidebar_position'] : 'default';
+                } else {
+                    $sidebar = isset($layout['archive_sidebar_position']) ? $layout['archive_sidebar_position'] : 'default'; 
+                }
             }
             
             // Search Archives
@@ -96,16 +103,9 @@ class Waterfall_View {
             /**
              * WooCommerce
              */
-             
-            // WooCommerce single Products
-            // if( class_exists('WooCommerce') && is_product() ) {
-            //     $sidebar = isset($customize['product_sidebar_position']) ? $customize['product_sidebar_position'] : 'default';     
-            // }
-            
-            // // WooCommerce Product Archives
-            // if( class_exists('WooCommerce') && is_shop() ) {
-            //     $sidebar = isset($customize['product_archive_sidebar_position']) ? $customize['product_archive_sidebar_position'] : 'default'; 
-            // }            
+            if( class_exists('WooCommerce') && is_product() ) {
+                $sidebar = isset($layout['product_sidebar_position']) ? $layout['product_sidebar_position'] : 'default';     
+            }          
             
             // Pages with an overlay
             if( is_singular() ) {

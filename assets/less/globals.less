@@ -8,6 +8,19 @@
     display: none;
 }
 
+/* By setting up a custom body:after in tools such as autoptimize, we can mask our Flash of unstyled content */
+body:after {
+    background-color: @darkest-grey;
+    content: '';
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
 /* Reusable classes & Modifiers 
 ----------------------*/
 .left {

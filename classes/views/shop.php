@@ -121,7 +121,7 @@ class Shop extends Base {
         }
 
         if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' )
-            WP_Components\Build::molecule( 'sidebar',array('sidebars' => array('product'), 'style' => 'sidebar') );         
+            WP_Components\Build::molecule( 'sidebar',array('sidebars' => array('product-archive'), 'style' => 'sidebar') );         
         
     }    
 
