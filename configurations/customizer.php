@@ -2002,7 +2002,15 @@ $typography = array(
                     'title'         => __('Widget Titles', 'waterfall'),
                     'description'   => __('Determines the typography for widget headings.', 'waterfall'),
                     'type'          => 'typography'
-                ),                
+                ),
+                array(
+                    'default'       => '',
+                    'css'           => 'h1, h2, h3, h4, h5, h6',
+                    'columns'       => 'third',
+                    'id'            => 'heading16_typography',
+                    'title'         => __('All Headings', 'waterfall'),
+                    'type'          => 'typography'
+                ),                                
                 array(
                     'default'       => '',
                     'css'           => 'h1',

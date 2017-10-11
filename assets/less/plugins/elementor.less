@@ -3,13 +3,19 @@
 /**
  * Contains elementor specific styling
  */
-.elementor-section {
+.elementor-section.elementor-section-boxed {
     padding: @grid-space 0;
-    @media screen and (max-width: 1280px) {
-        padding: @grid-space;    
-    }
-    @media screen and (max-width: 767px) {
-        padding: @grid-space @grid-space/2;    
+    .waterfall-fullwidth-content & {
+        @media screen and (max-width: 1280px) {
+            > .elementor-container {
+                padding: 0 @grid-space;   
+            } 
+        }
+        @media screen and (max-width: 767px) {
+            > .elementor-container {
+                padding: 0 @grid-space/2;    
+            }
+        }
     }
     .elementor-section {
         padding: 0;
