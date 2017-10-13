@@ -12,13 +12,15 @@ class Footer extends Base {
      */
     protected function setProperties() {
         $this->properties = apply_filters( 'waterfall_footer_properties', array(
+            'customizer'    => array(
+                'footer_logo', 
+            ),
             'layout' => array( 
                 'footer_copyright', 
                 'footer_copyright_name', 
                 'footer_copyright_schema', 
                 'footer_display_sidebars', 
                 'footer_display_socket', 
-                'footer_logo', 
                 'footer_menu', 
                 'footer_sidebars', 
                 'footer_social', 
@@ -73,8 +75,8 @@ class Footer extends Base {
         }
 
         // Logo
-        if( is_numeric($this->layout['footer_logo']) ) {
-            $logo = wp_get_attachment_image_src( $this->layout['footer_logo'], 'medium' );
+        if( is_numeric($this->customizer['footer_logo']) ) {
+            $logo = wp_get_attachment_image_src( $this->customizer['footer_logo'], 'medium' );
             $atoms['logo'] = array(
                 'float'         => 'center',
                 'logoHeight'    => $logo[2],
@@ -110,7 +112,7 @@ class Footer extends Base {
                 'args'          => array('theme_location' => 'footer-menu'), 
                 'float'         => 'right',
                 'dropdown'      => false,
-                'hamburger'     => 'none',
+                'hamburger'     => false
             );
         }        
 
