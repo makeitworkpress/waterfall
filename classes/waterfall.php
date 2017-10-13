@@ -150,8 +150,10 @@ class Waterfall {
     public function register( $type = '', $configurations = [] ) {
         
         // A type should be registered
-        if( ! $type )
-            return new WP_Error('type_missing', __('Please define a configuration type', 'waterfall'));
+        if( ! $type ) {
+            $error = new WP_Error('type_missing', __('Please define a configuration type', 'waterfall'));
+            return $error->get_error_message();
+        }
         
         // If we already have configurations, we merge the arrays
         if( isset($this->configurations[$type]) && is_array($this->configurations[$type]) )
@@ -164,15 +166,13 @@ class Waterfall {
     
     
     /**
-     * Executes all configuration registrations, so that the configurtions have effect.
+     * Executes all configuration registrations, so that the configurations have effect.
      *
      * @param string $type If defined, executes a specific registration, otherwise executes all
      */
     public function execute( $type = '' ) {
         
-        /**
-         * General filter for changing configurations upon execution
-         */
+        // General filter for changing configurations upon execution
         $this->configurations = apply_filters('waterfall_configurations_execute', $this->configurations);
         
         /**
@@ -208,7 +208,7 @@ class Waterfall {
                 $this->configurations['options']['params'] = isset($this->configurations['options']['params']) ? $this->configurations['options']['params'] : array();
                 
                 // Divergent framework
-                $execute = WP_Custom_Fields\Framework::instance($this->configurations[$key]['params']);
+                $this->options = WP_Custom_Fields\Framework::instance($this->configurations[$key]['params']);
                 
                 // Walk through all the option types
                 foreach( $this->configurations['options'] as $key => $options ) {
@@ -216,11 +216,11 @@ class Waterfall {
                     if( $key == 'params' )
                         continue;
                     
-                    $execute->add( $options['frame'], $options['fields'] );    
+                    $this->options->add( $options['frame'], $options['fields'] );    
                 }                
                 
             } else {
-                $execute = new $methods[$key]( $this->configurations[$key] );    
+                $this->{$key} = new $methods[$key]( $this->configurations[$key] );    
             }
             
         }

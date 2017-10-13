@@ -181,7 +181,15 @@ $colors = array(
                     'title'         => __('General Font Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ),                
+                ), 
+                array(
+                    'default'       => '',
+                    'css'           => 'h1, h2, h3, h4, h5, h6',
+                    'id'            => 'body_heading_color',
+                    'title'         => __('General Heading Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                 
                 array(
                     'default'       => '',
                     'css'           => 'a',
