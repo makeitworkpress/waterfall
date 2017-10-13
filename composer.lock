@@ -96,12 +96,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-router.git",
-                "reference": "721a270602c7fb0a5af2f58b2313e8601c3ff588"
+                "reference": "509039e07605e6b2688deaaec0dd126c334e0ff3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/721a270602c7fb0a5af2f58b2313e8601c3ff588",
-                "reference": "721a270602c7fb0a5af2f58b2313e8601c3ff588",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/509039e07605e6b2688deaaec0dd126c334e0ff3",
+                "reference": "509039e07605e6b2688deaaec0dd126c334e0ff3",
                 "shasum": ""
             },
             "type": "library",
@@ -109,7 +109,7 @@
                 "source": "https://github.com/makeitworkpress/wp-router/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-router/issues"
             },
-            "time": "2017-09-13T12:30:01+00:00"
+            "time": "2017-10-13T08:30:14+00:00"
         },
         {
             "name": "wp-updater",

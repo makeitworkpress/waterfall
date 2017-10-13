@@ -46,29 +46,6 @@
         }
     },
     {
-        "name": "wp-router",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-router.git",
-            "reference": "721a270602c7fb0a5af2f58b2313e8601c3ff588"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/721a270602c7fb0a5af2f58b2313e8601c3ff588",
-            "reference": "721a270602c7fb0a5af2f58b2313e8601c3ff588",
-            "shasum": ""
-        },
-        "time": "2017-09-13T12:30:01+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-router/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-router/issues"
-        }
-    },
-    {
         "name": "wp-updater",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -135,6 +112,29 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
+        }
+    },
+    {
+        "name": "wp-router",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-router.git",
+            "reference": "509039e07605e6b2688deaaec0dd126c334e0ff3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/509039e07605e6b2688deaaec0dd126c334e0ff3",
+            "reference": "509039e07605e6b2688deaaec0dd126c334e0ff3",
+            "shasum": ""
+        },
+        "time": "2017-10-13T08:30:14+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-router/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-router/issues"
         }
     }
 ]
