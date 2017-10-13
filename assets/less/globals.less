@@ -54,7 +54,7 @@ body:after {
 /* Image Styling
 ----------------------*/
 img {
-    display: inline-block;
+    display: block;
     height: auto;
     max-width: 100%;
     &.alignright {
@@ -69,6 +69,9 @@ img {
         display: block; 
         margin: 0 auto;
     }
+    .main-content & {
+        display: inlineblock;
+    }    
 }
 
 figcaption {
