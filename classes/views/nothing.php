@@ -33,19 +33,27 @@ class Nothing extends Base {
         
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] )
-           $args['atoms']['breadcrumbs']    = array();
+           $args['atoms']['breadcrumbs']    = array( 'atom' => 'breadcrumbs', 'properties' => array() );
         
         // YUP
         $args['atoms']['title']             = array( 
-            'style' => 'page-title', 
-            'tag'   => 'h1', 
-            'title' => $this->layout['header_title'] ? $this->layout['header_title'] : __('Woops! Nothing found here...', 'waterfall') 
+            'atom'  => 'title',
+            'properties' => array(
+                'style' => 'page-title', 
+                'tag'   => 'h1', 
+                'title' => $this->layout['header_title'] ? $this->layout['header_title'] : __('Woops! Nothing found here...', 'waterfall') 
+            )
         ); 
-        $args['atoms']['description']       = array( 'description' => $this->layout['header_description'] ? $this->layout['header_description'] : __('Try visiting another page or searching.', 'waterfall') ); 
+        $args['atoms']['description']       = array(
+            'atom'          => 'description',
+            'properties'    => array( 
+                'description' => $this->layout['header_description'] ? $this->layout['header_description'] : __('Try visiting another page or searching.', 'waterfall') 
+            )
+        ); 
         
         // Search
         if( $this->layout['header_search'] )
-            $args['atoms']['search'] = array();
+            $args['atoms']['search'] = array( 'atom' => 'search', 'properties' => array() );
         
         $args = apply_filters( 'waterfall_404_header_args', $args );
         

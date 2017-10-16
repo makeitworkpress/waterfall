@@ -29,18 +29,24 @@ class Shop extends Base {
 
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] ) {
-            $atoms['breadcrumbs'] = array();    
+            $atoms['breadcrumbs'] = array( 'atom' => 'breadcrumbs', 'properties' => array() );    
         }
         
         // Default title
         if ( apply_filters( 'woocommerce_show_page_title', true ) ) {
-            $atoms['archive-title'] = array('style' => 'woocommerce-products-header__title page-title', 'custom' => woocommerce_page_title(false) );    
+            $atoms['archive-title'] = array(
+                'atom'  => 'archive-title',
+                'properties' => array(
+                    'style' => 'woocommerce-products-header__title page-title', 
+                    'custom' => woocommerce_page_title(false) 
+                )
+            );    
         }
         
         // Add custom action from woocommerce as a a string
         ob_start();
         do_action( 'woocommerce_archive_description' );
-        $atoms['string'] = array( 'string' => ob_get_clean() );
+        $atoms['string'] = array( 'atom' => 'string', 'properties' => array('string' => ob_get_clean()) );
         
         $args = apply_filters('waterfall_product_archive_header_args', array(
             'atoms'     => $atoms,
@@ -121,7 +127,7 @@ class Shop extends Base {
         }
 
         if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' )
-            WP_Components\Build::molecule( 'sidebar',array('sidebars' => array('product-archive'), 'style' => 'sidebar') );         
+            WP_Components\Build::atom( 'sidebar',array('sidebars' => array('product-archive'), 'style' => 'sidebar') );         
         
     }    
 

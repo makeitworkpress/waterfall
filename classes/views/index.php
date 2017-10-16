@@ -51,15 +51,15 @@ class Index extends Base {
 
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] ) {
-            $atoms['breadcrumbs'] = array();    
+            $atoms['breadcrumbs'] = array( 'atom' => 'breadcrumbs', 'properties' => array() );    
         }
         
         // Default title
-        $atoms['archive-title'] = array('style' => 'page-title');    
+        $atoms['archive-title'] = array( 'atom' => 'archive-title', 'properties' => array('style' => 'page-title') );    
         
         // Add searchform on search pages
         if( is_search() ) {     
-            $atoms['search'] = array();
+            $atoms['search'] = array( 'atom' => 'search', 'properties' => array() );
         }
         
         $args = apply_filters( 'waterfall_archive_header_args', array(
@@ -88,16 +88,22 @@ class Index extends Base {
         global $wp_query;
         
         $args = apply_filters( 'waterfall_archive_posts_args', array(
-            'contentAtoms'      => $this->layout['content_content'] == 'none' ? array() : array( 'content' => array('type' => 'excerpt') ),
+            'contentAtoms'      => $this->layout['content_content'] == 'none' ? array() : array( 'content' => array( 'atom' => 'content', 'properties' => array('type' => 'excerpt')) ),
             'headerAtoms'       => $this->layout['content_type'] 
-                ? array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ), 'type' => array('style' => 'entry-meta') ) 
-                : array( 'title' => array( 'tag' => 'h2', 'link' => 'post' ) ),
+                ? array( 
+                    'title' => array( 'atom' => 'title', 'properties' => array('tag' => 'h2', 'link' => 'post') ), 
+                    'type' => array( 'atom' => 'type', 'properties' => array('style' => 'entry-meta') ) 
+                ) 
+                : array( 'title' => array( 'atom' => 'title', 'properties' => array('tag' => 'h2', 'link' => 'post') ) ),
             'footerAtoms'       => array( 
                 'button' => array( 
-                    'float' => 'right',
-                    'link'  => 'post', 
-                    'label' => $this->layout['content_button'], 
-                    'size'  => 'small'
+                    'atom'  => 'button',
+                    'properties' => array(
+                        'float' => 'right',
+                        'link'  => 'post', 
+                        'label' => $this->layout['content_button'], 
+                        'size'  => 'small'
+                    )
                 ) 
             ),
             'image'             => array( 
@@ -135,7 +141,7 @@ class Index extends Base {
         }       
         
         if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );
+            WP_Components\Build::atom( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );
         }
 
     }

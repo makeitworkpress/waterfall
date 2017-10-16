@@ -79,19 +79,25 @@ class Footer extends Base {
         if( is_numeric($this->customizer['footer_logo']) ) {
             $logo = wp_get_attachment_image_src( $this->customizer['footer_logo'], 'medium' );
             $atoms['logo'] = array(
-                'float'         => 'center',
-                'logoHeight'    => $logo[2],
-                'logoWidth'     => $logo[1],
-                'image'         => $logo[0]
+                'atom'       => 'logo',
+                'properties' => array(
+                    'float'         => 'center',
+                    'logoHeight'    => $logo[2],
+                    'logoWidth'     => $logo[1],
+                    'image'         => $logo[0]
+                )
             );
         }       
 
         // Copyright Message
         if( $this->layout['footer_copyright'] ) {
             $atoms['copyright'] = array(
-                'float'     => 'left',
-                'name'      => $this->layout['footer_copyright_name'],
-                'schema'    => $this->layout['footer_copyright_schema'] ? $this->layout['footer_copyright_schema'] : 'http://schema.org/Organization'
+                'atom'          => 'copyright',
+                'properties'    => array(
+                    'float'     => 'left',
+                    'name'      => $this->layout['footer_copyright_name'],
+                    'schema'    => $this->layout['footer_copyright_schema'] ? $this->layout['footer_copyright_schema'] : 'http://schema.org/Organization'
+                )
             );
         }
 
@@ -100,10 +106,13 @@ class Footer extends Base {
             $networks = get_social_networks();
             if( $networks ) {
                 $atoms['social'] = array(
-                    'colorBackground'   => $this->layout['footer_social_background'] ? false : true,
-                    'rounded'           => true,
-                    'float'             => 'right',
-                    'urls'              => $networks
+                    'atom'          => 'social',
+                    'properties'     => array(
+                        'colorBackground'   => $this->layout['footer_social_background'] ? false : true,
+                        'rounded'           => true,
+                        'float'             => 'right',
+                        'urls'              => $networks
+                    )
                 );
             }                
         }
@@ -111,10 +120,13 @@ class Footer extends Base {
         // Menu
         if( $this->layout['footer_menu'] ) {
             $atoms['menu'] = array(
-                'args'          => array('theme_location' => 'footer-menu'), 
-                'float'         => 'right',
-                'dropdown'      => false,
-                'hamburger'     => false
+                'atom'          => 'menu',
+                'properties'    => array(
+                    'args'          => array('theme_location' => 'footer-menu'), 
+                    'float'         => 'right',
+                    'dropdown'      => false,
+                    'hamburger'     => false
+                )
             );
         }        
 

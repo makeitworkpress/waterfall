@@ -107,25 +107,35 @@ class Singular extends Base {
         * Elements
         */
         if( $this->layout['header_breadcrumbs'] ) {
-            $args['atoms']['breadcrumbs'] = array('archive' => false);  
+            $args['atoms']['breadcrumbs'] = array( 'atom' => 'breadcrumbs', 'properties' => array('archive' => false) );  
         }    
         
         // Title
-        $args['atoms']['title'] = array( 'tag' => 'h1', 'style' => 'entry-title', 'schema' => is_single() ? 'name headline' : 'name' );   
+        $args['atoms']['title'] = array( 
+            'atom' => 'title',
+            'properties' => array(
+                'tag' => 'h1', 'style' => 'entry-title', 'schema' => is_single() ? 'name headline' : 'name' 
+            )
+        );   
         
         // Subtitle  
         if( $this->meta['page_header_subtitle']  ) {
-            $args['atoms']['description'] = array( 'description' =>  $this->meta['page_header_subtitle'] );
+            $args['atoms']['description'] = array( 
+                'atom'              => 'description',
+                'properties'        => array(
+                    'description'   =>  $this->meta['page_header_subtitle'] 
+                )
+            );
         }
             
         // Time
         if( $this->layout['header_date']  ) {
-            $args['atoms']['date'] = array( 'style' => 'entry-time' );    
+            $args['atoms']['date'] = array( 'atom' => 'data', 'properties' => array('style' => 'entry-time') );    
         }
     
         // Terms
         if( $this->layout['header_terms']  ) {
-            $args['atoms']['termlist'] = array( 'style' => 'entry-meta' );    
+            $args['atoms']['termlist'] = array( 'atom' => 'termlist', 'properties' => array('style' => 'entry-meta') );    
         }             
     
         // Featured image
@@ -136,9 +146,9 @@ class Singular extends Base {
         ); 
         
         if( $featured == 'before' ) {
-            $args['atoms'] = array( 'image' => $featuredArgs ) + $args['atoms'];
+            $args['atoms'] = array( 'image' => array( 'atom' => 'image', 'properties' => $featuredArgs) ) + $args['atoms'];
         } elseif( $featured == 'after' ) {
-            $args['atoms']['image'] = $featuredArgs;    
+            $args['atoms']['image'] = array( 'atom' => 'image', 'properties' => $featuredArgs );    
         } elseif( $featured == 'background' ) {
             $args['background'] = get_the_post_thumbnail_url( null, 'hd' );
         }                                             
@@ -148,19 +158,22 @@ class Singular extends Base {
             global $post;
     
             $args['atoms']['author'] = array(
-                'avatar'        => get_avatar($post->post_author, 64),
-                'description'   => false, 
-                'imageFloat'    => 'left', 
-                'prepend'       => __('Article by ', 'waterfall'),
-                'style'         => 'entry-author'
+                'atom'          => 'author',
+                'properties'    => array(
+                    'avatar'        => get_avatar($post->post_author, 64),
+                    'description'   => false, 
+                    'imageFloat'    => 'left', 
+                    'prepend'       => __('Article by ', 'waterfall'),
+                    'style'         => 'entry-author'
+                )
             ); 
         }                                                
         
         // Scroll-button
         if( $this->layout['header_scroll'] == 'default' ) {
-            $args['atoms']['scroll'] = array('icon' => false);
+            $args['atoms']['scroll'] = array( 'atom' => 'scroll', 'properties' => array( 'icon' => false) );
         } elseif( $this->layout['header_scroll'] == 'arrow' ) {
-            $args['atoms']['scroll'] = array('icon' => 'angle-down');    
+            $args['atoms']['scroll'] = array( 'atom' => 'scroll', 'properties' => array( 'icon' => 'angle-down') );    
         }     
         
         $args = apply_filters( 'waterfall_content_header_args', $args );
@@ -202,7 +215,7 @@ class Singular extends Base {
         }   
         
         if( $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::molecule( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );
+            WP_Components\Build::atom( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );
         }
 
     }
@@ -247,13 +260,16 @@ class Singular extends Base {
 
                 $args = apply_filters('waterfall_related_args', array( 
                     'args'              => $query,
-                    'contentAtoms'      => $this->layout['related_content'] == 'none' ? array() : array( 'content' => array('type' => 'excerpt') ),
+                    'contentAtoms'      => $this->layout['related_content'] == 'none' ? array() : array( 'content' => array( 'atom' => 'content', 'properties' => array('type' => 'excerpt')) ),
                     'footerAtoms'       => array(
                         'button' => array(
-                            'iconAfter'     => 'angle-right', 
-                            'iconVisible'   => 'hover', 
-                            'label'         => $this->layout['related_button'], 
-                            'size'          => 'small'
+                            'atom'          => 'button',
+                            'properties'    => array(
+                                'iconAfter'     => 'angle-right', 
+                                'iconVisible'   => 'hover', 
+                                'label'         => $this->layout['related_button'], 
+                                'size'          => 'small'
+                            )
                         ) 
                     ),
                     'image'             => array( 
@@ -316,7 +332,7 @@ class Singular extends Base {
             
         // Sharing Buttons
         if( $this->layout['footer_share'] ) {
-            $args['atoms']['share'] = array( 'fixed' => $this->layout['footer_share_fixed'] ? true : false );
+            $args['atoms']['share'] = array( 'atom' => 'share', 'properties' => array('fixed' => $this->layout['footer_share_fixed'] ? true : false) );
             $networks = array('facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp');
             
             // Networks should be enabled
@@ -330,12 +346,18 @@ class Singular extends Base {
         
         // Author
         if( $this->layout['footer_author'] ) {
-            $args['atoms']['author'] = array( 'imageFloat' => 'left', 'style' => 'entry-author' );
+            $args['atoms']['author'] = array( 
+                'atom'          => 'author',
+                'properties'    => array( 'imageFloat' => 'left', 'style' => 'entry-author' )
+            );
         }      
         
         // Comments
         if( $this->layout['footer_comments'] ) {
-            $args['atoms']['comments'] = array( 'closedText' => $this->layout['footer_comments_closed'] ? $this->layout['footer_comments_closed'] : __('Comments are closed.', 'waterfall') );
+            $args['atoms']['comments'] = array(
+                'atom'          => 'comments',
+                'properties'    => array( 'closedText' => $this->layout['footer_comments_closed'] ? $this->layout['footer_comments_closed'] : __('Comments are closed.', 'waterfall') )
+            );
         }    
         
         $args = apply_filters( 'waterfall_content_footer_args', $args );

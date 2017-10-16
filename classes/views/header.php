@@ -59,23 +59,29 @@ class Header extends Base {
         // Default header items
         $atoms = array(
             'logo'  => array( 
-                'float'             => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
-                'logoHeight'        => $logo ? $logo[2] : 64,
-                'image'             => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
-                'mobile'            => $this->customizer['logo_mobile'], 
-                'mobileTransparent' => $this->customizer['logo_mobile_transparent'], 
-                'transparent'       => $this->customizer['logo_transparent'],
-                'logoWidth'         => $logo ? $logo[1] : 306
+                'atom'              => 'logo',
+                'properties'        => array(
+                    'float'             => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
+                    'logoHeight'        => $logo ? $logo[2] : 64,
+                    'image'             => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
+                    'mobile'            => $this->customizer['logo_mobile'], 
+                    'mobileTransparent' => $this->customizer['logo_mobile_transparent'], 
+                    'transparent'       => $this->customizer['logo_transparent'],
+                    'logoWidth'         => $logo ? $logo[1] : 306
+                )
             ),
             'menu'  => array( 
-                'all'           => $this->layout['header_menu_all'] ? $this->layout['header_menu_all'] : __('View All Results', 'waterfall'), 
-                'args'          => array('theme_location' => 'header-menu'), 
-                'cart'          => $this->layout['header_menu_cart'] ? true : false, 
-                'float'         => $this->layout['header_menu_float'] ? $this->layout['header_menu_float'] : 'right',
-                'hamburger'     => $this->layout['header_menu_hamburger'] ? $this->layout['header_menu_hamburger'] : 'mobile',
-                'none'          => $this->layout['header_menu_none'] ? $this->layout['header_menu_none'] : __('Nothing found!', 'waterfall'),
-                'search'        => $this->layout['header_menu_search'] ? true : false,
-                'view'          => $this->layout['header_menu_style'] ? $this->layout['header_menu_style'] : 'default'
+                'atom'          => 'menu',
+                'properties'    => array(
+                    'all'           => $this->layout['header_menu_all'] ? $this->layout['header_menu_all'] : __('View All Results', 'waterfall'), 
+                    'args'          => array('theme_location' => 'header-menu'), 
+                    'cart'          => $this->layout['header_menu_cart'] ? true : false, 
+                    'float'         => $this->layout['header_menu_float'] ? $this->layout['header_menu_float'] : 'right',
+                    'hamburger'     => $this->layout['header_menu_hamburger'] ? $this->layout['header_menu_hamburger'] : 'mobile',
+                    'none'          => $this->layout['header_menu_none'] ? $this->layout['header_menu_none'] : __('Nothing found!', 'waterfall'),
+                    'search'        => $this->layout['header_menu_search'] ? true : false,
+                    'view'          => $this->layout['header_menu_style'] ? $this->layout['header_menu_style'] : 'default'
+                )
             )                
         );
     
@@ -84,11 +90,11 @@ class Header extends Base {
             $networks = get_social_networks();
     
             if( $networks ) {
-                $atoms['menu']['social'] = $networks;
+                $atoms['menu']['properties']['social'] = $networks;
             }
         }        
     
-        // Reset the order for right floats
+        // Reset the order for right floats :/
         if( $this->layout['header_menu_float'] == 'right') {
             $menu = $atoms['menu'];
             unset($atoms['menu']);
