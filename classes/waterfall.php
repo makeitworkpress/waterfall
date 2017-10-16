@@ -21,7 +21,7 @@ class Waterfall {
      *
      * @access private
      */
-    private $config; 
+    public $config; 
     
  
     /**
