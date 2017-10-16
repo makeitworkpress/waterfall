@@ -92,29 +92,6 @@
         }
     },
     {
-        "name": "wp-custom-fields",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "6a7d7057f7bf1989cad8525c18b0e7c482fc39b0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/6a7d7057f7bf1989cad8525c18b0e7c482fc39b0",
-            "reference": "6a7d7057f7bf1989cad8525c18b0e7c482fc39b0",
-            "shasum": ""
-        },
-        "time": "2017-10-16T08:26:21+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
-        }
-    },
-    {
         "name": "wp-router",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -158,6 +135,29 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-config/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-config/issues"
+        }
+    },
+    {
+        "name": "wp-custom-fields",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
+            "reference": "3b409935c93332e78c4da2aaf7cea0ec64e23b46"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/3b409935c93332e78c4da2aaf7cea0ec64e23b46",
+            "reference": "3b409935c93332e78c4da2aaf7cea0ec64e23b46",
+            "shasum": ""
+        },
+        "time": "2017-10-16T09:44:43+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
         }
     }
 ]
