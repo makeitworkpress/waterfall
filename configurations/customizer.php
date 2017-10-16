@@ -24,6 +24,14 @@ $customizer = array(
                     )    
                 ),
                 array(
+                    'css'           => array('selector' => '.components-container, .elementor-section.elementor-section-boxed > .elementor-container', 'property' => 'max-width'),
+                    'default'       => '',
+                    'id'            => 'layout_width',
+                    'title'         => __('Maximum Width of Content', 'waterfall'),
+                    'description'   => __('Adapts the maximum width of content containers. Also overwrites the content width for elementor.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ),                
+                array(
                     'default'       => '',
                     'id'            => 'lightbox',
                     'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
@@ -1790,7 +1798,13 @@ $layout = array(
                     'id'            => 'footer_social',
                     'title'         => __('Display Social Icons', 'waterfall'),
                     'type'          => 'checkbox'
-                ) 
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => 'footer_social_background',
+                    'title'         => __('Remove Background in Social Icons', 'waterfall'),
+                    'type'          => 'checkbox'
+                )                  
             )              
         )
     )

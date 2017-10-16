@@ -24,6 +24,7 @@ class Footer extends Base {
                 'footer_menu', 
                 'footer_sidebars', 
                 'footer_social', 
+                'footer_social_background', 
                 'footer_width' 
             ),                                    
         ) );
@@ -99,9 +100,10 @@ class Footer extends Base {
             $networks = get_social_networks();
             if( $networks ) {
                 $atoms['social'] = array(
-                    'rounded'   => true,
-                    'float'     => 'right',
-                    'urls'      => $networks
+                    'colorBackground'   => $this->layout['footer_social_background'] ? false : true,
+                    'rounded'           => true,
+                    'float'             => 'right',
+                    'urls'              => $networks
                 );
             }                
         }

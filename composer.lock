@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb6bda8f74296aec24d01f956ba6a1b4",
+    "content-hash": "cffc69bacaecb53e568b8f30e87b321a",
     "packages": [
         {
             "name": "wp-components",
@@ -28,17 +28,38 @@
             "time": "2017-10-04T12:07:27+00:00"
         },
         {
+            "name": "wp-config",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-config.git",
+                "reference": "54baf767024673837592d26f7933dccd5e042a70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/54baf767024673837592d26f7933dccd5e042a70",
+                "reference": "54baf767024673837592d26f7933dccd5e042a70",
+                "shasum": ""
+            },
+            "type": "library",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-config/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-config/issues"
+            },
+            "time": "2017-10-16T08:47:06+00:00"
+        },
+        {
             "name": "wp-custom-fields",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "4b4296de848fe693d8a8c79a54255e79ea19cb0c"
+                "reference": "6a7d7057f7bf1989cad8525c18b0e7c482fc39b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/4b4296de848fe693d8a8c79a54255e79ea19cb0c",
-                "reference": "4b4296de848fe693d8a8c79a54255e79ea19cb0c",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/6a7d7057f7bf1989cad8525c18b0e7c482fc39b0",
+                "reference": "6a7d7057f7bf1989cad8525c18b0e7c482fc39b0",
                 "shasum": ""
             },
             "type": "library",
@@ -46,7 +67,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2017-10-12T09:56:21+00:00"
+            "time": "2017-10-16T08:26:21+00:00"
         },
         {
             "name": "wp-enqueue",
@@ -96,12 +117,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-router.git",
-                "reference": "509039e07605e6b2688deaaec0dd126c334e0ff3"
+                "reference": "9717109d5e39359ac1af785cec1418532109324c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/509039e07605e6b2688deaaec0dd126c334e0ff3",
-                "reference": "509039e07605e6b2688deaaec0dd126c334e0ff3",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/9717109d5e39359ac1af785cec1418532109324c",
+                "reference": "9717109d5e39359ac1af785cec1418532109324c",
                 "shasum": ""
             },
             "type": "library",
@@ -109,7 +130,7 @@
                 "source": "https://github.com/makeitworkpress/wp-router/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-router/issues"
             },
-            "time": "2017-10-13T08:30:14+00:00"
+            "time": "2017-10-16T08:26:46+00:00"
         },
         {
             "name": "wp-updater",
@@ -137,8 +158,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wp-custom-fields": 20,
         "wp-components": 20,
+        "wp-config": 20,
+        "wp-custom-fields": 20,
         "wp-enqueue": 20,
         "wp-register": 20,
         "wp-router": 20,

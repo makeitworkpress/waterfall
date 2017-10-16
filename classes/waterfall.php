@@ -17,11 +17,11 @@ class Waterfall {
     
     
     /**
-     * Contains the configurations for the theme
+     * Contains the configurations object for this theme
      *
      * @access private
      */
-    private $configurations; 
+    private $config; 
     
  
     /**
@@ -132,38 +132,10 @@ class Waterfall {
                 'postMeta'          => array('frame' => 'meta', 'fields' => $postmeta),
             ) 
         ));
+
+        $this->config = new WP_Config\Config( $configurations );
         
-        // Register our configurations so that they can be executed
-        foreach( $configurations as $key => $configuration ) {
-            $this->register( $key, $configuration );    
-        }
-        
-    }
-    
-    /**
-     * Adds certain configurations for the theme and makes them filterable.
-     * This allows child themes to register custom configurations or overwrite current configurations
-     *
-     * @param string    $type               The type of configurations to add. Accepts enqueue, register, route, options and language
-     * @param array     $configurations     The configurations that you want to add to this type
-     */
-    public function register( $type = '', $configurations = [] ) {
-        
-        // A type should be registered
-        if( ! $type ) {
-            $error = new WP_Error('type_missing', __('Please define a configuration type', 'waterfall'));
-            return $error->get_error_message();
-        }
-        
-        // If we already have configurations, we merge the arrays
-        if( isset($this->configurations[$type]) && is_array($this->configurations[$type]) )
-            $configurations = wp_parse_args( $configurations, $this->configurations[$type] );
-        
-        // Set our configurations
-        $this->configurations[$type] = apply_filters('waterfall_' . $type, $configurations);
- 
-    }    
-    
+    }   
     
     /**
      * Executes all configuration registrations, so that the configurations have effect.
@@ -173,7 +145,7 @@ class Waterfall {
     public function execute( $type = '' ) {
         
         // General filter for changing configurations upon execution
-        $this->configurations = apply_filters('waterfall_configurations_execute', $this->configurations);
+        $this->config = apply_filters( 'waterfall_configurations', $this->config );
         
         /**
          * Execute our class actions
@@ -188,7 +160,7 @@ class Waterfall {
         /**
          * Loop through our configurations and execute given methods
          */
-        foreach( $this->configurations as $key => $configurations ) {
+        foreach( $this->config->configurations as $key => $configurations ) {
             
             // If we have a type executed, it should match a key
             if( $type && $type != $key )
@@ -205,13 +177,13 @@ class Waterfall {
             if( $key == 'options' ) {
                 
                 // Default parameters
-                $this->configurations['options']['params'] = isset($this->configurations['options']['params']) ? $this->configurations['options']['params'] : array();
+                $this->config->configurations['options']['params'] = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
                 
                 // Divergent framework
-                $this->options = WP_Custom_Fields\Framework::instance($this->configurations[$key]['params']);
+                $this->options = WP_Custom_Fields\Framework::instance($this->config->configurations['options']['params']);
                 
                 // Walk through all the option types
-                foreach( $this->configurations['options'] as $key => $options ) {
+                foreach( $this->config->configurations['options'] as $key => $options ) {
 
                     if( $key == 'params' )
                         continue;
@@ -220,7 +192,7 @@ class Waterfall {
                 }                
                 
             } else {
-                $this->{$key} = new $methods[$key]( $this->configurations[$key] );    
+                $this->{$key} = new $methods[$key]( $this->config->configurations[$key] );    
             }
             
         }
@@ -229,7 +201,7 @@ class Waterfall {
         /**
          * Add our custom language domain
          */
-        if( isset($this->configurations['language']) ) {
+        if( isset($this->config->configurations['language']) ) {
             
             if( is_dir( STYLESHEETPATH . '/languages' ) ) {
                 $path = STYLESHEETPATH . '/languages';
@@ -239,7 +211,7 @@ class Waterfall {
             
             $path = apply_filters('waterfall_language_path', $path);
             
-            load_theme_textdomain( $this->configurations['language'], $path );   
+            load_theme_textdomain( $this->config->configurations['language'], $path );   
         }
         
     }
