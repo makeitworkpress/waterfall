@@ -150,9 +150,6 @@ class Waterfall {
         // General filter for changing configurations upon execution
         $this->config = apply_filters( 'waterfall_configurations', $this->config );
 
-        // Save our additional post types to the database, so we can modify them later
-        $this->savePostTypes();
-
         /**
          * Execute our class actions
          */
@@ -202,8 +199,7 @@ class Waterfall {
             }
             
         }
-    
-            
+        
         /**
          * Add our custom language domain
          */
@@ -219,6 +215,9 @@ class Waterfall {
             
             load_theme_textdomain( $this->config->configurations['language'], $path );   
         }
+
+        // Save our additional post types to the database, so we can modify them later
+        $this->savePostTypes();       
         
     }
 
@@ -226,10 +225,20 @@ class Waterfall {
      * Saves the available public post types to the database so we can access them at an earlier point, such as in the configurations
      */
     private function savePostTypes() {
-        $post_types = get_post_types( array('public' => true) );
-        unset($post_types['attachment']);
 
-        add_option( 'waterfall_post_types', $post_types);
+        add_action('init', function() {
+            $commons    = apply_filters('waterfall_exlude_post_types', array('attachment', 'elementor_library'));
+            $post_types = get_post_types( array('public' => true) );
+
+            // Exlude common post types
+            foreach( $commons as $common ) {
+                unset($post_types[$common]);
+            }
+
+            update_option( 'waterfall_post_types', $post_types );
+
+        }, 20);
+
     }
     
 }
