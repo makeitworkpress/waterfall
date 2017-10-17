@@ -1992,7 +1992,15 @@ $typography = array(
         array(
             'id'            => 'headings_typography',
             'title'         => __('Headings', 'waterfall'),
-            'fields'    => array(                   
+            'fields'    => array(  
+                array(
+                    'default'       => '',
+                    'css'           => 'h1, h2, h3, h4, h5, h6',
+                    'columns'       => 'third',
+                    'id'            => 'heading16_typography',
+                    'title'         => __('All Headings', 'waterfall'),
+                    'type'          => 'typography'
+                ),                                 
                 array(
                     'default'       => '',
                     'css'           => 'h1.page-title, .page h1.entry-title',
@@ -2024,15 +2032,15 @@ $typography = array(
                     'title'         => __('Widget Titles', 'waterfall'),
                     'description'   => __('Determines the typography for widget headings.', 'waterfall'),
                     'type'          => 'typography'
-                ),
+                ), 
                 array(
                     'default'       => '',
-                    'css'           => 'h1, h2, h3, h4, h5, h6',
-                    'columns'       => 'third',
-                    'id'            => 'heading16_typography',
-                    'title'         => __('All Headings', 'waterfall'),
+                    'css'           => '.main-related h3',
+                    'id'            => 'related_title_typography',
+                    'title'         => __('Related Post Title', 'waterfall'),
+                    'description'   => __('Determines the typography for the title above related posts.', 'waterfall'),
                     'type'          => 'typography'
-                ),                                
+                ),                                                               
                 array(
                     'default'       => '',
                     'css'           => 'h1',

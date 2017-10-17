@@ -107,16 +107,17 @@ class Waterfall_View {
                 $sidebar = isset($layout['product_sidebar_position']) ? $layout['product_sidebar_position'] : 'default';     
             }          
             
-            // Pages with an overlay
+            // Pages with an overlay and adjustable width
             if( is_singular() ) {
 
                 if( get_theme_option('meta', 'page_header_overlay') ) {
                     $classes[] = 'waterfall-content-header-overlay';
                 }
+
+                $full           = get_theme_option('meta', 'content_width');
+                $customizer     = get_theme_option( 'layout', get_post_type() . '_content_width' );
                 
-                $full = get_theme_option('meta', 'content_width');
-                
-                if( isset($full['full']) && $full['full'] ) {
+                if( (isset($full['full']) && $full['full']) || $customizer == 'full' ) {
                     $sidebar    = 'default';
                     $classes[]  = 'waterfall-fullwidth-content';
                 }

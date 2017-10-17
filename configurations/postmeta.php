@@ -2,13 +2,16 @@
 /**
  * Loads our postmeta configurations
  */
+$types  = get_option('waterfall_post_types');
+$screen = $types ? $types : array('page', 'post');
+
 $postmeta = array(
     'context'       => 'normal',
     'id'            => 'waterfall_meta',
     'priority'      => 'high',
     'title'         => __('Waterfall Options', 'waterfall'),
     'type'          => 'post',
-    'screen'        => array('page', 'post'),    
+    'screen'        => $screen,
     'sections'      => array(
         array(
             'icon'      => 'web_asset',

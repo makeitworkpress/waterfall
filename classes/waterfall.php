@@ -133,6 +133,9 @@ class Waterfall {
             ) 
         ));
 
+        /**
+         * Set-up our configurations
+         */
         $this->config = new WP_Config\Config( $configurations );
         
     }   
@@ -146,7 +149,10 @@ class Waterfall {
         
         // General filter for changing configurations upon execution
         $this->config = apply_filters( 'waterfall_configurations', $this->config );
-        
+
+        // Save our additional post types to the database, so we can modify them later
+        $this->savePostTypes();
+
         /**
          * Execute our class actions
          */
@@ -214,6 +220,16 @@ class Waterfall {
             load_theme_textdomain( $this->config->configurations['language'], $path );   
         }
         
+    }
+
+    /**
+     * Saves the available public post types to the database so we can access them at an earlier point, such as in the configurations
+     */
+    private function savePostTypes() {
+        $post_types = get_post_types( array('public' => true) );
+        unset($post_types['attachment']);
+
+        add_option( 'waterfall_post_types', $post_types);
     }
     
 }

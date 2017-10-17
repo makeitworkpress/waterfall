@@ -129,6 +129,7 @@ abstract class Base {
         /**
          * Determines the settings for the content section
          */
+        
         // Look if our display of content inside .main-content should be fullwidth or not
         $contentWidth               = get_theme_option( 'layout', $this->type . '_content_width' );
         $metaContentWidth           = get_theme_option( 'meta', 'content_width' );
