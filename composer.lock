@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "ae2f6db7d6da1a7be66ba7c0f7b91e1a638b483e"
+                "reference": "715823c44ed1d966f4917cf14b70c24039e00b7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/ae2f6db7d6da1a7be66ba7c0f7b91e1a638b483e",
-                "reference": "ae2f6db7d6da1a7be66ba7c0f7b91e1a638b483e",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/715823c44ed1d966f4917cf14b70c24039e00b7a",
+                "reference": "715823c44ed1d966f4917cf14b70c24039e00b7a",
                 "shasum": ""
             },
             "type": "library",
@@ -25,7 +25,7 @@
                 "source": "https://github.com/makeitworkpress/wp-components/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-components/issues"
             },
-            "time": "2017-10-16T13:41:25+00:00"
+            "time": "2017-10-24T14:57:17+00:00"
         },
         {
             "name": "wp-config",
@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "3b409935c93332e78c4da2aaf7cea0ec64e23b46"
+                "reference": "5de1631a589d137bfebdb77fbfef2a1d48476a4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/3b409935c93332e78c4da2aaf7cea0ec64e23b46",
-                "reference": "3b409935c93332e78c4da2aaf7cea0ec64e23b46",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/5de1631a589d137bfebdb77fbfef2a1d48476a4e",
+                "reference": "5de1631a589d137bfebdb77fbfef2a1d48476a4e",
                 "shasum": ""
             },
             "type": "library",
@@ -67,7 +67,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2017-10-16T09:44:43+00:00"
+            "time": "2017-10-18T14:55:04+00:00"
         },
         {
             "name": "wp-enqueue",

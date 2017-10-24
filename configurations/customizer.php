@@ -1706,7 +1706,7 @@ $layout = array(
                     'default'       => __('Try visiting another page or searching.', 'waterfall'),
                     'id'            => '404_header_description',
                     'title'         => __('Default 404 Description', 'waterfall'),
-                    'type'          => 'input'
+                    'type'          => 'textarea'
                 ),     
                 array(
                     'default'       => '',

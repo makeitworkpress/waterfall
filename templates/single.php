@@ -105,7 +105,7 @@ while( have_posts() ) {
 
     </article>
 
-    <?php } 
+<?php } 
 
 /**
  * Retrieves our footer
