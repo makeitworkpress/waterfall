@@ -59,6 +59,7 @@ class Enqueue {
                 'localize'  => array(),     // If we need to add localized variables to our script
                 'media'     => 'all',       // The media for which the style is
                 'name'      => '',          // The object name that is used for localizing scripts
+                'type'      => '',          // Enfore type of style or script. The script automatically looks to the suffix, but some sources do not have a .js or.css suffix.
                 'ver'       => false        // Whether to include the version or not
             );
             
@@ -66,9 +67,10 @@ class Enqueue {
             $type   = substr($asset['src'], -2, 2);     // Check if we have a .js extension. A little bit dirty, but it works.
             
             // Determine the type and action based upon their type.
-            $asset['type']      = $type == 'js' ? 'script' : 'style';
-            $asset['function']  = 'wp_' . $asset['action'] . '_';
-            $asset['function'] .= $asset['type']; 
+            if( ! $asset['type'] || ! in_array( $asset['type'], ['script', 'style'] ) ) {
+                $asset['type']  = $type == 'js' ? 'script' : 'style';
+            }
+            $asset['function']  = 'wp_' . $asset['action'] . '_' . $asset['type'];
             $asset['mix']       = $type == 'js' ? $asset['in_footer'] : $asset['media'];
                 
             // Add the assets to their context
