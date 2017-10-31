@@ -69,29 +69,6 @@
         }
     },
     {
-        "name": "wp-config",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-config.git",
-            "reference": "54baf767024673837592d26f7933dccd5e042a70"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/54baf767024673837592d26f7933dccd5e042a70",
-            "reference": "54baf767024673837592d26f7933dccd5e042a70",
-            "shasum": ""
-        },
-        "time": "2017-10-16T08:47:06+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-config/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-config/issues"
-        }
-    },
-    {
         "name": "wp-custom-fields",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -144,20 +121,43 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "787decdddb4bbad4c7ef120fea23ed4ad9965494"
+            "reference": "b8884e030dc411036dcb2bd08b3212c041aa19cf"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/787decdddb4bbad4c7ef120fea23ed4ad9965494",
-            "reference": "787decdddb4bbad4c7ef120fea23ed4ad9965494",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/b8884e030dc411036dcb2bd08b3212c041aa19cf",
+            "reference": "b8884e030dc411036dcb2bd08b3212c041aa19cf",
             "shasum": ""
         },
-        "time": "2017-10-30T15:28:50+00:00",
+        "time": "2017-10-31T08:34:26+00:00",
         "type": "library",
         "installation-source": "dist",
         "support": {
             "source": "https://github.com/makeitworkpress/wp-components/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-components/issues"
+        }
+    },
+    {
+        "name": "wp-config",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-config.git",
+            "reference": "c4adb675c0ff5d82f8be3f8c1096c0c9e2100679"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/c4adb675c0ff5d82f8be3f8c1096c0c9e2100679",
+            "reference": "c4adb675c0ff5d82f8be3f8c1096c0c9e2100679",
+            "shasum": ""
+        },
+        "time": "2017-10-31T08:34:57+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-config/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-config/issues"
         }
     }
 ]

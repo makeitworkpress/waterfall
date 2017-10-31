@@ -14,7 +14,7 @@ class Config {
     /**
      * Contains our modified configurations
      *
-     * @access private
+     * @access public
      */
     public $configurations;
 
@@ -48,12 +48,12 @@ class Config {
      *
      * @todo Enable to adapt or modify configurations on a deeper level
      *
-     * @param string    $type               The subtype of configurations to add. Refers to a direct key of the configurations.
+     * @param string    $type               The subtype of configurations to add. Refers to a direct key within the configurations.
      * @param array     $configurations     The configurations that you want to add to this type
      */
     public function add( $type, $configurations= [] ) {
         
-        // Tyoe should be defined
+        // Type should be defined
         if( ! $type ) {
             $error = new WP_Error( 'type_missing', __('Please define a configuration type', 'wp-config') );
             return $error->get_error_message();
@@ -61,7 +61,7 @@ class Config {
 
         // If the configuration alreday exists for the array, we merge those arrays
         if( isset($this->configurations[$type]) && is_array($this->configurations[$type]) ) {
-            $configurations = wp_parse_args( $configurations, $this->configurations[$type] );    
+            $configurations = $this->multiParseArgs( $configurations, $this->configurations[$type] );    
         }
 
         // Now, set our configurations
@@ -96,6 +96,42 @@ class Config {
      * @todo Needs to be developed
      */
     private function sanitize() {
+
+    }
+
+    /**
+     * Allows us to parse arguments in a multidimensional array
+     * 
+     * @param array $args The arguments to parse
+     * @param array $default The default arguments
+     * 
+     * @return array $array The merged array
+     */
+    public function multiParseArgs( $args, $default ) {
+
+        if( ! is_array($default) ) {
+            return wp_parse_args( $args, $default );
+        }
+
+        $array = [];
+
+        // Loop through our multidimensional array
+        foreach( [$default, $args] as $elements ) {
+            foreach( $elements as $key => $element ) {
+
+                // If we have numbered keys
+                if( is_integer($key) ) {
+                    $array[] = $element;
+                } elseif( isset( $array[$key] ) && (is_array( $array[$key] )) ) {
+                    $array[$key] = $this->multiParseArgs( $element, $array[$key] );
+                } else {
+                    $array[$key] = $element;
+                }
+
+            }
+        }
+
+        return $array;
 
     }
 
