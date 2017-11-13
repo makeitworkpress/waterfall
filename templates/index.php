@@ -4,7 +4,7 @@
      *
      * Retrieves our header
      */
-    get_theme_header(); 
+    get_theme_header();
 
     // Displays the archive
     $archive = new Views\Index('archive');
