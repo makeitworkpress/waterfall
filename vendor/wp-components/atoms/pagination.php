@@ -6,6 +6,7 @@ global $wp_query;
 
 // Atom values
 $atom = wp_parse_args( $atom, array(
+    'format'        => '/page/%#%',
     'next'          => '&rsaquo;',
     'pagination'    => '',
     'prev'          => '&lsaquo;',
@@ -20,12 +21,11 @@ if( $atom['type'] == 'numbers' && ! $atom['pagination'] ) {
     $atom['pagination'] = paginate_links( array(
         'base'      => str_replace( 999999999, '%#%', get_pagenum_link( 999999999 ) ),
         'current'   => $atom['query']->query_vars['paged'] ? $atom['query']->query_vars['paged'] : max( 1, get_query_var('paged') ),
-        'format'    => '/page/%#%',
+        'format'    => $atom['format'],
         'mid_size'  => $atom['size'], 
         'next_text' => $atom['next'], 
         'prev_text' => $atom['prev'],      
-        'total'     => $atom['query']->max_num_pages,
-        'show_all'  => true
+        'total'     => $atom['query']->max_num_pages
     ));
     
 }
@@ -52,6 +52,11 @@ if( $atom['type'] == 'post' && ! $atom['pagination'] ) {
     $atom['pagination']  = get_previous_post_link( '%link', $atom['prev'] ); 
     $atom['pagination'] .= get_next_post_link( '%link', $atom['next'] );
     
+} 
+
+// If our atom is empty, we just return
+if( ! $atom['pagination'] ) {
+    return;
 } ?>
 
 <nav class="atom-pagination <?php echo $atom['style']; ?>" <?php echo $atom['inlineStyle']; ?> <?php echo $atom['data']; ?>>

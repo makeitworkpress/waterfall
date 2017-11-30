@@ -69,29 +69,6 @@
         }
     },
     {
-        "name": "wp-custom-fields",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "5de1631a589d137bfebdb77fbfef2a1d48476a4e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/5de1631a589d137bfebdb77fbfef2a1d48476a4e",
-            "reference": "5de1631a589d137bfebdb77fbfef2a1d48476a4e",
-            "shasum": ""
-        },
-        "time": "2017-10-18T14:55:04+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
-        }
-    },
-    {
         "name": "wp-enqueue",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -138,21 +115,44 @@
         }
     },
     {
+        "name": "wp-custom-fields",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
+            "reference": "7254ea2dd15e73fdcbb5f9bd694ae357fb8ff6e2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/7254ea2dd15e73fdcbb5f9bd694ae357fb8ff6e2",
+            "reference": "7254ea2dd15e73fdcbb5f9bd694ae357fb8ff6e2",
+            "shasum": ""
+        },
+        "time": "2017-11-30T14:31:02+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
+        }
+    },
+    {
         "name": "wp-components",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "2cde9a9d78963454ca29effc9037a3ecb0e9cb93"
+            "reference": "2249908ab118b0b85d0169345ce159f9c1eb1537"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/2cde9a9d78963454ca29effc9037a3ecb0e9cb93",
-            "reference": "2cde9a9d78963454ca29effc9037a3ecb0e9cb93",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/2249908ab118b0b85d0169345ce159f9c1eb1537",
+            "reference": "2249908ab118b0b85d0169345ce159f9c1eb1537",
             "shasum": ""
         },
-        "time": "2017-11-13T10:37:15+00:00",
+        "time": "2017-11-30T16:37:23+00:00",
         "type": "library",
         "installation-source": "dist",
         "support": {

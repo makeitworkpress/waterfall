@@ -36,25 +36,26 @@
 /**
  * We need to align our rows with the rest of the theme
  */
-.elementor-row {
-    .elementor-column-gap-narrow & {
-        margin: 0 -5px;
-        width: ~"calc(100% + 10px)";
-    }
-    .elementor-column-gap-default & {
-        margin: 0 -10px;
-        width: ~"calc(100% + 20px)";
-    }    
-    .elementor-column-gap-extended & {
-        margin: 0 -15px;
-        width: ~"calc(100% + 30px)";
-    }
-    .elementor-column-gap-wide & {
-        margin: 0 -20px;
-        width: ~"calc(100% + 40px)";
-    }
-    .elementor-column-gap-wider & {
-        margin: 0 -30px;
-        width: ~"calc(100% + 60px)";
-    }    
+.elementor-column-gap-narrow > .elementor-row {
+    margin: 0 -5px;
+    width: ~"calc(100% + 10px)";
+}
+
+.elementor-column-gap-default > .elementor-row {
+    margin: 0 -10px;
+    width: ~"calc(100% + 20px)";
+}
+    
+.elementor-column-gap-extended > .elementor-row {
+    margin: 0 -15px;
+    width: ~"calc(100% + 30px)";
+}
+
+.elementor-column-gap-wide > .elementor-row {
+    margin: 0 -20px;
+    width: ~"calc(100% + 40px)";
+}
+.elementor-column-gap-wider > .elementor-row {
+    margin: 0 -30px;
+    width: ~"calc(100% + 60px)";
 }

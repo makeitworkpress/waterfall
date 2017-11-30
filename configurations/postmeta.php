@@ -123,7 +123,7 @@ $postmeta = array(
                 ),     
                 array(
                     'columns'       => 'fourth',
-                    'css'           => '.main-header h1, .main-header h2, .main-header, .main-header a',
+                    'css'           => '.main-header h1, .main-header h2, .main-header h3, .main-header h4, .main-header h5, .main-header h6, .main-header, .main-header a, .main-header .entry-meta a, .main-header .entry-time',
                     'id'            => 'page_header_color',
                     'title'         => __('Custom Text Color Page Header', 'waterfall'),
                     'type'          => 'colorpicker'

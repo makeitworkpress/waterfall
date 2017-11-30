@@ -1,57 +1,38 @@
 <?php
 /**
  * Returns a default logo
- * If developers only provide a src, the image element is rendered automatically. In that case, they need to provide a certain height and width
+ * We also support some variants. The caveat is that we add some small requests for each logo
  */
 
 // Atom values
 $atom = wp_parse_args( $atom, array(
-    'alt'               => __('Logo', 'components'),
-    'logoHeight'        => '', 
-    'image'             => '', // The logo src
-    'mobile'            => '', // The logo src for mobile display
-    'mobileTransparent' => '', // The logo src for transparent mobile display
-    'scheme'            => 'http://schema.org/Organization',
-    'title'             => esc_attr( get_bloginfo('name') ),
-    'transparent'       => '', // The transparent logosrc
-    'url'               => esc_url( home_url('/') ),
-    'logoWidth'         => ''
+    'alt'                => __('Logo', 'components'),
+    'default'            => ['src' => '', 'height' => '', 'width' => ''], // The logo src
+    'defaultTransparent' => ['src' => '', 'height' => '', 'width' => ''], // The logo src for transparent headers
+    'mobile'             => ['src' => '', 'height' => '', 'width' => ''], // The logo src for mobile display
+    'mobileTransparent'  => ['src' => '', 'height' => '', 'width' => ''], // The logo src for mobile display for transparent headers
+    'scheme'             => 'http://schema.org/Organization',
+    'tablet'             => ['src' => '', 'height' => '', 'width' => ''], // The logo src for tablet display
+    'tabletTransparent'  => ['src' => '', 'height' => '', 'width' => ''], // The logo src for tablet display for transparent headers
+    'title'              => esc_attr( get_bloginfo('name') ),
+    'url'                => esc_url( home_url('/') )
 ) ); 
 
-if( ! $atom['image'] )
-    return; 
-
-// If the height or width are not defined, we retrieve them with PHP. Throws an error if OpenSSL is not enabled!
-if( ! $atom['logoHeight'] || ! $atom['logoWidth']) {
-    list($width, $height) = getimagesize( $atom['image'] );
-    $atom['logoHeight'] = $height;
-    $atom['logoWidth'] = $width;
-} 
-
-// Declare our scrolled and mobile views
-$data = array( 'mobile', 'mobileTransparent', 'transparent' );
-
-// Our data attributes
-foreach($data as $type) {
-    if( $atom[$type] ) {
-        $atom['data'] .= ' data-' . $type . '="' . $atom[$type]  . '"';
-    }
-}
-
-// Additional class to hide the logo if we have data. This prevents flickering when the logo loads.
-if( $atom['data'] ) {
-    $atom['style'] .= ' atom-logo-data';
-} ?>
+if( ! $atom['default']['src'] )
+    return; ?>
 
 <a class="atom-logo <?php echo $atom['style']; ?>" href="<?php echo $atom['url']; ?>" rel="home" itemscope="itemscope" itemtype="<?php echo $atom['scheme']; ?>" <?php echo $atom['inlineStyle']; ?> <?php echo $atom['data']; ?>>
-
     <?php 
-        // Default image
-        if( $atom['image'] ) {
-            echo '<img src="' . $atom['image'] . '" itemprop="image" height="' . $atom['logoHeight'] . '" width="' . $atom['logoWidth'] . '" alt="' . $atom['alt'] . '" />';    
-        } 
-    
+        foreach( ['mobile', 'mobileTransparent', 'tablet', 'tabletTransparent', 'default', 'defaultTransparent'] as $image ) {
+
+            // We should have either of these
+            if( ! $atom[$image]['src'] || ! $atom[$image]['width'] || ! $atom[$image]['height'] ) {
+                continue;
+            }
     ?>
-    <meta itemprop="name" content="<?php echo $atom['title']; ?>" />
-    
+        <img class="atom-logo-<?php echo $image; ?>" src="<?php echo $atom[$image]['src']; ?>" height="<?php echo $atom[$image]['height']; ?>" width="<?php echo $atom[$image]['width']; ?>" alt="<?php echo $atom['alt']; ?>" />
+    <?php
+        } 
+    ?>
+    <meta itemprop="name" content="<?php echo $atom['title']; ?>" />  
 </a>

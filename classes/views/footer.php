@@ -52,22 +52,22 @@ class Footer extends Base {
         // Sidebars
         switch( $this->layout['footer_sidebars'] ) {
             case 'full':
-                $sidebarGrid = array('footer-one' => 'full');
+                $sidebarGrid = array('footer-one' => 'components-full-grid');
                 break;
             case 'half':
-                $sidebarGrid = array('footer-one' => 'half', 'footer-two' => 'half');
+                $sidebarGrid = array('footer-one' => 'components-half-grid', 'footer-two' => 'components-half-grid');
                 break;
             case 'third':
-                $sidebarGrid = array('footer-one' => 'third', 'footer-two' => 'third', 'footer-three' => 'third');
+                $sidebarGrid = array('footer-one' => 'components-third-grid', 'footer-two' => 'components-third-grid', 'footer-three' => 'components-third-grid');
                 break;
             case 'fourth':
-                $sidebarGrid = array('footer-one' => 'fourth', 'footer-two' => 'fourth', 'footer-three' => 'fourth', 'footer-four' => 'fourth');
+                $sidebarGrid = array('footer-one' => 'components-fourth-grid', 'footer-two' => 'components-fourth-grid', 'footer-three' => 'components-fourth-grid', 'footer-four' => 'components-fourth-grid');
                 break;
             case 'fifth':
-                $sidebarGrid = array('footer-one' => 'fifth', 'footer-two' => 'fifth', 'footer-three' => 'fifth', 'footer-four' => 'fifth', 'footer-five' => 'fifth');
+                $sidebarGrid = array('footer-one' => 'components-fifth-grid', 'footer-two' => 'components-fifth-grid', 'footer-three' => 'components-fifth-grid', 'footer-four' => 'components-fifth-grid', 'footer-five' => 'components-fifth-grid');
                 break;
             default:
-                $sidebarGrid = array('footer-one' => 'third', 'footer-two' => 'third', 'footer-three' => 'third');
+                $sidebarGrid = array('footer-one' => 'components-third-grid', 'footer-two' => 'components-third-grid', 'footer-three' => 'components-third-grid');
         }
 
         // We do not have sidebars

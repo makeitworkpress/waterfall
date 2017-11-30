@@ -2,6 +2,8 @@
 /**
  * Contains all functionalities which determine the display of this theme
  */
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 class Waterfall_View {
     
     /**

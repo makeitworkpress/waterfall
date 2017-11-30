@@ -134,7 +134,7 @@ abstract class Base {
         $contentWidth               = get_theme_option( 'layout', $this->type . '_content_width' );
         $metaContentWidth           = get_theme_option( 'meta', 'content_width' );
 
-        if( $contentWidth == 'full' || (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) {
+        if( $contentWidth == 'full' || ( is_singular() && (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) ) {
             $this->contentContainer = false;
         }
 

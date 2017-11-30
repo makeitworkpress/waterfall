@@ -64,17 +64,23 @@ class Singular extends Base {
     /**
      * Displays structured data for single types
      */
-     public function structuredData() { ?>
-        <span class="components-structured-data" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
-            <meta itemprop="name" content="<?php the_author(); ?>">
-        </span>
-        <span class="components-structured-data" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Person">
-            <meta itemprop="name" content="<?php the_author(); ?>">
-        </span>                    
-        <meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>" />
-        <meta itemprop="datePublished" content="<?php the_date('c') ?>" />
-        <meta itemprop="dateModified" content="<?php the_modified_date('c') ?>" />        
-    <?php }    
+    public function structuredData() {
+
+        $logo = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : get_template_directory_uri() . '/assets/img/waterfall.png';
+
+        ?>
+            <span class="components-structured-data" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <meta itemprop="name" content="<?php the_author(); ?>">
+            </span>
+            <span class="components-structured-data" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
+                <meta itemprop="name" content="<?php bloginfo('name'); ?>">
+                <meta itemprop="logo" content="<?php echo $logo; ?>">
+            </span>                    
+            <meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>" />
+            <meta itemprop="datePublished" content="<?php the_date('c') ?>" />
+            <meta itemprop="dateModified" content="<?php the_modified_date('c') ?>" />        
+        <?php 
+    }    
 
     /**
      * Displays the header

@@ -141,7 +141,7 @@ class Waterfall {
     }   
     
     /**
-     * Executes all configuration registrations, so that the configurations have effect.
+     * Executes all configuration registrations, so that the configurations have effect. This is executed on after_theme_setup.
      *
      * @param string $type If defined, executes a specific registration, otherwise executes all
      */
@@ -155,6 +155,7 @@ class Waterfall {
          */
         $methods = apply_filters( 'waterfall_execute_methods', [
             'enqueue'   => 'WP_Enqueue\Enqueue',
+            'elementor' => 'Waterfall_Elementor',
             'register'  => 'WP_Register\Register', 
             'routes'    => 'WP_Router\Router', 
             'options'   => 'WP_Custom_Fields\Framework'
