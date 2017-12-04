@@ -247,8 +247,8 @@ $colors = array(
                     'css'           => array( 'selector' => '.header .menu', 'property' => 'background-color' ),
                     'default'       => '',
                     'id'            => 'navigation_background',
-                    'title'         => __('Menu Background Color', 'waterfall'),
-                    'description'   => __('This color also applies to the default mobile menu.', 'waterfall'),
+                    'title'         => __('Mobile Menu Background Color', 'waterfall'),
+                    'description'   => __('This color applies to the default mobile menu.', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ),                
@@ -918,28 +918,28 @@ $layout = array(
                 ),
                 array(
                     'default'       => '',
-                    'id'            => 'header_menu_search',
-                    'title'         => __('Add a Search Icon to the Menu', 'waterfall'),
+                    'id'            => 'header_search',
+                    'title'         => __('Add a Search Icon to the Header', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
                 array(
                     'default'       => __('Nothing found!', 'waterfall'),
-                    'id'            => 'header_menu_none',
+                    'id'            => 'header_search_none',
                     'title'         => __('Nothing Found Search Text', 'waterfall'),
                     'description'   => __('Text when nothing is found in search', 'waterfall'),
                     'type'          => 'input'
                 ),
                 array(
                     'default'       => __('View All Results', 'waterfall'),
-                    'id'            => 'header_menu_all',
+                    'id'            => 'header_search_all',
                     'title'         => __('All Results Search Text', 'waterfall'),
                     'description'   => __('Text for link to all the results', 'waterfall'),
                     'type'          => 'input'
                 ),                
                 array(
                     'default'       => '',
-                    'id'            => 'header_menu_social',
-                    'title'         => __('Add Social Icons to the Menu', 'waterfall'),
+                    'id'            => 'header_social',
+                    'title'         => __('Add Social Icons to the Header', 'waterfall'),
                     'type'          => 'checkbox'
                 ),     
                 array(
@@ -1818,7 +1818,7 @@ if( class_exists( 'WooCommerce' ) ) {
         'fields'        => array(
             array(
                 'default'       => '',
-                'id'            => 'header_menu_cart',
+                'id'            => 'header_cart',
                 'title'         => __('Add a Shopping Cart to the Menu', 'waterfall'),
                 'description'   => __('Requires the WooCommerce plugin.', 'waterfall'),
                 'type'          => 'checkbox'
