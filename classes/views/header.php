@@ -54,11 +54,11 @@ class Header extends Base {
          * The header atoms form the building blocks for the header
          */
 
-        $logo                   = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : false;
-        $logoTransparent        = is_numeric( $this->customizer['logo_transparent'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : false;
-        $logoMobile             = is_numeric( $this->customizer['logo_mobile'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : false;
-        $logoMobileTransparent  = is_numeric( $this->customizer['logo_mobile_transparent'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : false;
-    
+        $logo                   = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'medium' ) : false;
+        $logoTransparent        = is_numeric( $this->customizer['logo_transparent'] ) ? wp_get_attachment_image_src( $this->customizer['logo_transparent'], 'medium' ) : false;
+        $logoMobile             = is_numeric( $this->customizer['logo_mobile'] ) ? wp_get_attachment_image_src( $this->customizer['logo_mobile'], 'medium' ) : false;
+        $logoMobileTransparent  = is_numeric( $this->customizer['logo_mobile_transparent'] ) ? wp_get_attachment_image_src( $this->customizer['logo_mobile_transparent'], 'medium' ) : false;
+       
         // Default header items
         $atoms = array(
             'logo'  => array( 
@@ -128,7 +128,13 @@ class Header extends Base {
             unset( $atoms['menu'] );
         
         // Set-up our transparency
-        $transparent    = isset($this->meta['transparent_header']['transparent']) && $this->meta['transparent_header']['transparent'] ? true : $this->layout['header_transparent'];  
+        $transparent    = isset($this->meta['transparent_header']['transparent']) && $this->meta['transparent_header']['transparent'] ? true : $this->layout['header_transparent']; 
+        
+        // For non transparent areas, the logo's are not load - reduces some kb's.
+        if( ! $transparent ) {
+            unset($atoms['logo']['properties']['defaultTransparent']);
+            unset($atoms['logo']['properties']['mobileTransparent']);
+        }
     
         $args = apply_filters( 'waterfall_header_args', array(
             'atoms'         => $atoms,

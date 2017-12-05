@@ -82,9 +82,7 @@ class Footer extends Base {
                 'atom'       => 'logo',
                 'properties' => array(
                     'float'         => 'center',
-                    'logoHeight'    => $logo[2],
-                    'logoWidth'     => $logo[1],
-                    'image'         => $logo[0]
+                    'default'       => ['src' => $logo[0], 'height' => $logo[2], 'width' => $logo[1]]
                 )
             );
         }       
