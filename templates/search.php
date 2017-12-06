@@ -20,6 +20,8 @@
 
 <div class="main-content">
 
+    <?php do_action('waterfall_before_search_content_container'); ?>
+
     <?php if( $search->contentContainer ) { ?>
         <div class="components-container">    
     <?php } ?>
@@ -42,7 +44,9 @@
 
     <?php if( $search->contentContainer ) { ?>
         </div>    
-    <?php } ?>    
+    <?php } ?>
+
+    <?php do_action('waterfall_after_search_content_container'); ?>    
 
 </div>
 

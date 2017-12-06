@@ -29,6 +29,8 @@ while( have_posts() ) {
         ?>
 
         <div class="main-content">
+
+            <?php do_action('waterfall_before_' . $postView->type . '_content_container'); ?>
         
             <?php if( $postView->contentContainer ) { ?>
                 <div class="components-container">    
@@ -53,6 +55,8 @@ while( have_posts() ) {
             <?php if( $postView->contentContainer ) { ?>
                 </div>    
             <?php } ?>
+
+            <?php do_action('waterfall_after_' . $postView->type . '_content_container'); ?>
             
         </div>
 

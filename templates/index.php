@@ -20,6 +20,8 @@
 
 <div class="main-content">
 
+    <?php do_action('waterfall_before_archive_content_container'); ?>
+
     <?php if( $archive->contentContainer ) { ?>
         <div class="components-container">    
     <?php } ?>
@@ -43,6 +45,8 @@
     <?php if( $archive->contentContainer ) { ?>
         </div>    
     <?php } ?>
+
+    <?php do_action('waterfall_after_archive_content_container'); ?>
 
 </div>
 
