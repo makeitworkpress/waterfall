@@ -59,3 +59,17 @@
     margin: 0 -30px;
     width: ~"calc(100% + 60px)";
 }
+
+/**
+ * Columns inside columns don't have top or bottom gaps
+ */
+.elementor-column-wrap {
+    .elementor-row .elementor-column-wrap.elementor-element-populated {
+        padding-top: 0;
+    }
+    .waterfall-fullwidth-content & {
+        .elementor-section .elementor-container {
+            padding: 0;
+        } 
+    }
+}
