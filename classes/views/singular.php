@@ -53,6 +53,16 @@ class Singular extends Base {
                 'footer_share',
                 'footer_share_fixed',
                 'footer_width',
+                // Share
+                'share_facebook',
+                'share_twitter',
+                'share_linkedin',
+                'share_google-plus',
+                'share_pinterest',
+                'share_reddit',
+                'share_stumbleupon',
+                'share_pocket',
+                'share_whatsapp',
             ),
             'meta'  => array(
                 'page_header_subtitle'    
@@ -342,9 +352,9 @@ class Singular extends Base {
             $networks = array('facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp');
             
             // Networks should be enabled
-            foreach($networks as $network) {
-                if( get_theme_option( 'layout', $this->type . '_share_' . $network ) ) {
-                    $args['atoms']['share']['enabled'][] = $network;
+            foreach( $networks as $network ) {
+                if( $this->layout['share_' . $network] ) {
+                    $args['atoms']['share']['properties']['enabled'][] = $network;
                 }
             }
 
