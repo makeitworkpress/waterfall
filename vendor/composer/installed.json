@@ -115,29 +115,6 @@
         }
     },
     {
-        "name": "wp-custom-fields",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "096d17aa6dad550c8897785d38c6b1b8aac46402"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/096d17aa6dad550c8897785d38c6b1b8aac46402",
-            "reference": "096d17aa6dad550c8897785d38c6b1b8aac46402",
-            "shasum": ""
-        },
-        "time": "2017-12-05T14:37:45+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
-        }
-    },
-    {
         "name": "wp-components",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -158,6 +135,29 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-components/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-components/issues"
+        }
+    },
+    {
+        "name": "wp-custom-fields",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
+            "reference": "52fffc65a9b449d8e87b2be29d85da287d1ebbb3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/52fffc65a9b449d8e87b2be29d85da287d1ebbb3",
+            "reference": "52fffc65a9b449d8e87b2be29d85da287d1ebbb3",
+            "shasum": ""
+        },
+        "time": "2017-12-14T14:26:25+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
         }
     }
 ]
