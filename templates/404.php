@@ -14,7 +14,7 @@
         /**
          * Initializes our 404 page
          */
-        $nothing = new Views\Nothing('404');
+        $nothing = new Views\Nothing();
         
         do_action('waterfall_before_404_header');
     

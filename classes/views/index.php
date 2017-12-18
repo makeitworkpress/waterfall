@@ -5,6 +5,8 @@
 namespace Views;
 use WP_Components as WP_Components;
 
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 class Index extends Base {
 
     /**
@@ -138,7 +140,7 @@ class Index extends Base {
         // Retrieve our properties for the sidebar
         if( ! isset($this->layout) ) {
             $this->getProperties(); 
-        }       
+        }
         
         if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' ) {
             WP_Components\Build::atom( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );

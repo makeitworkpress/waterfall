@@ -58,6 +58,8 @@ class Waterfall_View {
          */
         add_filter( 'body_class', function($classes) {
 
+            global $wp_query;
+
             /**
              * Inbuild
              */
@@ -75,57 +77,38 @@ class Waterfall_View {
                 $classes[] = 'waterfall-lightbox';
             }
 
-            // Sidebar lay-out classes
-            if( is_page() ) {
-                $sidebar = isset($layout['page_sidebar_position']) ? $layout['page_sidebar_position'] : 'default'; 
-            }
-
             // Default archives
             if( is_archive() ) {
-
-                global $wp_query;
-
-                if( class_exists('WooCommerce') && $wp_query->query['post_type'] == 'product' ) {
-                    $sidebar = isset($layout['product_archive_sidebar_position']) ? $layout['product_archive_sidebar_position'] : 'default';
-                } else {
-                    $sidebar = isset($layout['archive_sidebar_position']) ? $layout['archive_sidebar_position'] : 'default'; 
-                }
+                $type       = get_archive_post_type();
+                $sidebar    = isset($layout[$type . '_archive_sidebar_position']) ? $layout[$type . '_archive_sidebar_position'] : 'default';
             }
             
             // Search Archives
             if( is_search() ) {
                 $sidebar = isset($layout['search_sidebar_position']) ? $layout['search_sidebar_position'] : 'default';  
-            } 
+            }
 
-            // Single Posts
-            if( is_single() ) {
-                $sidebar = isset($layout['post_sidebar_position']) ? $layout['post_sidebar_position'] : 'default';     
-            } 
-            
-            /**
-             * WooCommerce
-             */
-            if( class_exists('WooCommerce') && is_product() ) {
-                $sidebar = isset($layout['product_sidebar_position']) ? $layout['product_sidebar_position'] : 'default';     
-            }          
-            
-            // Pages with an overlay and adjustable width
+            // Single Posts and pages
             if( is_singular() ) {
-
+                $type       = $wp_query->queried_object->post_type;
+                $sidebar    = isset($layout[  $type . '_sidebar_position']) ? $layout[ $type . '_sidebar_position'] : 'default'; 
+                
+            
+                // Posts or pages with an overlay and adjustable width
                 if( get_theme_option('meta', 'page_header_overlay') ) {
                     $classes[] = 'waterfall-content-header-overlay';
                 }
 
-                $full           = get_theme_option('meta', 'content_width');
+                $full           = get_theme_option( 'meta', 'content_width' );
                 $customizer     = get_theme_option( 'layout', get_post_type() . '_content_width' );
                 
                 if( (isset($full['full']) && $full['full']) || $customizer == 'full' ) {
                     $sidebar    = 'default';
                     $classes[]  = 'waterfall-fullwidth-content';
-                }
+                }          
 
-            }
-
+            } 
+                     
             $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');
             
             return $classes;

@@ -2,6 +2,8 @@
 /**
  * Contains standard scripts
  */
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 $enqueue = array(
     array( 'handle' => 'waterfall', 'src' => get_template_directory_uri() . '/assets/css/waterfall.min.css' ),
 );

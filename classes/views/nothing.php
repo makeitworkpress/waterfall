@@ -5,6 +5,8 @@
 namespace Views;
 use WP_Components as WP_Components;
 
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 class Nothing extends Base {
 
     /**

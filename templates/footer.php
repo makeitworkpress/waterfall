@@ -11,7 +11,7 @@
 
             do_action('waterfall_before_footer');
             
-            // Echoes the footer elements. Can be found in functions/templates.php. 
+            // Echoes the footer elements.
             $footer = new Views\Footer();
             $footer->footer();
 

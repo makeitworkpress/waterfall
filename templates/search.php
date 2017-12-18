@@ -7,7 +7,7 @@
     get_theme_header();
 
     // Initializes our search
-    $search = new Views\Index('search');
+    $search = new Views\Index();
     
     // Build the header for our search page
     do_action('waterfall_before_search_header');

@@ -4,6 +4,8 @@
  */
 namespace Views;
 
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 abstract class Base {
     
     /**
@@ -48,8 +50,25 @@ abstract class Base {
      * @param string $type The optional type of content we are looking at. This determines a context (is_page, is_single, etc) based prefix for retrieving settings
      */
     public function __construct( $type = '' ) {
-        $this->prefix = '';
-        $this->type   = $type;
+
+        global $wp_query;
+
+        // Determine our type
+        if( $type == 'archive' ) {
+            $this->type = get_archive_post_type() . '_archive';
+        } elseif( $type ) { 
+            $this->type = $type;
+        } elseif( is_singular() ) { 
+            global $post;
+        } elseif( is_search() ) { 
+            $this->type = 'search';
+        }elseif( is_404() ) { 
+            $this->type = '404';
+        } else {
+            $this->type = $type;
+        }
+
+        // Set our properties
         $this->setProperties();
 
         // Determine odd layout properties that can occur for archives and singulars
@@ -62,7 +81,7 @@ abstract class Base {
 
     /**
      * Sets all basic properties that are retrieved from our customizer or meta settings. Can only be defined in child class
-     * This function should define $this->properties and $this->prefix in it's child classes if this is not defined in one of the methods
+     * This function should define $this->properties
      */
     abstract protected function setProperties();
 
@@ -146,11 +165,6 @@ abstract class Base {
         if( $relatedWidth == 'full' ) {
             $this->relatedContainer = false;
         }
-
-        // Pages never have a related section
-        if( is_page() ) {
-            $this->relatedSection   = false;
-        } 
 
         // And obviously, we also bail out if disabled
         if( $this->disabled('related') ) {

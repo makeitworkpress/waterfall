@@ -9,14 +9,15 @@ get_theme_header();
 // Start our loop
 while( have_posts() ) {
         
-    the_post(); ?>
+    the_post(); 
 
-    <article <?php post_class(); ?> itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+    // Initialize our post
+    $postView = new Views\Singular(); ?>
+
+    <article <?php post_class(); ?> <?php echo $postView->scheme; ?>>
 
         <?php
 
-            // Initialize our post
-            $postView = new Views\Singular( 'post' );
             $postView->structuredData();
 
             // The header of our article

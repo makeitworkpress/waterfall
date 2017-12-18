@@ -2,6 +2,8 @@
 /**
  * Loads our postmeta configurations
  */
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 $types  = get_option('waterfall_post_types');
 $screen = $types ? $types : array('page', 'post');
 

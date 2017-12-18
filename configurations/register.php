@@ -1,7 +1,10 @@
 <?php
 /**
  * Loads our register configurations
- */    
+ */  
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
+// Default registrations 
 $register = array(
     'imageSizes' => array(
         array('name' => 'square-ld', 'width' => 360, 'height' => 360, 'crop' => true),
@@ -25,28 +28,47 @@ $register = array(
         'header-menu' => __('Header Menu', 'waterfall'),
         'footer-menu' => __('Footer Menu', 'waterfall')
     ),
-    'sidebars' => array(
-        array('id' => 'page', 'name' => __('Page Sidebar', 'textdomain'), 'description' => __('The sidebar for pages.', 'textdomain') ),
-        array('id' => 'archive', 'name' => __('Archive Sidebar', 'textdomain'), 'description' => __('The sidebar for post archives.', 'textdomain') ),
-        array('id' => 'single', 'name' => __('Single Post Sidebar', 'textdomain'), 'description' => __('The sidebar for single posts.', 'textdomain') ),
-        array('id' => 'search', 'name' => __('Search Sidebar', 'textdomain'), 'description' => __('The sidebar for search page.', 'textdomain') ),
-        array('id' => 'footer-one', 'name' => __('Footer One', 'textdomain'), 'description' => __('The first footer column sidebar.', 'textdomain') ),
-        array('id' => 'footer-two', 'name' => __('Footer Two', 'textdomain'), 'description' => __('The second footer column sidebar.', 'textdomain') ),
-        array('id' => 'footer-three', 'name' => __('Footer Three', 'textdomain'), 'description' => __('The third footer column sidebar.', 'textdomain') ),
-        array('id' => 'footer-four', 'name' => __('Footer Four', 'textdomain'), 'description' => __('The fourth footer column sidebar.', 'textdomain') ),
-        array('id' => 'footer-five', 'name' => __('Footer Five', 'textdomain'), 'description' => __('The fifth footer column sidebar.', 'textdomain') )
-    ),    
+    'sidebars' => array(),    
 );
+
+// Additional registrations based on post types
+foreach( get_option('waterfall_post_types') as $type ) {
+    $object                 = get_post_type_object( $type );
+    $register['sidebars'][] = array(
+        'id'            => $type, 
+        'name'          => sprintf( __('%s Sidebar', 'waterfall'), $object->labels->singular_name ), 
+        'description'   => sprintf( __('The sidebar for a single %s.', 'waterfall'), $object->labels->singular_name ) 
+    );
+
+    // Skip pages for archives
+    if( $type == 'page') {
+        continue;
+    }
+
+    $register['sidebars'][] = array(
+        'id'            => $type . '_archive', 
+        'name'          => sprintf( __('%s Archive Sidebar', 'waterfall'), $object->labels->singular_name ), 
+        'description'   => sprintf( __('The sidebar for the %s archives.', 'waterfall'), $object->labels->singular_name ) 
+    );
+
+}
+
+$register['sidebars'][] = array('id' => 'search', 'name' => __('Search Sidebar', 'waterfall'), 'description' => __('The sidebar for search page.', 'waterfall') );
+$register['sidebars'][] = array('id' => 'footer-one', 'name' => __('Footer One', 'waterfall'), 'description' => __('The first footer column sidebar.', 'waterfall') );
+$register['sidebars'][] = array('id' => 'footer-two', 'name' => __('Footer Two', 'waterfall'), 'description' => __('The second footer column sidebar.', 'waterfall') );
+$register['sidebars'][] = array('id' => 'footer-three', 'name' => __('Footer Three', 'waterfall'), 'description' => __('The third footer column sidebar.', 'waterfall') );
+$register['sidebars'][] = array('id' => 'footer-four', 'name' => __('Footer Four', 'waterfall'), 'description' => __('The fourth footer column sidebar.', 'waterfall') );
+$register['sidebars'][] = array('id' => 'footer-five', 'name' => __('Footer Five', 'waterfall'), 'description' => __('The fifth footer column sidebar.', 'waterfall') );
 
 if( class_exists( 'WooCommerce' ) ) {    
     $register['sidebars'][] = array(
         'id'            => 'product-archive', 
-        'name'          => __('Woocommerce Product Archive', 'textdomain'), 
-        'description'   => __('The sidebar for product archives, also known as the shop page.', 'textdomain') 
+        'name'          => __('Woocommerce Product Archive', 'waterfall'), 
+        'description'   => __('The sidebar for product archives, also known as the shop page.', 'waterfall') 
     );
     $register['sidebars'][] = array(
         'id'            => 'product', 
-        'name'          => __('Woocommerce Product Sidebar', 'textdomain'), 
-        'description'   => __('The sidebar for products.', 'textdomain') 
+        'name'          => __('Woocommerce Product Sidebar', 'waterfall'), 
+        'description'   => __('The sidebar for products.', 'waterfall') 
     );
 }

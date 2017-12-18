@@ -5,12 +5,23 @@
 namespace Views;
 use WP_Components as WP_Components;
 
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 class Singular extends Base {
+
+    /**
+     * Holds the scheme for a singular post
+     * @access public
+     */
+    public $scheme;
 
     /**
      * Sets the properties for the index
      */
     protected function setProperties() {
+
+        $this->scheme = apply_filters( 'waterfall_singular_scheme', $this->type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"' );
+        
         $this->properties = apply_filters( 'waterfall_singular_properties', array(
             'layout' => array(
                 // Header
@@ -75,6 +86,11 @@ class Singular extends Base {
      * Displays structured data for single types
      */
     public function structuredData() {
+
+        // This only counts for blog articles
+        if( $this->type != 'post' ) {
+            return;
+        }
 
         $logo = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : get_template_directory_uri() . '/assets/img/waterfall.png';
 

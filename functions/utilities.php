@@ -254,3 +254,31 @@ function get_social_networks() {
     
     return $urls;
 }
+
+/**
+ * Retrieves the post type of the archive, whether we are looking into our homepage with posts, a taxonomy page or a post type archive
+ * 
+ * @return string $type the post type
+ */
+function get_archive_post_type() {
+    
+    $type = 'post';
+    
+    global $wp_query;
+    
+    if( isset($wp_query->query['post_type']) ) {
+        $type = $wp_query->query['post_type'];
+    } elseif( $wp_query->tax_query->queried_terms ) {
+
+        // Get the first of the queried taxonomies
+        foreach( $wp_query->tax_query->queried_terms as $key => $vars ) {
+            $taxonomy = $key;
+            break;
+        }
+
+        $type = get_taxonomy($taxonomy)->object_type[0];
+
+    }
+
+    return $type;
+}
