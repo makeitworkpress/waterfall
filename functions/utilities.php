@@ -172,7 +172,7 @@ function get_height_options() {
         'default'   => __('No minimum height', 'waterfall'),
         'full'      => __('Fullscreen height', 'waterfall'),
         'normal'    => __('Three quarter of screen height', 'waterfall'),
-        'two-third' => __('Three quarter of screen height', 'waterfall'),
+        'two-third' => __('Two third of screen height', 'waterfall'),
         'half'      => __('Half of screen height', 'waterfall'),
         'third'     => __('Third of screen height', 'waterfall'),
         'quarter'   => __('Quarter of screen height', 'waterfall')
