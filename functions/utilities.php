@@ -239,6 +239,7 @@ function get_social_networks() {
         'twitter'       => __('Twitter', 'waterfall'), 
         'linkedin'      => __('LinkedIn', 'waterfall'), 
         'google-plus'   => __('Google Plus', 'waterfall'), 
+        'youtube'       => __('Youtube', 'waterfall'), 
         'pinterest'     => __('Pinterest', 'waterfall'), 
         'reddit'        => __('Reddit', 'waterfall'),   
         'whatsapp'      => __('Whatsapp', 'waterfall')           

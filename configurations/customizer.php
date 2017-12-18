@@ -146,7 +146,13 @@ $customizer = array(
                     'id'            => 'google-plus',
                     'title'         => __('Google Plus Url', 'waterfall'),
                     'type'          => 'url',
-                ),                
+                ), 
+                array(
+                    'default'       => '',
+                    'id'            => 'youtube',
+                    'title'         => __('Youtube Channel Url', 'waterfall'),
+                    'type'          => 'url',
+                ),                                
                 array(
                     'default'       => '',
                     'id'            => 'pinterest',

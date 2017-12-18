@@ -14,6 +14,7 @@ $atom = wp_parse_args( $atom, array(
         'twitter'       => 'twitter', 
         'linkedin'      => 'linkedin', 
         'google-plus'   => 'google-plus', 
+        'youtube'       => 'youtube-play', 
         'pinterest'     => 'pinterest', 
         'reddit'        => 'reddit-alien', 
         'stumbleupon'   => 'stumbleupon',
