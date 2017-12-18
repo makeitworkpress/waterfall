@@ -166,7 +166,7 @@ class Singular extends Base {
         } elseif( $featured == 'after' ) {
             $args['atoms']['image'] = array( 'atom' => 'image', 'properties' => $featuredArgs );    
         } elseif( $featured == 'background' ) {
-            $args['background'] = get_the_post_thumbnail_url( null, 'hd' );
+            $args['background'] = get_the_post_thumbnail_url( null, $this->layout['header_size'] );
         }                                             
             
         if( $this->layout['header_author'] ) {
