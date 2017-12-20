@@ -86,7 +86,7 @@ class Header extends Base {
                     'view'          => $this->layout['header_menu_style'] ? $this->layout['header_menu_style'] : 'default'
                 )
             )                
-        );               
+        );
 
         // Search
         if( $this->layout['header_search'] ) {

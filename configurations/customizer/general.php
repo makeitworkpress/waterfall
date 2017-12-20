@@ -30,7 +30,18 @@ $customizer = array(
                     'title'         => __('Maximum Width of Content', 'waterfall'),
                     'description'   => __('Adapts the maximum width of content containers. Also overwrites the content width for elementor.', 'waterfall'),
                     'type'          => 'dimension'  
-                ),                
+                ), 
+                array(
+                    'css'           => array(
+                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button', 
+                        'property' => 'border-radius'
+                    ),
+                    'default'       => '',
+                    'id'            => 'border_radius',
+                    'title'         => __('Border radius for buttons', 'waterfall'),
+                    'description'   => __('Adapts the border radius for all buttons on the site.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ),                               
                 array(
                     'default'       => '',
                     'id'            => 'lightbox',

@@ -47,26 +47,22 @@ abstract class Base {
     /**
      * The initial state of our class
      *
-     * @param string $type The optional type of content we are looking at. This determines a context (is_page, is_single, etc) based prefix for retrieving settings
+     * @param string $type The type of content we are looking at. This determines a context based prefix for retrieving settings from the customizer
      */
     public function __construct( $type = '' ) {
 
         global $wp_query;
 
         // Determine our type
-        if( $type == 'archive' ) {
+        $this->type = $type;
+
+        // Determine our type on rendering 
+        if( $this->type == 'archive' ) {
             $this->type = get_archive_post_type() . '_archive';
-        } elseif( $type ) { 
-            $this->type = $type;
-        } elseif( is_singular() ) { 
+        } elseif( is_singular() && $type == 'singular' ) { 
             global $post;
-        } elseif( is_search() ) { 
-            $this->type = 'search';
-        }elseif( is_404() ) { 
-            $this->type = '404';
-        } else {
-            $this->type = $type;
-        }
+            $this->type = $post->post_type;
+        }         
 
         // Set our properties
         $this->setProperties();
@@ -90,6 +86,8 @@ abstract class Base {
      * It should be called during rendering.
      */
     protected final function getProperties() {
+
+      
 
         // Loads meta data from the postmeta
         if( is_singular() && isset($this->properties['meta']) ) {

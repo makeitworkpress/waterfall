@@ -587,7 +587,7 @@ $colors = array(
             'fields'    => array(                      
                 array(
                     'css'           => array( 
-                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, .header .atom-menu-item-cart a.button.checkout', 
+                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-cart input.button.alt, .woocommerce button.button.alt, .header .atom-cart button.button.alt, .woocommerce a.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -598,7 +598,7 @@ $colors = array(
                 ),
                 array(
                     'css'           => array( 
-                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, .header .atom-menu-item-cart a.button.checkout:hover', 
+                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -608,7 +608,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),    
                 array(
-                    'css'           => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-menu-item-cart input.button.alt, .woocommerce button.button.alt, .header .atom-menu-item-cart button.button.alt, .woocommerce a.button.alt, .header .atom-menu-item-cart a.button.alt, , .header .atom-menu-item-cart a.button.checkout',
+                    'css'           => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-cart input.button.alt, .woocommerce button.button.alt, .header .atom-cart button.button.alt, .woocommerce a.button.alt, .header .atom-cart a.button.alt, , .header .atom-cart a.button.checkout',
                     'default'       => '',
                     'id'            => 'primary_button_color',
                     'title'         => __('Primary Button Text Color', 'waterfall'),
@@ -616,7 +616,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'css'           => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-menu-item-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-menu-item-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-menu-item-cart a.button.alt:hover, , .header .atom-menu-item-cart a.button.checkout:hover',
+                    'css'           => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-cart a.button.alt:hover, , .header .atom-cart a.button.checkout:hover',
                     'default'       => '',
                     'id'            => 'primary_button_color_hover',
                     'title'         => __('Primary Button Text Hover Color', 'waterfall'),
@@ -625,7 +625,7 @@ $colors = array(
                 ),    
                 array(
                     'css'           => array( 
-                        'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button', 
+                        'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-cart input.button, .woocommerce button.button, .header .atom-cart button.button, .woocommerce a.button, .header .atom-cart a.button, .header .atom-cart a.button', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -636,7 +636,7 @@ $colors = array(
                 ),
                 array(
                     'css'           => array( 
-                        'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover', 
+                        'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover .header .atom-cart input.button:hover, .woocommerce button.button:hover, .header .atom-cart button.button:hover, .woocommerce a.button:hover, .header .atom-cart a.button:hover, .header .atom-cart a.button:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -646,7 +646,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),    
                 array(
-                    'css'           => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-menu-item-cart input.button, .woocommerce button.button, .header .atom-menu-item-cart button.button, .woocommerce a.button, .header .atom-menu-item-cart a.button, .header .atom-menu-item-cart a.button',
+                    'css'           => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-cart input.button, .woocommerce button.button, .header .atom-cart button.button, .woocommerce a.button, .header .atom-cart a.button, .header .atom-cart a.button',
                     'default'       => '',
                     'id'            => 'secondary_button_color',
                     'title'         => __('Secondary Button Text Color', 'waterfall'),
@@ -654,7 +654,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'css'           => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover, .header .atom-menu-item-cart input.button:hover, .woocommerce button.button:hover, .header .atom-menu-item-cart button.button:hover, .woocommerce a.button:hover, .header .atom-menu-item-cart a.button:hover, .header .atom-menu-item-cart a.button:hover',
+                    'css'           => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover, .header .atom-cart input.button:hover, .woocommerce button.button:hover, .header .atom-cart button.button:hover, .woocommerce a.button:hover, .header .atom-cart a.button:hover, .header .atom-cart a.button:hover',
                     'default'       => '',
                     'id'            => 'secondary_button_color_hover',
                     'title'         => __('Secondary Button Text Hover Color', 'waterfall'),

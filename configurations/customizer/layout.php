@@ -242,7 +242,13 @@ foreach( $types as $type ) {
                 'id'            => $type . '_header_author',
                 'title'         => __('Show the author in post Title Sections', 'waterfall'),
                 'type'          => 'checkbox'
-            ),    
+            ), 
+            array(
+                'default'       => false,
+                'id'            => $type . '_header_disable_title',
+                'title'         => __('Disable the title in Title Sections', 'waterfall'),
+                'type'          => 'checkbox'
+            ),                
             array(
                 'default'       => 'none',
                 'id'            => $type . '_header_scroll',
@@ -276,12 +282,12 @@ foreach( $types as $type ) {
             array(
                 'default'       => '',
                 'id'            => $type . '_related_disable',
-                'title'         => __('Disable the Whole Related Section', 'waterfall'),
+                'title'         => __('Disable the related content section', 'waterfall'),
                 'type'          => 'checkbox'
             ),    
             array(
                 'default'       => 'default',
-                'description'   => __('Width of the related section.', 'waterfall'),
+                'description'   => __('Width of the related content section.', 'waterfall'),
                 'id'            => $type . '_related_width',
                 'choices'       => get_container_options(),
                 'title'         => __('Related Section Width', 'waterfall'),
@@ -623,7 +629,7 @@ foreach( $types as $type ) {
             ),
             array(
                 'default'       => '',
-                'id'            => 'archive_content_image_enlarge',
+                'id'            => $type . '_archive_content_image_enlarge',
                 'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
                 'type'          => 'checkbox'
             ),                        

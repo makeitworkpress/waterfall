@@ -29,6 +29,7 @@ class Singular extends Base {
                 'header_author', 
                 'header_breadcrumbs', 
                 'header_date', 
+                'header_disable_title', 
                 'header_featured', 
                 'header_height',
                 'header_height_image',
@@ -143,12 +144,14 @@ class Singular extends Base {
         }    
         
         // Title
-        $args['atoms']['title'] = array( 
-            'atom' => 'title',
-            'properties' => array(
-                'tag' => 'h1', 'style' => 'entry-title', 'schema' => is_single() ? 'name headline' : 'name' 
-            )
-        );   
+        if( ! $this->layout['header_disable_title'] ) {
+            $args['atoms']['title'] = array( 
+                'atom' => 'title',
+                'properties' => array(
+                    'tag' => 'h1', 'style' => 'entry-title', 'schema' => is_single() ? 'name headline' : 'name' 
+                )
+            );   
+        }
         
         // Subtitle  
         if( $this->meta['page_header_subtitle']  ) {
@@ -162,7 +165,7 @@ class Singular extends Base {
             
         // Time
         if( $this->layout['header_date']  ) {
-            $args['atoms']['date'] = array( 'atom' => 'data', 'properties' => array('style' => 'entry-time') );    
+            $args['atoms']['date'] = array( 'atom' => 'date', 'properties' => array('style' => 'entry-time') );    
         }
     
         // Terms

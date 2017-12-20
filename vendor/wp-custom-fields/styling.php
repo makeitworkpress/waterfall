@@ -36,7 +36,8 @@ class Styling extends Base {
     /**
      * Adds functions to WordPress hooks - is automatically performed at a new instance
      */
-    protected function registerHooks() {           
+    protected function registerHooks() {
+        
         $this->actions = array(
             array( 'wp_head', 'examine' ),
             array( 'wp_head', 'properties' ),

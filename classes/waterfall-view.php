@@ -78,9 +78,10 @@ class Waterfall_View {
             }
 
             // Default archives
-            if( is_archive() ) {
+            if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') ) {
                 $type       = get_archive_post_type();
                 $sidebar    = isset($layout[$type . '_archive_sidebar_position']) ? $layout[$type . '_archive_sidebar_position'] : 'default';
+
             }
             
             // Search Archives
@@ -107,7 +108,7 @@ class Waterfall_View {
                     $classes[]  = 'waterfall-fullwidth-content';
                 }          
 
-            } 
+            }
                      
             $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');
             

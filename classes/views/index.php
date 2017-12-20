@@ -101,10 +101,10 @@ class Index extends Base {
                 'button' => array( 
                     'atom'  => 'button',
                     'properties' => array(
-                        'float' => 'right',
-                        'link'  => 'post', 
-                        'label' => $this->layout['content_button'], 
-                        'size'  => 'small'
+                        'float'         => 'right',
+                        'link'          => 'post', 
+                        'label'         => $this->layout['content_button'], 
+                        'size'          => 'small'
                     )
                 ) 
             ),

@@ -5,7 +5,7 @@
  */
 
 /* Cart Count Styling */
-.atom-menu-item-cart-count {
+.atom-cart-count {
     background: @flat-red;
 }
 
@@ -192,11 +192,16 @@
         color: @flat-red;
     }
 
+    /* Zoomed images */
+    .zoomImg:hover {
+        cursor: zoom-in;
+    }
+
 }
 
     
 /* Buttons */
-.woocommerce, .header .atom-menu-item-cart {
+.woocommerce, .header .atom-cart {
     input, button, a, input[type="submit"] {
         &.button {
             background-color: @flat-blue;
@@ -224,11 +229,11 @@
     }
 }
 
-.header .atom-menu-item-cart a.checkout  {
+.header .atom-cart a.checkout  {
     background-color: @flat-red;    
 }
 
-.atom-menu .atom-menu-item-cart .woocommerce-mini-cart .woocommerce-mini-cart-item .remove {
+.atom-menu .atom-cart .woocommerce-mini-cart .woocommerce-mini-cart-item .remove {
     color: @flat-red;
 }
 
