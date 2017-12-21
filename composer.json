@@ -31,12 +31,12 @@
         }        
     ],
     "require": {
-        "wp-components": "dev-master",
-        "wp-config": "dev-master",
-        "wp-custom-fields": "dev-master",
-        "wp-enqueue": "dev-master",
-        "wp-register": "dev-master",
-        "wp-router": "dev-master",
-        "wp-updater": "dev-master"
+        "makeitworkpress/wp-components": "dev-master",
+        "makeitworkpress/wp-config": "dev-master",
+        "makeitworkpress/wp-custom-fields": "dev-master",
+        "makeitworkpress/wp-enqueue": "dev-master",
+        "makeitworkpress/wp-register": "dev-master",
+        "makeitworkpress/wp-router": "dev-master",
+        "makeitworkpress/wp-updater": "dev-master"
     }    
 }

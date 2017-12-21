@@ -32,7 +32,7 @@ $layout = array(
                     'choices'       => get_container_options()
                 ),
                 array(
-                    'css'           => array('selector' => '.molecule-header-atoms', 'property' => array('min-height', 'line-height') ),
+                    'selector'           => array('selector' => '.molecule-header-atoms', 'property' => array('min-height', 'line-height') ),
                     'default'       => '',
                     'id'            => 'header_height',
                     'title'         => __('Header Minimum Height', 'waterfall'),

@@ -24,7 +24,7 @@ $customizer = array(
                     )    
                 ),
                 array(
-                    'css'           => array('selector' => '.components-container, .elementor-section.elementor-section-boxed > .elementor-container', 'property' => 'max-width'),
+                    'selector'           => array('selector' => '.components-container, .elementor-section.elementor-section-boxed > .elementor-container', 'property' => 'max-width'),
                     'default'       => '',
                     'id'            => 'layout_width',
                     'title'         => __('Maximum Width of Content', 'waterfall'),
@@ -32,7 +32,7 @@ $customizer = array(
                     'type'          => 'dimension'  
                 ), 
                 array(
-                    'css'           => array(
+                    'selector'           => array(
                         'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button', 
                         'property' => 'border-radius'
                     ),
@@ -102,7 +102,7 @@ $customizer = array(
             'title'         => __('Background', 'waterfall'),
             'fields'    => array(                   
                 array(
-                    'css'           => array('selector' => 'body', 'property' => 'background-color'),
+                    'selector'           => array('selector' => 'body', 'property' => 'background-color'),
                     'default'       => '',
                     'id'            => 'background_color',
                     'title'         => __('Background Color', 'waterfall'),

@@ -1,0 +1,22 @@
+{
+    "name": "makeitworkpress/wp-config",
+    "description": "This class makes it easy to have multidimensional configurations which are editable.",
+    "license": "GPL",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "MakeitWorkPress\\WP_Config\\": "src"
+        }
+    },
+    "homepage": "https://github.com/makeitworkpress/wp-config",
+    "authors": [ 
+        {
+            "name": "Michiel Tramper",
+            "email": "michiel@makeitworkpress.com",
+            "homepage": "https://www.makeitworkpress.com"
+
+        } 
+    ]           
+}

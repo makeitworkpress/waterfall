@@ -116,7 +116,7 @@ $postmeta = array(
                     'type'          => 'textarea'
                 ),      
                 array(
-                    'css'           => '.main-header',
+                    'selector'           => '.main-header',
                     'columns'       => 'half',
                     'id'            => 'page_header_background',
                     'multiple'      => false,
@@ -125,13 +125,13 @@ $postmeta = array(
                 ),     
                 array(
                     'columns'       => 'fourth',
-                    'css'           => '.main-header h1, .main-header h2, .main-header h3, .main-header h4, .main-header h5, .main-header h6, .main-header, .main-header a, .main-header .entry-meta a, .main-header .entry-time',
+                    'selector'           => '.main-header h1, .main-header h2, .main-header h3, .main-header h4, .main-header h5, .main-header h6, .main-header, .main-header a, .main-header .entry-meta a, .main-header .entry-time',
                     'id'            => 'page_header_color',
                     'title'         => __('Custom Text Color Page Header', 'waterfall'),
                     'type'          => 'colorpicker'
                 ), 
                 array(
-                    'css'           => array( 'property' => 'background-color', 'selector' => '.main-header:after' ),
+                    'selector'           => array( 'property' => 'background-color', 'selector' => '.main-header:after' ),
                     'columns'       => 'fourth',
                     'id'            => 'page_header_overlay',
                     'title'         => __('Overlay Color Page Header', 'waterfall'),

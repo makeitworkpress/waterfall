@@ -1,0 +1,22 @@
+{
+    "name": "makeitworkpress/wp-enqueue",
+    "description": "This class is a usefull wrapper for easily enqueing scripts and styles.",
+    "license": "GPL",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "MakeitWorkPress\\WP_Enqueue\\": "src"
+        }
+    },
+    "homepage": "https://github.com/makeitworkpress/wp-enqueue",
+    "authors": [ 
+        {
+            "name": "Michiel Tramper",
+            "email": "michiel@makeitworkpress.com",
+            "homepage": "https://www.makeitworkpress.com"
+
+        } 
+    ]           
+}
