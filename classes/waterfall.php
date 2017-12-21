@@ -50,11 +50,16 @@ class Waterfall {
      * Initializes the basic settings for a theme
      */
     private function initialize() {
+
+        /**
+         * Load our composer autoloader
+         */
+        require_once( get_template_directory() . '/vendor/autoload.php' );
         
         /**
          * Enables our theme to be updated through an external repository
          */
-        $this->updater = new WP_Updater\Boot( array('source' => 'https://github.com/makeitworkpress/waterfall') );
+        $this->updater = new MakeitWorkPress\WP_Updater\Boot( array('source' => 'https://github.com/makeitworkpress/waterfall') );
         
         
         /**
@@ -86,7 +91,7 @@ class Waterfall {
         /**
          * Initialize our components
          */
-        $this->components   = new WP_Components\Boot();        
+        $this->components   = new MakeitWorkPress\WP_Components\Boot();        
         
         
         /**
@@ -136,7 +141,7 @@ class Waterfall {
         /**
          * Set-up our configurations
          */
-        $this->config = new WP_Config\Config( $configurations );
+        $this->config = new MakeitWorkPress\WP_Config\Config( $configurations );
         
     }   
     
@@ -154,11 +159,11 @@ class Waterfall {
          * Execute our class actions
          */
         $methods = apply_filters( 'waterfall_execute_methods', [
-            'enqueue'   => 'WP_Enqueue\Enqueue',
+            'enqueue'   => 'MakeitWorkPress\WP_Enqueue\Enqueue',
             'elementor' => 'Waterfall_Elementor',
-            'register'  => 'WP_Register\Register', 
-            'routes'    => 'WP_Router\Router', 
-            'options'   => 'WP_Custom_Fields\Framework'
+            'register'  => 'MakeitWorkPress\WP_Register\Register', 
+            'routes'    => 'MakeitWorkPress\WP_Router\Router', 
+            'options'   => 'MakeitWorkPress\WP_Custom_Fields\Framework'
         ] );
         
         /**
@@ -184,7 +189,7 @@ class Waterfall {
                 $this->config->configurations['options']['params'] = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
                 
                 // Divergent framework
-                $this->options = WP_Custom_Fields\Framework::instance($this->config->configurations['options']['params']);
+                $this->options = MakeitWorkPress\WP_Custom_Fields\Framework::instance($this->config->configurations['options']['params']);
                 
                 // Walk through all the option types
                 foreach( $this->config->configurations['options'] as $key => $options ) {

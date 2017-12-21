@@ -3,7 +3,7 @@
  * Contains the class for initiating a new index or search page
  */
 namespace Views;
-use WP_Components as WP_Components;
+use MakeitWorkPress\WP_Components as WP_Components;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

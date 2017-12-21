@@ -1,5 +1,6 @@
 {
-    "name": "waterfall",
+    "name": "makeitworkpress/waterfall",
+    "description": "Waterfall is a theme with extensive customizer options and very easy to modify or extend for developers.",
     "repositories": [        
         {
             "type": "vcs",
@@ -31,6 +32,7 @@
         }        
     ],
     "require": {
+        "php": ">=5.3",
         "makeitworkpress/wp-components": "dev-master",
         "makeitworkpress/wp-config": "dev-master",
         "makeitworkpress/wp-custom-fields": "dev-master",
@@ -38,5 +40,15 @@
         "makeitworkpress/wp-register": "dev-master",
         "makeitworkpress/wp-router": "dev-master",
         "makeitworkpress/wp-updater": "dev-master"
-    }    
+    },
+    "license": "GPL",
+    "homepage": "https://github.com/makeitworkpress/waterfall/",
+    "authors": [ 
+        {
+            "name": "Michiel Tramper",
+            "email": "michiel@makeitworkpress.com",
+            "homepage": "https://www.makeitworkpress.com"
+
+        } 
+    ]          
 }
