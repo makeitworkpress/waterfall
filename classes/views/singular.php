@@ -133,7 +133,7 @@ class Singular extends Base {
             'height'    => $this->layout['header_height'] ? $this->layout['header_height'] : true,
             'lazyload'  => get_theme_option( 'customizer', 'lazyload' ),
             'parallax'  => $this->layout['header_parallax'],
-            'style'     => 'main-header entry-header'
+            'style'     => 'main-header entry-header singular-header'
         );    
     
         /**
@@ -362,7 +362,7 @@ class Singular extends Base {
         // Default arguments
         $args = array(
             'container' => $this->layout['footer_width'] == 'full' ? false : true,
-            'style' => 'main-footer entry-footer'
+            'style' => 'main-footer entry-footer singular-footer'
         );
             
         // Sharing Buttons

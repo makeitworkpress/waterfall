@@ -26,10 +26,13 @@ class Product extends Base {
         $this->getProperties();
 
         if( $this->layout['content_breadcrumbs'] ) {
-            WP_Components\Build::atom(
+            return WP_Components\Build::atom(
                 'breadcrumbs', 
-                apply_filters( 'waterfall_single_product_breadcrumbs', ['taxonomy' => true, 'archive' => true] ) 
+                apply_filters( 'waterfall_single_product_breadcrumbs', ['taxonomy' => true, 'archive' => true] ),
+                false 
             ); 
+        } else {
+            return false;
         }       
     }
 

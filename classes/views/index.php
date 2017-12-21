@@ -69,7 +69,7 @@ class Index extends Base {
             'align'     => $this->layout['header_align'],
             'container' => $this->layout['header_width'] == 'full' ? false : true,
             'height'    => $this->layout['header_height'],
-            'style'     => 'main-header'
+            'style'     => 'main-header archive-header'
         ) );
         
         WP_Components\Build::molecule( 'post-header', $args );         
@@ -118,7 +118,7 @@ class Index extends Base {
             'postsAppear'       => 'bottom',
             'postsGrid'         => $this->layout['content_columns'] ? $this->layout['content_columns'] : 'third',
             'postsInlineStyle'  => $this->layout['content_height'] ? 'min-height:' . $this->layout['content_height'] . 'px;' : '',
-            'style'             => 'content',
+            'style'             => 'content archive-posts',
             'view'              => $this->layout['content_style'] ? $this->layout['content_style'] : 'grid',
             'query'             => $wp_query    
         ) );

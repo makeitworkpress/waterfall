@@ -29,7 +29,7 @@ while( have_posts() ) {
 
         ?>
 
-        <div class="main-content">
+        <div class="main-content singular-content">
 
             <?php do_action('waterfall_before_' . $postView->type . '_content_container'); ?>
         
@@ -72,7 +72,7 @@ while( have_posts() ) {
             if( $postView->relatedSection ) {
         ?>
             
-            <aside class="main-related">
+            <aside class="main-related singular-related">
 
                 <?php if( $postView->relatedContainer ) { ?>
                     <div class="components-container">

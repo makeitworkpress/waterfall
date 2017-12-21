@@ -59,14 +59,16 @@ class Boot {
         /**
          * Run our updater scripts
          */
-        
+
         // Runs the scripts for updating a theme
-        if( $this->config['type'] == 'theme' )
+        if( $this->config['type'] == 'theme' ) {
             new Theme_Updater( $this->config );
+        }
         
         // Runs the scripts for updating a plugin
-        if( $this->config['type'] == 'plugin' )
+        if( $this->config['type'] == 'plugin' ) {
             new Plugin_Updater( $this->config );
+        }
         
         /**
          * Check if we need to verify SSL

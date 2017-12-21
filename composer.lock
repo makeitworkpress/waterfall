@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "daa1442ff14dd69ceb5c34e5c2861dae",
+    "content-hash": "7eb9e70150921dd7128dee2ac0adb5b0",
     "packages": [
         {
             "name": "makeitworkpress/wp-components",
@@ -258,12 +258,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-updater.git",
-                "reference": "6af167e6f8b6229f231966d24b8189f8e3dfcf07"
+                "reference": "d6f79a5f06207e3f1dc1edd8db67170ad4fedf9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/6af167e6f8b6229f231966d24b8189f8e3dfcf07",
-                "reference": "6af167e6f8b6229f231966d24b8189f8e3dfcf07",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/d6f79a5f06207e3f1dc1edd8db67170ad4fedf9e",
+                "reference": "d6f79a5f06207e3f1dc1edd8db67170ad4fedf9e",
                 "shasum": ""
             },
             "require": {
@@ -291,7 +291,7 @@
                 "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-updater/issues"
             },
-            "time": "2017-12-21T15:54:56+00:00"
+            "time": "2017-12-21T16:30:12+00:00"
         }
     ],
     "packages-dev": [],
@@ -308,6 +308,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.3"
+    },
     "platform-dev": []
 }

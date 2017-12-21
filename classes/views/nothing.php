@@ -30,7 +30,7 @@ class Nothing extends Base {
             'align'     => $this->layout['header_align'],
             'atoms'     => array(),
             'height'    => $this->layout['header_height'],
-            'style'     => 'main-header'        
+            'style'     => 'main-header nothing-header'        
         );
         
         // Breadcrumbs
@@ -41,7 +41,7 @@ class Nothing extends Base {
         $args['atoms']['title']             = array( 
             'atom'  => 'title',
             'properties' => array(
-                'style' => 'page-title', 
+                'style' => 'page-title nothing-title', 
                 'tag'   => 'h1', 
                 'title' => $this->layout['header_title'] ? $this->layout['header_title'] : __('Woops! Nothing found here...', 'waterfall') 
             )
@@ -49,7 +49,8 @@ class Nothing extends Base {
         $args['atoms']['description']       = array(
             'atom'          => 'description',
             'properties'    => array( 
-                'description' => $this->layout['header_description'] ? $this->layout['header_description'] : __('Try visiting another page or searching.', 'waterfall') 
+                'description'   => $this->layout['header_description'] ? $this->layout['header_description'] : __('Try visiting another page or searching.', 'waterfall'),
+                'style'         => 'nothing-description' 
             )
         ); 
         

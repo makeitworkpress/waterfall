@@ -54,13 +54,11 @@ class Waterfall {
         /**
          * Load our composer autoloader
          */
-        require_once( get_template_directory() . '/vendor/autoload.php' );
         
         /**
          * Enables our theme to be updated through an external repository
          */
         $this->updater = new MakeitWorkPress\WP_Updater\Boot( array('source' => 'https://github.com/makeitworkpress/waterfall') );
-        
         
         /**
          * Include basic utility functions
@@ -72,13 +70,11 @@ class Waterfall {
          */
         $this->configure();
         
-        
         /**
          * The execution of our configurations is hooked in after_setup_theme, 
          * so (child) themes can add configurations if they want on an earlier point
          */
         add_action('after_setup_theme', array($this, 'execute'), 10);           
-        
         
         /**
          * Flush our rewrite rules for new posts
@@ -87,18 +83,15 @@ class Waterfall {
             flush_rewrite_rules();    
         });
         
-        
         /**
          * Initialize our components
          */
-        $this->components   = new MakeitWorkPress\WP_Components\Boot();        
-        
+        $this->components   = new MakeitWorkPress\WP_Components\Boot();         
         
         /**
          * Initialize the view component so templates are load and additional settings are added
          */
-        $this->view         = new Waterfall_View();
-        
+        $this->view         = new Waterfall_View(); 
         
         /**
          * Adapt some of the customizer sections with custom names

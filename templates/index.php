@@ -18,7 +18,7 @@
 
 ?>
 
-<div class="main-content">
+<div class="main-content archive-content">
 
     <?php do_action('waterfall_before_archive_content_container'); ?>
 

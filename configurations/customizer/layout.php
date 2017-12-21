@@ -101,6 +101,8 @@ $layout = array(
                     'id'            => 'header_search_none',
                     'title'         => __('Nothing Found Search Text', 'waterfall'),
                     'description'   => __('Text when nothing is found in search', 'waterfall'),
+                    'selector'      => array('selector' => '.atom-search-results .atom-posts-none', 'html' => true),
+                    'transport'     => 'postMessage',                    
                     'type'          => 'input'
                 ),
                 array(
@@ -108,6 +110,8 @@ $layout = array(
                     'id'            => 'header_search_all',
                     'title'         => __('All Results Search Text', 'waterfall'),
                     'description'   => __('Text for link to all the results', 'waterfall'),
+                    'selector'      => array('selector' => '.atom-search-results .atom-search-all', 'html' => true),
+                    'transport'     => 'postMessage',                      
                     'type'          => 'input'
                 ),                
                 array(
@@ -303,6 +307,8 @@ foreach( $types as $type ) {
                 'default'       => __('You also might like', 'waterfall'),
                 'id'            => $type . '_related_title',
                 'title'         => __('Title above Related Posts', 'waterfall'),
+                'selector'      => array('selector' => '.main-related > h3,  .main-related .components-container > h3', 'html' => true),
+                'transport'     => 'postMessage',                  
                 'type'          => 'input'
             ),  
             array(
@@ -318,6 +324,8 @@ foreach( $types as $type ) {
                 'description'   => __('Minimum height of related posts in pixels.', 'waterfall'),
                 'id'            => $type . '_related_height',
                 'title'         => __('Related Posts Height', 'waterfall'),
+                'selector'      => array('selector' => '.main-related .molecule-post', 'property' => 'min-height'),
+                'transport'     => 'postMessage',                 
                 'type'          => 'number'
             ),     
             array(
@@ -374,7 +382,9 @@ foreach( $types as $type ) {
                 'default'       => __('View Post', 'waterfall'),
                 'id'            => $type . '_related_button',
                 'title'         => __('Text of Related Posts Button', 'waterfall'),
-                'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'),    
+                'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'), 
+                'selector'      => array('selector' => '.main-related .molecule-post .atom-button span', 'html' => true),
+                'transport'     => 'postMessage',                   
                 'type'          => 'input'
             ),
             array(
@@ -387,12 +397,16 @@ foreach( $types as $type ) {
                 'default'       => __('&lsaquo; Previous Article', 'waterfall'),
                 'id'            => $type . '_related_pagination_prev',
                 'title'         => __('Pagination Previous Article Title', 'waterfall'),
+                'selector'      => array('selector' => '.main-related .atom-pagination a[rel=\'prev\'] span', 'html' => true),
+                'transport'     => 'postMessage',                  
                 'type'          => 'input'
             ),
             array(
                 'default'       => __('Next Article &rsaquo; ', 'waterfall'),
                 'id'            => $type . '_related_pagination_next',
                 'title'         => __('Pagination Next Article Title', 'waterfall'),
+                'selector'      => array('selector' => '.main-related .atom-pagination a[rel=\'next\'] span', 'html' => true),
+                'transport'     => 'postMessage',                   
                 'type'          => 'input'
             ),    
             array(
@@ -425,6 +439,8 @@ foreach( $types as $type ) {
                 'default'       => __('Comments are closed.', 'waterfall'),
                 'id'            => $type . '_footer_comments_closed',
                 'title'         => __('Text for closed comments', 'waterfall'),
+                'selector'      => array('selector' => '.main-footer .atom-comments-closed', 'html' => true),
+                'transport'     => 'postMessage',                  
                 'type'          => 'input'
             ),                   
             array(
@@ -602,6 +618,8 @@ foreach( $types as $type ) {
                 'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
                 'id'            => $type . '_archive_content_button',
                 'title'         => __('Posts Button Label', 'waterfall'),
+                'selector'      => array('selector' => '.archive-posts .molecule-post .atom-button span', 'html' => true),
+                'transport'     => 'postMessage',                   
                 'type'          => 'input'
             ),    
             array(
@@ -609,6 +627,8 @@ foreach( $types as $type ) {
                 'description'   => __('Minimum height of posts in the archive in pixels.', 'waterfall'),
                 'id'            => $type . '_archive_content_height',
                 'title'         => __('Posts Height', 'waterfall'),
+                'selector'      => array('selector' => '.archive-posts .molecule-post', 'property' => 'min-height'),
+                'transport'     => 'postMessage',                  
                 'type'          => 'number'
             ),    
             array(
@@ -922,12 +942,16 @@ $layout['sections'][] = array(
             'default'       => __('Woops! Nothing found here...', 'waterfall'),
             'id'            => '404_header_title',
             'title'         => __('Default 404 Title', 'waterfall'),
+            'selector'      => array('selector' => '.nothing-title', 'html' => true),
+            'transport'     => 'postMessage',             
             'type'          => 'input'
         ),
         array(
             'default'       => __('Try visiting another page or searching.', 'waterfall'),
             'id'            => '404_header_description',
             'title'         => __('Default 404 Description', 'waterfall'),
+            'selector'      => array('selector' => '.nothing-description', 'html' => true),
+            'transport'     => 'postMessage',            
             'type'          => 'textarea'
         ),     
         array(
@@ -996,10 +1020,12 @@ $layout['sections'][] = array(
             'type'          => 'checkbox'
         ),
         array(
+            'selector'      => array('selector' => '.atom-copyright span > span', 'html' => true ),
             'default'       => get_bloginfo('name'),
             'id'            => 'footer_copyright_name',
             'title'         => __('Copyright Message', 'waterfall'),
-            'type'          => 'textarea'
+            'type'          => 'textarea',
+            'transport'     => 'postMessage'
         ),    
         array(
             'choices'       => array(

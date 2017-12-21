@@ -11,15 +11,17 @@ get_theme_header();
  */
 $productView = new Views\Product('product'); ?>
 
-<div class="main-content">
+<div class="main-content product-content">
+
+    <?php if( $productView->breadcrumbs() ) { ?>
+        <div class="components-container"><?php echo $productView->breadcrumbs(); ?></div>
+    <?php } ?>
 
     <?php if( $productView->contentContainer ) { ?>
         <div class="components-container">
     <?php } ?>
 
         <?php
-            $productView->breadcrumbs();
-            
             do_action('waterfall_before_product_content');
         ?>
 
