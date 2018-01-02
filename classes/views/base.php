@@ -111,8 +111,8 @@ abstract class Base {
      * Examines whether an module is disabled.
      * The parameters can be used to do a manual check
      *
-     * @param string $prefix    The current prefix, such as single_related or header_
-     * @param string $context   An optional context which is used for singular items
+     * @param string $prefix    The current prefix, such as post_related or header_
+     * @param string $context   An optional context which is used for singular items to load meta data
      */
     protected function disabled( $prefix = '', $context = 'content_') {
         
@@ -134,7 +134,7 @@ abstract class Base {
             $disabled   = true;
         }
 
-        return $disabled;
+        return apply_filters( 'waterfall_disabled_section', $disabled, $prefix, $context );
 
     }
 
