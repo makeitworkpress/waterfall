@@ -17,35 +17,35 @@ $typography = array(
             'fields'    => array(                   
                 array(
                     'default'       => '',
-                    'css'           => 'body',
+                    'selector'      => 'body',
                     'id'            => 'body_typography',
                     'title'         => __('General Font', 'waterfall'),
                     'type'          => 'typography'
                 ),               
                 array(
                     'default'       => '',
-                    'css'           => '.header',
+                    'selector'      => '.header',
                     'id'            => 'header_menu_typography',
                     'title'         => __('Header Navigation Menu', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => '.atom-breadcrumbs',
+                    'selector'      => '.atom-breadcrumbs',
                     'id'            => 'breadcrumbs_typography',
                     'title'         => __('Breadcrumbs', 'waterfall'),
                     'type'          => 'typography'
                 ),               
                 array(
                     'default'       => '',
-                    'css'           => '.main-content',
+                    'selector'      => '.main-content',
                     'id'            => 'content_typography',
                     'title'         => __('Main Content', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => '.entry-meta',
+                    'selector'      => '.entry-meta',
                     'id'            => 'meta_typography',
                     'title'         => __('Meta', 'waterfall'),
                     'description'   => __('Meta are secondary text blocks such as the date and category of a post.', 'waterfall'),
@@ -53,7 +53,7 @@ $typography = array(
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => 'blockquote',
+                    'selector'      => 'blockquote',
                     'id'            => 'blockquote_typography',
                     'title'         => __('Blockquotes', 'waterfall'),
                     'type'          => 'typography'
@@ -66,7 +66,7 @@ $typography = array(
             'fields'    => array(  
                 array(
                     'default'       => '',
-                    'css'           => 'h1, h2, h3, h4, h5, h6',
+                    'selector'      => 'h1, h2, h3, h4, h5, h6',
                     'columns'       => 'third',
                     'id'            => 'heading16_typography',
                     'title'         => __('All Headings', 'waterfall'),
@@ -74,7 +74,7 @@ $typography = array(
                 ),                                 
                 array(
                     'default'       => '',
-                    'css'           => 'h1.page-title, .page h1.entry-title',
+                    'selector'      => 'h1.page-title, .page h1.entry-title',
                     'id'            => 'page_heading_typography',
                     'title'         => __('Page Title Headings', 'waterfall'),
                     'description'   => __('Determines the typography for headings in pages, 404 pages and archives.', 'waterfall'),
@@ -82,7 +82,7 @@ $typography = array(
                 ),               
                 array(
                     'default'       => '',
-                    'css'           => '.single h1.entry-title',
+                    'selector'      => '.single h1.entry-title',
                     'id'            => 'post_heading_typography',
                     'title'         => __('Post Title Headings', 'waterfall'),
                     'description'   => __('Determines the typography for headings in post articles.', 'waterfall'),
@@ -90,7 +90,7 @@ $typography = array(
                 ),
                 array(
                     'default'       => '',
-                    'css'           => '.single-product h1.product_title',
+                    'selector'      => '.single-product h1.product_title',
                     'id'            => 'product_heading_typography',
                     'title'         => __('Product Title Headings', 'waterfall'),
                     'description'   => __('Determines the typography for headings in products.', 'waterfall'),
@@ -98,7 +98,7 @@ $typography = array(
                 ),
                 array(
                     'default'       => '',
-                    'css'           => '.widget-title',
+                    'selector'      => '.widget-title',
                     'id'            => 'widget_title_typography',
                     'title'         => __('Widget Titles', 'waterfall'),
                     'description'   => __('Determines the typography for widget headings.', 'waterfall'),
@@ -106,7 +106,7 @@ $typography = array(
                 ), 
                 array(
                     'default'       => '',
-                    'css'           => '.main-related h3',
+                    'selector'      => '.main-related h3',
                     'id'            => 'related_title_typography',
                     'title'         => __('Related Post Title', 'waterfall'),
                     'description'   => __('Determines the typography for the title above related posts.', 'waterfall'),
@@ -114,7 +114,7 @@ $typography = array(
                 ),                                                               
                 array(
                     'default'       => '',
-                    'css'           => 'h1',
+                    'selector'      => 'h1',
                     'columns'       => 'third',
                     'id'            => 'heading1_typography',
                     'title'         => __('Heading 1', 'waterfall'),
@@ -122,39 +122,39 @@ $typography = array(
                 ),               
                 array(
                     'default'       => '',
-                    'css'           => 'h2',
-                    'columns'        => 'third',
+                    'selector'      => 'h2',
+                    'columns'       => 'third',
                     'id'            => 'heading2_typography',
                     'title'         => __('Heading 2', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => 'h3',
-                    'columns'        => 'third',
+                    'selector'      => 'h3',
+                    'columns'       => 'third',
                     'id'            => 'heading3_typography',
                     'title'         => __('Heading 3', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => 'h4',
-                    'columns'        => 'third',
+                    'selector'      => 'h4',
+                    'columns'       => 'third',
                     'id'            => 'heading4_typography',
                     'title'         => __('Heading 4', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => 'h5',
-                    'columns'        => 'third',
+                    'selector'      => 'h5',
+                    'columns'       => 'third',
                     'id'            => 'heading5_typography',
                     'title'         => __('Heading 5', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => 'h6',
+                    'selector'      => 'h6',
                     'columns'       => 'third',
                     'id'            => 'heading6_typography',
                     'title'         => __('Heading 6', 'waterfall'),
@@ -168,28 +168,28 @@ $typography = array(
             'fields'    => array(                   
                 array(
                     'default'       => '',
-                    'css'           => '.footer',
+                    'selector'      => '.footer',
                     'id'            => 'footer_typography',
                     'title'         => __('Footer Content', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'css'           => '.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6',
+                    'selector'      => '.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6',
                     'id'            => 'footer_titles',
                     'title'         => __('Footer Titles', 'waterfall'),
                     'type'          => 'typography'
                 ),              
                 array(
                     'default'       => '',
-                    'css'           => '.molecule-footer-socket',
+                    'selector'      => '.molecule-footer-socket',
                     'id'            => 'socket_typography',
                     'title'         => __('Socket Content', 'waterfall'),
                     'type'          => 'typography'
                 ),              
                 array(
                     'default'       => '',
-                    'css'           => '.molecule-footer-socket .atom-menu',
+                    'selector'      => '.molecule-footer-socket .atom-menu',
                     'id'            => 'socket_menu_typography',
                     'title'         => __('Socket Navigation Menu', 'waterfall'),
                     'type'          => 'typography'

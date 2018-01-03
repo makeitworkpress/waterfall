@@ -24,7 +24,7 @@ $customizer = array(
                     )    
                 ),
                 array(
-                    'selector'           => array('selector' => '.components-container, .elementor-section.elementor-section-boxed > .elementor-container', 'property' => 'max-width'),
+                    'selector'      => array('selector' => '.components-container, .elementor-section.elementor-section-boxed > .elementor-container', 'property' => 'max-width'),
                     'default'       => '',
                     'id'            => 'layout_width',
                     'title'         => __('Maximum Width of Content', 'waterfall'),
