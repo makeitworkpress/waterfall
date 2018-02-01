@@ -32,12 +32,11 @@ $register = array(
 );
 
 // Additional registrations based on post types
-foreach( get_option('waterfall_post_types') as $type ) {
-    $object                 = get_post_type_object( $type );
+foreach( get_option('waterfall_post_types') as $type => $properties ) {
     $register['sidebars'][] = array(
         'id'            => $type, 
-        'name'          => sprintf( __('%s Sidebar', 'waterfall'), $object->labels->singular_name ), 
-        'description'   => sprintf( __('The sidebar for a single %s.', 'waterfall'), $object->labels->singular_name ) 
+        'name'          => sprintf( __('%s Sidebar', 'waterfall'), $properties['singular'] ), 
+        'description'   => sprintf( __('The sidebar for a single %s.', 'waterfall'), $properties['singular'] )
     );
 
     // Skip pages for archives
@@ -47,8 +46,8 @@ foreach( get_option('waterfall_post_types') as $type ) {
 
     $register['sidebars'][] = array(
         'id'            => $type . '_archive', 
-        'name'          => sprintf( __('%s Archive Sidebar', 'waterfall'), $object->labels->singular_name ), 
-        'description'   => sprintf( __('The sidebar for the %s archives.', 'waterfall'), $object->labels->singular_name ) 
+        'name'          => sprintf( __('%s Archive Sidebar', 'waterfall'), $properties['singular'] ), 
+        'description'   => sprintf( __('The sidebar for the %s archives.', 'waterfall'), $properties['singular'] ) 
     );
 
 }

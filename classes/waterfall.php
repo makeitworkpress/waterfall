@@ -227,14 +227,23 @@ class Waterfall {
 
         add_action('init', function() {
             $commons    = apply_filters('waterfall_exlude_post_types', array('attachment', 'elementor_library', 'product'));
-            $post_types = get_post_types( array('public' => true) );
+            $initial    = get_post_types( array('public' => true) );
+            $types      = array();
 
             // Exlude common post types
             foreach( $commons as $common ) {
-                unset($post_types[$common]);
+                unset($initial[$common]);
             }
 
-            update_option( 'waterfall_post_types', $post_types );
+            foreach( $initial as $type ) {
+
+                $object                     = get_post_type_object( $type );
+
+                $types[$type]['singular']   = $object->labels->singular_name; 
+                $types[$type]['name']       = $object->labels->name;
+            }
+
+            update_option( 'waterfall_post_types', $types );
 
         }, 20);
 

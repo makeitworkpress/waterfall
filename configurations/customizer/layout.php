@@ -157,13 +157,11 @@ $layout = array(
 ); 
 
 // Based on our post types, we add variable settings
-foreach( $types as $type ) {
-
-    $object = get_post_type_object( $type );
+foreach( $types as $type => $properties ) {
 
     $layout['sections'][] = array(
         'id'        => $type . '_content',
-        'title'     => $object->labels->name,
+        'title'     => $properties['name'],
         'fields'    => array(
             array(
                 'default'       => '',
@@ -522,7 +520,7 @@ foreach( $types as $type ) {
      */
     $layout['sections'][] = array(
         'id'        => $type . '_archives',
-        'title'     => sprintf( __('%s Archives', 'waterfall'), $object->labels->singular_name ),
+        'title'     => sprintf( __('%s Archives', 'waterfall'), $properties['singular'] ),
         'fields'    => array(
             array(
                 'default'       => '',
@@ -603,7 +601,7 @@ foreach( $types as $type ) {
                     'excerpt'   => __('Excerpt', 'waterfall'),
                     'none'      => __('No excerpt', 'waterfall'),
                 ),
-                'title'         => __($type . '_archives Excerpt', 'waterfall'),
+                'title'         => __($type . ' Excerpt', 'waterfall'),
                 'type'          => 'select'
             ),
             array(

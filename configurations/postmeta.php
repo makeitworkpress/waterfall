@@ -4,8 +4,13 @@
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-$types  = get_option('waterfall_post_types');
-$screen = $types ? $types : array('page', 'post');
+$initial    = get_option('waterfall_post_types');
+$postTypes  = array();
+
+foreach( $initial as $key => $value ) {
+    $postTypes[] = $key;
+}
+$screen = $postTypes ? $postTypes : array('page', 'post');
 
 $postmeta = array(
     'context'       => 'normal',
