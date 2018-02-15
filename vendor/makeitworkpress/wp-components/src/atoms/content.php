@@ -5,12 +5,14 @@
  */
 
 // Atom values
-$atom = wp_parse_args( $atom, array(
+$atom = MakeitWorkPress\WP_Components\Build::multiParseArgs( $atom, [
+    'attributes' => [
+        'itemprop' => 'text'
+    ],  
     'content'   => '',                      // Allows developers to set their own string of content 
-    'pages'     => wp_link_pages( array('echo' => false) ),
-    'scheme'    => 'text',                  // Can also be set to description as a custom microscheme
+    'pages'     => wp_link_pages( ['echo' => false] ),
     'type'      => 'content'                // Accepts content, excerpt;
-) ); 
+] ); 
 
 if( ! $atom['content'] ) {
     
@@ -29,16 +31,19 @@ if( ! $atom['content'] ) {
         $atom['content'] = apply_filters( 'the_content', get_the_content() );
     }
     
-} ?>
+} 
 
-<div class="atom-content <?php echo $atom['style']; ?>" itemprop="<?php echo $atom['scheme']; ?>" <?php echo $atom['inlineStyle']; ?> <?php echo $atom['data']; ?>>  
+$attributes = MakeitWorkPress\WP_Components\Build::attributes($atom['attributes']); ?>
+
+<div <?php echo $attributes; ?>>  
     
     <?php 
         echo $atom['content'];
 
         // Linked pages within the content
-        if( $atom['type'] == 'content' )
+        if( $atom['type'] == 'content' ) {
             echo $atom['pages'];
+        }
     ?>             
              
 </div><!-- .entry-content -->

@@ -58,7 +58,7 @@ class Waterfall {
         /**
          * Enables our theme to be updated through an external repository
          */
-        $this->updater = new MakeitWorkPress\WP_Updater\Boot( array('source' => 'https://github.com/makeitworkpress/waterfall') );
+        $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );
         
         /**
          * Include basic utility functions
@@ -74,7 +74,7 @@ class Waterfall {
          * The execution of our configurations is hooked in after_setup_theme, 
          * so (child) themes can add configurations if they want on an earlier point
          */
-        add_action('after_setup_theme', array($this, 'execute'), 10);           
+        add_action('after_setup_theme', [$this, 'execute'], 10);           
         
         /**
          * Flush our rewrite rules for new posts
@@ -118,18 +118,18 @@ class Waterfall {
         require_once( get_template_directory() . '/configurations/register.php' );
         
         // Make configurations filterable at early moment
-        $configurations = apply_filters('waterfall_configurations', array(
+        $configurations = apply_filters( 'waterfall_configurations', [
             'language'  => 'waterfall', 
             'enqueue'   => $enqueue, 
             'register'  => $register, 
-            'options'   => array(
-                'customizerGeneral' => array('frame' => 'customizer', 'fields' => $customizer),
-                'colorsPanel'       => array('frame' => 'customizer', 'fields' => $colors),
-                'layoutPanel'       => array('frame' => 'customizer', 'fields' => $layout),
-                'typographyPanel'   => array('frame' => 'customizer', 'fields' => $typography),
-                'postMeta'          => array('frame' => 'meta', 'fields' => $postmeta),
-            ) 
-        ));
+            'options'   => [
+                'customizerGeneral' => ['frame' => 'customizer', 'fields' => $customizer],
+                'colorsPanel'       => ['frame' => 'customizer', 'fields' => $colors],
+                'layoutPanel'       => ['frame' => 'customizer', 'fields' => $layout],
+                'typographyPanel'   => ['frame' => 'customizer', 'fields' => $typography],
+                'postMeta'          => ['frame' => 'meta', 'fields' => $postmeta],
+            ] 
+        ] );
 
         /**
          * Set-up our configurations
@@ -226,9 +226,9 @@ class Waterfall {
     private function savePostTypes() {
 
         add_action('init', function() {
-            $commons    = apply_filters('waterfall_exlude_post_types', array('attachment', 'elementor_library', 'product'));
-            $initial    = get_post_types( array('public' => true) );
-            $types      = array();
+            $commons    = apply_filters( 'waterfall_exlude_post_types', ['attachment', 'elementor_library', 'product'] );
+            $initial    = get_post_types( ['public' => true] );
+            $types      = [];
 
             // Exlude common post types
             foreach( $commons as $common ) {

@@ -14,7 +14,7 @@ $layout = array(
     'title'         => __('Theme Layout', 'waterfall'),
     'panel'         => true,
     'sections'      => array(
-        'header' => array(
+        'style_header' => array(
             'id'            => 'style_header',
             'title'         => __('Header', 'waterfall'),
             'fields'    => array( 
@@ -29,10 +29,10 @@ $layout = array(
                     'id'            => 'header_width',
                     'title'         => __('Header Width', 'waterfall'),
                     'type'          => 'select',
-                    'choices'       => get_container_options()
+                    'choices'       => wf_get_container_options()
                 ),
                 array(
-                    'selector'           => array('selector' => '.molecule-header-atoms', 'property' => array('min-height', 'line-height') ),
+                    'selector'      => array('selector' => '.molecule-header-atoms', 'property' => array('min-height', 'line-height') ),
                     'default'       => '',
                     'id'            => 'header_height',
                     'title'         => __('Header Minimum Height', 'waterfall'),
@@ -159,7 +159,7 @@ $layout = array(
 // Based on our post types, we add variable settings
 foreach( $types as $type => $properties ) {
 
-    $layout['sections'][] = array(
+    $layout['sections'][$type . '_content'] = array(
         'id'        => $type . '_content',
         'title'     => $properties['name'],
         'fields'    => array(
@@ -174,14 +174,14 @@ foreach( $types as $type => $properties ) {
                 'id'            => $type . '_header_featured',
                 'title'         => __('Featured Image Position', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_background_options()
+                'choices'       => wf_get_background_options()
             ),   
             array(
                 'default'       => 'half-hd',
                 'id'            => $type . '_header_size',
                 'title'         => __('Size Featured Image', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_image_sizes()
+                'choices'       => wf_get_image_sizes()
             ),    
             array(
                 'default'       => 'quarter',
@@ -189,7 +189,7 @@ foreach( $types as $type => $properties ) {
                 'title'         => __('Title Section Minimum Height', 'waterfall'),
                 'description'   => __('This will be the minimum height when a page does not have a featured image.', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_height_options()
+                'choices'       => wf_get_height_options()
             ),
             array(
                 'default'       => 'half',
@@ -197,13 +197,13 @@ foreach( $types as $type => $properties ) {
                 'title'         => __('Title Section with Featured Image Minimum Height', 'waterfall'),
                 'description'   => __('This will be the minimum height when a page has a featured image.', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_height_options()
+                'choices'       => wf_get_height_options()
             ), 
             array(
                 'default'       => 'default',
                 'description'   => __('Width of the header of the content.', 'waterfall'),
                 'id'            => $type . '_header_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Title Section Width', 'waterfall'),
                 'type'          => 'select'
             ),     
@@ -213,7 +213,7 @@ foreach( $types as $type => $properties ) {
                 'title'         => __('Title Section Text Align', 'waterfall'),
                 'description'   => __('How should text be aligned within the Title Section?', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_align_options()
+                'choices'       => wf_get_align_options()
             ),    
             array(
                 'default'       => '',
@@ -256,13 +256,13 @@ foreach( $types as $type => $properties ) {
                 'id'            => $type . '_header_scroll',
                 'title'         => __('Enable the scroll button in Title Sections', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_button_options()
+                'choices'       => wf_get_button_options()
             ),
             array(
                 'default'       => 'default',
                 'description'   => __('Width of the main content section.', 'waterfall'),
                 'id'            => $type . '_content_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Main Content Width', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -277,7 +277,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'full',
                 'description'   => __('Choose the sidebar lay-out.', 'waterfall'),
                 'id'            => $type . '_sidebar_position',
-                'choices'       => get_sidebar_options(),
+                'choices'       => wf_get_sidebar_options(),
                 'title'         => __('Sidebar Lay-Out', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -291,7 +291,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'default',
                 'description'   => __('Width of the related content section.', 'waterfall'),
                 'id'            => $type . '_related_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Related Section Width', 'waterfall'),
                 'type'          => 'select'
             ),    
@@ -313,7 +313,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'third',
                 'description'   => __('Amount of grid columns for posts.', 'waterfall'),
                 'id'            => $type . '_related_grid',
-                'choices'       => get_column_options(),
+                'choices'       => wf_get_column_options(),
                 'title'         => __('Related Posts Columns', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -358,7 +358,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'square-ld',
                 'description'   => __('Featured Image size within related posts.', 'waterfall'),
                 'id'            => $type . '_related_image',
-                'choices'       => get_image_sizes(),
+                'choices'       => wf_get_image_sizes(),
                 'title'         => __('Related Featured Image Size', 'waterfall'),
                 'type'          => 'select'
             ),    
@@ -366,7 +366,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'none',
                 'description'   => __('Float of featured image within the related posts.', 'waterfall'),
                 'id'            => $type . '_related_image_float',
-                'choices'       => get_float_options(),
+                'choices'       => wf_get_float_options(),
                 'title'         => __('Related Featured Image Float', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -417,7 +417,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'default',
                 'description'   => __('Width of the content footer.', 'waterfall'),
                 'id'            => $type . '_footer_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Content Footer Width', 'waterfall'),
                 'type'          => 'select'
             ),     
@@ -518,7 +518,7 @@ foreach( $types as $type => $properties ) {
     /**
      * Additional Sections
      */
-    $layout['sections'][] = array(
+    $layout['sections'][$type . '_archives'] = array(
         'id'        => $type . '_archives',
         'title'     => sprintf( __('%s Archives', 'waterfall'), $properties['singular'] ),
         'fields'    => array(
@@ -538,7 +538,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'default',
                 'description'   => __('Width of header in posts archives.', 'waterfall'),
                 'id'            => $type . '_archive_header_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Header Width', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -546,7 +546,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'default',
                 'description'   => __('Width of header in posts archives.', 'waterfall'),
                 'id'            => $type . '_archive_header_height',
-                'choices'       => get_height_options(),
+                'choices'       => wf_get_height_options(),
                 'title'         => __('Header Height', 'waterfall'),
                 'type'          => 'select'
             ),    
@@ -556,13 +556,13 @@ foreach( $types as $type => $properties ) {
                 'title'         => __('Header Text Align', 'waterfall'),
                 'description'   => __('How should text be aligned within the archive header?', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_align_options()
+                'choices'       => wf_get_align_options()
             ),    
             array(
                 'default'       => 'full',
                 'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
                 'id'            => $type . '_archive_sidebar_position',
-                'choices'       => get_sidebar_options(),
+                'choices'       => wf_get_sidebar_options(),
                 'title'         => __('Sidebar Lay-Out', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -570,7 +570,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'default',
                 'description'   => __('Width of grid in posts archives.', 'waterfall'),
                 'id'            => $type . '_archive_content_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Grid Width', 'waterfall'),
                 'type'          => 'select'
             ),   
@@ -589,7 +589,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'third',
                 'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
                 'id'            => $type . '_archive_content_columns',
-                'choices'       => get_column_options(),
+                'choices'       => wf_get_column_options(),
                 'title'         => __('Grid Columns', 'waterfall'),
                 'type'          => 'select'
             ),    
@@ -633,7 +633,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'square-ld',
                 'description'   => __('Featured Image size within archive posts.', 'waterfall'),
                 'id'            => $type . '_archive_content_image',
-                'choices'       => get_image_sizes(),
+                'choices'       => wf_get_image_sizes(),
                 'title'         => __('Featured Image Size', 'waterfall'),
                 'type'          => 'select'
             ),    
@@ -641,7 +641,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'none',
                 'description'   => __('Float of featured image within the posts.', 'waterfall'),
                 'id'            => $type . '_archive_content_image_float',
-                'choices'       => get_float_options(),
+                'choices'       => wf_get_float_options(),
                 'title'         => __('Featured Image Float', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -676,7 +676,7 @@ if( class_exists( 'WooCommerce' ) ) {
                 'default'       => 'full',
                 'description'   => __('Choose the sidebar lay-out for a single product.', 'waterfall'),
                 'id'            => 'product_sidebar_position',
-                'choices'       => get_sidebar_options(),
+                'choices'       => wf_get_sidebar_options(),
                 'title'         => __('Sidebar Lay-Out', 'waterfall'),
                 'type'          => 'select'
             ), 
@@ -684,7 +684,7 @@ if( class_exists( 'WooCommerce' ) ) {
                 'default'       => 'default',
                 'description'   => __('Width of the product Display.', 'waterfall'),
                 'id'            => 'product_content_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Single Product Width', 'waterfall'),
                 'type'          => 'select'
             ),        
@@ -715,7 +715,7 @@ if( class_exists( 'WooCommerce' ) ) {
             )          
         )         
     );
-    $layout['sections'][] = array(
+    $layout['sections']['woocommerce_archive'] = array(
         'id'            => 'woocommerce_archive',
         'title'         => __('Product Archives', 'waterfall'),
         'fields'    => array(     
@@ -735,7 +735,7 @@ if( class_exists( 'WooCommerce' ) ) {
                 'default'       => 'default',
                 'description'   => __('Width of header in product archives.', 'waterfall'),
                 'id'            => 'product_archive_header_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Product Archive Header Width', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -743,7 +743,7 @@ if( class_exists( 'WooCommerce' ) ) {
                 'default'       => 'default',
                 'description'   => __('Height of header in product archives.', 'waterfall'),
                 'id'            => 'product_archive_header_height',
-                'choices'       => get_height_options(),
+                'choices'       => wf_get_height_options(),
                 'title'         => __('Product Archive Header Height', 'waterfall'),
                 'type'          => 'select'
             ),
@@ -753,13 +753,13 @@ if( class_exists( 'WooCommerce' ) ) {
                 'title'         => __('Product Archive Header Text Align', 'waterfall'),
                 'description'   => __('How should text be aligned within the product archive header?', 'waterfall'),
                 'type'          => 'select',
-                'choices'       => get_align_options()
+                'choices'       => wf_get_align_options()
             ),
             array(
                 'default'       => 'left',
                 'description'   => __('Choose the sidebar lay-out for the product archives.', 'waterfall'),
                 'id'            => 'product_archive_sidebar_position',
-                'choices'       => get_sidebar_options(),
+                'choices'       => wf_get_sidebar_options(),
                 'title'         => __('Sidebar Lay-Out', 'waterfall'),
                 'type'          => 'select'
             ), 
@@ -767,7 +767,7 @@ if( class_exists( 'WooCommerce' ) ) {
                 'default'       => 'default',
                 'description'   => __('Width of the grid with the products and sidebar.', 'waterfall'),
                 'id'            => 'product_archive_content_width',
-                'choices'       => get_container_options(),
+                'choices'       => wf_get_container_options(),
                 'title'         => __('Product Archive Width', 'waterfall'),
                 'type'          => 'select'
             )        
@@ -776,7 +776,7 @@ if( class_exists( 'WooCommerce' ) ) {
 }
 
 // Search Page
-$layout['sections'][] = array(
+$layout['sections']['search_page'] = array(
     'id'        => 'search_page',
     'title'     => __('Search Page', 'waterfall'),
     'fields'    => array(
@@ -796,7 +796,7 @@ $layout['sections'][] = array(
             'default'       => 'default',
             'description'   => __('Width of header in search archives.', 'waterfall'),
             'id'            => 'search_header_width',
-            'choices'       => get_container_options(),
+            'choices'       => wf_get_container_options(),
             'title'         => __('Search Page Header Width', 'waterfall'),
             'type'          => 'select'
         ),
@@ -804,7 +804,7 @@ $layout['sections'][] = array(
             'default'       => 'default',
             'description'   => __('Height of header in search archives.', 'waterfall'),
             'id'            => 'search_header_height',
-            'choices'       => get_height_options(),
+            'choices'       => wf_get_height_options(),
             'title'         => __('Search Page Header Height', 'waterfall'),
             'type'          => 'select'
         ),    
@@ -814,13 +814,13 @@ $layout['sections'][] = array(
             'title'         => __('Search Page Header Text Align', 'waterfall'),
             'description'   => __('How should text be aligned within the search page header?', 'waterfall'),
             'type'          => 'select',
-            'choices'       => get_align_options()
+            'choices'       => wf_get_align_options()
         ),    
         array(
             'default'       => 'full',
             'description'   => __('Choose the sidebar lay-out for the search page.', 'waterfall'),
             'id'            => 'search_sidebar_position',
-            'choices'       => get_sidebar_options(),
+            'choices'       => wf_get_sidebar_options(),
             'title'         => __('Sidebar Lay-Out', 'waterfall'),
             'type'          => 'select'
         ), 
@@ -828,7 +828,7 @@ $layout['sections'][] = array(
             'default'       => 'default',
             'description'   => __('Width of the grid for search results.', 'waterfall'),
             'id'            => 'search_content_width',
-            'choices'       => get_container_options(),
+            'choices'       => wf_get_container_options(),
             'title'         => __('Search Page Width', 'waterfall'),
             'type'          => 'select'
         ),    
@@ -847,7 +847,7 @@ $layout['sections'][] = array(
             'default'       => 'third',
             'description'   => __('Amount of grid columns for search page posts.', 'waterfall'),
             'id'            => 'search_content_columns',
-            'choices'       => get_column_options(),
+            'choices'       => wf_get_column_options(),
             'title'         => __('Search Page Columns', 'waterfall'),
             'type'          => 'select'
         ),    
@@ -887,7 +887,7 @@ $layout['sections'][] = array(
             'default'       => 'thumbnail',
             'description'   => __('Featured Image size within search page results.', 'waterfall'),
             'id'            => 'search_content_image',
-            'choices'       => get_image_sizes(),
+            'choices'       => wf_get_image_sizes(),
             'title'         => __('Search Page Results Image Size', 'waterfall'),
             'type'          => 'select'
         ),    
@@ -895,7 +895,7 @@ $layout['sections'][] = array(
             'default'       => 'left',
             'description'   => __('Float of featured image within the results.', 'waterfall'),
             'id'            => 'search_content_image_float',
-            'choices'       => get_float_options(),
+            'choices'       => wf_get_float_options(),
             'title'         => __('Search Page Featured Image Float', 'waterfall'),
             'type'          => 'select'
         ),
@@ -909,7 +909,7 @@ $layout['sections'][] = array(
 );
 
 // 404 Page
-$layout['sections'][] = array(
+$layout['sections']['404_page'] = array(
     'id'            => '404_page',
     'title'         => __('404 Page', 'waterfall'),
     'fields'    => array(       
@@ -918,13 +918,13 @@ $layout['sections'][] = array(
             'id'            => '404_header_height',
             'title'         => __('404 Header Minimum Height', 'waterfall'),
             'type'          => 'select',
-            'choices'       => get_height_options()
+            'choices'       => wf_get_height_options()
         ),
         array(
             'default'       => 'default',
             'description'   => __('Width of the 404 Header', 'waterfall'),
             'id'            => '404_header_width',
-            'choices'       => get_container_options(),
+            'choices'       => wf_get_container_options(),
             'title'         => __('404 Header Width', 'waterfall'),
             'type'          => 'select'
         ),      
@@ -934,7 +934,7 @@ $layout['sections'][] = array(
             'title'         => __('Header Text Align', 'waterfall'),
             'description'   => __('How should text be aligned within the 404 header?', 'waterfall'),
             'type'          => 'select',
-            'choices'       => get_align_options()
+            'choices'       => wf_get_align_options()
         ),
         array(
             'default'       => __('Woops! Nothing found here...', 'waterfall'),
@@ -968,7 +968,7 @@ $layout['sections'][] = array(
 );
     
 // Footer   
-$layout['sections'][] = array(
+$layout['sections']['styling_footer'] = array(
     'id'            => 'styling_footer',
     'title'         => __('Footer', 'waterfall'),
     'fields'    => array(
@@ -983,7 +983,7 @@ $layout['sections'][] = array(
             'id'            => 'footer_width',
             'title'         => __('Footer Width', 'waterfall'),
             'type'          => 'select',
-            'choices'       => get_container_options(),
+            'choices'       => wf_get_container_options(),
         ),
         array(
             'default'       => '',

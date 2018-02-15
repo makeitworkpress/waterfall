@@ -4,7 +4,7 @@
  *
  * Retrieves our header
  */
-get_theme_header(); 
+wf_get_theme_header(); 
 
 /**
  * Initiate our new product
@@ -54,4 +54,4 @@ $productView = new Views\Product('product'); ?>
 /**
  * Retrieves our footer
  */
-get_theme_footer(); 
+wf_get_theme_footer(); 

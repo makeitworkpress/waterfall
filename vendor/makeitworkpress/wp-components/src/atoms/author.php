@@ -5,7 +5,12 @@
 global $post;
 
 // Atom values
-$atom = wp_parse_args( $atom, array(
+$atom = MakeitWorkPress\WP_Components\Build::multiParseArgs( $atom, [
+    'attributes'        => [
+        'itemprop'  => 'author',
+        'itemscope' => 'itemscope',
+        'itemtype'  => 'http://schema.org/Person'
+    ], 
     'avatar'            => get_avatar( $post->post_author, 100 ),
     'description'       => get_the_author_meta('description'),
     'imageFloat'        => 'none',
@@ -13,13 +18,13 @@ $atom = wp_parse_args( $atom, array(
     'jobTitle'          => '',
     'name'              => get_the_author(),
     'prepend'           => '',  // Prepend the author name with a custom description
-    'schema'            => 'http://schema.org/Person',
     'url'               => esc_url( get_author_posts_url( $post->post_author ) )
-) );
+ ] );
 
-$atom['imageRounded'] = $atom['imageRounded'] ? 'components-rounded' : ''; ?>
+$atom['imageRounded']               = $atom['imageRounded'] ? 'components-rounded' : ''; 
+$attributes                         = MakeitWorkPress\WP_Components\Build::attributes($atom['attributes']); ?>
 
-<div class="atom-author <?php echo $atom['style']; ?>" itemprop="author" itemscope="itemscope" itemtype="<?php echo $atom['schema']; ?>" <?php echo $atom['inlineStyle']; ?> <?php echo $atom['data']; ?>>
+<div <?php echo $attributes; ?>>
     
     <?php if( $atom['avatar'] ) { ?> 
     

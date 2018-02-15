@@ -35,7 +35,15 @@ $typography = array(
                     'id'            => 'breadcrumbs_typography',
                     'title'         => __('Breadcrumbs', 'waterfall'),
                     'type'          => 'typography'
-                ),               
+                ),
+                array(
+                    'default'       => '',
+                    'selector'      => '.main-header .atom-description',
+                    'id'            => 'subtitle_typography',
+                    'title'         => __('Subtitle Typography', 'waterfall'),
+                    'description'   => __('Determines the typography for subtitles in posts and pages.', 'waterfall'),
+                    'type'          => 'typography'
+                ),                                
                 array(
                     'default'       => '',
                     'selector'      => '.main-content',
@@ -87,7 +95,7 @@ $typography = array(
                     'title'         => __('Post Title Headings', 'waterfall'),
                     'description'   => __('Determines the typography for headings in post articles.', 'waterfall'),
                     'type'          => 'typography'
-                ),
+                ),               
                 array(
                     'default'       => '',
                     'selector'      => '.single-product h1.product_title',
@@ -103,7 +111,7 @@ $typography = array(
                     'title'         => __('Widget Titles', 'waterfall'),
                     'description'   => __('Determines the typography for widget headings.', 'waterfall'),
                     'type'          => 'typography'
-                ), 
+                ),               
                 array(
                     'default'       => '',
                     'selector'      => '.main-related h3',
@@ -111,7 +119,15 @@ $typography = array(
                     'title'         => __('Related Post Title', 'waterfall'),
                     'description'   => __('Determines the typography for the title above related posts.', 'waterfall'),
                     'type'          => 'typography'
-                ),                                                               
+                ), 
+                array(
+                    'default'       => '',
+                    'selector'      => '.molecule-post h2',
+                    'id'            => 'post_title_typography',
+                    'title'         => __('Post Grid and List Title', 'waterfall'),
+                    'description'   => __('Determines the typography for the titles for posts in archives, related posts and more.', 'waterfall'),
+                    'type'          => 'typography'
+                ),                                                                               
                 array(
                     'default'       => '',
                     'selector'      => 'h1',

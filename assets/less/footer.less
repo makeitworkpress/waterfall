@@ -34,12 +34,21 @@
     }
 }
 
+.molecule-footer-sidebar {
+    margin-bottom: 0; 
+    .widget:last-child {
+        padding-bottom: @grid-space;
+    }           
+}
+
 /* Socket
 ----------------*/
 .molecule-footer-socket {
     background: @dark-blue;
     font-size: @small-fontsize;
-    line-height: @grid-space * 2;
+    .atom-copyright {
+        margin-top: 20px;    
+    }
     .atom-logo {
         margin-bottom: -@grid-space * 2;
         img {
@@ -49,5 +58,27 @@
         @media screen and (max-width: 1024px) {
             margin-bottom: 0;
         }
+    }    
+    .atom-menu {
+        @media screen and (max-width: 768px) {
+            clear: both;
+            float: none;
+            margin: 0;
+            text-align: center;
+        }
+        li a {
+            padding: @grid-space/2;
+        }
     }
+    .atom-social {
+        margin-bottom: 10px;
+        margin-top: 14px;
+    } 
+    @media screen and (max-width: 480px) {
+        .atom-copyright, .atom-social {
+            float: none;
+            margin: @grid-space 0;
+            text-align: center;
+        }    
+    }   
 }

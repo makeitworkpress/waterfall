@@ -13,9 +13,9 @@ class Header extends Base {
      * Sets the properties for the heading
      */
     protected function setProperties() {
-        $this->properties = apply_filters( 'waterfall_header_properties', array(
-            'customizer' => array( 'logo', 'logo_transparent', 'logo_mobile', 'logo_mobile_transparent' ),
-            'layout' => array(
+        $this->properties = apply_filters( 'waterfall_header_properties', [
+            'customizer' => [ 'logo', 'logo_transparent', 'logo_mobile', 'logo_mobile_transparent' ],
+            'layout' => [
                 'header_border',
                 'header_cart',
                 'header_disable_logo',
@@ -32,9 +32,9 @@ class Header extends Base {
                 'header_menu_style',
                 'header_transparent', 
                 'header_width'   
-            ),
-            'meta' => array( 'transparent_header' )                                      
-        ) );
+            ],
+            'meta' => [ 'transparent_header' ]                                      
+        ] );
 
     }
 
@@ -62,10 +62,10 @@ class Header extends Base {
         $logoMobileTransparent  = is_numeric( $this->customizer['logo_mobile_transparent'] ) ? wp_get_attachment_image_src( $this->customizer['logo_mobile_transparent'], 'medium' ) : false;
        
         // Default header items
-        $atoms = array(
-            'logo'  => array( 
+        $atoms = [
+            'logo'  => [
                 'atom'                      => 'logo',
-                'properties'                => array(
+                'properties'                => [
                     'float'                 => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
                     'default'               => [
                         'src'               => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
@@ -75,43 +75,45 @@ class Header extends Base {
                     'defaultTransparent'    => $logoTransparent ? ['src' => $logoTransparent[0], 'height' => $logoTransparent[2], 'width' => $logoTransparent[1]] : ['src' => '', 'width' => '', 'height' => ''],
                     'mobile'                => $logoMobile ? ['src' => $logoMobile[0], 'height' => $logoMobile[2], 'width' => $logoMobile[1]] : ['src' => '', 'width' => '', 'height' => ''], 
                     'mobileTransparent'     => $logoMobileTransparent ? ['src' => $logoMobileTransparent[0], 'height' => $logoMobileTransparent[2], 'width' => $logoMobileTransparent[1]]  :  ['src' => '', 'width' => '', 'height' => ''] 
-                )
-            ),
-            'menu'  => array( 
+                ]
+            ],
+            'menu'  => [ 
                 'atom'          => 'menu',
-                'properties'    => array(
-                    'args'          => array('theme_location' => 'header-menu'), 
+                'properties'    => [
+                    'args'          => ['theme_location' => 'header-menu'], 
                     'float'         => $this->layout['header_menu_float'] ? $this->layout['header_menu_float'] : 'right',
                     'hamburger'     => $this->layout['header_menu_hamburger'] ? $this->layout['header_menu_hamburger'] : 'mobile',
                     'view'          => $this->layout['header_menu_style'] ? $this->layout['header_menu_style'] : 'default'
-                )
-            )                
-        );
+                ]
+            ]               
+        ];
 
         // Search
         if( $this->layout['header_search'] ) {
-            $atoms['search'] = array( 
-                'atom' => 'search', 
-                'properties' => array(
-                    'ajax'  => true,
-                    'all'   => $this->layout['header_search_all'] ? $this->layout['header_search_all'] : __('View All Results', 'waterfall'),
-                    'collapse' => true,
-                    'float' => 'right',
-                    'none'  => $this->layout['header_search_none'] ? $this->layout['header_search_none'] : __('Nothing found!', 'waterfall')
-                ) 
-            );
+            $atoms['search'] = [ 
+                'atom'              => 'search', 
+                'properties'        => [
+                    'ajax'          => true,
+                    'all'           => $this->layout['header_search_all'] ? $this->layout['header_search_all'] : __('View All Results', 'waterfall'),
+                    'attributes'    => [
+                        'data'      => ['none' => $this->layout['header_search_none'] ? $this->layout['header_search_none'] : __('Nothing found!', 'waterfall')]
+                    ],
+                    'collapse'      => true,
+                    'float'         => 'right',
+                ]
+            ];
         } 
        
         // The cart
         if( $this->layout['header_cart'] ) {
-            $atoms['cart'] = array( 'atom' => 'cart', 'properties' => array('float' => 'right') );
+            $atoms['cart'] = [ 'atom' => 'cart', 'properties' => ['float' => 'right'] ];
         }          
 
         // Social icons
         if( $this->layout['header_social'] ) {
             $networks = get_social_networks();
             if( $networks ) {
-                $atoms['social'] = array( 'atom' => 'social', 'properties' => array('urls' => $networks, 'rounded' => true, 'float' => 'right') );
+                $atoms['social'] = [ 'atom' => 'social', 'properties' => ['urls' => $networks, 'rounded' => true, 'float' => 'right'] ];
             }
         }          
         
@@ -138,14 +140,16 @@ class Header extends Base {
             unset($atoms['logo']['properties']['mobileTransparent']);
         }
     
-        $args = apply_filters( 'waterfall_header_args', array(
+        $args = apply_filters( 'waterfall_header_args', [
             'atoms'         => $atoms,
+            'attributes'    => [
+                'class'     => $this->layout['header_border'] ? 'header waterfall-no-border' : 'header'
+            ],
             'container'     => $this->layout['header_width'] == 'default' ? true : false,
             'headroom'      => $this->layout['header_headroom'],
             'fixed'         => $this->layout['header_fixed'],
-            'style'         => $this->layout['header_border'] ? 'header waterfall-no-border' : 'header',
             'transparent'   => $transparent
-        ) );
+        ] );
     
         // Build the header!
         WP_Components\Build::molecule( 'header', $args );        

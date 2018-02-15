@@ -4,7 +4,7 @@
      *
      * Retrieves our header
      */
-    get_theme_header(); 
+    wf_get_theme_header(); 
 ?>
 
 <article class="waterfall-nothing-found">
@@ -30,5 +30,5 @@
     /**
      * Retrieves our footer
      */
-    get_theme_footer(); 
+    wf_get_theme_footer(); 
 ?>

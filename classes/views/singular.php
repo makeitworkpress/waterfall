@@ -16,14 +16,12 @@ class Singular extends Base {
     public $scheme;
 
     /**
-     * Sets the properties for the index
+     * Sets the data properties for the index
      */
     protected function setProperties() {
 
-        $this->scheme = apply_filters( 'waterfall_singular_scheme', $this->type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"' );
-        
-        $this->properties = apply_filters( 'waterfall_singular_properties', array(
-            'layout' => array(
+        $this->properties = apply_filters( 'waterfall_singular_properties', [
+            'layout' => [
                 // Header
                 'header_align', 
                 'header_author', 
@@ -75,11 +73,16 @@ class Singular extends Base {
                 'share_stumbleupon',
                 'share_pocket',
                 'share_whatsapp',
-            ),
-            'meta'  => array(
-                'page_header_subtitle'    
-            )                                     
-        ) );
+            ],
+            'meta'  => [
+                'page_header_subtitle',
+                'page_header_button_text',
+                'page_header_button_link'
+            ]                                     
+        ] );
+
+        $this->scheme   = apply_filters( 'waterfall_singular_scheme', $this->type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"' );
+
 
     }
 
@@ -127,88 +130,100 @@ class Singular extends Base {
         /**
         * Default arguments
         */
-        $args = array(
-            'align'     => $this->layout['header_align'] ? $this->layout['header_align'] : 'left',
-            'container' => $this->layout['header_width'] == 'full' ? false : true,
-            'height'    => $this->layout['header_height'] ? $this->layout['header_height'] : true,
-            'lazyload'  => get_theme_option( 'customizer', 'lazyload' ),
-            'parallax'  => $this->layout['header_parallax'],
-            'style'     => 'main-header entry-header singular-header'
-        );    
+        $args = [
+            'align'         => $this->layout['header_align'] ? $this->layout['header_align'] : 'left',
+            'attributes'    => ['class' => 'main-header entry-header singular-header'],
+            'container'     => $this->layout['header_width'] == 'full' ? false : true,
+            'height'        => $this->layout['header_height'] ? $this->layout['header_height'] : true,
+            'lazyload'      => wf_get_theme_option( 'customizer', 'lazyload' ),
+            'parallax'      => $this->layout['header_parallax'],
+        ];    
     
         /**
         * Elements
         */
         if( $this->layout['header_breadcrumbs'] ) {
-            $args['atoms']['breadcrumbs'] = array( 'atom' => 'breadcrumbs', 'properties' => array('archive' => false) );  
+            $args['atoms']['breadcrumbs'] = ['atom' => 'breadcrumbs', 'properties' => ['archive' => false]];  
         }    
         
         // Title
         if( ! $this->layout['header_disable_title'] ) {
-            $args['atoms']['title'] = array( 
-                'atom' => 'title',
-                'properties' => array(
-                    'tag' => 'h1', 'style' => 'entry-title', 'schema' => is_single() ? 'name headline' : 'name' 
-                )
-            );   
+            $args['atoms']['title'] = [
+                'atom'          => 'title',
+                'properties'    => ['attributes' => ['class' => 'entry-title'], 'tag' => 'h1', 'schema' => is_single() ? 'name headline' : 'name']
+            ];   
         }
         
         // Subtitle  
         if( $this->meta['page_header_subtitle']  ) {
-            $args['atoms']['description'] = array( 
+            $args['atoms']['description'] = [ 
                 'atom'              => 'description',
-                'properties'        => array(
+                'properties'        => [
                     'description'   =>  $this->meta['page_header_subtitle'] 
-                )
-            );
+                ]
+            ];
         }
+
+        // Button  
+        if( $this->meta['page_header_button_text'] && $this->meta['page_header_button_link'] ) {
+            $args['atoms']['button'] = [ 
+                'atom'              => 'button',
+                'properties'        => [
+                    'attributes'    => [
+                        'href'      => $this->meta['page_header_button_link']
+                    ],
+                    'background'    => 'default',
+                    'label'         =>  $this->meta['page_header_button_text'] 
+                ]
+            ];
+        }        
             
         // Time
         if( $this->layout['header_date']  ) {
-            $args['atoms']['date'] = array( 'atom' => 'date', 'properties' => array('style' => 'entry-time') );    
+            $args['atoms']['date']      = ['atom' => 'date', 'properties' => ['attributes' => ['class' => 'entry-time']]];    
         }
     
         // Terms
         if( $this->layout['header_terms']  ) {
-            $args['atoms']['termlist'] = array( 'atom' => 'termlist', 'properties' => array('style' => 'entry-meta') );    
+            $args['atoms']['termlist']  = ['atom' => 'termlist', 'properties' => ['attributes' => ['class' => 'entry-meta']]];    
         }             
     
         // Featured image
         $featured       = $this->layout['header_featured'] ? $this->layout['header_featured'] : 'after';
-        $featuredArgs   = array( 
+        $featuredArgs   = [ 
             'size'      => $this->layout['header_size'] ? $this->layout['header_size'] : 'half-hd', 
-            'lazyload'  => get_theme_option( 'customizer', 'lazyload' ) 
-        ); 
+            'lazyload'  => wf_get_theme_option( 'customizer', 'lazyload' ) 
+        ]; 
         
         if( $featured == 'before' ) {
-            $args['atoms'] = array( 'image' => array( 'atom' => 'image', 'properties' => $featuredArgs) ) + $args['atoms'];
+            $args['atoms']          = ['image' => ['atom' => 'image', 'properties' => $featuredArgs]] + $args['atoms'];
         } elseif( $featured == 'after' ) {
-            $args['atoms']['image'] = array( 'atom' => 'image', 'properties' => $featuredArgs );    
+            $args['atoms']['image'] = ['atom' => 'image', 'properties' => $featuredArgs];    
         } elseif( $featured == 'background' ) {
-            $args['background'] = get_the_post_thumbnail_url( null, $this->layout['header_size'] );
+            $args['background']     = get_the_post_thumbnail_url( null, $this->layout['header_size'] );
         }                                             
             
         if( $this->layout['header_author'] ) {
     
             global $post;
     
-            $args['atoms']['author'] = array(
+            $args['atoms']['author'] = [
                 'atom'          => 'author',
-                'properties'    => array(
+                'properties'    => [
+                    'attributes'    => ['class' => 'entry-author'],
                     'avatar'        => get_avatar($post->post_author, 64),
                     'description'   => false, 
                     'imageFloat'    => 'left', 
                     'prepend'       => __('Article by ', 'waterfall'),
-                    'style'         => 'entry-author'
-                )
-            ); 
+                ]
+            ]; 
         }                                                
         
         // Scroll-button
         if( $this->layout['header_scroll'] == 'default' ) {
-            $args['atoms']['scroll'] = array( 'atom' => 'scroll', 'properties' => array( 'icon' => false) );
+            $args['atoms']['scroll'] = ['atom' => 'scroll', 'properties' => ['icon' => false]];
         } elseif( $this->layout['header_scroll'] == 'arrow' ) {
-            $args['atoms']['scroll'] = array( 'atom' => 'scroll', 'properties' => array( 'icon' => 'angle-down') );    
+            $args['atoms']['scroll'] = ['atom' => 'scroll', 'properties' => ['icon' => 'angle-down']];
         }     
         
         $args = apply_filters( 'waterfall_content_header_args', $args );
@@ -230,7 +245,7 @@ class Singular extends Base {
             $this->getProperties();  
         }
 
-        WP_Components\Build::atom( 'content', array('style' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content') );     
+        WP_Components\Build::atom( 'content', ['attributes' => ['class' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content']] );     
 
     }
 
@@ -250,7 +265,7 @@ class Singular extends Base {
         }   
         
         if( $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::atom( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );
+            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'sidebar'], 'sidebars' => [$this->type]] );
         }
 
     }
@@ -277,14 +292,21 @@ class Singular extends Base {
     
             global $post;
     
-                // Base query
-                $query = array( 
-                    'post__not_in'      => array($post->ID), 
-                    'posts_per_page'    => $this->layout['related_number'] ? $this->layout['related_number'] : 3, 
-                    'post_type'         => $post->post_type 
-                );
-    
-                // Include only categories from post
+            // Base query
+            $query = [
+                'post__not_in'      => [$post->ID], 
+                'posts_per_page'    => $this->layout['related_number'] ? $this->layout['related_number'] : 3, 
+                'post_type'         => $post->post_type 
+            ];
+
+            /**
+             * This looks for taxonomies/terms attached to the post and loads these based on these terms
+             * If ElasticPress is installed on this site, it uses elasticpress to search for posts
+             */
+            if( function_exists('ep_find_related') ) {
+                $query['post__in']      = ep_find_related( $post->ID, $this->layout['related_number'] );
+                $query['ep_integrate']  = true;
+            } else {
                 $categories = get_the_category($post->ID);
 
                 if( $categories ) {
@@ -292,38 +314,37 @@ class Singular extends Base {
                         $query['cat'][] = $term->term_id;     
                     }
                 }
+            }         
 
-                $args = apply_filters('waterfall_related_args', array( 
-                    'args'              => $query,
-                    'contentAtoms'      => $this->layout['related_content'] == 'none' ? array() : array( 'content' => array( 'atom' => 'content', 'properties' => array('type' => 'excerpt')) ),
-                    'footerAtoms'       => array(
-                        'button' => array(
-                            'atom'          => 'button',
-                            'properties'    => array(
-                                'iconAfter'     => 'angle-right', 
-                                'iconVisible'   => 'hover', 
-                                'label'         => $this->layout['related_button'], 
-                                'size'          => 'small'
-                            )
-                        ) 
-                    ),
-                    'image'             => array( 
-                        'link'      => 'post', 
-                        'size'      => $this->layout['related_image'] ? $this->layout['related_image'] : 'square-ld', 
+            $args = apply_filters( 'waterfall_related_args', [
+                'pagination'        => false,
+                'postProperties'    => [
+                    'appear'        => 'bottom',
+                    'attributes'    => [
+                        'style'     => ['min-height' => $this->layout['related_height'] ? $this->layout['related_height'] . 'px;' : '']
+                    ],
+                    'contentAtoms'  => $this->layout['related_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],
+                    'footerAtoms'   => [
+                        'button'    => [
+                            'atom' => 'button', 'properties' => ['iconAfter' => 'angle-right', 'iconVisible' => 'hover', 'label' => $this->layout['related_button'], 'size' => 'small']
+                        ] 
+                    ],                   
+                    'grid'          => $this->layout['related_grid'] ? $this->layout['related_grid'] : 'third',
+                    'image'         => [ 
                         'enlarge'   => $this->layout['related_image_enlarge'] ? true : false, 
                         'float'     => $this->layout['related_image_float'] ? $this->layout['related_image_float'] : 'none',
-                        'lazyload'  => get_theme_option('customizer', 'lazyload') 
-                    ),
-                    'pagination'        => false,
-                    'postsAppear'       => 'bottom',
-                    'postsGrid'         => $this->layout['related_grid'] ? $this->layout['related_grid'] : 'third',
-                    'postsInlineStyle'  => $this->layout['related_height'] ? 'min-height:' . $this->layout['related_height'] . 'px;' : '',
-                    'view'              => $this->layout['related_style'] ? $this->layout['related_style'] : 'grid',
-                ) );
+                        'lazyload'  => wf_get_theme_option('customizer', 'lazyload'),
+                        'link'      => 'post', 
+                        'size'      => $this->layout['related_image'] ? $this->layout['related_image'] : 'square-ld'                         
+                    ]
+                ],                
+                'queryArgs'         => $query,
+                'view'              => $this->layout['related_style'] ? $this->layout['related_style'] : 'grid'
+            ] );
                 
             // Remove the button if the text is empty
             if( ! $this->layout['related_button'] ) {
-                unset( $args['footerAtoms']['button'] );
+                unset( $args['postProperties']['footerAtoms']['button'] );
             }
 
             // Echo a title above the related posts
@@ -337,11 +358,11 @@ class Singular extends Base {
         
         // Pagination
         if( $this->layout['related_pagination'] ) {
-            $args = apply_filters('waterfall_related_paginate_args', array( 
+            $args = apply_filters( 'waterfall_related_paginate_args', [ 
                 'type' => 'post', 
                 'prev' => '<span>' . $this->layout['related_pagination_prev'] . '</span>%title', 
                 'next' => '<span>' . $this->layout['related_pagination_next'] . '</span>%title' 
-            ) );
+            ] );
             WP_Components\Build::atom( 'pagination', $args );
         }
     
@@ -360,15 +381,16 @@ class Singular extends Base {
         }
         
         // Default arguments
-        $args = array(
-            'container' => $this->layout['footer_width'] == 'full' ? false : true,
-            'style' => 'main-footer entry-footer singular-footer'
-        );
+        $args = [
+            'attributes'    => ['class' => 'main-footer entry-footer singular-footer'],
+            'container'     => $this->layout['footer_width'] == 'full' ? false : true
+        ];
             
         // Sharing Buttons
         if( $this->layout['footer_share'] ) {
-            $args['atoms']['share'] = array( 'atom' => 'share', 'properties' => array('fixed' => $this->layout['footer_share_fixed'] ? true : false) );
-            $networks = array('facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp');
+            $args['atoms']['share'] = ['atom' => 'share', 'properties' => ['fixed' => $this->layout['footer_share_fixed'] ? true : false]];
+            
+            $networks = ['facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp'];
             
             // Networks should be enabled
             foreach( $networks as $network ) {
@@ -381,18 +403,18 @@ class Singular extends Base {
         
         // Author
         if( $this->layout['footer_author'] ) {
-            $args['atoms']['author'] = array( 
+            $args['atoms']['author'] = [ 
                 'atom'          => 'author',
-                'properties'    => array( 'imageFloat' => 'left', 'style' => 'entry-author' )
-            );
+                'properties'    => ['attributes' => ['class' => 'entry-author'], 'imageFloat' => 'left']
+            ];
         }      
         
         // Comments
         if( $this->layout['footer_comments'] ) {
-            $args['atoms']['comments'] = array(
+            $args['atoms']['comments'] = [
                 'atom'          => 'comments',
-                'properties'    => array( 'closedText' => $this->layout['footer_comments_closed'] ? $this->layout['footer_comments_closed'] : __('Comments are closed.', 'waterfall') )
-            );
+                'properties'    => ['closedText' => $this->layout['footer_comments_closed'] ? $this->layout['footer_comments_closed'] : __('Comments are closed.', 'waterfall')]
+            ];
         }    
         
         $args = apply_filters( 'waterfall_content_footer_args', $args );

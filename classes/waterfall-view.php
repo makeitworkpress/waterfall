@@ -51,7 +51,18 @@ class Waterfall_View {
                 return $return;
                 
             });
-        }        
+        }   
+        
+        /**
+         * Adds optional styling which can not yet be covered by wp-custom-fields
+         */
+        add_action( 'wp_head', function() {
+            $headerHeight = wf_get_theme_option( 'layout', 'header_height' ); 
+
+            if( isset($headerHeight['amount']) && $headerHeight['unit'] ) {
+                echo '<style type="text/css"> .header .atom-logo img { max-height:' . $headerHeight['amount'] . $headerHeight['unit'] . '; width: auto;}</style>';
+            }
+        }, 20 );
         
         /**
          * Add our lay-out classes to the body
@@ -63,8 +74,8 @@ class Waterfall_View {
             /**
              * Inbuild
              */
-            $customize = get_theme_option('customizer'); 
-            $layout    = get_theme_option('layout');
+            $customize = wf_get_theme_option('customizer'); 
+            $layout    = wf_get_theme_option('layout');
             $sidebar   = 'default';
             
             // Default layout class for boxed and non-boxed
@@ -79,7 +90,7 @@ class Waterfall_View {
 
             // Default archives
             if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') ) {
-                $type       = get_archive_post_type();
+                $type       = wf_get_archive_post_type();
                 $sidebar    = isset($layout[$type . '_archive_sidebar_position']) ? $layout[$type . '_archive_sidebar_position'] : 'default';
 
             }
@@ -96,12 +107,12 @@ class Waterfall_View {
                 
             
                 // Posts or pages with an overlay and adjustable width
-                if( get_theme_option('meta', 'page_header_overlay') ) {
+                if( wf_get_theme_option('meta', 'page_header_overlay') ) {
                     $classes[] = 'waterfall-content-header-overlay';
                 }
 
-                $full           = get_theme_option( 'meta', 'content_width' );
-                $customizer     = get_theme_option( 'layout', get_post_type() . '_content_width' );
+                $full           = wf_get_theme_option( 'meta', 'content_width' );
+                $customizer     = wf_get_theme_option( 'layout', get_post_type() . '_content_width' );
                 
                 if( (isset($full['full']) && $full['full']) || $customizer == 'full' ) {
                     $sidebar    = 'default';
@@ -138,15 +149,15 @@ class Waterfall_View {
             add_theme_support( 'woocommerce' );
             
             // Customizer support
-            if( get_theme_option('layout', 'product_content_zoom') )
+            if( wf_get_theme_option('layout', 'product_content_zoom') )
                 add_theme_support( 'wc-product-gallery-zoom' );
             
             // Lightbox Support
-            if( get_theme_option('layout', 'product_content_lightbox') && ! get_theme_option('customizer', 'lightbox') )
+            if( wf_get_theme_option('layout', 'product_content_lightbox') && ! wf_get_theme_option('customizer', 'lightbox') )
                 add_theme_support( 'wc-product-gallery-lightbox' );
             
             // Slider support
-            if( get_theme_option('layout', 'product_content_slider') )
+            if( wf_get_theme_option('layout', 'product_content_slider') )
                 add_theme_support( 'wc-product-gallery-slider' );
         }        
     }    

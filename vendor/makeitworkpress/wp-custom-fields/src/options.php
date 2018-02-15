@@ -34,7 +34,7 @@ class Options {
      * Constructor
      *
      * @param array $group The array with settings, sections and fields
-     * @return WP_Errpr|void An WP Error if we encounter a configuration error, otherwise nothing
+     * @return WP_Error|void An WP Error if we encounter a configuration error, otherwise nothing
      */    
     public function __construct( $group = array() ) {
         $this->optionPage   = $group;
@@ -48,7 +48,7 @@ class Options {
                 $this->validated = Validate::configurations( $group, ['title', 'menu_title', 'capability', 'id', 'menu_icon', 'menu_position'] );
                 break;
             case 'submenu':
-                $this->validated = Validate::configurations( $tgroup, ['title', 'menu_title', 'capability', 'id', 'slug'] );                         
+                $this->validated = Validate::configurations( $group, ['title', 'menu_title', 'capability', 'id', 'slug'] );                         
                 break;
             default:
                 $this->validated = Validate::configurations( $group, ['title', 'menu_title', 'capability', 'id'] );       
@@ -164,10 +164,13 @@ class Options {
         $frame                  = new Frame( $this->optionPage, $values );
         $frame->type            = 'Options';
 
-        // Errors
-        ob_start();
-        settings_errors(); 
-        $frame->errors          = ob_get_clean();
+        // Errors - they are already implemented automatically at option screens.
+        $screen                 = get_current_screen();
+        if( $screen->parent_base != 'options-general' ) {
+            ob_start();
+            settings_errors(); 
+            $frame->errors          = ob_get_clean();
+        }
 
         // Save Button
         ob_start();

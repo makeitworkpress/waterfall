@@ -8,7 +8,7 @@
  * Retrieves the theme header
 * Replaces the standard get_header call that WordPress uses
  */
-function get_theme_header() {
+function wf_get_theme_header() {
     get_template_part('templates/header');
 }
 
@@ -16,7 +16,7 @@ function get_theme_header() {
  * Retrieves the theme footer
  * Replaces the standard get_footer call that WordPress uses
  */
-function get_theme_footer() {
+function wf_get_theme_footer() {
     get_template_part('templates/footer');
 }
 
@@ -27,9 +27,9 @@ function get_theme_footer() {
  * @param   mixed     $key      The array of option keys or single option key to retrieve
  * @param   string    $prefix   A common prefix for the option
  *
- * @return  mixed    $options   The array with options; 
+ * @return  mixed     $options   The array with options; 
  */
-function get_theme_option( $type = '', $key = '', $prefix = '' ) {
+function wf_get_theme_option( $type = '', $key = '', $prefix = '' ) {
 
     $options    = '';
     
@@ -71,7 +71,7 @@ function get_theme_option( $type = '', $key = '', $prefix = '' ) {
 /**
  * Retrieves the main microscheme for a theme
  */
-function get_main_schema() {
+function wf_get_main_schema() {
     
     $schema = 'http://schema.org/WebPageElement';
     
@@ -89,7 +89,7 @@ function get_main_schema() {
  * Checks if we are displaying a custom template
  * Works properly after the template_include hook.
  */
-function is_custom() {
+function wf_is_custom() {
     
     global $wp_query;
     
@@ -103,7 +103,7 @@ function is_custom() {
 /**
  * Retrieves all image sizes for this theme
  */
-function get_image_sizes() {
+function wf_get_image_sizes() {
     return apply_filters( 'waterfall_image_sizes', array(
         'thumbnail'     => __('Thumbnail', 'waterfall'),
         'medium'        => __('Medium', 'waterfall'),
@@ -131,7 +131,7 @@ function get_image_sizes() {
 /**
  * Retrieves the default grid columns of the grid system
  */
-function get_column_options() {
+function wf_get_column_options() {
     return apply_filters( 'waterfall_column_options', array(
         'full'      => __('No columns', 'waterfall'),
         'half'      => __('Two columns', 'waterfall'),
@@ -144,7 +144,7 @@ function get_column_options() {
 /**
  * Retrieve options for displaying the sidebar
  */
-function get_sidebar_options() {
+function wf_get_sidebar_options() {
     return apply_filters( 'waterfall_sidebar_options', array(
         'full'      => __('No Sidebars', 'waterfall'),
         'left'      => __('Left Sidebar', 'waterfall'),
@@ -156,7 +156,7 @@ function get_sidebar_options() {
 /**
  * Retrieve options for container/fullwidth
  */
-function get_container_options() {
+function wf_get_container_options() {
     return apply_filters( 'waterfall_container_options', array(
         ''          => __('Select Option', 'waterfall'),
         'default'   => __('Default', 'waterfall'),
@@ -167,7 +167,7 @@ function get_container_options() {
 /**
  * Retrieves screen heights
  */
-function get_height_options() {
+function wf_get_height_options() {
     return apply_filters( 'waterfall_height_options', array(
         'default'   => __('No minimum height', 'waterfall'),
         'full'      => __('Fullscreen height', 'waterfall'),
@@ -182,7 +182,7 @@ function get_height_options() {
 /**
  * Retrieves alignments
  */
-function get_align_options() {
+function wf_get_align_options() {
     return apply_filters( 'waterfall_align_options', array(
         'left'    => __('Left', 'waterfall'),
         'center'  => __('Center', 'waterfall'),
@@ -193,7 +193,7 @@ function get_align_options() {
 /**
  * Retrieves button options
  */
-function get_button_options() {
+function wf_get_button_options() {
     return apply_filters( 'waterfall_button_options', array(
         'none'      => __('No button', 'waterfall'),
         'default'   => __('Default button', 'waterfall'),
@@ -204,7 +204,7 @@ function get_button_options() {
 /**
  * Retrieves background options
  */
-function get_background_options() {
+function wf_get_background_options() {
     return apply_filters( 'waterfall_background_options', array(
         'background'    => __('As background of the title section', 'waterfall'),
         'before'        => __('Before the page title in the title section', 'waterfall'),
@@ -216,7 +216,7 @@ function get_background_options() {
 /**
  * Retrieves float options
  */
-function get_float_options() {
+function wf_get_float_options() {
     return apply_filters( 'waterfall_float_options', array(
         'center' => __('Center', 'waterfall'),
         'left'   => __('Left', 'waterfall'),
@@ -230,7 +230,7 @@ function get_float_options() {
  *
  * @return array $urls The array with social network urls as values, and their sanitized names as keys
  */
-function get_social_networks() {
+function wf_get_social_networks() {
     $networks   = array(
         'telephone'     => __('Telephone', 'waterfall'), 
         'email'         => __('Email', 'waterfall'), 
@@ -241,10 +241,12 @@ function get_social_networks() {
         'google-plus'   => __('Google Plus', 'waterfall'), 
         'youtube'       => __('Youtube', 'waterfall'), 
         'pinterest'     => __('Pinterest', 'waterfall'), 
+        'behance'       => __('Behance', 'waterfall'), 
+        'dribble'       => __('Dribble', 'waterfall'), 
         'reddit'        => __('Reddit', 'waterfall'),   
         'whatsapp'      => __('Whatsapp', 'waterfall')           
     );
-    $options    = get_theme_option('customizer');
+    $options    = wf_get_theme_option('customizer');
     $urls       = array();
     
     foreach( $networks as $network => $label ) {
@@ -260,8 +262,8 @@ function get_social_networks() {
  * 
  * @return string $type the post type
  */
-function get_archive_post_type() {
-    
+function wf_get_archive_post_type() {
+
     $type = 'post';
     
     global $wp_query;

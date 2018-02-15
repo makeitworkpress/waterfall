@@ -4,7 +4,7 @@
  *
  * Retrieves our header
  */
-get_theme_header(); 
+wf_get_theme_header(); 
 
 // Start our loop
 while( have_posts() ) {
@@ -115,4 +115,4 @@ while( have_posts() ) {
 /**
  * Retrieves our footer
  */
-get_theme_footer(); 
+wf_get_theme_footer(); 

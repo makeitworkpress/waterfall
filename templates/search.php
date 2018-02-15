@@ -4,7 +4,7 @@
      *
      * Retrieves our header
      */
-    get_theme_header();
+    wf_get_theme_header();
 
     // Initializes our search
     $search = new Views\Index('search');
@@ -55,6 +55,6 @@
     /**
      * Retrieves our footer
      */
-    get_theme_footer(); 
+    wf_get_theme_footer(); 
 
 ?>

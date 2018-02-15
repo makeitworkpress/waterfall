@@ -115,13 +115,29 @@ $postmeta = array(
             'id'        => 'page_header',
             'title'     => __('Page Title Header', 'waterfall'),
             'fields'    => array(  
-                 array(
+                array(
+                    'columns'       => 'half',
                     'id'            => 'page_header_subtitle',
                     'title'         => __('Subtitle Page Header', 'waterfall'),
                     'type'          => 'textarea'
-                ),      
+                ), 
                 array(
-                    'selector'           => '.main-header',
+                    'columns'       => 'fourth',
+                    'id'            => 'page_header_button_text',
+                    'title'         => __('Button Page Header Text', 'waterfall'),
+                    'description'   => __('Enter the text for an optional button here.', 'waterfall'),
+                    'type'          => 'input'
+                ),
+                array(
+                    'columns'       => 'fourth',
+                    'id'            => 'page_header_button_link',
+                    'title'         => __('Button Page Header Link', 'waterfall'),
+                    'description'   => __('Enter the link for this button here.', 'waterfall'),
+                    'type'          => 'input',
+                    'subtype'       => 'url',
+                ),                                      
+                array(
+                    'selector'      => '.main-header',
                     'columns'       => 'half',
                     'id'            => 'page_header_background',
                     'multiple'      => false,

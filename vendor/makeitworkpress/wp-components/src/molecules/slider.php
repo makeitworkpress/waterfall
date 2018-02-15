@@ -4,76 +4,78 @@
  */
 
 // Molecule values
-$molecule = wp_parse_args( $molecule, array(
-    'id'            => uniqid(),            // Used to link the slider to it's variables
-    'options'       => array(
+$molecule = MakeitWorkPress\WP_Components\Build::multiParseArgs( $molecule, [
+    'attributes'    => [
+        'data'      => [
+            'id'    => uniqid() // Used to link the slider to it's variables
+        ]   
+    ],
+    'options'       => [
         'animation'         => 'fade',      // Type of animation
         'animationSpeed'    => 500,         // Speed of animation
         'nextText'          => '<i class="fa fa-angle-right"></i>',  // Next indicator 
         'prevText'          => '<i class="fa fa-angle-left"></i>',  // Prev indicator
         'slideshowSpeed'    => 5000 ,       // Speed of slideshow
         'smoothHeight'      => false         // Smoothes the height
-    ),
-    'scheme'        => 'http://www.schema.org/CreativeWork',     
+    ], 
     'scroll'        => false,       // Adds a scrolldown button     
-    'slides'        => array(),     // Supports a array with class, position, background (url or color value), video, image and atoms as keys.
-    'size'          => 'full',      // The default size for images,
-    'thumbnail'     => ''           // The default size for thumbnails. If set, this will also enable thumbnails. The images should be attachment ids and slides should have an image.    
-) ); 
+    'slides'        => [],          // Supports a array with video, image and atoms as keys and the attribute key with class, position, background (url or color value).   
+    'thumbnailSize' => ''           // The default size for thumbnails. If set, this will also enable thumbnails. The images should be attachment ids and slides should have an image.             
+ 
+] ); 
 
 // Set our variables
 if( $molecule['options'] ) {
 
     // Set our control navigation option
-    if( $molecule['thumbnail'] ) {
+    if( $molecule['thumbnailSize'] ) {
         $molecule['options']['controlNav'] = 'thumbnails';
     }
     
     add_action( 'wp_footer', function() use($molecule) {
-        echo '<script type="text/javascript">var slider' . $molecule['id'] . ' = ' . json_encode($molecule['options']) . ';</script>';    
+        echo '<script type="text/javascript">var slider' . $molecule['attributes']['data']['id'] . ' = ' . json_encode($molecule['options']) . ';</script>';    
     } );
     
 }
 
-// Add our data
-$molecule['data'] .= ' data-id="' . $molecule['id'] . '"';
-
-// Enqueue our script
+// Enqueue our slider script
 if( ! wp_script_is('components-slider') && apply_filters('components_slider_script', true) ) {
     wp_enqueue_script('components-slider'); 
-} ?>
+} 
 
-<div class="molecule-slider <?php echo $molecule['style']; ?>" <?php echo $molecule['inlineStyle']; ?> <?php echo $molecule['data']; ?>>
+$attributes = MakeitWorkPress\WP_Components\Build::attributes($molecule['attributes']); ?>
+
+<div <?php echo $attributes; ?>>
     
     <?php do_action( 'components_slider_before', $molecule ); ?>
     
     <ul class="slides">
         
         <?php foreach( $molecule['slides'] as $slide ) { 
-    
-            // No class has been set 
-            if( ! isset($slide['class']) )
-                $slide['class'] = '';
-        
-            // Background in a slider
-            if( isset($slide['background']) ) {
-                if( isset($molecule['lazyload']) && $molecule['lazyload'] && strpos($slide['background'], 'http') === 0 ) {
-                    $slide['background'] = 'data-src="' . $slide['background'] . '"';
-                    $slide['class'] .= ' components-lazyload';
-                } else {
-                    $slide['background'] = strpos($slide['background'], 'http') === 0 ? 'style="background-image: url(' . $slide['background'] . ');"' : 'style="background-color: ' . $slide['background'] . ';"';
-                }
-            } else {
-                $slide['background'] = '';   
+
+            // Attributes
+            if( ! isset($slide['attributes']) ) {
+                $slide['attributes'] = [];   
             }
 
+            $slide['attributes'] = wp_parse_args( $slide['attributes'], [
+                'class'     => '',
+                'itemscope' => 'itemscope',
+                'itemtype'  => 'http://www.schema.org/CreativeWork'
+            ]);
+
+            $slide['attributes']['class'] .= ' molecule-slide';
+
             // Thumbs
-            $thumb = $molecule['thumbnail'] && isset($slide['image']['image']) && is_numeric($slide['image']['image']) ? 'data-thumb="' . wp_get_attachment_image_url( $slide['image']['image'], $molecule['thumbnail'] ) . '"' : '';
+            if( $molecule['thumbnailSize'] && isset($slide['image']['image']) && is_numeric($slide['image']['image']) ) {
+                $slide['attributes']['data']['thumb'] = wp_get_attachment_image_url( $slide['image']['image'], $molecule['thumbnailSize'] );
+            }
 
-            // Position of elements
-            $slide['position'] = isset($slide['position']) ? 'components-position-' . $slide['position'] : ''; ?>
+            // Determine the attributes and default properties
+            $slideProperties = MakeitWorkPress\WP_Components\Build::setDefaultProperties('slide', $slide);
+            $slideAttributes = MakeitWorkPress\WP_Components\Build::attributes($slideProperties['attributes']); ?>
 
-            <li class="molecule-slide" itemscope="itemscope" itemtype="<?php echo $molecule['scheme']; ?>" <?php echo $thumb; ?>>
+            <li <?php echo $slideAttributes; ?>>
                 
                 <?php 
     
@@ -82,7 +84,7 @@ if( ! wp_script_is('components-slider') && apply_filters('components_slider_scri
                 
                 ?> 
 
-                    <div class="molecule-slide-wrapper <?php echo $slide['position']; ?> <?php echo $slide['class']; ?>" <?php echo $slide['background']; ?>>
+                    <div class="molecule-slide-wrapper">
                         <div class="molecule-slide-caption">
 
                             <?php

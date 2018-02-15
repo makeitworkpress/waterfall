@@ -13,8 +13,8 @@ class Index extends Base {
      * Sets the properties for the index
      */
     protected function setProperties() {
-        $this->properties = apply_filters( 'waterfall_index_properties', array(
-            'layout' => array(
+        $this->properties = apply_filters( 'waterfall_index_properties', [
+            'layout' => [
                 // Header
                 'header_align', 
                 'header_breadcrumbs', 
@@ -32,8 +32,8 @@ class Index extends Base {
                 'content_style',
                 // Sidebar
                 'sidebar_position'
-            )                                     
-        ) );
+            ]                                     
+        ] );
 
 
     }
@@ -53,24 +53,24 @@ class Index extends Base {
 
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] ) {
-            $atoms['breadcrumbs'] = array( 'atom' => 'breadcrumbs', 'properties' => array() );    
+            $atoms['breadcrumbs'] = [ 'atom' => 'breadcrumbs' ];    
         }
         
         // Default title
-        $atoms['archive-title'] = array( 'atom' => 'archive-title', 'properties' => array('style' => 'page-title') );    
+        $atoms['archive-title'] = ['atom' => 'archive-title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];    
         
         // Add searchform on search pages
         if( is_search() ) {     
-            $atoms['search'] = array( 'atom' => 'search', 'properties' => array() );
+            $atoms['search'] = ['atom' => 'search'];
         }
         
-        $args = apply_filters( 'waterfall_archive_header_args', array(
-            'atoms'     => $atoms,
-            'align'     => $this->layout['header_align'],
-            'container' => $this->layout['header_width'] == 'full' ? false : true,
-            'height'    => $this->layout['header_height'],
-            'style'     => 'main-header archive-header'
-        ) );
+        $args = apply_filters( 'waterfall_archive_header_args', [
+            'atoms'         => $atoms,
+            'attributes'    => ['class' => 'main-header archive-header'],
+            'align'         => $this->layout['header_align'],
+            'container'     => $this->layout['header_width'] == 'full' ? false : true,
+            'height'        => $this->layout['header_height']
+        ] );
         
         WP_Components\Build::molecule( 'post-header', $args );         
 
@@ -89,43 +89,43 @@ class Index extends Base {
         // Retrieve our global query.
         global $wp_query;
         
-        $args = apply_filters( 'waterfall_archive_posts_args', array(
-            'contentAtoms'      => $this->layout['content_content'] == 'none' ? array() : array( 'content' => array( 'atom' => 'content', 'properties' => array('type' => 'excerpt')) ),
-            'headerAtoms'       => $this->layout['content_type'] 
-                ? array( 
-                    'title' => array( 'atom' => 'title', 'properties' => array('tag' => 'h2', 'link' => 'post') ), 
-                    'type' => array( 'atom' => 'type', 'properties' => array('style' => 'entry-meta') ) 
-                ) 
-                : array( 'title' => array( 'atom' => 'title', 'properties' => array('tag' => 'h2', 'link' => 'post') ) ),
-            'footerAtoms'       => array( 
-                'button' => array( 
-                    'atom'  => 'button',
-                    'properties' => array(
-                        'float'         => 'right',
-                        'link'          => 'post', 
-                        'label'         => $this->layout['content_button'], 
-                        'size'          => 'small'
-                    )
-                ) 
-            ),
-            'image'             => array( 
-                'link'      => 'post', 
-                'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : 'medium', 
-                'enlarge'   => $this->layout['content_image_enlarge'] ? true : false, 
-                'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : 'none', 
-                'lazyload'  => get_theme_option('customizer', 'lazyload') 
-            ),
-            'postsAppear'       => 'bottom',
-            'postsGrid'         => $this->layout['content_columns'] ? $this->layout['content_columns'] : 'third',
-            'postsInlineStyle'  => $this->layout['content_height'] ? 'min-height:' . $this->layout['content_height'] . 'px;' : '',
-            'style'             => 'content archive-posts',
+        $args = apply_filters( 'waterfall_archive_posts_args', [            
+            'attributes'        => [
+                'class'         => 'content archive-posts'
+            ],
+            'postProperties'    => [
+                'appear'        => 'bottom',
+                'attributes'    => [
+                    'style'     => ['min-height' => $this->layout['content_height'] ? 'min-height:' . $this->layout['content_height'] . 'px;' : '']
+                ],
+                'contentAtoms'  => $this->layout['content_content'] == 'none' ? ['content' => []] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
+                'footerAtoms'   => [ 
+                    'button'    => ['atom' => 'button','properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
+                ], 
+                'grid'          => $this->layout['content_columns'] ? $this->layout['content_columns'] : 'third',   
+                'headerAtoms'   => [ 
+                    'title'     => ['atom' => 'title', 'properties' => ['attributes' => ['itemprop' => 'name', 'class' => 'entry-title'], 'tag' => 'h2', 'link' => 'post']] 
+                ],                                 
+                'image'         => [
+                    'enlarge'   => $this->layout['content_image_enlarge'] ? true : false, 
+                    'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : 'none', 
+                    'lazyload'  => wf_get_theme_option('customizer', 'lazyload'),                     
+                    'link'      => 'post', 
+                    'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : 'medium'                    
+                ]
+            ],
             'view'              => $this->layout['content_style'] ? $this->layout['content_style'] : 'grid',
-            'query'             => $wp_query    
-        ) );
+            'query'             => $wp_query
+        ] );
+
+        // Adds the post type indicator
+        if( $this->layout['content_type'] ) {
+            $args['postProperties']['headerAtoms']['type'] = ['atom' => 'type', 'properties' => ['attributes' => ['class' => 'entry-meta']]];
+        }
 
         // Unset button if no text is set
         if( ! $this->layout['content_button'] ) {
-            unset( $args['footerAtoms']['button'] );
+            unset( $args['postProperties']['footerAtoms']['button'] );
         }        
         
         WP_Components\Build::molecule( 'posts', $args );
@@ -142,8 +142,9 @@ class Index extends Base {
             $this->getProperties(); 
         }
         
+        // Adds sidebars. Sidebards ids are similar to the type displayed (archive, post, etc)
         if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::atom( 'sidebar', array('sidebars' => array($this->type), 'style' => 'sidebar') );
+            WP_Components\Build::atom( 'sidebar', ['sidebars' => [$this->type], ['attributes' => ['class' => 'sidebar']]] );
         }
 
     }

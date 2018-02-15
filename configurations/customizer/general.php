@@ -175,7 +175,19 @@ $customizer = array(
                     'id'            => 'reddit',
                     'title'         => __('Reddit Url', 'waterfall'),
                     'type'          => 'url',
-                ),                
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => 'behance',
+                    'title'         => __('Behance Profile Url', 'waterfall'),
+                    'type'          => 'url',
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => 'dribbble',
+                    'title'         => __('Dribble Profile Url', 'waterfall'),
+                    'type'          => 'url',
+                ),                                                  
                 array(
                     'default'       => '',
                     'id'            => 'whatsapp',
