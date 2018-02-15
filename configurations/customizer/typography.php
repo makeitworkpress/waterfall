@@ -124,7 +124,7 @@ $typography = array(
                     'default'       => '',
                     'selector'      => '.molecule-post h2',
                     'id'            => 'post_title_typography',
-                    'title'         => __('Post Grid and List Title', 'waterfall'),
+                    'title'         => __('Post Grid and List Titles', 'waterfall'),
                     'description'   => __('Determines the typography for the titles for posts in archives, related posts and more.', 'waterfall'),
                     'type'          => 'typography'
                 ),                                                                               
