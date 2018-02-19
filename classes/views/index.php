@@ -98,7 +98,7 @@ class Index extends Base {
                 'attributes'    => [
                     'style'     => ['min-height' => $this->layout['content_height'] ? 'min-height:' . $this->layout['content_height'] . 'px;' : '']
                 ],
-                'contentAtoms'  => $this->layout['content_content'] == 'none' ? ['content' => []] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
+                'contentAtoms'  => $this->layout['content_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
                 'footerAtoms'   => [ 
                     'button'    => ['atom' => 'button','properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
                 ], 
