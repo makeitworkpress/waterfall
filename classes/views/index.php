@@ -53,7 +53,7 @@ class Index extends Base {
 
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] ) {
-            $atoms['breadcrumbs'] = [ 'atom' => 'breadcrumbs' ];    
+            $atoms['breadcrumbs'] = [ 'atom' => 'breadcrumbs', 'properties' => []];    
         }
         
         // Default title
@@ -100,7 +100,7 @@ class Index extends Base {
                 ],
                 'contentAtoms'  => $this->layout['content_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
                 'footerAtoms'   => [ 
-                    'button'    => ['atom' => 'button','properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
+                    'button'    => ['atom' => 'button', 'properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
                 ], 
                 'grid'          => $this->layout['content_columns'] ? $this->layout['content_columns'] : 'third',   
                 'headerAtoms'   => [ 

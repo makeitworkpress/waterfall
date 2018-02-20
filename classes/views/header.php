@@ -14,10 +14,9 @@ class Header extends Base {
      */
     protected function setProperties() {
         $this->properties = apply_filters( 'waterfall_header_properties', [
-            'customizer' => [ 'logo', 'logo_transparent', 'logo_mobile', 'logo_mobile_transparent' ],
-            'layout' => [
+            'customizer'    => ['logo', 'logo_transparent', 'logo_mobile', 'logo_mobile_transparent'],
+            'layout'        => [
                 'header_border',
-                'header_cart',
                 'header_disable_logo',
                 'header_disable_menu',
                 'header_fixed',
@@ -33,7 +32,8 @@ class Header extends Base {
                 'header_transparent', 
                 'header_width'   
             ],
-            'meta' => [ 'transparent_header' ]                                      
+            'woocommerce'   => ['header_cart'],
+            'meta'          => ['transparent_header']                                      
         ] );
 
     }
@@ -66,6 +66,7 @@ class Header extends Base {
             'logo'  => [
                 'atom'                      => 'logo',
                 'properties'                => [
+                    'attributes'            => ['itemtype' => wf_get_theme_option('options', 'represent_scheme') == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
                     'float'                 => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
                     'default'               => [
                         'src'               => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
@@ -105,7 +106,7 @@ class Header extends Base {
         } 
        
         // The cart
-        if( $this->layout['header_cart'] ) {
+        if( $this->woocommerce['header_cart'] ) {
             $atoms['cart'] = [ 'atom' => 'cart', 'properties' => ['float' => 'right'] ];
         }          
 

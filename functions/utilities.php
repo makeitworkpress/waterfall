@@ -47,6 +47,9 @@ function wf_get_theme_option( $type = '', $key = '', $prefix = '' ) {
         case 'typography':
             $options = get_theme_mod('waterfall_typography');
             break;
+        case 'woocommerce':
+            $options = get_theme_mod('woocommerce');
+            break;            
         case 'meta':
             $options = get_post_meta( get_the_ID(), 'waterfall_meta', true);
             break;
@@ -75,13 +78,15 @@ function wf_get_main_schema() {
     
     $schema = 'http://schema.org/WebPageElement';
     
-    if( is_single() || is_archive() )
+    if( is_single() || is_archive() ) {
         $schema = 'https://schema.org/Blog';
+    }
         
-    if( is_search() )
+    if( is_search() ) {
         $schema = 'https://schema.org/SearchResultsPage';
+    }
         
-    return $schema;
+    return apply_filters('waterfall_main_scheme', $schema);
     
 }
 
@@ -223,6 +228,17 @@ function wf_get_float_options() {
         'none'   => __('None', 'waterfall'),
         'right'  => __('Right', 'waterfall')
     ) );  
+}
+
+/**
+ * Retrieves grid view options
+ */
+function wf_get_grid_options() {
+    return apply_filters( 'waterfall_grid_options', array(
+        'grid'      => __('Grid', 'waterfall'),
+        'list'      => __('List', 'waterfall'),
+        'magazine'  => __('Magazine', 'waterfall')
+    ) );
 }
 
 /**

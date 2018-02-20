@@ -52,7 +52,7 @@ class Config {
      * @param string    $type               The subtype of configurations to add. Refers to a direct key within the configurations.
      * @param array     $configurations     The configurations that you want to add to this type
      */
-    public function add( $type, $configurations= [] ) {
+    public function add( $type, $configurations = [] ) {
         
         // Type should be defined
         if( ! $type ) {

@@ -14,8 +14,8 @@ class Shop extends Base {
      */
     protected function setProperties() {
         $this->properties = apply_filters( 'waterfall_product_properties', [
-            'layout' => [ 'header_align', 'header_breadcrumbs', 'header_height', 'header_position', 'header_width', 'sidebar_position' ]                                     
-            ] );
+            'woocommerce' => [ 'header_align', 'header_breadcrumbs', 'header_height', 'header_position', 'header_width', 'sidebar_position' ]                                     
+        ] );
     }
 
     /**
@@ -30,8 +30,8 @@ class Shop extends Base {
         $this->getProperties();
 
         // Breadcrumbs
-        if( $this->layout['header_breadcrumbs'] ) {
-            $atoms['breadcrumbs'] = ['atom' => 'breadcrumbs'];    
+        if( $this->woocommerce['header_breadcrumbs'] ) {
+            $atoms['breadcrumbs'] = ['atom' => 'breadcrumbs', 'properties' => []];    
         }
         
         // Default title
@@ -51,11 +51,11 @@ class Shop extends Base {
         $atoms['string'] = ['atom' => 'string', 'properties' => ['string' => ob_get_clean()]];
         
         $args = apply_filters('waterfall_product_archive_header_args', [
-            'align'         => $this->layout['header_align'],
+            'align'         => $this->woocommerce['header_align'],
             'atoms'         => $atoms,
             'attributes'    => ['class' => 'main-header woocommerce-products-header'],
-            'container'     => $this->layout['header_width'] == 'full' ? false : true,
-            'height'        => $this->layout['header_height']
+            'container'     => $this->woocommerce['header_width'] == 'full' ? false : true,
+            'height'        => $this->woocommerce['header_height']
         ] );
         
         WP_Components\Build::molecule( 'post-header', $args );        
@@ -124,11 +124,11 @@ class Shop extends Base {
      */
     public function sidebar() {
 
-        if( ! isset($this->layout) ) {
+        if( ! isset($this->woocommerce) ) {
             $this->getProperties();
         }
 
-        if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' )
+        if( $this->woocommerce['sidebar_position'] == 'left' || $this->woocommerce['sidebar_position'] == 'right' || $this->woocommerce['sidebar_position'] == 'bottom' )
             WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'sidebar'], 'sidebars' => ['product-archive']] );         
         
     }    

@@ -77,12 +77,15 @@ class Footer extends Base {
             $sidebarGrid = [];
         }
 
+        $itemType = wf_get_theme_option('options', 'represent_scheme') == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'; 
+
         // Logo
         if( is_numeric($this->customizer['footer_logo']) ) {
             $logo = wp_get_attachment_image_src( $this->customizer['footer_logo'], 'medium' );
             $atoms['logo'] = [
                 'atom'       => 'logo',
                 'properties' => [
+                    'attributes'    => ['itemtype' => $itemType],
                     'float'         => 'center',
                     'default'       => ['src' => $logo[0], 'height' => $logo[2], 'width' => $logo[1]]
                 ]
@@ -96,7 +99,7 @@ class Footer extends Base {
                 'properties'    => [
                     'float'     => 'left',
                     'name'      => $this->layout['footer_copyright_name'],
-                    'itemtype'  => $this->layout['footer_copyright_schema'] ? $this->layout['footer_copyright_schema'] : 'http://schema.org/Organization'
+                    'itemtype'  => $itemType
                 ]
             ];
         }

@@ -114,11 +114,11 @@ class Waterfall {
         // Load our configurations file
         require_once( get_template_directory() . '/configurations/customizer.php' );
         require_once( get_template_directory() . '/configurations/enqueue.php' );
+        require_once( get_template_directory() . '/configurations/options.php' );
         require_once( get_template_directory() . '/configurations/postmeta.php' );
         require_once( get_template_directory() . '/configurations/register.php' );
         
-        // Make configurations filterable at early moment
-        $configurations = apply_filters( 'waterfall_configurations', [
+        $configurations = [
             'language'  => 'waterfall', 
             'enqueue'   => $enqueue, 
             'register'  => $register, 
@@ -128,8 +128,18 @@ class Waterfall {
                 'layoutPanel'       => ['frame' => 'customizer', 'fields' => $layout],
                 'typographyPanel'   => ['frame' => 'customizer', 'fields' => $typography],
                 'postMeta'          => ['frame' => 'meta', 'fields' => $postmeta],
+                'options'           => ['frame' => 'options', 'fields' => $options]
             ] 
-        ] );
+        ];
+
+        // Woocommerce configurations
+        if( class_exists( 'WooCommerce' ) ) {
+            require_once( get_template_directory() . '/configurations/customizer/woocommerce.php' );
+            $configurations['options']['woocommerce'] = ['frame' => 'customizer', 'fields' => $woocommerce];
+        }
+
+        // Make configurations filterable at early moment
+        $configurations = apply_filters( 'waterfall_configurations', $configurations );
 
         /**
          * Set-up our configurations

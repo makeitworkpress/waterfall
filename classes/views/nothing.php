@@ -37,7 +37,7 @@ class Nothing extends Base {
         
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] )
-           $args['atoms']['breadcrumbs']    = [ 'atom' => 'breadcrumbs'];
+           $args['atoms']['breadcrumbs']    = [ 'atom' => 'breadcrumbs', 'properties' => []];
         
         // Title
         $args['atoms']['title']             = [ 
@@ -60,7 +60,7 @@ class Nothing extends Base {
         
         // Search
         if( $this->layout['header_search'] ) {
-            $args['atoms']['search'] = [ 'atom' => 'search' ];
+            $args['atoms']['search'] = ['atom' => 'search', 'properties' => []];
         }
         
         $args = apply_filters( 'waterfall_404_header_args', $args );

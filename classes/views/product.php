@@ -14,7 +14,7 @@ class Product extends Base {
      */
     protected function setProperties() {
         $this->properties = apply_filters( 'waterfall_product_properties', [
-            'layout' => ['content_breadcrumbs', 'sidebar_position']                                    
+            'woocommerce' => ['content_breadcrumbs', 'sidebar_position']                                    
         ] );
     }
 
@@ -25,7 +25,7 @@ class Product extends Base {
 
         $this->getProperties();
 
-        if( $this->layout['content_breadcrumbs'] ) {
+        if( $this->woocommerce['content_breadcrumbs'] ) {
             return WP_Components\Build::atom('breadcrumbs', apply_filters('waterfall_single_product_breadcrumbs', ['taxonomy' => true, 'archive' => true]), false); 
         } else {
             return false;
@@ -48,11 +48,11 @@ class Product extends Base {
      */
     public function sidebar() {
 
-        if( ! isset($this->layout) ) {
+        if( ! isset($this->woocommerce) ) {
             $this->getProperties();
         }
 
-        if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' ) {
+        if( $this->woocommerce['sidebar_position'] == 'left' || $this->woocommerce['sidebar_position'] == 'right' || $this->woocommerce['sidebar_position'] == 'bottom' ) {
             WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'sidebar'], 'sidebars' => ['product']] );   
         }      
         

@@ -336,10 +336,7 @@ foreach( $types as $type => $properties ) {
             array(
                 'default'       => 'grid',
                 'id'            => $type . '_related_style',
-                'choices'       => array(
-                    'grid'      => __('Grid', 'waterfall'),
-                    'list'      => __('List', 'waterfall'),
-                ),
+                'choices'       => wf_get_grid_options(),
                 'title'         => __('Related Posts Style', 'waterfall'),
                 'type'          => 'select'
             ),                    
@@ -578,10 +575,7 @@ foreach( $types as $type => $properties ) {
                 'default'       => 'grid',
                 'description'   => __('Style of posts in archives.', 'waterfall'),
                 'id'            => $type . '_archive_content_style',
-                'choices'       => array(
-                    'grid'      => __('Grid', 'waterfall'),
-                    'list'      => __('List', 'waterfall'),
-                ),
+                'choices'       => wf_get_grid_options(),
                 'title'         => __('Grid Style', 'waterfall'),
                 'type'          => 'select'
             ),   
@@ -658,123 +652,6 @@ foreach( $types as $type => $properties ) {
 
 }
 
-    
-// We add additional settings if Woocommerce is active
-if( class_exists( 'WooCommerce' ) ) {
-    $layout['sections']['header']['fields'][] = array(
-        'default'       => '',
-        'id'            => 'header_cart',
-        'title'         => __('Add a Shopping Cart to the Menu', 'waterfall'),
-        'description'   => __('Requires the WooCommerce plugin.', 'waterfall'),
-        'type'          => 'checkbox'
-    );
-    $layout['sections'][] = array(
-        'id'            => 'woocommerce_product',
-        'title'         => __('Products', 'waterfall'),
-        'fields'    => array(             
-            array(
-                'default'       => 'full',
-                'description'   => __('Choose the sidebar lay-out for a single product.', 'waterfall'),
-                'id'            => 'product_sidebar_position',
-                'choices'       => wf_get_sidebar_options(),
-                'title'         => __('Sidebar Lay-Out', 'waterfall'),
-                'type'          => 'select'
-            ), 
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of the product Display.', 'waterfall'),
-                'id'            => 'product_content_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Single Product Width', 'waterfall'),
-                'type'          => 'select'
-            ),        
-            array(
-                'default'       => '',
-                'id'            => 'product_content_breadcrumbs',
-                'title'         => __('Display Breadcrumbs in Single Products', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => 'product_content_zoom',
-                'title'         => __('Enable product image zoom', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => 'product_content_slider',
-                'title'         => __('Enable product images slider', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'description'   => __('Be aware that the lightbox will not apply when Product Zoom is enabled', 'waterfall'),
-                'default'       => '',
-                'id'            => 'product_content_lightbox',
-                'title'         => __('Enable product images lightbox', 'waterfall'),
-                'type'          => 'checkbox'
-            )          
-        )         
-    );
-    $layout['sections']['woocommerce_archive'] = array(
-        'id'            => 'woocommerce_archive',
-        'title'         => __('Product Archives', 'waterfall'),
-        'fields'    => array(     
-            array(
-                'default'       => '',
-                'id'            => 'product_archive_header_disable',
-                'title'         => __('Disable Product Archive Header', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => 'product_archive_header_breadcrumbs',
-                'title'         => __('Display Breadcrumbs in Product Archive', 'waterfall'),
-                'type'          => 'checkbox'
-            ),       
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of header in product archives.', 'waterfall'),
-                'id'            => 'product_archive_header_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Product Archive Header Width', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => 'default',
-                'description'   => __('Height of header in product archives.', 'waterfall'),
-                'id'            => 'product_archive_header_height',
-                'choices'       => wf_get_height_options(),
-                'title'         => __('Product Archive Header Height', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => 'left',
-                'id'            => 'product_archive_header_align',
-                'title'         => __('Product Archive Header Text Align', 'waterfall'),
-                'description'   => __('How should text be aligned within the product archive header?', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_align_options()
-            ),
-            array(
-                'default'       => 'left',
-                'description'   => __('Choose the sidebar lay-out for the product archives.', 'waterfall'),
-                'id'            => 'product_archive_sidebar_position',
-                'choices'       => wf_get_sidebar_options(),
-                'title'         => __('Sidebar Lay-Out', 'waterfall'),
-                'type'          => 'select'
-            ), 
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of the grid with the products and sidebar.', 'waterfall'),
-                'id'            => 'product_archive_content_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Product Archive Width', 'waterfall'),
-                'type'          => 'select'
-            )        
-        )         
-    );    
-}
-
 // Search Page
 $layout['sections']['search_page'] = array(
     'id'        => 'search_page',
@@ -836,10 +713,7 @@ $layout['sections']['search_page'] = array(
             'default'       => 'grid',
             'description'   => __('Style of posts in the search page.', 'waterfall'),
             'id'            => 'search_content_style',
-            'choices'       => array(
-                'grid'      => __('Grid', 'waterfall'),
-                'list'      => __('List', 'waterfall'),
-            ),
+            'choices'       => wf_get_grid_options(),
             'title'         => __('Search Page Results Style', 'waterfall'),
             'type'          => 'select'
         ),
@@ -1024,17 +898,7 @@ $layout['sections']['styling_footer'] = array(
             'title'         => __('Copyright Message', 'waterfall'),
             'type'          => 'textarea',
             'transport'     => 'postMessage'
-        ),    
-        array(
-            'choices'       => array(
-                'http://schema.org/Organization'    => __('Organization', 'waterfall'),
-                'http://schema.org/Person'          => __('Person', 'waterfall')
-            ),    
-            'default'       => 'http://schema.org/Organization',
-            'id'            => 'footer_copyright_schema',
-            'title'         => __('Copyright Type', 'waterfall'),
-            'type'          => 'select'
-        ), 
+        ),
         array(
             'default'       => '',
             'id'            => 'footer_menu',

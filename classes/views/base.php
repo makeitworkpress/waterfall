@@ -42,7 +42,14 @@ abstract class Base {
      *
      * @access protected
      */
-    protected $meta;   
+    protected $meta; 
+    
+    /**
+     * Contains our woocommerce properties
+     *
+     * @access protected
+     */
+    protected $woocommerce;      
   
     /**
      * The initial state of our class
@@ -101,7 +108,13 @@ abstract class Base {
         if( isset($this->properties['layout']) ) {
             $prefix             = $this->type ? $this->type . '_' : '';
             $this->layout       = apply_filters( 'waterfall_layout_properties', wf_get_theme_option('layout', $this->properties['layout'], $prefix), get_called_class() );    
-        }        
+        } 
+        
+        // Sets woocommerce customizer properties
+        if( isset($this->properties['woocommerce']) ) {
+            $prefix             = $this->type ? $this->type . '_' : '';
+            $this->woocommerce  = apply_filters( 'waterfall_woocommerce_properties', wf_get_theme_option('woocommerce', $this->properties['woocommerce'], $prefix), get_called_class() );    
+        }         
 
     }
 

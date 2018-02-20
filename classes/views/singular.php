@@ -81,7 +81,7 @@ class Singular extends Base {
             ]                                     
         ] );
 
-        $this->scheme   = apply_filters( 'waterfall_singular_scheme', $this->type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"' );
+        $this->scheme   = apply_filters( 'waterfall_singular_scheme', $this->type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"',  $this->type );
 
 
     }
@@ -245,7 +245,11 @@ class Singular extends Base {
             $this->getProperties();  
         }
 
-        WP_Components\Build::atom( 'content', ['attributes' => ['class' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content']] );     
+        $args = apply_filters( 'waterfall_content_content_args', [
+            'attributes' => ['class' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content']
+        ] );
+
+        WP_Components\Build::atom( 'content', $args );     
 
     }
 
@@ -265,7 +269,8 @@ class Singular extends Base {
         }   
         
         if( $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'sidebar'], 'sidebars' => [$this->type]] );
+            $args = apply_filters( 'waterfall_content_sidebar_args', ['attributes' => ['class' => 'sidebar'], 'sidebars' => [$this->type]] );            
+            WP_Components\Build::atom( 'sidebar', $args );
         }
 
     }

@@ -35,7 +35,7 @@ $molecule = MakeitWorkPress\WP_Components\Build::multiParseArgs( $molecule, [
         'footerAtoms'   => [                                // Accepts a set of atoms for use in the post footer
             'button' => [
                 'atom'          => 'button', 
-                'properties'    => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => __('View post', 'components'), 'size' => 'small']
+                'properties'    => ['float' => 'right', 'label' => __('View post', 'components'), 'link' => 'post', 'size' => 'small'] 
             ]
         ],          
         'headerAtoms'   => [                                // Accepts a set of atoms for use in the post header
@@ -174,7 +174,7 @@ $attributes = MakeitWorkPress\WP_Components\Build::attributes($molecule['attribu
                         }
 
                         // Actions at beginning of a post
-                        do_action('components_posts_post_before', $id);
+                        do_action( 'components_posts_post_before', $id, $molecule );
 
                         if( $molecule['postProperties']['image'] ) {
                             MakeitWorkPress\WP_Components\Build::atom( 'image', $molecule['postProperties']['image'] );  
@@ -233,7 +233,7 @@ $attributes = MakeitWorkPress\WP_Components\Build::attributes($molecule['attribu
 
                     <?php
                         // Actions at end of a post
-                        do_action('components_posts_post_after', $id);
+                        do_action( 'components_posts_post_after', $id,  $molecule );
                     ?>
 
                 </article>
