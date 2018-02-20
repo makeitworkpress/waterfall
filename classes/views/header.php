@@ -143,7 +143,7 @@ class Header extends Base {
         $args = apply_filters( 'waterfall_header_args', [
             'atoms'         => $atoms,
             'attributes'    => [
-                'class'     => $this->layout['header_border'] ? 'header waterfall-no-border' : 'header'
+                'class'     => $this->layout['header_border'] ? 'header waterfall-no-border molecule-header-top' : 'header molecule-header-top'
             ],
             'container'     => $this->layout['header_width'] == 'default' ? true : false,
             'headroom'      => $this->layout['header_headroom'],

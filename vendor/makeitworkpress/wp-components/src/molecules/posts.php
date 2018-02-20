@@ -35,7 +35,7 @@ $molecule = MakeitWorkPress\WP_Components\Build::multiParseArgs( $molecule, [
         'footerAtoms'   => [                                // Accepts a set of atoms for use in the post footer
             'button' => [
                 'atom'          => 'button', 
-                'properties'    => ['float' => 'right', 'label' => __('View post', 'components'), 'link' => 'post', 'size' => 'small'] 
+                'properties'    => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => __('View post', 'components'), 'size' => 'small']
             ]
         ],          
         'headerAtoms'   => [                                // Accepts a set of atoms for use in the post header

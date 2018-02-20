@@ -132,7 +132,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),                
                 array(
-                    'selector'           => '.molecule-header-top.molecule-header-transparent .menu > li > a, .molecule-header-top.molecule-header-transparent .atom-search-expand',
+                    'selector'      => '.molecule-header-top.molecule-header-transparent .menu > li > a, .molecule-header-top.molecule-header-transparent .atom-search-expand',
                     'default'       => '',
                     'id'            => 'navigation_link_transparent_color',
                     'title'         => __('Navigation Link Color Transparent Header', 'waterfall'),

@@ -96,7 +96,7 @@ class Index extends Base {
             'postProperties'    => [
                 'appear'        => 'bottom',
                 'attributes'    => [
-                    'style'     => ['min-height' => $this->layout['content_height'] ? 'min-height:' . $this->layout['content_height'] . 'px;' : '']
+                    'style'     => ['min-height' => $this->layout['content_height'] ? $this->layout['content_height'] . 'px;' : '']
                 ],
                 'contentAtoms'  => $this->layout['content_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
                 'footerAtoms'   => [ 
