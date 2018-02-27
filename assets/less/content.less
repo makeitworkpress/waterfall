@@ -60,14 +60,24 @@
             z-index: 0;
         }
         > * {
+            position: relative;
             z-index: 1;
         }
     }
-    .atom-button {
+    .atom-button:not(.wfr-price-button) {
         display: block;
         margin-bottom: @grid-space;
         max-width: 256px;
         text-align: center;
+    }
+    &.components-image-background {
+        color: @white;
+        h1, h2, h3, h4, h5, h6, a, a:hover {
+            color: @white;
+        }
+        ~ .main-content {
+            padding-top: @grid-space*2;
+        }
     }
 }
 

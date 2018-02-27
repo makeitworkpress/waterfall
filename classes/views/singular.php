@@ -26,6 +26,7 @@ class Singular extends Base {
                 'header_align', 
                 'header_author', 
                 'header_breadcrumbs', 
+                'header_breadcrumbs_archive', 
                 'header_date', 
                 'header_disable_title', 
                 'header_featured', 
@@ -143,7 +144,7 @@ class Singular extends Base {
         * Elements
         */
         if( $this->layout['header_breadcrumbs'] ) {
-            $args['atoms']['breadcrumbs'] = ['atom' => 'breadcrumbs', 'properties' => ['archive' => false]];  
+            $args['atoms']['breadcrumbs'] = ['atom' => 'breadcrumbs', 'properties' => ['archive' => $this->layout['header_breadcrumbs_archive'] ? true : false]];  
         }    
         
         // Title
@@ -322,6 +323,7 @@ class Singular extends Base {
             }         
 
             $args = apply_filters( 'waterfall_related_args', [
+                'attributes'        => ['class' => 'related-posts'],
                 'pagination'        => false,
                 'postProperties'    => [
                     'appear'        => 'bottom',

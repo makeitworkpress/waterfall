@@ -165,6 +165,12 @@ foreach( $types as $type => $properties ) {
         'fields'    => array(
             array(
                 'default'       => '',
+                'id'            => $type . '_main_content_title_header',
+                'title'         => __('Title Section', 'waterfall'),
+                'type'          => 'heading'
+            ),             
+            array(
+                'default'       => '',
                 'id'            => $type . '_header_disable',
                 'title'         => __('Disable Title Section', 'waterfall'),
                 'type'          => 'checkbox'
@@ -186,7 +192,7 @@ foreach( $types as $type => $properties ) {
             array(
                 'default'       => 'quarter',
                 'id'            => $type . '_header_height',
-                'title'         => __('Title Section Minimum Height', 'waterfall'),
+                'title'         => __('Title Section Height', 'waterfall'),
                 'description'   => __('This will be the minimum height when a page does not have a featured image.', 'waterfall'),
                 'type'          => 'select',
                 'choices'       => wf_get_height_options()
@@ -194,14 +200,14 @@ foreach( $types as $type => $properties ) {
             array(
                 'default'       => 'half',
                 'id'            => $type . '_header_height_image',
-                'title'         => __('Title Section with Featured Image Minimum Height', 'waterfall'),
-                'description'   => __('This will be the minimum height when a page has a featured image.', 'waterfall'),
+                'title'         => __('Title Section with Featured Height', 'waterfall'),
+                'description'   => __('This will be the minimum height when a page or post has a featured image.', 'waterfall'),
                 'type'          => 'select',
                 'choices'       => wf_get_height_options()
             ), 
             array(
                 'default'       => 'default',
-                'description'   => __('Width of the header of the content.', 'waterfall'),
+                'description'   => __('Width of the content in the Title Section', 'waterfall'),
                 'id'            => $type . '_header_width',
                 'choices'       => wf_get_container_options(),
                 'title'         => __('Title Section Width', 'waterfall'),
@@ -226,7 +232,13 @@ foreach( $types as $type => $properties ) {
                 'id'            => $type . '_header_breadcrumbs',
                 'title'         => __('Display Breadcrumbs', 'waterfall'),
                 'type'          => 'checkbox'
-            ),    
+            ), 
+            array(
+                'default'       => '',
+                'id'            => $type . '_header_breadcrumbs_archive',
+                'title'         => __('Display Archive in Breadcrumbs', 'waterfall'),
+                'type'          => 'checkbox'
+            ),                
             array(
                 'default'       => '',
                 'id'            => $type . '_header_date',
@@ -259,6 +271,12 @@ foreach( $types as $type => $properties ) {
                 'choices'       => wf_get_button_options()
             ),
             array(
+                'default'       => '',
+                'id'            => $type . '_main_content_content_header',
+                'title'         => __('Main Content', 'waterfall'),
+                'type'          => 'heading'
+            ),             
+            array(
                 'default'       => 'default',
                 'description'   => __('Width of the main content section.', 'waterfall'),
                 'id'            => $type . '_content_width',
@@ -281,6 +299,12 @@ foreach( $types as $type => $properties ) {
                 'title'         => __('Sidebar Lay-Out', 'waterfall'),
                 'type'          => 'select'
             ),
+            array(
+                'default'       => '',
+                'id'            => $type . '_main_content_related_header',
+                'title'         => __('Related Posts', 'waterfall'),
+                'type'          => 'heading'
+            ),            
             array(
                 'default'       => '',
                 'id'            => $type . '_related_disable',
@@ -378,7 +402,7 @@ foreach( $types as $type => $properties ) {
                 'id'            => $type . '_related_button',
                 'title'         => __('Text of Related Posts Button', 'waterfall'),
                 'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'), 
-                'selector'      => array('selector' => '.main-related .molecule-post .atom-button span', 'html' => true),
+                'selector'      => array('selector' => '.related-posts .molecule-post .atom-button span', 'html' => true),
                 'transport'     => 'postMessage',                   
                 'type'          => 'input'
             ),
@@ -403,7 +427,13 @@ foreach( $types as $type => $properties ) {
                 'selector'      => array('selector' => '.main-related .atom-pagination a[rel=\'next\'] span', 'html' => true),
                 'transport'     => 'postMessage',                   
                 'type'          => 'input'
-            ),    
+            ),
+            array(
+                'default'       => '',
+                'id'            => $type . '_main_content_footer_header',
+                'title'         => __('Content Footer', 'waterfall'),
+                'type'          => 'heading'
+            ),                
             array(
                 'default'       => '',
                 'id'            => $type . '_footer_disable',
@@ -521,8 +551,14 @@ foreach( $types as $type => $properties ) {
         'fields'    => array(
             array(
                 'default'       => '',
+                'id'            => $type . '_archive_title_header',
+                'title'         => __('Archive Title Section', 'waterfall'),
+                'type'          => 'heading'
+            ),            
+            array(
+                'default'       => '',
                 'id'            => $type . '_archive_header_disable',
-                'title'         => __('Disable Archive Header', 'waterfall'),
+                'title'         => __('Disable Archive Title Section', 'waterfall'),
                 'type'          => 'checkbox'
             ),
             array(
@@ -533,7 +569,7 @@ foreach( $types as $type => $properties ) {
             ),
             array(
                 'default'       => 'default',
-                'description'   => __('Width of header in posts archives.', 'waterfall'),
+                'description'   => __('Width of title section in posts archives.', 'waterfall'),
                 'id'            => $type . '_archive_header_width',
                 'choices'       => wf_get_container_options(),
                 'title'         => __('Header Width', 'waterfall'),
@@ -541,7 +577,7 @@ foreach( $types as $type => $properties ) {
             ),
             array(
                 'default'       => 'default',
-                'description'   => __('Width of header in posts archives.', 'waterfall'),
+                'description'   => __('Height of title section in posts archives.', 'waterfall'),
                 'id'            => $type . '_archive_header_height',
                 'choices'       => wf_get_height_options(),
                 'title'         => __('Header Height', 'waterfall'),
@@ -550,11 +586,17 @@ foreach( $types as $type => $properties ) {
             array(
                 'default'       => 'left',
                 'id'            => $type . '_archive_header_align',
-                'title'         => __('Header Text Align', 'waterfall'),
+                'title'         => __('Title Section Text Align', 'waterfall'),
                 'description'   => __('How should text be aligned within the archive header?', 'waterfall'),
                 'type'          => 'select',
                 'choices'       => wf_get_align_options()
-            ),    
+            ),
+            array(
+                'default'       => '',
+                'id'            => $type . '_archive_posts_header',
+                'title'         => __('Archive Posts Section', 'waterfall'),
+                'type'          => 'heading'
+            ),                
             array(
                 'default'       => 'full',
                 'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
@@ -659,6 +701,12 @@ $layout['sections']['search_page'] = array(
     'fields'    => array(
         array(
             'default'       => '',
+            'id'            => 'search_title_header',
+            'title'         => __('Search Title Section', 'waterfall'),
+            'type'          => 'heading'
+        ),
+        array(
+            'default'       => '',
             'id'            => 'search_header_disable',
             'title'         => __('Disable Search Header', 'waterfall'),
             'type'          => 'checkbox'
@@ -692,7 +740,13 @@ $layout['sections']['search_page'] = array(
             'description'   => __('How should text be aligned within the search page header?', 'waterfall'),
             'type'          => 'select',
             'choices'       => wf_get_align_options()
-        ),    
+        ), 
+        array(
+            'default'       => '',
+            'id'            => 'search_posts_header',
+            'title'         => __('Search Results Section', 'waterfall'),
+            'type'          => 'heading'
+        ),           
         array(
             'default'       => 'full',
             'description'   => __('Choose the sidebar lay-out for the search page.', 'waterfall'),
