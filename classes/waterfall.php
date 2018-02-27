@@ -74,7 +74,7 @@ class Waterfall {
          * The execution of our configurations is hooked in after_setup_theme, 
          * so (child) themes can add configurations if they want on an earlier point
          */
-        add_action('after_setup_theme', [$this, 'execute'], 10);           
+        add_action('after_setup_theme', [$this, 'execute'], 10);
         
         /**
          * Flush our rewrite rules for new posts

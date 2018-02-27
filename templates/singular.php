@@ -37,7 +37,7 @@ while( have_posts() ) {
                 <div class="components-container">    
             <?php } ?>            
 
-                <?php 
+                <?php
 
                     do_action('waterfall_before_' . $postView->type . '_content');
 
