@@ -23,11 +23,12 @@ class Footer extends Base {
                 'footer_copyright_schema', 
                 'footer_display_sidebars', 
                 'footer_display_socket', 
+                'footer_logo_stack',
                 'footer_menu', 
                 'footer_sidebars', 
                 'footer_social', 
                 'footer_social_background', 
-                'footer_width' 
+                'footer_width'
             ],                                    
          ] );
 
@@ -85,7 +86,10 @@ class Footer extends Base {
             $atoms['logo'] = [
                 'atom'       => 'logo',
                 'properties' => [
-                    'attributes'    => ['itemtype' => $itemType],
+                    'attributes'    => [
+                        'class'    => $this->layout['footer_logo_stack'] ? 'footer-logo-stack' : 'footer-logo-default',
+                        'itemtype' => $itemType
+                    ],
                     'float'         => 'center',
                     'default'       => ['src' => $logo[0], 'height' => $logo[2], 'width' => $logo[1]]
                 ]

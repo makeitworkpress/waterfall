@@ -52,18 +52,14 @@ class Waterfall {
     private function initialize() {
 
         /**
-         * Load our composer autoloader
+         * Include basic utility functions
          */
+        require_once( get_template_directory() . '/functions/utilities.php' );   
         
         /**
          * Enables our theme to be updated through an external repository
          */
         $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );
-        
-        /**
-         * Include basic utility functions
-         */
-        require_once( get_template_directory() . '/functions/utilities.php' ); 
         
         /**
          * Load standard configurations

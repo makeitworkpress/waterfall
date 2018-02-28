@@ -60,7 +60,10 @@ class Waterfall_View {
             $headerHeight = wf_get_theme_option( 'layout', 'header_height' ); 
 
             if( isset($headerHeight['amount']) && $headerHeight['unit'] ) {
-                echo '<style type="text/css"> .header .atom-logo img { max-height:' . $headerHeight['amount'] . $headerHeight['unit'] . '; width: auto;}</style>';
+                echo '<style type="text/css"> 
+                    .header .atom-logo img { max-height:' . $headerHeight['amount'] . $headerHeight['unit'] . '; width: auto;} 
+                    .header .atom-menu-hamburger { margin: calc( (' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 30px)/2 ) 4px; }
+                </style>';
             }
         }, 20 );
         

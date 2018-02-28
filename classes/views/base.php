@@ -141,6 +141,31 @@ abstract class Base {
         $prefix     = $this->type ? $this->type . '_' . $prefix : $prefix; // If a type is defined, this will have a different prefix
         $customizer = wf_get_theme_option( 'layout', $prefix . '_disable' );    
 
+        // We hide the related section if we haven't saved anything yet for pages
+        if( $prefix == $this->type . '_related' ) {
+
+            $pagination = wf_get_theme_option( 'layout', $prefix . '_pagination' );
+            $posts      = wf_get_theme_option( 'layout', $prefix . '_posts' );
+
+            if( ! $posts && ! $pagination && ! has_action('waterfall_before_' . $this->type . '_related') && ! has_action('waterfall_after_' . $this->type . '_related') ) {
+                $disabled = true;
+            }
+
+        }
+
+        // We hide our post content footer is there is nothing to show
+        if( $prefix == $this->type . '_footer' ) {
+
+            $author     = wf_get_theme_option( 'layout', $prefix . '_author' );
+            $comments   = wf_get_theme_option( 'layout', $prefix . '_comments' );
+            $share      = wf_get_theme_option( 'layout', $prefix . '_share' );
+
+            if( ! $author && ! $comments && ! $share && ! has_action('waterfall_before_' . $this->type . '_footer') && ! has_action('waterfall_after_' . $this->type . '_footer') ) {
+                $disabled = true;
+            }            
+
+        }
+
         if( $meta['disable'] == true || $customizer === true ) {
             $disabled   = true;
         }
@@ -150,7 +175,7 @@ abstract class Base {
     }
 
     /**
-     * Determines if we need to do some odd lay-out conditions for the main layout
+     * Determines if we need to do some odd lay-out conditions for the main layout - we can also limit showing the actual template parts
      */
      private function mainLayout() {
 

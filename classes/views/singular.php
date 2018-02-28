@@ -10,7 +10,13 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Singular extends Base {
 
     /**
-     * Holds the scheme for a singular post
+     * Holds the social networks for a singular post or page
+     * @access public
+     */
+    public $networks;    
+
+    /**
+     * Holds the scheme for a singular post or page
      * @access public
      */
     public $scheme;
@@ -19,6 +25,11 @@ class Singular extends Base {
      * Sets the data properties for the index
      */
     protected function setProperties() {
+
+        $this->networks   = apply_filters(
+            'waterfall_social_share_networks', 
+            ['facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp']
+        );
 
         $this->properties = apply_filters( 'waterfall_singular_properties', [
             'layout' => [
@@ -34,6 +45,7 @@ class Singular extends Base {
                 'header_height_image',
                 'header_parallax', 
                 'header_scroll', 
+                'header_share',
                 'header_size', 
                 'header_terms', 
                 'header_width', 
@@ -65,6 +77,7 @@ class Singular extends Base {
                 'footer_share_fixed',
                 'footer_width',
                 // Share
+                'share_text',
                 'share_facebook',
                 'share_twitter',
                 'share_linkedin',
@@ -202,7 +215,18 @@ class Singular extends Base {
             $args['atoms']['image'] = ['atom' => 'image', 'properties' => $featuredArgs];    
         } elseif( $featured == 'background' ) {
             $args['background']     = get_the_post_thumbnail_url( null, $this->layout['header_size'] );
-        }                                             
+        } 
+        
+        if( $this->layout['header_share'] ) {
+            $args['atoms']['share'] = ['atom' => 'share', 'properties' => ['share' => $this->layout['share_text']]];
+            
+            // Networks should be enabled
+            foreach( $this->networks as $network ) {
+                if( $this->layout['share_' . $network] ) {
+                    $args['atoms']['share']['properties']['enabled'][] = $network;
+                }
+            }            
+        }
             
         if( $this->layout['header_author'] ) {
     
@@ -395,12 +419,13 @@ class Singular extends Base {
             
         // Sharing Buttons
         if( $this->layout['footer_share'] ) {
-            $args['atoms']['share'] = ['atom' => 'share', 'properties' => ['fixed' => $this->layout['footer_share_fixed'] ? true : false]];
-            
-            $networks = ['facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp'];
+            $args['atoms']['share'] = [
+                'atom'          => 'share', 
+                'properties'    => ['fixed' => $this->layout['footer_share_fixed'] ? true : false, 'share' => $this->layout['share_text']]
+            ];
             
             // Networks should be enabled
-            foreach( $networks as $network ) {
+            foreach( $this->networks as $network ) {
                 if( $this->layout['share_' . $network] ) {
                     $args['atoms']['share']['properties']['enabled'][] = $network;
                 }

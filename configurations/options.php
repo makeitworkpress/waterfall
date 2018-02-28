@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Loads our option configurations

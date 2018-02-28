@@ -174,7 +174,13 @@ foreach( $types as $type => $properties ) {
                 'id'            => $type . '_header_disable',
                 'title'         => __('Disable Title Section', 'waterfall'),
                 'type'          => 'checkbox'
-            ),     
+            ), 
+            array(
+                'default'       => false,
+                'id'            => $type . '_header_disable_title',
+                'title'         => __('Disable post title in Title Section', 'waterfall'),
+                'type'          => 'checkbox'
+            ),                  
             array(
                 'default'       => 'after',
                 'id'            => $type . '_header_featured',
@@ -253,16 +259,17 @@ foreach( $types as $type => $properties ) {
             ),
             array(
                 'default'       => false,
+                'id'            => $type . '_header_share',
+                'title'         => __('Display sharing buttons in Title Section', 'waterfall'),
+                'title'         => __('Display sharing buttons inside the title section. Please scroll to the footer settings to specify what social networks you want to show.', 'waterfall'),
+                'type'          => 'checkbox'
+            ),            
+            array(
+                'default'       => false,
                 'id'            => $type . '_header_author',
                 'title'         => __('Show the author in post Title Sections', 'waterfall'),
                 'type'          => 'checkbox'
-            ), 
-            array(
-                'default'       => false,
-                'id'            => $type . '_header_disable_title',
-                'title'         => __('Disable the title in Title Sections', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                
+            ),               
             array(
                 'default'       => 'none',
                 'id'            => $type . '_header_scroll',
@@ -479,7 +486,15 @@ foreach( $types as $type => $properties ) {
                 'id'            => $type . '_footer_share_fixed',
                 'title'         => __('Fix sharing buttons to the left of the screen', 'waterfall'),
                 'type'          => 'checkbox'
-            ),                
+            ),  
+            array(
+                'default'       => __('Share', 'waterfall'),
+                'id'            => $type . '_share_text',
+                'title'         => __('Text in sharing sharing button', 'waterfall'),
+                'type'          => 'input',
+                'transport'     => 'postMessage',
+                'selector'      => ['selector' => '.atom-share-title', 'html' => true]
+            ),                           
             array(
                 'default'       => '',
                 'id'            => $type . '_share_facebook',
@@ -970,6 +985,13 @@ $layout['sections']['styling_footer'] = array(
             'id'            => 'footer_social_background',
             'title'         => __('Remove Background in Social Icons', 'waterfall'),
             'type'          => 'checkbox'
-        )                  
+        ), 
+        array(
+            'default'       => '',
+            'id'            => 'footer_logo_stack',
+            'title'         => __('Put Footer Logo above other elements.', 'waterfall'),
+            'description'   => __('If you have defined a footer logo under Site Identity, it will appear in the bottom of your footer. Normally, it will center, but if this box is ticked it will render above the other socket elements.', 'waterfall'),
+            'type'          => 'checkbox'
+        ),                        
     )              
 );
