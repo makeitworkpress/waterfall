@@ -337,13 +337,24 @@ class Singular extends Base {
                 $query['post__in']      = ep_find_related( $post->ID, $this->layout['related_number'] );
                 $query['ep_integrate']  = true;
             } else {
-                $categories = get_the_category($post->ID);
+                $taxonomies = get_post_taxonomies( $post );
 
-                if( $categories ) {
-                    foreach($categories as $term) {
-                        $query['cat'][] = $term->term_id;     
+                if( $taxonomies ) {
+                    foreach( $taxonomies as $taxonomy ) {
+                        $terms = get_the_terms( $post->ID, $taxonomy );
+                        if( $terms ) {
+                            $termIDs = [];
+                            foreach( $terms as $term ) {
+                                $termIDs[] = $term->term_id;   
+                            }
+                            $query['tax_query'][] = [
+                                'taxonomy'  => $taxonomy,
+                                'terms'     => $termIDs
+                            ];
+                        }
                     }
                 }
+
             }         
 
             $args = apply_filters( 'waterfall_related_args', [
@@ -389,10 +400,14 @@ class Singular extends Base {
         
         // Pagination
         if( $this->layout['related_pagination'] ) {
+
+            $next = $this->layout['related_pagination_next'] ? $this->layout['related_pagination_next'] : __('Next Article &rsaquo;', 'waterfall');
+            $prev = $this->layout['related_pagination_prev'] ? $this->layout['related_pagination_prev'] : __('Previous Article &rsaquo;', 'waterfall');
+
             $args = apply_filters( 'waterfall_related_paginate_args', [ 
-                'type' => 'post', 
-                'prev' => '<span>' . $this->layout['related_pagination_prev'] . '</span>%title', 
-                'next' => '<span>' . $this->layout['related_pagination_next'] . '</span>%title' 
+                'next' => '<span>' . $next . '</span>%title', 
+                'prev' => '<span>' . $prev . '</span>%title', 
+                'type' => 'post'
             ] );
             WP_Components\Build::atom( 'pagination', $args );
         }
