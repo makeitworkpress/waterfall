@@ -144,7 +144,7 @@ class Index extends Base {
         
         // Adds sidebars. Sidebards ids are similar to the type displayed (archive, post, etc)
         if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::atom( 'sidebar', ['sidebars' => [$this->type], ['attributes' => ['class' => 'sidebar']]] );
+            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'sidebar'], 'sidebars' => [$this->type]] );
         }
 
     }
