@@ -199,7 +199,7 @@ class Singular extends Base {
     
         // Terms
         if( $this->layout['header_terms']  ) {
-            $args['atoms']['termlist']  = ['atom' => 'termlist', 'properties' => ['attributes' => ['class' => 'entry-meta']]];    
+            $args['atoms']['termlist']  = ['atom' => 'termlist', 'properties' => ['attributes' => ['class' => 'entry-meta'], 'taxonomies' => []]];    
         }             
     
         // Featured image
