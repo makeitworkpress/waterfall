@@ -363,7 +363,7 @@ class Singular extends Base {
                 'postProperties'    => [
                     'appear'        => 'bottom',
                     'attributes'    => [
-                        'style'     => ['min-height' => $this->layout['related_height'] ? $this->layout['related_height'] . 'px;' : '']
+                        'style'     => ['min-height' => $this->layout['related_height'] ? $this->layout['related_height'] . 'px' : '']
                     ],
                     'contentAtoms'  => $this->layout['related_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],
                     'footerAtoms'   => [
