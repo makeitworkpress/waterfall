@@ -670,7 +670,14 @@ foreach( $types as $type => $properties ) {
                 'selector'      => array('selector' => '.archive-posts .molecule-post .atom-button span', 'html' => true),
                 'transport'     => 'postMessage',                   
                 'type'          => 'input'
-            ),    
+            ),
+            array(
+                'default'       => __('Bummer! No posts found.', 'waterfall'),
+                'description'   => __('The text if no posts are found.', 'waterfall'),
+                'id'            => $type . '_archive_content_none',
+                'title'         => __('No Posts Found Text', 'waterfall'),                 
+                'type'          => 'input'
+            ),                
             array(
                 'default'       => '',
                 'description'   => __('Minimum height of posts in the archive in pixels.', 'waterfall'),

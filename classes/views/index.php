@@ -28,6 +28,7 @@ class Index extends Base {
                 'content_image', 
                 'content_image_enlarge',  
                 'content_image_float',  
+                'content_none', 
                 'content_type', 
                 'content_style',
                 // Sidebar
@@ -93,6 +94,7 @@ class Index extends Base {
             'attributes'        => [
                 'class'         => 'content archive-posts'
             ],
+            'none'              => $this->layout['content_none'],
             'postProperties'    => [
                 'appear'        => 'bottom',
                 'attributes'    => [
