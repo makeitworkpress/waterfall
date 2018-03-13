@@ -32,12 +32,13 @@ $options = [
                     'type'          => 'select'
                 ],                                                            
                 [
-                    'default'       => '',
-                    'description'   => __('A license code allows you to receive updates and support for the Waterfall Reviews Plugin.', 'waterfall'),
-                    'id'            => 'reviews_license',
-                    'subtype'       => 'password',
-                    'title'         => __('License code for Waterfall Reviews Plugin', 'waterfall'),
-                    'type'          => 'input'
+                    'action'        => 'syncMultiSiteOptions',
+                    'description'   => __('This function synchronizes Waterfall Customizer and Option settings for all the sites registered in a multisite network. It will use the options of the current site.', 'waterfall'),
+                    'id'            => 'sync_settings',
+                    'label'         => __('Synchronize', 'waterfall'),
+                    'message'       => true,
+                    'title'         => __('Synchronize Settings', 'waterfall'),
+                    'type'          => 'button'
                 ],                 
             ]      
         ]

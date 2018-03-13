@@ -5,10 +5,12 @@
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 $initial    = get_option('waterfall_post_types');
-$postTypes  = array();
+$postTypes  = [];
 
-foreach( $initial as $key => $value ) {
-    $postTypes[] = $key;
+if( $initial ) {
+    foreach( $initial as $key => $value ) {
+        $postTypes[] = $key;
+    }
 }
 $screen = $postTypes ? $postTypes : array('page', 'post');
 

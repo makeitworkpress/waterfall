@@ -7,6 +7,14 @@ use WP_Error as WP_Error;
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 class Waterfall {  
+
+    /**
+     * Contains the configurations object for this theme
+     *
+     * @access public
+     */
+    public $config;    
+   
     
     /**
      * Determines whether a class has already been instanciated.
@@ -15,13 +23,13 @@ class Waterfall {
      */
     private static $instance = null;
     
-    
+
     /**
-     * Contains the configurations object for this theme
+     * Contains the views object for this theme
      *
-     * @access private
+     * @access public
      */
-    public $config; 
+    public $view;     
     
  
     /**
@@ -35,6 +43,7 @@ class Waterfall {
         }
 
         return self::$instance[$class];
+
     }    
      
     
@@ -57,7 +66,7 @@ class Waterfall {
         require_once( get_template_directory() . '/functions/utilities.php' );   
         
         /**
-         * Enables our theme to be updated through an external repository
+         * Enables our theme to be updated through an external repository, in this case github
          */
         $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );
         
@@ -78,6 +87,11 @@ class Waterfall {
         add_action('after_switch_theme', function() {
             flush_rewrite_rules();    
         });
+
+        /**
+         * Initializes our ajax actions
+         */
+        $ajax               = new Waterfall_Ajax(); 
         
         /**
          * Initialize our components

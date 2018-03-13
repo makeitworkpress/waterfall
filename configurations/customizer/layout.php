@@ -156,564 +156,564 @@ $layout = array(
     )
 ); 
 
-// Based on our post types, we add variable settings
-foreach( $types as $type => $properties ) {
+if( $types ) {
 
-    $layout['sections'][$type . '_content'] = array(
-        'id'        => $type . '_content',
-        'title'     => $properties['name'],
-        'fields'    => array(
-            array(
-                'default'       => '',
-                'id'            => $type . '_main_content_title_header',
-                'title'         => __('Title Section', 'waterfall'),
-                'type'          => 'heading'
-            ),             
-            array(
-                'default'       => '',
-                'id'            => $type . '_header_disable',
-                'title'         => __('Disable Title Section', 'waterfall'),
-                'type'          => 'checkbox'
-            ), 
-            array(
-                'default'       => false,
-                'id'            => $type . '_header_disable_title',
-                'title'         => __('Disable post title in Title Section', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                  
-            array(
-                'default'       => 'after',
-                'id'            => $type . '_header_featured',
-                'title'         => __('Featured Image Position', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_background_options()
-            ),   
-            array(
-                'default'       => 'half-hd',
-                'id'            => $type . '_header_size',
-                'title'         => __('Size Featured Image', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_image_sizes()
-            ),    
-            array(
-                'default'       => 'quarter',
-                'id'            => $type . '_header_height',
-                'title'         => __('Title Section Height', 'waterfall'),
-                'description'   => __('This will be the minimum height when a page does not have a featured image.', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_height_options()
-            ),
-            array(
-                'default'       => 'half',
-                'id'            => $type . '_header_height_image',
-                'title'         => __('Title Section with Featured Height', 'waterfall'),
-                'description'   => __('This will be the minimum height when a page or post has a featured image.', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_height_options()
-            ), 
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of the content in the Title Section', 'waterfall'),
-                'id'            => $type . '_header_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Title Section Width', 'waterfall'),
-                'type'          => 'select'
-            ),     
-            array(
-                'default'       => 'left',
-                'id'            => $type . '_header_align',
-                'title'         => __('Title Section Text Align', 'waterfall'),
-                'description'   => __('How should text be aligned within the Title Section?', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_align_options()
-            ),    
-            array(
-                'default'       => '',
-                'id'            => $type . '_header_parallax',
-                'title'         => __('Enable the parallax effect to Title Sections', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_header_breadcrumbs',
-                'title'         => __('Display Breadcrumbs', 'waterfall'),
-                'type'          => 'checkbox'
-            ), 
-            array(
-                'default'       => '',
-                'id'            => $type . '_header_breadcrumbs_archive',
-                'title'         => __('Display Archive in Breadcrumbs', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                
-            array(
-                'default'       => '',
-                'id'            => $type . '_header_date',
-                'title'         => __('Show a date in Title Sections', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_header_terms',
-                'title'         => __('Show tags and categories in Title Sections', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => false,
-                'id'            => $type . '_header_share',
-                'title'         => __('Display sharing buttons in Title Section', 'waterfall'),
-                'title'         => __('Display sharing buttons inside the title section. Please scroll to the footer settings to specify what social networks you want to show.', 'waterfall'),
-                'type'          => 'checkbox'
-            ),            
-            array(
-                'default'       => false,
-                'id'            => $type . '_header_author',
-                'title'         => __('Show the author in post Title Sections', 'waterfall'),
-                'type'          => 'checkbox'
-            ),               
-            array(
-                'default'       => 'none',
-                'id'            => $type . '_header_scroll',
-                'title'         => __('Enable the scroll button in Title Sections', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_button_options()
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_main_content_content_header',
-                'title'         => __('Main Content', 'waterfall'),
-                'type'          => 'heading'
-            ),             
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of the main content section.', 'waterfall'),
-                'id'            => $type . '_content_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Main Content Width', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_content_readable',
-                'title'         => __('Limit content to readable width', 'waterfall'),
-                'description'   => __('Limits paragraphs, lists and smaller titles to a readable width and centers them.', 'waterfall'),
-                'type'          => 'checkbox'
-            ),     
-            array(
-                'default'       => 'full',
-                'description'   => __('Choose the sidebar lay-out.', 'waterfall'),
-                'id'            => $type . '_sidebar_position',
-                'choices'       => wf_get_sidebar_options(),
-                'title'         => __('Sidebar Lay-Out', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_main_content_related_header',
-                'title'         => __('Related Posts', 'waterfall'),
-                'type'          => 'heading'
-            ),            
-            array(
-                'default'       => '',
-                'id'            => $type . '_related_disable',
-                'title'         => __('Disable the related content section', 'waterfall'),
-                'type'          => 'checkbox'
-            ),    
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of the related content section.', 'waterfall'),
-                'id'            => $type . '_related_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Related Section Width', 'waterfall'),
-                'type'          => 'select'
-            ),    
-            array(
-                'default'       => '',
-                'id'            => $type . '_related_posts',
-                'title'         => __('Show related posts', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => __('You also might like', 'waterfall'),
-                'id'            => $type . '_related_title',
-                'title'         => __('Title above Related Posts', 'waterfall'),
-                'selector'      => array('selector' => '.main-related > h3,  .main-related .components-container > h3', 'html' => true),
-                'transport'     => 'postMessage',                  
-                'type'          => 'input'
-            ),  
-            array(
-                'default'       => 'third',
-                'description'   => __('Amount of grid columns for posts.', 'waterfall'),
-                'id'            => $type . '_related_grid',
-                'choices'       => wf_get_column_options(),
-                'title'         => __('Related Posts Columns', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => '',
-                'description'   => __('Minimum height of related posts in pixels.', 'waterfall'),
-                'id'            => $type . '_related_height',
-                'title'         => __('Related Posts Height', 'waterfall'),
-                'selector'      => array('selector' => '.main-related .molecule-post', 'property' => 'min-height'),
-                'transport'     => 'postMessage',                 
-                'type'          => 'number'
-            ),     
-            array(
-                'default'       => 3,
-                'description'   => __('Number of related posts to show', 'waterfall'),
-                'id'            => $type . '_related_number',
-                'title'         => __('Related Posts Amount', 'waterfall'),
-                'type'          => 'number'
-            ), 
-            array(
-                'default'       => 'grid',
-                'id'            => $type . '_related_style',
-                'choices'       => wf_get_grid_options(),
-                'title'         => __('Related Posts Style', 'waterfall'),
-                'type'          => 'select'
-            ),                    
-            array(
-                'default'       => 'none',
-                'description'   => __('Excerpt within related posts.', 'waterfall'),
-                'id'            => $type . '_related_content',
-                'choices'       => array(
-                    'excerpt'   => __('Excerpt', 'waterfall'),
-                    'none'      => __('No excerpt', 'waterfall'),
+    // Based on our post types, we add variable settings
+    foreach( $types as $type => $properties ) {
+
+        $layout['sections'][$type . '_content'] = array(
+            'id'        => $type . '_content',
+            'title'     => $properties['name'],
+            'fields'    => array(
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_main_content_title_header',
+                    'title'         => __('Title Section', 'waterfall'),
+                    'type'          => 'heading'
+                ),             
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_disable',
+                    'title'         => __('Disable Title Section', 'waterfall'),
+                    'type'          => 'checkbox'
+                ), 
+                array(
+                    'default'       => false,
+                    'id'            => $type . '_header_disable_title',
+                    'title'         => __('Disable post title in Title Section', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                  
+                array(
+                    'default'       => 'after',
+                    'id'            => $type . '_header_featured',
+                    'title'         => __('Featured Image Position', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => wf_get_background_options()
+                ),   
+                array(
+                    'default'       => 'half-hd',
+                    'id'            => $type . '_header_size',
+                    'title'         => __('Size Featured Image', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => wf_get_image_sizes()
+                ),    
+                array(
+                    'default'       => 'quarter',
+                    'id'            => $type . '_header_height',
+                    'title'         => __('Title Section Height', 'waterfall'),
+                    'description'   => __('This will be the minimum height when a page does not have a featured image.', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => wf_get_height_options()
                 ),
-                'title'         => __('Related Post Excerpt', 'waterfall'),
-                'type'          => 'select'
-            ),    
-            array(
-                'default'       => 'square-ld',
-                'description'   => __('Featured Image size within related posts.', 'waterfall'),
-                'id'            => $type . '_related_image',
-                'choices'       => wf_get_image_sizes(),
-                'title'         => __('Related Featured Image Size', 'waterfall'),
-                'type'          => 'select'
-            ),    
-            array(
-                'default'       => 'none',
-                'description'   => __('Float of featured image within the related posts.', 'waterfall'),
-                'id'            => $type . '_related_image_float',
-                'choices'       => wf_get_float_options(),
-                'title'         => __('Related Featured Image Float', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_related_image_enlarge',
-                'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                 
-            array(
-                'default'       => __('View Post', 'waterfall'),
-                'id'            => $type . '_related_button',
-                'title'         => __('Text of Related Posts Button', 'waterfall'),
-                'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'), 
-                'selector'      => array('selector' => '.related-posts .molecule-post .atom-button span', 'html' => true),
-                'transport'     => 'postMessage',                   
-                'type'          => 'input'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_related_pagination',
-                'title'         => __('Show post pagination', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => __('&lsaquo; Previous Article', 'waterfall'),
-                'id'            => $type . '_related_pagination_prev',
-                'title'         => __('Pagination Previous Article Title', 'waterfall'),
-                'selector'      => array('selector' => '.main-related .atom-pagination a[rel=\'prev\'] span', 'html' => true),
-                'transport'     => 'postMessage',                  
-                'type'          => 'input'
-            ),
-            array(
-                'default'       => __('Next Article &rsaquo; ', 'waterfall'),
-                'id'            => $type . '_related_pagination_next',
-                'title'         => __('Pagination Next Article Title', 'waterfall'),
-                'selector'      => array('selector' => '.main-related .atom-pagination a[rel=\'next\'] span', 'html' => true),
-                'transport'     => 'postMessage',                   
-                'type'          => 'input'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_main_content_footer_header',
-                'title'         => __('Content Footer', 'waterfall'),
-                'type'          => 'heading'
-            ),                
-            array(
-                'default'       => '',
-                'id'            => $type . '_footer_disable',
-                'title'         => __('Disable content footer', 'waterfall'),
-                'type'          => 'checkbox'
-            ),     
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of the content footer.', 'waterfall'),
-                'id'            => $type . '_footer_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Content Footer Width', 'waterfall'),
-                'type'          => 'select'
-            ),     
-            array(
-                'default'       => '',
-                'id'            => $type . '_footer_author',
-                'title'         => __('Show the author in the content footer', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_footer_comments',
-                'title'         => __('Show comments in the content footer', 'waterfall'),
-                'type'          => 'checkbox'
-            ), 
-            array(
-                'default'       => __('Comments are closed.', 'waterfall'),
-                'id'            => $type . '_footer_comments_closed',
-                'title'         => __('Text for closed comments', 'waterfall'),
-                'selector'      => array('selector' => '.main-footer .atom-comments-closed', 'html' => true),
-                'transport'     => 'postMessage',                  
-                'type'          => 'input'
-            ),                   
-            array(
-                'default'       => '',
-                'id'            => $type . '_footer_share',
-                'title'         => __('Show sharing buttons in posts', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_footer_share_fixed',
-                'title'         => __('Fix sharing buttons to the left of the screen', 'waterfall'),
-                'type'          => 'checkbox'
-            ),  
-            array(
-                'default'       => __('Share', 'waterfall'),
-                'id'            => $type . '_share_text',
-                'title'         => __('Text in sharing sharing button', 'waterfall'),
-                'type'          => 'input',
-                'transport'     => 'postMessage',
-                'selector'      => ['selector' => '.atom-share-title', 'html' => true]
-            ),                           
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_facebook',
-                'title'         => __('Show Facebook sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                     
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_twitter',
-                'title'         => __('Show Twitter sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                     
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_linkedin',
-                'title'         => __('Show LinkedIn sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                     
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_google-plus',
-                'title'         => __('Show Google Plus sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                     
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_pinterest',
-                'title'         => __('Show Pinterest sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                     
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_reddit',
-                'title'         => __('Show Reddit sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                     
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_stumbleupon',
-                'title'         => __('Show StumbleUpon sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                     
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_pocket',
-                'title'         => __('Show Pocket sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                      
-            array(
-                'default'       => '',
-                'id'            => $type . '_share_whatsapp',
-                'title'         => __('Show Whatsapp sharing button', 'waterfall'),
-                'type'          => 'checkbox'
-            )   
-        )
-    );
+                array(
+                    'default'       => 'half',
+                    'id'            => $type . '_header_height_image',
+                    'title'         => __('Title Section with Featured Height', 'waterfall'),
+                    'description'   => __('This will be the minimum height when a page or post has a featured image.', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => wf_get_height_options()
+                ), 
+                array(
+                    'default'       => 'default',
+                    'description'   => __('Width of the content in the Title Section', 'waterfall'),
+                    'id'            => $type . '_header_width',
+                    'choices'       => wf_get_container_options(),
+                    'title'         => __('Title Section Width', 'waterfall'),
+                    'type'          => 'select'
+                ),     
+                array(
+                    'default'       => 'left',
+                    'id'            => $type . '_header_align',
+                    'title'         => __('Title Section Text Align', 'waterfall'),
+                    'description'   => __('How should text be aligned within the Title Section?', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => wf_get_align_options()
+                ),    
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_parallax',
+                    'title'         => __('Enable the parallax effect to Title Sections', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_breadcrumbs',
+                    'title'         => __('Display Breadcrumbs', 'waterfall'),
+                    'type'          => 'checkbox'
+                ), 
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_breadcrumbs_archive',
+                    'title'         => __('Display Archive in Breadcrumbs', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_date',
+                    'title'         => __('Show a date in Title Sections', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_terms',
+                    'title'         => __('Show tags and categories in Title Sections', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => false,
+                    'id'            => $type . '_header_share',
+                    'title'         => __('Display sharing buttons in Title Section', 'waterfall'),
+                    'title'         => __('Display sharing buttons inside the title section. Please scroll to the footer settings to specify what social networks you want to show.', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),            
+                array(
+                    'default'       => false,
+                    'id'            => $type . '_header_author',
+                    'title'         => __('Show the author in post Title Sections', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),               
+                array(
+                    'default'       => 'none',
+                    'id'            => $type . '_header_scroll',
+                    'title'         => __('Enable the scroll button in Title Sections', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => wf_get_button_options()
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_main_content_content_header',
+                    'title'         => __('Main Content', 'waterfall'),
+                    'type'          => 'heading'
+                ),             
+                array(
+                    'default'       => 'default',
+                    'description'   => __('Width of the main content section.', 'waterfall'),
+                    'id'            => $type . '_content_width',
+                    'choices'       => wf_get_container_options(),
+                    'title'         => __('Main Content Width', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_content_readable',
+                    'title'         => __('Limit content to readable width', 'waterfall'),
+                    'description'   => __('Limits paragraphs, lists and smaller titles to a readable width and centers them.', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),     
+                array(
+                    'default'       => 'full',
+                    'description'   => __('Choose the sidebar lay-out.', 'waterfall'),
+                    'id'            => $type . '_sidebar_position',
+                    'choices'       => wf_get_sidebar_options(),
+                    'title'         => __('Sidebar Lay-Out', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_main_content_related_header',
+                    'title'         => __('Related Posts', 'waterfall'),
+                    'type'          => 'heading'
+                ),            
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_related_disable',
+                    'title'         => __('Disable the related content section', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),    
+                array(
+                    'default'       => 'default',
+                    'description'   => __('Width of the related content section.', 'waterfall'),
+                    'id'            => $type . '_related_width',
+                    'choices'       => wf_get_container_options(),
+                    'title'         => __('Related Section Width', 'waterfall'),
+                    'type'          => 'select'
+                ),    
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_related_posts',
+                    'title'         => __('Show related posts', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => __('You also might like', 'waterfall'),
+                    'id'            => $type . '_related_title',
+                    'title'         => __('Title above Related Posts', 'waterfall'),
+                    'selector'      => array('selector' => '.main-related > h3,  .main-related .components-container > h3', 'html' => true),
+                    'transport'     => 'postMessage',                  
+                    'type'          => 'input'
+                ),  
+                array(
+                    'default'       => 'third',
+                    'description'   => __('Amount of grid columns for posts.', 'waterfall'),
+                    'id'            => $type . '_related_grid',
+                    'choices'       => wf_get_column_options(),
+                    'title'         => __('Related Posts Columns', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => '',
+                    'description'   => __('Minimum height of related posts in pixels.', 'waterfall'),
+                    'id'            => $type . '_related_height',
+                    'title'         => __('Related Posts Height', 'waterfall'),
+                    'selector'      => array('selector' => '.main-related .molecule-post', 'property' => 'min-height'),
+                    'transport'     => 'postMessage',                 
+                    'type'          => 'number'
+                ),     
+                array(
+                    'default'       => 3,
+                    'description'   => __('Number of related posts to show', 'waterfall'),
+                    'id'            => $type . '_related_number',
+                    'title'         => __('Related Posts Amount', 'waterfall'),
+                    'type'          => 'number'
+                ), 
+                array(
+                    'default'       => 'grid',
+                    'id'            => $type . '_related_style',
+                    'choices'       => wf_get_grid_options(),
+                    'title'         => __('Related Posts Style', 'waterfall'),
+                    'type'          => 'select'
+                ),                    
+                array(
+                    'default'       => 'none',
+                    'description'   => __('Excerpt within related posts.', 'waterfall'),
+                    'id'            => $type . '_related_content',
+                    'choices'       => array(
+                        'excerpt'   => __('Excerpt', 'waterfall'),
+                        'none'      => __('No excerpt', 'waterfall'),
+                    ),
+                    'title'         => __('Related Post Excerpt', 'waterfall'),
+                    'type'          => 'select'
+                ),    
+                array(
+                    'default'       => 'square-ld',
+                    'description'   => __('Featured Image size within related posts.', 'waterfall'),
+                    'id'            => $type . '_related_image',
+                    'choices'       => wf_get_image_sizes(),
+                    'title'         => __('Related Featured Image Size', 'waterfall'),
+                    'type'          => 'select'
+                ),    
+                array(
+                    'default'       => 'none',
+                    'description'   => __('Float of featured image within the related posts.', 'waterfall'),
+                    'id'            => $type . '_related_image_float',
+                    'choices'       => wf_get_float_options(),
+                    'title'         => __('Related Featured Image Float', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_related_image_enlarge',
+                    'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                 
+                array(
+                    'default'       => __('View Post', 'waterfall'),
+                    'id'            => $type . '_related_button',
+                    'title'         => __('Text of Related Posts Button', 'waterfall'),
+                    'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'), 
+                    'selector'      => array('selector' => '.related-posts .molecule-post .atom-button span', 'html' => true),
+                    'transport'     => 'postMessage',                   
+                    'type'          => 'input'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_related_pagination',
+                    'title'         => __('Show post pagination', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => __('&lsaquo; Previous Article', 'waterfall'),
+                    'id'            => $type . '_related_pagination_prev',
+                    'title'         => __('Pagination Previous Article Title', 'waterfall'),
+                    'selector'      => array('selector' => '.main-related .atom-pagination a[rel=\'prev\'] span', 'html' => true),
+                    'transport'     => 'postMessage',                  
+                    'type'          => 'input'
+                ),
+                array(
+                    'default'       => __('Next Article &rsaquo; ', 'waterfall'),
+                    'id'            => $type . '_related_pagination_next',
+                    'title'         => __('Pagination Next Article Title', 'waterfall'),
+                    'selector'      => array('selector' => '.main-related .atom-pagination a[rel=\'next\'] span', 'html' => true),
+                    'transport'     => 'postMessage',                   
+                    'type'          => 'input'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_main_content_footer_header',
+                    'title'         => __('Content Footer', 'waterfall'),
+                    'type'          => 'heading'
+                ),                
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_footer_disable',
+                    'title'         => __('Disable content footer', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),     
+                array(
+                    'default'       => 'default',
+                    'description'   => __('Width of the content footer.', 'waterfall'),
+                    'id'            => $type . '_footer_width',
+                    'choices'       => wf_get_container_options(),
+                    'title'         => __('Content Footer Width', 'waterfall'),
+                    'type'          => 'select'
+                ),     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_footer_author',
+                    'title'         => __('Show the author in the content footer', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_footer_comments',
+                    'title'         => __('Show comments in the content footer', 'waterfall'),
+                    'type'          => 'checkbox'
+                ), 
+                array(
+                    'default'       => __('Comments are closed.', 'waterfall'),
+                    'id'            => $type . '_footer_comments_closed',
+                    'title'         => __('Text for closed comments', 'waterfall'),
+                    'selector'      => array('selector' => '.main-footer .atom-comments-closed', 'html' => true),
+                    'transport'     => 'postMessage',                  
+                    'type'          => 'input'
+                ),                   
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_footer_share',
+                    'title'         => __('Show sharing buttons in posts', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_footer_share_fixed',
+                    'title'         => __('Fix sharing buttons to the left of the screen', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),  
+                array(
+                    'default'       => __('Share', 'waterfall'),
+                    'id'            => $type . '_share_text',
+                    'title'         => __('Text in sharing sharing button', 'waterfall'),
+                    'type'          => 'input',
+                    'transport'     => 'postMessage',
+                    'selector'      => ['selector' => '.atom-share-title', 'html' => true]
+                ),                           
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_facebook',
+                    'title'         => __('Show Facebook sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_twitter',
+                    'title'         => __('Show Twitter sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_linkedin',
+                    'title'         => __('Show LinkedIn sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_google-plus',
+                    'title'         => __('Show Google Plus sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_pinterest',
+                    'title'         => __('Show Pinterest sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_reddit',
+                    'title'         => __('Show Reddit sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_stumbleupon',
+                    'title'         => __('Show StumbleUpon sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                     
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_pocket',
+                    'title'         => __('Show Pocket sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                      
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_share_whatsapp',
+                    'title'         => __('Show Whatsapp sharing button', 'waterfall'),
+                    'type'          => 'checkbox'
+                )   
+            )
+        );
 
-    // Skip archives for pages
-    if( $type == 'page' ) {
-        continue;
+        // Skip archives for pages
+        if( $type == 'page' ) {
+            continue;
+        }
+
+        /**
+         * Additional Sections
+         */
+        $layout['sections'][$type . '_archives'] = array(
+            'id'        => $type . '_archives',
+            'title'     => sprintf( __('%s Archives', 'waterfall'), $properties['singular'] ),
+            'fields'    => array(
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_archive_title_header',
+                    'title'         => __('Archive Title Section', 'waterfall'),
+                    'type'          => 'heading'
+                ),            
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_archive_header_disable',
+                    'title'         => __('Disable Archive Title Section', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_archive_header_breadcrumbs',
+                    'title'         => __('Display Breadcrumbs', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),
+                array(
+                    'default'       => 'default',
+                    'description'   => __('Width of title section in posts archives.', 'waterfall'),
+                    'id'            => $type . '_archive_header_width',
+                    'choices'       => wf_get_container_options(),
+                    'title'         => __('Header Width', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => 'default',
+                    'description'   => __('Height of title section in posts archives.', 'waterfall'),
+                    'id'            => $type . '_archive_header_height',
+                    'choices'       => wf_get_height_options(),
+                    'title'         => __('Header Height', 'waterfall'),
+                    'type'          => 'select'
+                ),    
+                array(
+                    'default'       => 'left',
+                    'id'            => $type . '_archive_header_align',
+                    'title'         => __('Title Section Text Align', 'waterfall'),
+                    'description'   => __('How should text be aligned within the archive header?', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => wf_get_align_options()
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_archive_posts_header',
+                    'title'         => __('Archive Posts Section', 'waterfall'),
+                    'type'          => 'heading'
+                ),                
+                array(
+                    'default'       => 'full',
+                    'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
+                    'id'            => $type . '_archive_sidebar_position',
+                    'choices'       => wf_get_sidebar_options(),
+                    'title'         => __('Sidebar Lay-Out', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => 'default',
+                    'description'   => __('Width of grid in posts archives.', 'waterfall'),
+                    'id'            => $type . '_archive_content_width',
+                    'choices'       => wf_get_container_options(),
+                    'title'         => __('Grid Width', 'waterfall'),
+                    'type'          => 'select'
+                ),   
+                array(
+                    'default'       => 'grid',
+                    'description'   => __('Style of posts in archives.', 'waterfall'),
+                    'id'            => $type . '_archive_content_style',
+                    'choices'       => wf_get_grid_options(),
+                    'title'         => __('Grid Style', 'waterfall'),
+                    'type'          => 'select'
+                ),   
+                array(
+                    'default'       => 'third',
+                    'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
+                    'id'            => $type . '_archive_content_columns',
+                    'choices'       => wf_get_column_options(),
+                    'title'         => __('Grid Columns', 'waterfall'),
+                    'type'          => 'select'
+                ),    
+                array(
+                    'default'       => 'none',
+                    'description'   => __('Excerpt within archive posts.', 'waterfall'),
+                    'id'            => $type . '_archive_content_content',
+                    'choices'       => array(
+                        'excerpt'   => __('Excerpt', 'waterfall'),
+                        'none'      => __('No excerpt', 'waterfall'),
+                    ),
+                    'title'         => __($type . ' Excerpt', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => '',
+                    'description'   => __('Shows the post type under the title of each post.', 'waterfall'),
+                    'id'            => $type . '_archive_content_type',
+                    'title'         => __('Post Type in Posts', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),    
+                array(
+                    'default'       => __('View Post', 'waterfall'),
+                    'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
+                    'id'            => $type . '_archive_content_button',
+                    'title'         => __('Posts Button Label', 'waterfall'),
+                    'selector'      => array('selector' => '.archive-posts .molecule-post .atom-button span', 'html' => true),
+                    'transport'     => 'postMessage',                   
+                    'type'          => 'input'
+                ),
+                array(
+                    'default'       => __('Bummer! No posts found.', 'waterfall'),
+                    'description'   => __('The text if no posts are found.', 'waterfall'),
+                    'id'            => $type . '_archive_content_none',
+                    'title'         => __('No Posts Found Text', 'waterfall'),                 
+                    'type'          => 'input'
+                ),                
+                array(
+                    'default'       => '',
+                    'description'   => __('Minimum height of posts in the archive in pixels.', 'waterfall'),
+                    'id'            => $type . '_archive_content_height',
+                    'title'         => __('Posts Height', 'waterfall'),
+                    'selector'      => array('selector' => '.archive-posts .molecule-post', 'property' => 'min-height'),
+                    'transport'     => 'postMessage',                  
+                    'type'          => 'number'
+                ),    
+                array(
+                    'default'       => 'square-ld',
+                    'description'   => __('Featured Image size within archive posts.', 'waterfall'),
+                    'id'            => $type . '_archive_content_image',
+                    'choices'       => wf_get_image_sizes(),
+                    'title'         => __('Featured Image Size', 'waterfall'),
+                    'type'          => 'select'
+                ),    
+                array(
+                    'default'       => 'none',
+                    'description'   => __('Float of featured image within the posts.', 'waterfall'),
+                    'id'            => $type . '_archive_content_image_float',
+                    'choices'       => wf_get_float_options(),
+                    'title'         => __('Featured Image Float', 'waterfall'),
+                    'type'          => 'select'
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_archive_content_image_enlarge',
+                    'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                        
+            )              
+        );
     }
-
-    /**
-     * Additional Sections
-     */
-    $layout['sections'][$type . '_archives'] = array(
-        'id'        => $type . '_archives',
-        'title'     => sprintf( __('%s Archives', 'waterfall'), $properties['singular'] ),
-        'fields'    => array(
-            array(
-                'default'       => '',
-                'id'            => $type . '_archive_title_header',
-                'title'         => __('Archive Title Section', 'waterfall'),
-                'type'          => 'heading'
-            ),            
-            array(
-                'default'       => '',
-                'id'            => $type . '_archive_header_disable',
-                'title'         => __('Disable Archive Title Section', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_archive_header_breadcrumbs',
-                'title'         => __('Display Breadcrumbs', 'waterfall'),
-                'type'          => 'checkbox'
-            ),
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of title section in posts archives.', 'waterfall'),
-                'id'            => $type . '_archive_header_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Header Width', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => 'default',
-                'description'   => __('Height of title section in posts archives.', 'waterfall'),
-                'id'            => $type . '_archive_header_height',
-                'choices'       => wf_get_height_options(),
-                'title'         => __('Header Height', 'waterfall'),
-                'type'          => 'select'
-            ),    
-            array(
-                'default'       => 'left',
-                'id'            => $type . '_archive_header_align',
-                'title'         => __('Title Section Text Align', 'waterfall'),
-                'description'   => __('How should text be aligned within the archive header?', 'waterfall'),
-                'type'          => 'select',
-                'choices'       => wf_get_align_options()
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_archive_posts_header',
-                'title'         => __('Archive Posts Section', 'waterfall'),
-                'type'          => 'heading'
-            ),                
-            array(
-                'default'       => 'full',
-                'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
-                'id'            => $type . '_archive_sidebar_position',
-                'choices'       => wf_get_sidebar_options(),
-                'title'         => __('Sidebar Lay-Out', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => 'default',
-                'description'   => __('Width of grid in posts archives.', 'waterfall'),
-                'id'            => $type . '_archive_content_width',
-                'choices'       => wf_get_container_options(),
-                'title'         => __('Grid Width', 'waterfall'),
-                'type'          => 'select'
-            ),   
-            array(
-                'default'       => 'grid',
-                'description'   => __('Style of posts in archives.', 'waterfall'),
-                'id'            => $type . '_archive_content_style',
-                'choices'       => wf_get_grid_options(),
-                'title'         => __('Grid Style', 'waterfall'),
-                'type'          => 'select'
-            ),   
-            array(
-                'default'       => 'third',
-                'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
-                'id'            => $type . '_archive_content_columns',
-                'choices'       => wf_get_column_options(),
-                'title'         => __('Grid Columns', 'waterfall'),
-                'type'          => 'select'
-            ),    
-            array(
-                'default'       => 'none',
-                'description'   => __('Excerpt within archive posts.', 'waterfall'),
-                'id'            => $type . '_archive_content_content',
-                'choices'       => array(
-                    'excerpt'   => __('Excerpt', 'waterfall'),
-                    'none'      => __('No excerpt', 'waterfall'),
-                ),
-                'title'         => __($type . ' Excerpt', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => '',
-                'description'   => __('Shows the post type under the title of each post.', 'waterfall'),
-                'id'            => $type . '_archive_content_type',
-                'title'         => __('Post Type in Posts', 'waterfall'),
-                'type'          => 'checkbox'
-            ),    
-            array(
-                'default'       => __('View Post', 'waterfall'),
-                'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
-                'id'            => $type . '_archive_content_button',
-                'title'         => __('Posts Button Label', 'waterfall'),
-                'selector'      => array('selector' => '.archive-posts .molecule-post .atom-button span', 'html' => true),
-                'transport'     => 'postMessage',                   
-                'type'          => 'input'
-            ),
-            array(
-                'default'       => __('Bummer! No posts found.', 'waterfall'),
-                'description'   => __('The text if no posts are found.', 'waterfall'),
-                'id'            => $type . '_archive_content_none',
-                'title'         => __('No Posts Found Text', 'waterfall'),                 
-                'type'          => 'input'
-            ),                
-            array(
-                'default'       => '',
-                'description'   => __('Minimum height of posts in the archive in pixels.', 'waterfall'),
-                'id'            => $type . '_archive_content_height',
-                'title'         => __('Posts Height', 'waterfall'),
-                'selector'      => array('selector' => '.archive-posts .molecule-post', 'property' => 'min-height'),
-                'transport'     => 'postMessage',                  
-                'type'          => 'number'
-            ),    
-            array(
-                'default'       => 'square-ld',
-                'description'   => __('Featured Image size within archive posts.', 'waterfall'),
-                'id'            => $type . '_archive_content_image',
-                'choices'       => wf_get_image_sizes(),
-                'title'         => __('Featured Image Size', 'waterfall'),
-                'type'          => 'select'
-            ),    
-            array(
-                'default'       => 'none',
-                'description'   => __('Float of featured image within the posts.', 'waterfall'),
-                'id'            => $type . '_archive_content_image_float',
-                'choices'       => wf_get_float_options(),
-                'title'         => __('Featured Image Float', 'waterfall'),
-                'type'          => 'select'
-            ),
-            array(
-                'default'       => '',
-                'id'            => $type . '_archive_content_image_enlarge',
-                'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
-                'type'          => 'checkbox'
-            ),                        
-        )              
-    );
-    
-
-
 }
 
 // Search Page
