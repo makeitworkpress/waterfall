@@ -276,7 +276,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'selector'      => '',
+                    'selector'      => '.main-header',
                     'default'       => '',
                     'id'            => 'title_section_text',
                     'title'         => __('Title Section Text Color', 'waterfall'),
