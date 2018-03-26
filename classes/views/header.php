@@ -112,7 +112,7 @@ class Header extends Base {
 
         // Social icons
         if( $this->layout['header_social'] ) {
-            $networks = get_social_networks();
+            $networks = wf_get_social_networks();
             if( $networks ) {
                 $atoms['social'] = [ 'atom' => 'social', 'properties' => ['urls' => $networks, 'rounded' => true, 'float' => 'right'] ];
             }
