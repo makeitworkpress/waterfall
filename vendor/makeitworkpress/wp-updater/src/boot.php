@@ -4,6 +4,8 @@
  */
 namespace MakeitWorkPress\WP_Updater;
 use WP_Error as WP_Error;
+use MakeitWorkPress\WP_Updater\Theme_Updater as Theme_Updater;
+use MakeitWorkPress\WP_Updater\Plugin_Updater as Plugin_Updater;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

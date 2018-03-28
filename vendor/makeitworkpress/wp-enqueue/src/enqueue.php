@@ -114,7 +114,9 @@ class Enqueue {
     }
     
     /**
-      * Enqueues the admin scripts and styles
+     * Enqueues the admin scripts and styles
+     * 
+     * @param string $hook The current admin screen we are viewing, such as index.php or edit.php
      */
     public function enqueueAdmin( $hook ) {
         

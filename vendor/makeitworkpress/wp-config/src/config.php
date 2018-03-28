@@ -52,7 +52,7 @@ class Config {
      * @param string    $type               The subtype of configurations to add. Refers to a direct key within the configurations.
      * @param array     $configurations     The configurations that you want to add to this type
      */
-    public function add( $type, $configurations = [] ) {
+    public function add( $type, $configurations= [] ) {
         
         // Type should be defined
         if( ! $type ) {
@@ -70,6 +70,14 @@ class Config {
         $this->configurations[$type] = apply_filters( 'wp_config_' . $type, $configurations );
 
     }
+
+    /**
+     * Deletes a certain set of configurations
+     * @todo To be developed
+     */
+    public function delete( $type, $configurations ) {
+
+    }    
 
     /**
      * Loads our configuration file

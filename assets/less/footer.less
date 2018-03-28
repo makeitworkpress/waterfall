@@ -47,10 +47,11 @@
     background: @dark-blue;
     font-size: @small-fontsize;
     .atom-copyright {
-        margin-top: 20px;    
+        margin-top: 20px;  
     }
     .atom-logo {
         margin-bottom: -@grid-space * 2;
+        z-index: 0;
         &.footer-logo-stack {
             margin-bottom: @grid-space/2;
         }
@@ -76,6 +77,10 @@
     .atom-social {
         margin-bottom: 10px;
         margin-top: 14px;
+    }
+    .atom-copyright, .atom-social, .atom-menu {
+        position: relative;
+        z-index: 1;
     } 
     @media screen and (max-width: 480px) {
         .atom-copyright, .atom-social {

@@ -1,6 +1,8 @@
 # wp-enqueue
 The WP Enqueue class provides a wrapper to make enqueueing scripts and styles in WordPress more easily.
 
+WP Enqueue is maintained by [Make it WorkPress](https://www.makeitworkpress.com/wordpress-solutions/scripts/wp-enqueue/).
+
 ## Usage
 Include the WP Enqueue class in your plugin, theme or child theme file or use an autoloader. 
 
@@ -9,18 +11,20 @@ You can add scripts and styles in one array, following the syntax as advised by 
 
 A basic example of an array of assets:
 
-            $assets = array(
-                array('handle' => 'some-js', 'src' => get_stylesheet_directory_uri() . '/test.js', 'deps' => array(), 'ver' => NULL, 'in_footer' => true)
-                array('handle' => 'some-css', 'src' => get_stylesheet_directory_uri() . '/test.css', 'deps' => array(), 'ver' => NULL, 'media' => 'all'),                
-                array('handle' => 'some-css-front-and-admin', 'src' => get_stylesheet_directory_uri() . '/test.css', 'context' => 'both'),                
-                array('handle' => 'some-admin-js', 'src' => get_stylesheet_directory_uri() . '/admin.js', 'context' => 'admin')
-                array('handle' => 'some-login-css', 'src' => get_stylesheet_directory_uri() . '/login.css', 'context' => 'login')
-                array('handle' => 'some-exluded-css', 'src' => get_stylesheet_directory_uri() . '/exclude.css', 'context' => 'admin', 'exclude' => array('edit.php'))
-                array('handle' => 'some-included-css', 'src' => get_stylesheet_directory_uri() . '/include.css', 'context' => 'admin', 'include' => array('edit.php'))
-                array('handle' => 'some-existing-css', 'action' => 'dequeue')
-            );
+```php
+$assets = array(
+    array('handle' => 'some-js', 'src' => get_stylesheet_directory_uri() . '/test.js', 'deps' => array(), 'ver' => NULL, 'in_footer' => true)
+    array('handle' => 'some-css', 'src' => get_stylesheet_directory_uri() . '/test.css', 'deps' => array(), 'ver' => NULL, 'media' => 'all'),                
+    array('handle' => 'some-css-front-and-admin', 'src' => get_stylesheet_directory_uri() . '/test.css', 'context' => 'both'),                
+    array('handle' => 'some-admin-js', 'src' => get_stylesheet_directory_uri() . '/admin.js', 'context' => 'admin')
+    array('handle' => 'some-login-css', 'src' => get_stylesheet_directory_uri() . '/login.css', 'context' => 'login')
+    array('handle' => 'some-exluded-css', 'src' => get_stylesheet_directory_uri() . '/exclude.css', 'context' => 'admin', 'exclude' => array('edit.php'))
+    array('handle' => 'some-included-css', 'src' => get_stylesheet_directory_uri() . '/include.css', 'context' => 'admin', 'include' => array('edit.php'))
+    array('handle' => 'some-existing-css', 'action' => 'dequeue')
+);
+```
             
-All scripts and styles are enqueued with a priority of 20, so later as the default usage.
+All scripts and styles are enqueued with a priority of 20, which is later as the default usage.
 
 ### Basic Properties
 The basic properties follow the definitions as set by WordPress.
@@ -43,22 +47,27 @@ Whether the script should be load just before the closing of the body tag or in 
 **media (string)**
 For which media the stylesheet is. Only applies to styles.
 
+**type (string)**
+Enforces the type enqueued (a script or style). Usefull if enqueuing scripts or styles that do not have a suffix, such as Google Fonts. Accepts ``'script'`` or ``'style'``.
+
 ### Additional Properties
 You can add additional properties in your array which extend the functionality of enqueueing.
 
 **action (string)**
-Allows to determine the action by using 'enqueue', 'dequeue' or 'register'. For example, if you add a css stylesheet with action register as key, this will result in the stylesheet being registered using wp_enqueue_style.
+Allows to determine the action by using ``'enqueue'``, ``'dequeue'`` or ``'register'``. For example, if you add a css stylesheet with action register as key, this will result in the stylesheet being registered using wp_enqueue_style.
 
 **context (string)**
-Allows you to specifically define the context in which something needs to be enqueued using 'admin', 'login', 'both'. Only on the admin side, on the front-end or on both?  You can also add your assets to the login page.
+Allows you to specifically define the context in which something needs to be enqueued using ``'admin'``, ``'login'``, ``'both'``. Only on the admin side, on the front-end or on both?  You can also add your assets to the login page.
 
 **exclude (array)**
-Accepts an array with admin page hooks, such as edit.php on which you want to exclude the enqueueing of admin scripts and styles
+Accepts an array with admin page hooks, such as ``'edit.php'`` on which you want to exclude the enqueueing of admin scripts and styles or a set of conditionals such as ``'is_page'`` for front-end enqueing.
 
 **include (array)**
-Accepts an array with admin page hooks, such as edit.php on which you want to include the enqueueing of admin scripts and styles
+Accepts an array with admin page hooks, such as ``'edit.php'`` on which you want to include the enqueueing of admin scripts and styles or a set of conditionals such as ``'is_page'`` for front-end enqueing.
 
 ### Create instance
 Create a new instance of the WP_Enqueue class with your assets array as argument.
 
-            $enqueue = new MakeitWorkPress\WP_Enqueue\Enqueue($assets);
+```php
+$enqueue = new MakeitWorkPress\WP_Enqueue\Enqueue($assets);
+```
