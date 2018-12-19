@@ -13,7 +13,7 @@ class Shop extends Base {
      * Sets the properties for the index
      */
     protected function setProperties() {
-        $this->properties = apply_filters( 'waterfall_product_properties', [
+        $this->properties = apply_filters( 'waterfall_catalog_properties', [
             'woocommerce' => [ 'header_align', 'header_breadcrumbs', 'header_height', 'header_position', 'header_width', 'sidebar_position' ]                                     
         ] );
     }

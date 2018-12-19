@@ -50,10 +50,21 @@ class Meta {
      * @return WP_Error|void Returns a WP_Error if something is wrong in the configurations, otherwise nothing
      */    
     public function __construct( $group = array() ) {
-        
+
+        // Default properties
         $this->metaBox  = $group;
         $this->single   = isset( $this->metaBox['single'] ) ? $this->metaBox['single'] : false;
-        $this->type     = isset( $this->metaBox['type'] ) ? $this->metaBox['type'] : 'post';
+        $this->type     = isset( $this->metaBox['type'] ) ? $this->metaBox['type'] : 'post';        
+
+        // This can only be executed with the right capabilities
+        if( ! current_user_can('edit_posts') || ! current_user_can('edit_pages') ) {
+            return;
+        }
+
+        // For user editing, a user must be able to edit users
+        if( $this->type == 'user' && ! current_user_can('edit_users') ) {
+            return;  
+        }  
 
         // Our type should be in a predefined array
         if( ! in_array($this->type, array('post', 'term', 'user')) ) {
@@ -69,7 +80,7 @@ class Meta {
         if( $this->type == 'post' ) {
             $this->validated = Validate::configurations( $group, ['id', 'title', 'screen', 'context', 'priority'] );
         } 
-        
+
         // if there is an error, return the error
         if( is_wp_error($this->validated) ) {
             return;
@@ -226,12 +237,14 @@ class Meta {
             return $id;
 
         // Check our user capabilities
-        if ( ! current_user_can( 'edit_posts', $id ) || ! current_user_can( 'edit_pages', $id ) )
+        if ( ! current_user_can( 'edit_posts', $id ) || ! current_user_can( 'edit_pages', $id ) ) {
             return $id;
+        }
 
         // If we are editing users, we are more limited
-        if (  $this->type == 'user' && ! current_user_can('edit_users') )
-            return;    
+        if (  $this->type == 'user' && ! current_user_can('edit_users') ) {
+            return;  
+        }  
          
         // Check our nonces
         if ( ! wp_verify_nonce( $_POST['wp-custom-fields-metaboxes-nonce-' . $this->metaBox['id']], 'wp-custom-fields-metaboxes-' . $this->metaBox['id'] ) ) 

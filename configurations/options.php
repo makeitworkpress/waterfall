@@ -27,7 +27,6 @@ $options = [
                         'organization' => __('Organization', 'waterfall'),
                         'person'       => __('Person', 'waterfall')
                     ],
-                    'subtype'       => 'password',
                     'title'         => __('Microscheme for Website Representation', 'waterfall'),
                     'type'          => 'select'
                 ],                                                            

@@ -6,14 +6,21 @@ use WP_Error as WP_Error;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-class Waterfall {  
+class Waterfall {
+    
+    /**
+     * Contains the WP Components Object
+     *
+     * @access private
+     */
+    private $components;     
 
     /**
      * Contains the configurations object for this theme
      *
      * @access public
      */
-    public $config;    
+    public $config;     
    
     
     /**
@@ -23,6 +30,12 @@ class Waterfall {
      */
     private static $instance = null;
     
+    /**
+     * Contains the WP Updater object
+     *
+     * @access private
+     */
+    private $updater;      
 
     /**
      * Contains the views object for this theme

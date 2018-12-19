@@ -43,49 +43,6 @@
         }
     },
     {
-        "name": "makeitworkpress/wp-enqueue",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-enqueue.git",
-            "reference": "4ce5c9896b18fc00927f0f991a598abd9c90dff1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/4ce5c9896b18fc00927f0f991a598abd9c90dff1",
-            "reference": "4ce5c9896b18fc00927f0f991a598abd9c90dff1",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3"
-        },
-        "time": "2018-03-21T10:26:10+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "MakeitWorkPress\\WP_Enqueue\\": "src"
-            }
-        },
-        "license": [
-            "GPL"
-        ],
-        "authors": [
-            {
-                "name": "Michiel Tramper",
-                "email": "michiel@makeitworkpress.com",
-                "homepage": "https://www.makeitworkpress.com"
-            }
-        ],
-        "description": "This class is a usefull wrapper for easily enqueing scripts and styles.",
-        "homepage": "https://github.com/makeitworkpress/wp-enqueue",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-enqueue/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-enqueue/issues"
-        }
-    },
-    {
         "name": "makeitworkpress/wp-register",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -215,24 +172,67 @@
         }
     },
     {
+        "name": "makeitworkpress/wp-enqueue",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-enqueue.git",
+            "reference": "018a4d3b115b3ed6eb8d63e302d16af7d2cb685f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/018a4d3b115b3ed6eb8d63e302d16af7d2cb685f",
+            "reference": "018a4d3b115b3ed6eb8d63e302d16af7d2cb685f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2018-11-20T16:20:41+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "MakeitWorkPress\\WP_Enqueue\\": "src"
+            }
+        },
+        "license": [
+            "GPL"
+        ],
+        "authors": [
+            {
+                "name": "Michiel Tramper",
+                "email": "michiel@makeitworkpress.com",
+                "homepage": "https://www.makeitworkpress.com"
+            }
+        ],
+        "description": "This class is a usefull wrapper for easily enqueing scripts and styles.",
+        "homepage": "https://github.com/makeitworkpress/wp-enqueue",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-enqueue/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-enqueue/issues"
+        }
+    },
+    {
         "name": "makeitworkpress/wp-components",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "567f76093d3c00af2af3b92a9d5c7b2c7ce56243"
+            "reference": "7eb95c0c24c66405f4ff4127d3bf35930d9cfd03"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/567f76093d3c00af2af3b92a9d5c7b2c7ce56243",
-            "reference": "567f76093d3c00af2af3b92a9d5c7b2c7ce56243",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/7eb95c0c24c66405f4ff4127d3bf35930d9cfd03",
+            "reference": "7eb95c0c24c66405f4ff4127d3bf35930d9cfd03",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2018-04-04T10:06:32+00:00",
+        "time": "2018-11-20T16:14:53+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -264,18 +264,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "b6529474558527f06ae07ed98cf8745d82cd21a7"
+            "reference": "91033c0d9f4097e5d90dd467696fd11e09fbe63e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/b6529474558527f06ae07ed98cf8745d82cd21a7",
-            "reference": "b6529474558527f06ae07ed98cf8745d82cd21a7",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/91033c0d9f4097e5d90dd467696fd11e09fbe63e",
+            "reference": "91033c0d9f4097e5d90dd467696fd11e09fbe63e",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2018-08-02T12:25:04+00:00",
+        "time": "2018-11-22T14:02:52+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

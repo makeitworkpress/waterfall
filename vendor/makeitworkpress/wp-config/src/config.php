@@ -77,6 +77,14 @@ class Config {
      */
     public function delete( $type, $configurations ) {
 
+    } 
+    
+    /**
+     * Sanitizes the configurations in the array accordig to a certain pattern
+     * @todo Needs to be developed
+     */
+    private function sanitize() {
+
     }    
 
     /**
@@ -98,14 +106,6 @@ class Config {
         } else {
             return new WP_Error( 'missing', __('Could not load the configuration file for your theme or plugin!', 'wp-config') );
         }
-
-    }
-
-    /**
-     * Sanitizes the configurations in the array accordig to a certain pattern
-     * @todo Needs to be developed
-     */
-    private function sanitize() {
 
     }
 

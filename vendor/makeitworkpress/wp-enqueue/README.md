@@ -53,6 +53,12 @@ Enforces the type enqueued (a script or style). Usefull if enqueuing scripts or 
 ### Additional Properties
 You can add additional properties in your array which extend the functionality of enqueueing.
 
+**name (string)**
+The name for the object if you want to localize data to a script using wp_localize_script. This is the name of the variable used.
+
+**localize (array)**
+The array with data which you want to have localized. The ``'name'`` property is required and is the name of the variable.
+
 **action (string)**
 Allows to determine the action by using ``'enqueue'``, ``'dequeue'`` or ``'register'``. For example, if you add a css stylesheet with action register as key, this will result in the stylesheet being registered using wp_enqueue_style.
 

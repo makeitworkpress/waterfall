@@ -42,11 +42,13 @@ class Frame {
         // Include our scripts and media
         wp_enqueue_media();  
 
-        if( ! wp_script_is('alpha-color-picker') )
+        if( ! wp_script_is('alpha-color-picker') ) {
             wp_enqueue_script('alpha-color-picker');
+        }
         
-        if( ! wp_script_is('wp-custom-fields-js') )
-            wp_enqueue_script('wp-custom-fields-js');         
+        if( ! wp_script_is('wp-custom-fields-js') ) {
+            wp_enqueue_script('wp-custom-fields-js');  
+        }       
         
         // Populate Variables
         $this->populateSections();
@@ -105,15 +107,12 @@ class Frame {
      */
     private function populateField( Array $field = array() ) {
         
-        // We should have a field type
-        if( ! isset($field['type']) )
-            return $field;
         
         // Populate our variables
         $field                  = $field;
         $field['column']        = isset( $field['columns'] )            ?  'wcf-' . esc_attr($field['columns']) : 'wcf-full';
         $field['description']   = isset( $field['description'] )        ?  esc_html($field['description'])      : '';
-        $field['form']          = __('We are sorry, the given field class does not exist', 'wp-custom-fields');
+        $field['form']          = '<div class="error notice"><p>' . sprintf( __('The given field class does not exist for the field with id: %s', 'wp-custom-fields'), $field['id']) . '</p></div>';
         
         // Make sure our IDs do not contain brackets
         $field['id']            = str_replace( '[', '_', esc_attr($field['id']) ); 
@@ -122,20 +121,31 @@ class Frame {
         
         $field['placeholder']   = isset( $field['placeholder'] )        ? esc_attr($field['placeholder'])   : '';
         $field['title']         = isset( $field['title'] )              ? esc_html($field['title'])         : '';
-        $field['titleTag']      = $field['type'] == 'heading'           ? 'h3'                              : 'h4';
+        $field['titleTag']      = isset( $field['type'] ) && $field['type'] == 'heading'           ? 'h3'                              : 'h4';
+
+        // We should have a field type
+        if( ! isset($field['type']) ) {
+            $field['form']      = '<div class="error notice"><p>' . sprintf( __('The type is not defined for the field with id: %s', 'wp-custom-fields'), $field['id']) . '</p></div>';
+            $field['type']      = 'unknown';
+            return $field;
+        }
+
         $field['type']          = esc_attr($field['type']);
         
         // The class
         $class                  = apply_filters( 'wp_custom_fields_field_class', 'MakeitWorkPress\WP_Custom_Fields\Fields\\' . ucfirst( $field['type'] ), $field );
-        $configurations         = $class::configurations();
-        
-        // Check if there is a default value set up, and whether there is a value already stored for the specific field
-        $default                = isset( $field['default'] )            ? $field['default'] : $configurations['defaults'];
-        $field['values']        = isset( $this->values[$field['id']] )  ? maybe_unserialize( $this->values[$field['id']] ) : $default; 
         
         // Render our field form, allow custom fields to be filtered.   
         if( class_exists($class) ) {
+
+            $configurations     = $class::configurations();
+        
+            // Check if there is a default value set up, and whether there is a value already stored for the specific field
+            $default            = isset( $field['default'] )            ? $field['default'] : $configurations['defaults'];
+            $field['values']    = isset( $this->values[$field['id']] )  ? maybe_unserialize( $this->values[$field['id']] ) : $default; 
+
             $field['form']      = apply_filters( 'wp_custom_fields_field_form', $class::render($field), $field );
+
         }
         
         return $field;
