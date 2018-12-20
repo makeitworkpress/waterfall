@@ -13,6 +13,8 @@ $productView = new Views\Product('product'); ?>
 
 <div class="main-content product-content">
 
+    <?php do_action('waterfall_before_product_breadcrumbs'); ?> 
+
     <?php if( $productView->breadcrumbs() ) { ?>
         <div class="components-container"><?php echo $productView->breadcrumbs(); ?></div>
     <?php } ?>
