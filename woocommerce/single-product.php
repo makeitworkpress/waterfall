@@ -17,6 +17,8 @@ $productView = new Views\Product('product'); ?>
         <div class="components-container"><?php echo $productView->breadcrumbs(); ?></div>
     <?php } ?>
 
+    <?php do_action('waterfall_before_product_content_container'); ?> 
+
     <?php if( $productView->contentContainer ) { ?>
         <div class="components-container">
     <?php } ?>
@@ -47,6 +49,8 @@ $productView = new Views\Product('product'); ?>
     <?php if( $productView->contentContainer ) { ?>
         </div>
     <?php } ?>
+
+    <?php do_action('waterfall_after_product_content_container'); ?> 
 
 </div>
 

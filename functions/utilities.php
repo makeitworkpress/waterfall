@@ -247,7 +247,7 @@ function wf_get_grid_options() {
  * @return array $urls The array with social network urls as values, and their sanitized names as keys
  */
 function wf_get_social_networks() {
-    $networks   = array(
+    $networks   = apply_filters( 'waterfall_social_loaded_networks', array(
         'telephone'     => __('Telephone', 'waterfall'), 
         'email'         => __('Email', 'waterfall'), 
         'facebook'      => __('Facebook', 'waterfall'), 
@@ -261,7 +261,7 @@ function wf_get_social_networks() {
         'dribble'       => __('Dribble', 'waterfall'), 
         'reddit'        => __('Reddit', 'waterfall'),   
         'whatsapp'      => __('Whatsapp', 'waterfall')           
-    );
+    ));
     $options    = wf_get_theme_option('customizer');
     $urls       = array();
     

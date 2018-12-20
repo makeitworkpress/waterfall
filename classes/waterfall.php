@@ -249,7 +249,9 @@ class Waterfall {
         }
 
         // Save our additional post types to the database, so we can modify them later
-        $this->savePostTypes();       
+        if( is_admin() ) {
+            $this->savePostTypes();     
+        }  
         
     }
 

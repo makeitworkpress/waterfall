@@ -22,6 +22,8 @@
 
 <div class="main-content">
 
+    <?php do_action('waterfall_before_product_archive_content_container'); ?>
+
     <?php if( $shop->contentContainer ) { ?>
         <div class="components-container">    
     <?php } ?> 
@@ -50,7 +52,9 @@
 
     <?php if( $shop->contentContainer ) { ?>
         </div>    
-    <?php } ?>      
+    <?php } ?>  
+
+    <?php do_action('waterfall_after_product_archive_content_container'); ?>    
     
 </div>
 
