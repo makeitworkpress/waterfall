@@ -1,5 +1,5 @@
 # waterfall
-An Eloborate and Extended Wordpress Theming Framework, with support for WooCommerce. 
+An Elaborate and Extended Wordpress Theming Framework, with support for WooCommerce. 
 
 ## Installation
 Download the ZIP file for the master file, rename it to waterfall and upload it to your WordPress themes directory in your WordPress install. 
