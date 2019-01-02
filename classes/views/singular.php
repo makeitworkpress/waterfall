@@ -73,6 +73,7 @@ class Singular extends Base {
                 'footer_author',
                 'footer_comments',
                 'footer_comments_closed',
+                'footer_comments_title',
                 'footer_share',
                 'footer_share_fixed',
                 'footer_width',
@@ -458,10 +459,21 @@ class Singular extends Base {
         
         // Comments
         if( $this->layout['footer_comments'] ) {
+            $number = get_comments_number();
+            $title  = get_post_title();
+
             $args['atoms']['comments'] = [
                 'atom'          => 'comments',
-                'properties'    => ['closedText' => $this->layout['footer_comments_closed'] ? $this->layout['footer_comments_closed'] : __('Comments are closed.', 'waterfall')]
+                'properties'    => [
+                    'closedText' => $this->layout['footer_comments_closed'] ? $this->layout['footer_comments_closed'] : __('Comments are closed.', 'waterfall'),
+                    'title'      => $this->layout['footer_comments_title'] ? str_replace( ['{number}', '{title}'], [$number, $title], $this->layout['footer_comments_title'] ) : sprintf( 
+                        _n( 'One Response to %2$s', '%1$s Responses to %2$s', $number, 'waterfall' ),
+                        number_format_i18n( $number ),
+                        $title
+                    ) 
+                ]
             ];
+            
         }    
         
         $args = apply_filters( 'waterfall_content_footer_args', $args );

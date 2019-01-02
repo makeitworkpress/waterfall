@@ -476,7 +476,15 @@ if( $types ) {
                     'selector'      => array('selector' => '.main-footer .atom-comments-closed', 'html' => true),
                     'transport'     => 'postMessage',                  
                     'type'          => 'input'
-                ),                   
+                ), 
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_footer_comments_title',
+                    'title'         => __('Title above comments. Use {number} and {title} tags to display the number of comments and post title respectively.', 'waterfall'),
+                    'selector'      => array('selector' => '.main-footer .atom-comments-title', 'html' => true),
+                    'transport'     => 'postMessage',                  
+                    'type'          => 'input'
+                ),                                    
                 array(
                     'default'       => '',
                     'id'            => $type . '_footer_share',
