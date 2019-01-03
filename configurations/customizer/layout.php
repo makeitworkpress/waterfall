@@ -480,11 +480,20 @@ if( $types ) {
                 array(
                     'default'       => '',
                     'id'            => $type . '_footer_comments_title',
-                    'title'         => __('Title above comments. Use {number} and {title} tags to display the number of comments and post title respectively.', 'waterfall'),
+                    'title'         => __('Title above comments', 'waterfall'),
+                    'description'   => __('Use {number} and {title} tags to display the number of comments and post title respectively.', 'waterfall'),
                     'selector'      => array('selector' => '.main-footer .atom-comments-title', 'html' => true),
                     'transport'     => 'postMessage',                  
                     'type'          => 'input'
-                ),                                    
+                ),  
+                array(
+                    'default'       => __('Leave a reply', 'waterfall'),
+                    'id'            => $type . '_footer_comments_reply',
+                    'title'         => __('Title above comments form', 'waterfall'),
+                    'selector'      => array('selector' => '.main-footer .comment-reply-title', 'html' => true),
+                    'transport'     => 'postMessage',                  
+                    'type'          => 'input'
+                ),
                 array(
                     'default'       => '',
                     'id'            => $type . '_footer_share',

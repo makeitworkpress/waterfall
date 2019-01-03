@@ -74,6 +74,7 @@ class Singular extends Base {
                 'footer_comments',
                 'footer_comments_closed',
                 'footer_comments_title',
+                'footer_comments_reply',
                 'footer_share',
                 'footer_share_fixed',
                 'footer_width',
@@ -459,8 +460,9 @@ class Singular extends Base {
         
         // Comments
         if( $this->layout['footer_comments'] ) {
+
             $number = get_comments_number();
-            $title  = get_post_title();
+            $title  = get_the_title();
 
             $args['atoms']['comments'] = [
                 'atom'          => 'comments',
@@ -473,6 +475,17 @@ class Singular extends Base {
                     ) 
                 ]
             ];
+
+            // Adjust the reply title
+            if( $this->layout['footer_comments_reply'] ) {    
+                add_filter('comment_form_defaults', function($defaults) {
+
+                    $defaults['title_reply'] = $this->layout['footer_comments_reply'];
+
+                    return $defaults;
+                    
+                } );
+            }
             
         }    
         
