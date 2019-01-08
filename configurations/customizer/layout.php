@@ -702,7 +702,7 @@ if( $types ) {
                     'description'   => __('Minimum height of posts in the archive in pixels.', 'waterfall'),
                     'id'            => $type . '_archive_content_height',
                     'title'         => __('Posts Height', 'waterfall'),
-                    'selector'      => array('selector' => '.archive-posts .molecule-post', 'property' => 'min-height'),
+                    'selector'      => array('selector' => '.archive-posts .molecule-post.' . $type, 'property' => 'min-height'),
                     'transport'     => 'postMessage',                  
                     'type'          => 'number'
                 ),    
