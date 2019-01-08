@@ -26,7 +26,32 @@ class Waterfall_Elementor {
 
         // Our widgets
         $this->widgets = $widgets;
+
+        // Register custom categories
+        $this->widgetCategories();
+
+        // Register custom widgets
         $this->registerWidgets();
+
+    }
+
+
+    /**
+     * Registers custom widget categories for elementor
+     */
+    private function widgetCategories() {
+
+        add_action( 'elementor/elements/categories_registered', function($elements_manager) {
+            
+            $elements_manager->add_category(
+                'waterfall-widgets',
+                [
+                    'title' => __( 'Waterfall', 'waterfall' ),
+                    'icon' => 'fa fa-plug',
+                ]
+            );
+
+        } );
 
     }
 

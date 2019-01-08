@@ -24,7 +24,7 @@ $atom = wp_parse_args( $atom, array(
         number_format_i18n( get_comments_number() ),
         get_the_title()
     )
-) );
+) ); 
 
 /**
  * Setup our pagination if we don't have it set-up
