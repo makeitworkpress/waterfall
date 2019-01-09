@@ -253,3 +253,27 @@
         margin: 0;
     }
 }
+
+.main-footer, .main-header {
+    .atom-author {
+        display: flex;
+        padding: @grid-space/2 0;   
+        .avatar {
+            min-width: 100px;
+        }
+    }
+    @media screen and (max-width: 479px) {
+        .atom-author {
+            flex-wrap: wrap;
+        }
+        .atom-author-avatar {
+            float: none;
+            margin-bottom: @grid-space/2;
+            text-align: center;
+            width: 100%;
+            img {
+                display: inline-block;    
+            }
+        }
+    }
+}
