@@ -55,12 +55,6 @@ class Header extends Base {
          * Set-up our atoms
          * The header atoms form the building blocks for the header
          */
-
-        $logo                   = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'medium' ) : false;
-        $logoTransparent        = is_numeric( $this->customizer['logo_transparent'] ) ? wp_get_attachment_image_src( $this->customizer['logo_transparent'], 'medium' ) : false;
-        $logoMobile             = is_numeric( $this->customizer['logo_mobile'] ) ? wp_get_attachment_image_src( $this->customizer['logo_mobile'], 'medium' ) : false;
-        $logoMobileTransparent  = is_numeric( $this->customizer['logo_mobile_transparent'] ) ? wp_get_attachment_image_src( $this->customizer['logo_mobile_transparent'], 'medium' ) : false;
-       
         // Default header items
         $atoms = [
             'logo'  => [
@@ -68,14 +62,10 @@ class Header extends Base {
                 'properties'                => [
                     'attributes'            => ['itemtype' => wf_get_theme_option('options', 'represent_scheme') == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
                     'float'                 => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
-                    'default'               => [
-                        'src'               => $logo ? $logo[0] : get_template_directory_uri() . '/assets/img/waterfall.png', 
-                        'height'            => $logo ? $logo[2] : 64, 
-                        'width'             => $logo ? $logo[1] : 306
-                    ], 
-                    'defaultTransparent'    => $logoTransparent ? ['src' => $logoTransparent[0], 'height' => $logoTransparent[2], 'width' => $logoTransparent[1]] : ['src' => '', 'width' => '', 'height' => ''],
-                    'mobile'                => $logoMobile ? ['src' => $logoMobile[0], 'height' => $logoMobile[2], 'width' => $logoMobile[1]] : ['src' => '', 'width' => '', 'height' => ''], 
-                    'mobileTransparent'     => $logoMobileTransparent ? ['src' => $logoMobileTransparent[0], 'height' => $logoMobileTransparent[2], 'width' => $logoMobileTransparent[1]]  :  ['src' => '', 'width' => '', 'height' => ''] 
+                    'default'               => $this->customizer['logo'] ? $this->customizer['logo'] : ['src' => get_template_directory_uri() . '/assets/img/waterfall.png', 'height' => 64, 'width' => 306],
+                    'defaultTransparent'    => $this->customizer['logo_transparent'],
+                    'mobile'                => $this->customizer['logo_mobile'], 
+                    'mobileTransparent'     => $this->customizer['logo_mobile_transparent']
                 ]
             ],
             'menu'  => [ 

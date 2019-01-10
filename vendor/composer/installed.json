@@ -264,18 +264,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "8582f3ff515b3797142bdc384c1a8ecf5f539cb8"
+            "reference": "4889edc8654baaa38d5ea822f04ef54182556ed4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/8582f3ff515b3797142bdc384c1a8ecf5f539cb8",
-            "reference": "8582f3ff515b3797142bdc384c1a8ecf5f539cb8",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/4889edc8654baaa38d5ea822f04ef54182556ed4",
+            "reference": "4889edc8654baaa38d5ea822f04ef54182556ed4",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2019-01-08T15:13:37+00:00",
+        "time": "2019-01-10T13:37:58+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -298,6 +298,49 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-components/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-components/issues"
+        }
+    },
+    {
+        "name": "makeitworkpress/wp-optimize",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-optimize.git",
+            "reference": "9cea1c4ccf75e3055ab9c9c6c57c6571e14a93dd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-optimize/zipball/9cea1c4ccf75e3055ab9c9c6c57c6571e14a93dd",
+            "reference": "9cea1c4ccf75e3055ab9c9c6c57c6571e14a93dd",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2019-01-10T14:44:01+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "MakeitWorkPress\\WP_Optimize\\": "src"
+            }
+        },
+        "license": [
+            "GPL"
+        ],
+        "authors": [
+            {
+                "name": "Michiel Tramper",
+                "email": "michiel@makeitworkpress.com",
+                "homepage": "https://www.makeitworkpress.com"
+            }
+        ],
+        "description": "This class stores some common optimizations which can help clean up your WordPress theme.",
+        "homepage": "https://github.com/makeitworkpress/wp-optimize",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-optimize/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-optimize/issues"
         }
     }
 ]

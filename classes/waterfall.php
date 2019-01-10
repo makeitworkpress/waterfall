@@ -101,15 +101,25 @@ class Waterfall {
             flush_rewrite_rules();    
         });
 
+        
+        /**
+         * Initialize our components which are used to display elements
+         */
+        $this->components   = new MakeitWorkPress\WP_Components\Boot();
+
+        /**
+         * Enable optimizations for the theme
+         */
+        $options            = wf_get_theme_option();
+
+        if( isset($options['optimize']) && $options['optimize'] ) {
+            $optimize       = new MakeitWorkPress\WP_Optimize\Optimize($options['optimize']);    
+        }
+
         /**
          * Initializes our ajax actions
          */
-        $ajax               = new Waterfall_Ajax(); 
-        
-        /**
-         * Initialize our components
-         */
-        $this->components   = new MakeitWorkPress\WP_Components\Boot();         
+        $ajax               = new Waterfall_Ajax();        
         
         /**
          * Initialize the view component so templates are load and additional settings are added

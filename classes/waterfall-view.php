@@ -61,11 +61,31 @@ class Waterfall_View {
 
             if( isset($headerHeight['amount']) && $headerHeight['unit'] ) {
                 echo '<style type="text/css"> 
-                    .header .atom-logo img { max-height:' . $headerHeight['amount'] . $headerHeight['unit'] . '; width: auto;} 
+                    .header .atom-logo img { height: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 16px); width: auto;} 
                     .header .atom-menu-hamburger { margin: calc( (' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 30px)/2 ) 4px; }
                 </style>';
             }
         }, 20 );
+
+        /**
+         * Adds the Google Analytics scripts, if defined
+         */
+        $options            = wf_get_theme_option();
+
+        if( isset($options['analytics']) && $options['analytics'] ) {
+            $tracking = $options['analytics'];
+            add_action( 'wp_head', function() use ($tracking) {
+                echo '<!-- Global site tag (gtag.js) - Google Analytics -->
+                <script async="async" src="https://www.googletagmanager.com/gtag/js?id=' . $tracking . '"></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag("js", new Date());
+                  gtag("config", "' . $tracking . '", {"anonymize_ip": true });
+                </script>';
+            }, 20 );            
+        }
+
         
         /**
          * Add our lay-out classes to the body

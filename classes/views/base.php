@@ -49,7 +49,12 @@ abstract class Base {
      *
      * @access protected
      */
-    protected $woocommerce;      
+    protected $woocommerce; 
+    
+    /**
+     * Contains the custom options from the Theme Settings Panel
+     */
+    protected $options;
   
     /**
      * The initial state of our class
@@ -69,14 +74,17 @@ abstract class Base {
         } elseif( is_singular() && $type == 'singular' ) { 
             global $post;
             $this->type = $post->post_type;
-        }         
+        }  
+        
+        // Load our theme settings
+        $this->options = wf_get_theme_option();
 
         // Set our properties based upon the arrays defined within a view
         $this->setProperties();
 
-        // Determine odd layout properties that can occur for archives and singulars
+        // Determine odd, but default layout properties that can occur for archives and singulars
         $this->contentContainer = true;
-        $this->mainContainer    = false; // In the future, this allows us to have a more flexible placement of the sidebar        
+        $this->mainContainer    = false; // @todo In the future, this allows us to have a more flexible placement of the sidebar        
         $this->relatedContainer = true;      
         $this->relatedSection   = true;      
         $this->mainLayout();
@@ -123,7 +131,7 @@ abstract class Base {
      * The parameters can be used to do a manual check
      *
      * @param string $prefix    The current prefix, such as post_related or header_
-     * @param string $context   An optional context which is used for singular items to load meta data
+     * @param string $context   An optional context which is used for singular items to load post meta, which may indicate an item is disabeld
      */
     protected function disabled( $prefix = '', $context = 'content_') {
         

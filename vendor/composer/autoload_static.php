@@ -12,6 +12,7 @@ class ComposerStaticInit77ae390311dde6c9f67aa0a6c3dbae1b
             'MakeitWorkPress\\WP_Updater\\' => 27,
             'MakeitWorkPress\\WP_Router\\' => 26,
             'MakeitWorkPress\\WP_Register\\' => 28,
+            'MakeitWorkPress\\WP_Optimize\\' => 28,
             'MakeitWorkPress\\WP_Enqueue\\' => 27,
             'MakeitWorkPress\\WP_Custom_Fields\\' => 33,
             'MakeitWorkPress\\WP_Config\\' => 26,
@@ -31,6 +32,10 @@ class ComposerStaticInit77ae390311dde6c9f67aa0a6c3dbae1b
         'MakeitWorkPress\\WP_Register\\' => 
         array (
             0 => __DIR__ . '/..' . '/makeitworkpress/wp-register/src',
+        ),
+        'MakeitWorkPress\\WP_Optimize\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/makeitworkpress/wp-optimize/src',
         ),
         'MakeitWorkPress\\WP_Enqueue\\' => 
         array (

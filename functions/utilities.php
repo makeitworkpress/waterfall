@@ -254,12 +254,12 @@ function wf_get_social_networks() {
         'instagram'     => __('Instagram', 'waterfall'), 
         'twitter'       => __('Twitter', 'waterfall'), 
         'linkedin'      => __('LinkedIn', 'waterfall'), 
-        'google-plus'   => __('Google Plus', 'waterfall'), 
         'youtube'       => __('Youtube', 'waterfall'), 
         'pinterest'     => __('Pinterest', 'waterfall'), 
         'behance'       => __('Behance', 'waterfall'), 
         'dribble'       => __('Dribble', 'waterfall'), 
         'reddit'        => __('Reddit', 'waterfall'),   
+        'github'        => __('Github', 'waterfall'),   
         'whatsapp'      => __('Whatsapp', 'waterfall')           
     ));
     $options    = wf_get_theme_option('customizer');
@@ -294,7 +294,9 @@ function wf_get_archive_post_type() {
             break;
         }
 
-        $type = get_taxonomy($taxonomy)->object_type[0];
+        if( $taxonomy && isset($taxonomy->object_type[0]) ) {
+            $type   = $taxonomy->object_type[0];
+        }
 
     }
 

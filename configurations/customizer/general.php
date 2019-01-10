@@ -47,13 +47,7 @@ $customizer = array(
                     'id'            => 'lightbox',
                     'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
                     'type'          => 'checkbox'
-                ),
-                array(
-                    'default'       => '',
-                    'id'            => 'lazyload',
-                    'title'         => __('Lazyload Featured Images, Improving Performance', 'waterfall'),
-                    'type'          => 'checkbox'
-                )                  
+                ),                 
             )              
         ),        
         array(
@@ -176,6 +170,12 @@ $customizer = array(
                     'title'         => __('Reddit Url', 'waterfall'),
                     'type'          => 'url',
                 ),
+                array(
+                    'default'       => '',
+                    'id'            => 'github',
+                    'title'         => __('Github Url', 'waterfall'),
+                    'type'          => 'url',
+                ),                
                 array(
                     'default'       => '',
                     'id'            => 'behance',

@@ -23,6 +23,10 @@
 /* Header Section 
 ----------------------*/
 .main-header {
+    padding-top: @grid-space*2;
+    &.components-image-background {
+        padding-top: @grid-space;
+    }
     overflow: hidden;
     h1 {
         margin: 0;
@@ -242,11 +246,13 @@
 /* Footer Section 
 ----------------------*/
 .atom-comments {
+    max-width: 768px;
     padding: @grid-space 0;
     .avatar {
         border-radius: 50%;
     }
 }
+
 .atom-share {
     margin: @grid-space/2 0;
     &.atom-share-fixed {
@@ -257,6 +263,7 @@
 .main-footer, .main-header {
     .atom-author {
         display: flex;
+        max-width: 768px;
         padding: @grid-space/2 0;   
         .avatar {
             min-width: 100px;

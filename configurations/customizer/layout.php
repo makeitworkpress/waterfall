@@ -531,13 +531,7 @@ if( $types ) {
                     'id'            => $type . '_share_linkedin',
                     'title'         => __('Show LinkedIn sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ),                     
-                array(
-                    'default'       => '',
-                    'id'            => $type . '_share_google-plus',
-                    'title'         => __('Show Google Plus sharing button', 'waterfall'),
-                    'type'          => 'checkbox'
-                ),                     
+                ),                  
                 array(
                     'default'       => '',
                     'id'            => $type . '_share_pinterest',

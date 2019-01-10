@@ -10,6 +10,7 @@
     border-bottom: 1px solid @f-grey;
     top: inherit;
     .atom-logo {
+        padding: @grid-space/4 0;
         @media screen and (max-width: 479px) {
             max-width: 75%;
         }
@@ -17,6 +18,14 @@
     .atom-menu {
         .atom-search-expanded .fa-circle-o-notch {
             top: @grid-space/2;
+        }
+        .menu > .lang-item, .menu > .pll-parent-menu-item {
+            > a {
+                padding: 0 @grid-space/8;
+            }
+            img {
+                display: inline-block;
+            }
         }
     }
     .atom-menu-hamburger {

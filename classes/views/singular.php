@@ -150,8 +150,8 @@ class Singular extends Base {
             'align'         => $this->layout['header_align'] ? $this->layout['header_align'] : 'left',
             'attributes'    => ['class' => 'main-header entry-header singular-header'],
             'container'     => $this->layout['header_width'] == 'full' ? false : true,
-            'height'        => $this->layout['header_height'] ? $this->layout['header_height'] : true,
-            'lazyload'      => wf_get_theme_option( 'customizer', 'lazyload' ),
+            'height'        => $this->layout['header_height'] ? $this->layout['header_height'] : 'quarter',
+            'lazyload'      => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,
             'parallax'      => $this->layout['header_parallax'],
         ];    
     
@@ -208,7 +208,7 @@ class Singular extends Base {
         $featured       = $this->layout['header_featured'] ? $this->layout['header_featured'] : 'after';
         $featuredArgs   = [ 
             'size'      => $this->layout['header_size'] ? $this->layout['header_size'] : 'half-hd', 
-            'lazyload'  => wf_get_theme_option( 'customizer', 'lazyload' ) 
+            'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false 
         ]; 
         
         if( $featured == 'before' ) {
@@ -220,7 +220,7 @@ class Singular extends Base {
         } 
         
         if( $this->layout['header_share'] ) {
-            $args['atoms']['share'] = ['atom' => 'share', 'properties' => ['share' => $this->layout['share_text']]];
+            $args['atoms']['share'] = ['atom' => 'share', 'properties' => ['share' => $this->layout['share_text'] ? $this->layout['share_text'] : __('Share', 'waterfall')]];
             
             // Networks should be enabled
             foreach( $this->networks as $network ) {
@@ -377,7 +377,7 @@ class Singular extends Base {
                     'image'         => [ 
                         'enlarge'   => $this->layout['related_image_enlarge'] ? true : false, 
                         'float'     => $this->layout['related_image_float'] ? $this->layout['related_image_float'] : 'none',
-                        'lazyload'  => wf_get_theme_option('customizer', 'lazyload'),
+                        'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,
                         'link'      => 'post', 
                         'size'      => $this->layout['related_image'] ? $this->layout['related_image'] : 'square-ld'                         
                     ]
@@ -438,7 +438,7 @@ class Singular extends Base {
         if( $this->layout['footer_share'] ) {
             $args['atoms']['share'] = [
                 'atom'          => 'share', 
-                'properties'    => ['fixed' => $this->layout['footer_share_fixed'] ? true : false, 'share' => $this->layout['share_text']]
+                'properties'    => ['fixed' => $this->layout['footer_share_fixed'] ? true : false, 'share' => $this->layout['share_text'] ? $this->layout['share_text'] : __('Share', 'waterfall')]
             ];
             
             // Networks should be enabled

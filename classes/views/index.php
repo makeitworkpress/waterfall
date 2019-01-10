@@ -62,7 +62,7 @@ class Index extends Base {
         
         // Add searchform on search pages
         if( is_search() ) {     
-            $atoms['search'] = ['atom' => 'search'];
+            $atoms['search'] = ['atom' => 'search', 'properties' => []];
         }
         
         $args = apply_filters( 'waterfall_archive_header_args', [
@@ -111,7 +111,7 @@ class Index extends Base {
                 'image'         => [
                     'enlarge'   => $this->layout['content_image_enlarge'] ? true : false, 
                     'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : 'none', 
-                    'lazyload'  => wf_get_theme_option('customizer', 'lazyload'),                     
+                    'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,                     
                     'link'      => 'post', 
                     'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : 'medium'                    
                 ]

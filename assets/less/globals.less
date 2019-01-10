@@ -71,7 +71,10 @@ img {
     }
     .main-content & {
         display: inline-block;
-    }    
+    } 
+    .atom-logo & {
+        height: initial;
+    }   
 }
 
 figcaption {
@@ -144,6 +147,18 @@ input[type="submit"], input[type="submit"].button {
     width: auto;
     &:hover {
         cursor: pointer;
+    }
+}
+
+/* Styling for Gutenberg modifications 
+--------------------------------------*/
+.wp-block-gallery {
+    margin-bottom: 0.5em;
+    .content & {
+        padding: 0;
+        img {
+            margin-bottom: 0;
+        }        
     }
 }
 

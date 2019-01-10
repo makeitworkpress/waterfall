@@ -9,6 +9,7 @@ return array(
     'MakeitWorkPress\\WP_Updater\\' => array($vendorDir . '/makeitworkpress/wp-updater/src'),
     'MakeitWorkPress\\WP_Router\\' => array($vendorDir . '/makeitworkpress/wp-router/src'),
     'MakeitWorkPress\\WP_Register\\' => array($vendorDir . '/makeitworkpress/wp-register/src'),
+    'MakeitWorkPress\\WP_Optimize\\' => array($vendorDir . '/makeitworkpress/wp-optimize/src'),
     'MakeitWorkPress\\WP_Enqueue\\' => array($vendorDir . '/makeitworkpress/wp-enqueue/src'),
     'MakeitWorkPress\\WP_Custom_Fields\\' => array($vendorDir . '/makeitworkpress/wp-custom-fields/src'),
     'MakeitWorkPress\\WP_Config\\' => array($vendorDir . '/makeitworkpress/wp-config/src'),
