@@ -86,6 +86,10 @@ blockquote {
     margin: 1em 0;
     line-height: @heading-lineheight;
     padding: 1.5em 0;
+    .wp-block-pullquote & {
+        margin: 0;
+        padding: 0;
+    }
     &:before, &:after {
         content: none;
     }    
@@ -95,14 +99,35 @@ blockquote {
         margin: 0;
         max-width: 100%;       
     }
+    cite {
+        color: @grey;
+        display: block;
+        font-size: 0.8em;
+        margin-top: 1em;
+    }
 }
 
 code {
     background: @f-grey;
+    display: block;
     overflow-x: scroll;
     padding: @grid-space;
 }
 
+pre {
+    margin-bottom: 1.5rem;
+}
+
 label {
     font-weight: bold;
+}
+
+/* Styling for Gutenberg modifications 
+--------------------------------------*/
+.wp-block-pullquote {
+    margin-bottom: 1.5rem;
+    &.is-style-default {
+        border-bottom: 2px solid @d-grey;
+        border-top: 2px solid @d-grey;
+    }
 }
