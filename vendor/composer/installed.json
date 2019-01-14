@@ -258,49 +258,6 @@
         }
     },
     {
-        "name": "makeitworkpress/wp-components",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "4889edc8654baaa38d5ea822f04ef54182556ed4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/4889edc8654baaa38d5ea822f04ef54182556ed4",
-            "reference": "4889edc8654baaa38d5ea822f04ef54182556ed4",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3"
-        },
-        "time": "2019-01-10T13:37:58+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "MakeitWorkPress\\WP_Components\\": "src"
-            }
-        },
-        "license": [
-            "GPL"
-        ],
-        "authors": [
-            {
-                "name": "Michiel Tramper",
-                "email": "michiel@makeitworkpress.com",
-                "homepage": "https://www.makeitworkpress.com"
-            }
-        ],
-        "description": "WP Components contains a wide selection of common elements that can be found on WordPress websites and can be used to speed up development.",
-        "homepage": "https://github.com/makeitworkpress/wp-components",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-components/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-components/issues"
-        }
-    },
-    {
         "name": "makeitworkpress/wp-optimize",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -341,6 +298,49 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-optimize/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-optimize/issues"
+        }
+    },
+    {
+        "name": "makeitworkpress/wp-components",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-components.git",
+            "reference": "800e2793da1189f673936e4e126d6e8437a21795"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/800e2793da1189f673936e4e126d6e8437a21795",
+            "reference": "800e2793da1189f673936e4e126d6e8437a21795",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2019-01-14T16:02:14+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "MakeitWorkPress\\WP_Components\\": "src"
+            }
+        },
+        "license": [
+            "GPL"
+        ],
+        "authors": [
+            {
+                "name": "Michiel Tramper",
+                "email": "michiel@makeitworkpress.com",
+                "homepage": "https://www.makeitworkpress.com"
+            }
+        ],
+        "description": "WP Components contains a wide selection of common elements that can be found on WordPress websites and can be used to speed up development.",
+        "homepage": "https://github.com/makeitworkpress/wp-components",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-components/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-components/issues"
         }
     }
 ]
