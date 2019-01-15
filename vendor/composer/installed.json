@@ -215,49 +215,6 @@
         }
     },
     {
-        "name": "makeitworkpress/wp-custom-fields",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "a7fc14360a9f25a6f5cb7e1a12d42c5a0c3d7320"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/a7fc14360a9f25a6f5cb7e1a12d42c5a0c3d7320",
-            "reference": "a7fc14360a9f25a6f5cb7e1a12d42c5a0c3d7320",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3"
-        },
-        "time": "2019-01-03T14:27:35+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "MakeitWorkPress\\WP_Custom_Fields\\": "src"
-            }
-        },
-        "license": [
-            "GPL"
-        ],
-        "authors": [
-            {
-                "name": "Michiel Tramper",
-                "email": "michiel@makeitworkpress.com",
-                "homepage": "https://www.makeitworkpress.com"
-            }
-        ],
-        "description": "WP Custom Fields allows you to add custom fields easily to options pages, post, taxonomy and usermeta and customizer fields.",
-        "homepage": "https://github.com/makeitworkpress/wp-custom-fields",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
-        }
-    },
-    {
         "name": "makeitworkpress/wp-optimize",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -301,24 +258,67 @@
         }
     },
     {
+        "name": "makeitworkpress/wp-custom-fields",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
+            "reference": "0bb0955cc2059536f8b7d87a7336f4f5e9e080c1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/0bb0955cc2059536f8b7d87a7336f4f5e9e080c1",
+            "reference": "0bb0955cc2059536f8b7d87a7336f4f5e9e080c1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2019-01-15T08:37:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "MakeitWorkPress\\WP_Custom_Fields\\": "src"
+            }
+        },
+        "license": [
+            "GPL"
+        ],
+        "authors": [
+            {
+                "name": "Michiel Tramper",
+                "email": "michiel@makeitworkpress.com",
+                "homepage": "https://www.makeitworkpress.com"
+            }
+        ],
+        "description": "WP Custom Fields allows you to add custom fields easily to options pages, post, taxonomy and usermeta and customizer fields.",
+        "homepage": "https://github.com/makeitworkpress/wp-custom-fields",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
+        }
+    },
+    {
         "name": "makeitworkpress/wp-components",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "800e2793da1189f673936e4e126d6e8437a21795"
+            "reference": "657b9b18961362b023aae94c02e04c90a254eab9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/800e2793da1189f673936e4e126d6e8437a21795",
-            "reference": "800e2793da1189f673936e4e126d6e8437a21795",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/657b9b18961362b023aae94c02e04c90a254eab9",
+            "reference": "657b9b18961362b023aae94c02e04c90a254eab9",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2019-01-14T16:02:14+00:00",
+        "time": "2019-01-14T16:15:26+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
