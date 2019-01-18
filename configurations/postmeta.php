@@ -34,6 +34,7 @@ $postmeta = array(
                     'title'         => __('Fullwidth Main Content', 'waterfall'),
                     'description'   => __('Makes the main content fullwidth without any padding and sidebars. Useful if using page-builders.', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher',
                     'options'       => array( 
                         'full' => array( 'label' => __('Enable Fullwidth Content', 'waterfall') )
                     )
@@ -45,6 +46,7 @@ $postmeta = array(
                     'id'            => 'transparent_header',
                     'title'         => __('Header Transparency', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher',
                     'options'   => array( 
                         'transparent' => array( 'label' => __('Enable Transparent Header', 'waterfall') )
                     )
@@ -55,6 +57,7 @@ $postmeta = array(
                     'id'            => 'header_disable',
                     'title'         => __('Disable Header', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-disable',
                     'options'   => array( 
                         'disable' => array( 'label' => __('Disable the header', 'waterfall') )
                     )
@@ -65,6 +68,7 @@ $postmeta = array(
                     'id'            => 'footer_disable',
                     'title'         => __('Disable Footer', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-disable',
                     'options'   => array( 
                         'disable' => array( 'label' => __('Disable the footer', 'waterfall') )
                     )
@@ -75,6 +79,7 @@ $postmeta = array(
                     'id'            => 'content_header_disable',
                     'title'         => __('Disable Title Header', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-disable',
                     'options'       => array( 
                         'disable' => array('label' => __('Disable title header', 'waterfall') ) 
                     )
@@ -85,6 +90,7 @@ $postmeta = array(
                     'id'            => 'content_sidebar_disable',
                     'title'         => __('Disable Sidebar', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-disable',
                     'options'       => array( 
                         'disable' => array( 'label' => __('Disable sidebar', 'waterfall') ) 
                     )
@@ -95,6 +101,7 @@ $postmeta = array(
                     'id'            => 'content_related_disable',
                     'title'         => __('Disable Page Related Section', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-disable',
                     'options'       => array( 
                         'disable' => array( 'label' => __('Disable related section', 'waterfall') ) 
                     )
@@ -105,6 +112,7 @@ $postmeta = array(
                     'id'            => 'content_footer_disable',
                     'title'         => __('Disable Page Content Footer', 'waterfall'),
                     'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-disable',
                     'options'       => array( 
                         'disable' => array( 'label' => __('Disable page footer', 'waterfall') ) 
                     )
