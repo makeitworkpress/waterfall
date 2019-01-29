@@ -63,6 +63,7 @@ class Waterfall_View {
                 echo '<style type="text/css"> 
                     .header .atom-logo img { height: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 16px); width: auto;} 
                     .header .atom-menu-hamburger { margin: calc( (' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 30px)/2 ) 4px; }
+                    .molecule-header-transparent ~ .main .main-header.components-image-background { padding-top: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' + 32px); }
                 </style>';
             }
         }, 20 );

@@ -10,9 +10,12 @@
     overflow: hidden;
 }
 
+.molecule-header-transparent ~ .main .main-header.components-image-background {
+    padding-top: 80px + @grid-space;
+}
+
 /* General
 ----------------------*/
-
 .main-header, .main-content, .main-related, .main-footer {
     padding: @grid-space;
     @media screen and (max-width: 767px) {
@@ -114,6 +117,9 @@
         list-style: decimal;
         padding: 0 0 1.5em 1.5em;
     }
+    p + h2, p + h3, p + h4 {
+        margin-top: 1.25em;    
+    } 
     img {
         margin-bottom: 1.5em;
     }
