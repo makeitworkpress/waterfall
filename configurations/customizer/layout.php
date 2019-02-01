@@ -145,10 +145,10 @@ $layout = array(
                     'type'          => 'select',
                     'choices'       => array(
                         'default'   => __('Default', 'waterfall'),
-                        'dark'      => __('Dark (Mobile)', 'waterfall'),
-                        'fixed'     => __('Fixed (Hamburger)', 'waterfall'),
-                        'left'      => __('Left (Hamburger)', 'waterfall'),
-                        'right'     => __('Right (Hamburger)', 'waterfall'),
+                        'dark'      => __('Dark (Only Mobile)', 'waterfall'),
+                        'fixed'     => __('Fixed (Always Hamburger)', 'waterfall'),
+                        'left'      => __('Left (Always Hamburger)', 'waterfall'),
+                        'right'     => __('Right (Always Hamburger)', 'waterfall'),
                     ),
                 )  
             )              

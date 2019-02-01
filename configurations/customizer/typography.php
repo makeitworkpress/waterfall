@@ -31,7 +31,7 @@ $typography = array(
                 ),                
                 array(
                     'default'       => '',
-                    'selector'      => '.atom-breadcrumbs',
+                    'selector'      => '.atom-breadcrumbs, .main-header .atom-breadcrumbs',
                     'id'            => 'breadcrumbs_typography',
                     'title'         => __('Breadcrumbs', 'waterfall'),
                     'type'          => 'typography'

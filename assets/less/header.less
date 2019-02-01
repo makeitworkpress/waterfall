@@ -20,11 +20,26 @@
             top: @grid-space/2;
         }
         .menu > .lang-item, .menu > .pll-parent-menu-item {
-            > a {
-                padding: 0 @grid-space/8;
-            }
             img {
                 display: inline-block;
+            }            
+        }
+        &.atom-menu-tablet-hamburger {
+            @media screen and (min-width: 1025px) {
+                .menu > .lang-item, .menu > .pll-parent-menu-item {
+                    > a {
+                        padding: 0 @grid-space/8;
+                    }
+                }                
+            }
+        }
+        &.atom-menu-mobile-hamburger {
+            @media screen and (min-width: 768px) {
+                .menu > .lang-item, .menu > .pll-parent-menu-item {
+                    > a {
+                        padding: 0 @grid-space/8;
+                    }
+                }                
             }
         }
     }
@@ -42,9 +57,27 @@
 
 .molecule-header-top.molecule-header-transparent {
     border: none;
-    .menu > li > a, .atom-search-expand {
+    .atom-search-expand, .atom-menu-hamburger span {
         color: #fff;
     }
+    .atom-menu-mobile-hamburger.atom-menu-default, .atom-menu-mobile-hamburger.atom-menu-dark {
+        @media screen and (min-width: 768px) {
+            .menu > li > a {
+                color: #fff;
+            }   
+        }     
+    }
+    .atom-menu-tablet-hamburger.atom-menu-default, .atom-menu-tablet-hamburger.atom-menu-dark {
+        @media screen and (min-width: 1025px) {
+            .menu > li > a {
+                color: #fff;
+            }   
+        }     
+    }    
+}
+
+.molecule-header-atoms {
+    line-height: 80px;
 }
 
 .molecule-header-top-atoms, .molecule-header-atoms, .molecule-header-socket-atoms {

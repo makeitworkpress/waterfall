@@ -79,7 +79,7 @@ $colors = array(
                     'type'          => 'image'
                 ),
                 array(
-                    'selector'      => array( 'selector' => '.header .menu', 'property' => 'background-color' ),
+                    'selector'      => array( 'selector' => '.molecule-header-atoms .menu', 'property' => 'background-color' ),
                     'default'       => '',
                     'id'            => 'navigation_background',
                     'title'         => __('Mobile Menu Background Color', 'waterfall'),
@@ -88,7 +88,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),                
                 array(
-                    'selector'      => '.header .menu > li > a, .atom-search-expand',
+                    'selector'      => '.molecule-header-atoms .menu > li > a, .atom-search-expand',
                     'default'       => '',
                     'id'            => 'navigation_link_color',
                     'title'         => __('Navigation Link Color', 'waterfall'),
@@ -96,7 +96,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ), 
                 array(
-                    'selector'      => '.header .menu > li > a:hover, .atom-search-expand:hover',
+                    'selector'      => '.molecule-header-atoms .menu > li > a:hover, .atom-search-expand:hover',
                     'default'       => '',
                     'id'            => 'navigation_link_hover_color',
                     'title'         => __('Navigation Link Hover Color', 'waterfall'),
@@ -105,17 +105,17 @@ $colors = array(
                 ), 
                 array(
                     'selector'     => array( 
-                        'selector' => '.header .menu > li > a:hover', 
+                        'selector' => '.molecule-header-atoms .menu > li > a:hover, .molecule-header-atoms .menu > li.current-menu-item > a:hover, .molecule-header-atoms .menu > li.current-menu-ancestor > a:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
                     'id'            => 'navigation_link_hover_background',
-                    'title'         => __('Navigation Link Background Color', 'waterfall'),
+                    'title'         => __('Navigation Link Hover Background', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'selector'      => '.header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a',
+                    'selector'      => '.molecule-header-atoms .menu > li.current-menu-item > a, .molecule-header-atoms .menu > li.current-menu-ancestor > a',
                     'default'       => '',
                     'id'            => 'navigation_link_active_color',
                     'title'         => __('Navigation Link Active Color', 'waterfall'),
@@ -124,7 +124,7 @@ $colors = array(
                 ),                 
                 array(
                     'selector'      => array( 
-                        'selector' => '.header .menu > li.current-menu-item > a, .header .menu > li.current-menu-ancestor > a', 
+                        'selector' => '.molecule-header-atoms .menu > li.current-menu-item > a, .molecule-header-atoms .menu > li.current-menu-ancestor > a', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -134,7 +134,10 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),                
                 array(
-                    'selector'      => '.molecule-header-top.molecule-header-transparent .menu > li > a, .molecule-header-top.molecule-header-transparent .atom-search-expand',
+                    'selector'      => array(
+                        'min-width' => $menu == 'tablet' ? '1025px' : '768px',
+                        'selector'  => '.molecule-header-top.molecule-header-transparent .atom-menu-default .menu > li > a, .molecule-header-top.molecule-header-transparent .atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .atom-search-expand',
+                    ),
                     'default'       => '',
                     'id'            => 'navigation_link_transparent_color',
                     'title'         => __('Navigation Link Color Transparent Header', 'waterfall'),
@@ -142,7 +145,10 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'selector'      => '.molecule-header-top.molecule-header-transparent .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .atom-search-expand:hover',
+                    'selector'      => array(
+                        'min-width' => $menu == 'tablet' ? '1025px' : '768px',
+                        'selector'  => '.molecule-header-top.molecule-header-transparent .atom-menu-default .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .atom-search-expand:hover',
+                    ),
                     'default'       => '',
                     'id'            => 'navigation_link_transparent_hover_color',
                     'title'         => __('Navigation Link Hover Transparent Header', 'waterfall'),
@@ -152,7 +158,7 @@ $colors = array(
                 array(
                     'selector'      => [
                         'max-width' => $menu == 'tablet' ? '1024px' : '767px',
-                        'selector'  => '.header .menu > li > a, .molecule-header-top.molecule-header-transparent .menu > li > a'
+                        'selector'  => '.molecule-header-atoms .menu > li > a, .molecule-header-top.molecule-header-transparent .menu > li > a, .atom-menu-mobile-hamburger.atom-menu-dark .menu .menu-item > a, .molecule-header-atoms .sub-menu a'
                     ],
                     'default'       => '',
                     'id'            => 'navigation_mobile_link_color',
@@ -163,7 +169,7 @@ $colors = array(
                 array(
                     'selector'      => [
                         'max-width' => $menu == 'tablet' ? '1024px' : '767px',
-                        'selector'  => '.header .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .menu > li > a:hover',
+                        'selector'  => '.molecule-header-atoms .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .menu > li > a:hover, .atom-menu-mobile-hamburger.atom-menu-dark .menu .menu-item > a:hover, .molecule-header-atoms .sub-menu a:hover',
                     ],
                     'default'       => '',
                     'id'            => 'navigation_mobile_link_hover_color',
@@ -216,7 +222,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),    
                 array(
-                    'selector'      => array('selector' => '.header .sub-menu', 'property' => 'background-color'),
+                    'selector'      => array('selector' => '.molecule-header-atoms .sub-menu', 'property' => 'background-color'),
                     'default'       => '',
                     'id'            => 'navigation_submenu_background',
                     'title'         => __('Drop-down Menu Background Color', 'waterfall'),
@@ -224,7 +230,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'selector'      => '.header .sub-menu a',
+                    'selector'      => '.molecule-header-atoms .sub-menu a',
                     'default'       => '',
                     'id'            => 'navigation_submenu_color',
                     'title'         => __('Drop-down Menu Link Color', 'waterfall'),
@@ -232,7 +238,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ), 
                 array(
-                    'selector'      => '.header .sub-menu a:hover',
+                    'selector'      => '.molecule-header-atoms .sub-menu a:hover',
                     'default'       => '',
                     'id'            => 'navigation_submenu_hover_color',
                     'title'         => __('Drop-down Menu Link Hover Color', 'waterfall'),
@@ -240,7 +246,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),
                 array(
-                    'selector'      => array('selector' => '.header .sub-menu a:hover', 'property' => 'background-color'),
+                    'selector'      => array('selector' => '.molecule-header-atoms .sub-menu a:hover', 'property' => 'background-color'),
                     'default'       => '',
                     'id'            => 'navigation_submenu_hover_background',
                     'title'         => __('Drop-down Menu Link Hover Background Color', 'waterfall'),
