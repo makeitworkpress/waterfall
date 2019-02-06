@@ -120,28 +120,28 @@ $postmeta = array(
             )              
         ),    
         array(
-            'description' => __('The page header is the header or title section within your content, displaying the title and more.', 'waterfall'),
+            'description' => __('The title section displays your title, featured images, meta information and more.', 'waterfall'),
             'icon'      => 'remove_from_queue',
             'id'        => 'page_header',
-            'title'     => __('Page Title Header', 'waterfall'),
+            'title'     => __('Title Secion', 'waterfall'),
             'fields'    => array(  
                 array(
                     'columns'       => 'half',
                     'id'            => 'page_header_subtitle',
-                    'title'         => __('Subtitle Page Header', 'waterfall'),
+                    'title'         => __('Subtitle Title Section', 'waterfall'),
                     'type'          => 'textarea'
                 ), 
                 array(
                     'columns'       => 'fourth',
                     'id'            => 'page_header_button_text',
-                    'title'         => __('Button Page Header Text', 'waterfall'),
+                    'title'         => __('Button Title Section Text', 'waterfall'),
                     'description'   => __('Enter the text for an optional button here.', 'waterfall'),
                     'type'          => 'input'
                 ),
                 array(
                     'columns'       => 'fourth',
                     'id'            => 'page_header_button_link',
-                    'title'         => __('Button Page Header Link', 'waterfall'),
+                    'title'         => __('Button Title Section Link', 'waterfall'),
                     'description'   => __('Enter the link for this button here.', 'waterfall'),
                     'type'          => 'input',
                     'subtype'       => 'url',
@@ -151,21 +151,21 @@ $postmeta = array(
                     'columns'       => 'half',
                     'id'            => 'page_header_background',
                     'multiple'      => false,
-                    'title'         => __('Custom Background for the Page Header', 'waterfall'),
+                    'title'         => __('Custom Background for the Title Section', 'waterfall'),
                     'type'          => 'background'
                 ),     
                 array(
                     'columns'       => 'fourth',
                     'selector'           => '.main-header h1, .main-header h2, .main-header h3, .main-header h4, .main-header h5, .main-header h6, .main-header, .main-header a, .main-header .entry-meta a, .main-header .entry-time',
                     'id'            => 'page_header_color',
-                    'title'         => __('Custom Text Color Page Header', 'waterfall'),
+                    'title'         => __('Custom Text Color Title Section', 'waterfall'),
                     'type'          => 'colorpicker'
                 ), 
                 array(
                     'selector'           => array( 'property' => 'background-color', 'selector' => '.main-header:after' ),
                     'columns'       => 'fourth',
                     'id'            => 'page_header_overlay',
-                    'title'         => __('Overlay Color Page Header', 'waterfall'),
+                    'title'         => __('Overlay Color Title Section', 'waterfall'),
                     'type'          => 'colorpicker'
                 )    
             )              

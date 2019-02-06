@@ -741,7 +741,7 @@ $layout['sections']['search_page'] = array(
         array(
             'default'       => '',
             'id'            => 'search_header_disable',
-            'title'         => __('Disable Search Header', 'waterfall'),
+            'title'         => __('Disable Search Title Section', 'waterfall'),
             'type'          => 'checkbox'
         ),
         array(
@@ -755,7 +755,7 @@ $layout['sections']['search_page'] = array(
             'description'   => __('Width of header in search archives.', 'waterfall'),
             'id'            => 'search_header_width',
             'choices'       => wf_get_container_options(),
-            'title'         => __('Search Page Header Width', 'waterfall'),
+            'title'         => __('Search Title Section Width', 'waterfall'),
             'type'          => 'select'
         ),
         array(
@@ -763,14 +763,14 @@ $layout['sections']['search_page'] = array(
             'description'   => __('Height of header in search archives.', 'waterfall'),
             'id'            => 'search_header_height',
             'choices'       => wf_get_height_options(),
-            'title'         => __('Search Page Header Height', 'waterfall'),
+            'title'         => __('Search Title Section Height', 'waterfall'),
             'type'          => 'select'
         ),    
         array(
             'default'       => 'left',
             'id'            => 'search_header_align',
-            'title'         => __('Search Page Header Text Align', 'waterfall'),
-            'description'   => __('How should text be aligned within the search page header?', 'waterfall'),
+            'title'         => __('Search Title Section Text Align', 'waterfall'),
+            'description'   => __('How should text be aligned within the search title section?', 'waterfall'),
             'type'          => 'select',
             'choices'       => wf_get_align_options()
         ), 
