@@ -53,7 +53,7 @@ class Product extends Base {
         }
 
         if( $this->woocommerce['sidebar_position'] == 'left' || $this->woocommerce['sidebar_position'] == 'right' || $this->woocommerce['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'sidebar'], 'sidebars' => ['product']] );   
+            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => ['product']] );   
         }      
         
     }    

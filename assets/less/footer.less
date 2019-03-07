@@ -90,3 +90,31 @@
         }    
     }   
 }
+
+.waterfall-scroll-top {
+    i {
+        font-size: 2.5em;
+    }
+    &.position-left {
+        left: @grid-space;
+        @media screen and (max-width: 767px) {
+            left: @grid-space/2;
+        }
+    }
+    &.position-center {
+        left: ~"calc(50% - 24px)";
+    }
+    &.position-right {
+        left: inherit;
+        right: @grid-space;
+        @media screen and (max-width: 767px) {
+            right: @grid-space/2;
+        }        
+    } 
+    &.atom-scroll-top {
+        bottom: @grid-space;
+        @media screen and (max-width: 767px) {
+            bottom: @grid-space/2;
+        } 
+    }      
+}

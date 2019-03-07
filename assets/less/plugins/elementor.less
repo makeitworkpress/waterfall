@@ -4,7 +4,7 @@
  * Contains elementor specific styling
  * Sections do have some margins with lower resolutions (unless they are fullwidth sections)
  */
-.elementor-section-boxed {
+.elementor-section-wrap > .elementor-section {
     padding: @grid-space 0;
     .waterfall-fullwidth-content & {
         @media screen and (max-width: 1280px) {
@@ -17,10 +17,7 @@
                 padding: 0 @grid-space/2;    
             }
         }
-    }
-    .elementor-section {
-        padding: 0;
-    }    
+    }   
 }
 
 .elementor-image img {
@@ -28,7 +25,7 @@
 }
 
 /**
- * The max width of the elementor container is determined by the theme. This is the default
+ * The max width of the elementor container is determined by the theme. This is the default value.
  */
 .elementor-section.elementor-section-boxed > .elementor-container {
     max-width: 1280px;

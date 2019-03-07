@@ -33,7 +33,7 @@ $customizer = array(
                 ), 
                 array(
                     'selector'           => array(
-                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button, .wp-block-file .wp-block-file__button, .wp-block-button__link', 
+                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button, .wp-block-file .wp-block-file__button, .wp-block-button__link', 
                         'property' => 'border-radius'
                     ),
                     'default'       => '',

@@ -4,7 +4,7 @@
  *
  * Retrieves our header
  */
-wf_get_theme_header(); 
+wf_get_theme_header();
 
 // Start our loop
 while( have_posts() ) {

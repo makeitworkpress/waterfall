@@ -123,7 +123,7 @@ $postmeta = array(
             'description' => __('The title section displays your title, featured images, meta information and more.', 'waterfall'),
             'icon'      => 'remove_from_queue',
             'id'        => 'page_header',
-            'title'     => __('Title Secion', 'waterfall'),
+            'title'     => __('Title Section', 'waterfall'),
             'fields'    => array(  
                 array(
                     'columns'       => 'half',

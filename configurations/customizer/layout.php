@@ -262,8 +262,8 @@ if( $types ) {
                 array(
                     'default'       => false,
                     'id'            => $type . '_header_share',
-                    'title'         => __('Display sharing buttons in Title Section', 'waterfall'),
-                    'title'         => __('Display sharing buttons inside the title section. Please scroll to the footer settings to specify what social networks you want to show.', 'waterfall'),
+                    'title'         => __('Title Section Sharing Buttons', 'waterfall'),
+                    'description'   => __('Displays sharing buttons inside the title section. Please scroll to the footer settings to specify what social networks you want to show.', 'waterfall'),
                     'type'          => 'checkbox'
                 ),            
                 array(
@@ -351,6 +351,14 @@ if( $types ) {
                     'type'          => 'select'
                 ),
                 array(
+                    'default'       => 'default',
+                    'description'   => __('The Gap Width Between the Related Posts,', 'waterfall'),
+                    'id'            => $type . '_related_grid_gap',
+                    'choices'       => wf_get_grid_gaps(),
+                    'title'         => __('Gap Width', 'waterfall'),
+                    'type'          => 'select'
+                ),                 
+                array(
                     'default'       => '',
                     'description'   => __('Minimum height of related posts in pixels.', 'waterfall'),
                     'id'            => $type . '_related_height',
@@ -374,7 +382,7 @@ if( $types ) {
                     'type'          => 'select'
                 ),                    
                 array(
-                    'default'       => 'none',
+                    'default'       => '',
                     'description'   => __('Excerpt within related posts.', 'waterfall'),
                     'id'            => $type . '_related_content',
                     'choices'       => array(
@@ -385,7 +393,7 @@ if( $types ) {
                     'type'          => 'select'
                 ),    
                 array(
-                    'default'       => 'square-ld',
+                    'default'       => '',
                     'description'   => __('Featured Image size within related posts.', 'waterfall'),
                     'id'            => $type . '_related_image',
                     'choices'       => wf_get_image_sizes(),
@@ -393,7 +401,7 @@ if( $types ) {
                     'type'          => 'select'
                 ),    
                 array(
-                    'default'       => 'none',
+                    'default'       => '',
                     'description'   => __('Float of featured image within the related posts.', 'waterfall'),
                     'id'            => $type . '_related_image_float',
                     'choices'       => wf_get_float_options(),
@@ -415,6 +423,13 @@ if( $types ) {
                     'transport'     => 'postMessage',                   
                     'type'          => 'input'
                 ),
+                array(
+                    'default'       => __('Bummer! No related posts have been found.', 'waterfall'),
+                    'id'            => $type . '_related_none',
+                    'title'         => __('No Related Posts Found', 'waterfall'),
+                    'description'   => __('The text shown when no related posts are found.', 'waterfall'),                  
+                    'type'          => 'input'
+                ),                
                 array(
                     'default'       => '',
                     'id'            => $type . '_related_pagination',
@@ -507,7 +522,7 @@ if( $types ) {
                     'type'          => 'checkbox'
                 ),  
                 array(
-                    'default'       => __('Share', 'waterfall'),
+                    'default'       => '',
                     'id'            => $type . '_share_text',
                     'title'         => __('Text in sharing sharing button', 'waterfall'),
                     'type'          => 'input',
@@ -575,7 +590,7 @@ if( $types ) {
          */
         $layout['sections'][$type . '_archives'] = array(
             'id'        => $type . '_archives',
-            'title'     => sprintf( __('%s Archives', 'waterfall'), $properties['singular'] ),
+            'title'     => sprintf( __('%s Archives', 'waterfall'), $properties['name'] ),
             'fields'    => array(
                 array(
                     'default'       => '',
@@ -651,14 +666,22 @@ if( $types ) {
                 ),   
                 array(
                     'default'       => 'third',
-                    'description'   => __('Amount of grid columns for posts archives.', 'waterfall'),
+                    'description'   => __('The amount of columns used for displaying posts.', 'waterfall'),
                     'id'            => $type . '_archive_content_columns',
                     'choices'       => wf_get_column_options(),
                     'title'         => __('Grid Columns', 'waterfall'),
                     'type'          => 'select'
-                ),    
+                ),   
                 array(
-                    'default'       => 'none',
+                    'default'       => 'third',
+                    'description'   => __('The width of the gap between various posts.', 'waterfall'),
+                    'id'            => $type . '_archive_content_gap',
+                    'choices'       => wf_get_grid_gaps(),
+                    'title'         => __('Grid Gap Width', 'waterfall'),
+                    'type'          => 'select'
+                ),                   
+                array(
+                    'default'       => 'excerpt',
                     'description'   => __('Excerpt within archive posts.', 'waterfall'),
                     'id'            => $type . '_archive_content_content',
                     'choices'       => array(
@@ -967,6 +990,14 @@ $layout['sections']['styling_footer'] = array(
             'type'          => 'select'
         ), 
         array(
+            'default'       => 'default',
+            'description'   => __('The gap width between the sidebars.', 'waterfall'),
+            'id'            => 'footer_grid_gap',
+            'choices'       => wf_get_grid_gaps(),
+            'title'         => __('Sidebar Gap Width', 'waterfall'),
+            'type'          => 'select'
+        ),        
+        array(
             'default'       => '',
             'id'            => 'footer_display_socket',
             'title'         => __('Display Socket', 'waterfall'),
@@ -1010,6 +1041,28 @@ $layout['sections']['styling_footer'] = array(
             'title'         => __('Put Footer Logo above other elements.', 'waterfall'),
             'description'   => __('If you have defined a footer logo under Site Identity, it will appear in the bottom of your footer. Normally, it will center, but if this box is ticked it will render above the other socket elements.', 'waterfall'),
             'type'          => 'checkbox'
-        ),                        
+        ),
+        array(
+            'default'       => 'none',
+            'id'            => 'footer_scroll',
+            'title'         => __('Scroll to Top Button', 'waterfall'),
+            'type'          => 'select',
+            'choices'       => array(
+                'none'      => __('None', 'waterfall'),
+                'left'      => __('On the left', 'waterfall'),
+                'center'    => __('On the center', 'waterfall'),
+                'right'     => __('On the right', 'waterfall')
+            ),            
+        ),  
+        array(
+            'default'       => 'default',
+            'id'            => 'footer_scroll_style',
+            'title'         => __('Scroll to Top Button Style', 'waterfall'),
+            'type'          => 'select',
+            'choices'       => array(
+                'default'   => __('Default', 'waterfall'),
+                'rounded'   => __('Rounded', 'waterfall')
+            ),            
+        )                                      
     )              
 );

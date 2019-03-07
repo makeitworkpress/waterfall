@@ -147,6 +147,21 @@ function wf_get_column_options() {
 }
 
 /**
+ * Retrieves the default grid columns of the grid system
+ */
+function wf_get_grid_gaps() {
+    return apply_filters( 'waterfall_grid_gaps', array(
+        'default'   => __('Default', 'waterfall'),
+        'none'      => __('None', 'waterfall'),
+        'tiny'      => __('Tiny', 'waterfall'),
+        'small'     => __('Small', 'waterfall'),
+        'medium'    => __('Medium', 'waterfall'),
+        'large'     => __('Large', 'waterfall'),
+        'huge'      => __('Huge', 'waterfall')
+    ) );
+}
+
+/**
  * Retrieve options for displaying the sidebar
  */
 function wf_get_sidebar_options() {
@@ -294,9 +309,14 @@ function wf_get_archive_post_type() {
             break;
         }
 
-        if( $taxonomy && isset($taxonomy->object_type[0]) ) {
-            $type   = $taxonomy->object_type[0];
+        // If our taxonomy is a string, get the object first
+        if( is_string($taxonomy) ) {
+            $taxonomy = get_taxonomy($taxonomy);
         }
+
+        if( isset($taxonomy->object_type[0]) ) {
+            $type = $taxonomy->object_type[0];
+        }       
 
     }
 

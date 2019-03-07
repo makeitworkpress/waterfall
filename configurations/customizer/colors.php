@@ -641,6 +641,38 @@ $colors = array(
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ),
+                array(
+                    'selector'      => '.atom-scroll.waterfall-scroll-top',
+                    'default'       => '',
+                    'id'            => 'scroll_top_color',
+                    'title'         => __('Scroll to Top Arrow Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ), 
+                array(
+                    'selector'      => '.atom-scroll.waterfall-scroll-top:hover',
+                    'default'       => '',
+                    'id'            => 'scroll_top_hover_color',
+                    'title'         => __('Scroll to Top Arrow Hover Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ), 
+                array(
+                    'selector'      => array( 'selector' => '.atom-scroll.waterfall-scroll-top', 'property' => 'background-color' ),
+                    'default'       => '',
+                    'id'            => 'scroll_top_background',
+                    'title'         => __('Scroll to Top Background Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),
+                array(
+                    'selector'      => array( 'selector' => '.atom-scroll.waterfall-scroll-top:hover', 'property' => 'background-color' ),
+                    'default'       => '',
+                    'id'            => 'scroll_top_background_hover',
+                    'title'         => __('Scroll to Top Background Hover Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                )                                                                
             )              
         ),   
         array(
@@ -722,7 +754,7 @@ $colors = array(
                     'title'         => __('Secondary Button Text Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ),    
+                )    
             )
         ),     
     )

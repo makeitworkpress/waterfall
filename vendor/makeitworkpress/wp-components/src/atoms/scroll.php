@@ -11,7 +11,11 @@ $atom = wp_parse_args( $atom, [
 
 // Scrolls to top
 if( $atom['top'] ) {
-    $atom['attributes']['class'] .= 'atom-scroll-top';
+    $atom['attributes']['class'] .= ' atom-scroll-top';
+}
+
+if( $atom['top'] && ! $atom['icon'] ) {
+    $atom['icon'] = 'angle-up';
 }
 
 // If we have a custom icon, we add an style

@@ -171,9 +171,6 @@ class Waterfall {
             $configurations['options']['woocommerce'] = ['frame' => 'customizer', 'fields' => $woocommerce];
         }
 
-        // Make configurations filterable at early moment
-        $configurations = apply_filters( 'waterfall_configurations', $configurations );
-
         /**
          * Set-up our configurations
          */

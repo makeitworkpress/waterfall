@@ -36,7 +36,7 @@
     }
     .atom-description {
         font-size: 1.5em;
-        margin-top: 1em;
+        margin-top: 0.5em;
     }
     .atom-breadcrumbs {
         font-size: @small-fontsize;
@@ -118,8 +118,8 @@
         list-style: decimal;
         padding: 0 0 1.5em 1.5em;
     }
-    p + h2, p + h3, p + h4 {
-        margin-top: 1.25em;    
+    p + h2, p + h3, p + h4, ul + h2, ul + h3, ul + h4, h2 + h2, h2 + h3, h2 + h4, h3 + h3, h3 + h4, h4 + h4 {
+        margin-top: 1em;    
     } 
     img {
         margin-bottom: 1.5em;
@@ -141,14 +141,23 @@
 }
 
 .readable-content {
-    p, h2, h3, h4, h5, h6, ol, ul, pre, code, ins, mark, cite, em, b, strong, i, table {
+    p, h2, h3, h4, h5, h6, ol, ul, pre, code, ins, mark, cite, em, b, strong, i, table, .wp-block-audio, .wp-block-file, .wp-block-embed-instagram, .wp-block-embed-twitter, .wp-block-button {
         margin-left: auto;
         margin-right: auto;
         max-width: 768px;
-    }  
+    } 
+    .wp-block-gallery {
+        max-width: inherit;
+    }
 }
 
 /* Sidebars */
+.main-sidebar {
+    margin: @grid-space -@grid-space 0 -@grid-space;
+    padding: @grid-space;
+    width: ~"calc(100% + 64px)";
+}
+
 .waterfall-left-sidebar, .waterfall-right-sidebar {
     .main-content, .main-content > .components-container { 
         display: flex;
@@ -157,26 +166,26 @@
     }
     .content {
         flex-grow: 1;
-        width: 74%;
+        width: 71.5%;
     }
-    .sidebar {
-        padding: 0 0 0 @grid-space;
+    .main-sidebar {
+        margin: -@grid-space 0 0 2.5%;
         width: 26%;
     }
     @media screen and (max-width: 767px) {
-        .content, .sidebar {
+        .content {
             width: 100%;
         }
-        .sidebar {
-            padding: 0;
-            margin-top: @grid-space;
+        .main-sidebar {
+            margin: @grid-space -@grid-space 0 -@grid-space;
+            width: ~"calc(100% + 64px)";
         }
-        /* The WooCommerce sidebar is on always on top */
+        /* The WooCommerce sidebar is always on top */
         &.woocommerce {
             .content {
                 order: 1;
             }
-            .sidebar {
+            .main-sidebar {
                 order: 0;
                 margin: 0 0 @grid-space 0;
             }
@@ -188,12 +197,12 @@
     .content {
         order: 1;   
     }    
-    .sidebar {
+    .main-sidebar {
         order: 0; 
-        padding: 0 @grid-space 0 0;
+        margin: -@grid-space 2.5% 0 0;
     }
     @media screen and (max-width: 767px) {
-        .content, .sidebar {
+        .content, .main-sidebar {
             order: 0;
         }
     }    

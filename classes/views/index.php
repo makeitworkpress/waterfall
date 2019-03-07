@@ -24,6 +24,7 @@ class Index extends Base {
                 'content_button', 
                 'content_columns', 
                 'content_content', 
+                'content_gap',
                 'content_height', 
                 'content_image', 
                 'content_image_enlarge',  
@@ -94,7 +95,8 @@ class Index extends Base {
             'attributes'        => [
                 'class'         => 'content archive-posts'
             ],
-            'none'              => $this->layout['content_none'],
+            'gridGap'           => $this->layout['content_gap'] ? $this->layout['content_gap'] : 'default', 
+            'none'              => $this->layout['content_none'] ? $this->layout['content_none'] : __('Bummer! No posts have been found.', 'waterfall'),
             'postProperties'    => [
                 'appear'        => 'bottom',
                 'attributes'    => [
@@ -146,7 +148,7 @@ class Index extends Base {
         
         // Adds sidebars. Sidebards ids are similar to the type displayed (archive, post, etc)
         if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'sidebar'], 'sidebars' => [$this->type]] );
+            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => [$this->type]] );
         }
 
     }

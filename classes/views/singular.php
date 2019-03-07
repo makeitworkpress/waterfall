@@ -57,11 +57,13 @@ class Singular extends Base {
                 'related_button', 
                 'related_content',
                 'related_grid', 
+                'related_grid_gap', 
                 'related_height', 
                 'related_image',
                 'related_image_enlarge',
                 'related_image_float',
                 'related_number', 
+                'related_none', 
                 'related_pagination', 
                 'related_pagination_next', 
                 'related_pagination_prev', 
@@ -296,7 +298,7 @@ class Singular extends Base {
         }   
         
         if( $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'bottom' ) {
-            $args = apply_filters( 'waterfall_content_sidebar_args', ['attributes' => ['class' => 'sidebar'], 'sidebars' => [$this->type]] );            
+            $args = apply_filters( 'waterfall_content_sidebar_args', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => [$this->type]] );            
             WP_Components\Build::atom( 'sidebar', $args );
         }
 
@@ -361,6 +363,8 @@ class Singular extends Base {
 
             $args = apply_filters( 'waterfall_related_args', [
                 'attributes'        => ['class' => 'related-posts'],
+                'gridGap'           => $this->layout['related_grid_gap'] ? $this->layout['related_grid_gap'] : 'default',
+                'none'              => $this->layout['related_none'] ? $this->layout['related_height'] : __('Bummer! No related posts have been found.', 'waterfall'),
                 'pagination'        => false,
                 'postProperties'    => [
                     'appear'        => 'bottom',
@@ -438,7 +442,7 @@ class Singular extends Base {
         if( $this->layout['footer_share'] ) {
             $args['atoms']['share'] = [
                 'atom'          => 'share', 
-                'properties'    => ['fixed' => $this->layout['footer_share_fixed'] ? true : false, 'share' => $this->layout['share_text'] ? $this->layout['share_text'] : __('Share', 'waterfall')]
+                'properties'    => ['fixed' => $this->layout['footer_share_fixed'] ? true : false, 'share' => $this->layout['share_text'] ? $this->layout['share_text'] : '']
             ];
             
             // Networks should be enabled

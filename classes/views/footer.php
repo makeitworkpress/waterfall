@@ -23,9 +23,12 @@ class Footer extends Base {
                 'footer_copyright_schema', 
                 'footer_display_sidebars', 
                 'footer_display_socket', 
+                'footer_grid_gap', 
                 'footer_logo_stack',
                 'footer_menu', 
                 'footer_sidebars', 
+                'footer_scroll',
+                'footer_scroll_style',
                 'footer_social', 
                 'footer_social_background', 
                 'footer_width'
@@ -148,11 +151,27 @@ class Footer extends Base {
             ],
             'atoms'         => $atoms,
             'container'     => $this->layout['footer_width'] == 'full' ? false : true,
+            'gridGap'       => $this->layout['footer_grid_gap'] ? $this->layout['footer_grid_gap'] : 'default',
             'sidebars'      => $sidebarGrid,
         ] );
     
         // Build the footer! 
         WP_Components\Build::molecule( 'footer', $args );
+
+
+        // Adds the scroll to top element as a seperate element
+        if( $this->layout['footer_scroll'] != 'none' ) {
+            WP_Components\Build::atom( 'scroll', 
+                apply_filters(
+                    'waterfall_footer_scroll_args', 
+                    [
+                        'attributes'    => ['class' => 'waterfall-scroll-top position-' . $this->layout['footer_scroll']], 
+                        'rounded'       => $this->layout['footer_scroll_style'] == 'rounded' ? true : false,
+                        'top'           => true
+                    ]
+                )            
+            );
+        }
 
     }
 
