@@ -160,7 +160,7 @@ class Footer extends Base {
 
 
         // Adds the scroll to top element as a seperate element
-        if( $this->layout['footer_scroll'] != 'none' ) {
+        if( in_array($this->layout['footer_scroll'], ['center', 'left', 'right']) ) {
             WP_Components\Build::atom( 'scroll', 
                 apply_filters(
                     'waterfall_footer_scroll_args', 
