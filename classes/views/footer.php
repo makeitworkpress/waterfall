@@ -158,7 +158,6 @@ class Footer extends Base {
         // Build the footer! 
         WP_Components\Build::molecule( 'footer', $args );
 
-
         // Adds the scroll to top element as a seperate element
         if( in_array($this->layout['footer_scroll'], ['center', 'left', 'right']) ) {
             WP_Components\Build::atom( 'scroll', 

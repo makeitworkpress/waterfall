@@ -29,7 +29,7 @@ $woocommerce = [
                 array(
                     'default'       => '',
                     'id'            => 'product_archive_header_disable',
-                    'title'         => __('Disable Product Archive Title Header', 'waterfall'),
+                    'title'         => __('Disable Product Archive Title Section', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
                 array(
@@ -40,7 +40,7 @@ $woocommerce = [
                 ),       
                 array(
                     'default'       => 'default',
-                    'description'   => __('Width of title header in product archives.', 'waterfall'),
+                    'description'   => __('Width of title section in product archives.', 'waterfall'),
                     'id'            => 'product_archive_header_width',
                     'choices'       => wf_get_container_options(),
                     'title'         => __('Product Archive Header Width', 'waterfall'),
@@ -48,17 +48,17 @@ $woocommerce = [
                 ),
                 array(
                     'default'       => 'default',
-                    'description'   => __('Height of title header in product archives.', 'waterfall'),
+                    'description'   => __('Height of title section in product archives.', 'waterfall'),
                     'id'            => 'product_archive_header_height',
                     'choices'       => wf_get_height_options(),
-                    'title'         => __('Product Archive Header Height', 'waterfall'),
+                    'title'         => __('Product Archive Title Section Height', 'waterfall'),
                     'type'          => 'select'
                 ),
                 array(
                     'default'       => 'left',
                     'id'            => 'product_archive_header_align',
-                    'title'         => __('Product Archive Header Text Align', 'waterfall'),
-                    'description'   => __('Alignment of the text in the title header of product archives.', 'waterfall'),
+                    'title'         => __('Product Archive Title Section Text Align', 'waterfall'),
+                    'description'   => __('Alignment of the text in the title section of product archives.', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => wf_get_align_options()
                 ),

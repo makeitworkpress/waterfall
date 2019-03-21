@@ -75,13 +75,13 @@ $postmeta = array(
                 ),    
                 array(
                     'columns'       => 'fourth',
-                    'description'   => __('The Title Header usually shows elements such as the title, the featured image and so forth.', 'waterfall'),
+                    'description'   => __('The Title Section usually shows elements such as the title, the featured image and so forth.', 'waterfall'),
                     'id'            => 'content_header_disable',
-                    'title'         => __('Disable Title Header', 'waterfall'),
+                    'title'         => __('Disable Title Section', 'waterfall'),
                     'type'          => 'checkbox',
                     'style'         => 'switcher switcher-disable',
                     'options'       => array( 
-                        'disable' => array('label' => __('Disable title header', 'waterfall') ) 
+                        'disable' => array('label' => __('Disable title section', 'waterfall') ) 
                     )
                 ),
                 array(

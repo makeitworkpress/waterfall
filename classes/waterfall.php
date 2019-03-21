@@ -74,6 +74,17 @@ class Waterfall {
     private function initialize() {
 
         /**
+         * Loads our translations before loading anything else
+         */
+        if( is_dir( get_stylesheet_directory() . '/languages' ) ) {
+            $path = get_stylesheet_directory() . '/languages';
+        } else {
+            $path = get_template_directory() . '/languages'; 
+        }
+        
+        load_theme_textdomain( 'waterfall', apply_filters('waterfall_language_path', $path) );     
+
+        /**
          * Include basic utility functions
          */
         require_once( get_template_directory() . '/functions/utilities.php' );   
@@ -100,7 +111,6 @@ class Waterfall {
         add_action('after_switch_theme', function() {
             flush_rewrite_rules();    
         });
-
         
         /**
          * Initialize our components which are used to display elements
@@ -152,7 +162,6 @@ class Waterfall {
         require_once( get_template_directory() . '/configurations/register.php' );
         
         $configurations = [
-            'language'  => 'waterfall', 
             'enqueue'   => $enqueue, 
             'register'  => $register, 
             'options'   => [
@@ -237,22 +246,6 @@ class Waterfall {
                 $this->{$key} = new $methods[$key]( $this->config->configurations[$key] );    
             }
             
-        }
-        
-        /**
-         * Add our custom language domain
-         */
-        if( isset($this->config->configurations['language']) ) {
-            
-            if( is_dir( STYLESHEETPATH . '/languages' ) ) {
-                $path = STYLESHEETPATH . '/languages';
-            } else {
-                $path = TEMPLATEPATH . '/languages'; 
-            }
-            
-            $path = apply_filters('waterfall_language_path', $path);
-            
-            load_theme_textdomain( $this->config->configurations['language'], $path );   
         }
 
         // Save our additional post types to the database, so we can modify them later

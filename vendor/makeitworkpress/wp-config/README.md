@@ -6,7 +6,7 @@ WP Config is maintained by [Make it WorkPress](https://www.makeitworkpress.com/w
 ## Usage
 The WP Config class set-ups a single configurations object which can be used for your configuration files within custom theme and plugin development. You can use it to set-up a configurations object by injecting an array of configurations upon constructing.
 
-To use this class, you must include this class inside your theme, plugin, require the src/config.php file or load it using an autoloader or composer.
+To use this class, you must include this class inside your theme, plugin, require the src/config.php file or load it using an autoloader or Composer. You can read more about autoloading in [the readme of wp-autoload](https://github.com/makeitworkpress/wp-autoload).
 
 ### Initializing Configurations
 Initialize the configurations object and pass your configuration. Your configurations array or string may be the default configurations.
