@@ -32,6 +32,14 @@ $customizer = array(
                     'type'          => 'dimension'  
                 ), 
                 array(
+                    'selector'      => array('selector' => '.waterfall-boxed-layout .header, .waterfall-boxed-layout .main, .waterfall-boxed-layout .footer', 'property' => 'max-width'),
+                    'default'       => '',
+                    'id'            => 'layout_boxed_width',
+                    'title'         => __('Maximum Width of Boxed Layout', 'waterfall'),
+                    'description'   => __('Adapts the maximum width of the boxed layout.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ),                 
+                array(
                     'selector'           => array(
                         'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button, .wp-block-file .wp-block-file__button, .wp-block-button__link', 
                         'property' => 'border-radius'
@@ -47,7 +55,7 @@ $customizer = array(
                     'id'            => 'lightbox',
                     'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
                     'type'          => 'checkbox'
-                ),                 
+                )                 
             )              
         ),        
         array(

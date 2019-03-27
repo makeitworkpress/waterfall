@@ -258,49 +258,6 @@
         }
     },
     {
-        "name": "makeitworkpress/wp-custom-fields",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "0ffb28350c9c2b5bb2fbb7a9ed0423f249c9faf6"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/0ffb28350c9c2b5bb2fbb7a9ed0423f249c9faf6",
-            "reference": "0ffb28350c9c2b5bb2fbb7a9ed0423f249c9faf6",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3"
-        },
-        "time": "2019-03-21T08:58:02+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "MakeitWorkPress\\WP_Custom_Fields\\": "src"
-            }
-        },
-        "license": [
-            "GPL"
-        ],
-        "authors": [
-            {
-                "name": "Michiel Tramper",
-                "email": "michiel@makeitworkpress.com",
-                "homepage": "https://www.makeitworkpress.com"
-            }
-        ],
-        "description": "WP Custom Fields allows you to add custom fields easily to options pages, post, taxonomy and usermeta and customizer fields.",
-        "homepage": "https://github.com/makeitworkpress/wp-custom-fields",
-        "support": {
-            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
-            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
-        }
-    },
-    {
         "name": "makeitworkpress/wp-components",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -341,6 +298,49 @@
         "support": {
             "source": "https://github.com/makeitworkpress/wp-components/tree/master",
             "issues": "https://github.com/makeitworkpress/wp-components/issues"
+        }
+    },
+    {
+        "name": "makeitworkpress/wp-custom-fields",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
+            "reference": "e36552a274ffc6ac2cb7d9fa43396d783720fd11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/e36552a274ffc6ac2cb7d9fa43396d783720fd11",
+            "reference": "e36552a274ffc6ac2cb7d9fa43396d783720fd11",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2019-03-27T10:49:24+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "MakeitWorkPress\\WP_Custom_Fields\\": "src"
+            }
+        },
+        "license": [
+            "GPL"
+        ],
+        "authors": [
+            {
+                "name": "Michiel Tramper",
+                "email": "michiel@makeitworkpress.com",
+                "homepage": "https://www.makeitworkpress.com"
+            }
+        ],
+        "description": "WP Custom Fields allows you to add custom fields easily to options pages, post, taxonomy and usermeta and customizer fields.",
+        "homepage": "https://github.com/makeitworkpress/wp-custom-fields",
+        "support": {
+            "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
+            "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
         }
     }
 ]
