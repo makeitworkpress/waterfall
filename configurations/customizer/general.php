@@ -153,13 +153,7 @@ $customizer = array(
                     'id'            => 'linkedin',
                     'title'         => __('LinkedIn Profile Url', 'waterfall'),
                     'type'          => 'url',
-                ),                
-                array(
-                    'default'       => '',
-                    'id'            => 'google-plus',
-                    'title'         => __('Google Plus Url', 'waterfall'),
-                    'type'          => 'url',
-                ), 
+                ),
                 array(
                     'default'       => '',
                     'id'            => 'youtube',

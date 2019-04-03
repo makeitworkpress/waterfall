@@ -22,7 +22,7 @@ $via    = isset( $atom['via'] )     ? $atom['via']      : '';
 // Atom properties
 $atom   = wp_parse_args( $atom, [
     'colorBackground'   => true,
-    'enabled'           => [ 'facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp' ],
+    'enabled'           => [ 'facebook', 'twitter', 'linkedin', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp' ],
     'fixed'             => false,
     'share'             => __('Share:', 'wp-components'), // Adds a label with share
     'networks'          => [
@@ -31,8 +31,7 @@ $atom   = wp_parse_args( $atom, [
         'linkedin'      => [
             'url'   => 'http://www.linkedin.com/shareArticle?mini=true&url=' . $url . '&title=' . $title . '&source=' . $source, 
             'icon'  => 'linkedin'
-        ], 
-        'google-plus'   => [ 'url' => 'https://plus.google.com/share?url=' . $url, 'icon' => 'google-plus' ], 
+        ],
         'pinterest'     => [
             'url'   => 'http://pinterest.com/pin/create/button/?url=' . $url . '&description=' . $title . '&media=' . $image, 
             'icon'  => 'pinterest'

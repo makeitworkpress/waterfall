@@ -28,7 +28,7 @@ class Singular extends Base {
 
         $this->networks   = apply_filters(
             'waterfall_social_share_networks', 
-            ['facebook', 'twitter', 'linkedin', 'google-plus', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp']
+            ['facebook', 'twitter', 'linkedin', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp']
         );
 
         $this->properties = apply_filters( 'waterfall_singular_properties', [
@@ -85,7 +85,6 @@ class Singular extends Base {
                 'share_facebook',
                 'share_twitter',
                 'share_linkedin',
-                'share_google-plus',
                 'share_pinterest',
                 'share_reddit',
                 'share_stumbleupon',
