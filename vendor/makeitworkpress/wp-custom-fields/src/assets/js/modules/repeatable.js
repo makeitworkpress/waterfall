@@ -1,5 +1,6 @@
 /**
  * Our repeatable fields module
+ * @todo Rewrite this in a more efficient manner.
  */
 var fields = require('./../fields');
 
@@ -14,8 +15,10 @@ module.exports.init = function(framework) {
             length      = jQuery(this).closest('.wp-custom-fields-repeatable-container').find('.wp-custom-fields-repeatable-group').length,
             group       = jQuery(this).closest('.wp-custom-fields-repeatable-container').find('.wp-custom-fields-repeatable-group').last();
             
-        // Destroy our select2 instances
-        jQuery('.wp-custom-fields-select').select2('destroy');
+        // Destroy our select2 instances, if it is defined of course
+        if( typeof jQuery.fn.select2 !== 'undefined' && jQuery.fn.select2 ) {
+            jQuery('.wp-custom-fields-select').select2('destroy');
+        }
 
         // Destroy current codemirror instances
         jQuery(framework).find('.wp-custom-fields-code-editor-value').each(function (index, node) {
@@ -39,7 +42,8 @@ module.exports.init = function(framework) {
         // Empty inputs in our  new group
         newGroup.find('input').val('');
         newGroup.find('textarea').val('');
-        newGroup.find('option').attr('selected', false);        
+        newGroup.find('option').attr('selected', false); 
+        newGroup.find('.wp-custom-fields-single-media').not('.empty').remove(); // Removes the media from the cloned group   
                 
         // Finally, insert the newGroup after the current group
         group.after(newGroup);
@@ -64,7 +68,10 @@ module.exports.init = function(framework) {
         
         // Keep the first group
         if (length > 1) {
-            group.remove();
+            group.fadeOut();
+            setTimeout( function() {
+                group.remove();
+            }, 500);
         }
     });
     
