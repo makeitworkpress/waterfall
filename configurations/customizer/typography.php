@@ -160,12 +160,20 @@ $typography = array(
                 ),
                 array(
                     'default'       => '',
+                    'selector'      => '.widget',
+                    'id'            => 'widget_typography',
+                    'title'         => __('Widgets', 'waterfall'),
+                    'description'   => __('Determines the typography for widgets.', 'waterfall'),
+                    'type'          => 'typography'
+                ),                
+                array(
+                    'default'       => '',
                     'selector'      => '.widget-title',
                     'id'            => 'widget_title_typography',
                     'title'         => __('Widget Titles', 'waterfall'),
                     'description'   => __('Determines the typography for widget headings.', 'waterfall'),
                     'type'          => 'typography'
-                ),               
+                ),                              
                 array(
                     'default'       => '',
                     'selector'      => '.main-related h3',
@@ -190,14 +198,14 @@ $typography = array(
             'fields'    => array(                   
                 array(
                     'default'       => '',
-                    'selector'      => '.molecule-footer-sidebars',
+                    'selector'      => '.molecule-footer-sidebars, .molecule-footer-sidebars .widget',
                     'id'            => 'footer_typography',
-                    'title'         => __('Footer Content', 'waterfall'),
+                    'title'         => __('Footer Widgets', 'waterfall'),
                     'type'          => 'typography'
                 ),                
                 array(
                     'default'       => '',
-                    'selector'      => '.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6',
+                    'selector'      => '.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6, .footer .widget-title',
                     'id'            => 'footer_titles',
                     'title'         => __('Footer Titles', 'waterfall'),
                     'type'          => 'typography'
