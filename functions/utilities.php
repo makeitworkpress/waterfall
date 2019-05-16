@@ -322,3 +322,42 @@ function wf_get_archive_post_type() {
 
     return $type;
 }
+
+/**
+ * Returns the public post types as available for Waterfall.
+ * 
+ * @param boolean $simple Whether to retrieve only the post type name and label
+ * @param boolean $available Wheter to retrieve only the post types that are marked as available for the customizer within the Waterfall theme settings
+ * 
+ * @return array $posts The array with post types
+ */
+function wf_get_post_types( $simple = false, $available = false ) {
+
+    $saved = get_option('waterfall_post_types');
+    $types = [];
+
+    if( $simple ) {
+        foreach( $saved as $name => $type ) {
+            $types[$name] =  $type['name'];
+        }
+    } else {
+        $types = $saved;
+    }
+
+    if( $available ) {
+        $options = get_option('waterfall_options');
+        $allowed = isset($options['customizer_post_types']) && is_array($options['customizer_post_types']) ? $options['customizer_post_types'] : ['post', 'page', 'reviews'];
+
+        foreach( $types as $name => $type ) {
+
+            if( ! in_array($name, $allowed) ) {
+                unset($types[$name]);
+            }
+
+        }
+
+    }   
+
+    return $types;
+
+}

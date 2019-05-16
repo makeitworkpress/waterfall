@@ -5,7 +5,7 @@
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 // Receive our public post types
-$types  = get_option('waterfall_post_types');
+$types  = wf_get_post_types( false, true );
 
 // Set-up the settings array
 $layout = array(
@@ -250,15 +250,21 @@ if( $types ) {
                 array(
                     'default'       => '',
                     'id'            => $type . '_header_date',
-                    'title'         => __('Show a date in Title Sections', 'waterfall'),
+                    'title'         => __('Show the Postdate in Title Sections', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
                 array(
                     'default'       => '',
                     'id'            => $type . '_header_terms',
-                    'title'         => __('Show tags and categories in Title Sections', 'waterfall'),
+                    'title'         => __('Show Tags and Categories in Title Sections', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_comments',
+                    'title'         => __('Show Comments Indicator in Title Sections', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                
                 array(
                     'default'       => false,
                     'id'            => $type . '_header_share',
@@ -269,13 +275,13 @@ if( $types ) {
                 array(
                     'default'       => false,
                     'id'            => $type . '_header_author',
-                    'title'         => __('Show the author in post Title Sections', 'waterfall'),
+                    'title'         => __('Show the Author in Title Sections', 'waterfall'),
                     'type'          => 'checkbox'
                 ),               
                 array(
                     'default'       => 'none',
                     'id'            => $type . '_header_scroll',
-                    'title'         => __('Enable the scroll button in Title Sections', 'waterfall'),
+                    'title'         => __('Enable the Scroll Button in Title Sections', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => wf_get_button_options()
                 ),
@@ -558,13 +564,7 @@ if( $types ) {
                     'id'            => $type . '_share_reddit',
                     'title'         => __('Show Reddit sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ),                     
-                array(
-                    'default'       => '',
-                    'id'            => $type . '_share_stumbleupon',
-                    'title'         => __('Show StumbleUpon sharing button', 'waterfall'),
-                    'type'          => 'checkbox'
-                ),                     
+                ),                   
                 array(
                     'default'       => '',
                     'id'            => $type . '_share_pocket',

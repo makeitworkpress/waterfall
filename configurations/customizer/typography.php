@@ -58,7 +58,15 @@ $typography = array(
                     'title'         => __('Meta', 'waterfall'),
                     'description'   => __('Meta are secondary text blocks such as the date and category of a post.', 'waterfall'),
                     'type'          => 'typography'
-                ),                
+                ), 
+                array(
+                    'default'       => '',
+                    'selector'      => '.widget',
+                    'id'            => 'widget_typography',
+                    'title'         => __('Widgets', 'waterfall'),
+                    'description'   => __('Determines the typography for widgets.', 'waterfall'),
+                    'type'          => 'typography'
+                ),                               
                 array(
                     'default'       => '',
                     'selector'      => 'blockquote',
@@ -157,15 +165,7 @@ $typography = array(
                     'title'         => __('Product Title Headings', 'waterfall'),
                     'description'   => __('Determines the typography for headings in products.', 'waterfall'),
                     'type'          => 'typography'
-                ),
-                array(
-                    'default'       => '',
-                    'selector'      => '.widget',
-                    'id'            => 'widget_typography',
-                    'title'         => __('Widgets', 'waterfall'),
-                    'description'   => __('Determines the typography for widgets.', 'waterfall'),
-                    'type'          => 'typography'
-                ),                
+                ),              
                 array(
                     'default'       => '',
                     'selector'      => '.widget-title',
@@ -176,7 +176,7 @@ $typography = array(
                 ),                              
                 array(
                     'default'       => '',
-                    'selector'      => '.main-related h3',
+                    'selector'      => '.main-related .related-title',
                     'id'            => 'related_title_typography',
                     'title'         => __('Related Post Title', 'waterfall'),
                     'description'   => __('Determines the typography for the title above related posts.', 'waterfall'),
@@ -184,7 +184,7 @@ $typography = array(
                 ), 
                 array(
                     'default'       => '',
-                    'selector'      => '.molecule-post h2',
+                    'selector'      => '.molecule-post .entry-title',
                     'id'            => 'post_title_typography',
                     'title'         => __('Post Grid and List Titles', 'waterfall'),
                     'description'   => __('Determines the typography for the titles for posts in archives, related posts and more.', 'waterfall'),

@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: Waterfall\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-21 09:41+0000\n"
-"PO-Revision-Date: 2019-03-21 09:50+0000\n"
+"PO-Revision-Date: 2019-05-16 09:03+0000\n"
 "Last-Translator: leichim <michielsite@hotmail.com>\n"
-"Language-Team: Nederlands\n"
+"Language-Team: Dutch\n"
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.2.1; wp-5.1.1"
+"X-Loco-Version: 2.2.2; wp-5.2"
 
 #: classes/waterfall-ajax.php:98
 msgid "This site is not a multisite!"
@@ -651,7 +651,7 @@ msgstr ""
 
 #: functions/utilities.php:231
 msgid "After the page title in the title section"
-msgstr ""
+msgstr "Na de paginatitel in de titelsectie"
 
 #: functions/utilities.php:232
 msgid "Do not use the featured image in the title section"
@@ -778,7 +778,7 @@ msgstr[1] ""
 
 #: configurations/customizer/colors.php:10
 msgid "Adjust the colors of all of the theme sections."
-msgstr ""
+msgstr "Pas de kleuren van alle themagedeelten aan."
 
 #: configurations/customizer/colors.php:12
 msgid "Theme Colors"
@@ -1297,6 +1297,8 @@ msgstr ""
 msgid ""
 "Adjust extensive settings and elements for various parts of the website here."
 msgstr ""
+"Pas hier uitgebreide instellingen en elementen voor verschillende onderdelen "
+"van de website aan."
 
 #: configurations/customizer/layout.php:14
 msgid "Theme Layout"
@@ -1357,7 +1359,7 @@ msgstr ""
 
 #: configurations/customizer/layout.php:111
 msgid "All Results Search Text"
-msgstr ""
+msgstr "Alle resultaten zoektekst"
 
 #: configurations/customizer/layout.php:112
 msgid "Text for link to all the results"
@@ -1377,7 +1379,7 @@ msgstr ""
 
 #: configurations/customizer/layout.php:135
 msgid "Always Display"
-msgstr ""
+msgstr "Altijd weergeven"
 
 #: configurations/customizer/layout.php:136
 msgid "Display on Tablets"
@@ -1788,7 +1790,7 @@ msgstr ""
 
 #: configurations/customizer/layout.php:615
 msgid "Width of title section in posts archives."
-msgstr ""
+msgstr "Breedte van het titel gedeelte in bericht archieven."
 
 #: configurations/customizer/layout.php:623
 msgid "Height of title section in posts archives."
@@ -2161,7 +2163,7 @@ msgstr ""
 
 #: configurations/customizer/typography.php:8
 msgid "Adjust the typography at various locations here."
-msgstr ""
+msgstr "Pas hier de typografie op verschillende locaties aan."
 
 #: configurations/customizer/typography.php:10
 msgid "Typography"
@@ -2205,7 +2207,7 @@ msgstr ""
 
 #: configurations/customizer/typography.php:80
 msgid "All Headings"
-msgstr ""
+msgstr "Alle koppen"
 
 #: configurations/customizer/typography.php:88
 msgid "Heading 1"
@@ -2328,7 +2330,7 @@ msgstr ""
 
 #: configurations/customizer/woocommerce.php:43
 msgid "Width of title header in product archives."
-msgstr ""
+msgstr "Breedte van het titel gedeelte"
 
 #: configurations/customizer/woocommerce.php:46
 msgid "Product Archive Header Width"
@@ -2348,7 +2350,7 @@ msgstr ""
 
 #: configurations/customizer/woocommerce.php:61
 msgid "Alignment of the text in the title header of product archives."
-msgstr ""
+msgstr "Uitlijning van de tekst in de titelkop van de productarchieven."
 
 #: configurations/customizer/woocommerce.php:67
 msgid "Choose the sidebar lay-out for the product archives."

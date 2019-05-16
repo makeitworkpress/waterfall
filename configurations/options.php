@@ -34,6 +34,15 @@ $options = [
                 ],
                 [
                     'columns'       => 'half',
+                    'default'       => class_exists('Waterfall_Reviews\Plugin') ? ['post', 'page', 'reviews'] : ['post', 'page'],
+                    'description'   => __('This determines for which post types you can adjust the lay-out settings in the customizer', 'waterfall'),
+                    'id'            => 'customizer_post_types',
+                    'options'       => wf_get_post_types(true),
+                    'title'         => __('Customizer Post Types', 'waterfall'),
+                    'multiple'      => true,
+                    'type'          => 'select'
+                ],                
+                [
                     'default'       => '',
                     'description'   => __('This automatically set-ups the correct JavaScript for loading Google Analytics. The Tracking ID has a format of UA-000000-01.', 'waterfall'),
                     'id'            => 'analytics',
@@ -48,7 +57,15 @@ $options = [
                     'message'       => true,
                     'title'         => __('Synchronize Settings', 'waterfall'),
                     'type'          => 'button'
-                ],
+                ]
+            ]
+        ],
+        'optimize'   => [
+            'icon'          => 'settings',
+            'id'            => 'optimize',
+            'title'         => __('Optimizations', 'waterfall'),
+            'description'   => __('The general settings for the theme. Are you looking for lay-out options? Those can be found in the Customizer.', 'waterfall'),
+            'fields'        => [                  
                 [
                     'default'       => '',
                     'description'   => __('Improve the loading performance by enabling optimalizations. Be aware that some optimizations such as Disabling the REST API can break plugins.', 'waterfall'),

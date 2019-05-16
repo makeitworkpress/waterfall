@@ -28,7 +28,7 @@ class Singular extends Base {
 
         $this->networks   = apply_filters(
             'waterfall_social_share_networks', 
-            ['facebook', 'twitter', 'linkedin', 'pinterest', 'reddit', 'stumbleupon', 'pocket', 'whatsapp']
+            ['facebook', 'twitter', 'linkedin', 'pinterest', 'reddit', 'pocket', 'whatsapp']
         );
 
         $this->properties = apply_filters( 'waterfall_singular_properties', [
@@ -38,6 +38,7 @@ class Singular extends Base {
                 'header_author', 
                 'header_breadcrumbs', 
                 'header_breadcrumbs_archive', 
+                'header_comments',
                 'header_date', 
                 'header_disable_title', 
                 'header_featured', 
@@ -196,14 +197,26 @@ class Singular extends Base {
         }        
             
         // Time
-        if( $this->layout['header_date']  ) {
+        if( $this->layout['header_date'] ) {
             $args['atoms']['date']      = ['atom' => 'date', 'properties' => ['attributes' => ['class' => 'entry-time']]];    
         }
     
         // Terms
-        if( $this->layout['header_terms']  ) {
+        if( $this->layout['header_terms'] ) {
             $args['atoms']['termlist']  = ['atom' => 'termlist', 'properties' => ['attributes' => ['class' => 'entry-meta'], 'taxonomies' => []]];    
-        }             
+        }
+        
+        // Comments
+        if( $this->layout['header_comments']  ) {
+            $comments = get_comments_number();
+            $link     = esc_url( get_permalink() . '#respond');
+            $args['atoms']['comments']  = [
+                'atom' => 'string', 
+                'properties' => [
+                    'string' => '<div class="entry-meta"><i class="fa fa-comment"></i> <a href="' . $link . '" title="' . __('Respond', 'waterfall') . '">' . sprintf( _n( '%s comment', '%s comments', $comments, 'waterfall' ), $comments ) . '</a></div>'
+                ]
+            ];    
+        }          
     
         // Featured image
         $featured       = $this->layout['header_featured'] ? $this->layout['header_featured'] : 'after';
@@ -375,7 +388,13 @@ class Singular extends Base {
                         'button'    => [
                             'atom' => 'button', 'properties' => ['iconAfter' => 'angle-right', 'iconVisible' => 'hover', 'label' => $this->layout['related_button'], 'size' => 'small']
                         ] 
-                    ],                   
+                    ],  
+                    'headerAtoms'   => [
+                        'title' => [
+                            'atom'          => 'title', 
+                            'properties'    => ['attributes' => ['itemprop' => 'name headline', 'class' => 'entry-title'], 'tag' => 'h3', 'link' => 'post' ] 
+                        ] 
+                    ],              
                     'grid'          => $this->layout['related_grid'] ? $this->layout['related_grid'] : 'third',
                     'image'         => [ 
                         'enlarge'   => $this->layout['related_image_enlarge'] ? true : false, 
@@ -396,7 +415,7 @@ class Singular extends Base {
 
             // Echo a title above the related posts
             if( $this->layout['related_title'] ) {
-                echo '<h3>' .  esc_html( $this->layout['related_title'] ) . '</h3>';
+                echo '<h2 class="related-title">' .  esc_html( $this->layout['related_title'] ) . '</h2>';
             }
                 
             WP_Components\Build::molecule( 'posts', $args );

@@ -174,7 +174,7 @@ abstract class Base {
 
         }
 
-        if( $meta['disable'] == true || $customizer === true ) {
+        if( $meta['disable'] == true || $customizer == true ) {
             $disabled   = true;
         }
 

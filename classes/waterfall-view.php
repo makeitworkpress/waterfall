@@ -99,6 +99,7 @@ class Waterfall_View {
              * Inbuild
              */
             $customize      = wf_get_theme_option('customizer'); 
+            $colors         = wf_get_theme_option('colors'); 
             $layout         = wf_get_theme_option('layout');
             $woocommerce    = wf_get_theme_option('woocommerce');
             $sidebar        = 'default';
@@ -107,14 +108,19 @@ class Waterfall_View {
             if( isset($customize['layout']) ) {
                 $classes[]  = 'waterfall-' . $customize['layout'] . '-layout';    
             }
+
+            if( isset($colors['content_sidebar_background']) && $colors['content_sidebar_background'] ) {
+                $classes[]  = 'waterfall-colored-sidebar';    
+            }
             
             // Initialize lightbox
             if( isset($customize['lightbox']) ) {
                 $classes[]  = 'waterfall-lightbox';
             }
 
-            // Default archives
-            if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') ) {
+            // Default archives and pages set-up as posts page under Settings, Reading
+            $page = isset( get_queried_object()->ID ) ? get_queried_object()->ID : 0;
+            if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') || ( is_home() && $page = get_option('page_for_posts') ) ) {
                 $type       = wf_get_archive_post_type();
 
                 if( isset($layout[$type . '_archive_sidebar_position']) ) {
@@ -160,6 +166,20 @@ class Waterfall_View {
             return $classes;
             
         } );
+
+
+        /**
+         * Alters the excerpt length based on our settings
+         */
+        $customize      = wf_get_theme_option('customizer');
+
+
+        if( isset($customize['excerpt_length']) && is_numeric($customize['excerpt_length']) ) {
+            add_filter( 'excerpt_length', function($length) use($customize) {
+                $length = absint($customize['excerpt_length']);
+                return $length;
+            }, 999, 1);  
+        }         
         
     }
     

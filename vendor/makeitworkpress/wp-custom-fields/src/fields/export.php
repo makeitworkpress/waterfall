@@ -6,54 +6,104 @@ namespace MakeitWorkPress\WP_Custom_Fields\Fields;
 use MakeitWorkPress\WP_Custom_Fields\Field as Field;
 
 // Bail if accessed directly
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined('ABSPATH') ) {
     die;
+}
 
 class Export implements Field {
-    
-    public static function render($field = array()) {
-        
-        // An option id should be provided
-        if( ! isset($field['option_id']) )
-            return;
-        
-        global $pagenow;
 
-        switch( $pagenow ) {
-            case 'post.php':
-                global $post;
-                $options = get_post_meta( $post->ID, $field['option_id'], true );
-                break;
-            case 'profile.php';
-            case 'user-edit.php';
-                $user = $pagenow == 'profile.php' ? get_current_user_id() : $_GET['user_id']; 
-                get_term_meta( $user, $field['option_id'], true );
-                break;
-            case 'term.php';
-                get_term_meta(  $_GET['tag_ID'], $field['option_id'], true );
-                break;
-            default:
-                $options = get_option($field['option_id']);
+    /**
+     * Prepares the variables and renders the field
+     * 
+     * @param   array $field The array with field attributes data-alpha
+     * @return  void
+     */      
+    public static function render( $field = [] ) {
+        
+        // Check before proceeding
+        if( ! isset($field['key']) || ! isset($field['context']) || ! is_user_logged_in() ) {
+            return;
         }
+
+        $configurations = self::configurations();
+        $button = isset( $field['labels']['button'] ) ? esc_html($field['labels']['button']) : $configurations['labels']['button'];
+        $label  = isset( $field['labels']['label'] ) ? esc_html($field['labels']['label']) : $configurations['labels']['label'];
+        $id     = esc_attr($field['id']);
+        $key    = sanitize_key($field['key']); 
+
+        switch( $field['context'] ) {
+            case 'post':
+
+                if( ! current_user_can('edit_posts') || ! current_user_can('edit_pages') ) {
+                    return;
+                }
+
+                global $post;
+                $options = get_post_meta( $post->ID, $key, true );
+                break;
+            case 'user':
+
+                if( ! current_user_can('edit_users') ) {
+                    return;
+                }
+
+                global $pagenow;
+                $user = $pagenow == 'profile.php' ? get_current_user_id() : $_GET['user_id']; 
+                $options = get_term_meta( intval($user), $key, true );
+                
+                break;
+            case 'term':
+
+                if( ! current_user_can('edit_posts') || ! current_user_can('edit_pages') ) {
+                    return;
+                }            
+
+                $options = get_term_meta( intval($_GET['tag_ID']), $key, true );
+                
+                break;
+            case 'options':
+
+                if( ! current_user_can('manage_options') ) {
+                    return;
+                } 
+
+                $options = get_option( $field['key'] );
+
+        } 
         
-        $output = '<div class="wp-custom-fields-export">';
-        $output .= '    <label for="' . $field['id'] . '-export">' . __('Exportable Settings', 'wp-custom-fields') . '</label>';
-        $output .= '    <textarea id="' . $field['id'] . '-export">' . base64_encode( serialize($options) ) . '</textarea>';      
-        $output .= '    <label for="' . $field['id'] . '-import">' . __('Import Settings', 'wp-custom-fields') . '</label>';        
-        $output .= '    <textarea id="' . $field['id'] . '-import" name="import_value">' . base64_encode( serialize($options) ) . '</textarea>';
-        $output .= '    <input id="' . $field['id'] . '-import" name="import_submit" class="button wp-custom-fields-import-settings" type="submit" value="' . __('Import', 'wp-custom-fields') . '" />'; 
-        $output .= '</div>';
+        // We should have options
+        if( ! isset($options) ) {
+            return; 
+        } ?>
+
+            <div class="wp-custom-fields-export">  
+                <label for="<?php echo $id; ?>-import"><?php echo $label; ?></label>       
+                <textarea id="<?php echo $id; ?>-import" name="import_value"><?php echo base64_encode( serialize($options) ); ?></textarea>
+                <input id="<?php echo $id; ?>-import" name="import_submit" class="button wp-custom-fields-import-settings" type="submit" value="<?php echo $button; ?>" /> 
+            </div>
         
-        return $output;    
+        <?php
+
     }
     
+    /**
+     * Returns the global configurations for this field
+     *
+     * @return array $configurations The configurations
+     */     
     public static function configurations() {
-        $configurations = array(
+
+        $configurations = [
             'type'      => 'export',
-            'defaults'  => ''
-        );
+            'defaults'  => '',
+            'labels'    => [
+                'button'    => __('Import', 'wp-custom-fields'),
+                'label'     => __('The Current Settings. Replace these with a different encoded string to import new settings.', 'wp-custom-fields')
+            ]
+        ];
             
-        return $configurations;
+        return apply_filters( 'wp_custom_fields_export_config', $configurations );
+        
     }
     
 }

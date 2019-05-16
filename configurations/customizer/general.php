@@ -49,7 +49,13 @@ $customizer = array(
                     'title'         => __('Border radius for buttons', 'waterfall'),
                     'description'   => __('Adapts the border radius for all buttons on the site.', 'waterfall'),
                     'type'          => 'dimension'  
-                ),                               
+                ), 
+                array(
+                    'id'            => 'excerpt_length',
+                    'title'         => __('Excerpt Length', 'waterfall'),
+                    'description'   => __('The maximum number of words for excerpts in post archives.', 'waterfall'),
+                    'type'          => 'number'  
+                ),                                              
                 array(
                     'default'       => '',
                     'id'            => 'lightbox',
