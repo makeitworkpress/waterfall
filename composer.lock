@@ -94,12 +94,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "233925bcd69cd939de5428a23546c711d3023bb2"
+                "reference": "9b3e4cd8cbd8811e97f05e920be70fa68df86010"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/233925bcd69cd939de5428a23546c711d3023bb2",
-                "reference": "233925bcd69cd939de5428a23546c711d3023bb2",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/9b3e4cd8cbd8811e97f05e920be70fa68df86010",
+                "reference": "9b3e4cd8cbd8811e97f05e920be70fa68df86010",
                 "shasum": ""
             },
             "require": {
@@ -127,7 +127,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2019-05-16T10:11:43+00:00"
+            "time": "2019-05-17T07:18:24+00:00"
         },
         {
             "name": "makeitworkpress/wp-enqueue",

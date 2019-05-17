@@ -338,7 +338,7 @@ function wf_get_post_types( $simple = false, $available = false ) {
 
     if( $simple ) {
         foreach( $saved as $name => $type ) {
-            $types[$name] =  $type['name'];
+            $types[$name] = $type['name'];
         }
     } else {
         $types = $saved;
