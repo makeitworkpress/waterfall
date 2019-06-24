@@ -49,12 +49,13 @@ class Header extends Base {
         }
 
         // Retrieve our header properties from the DB
-        $this->getProperties();   
+        $this->getProperties();
 
         /**
          * Set-up our atoms
          * The header atoms form the building blocks for the header
          */
+
         // Default header items
         $atoms = [
             'logo'  => [
