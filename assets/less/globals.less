@@ -172,6 +172,21 @@ input[type="submit"], input[type="submit"].button {
     }   
 }
 
+.wp-block-embed {
+    &.wp-embed-aspect-16-9 .wp-block-embed__wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0; 
+        video, iframe, embed {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }       
+    }
+}
+
 /* Theme Classes 
 ------------------------------*/
 .waterfall-no-border {

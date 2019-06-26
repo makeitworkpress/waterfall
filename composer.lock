@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "b6a4122cc6dd59e82f7a61037978f5815ea73d18"
+                "reference": "f24f509e430ddb0b8eca227ecc2636a3cf39092a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/b6a4122cc6dd59e82f7a61037978f5815ea73d18",
-                "reference": "b6a4122cc6dd59e82f7a61037978f5815ea73d18",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/f24f509e430ddb0b8eca227ecc2636a3cf39092a",
+                "reference": "f24f509e430ddb0b8eca227ecc2636a3cf39092a",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "source": "https://github.com/makeitworkpress/wp-components/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-components/issues"
             },
-            "time": "2019-06-24T14:19:26+00:00"
+            "time": "2019-06-26T10:09:36+00:00"
         },
         {
             "name": "makeitworkpress/wp-config",

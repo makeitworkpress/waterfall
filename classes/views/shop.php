@@ -14,7 +14,7 @@ class Shop extends Base {
      */
     protected function setProperties() {
         $this->properties = apply_filters( 'waterfall_catalog_properties', [
-            'woocommerce' => [ 'header_align', 'header_breadcrumbs', 'header_height', 'header_position', 'header_width', 'sidebar_position' ]                                     
+            'woocommerce' => ['header_disable', 'header_align', 'header_breadcrumbs', 'header_height', 'header_position', 'header_width', 'sidebar_position' ]                                     
         ] );
     }
 
@@ -23,7 +23,12 @@ class Shop extends Base {
      */
     public function header() {
 
-        if( $this->disabled('header') ) {
+        /**
+         * Completely disables the title section
+         * Our woocommerce recieves options from a different customizer id, 
+         * hence we do not use the built-in disabled function from the extended base class in classes/views/base.php.
+         */ 
+        if( ! $this->woocommerce['header_disable'] ) {
             return;
         }
 
@@ -35,7 +40,7 @@ class Shop extends Base {
         }
         
         // Default title
-        if ( apply_filters( 'woocommerce_show_page_title', true ) ) {
+        if( apply_filters( 'woocommerce_show_page_title', true ) ) {
             $atoms['archive-title'] = [
                 'atom'  => 'archive-title',
                 'properties' => [
@@ -128,7 +133,7 @@ class Shop extends Base {
             $this->getProperties();
         }
 
-        if( $this->woocommerce['sidebar_position'] == 'left' || $this->woocommerce['sidebar_position'] == 'right' || $this->woocommerce['sidebar_position'] == 'bottom' )
+        if( $this->woocommerce['sidebar_position'] == 'left' || $this->woocommerce['sidebar_position'] == 'right' || $this->woocommerce['sidebar_position'] == 'bottom' || ! $this->woocommerce['sidebar_position'] )
             WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => ['product-archive']] );         
         
     }    

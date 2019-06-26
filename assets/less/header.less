@@ -9,6 +9,24 @@
 .header {
     border-bottom: 1px solid @f-grey;
     top: inherit;
+}
+
+/**
+ * The header may have three main sections
+ */
+.molecule-header-top-atoms, .molecule-header-atoms, .molecule-header-socket-atoms {
+    padding: 0 @grid-space;
+    @media screen and (max-width: 767px) {
+        padding: 0 @grid-space/2;   
+    }    
+}
+
+/*
+ * Middle header
+ */
+.molecule-header-atoms {
+    line-height: 80px;
+    position: relative;
     .atom-logo {
         padding: @grid-space/4 0;
         @media screen and (max-width: 479px) {
@@ -55,6 +73,9 @@
     }
 }
 
+/**
+ * Transparent behaviour
+ */
 .molecule-header-top.molecule-header-transparent {
     border: none;
     .atom-search-expand, .atom-menu-hamburger span {
@@ -73,16 +94,5 @@
                 color: #fff;
             }   
         }     
-    }    
-}
-
-.molecule-header-atoms {
-    line-height: 80px;
-}
-
-.molecule-header-top-atoms, .molecule-header-atoms, .molecule-header-socket-atoms {
-    padding: 0 @grid-space;
-    @media screen and (max-width: 767px) {
-        padding: 0 @grid-space/2;   
     }    
 }

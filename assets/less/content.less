@@ -156,6 +156,10 @@
     margin: @grid-space -@grid-space 0 -@grid-space;
     padding: @grid-space;
     width: ~"calc(100% + 64px)";
+    .waterfall-colored-sidebar & {
+        margin: @grid-space 0 0 0;
+        width: 100%;
+    }
 }
 
 .waterfall-left-sidebar, .waterfall-right-sidebar {
@@ -169,16 +173,12 @@
         width: 71.5%;
     }
     .main-sidebar {
-        margin: -@grid-space 0 0 2.5%;
         width: 26%;
     }
-    &.waterfall-colored-sidebar .main-sidebar {
-        margin-top: 0;
-        @media screen and (max-width: 767px) {
-            margin-top: @grid-space;
-        }
-    }
     @media screen and (max-width: 767px) {
+        .main-content, .main-content > .components-container { 
+            display: block;
+        }        
         .content {
             width: 100%;
         }
@@ -193,25 +193,46 @@
             }
             .main-sidebar {
                 order: 0;
-                margin: 0 0 @grid-space 0;
+                margin: 0 -@grid-space @grid-space -@grid-space;
             }
         }
-    }
+        /* Colored Sidebars */
+        &.waterfall-colored-sidebar {
+            .main-sidebar {
+                margin: @grid-space 0 0 0;
+                width: 100%;
+            } 
+            &.woocommerce .main-sidebar {
+                margin: 0 0 @grid-space 0;
+            }
+        }         
+    } 
+}
+
+.waterfall-right-sidebar {
+    @media screen and (min-width: 768px) { 
+        .main-sidebar {
+            margin: -@grid-space -@grid-space 0 2.5%;
+        }
+        &.waterfall-colored-sidebar .main-sidebar {
+            margin: 0 0 0 2.5%;
+        }  
+    }       
 }
 
 .waterfall-left-sidebar {
-    .content {
-        order: 1;   
-    }    
-    .main-sidebar {
-        order: 0; 
-        margin: -@grid-space 2.5% 0 0;
-    }
-    @media screen and (max-width: 767px) {
-        .content, .main-sidebar {
-            order: 0;
+    @media screen and (min-width: 768px) {  
+        .content {
+            order: 1;   
+        }            
+        .main-sidebar {
+            order: 0; 
+            margin: -@grid-space 2.5% 0 -@grid-space;
         }
-    }    
+        &.waterfall-colored-sidebar .main-sidebar {
+            margin: 0 2.5% 0 0;  
+        }  
+    }
 }
 
 .widget {

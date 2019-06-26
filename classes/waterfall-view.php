@@ -61,8 +61,8 @@ class Waterfall_View {
 
             if( isset($headerHeight['amount']) && $headerHeight['unit'] ) {
                 echo '<style type="text/css"> 
-                    .header .atom-logo img { height: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 16px); width: auto;} 
-                    .header .atom-menu-hamburger { margin: calc( (' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 30px)/2 ) 4px; }
+                    .molecule-header-atoms .atom-logo img { height: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 16px); width: auto;} 
+                    .molecule-header-atoms .atom-menu-hamburger { margin: calc( (' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 30px)/2 ) 4px; }
                     .molecule-header-transparent ~ .main .main-header { padding-top: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' + 32px); }
                 </style>';
             }
@@ -118,16 +118,18 @@ class Waterfall_View {
                 $classes[]  = 'waterfall-lightbox';
             }
 
-            // Default archives and pages set-up as posts page under Settings, Reading
+            // Set-up the sidebars for default archives and pages set-up as posts page under Settings, Reading
             $page = isset( get_queried_object()->ID ) ? get_queried_object()->ID : 0;
             if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') || ( is_home() && $page = get_option('page_for_posts') ) ) {
                 $type       = wf_get_archive_post_type();
 
                 if( isset($layout[$type . '_archive_sidebar_position']) ) {
                     $sidebar = $layout[$type . '_archive_sidebar_position'];  
-                } elseif( isset($woocommerce[$type . '_archive_sidebar_position']) ) {
+                } elseif( isset($woocommerce[$type . '_archive_sidebar_position']) && $woocommerce[$type . '_archive_sidebar_position'] ) {   
                     $sidebar = $woocommerce[$type . '_archive_sidebar_position'];
-                } 
+                } elseif( ! isset($woocommerce[$type . '_archive_sidebar_position']) || ! $woocommerce[$type . '_archive_sidebar_position'] ) {
+                    $sidebar = 'left'; // A non set Woocommerce Sidebar defaults to a left sidebar.
+                }
 
             }
             

@@ -681,7 +681,7 @@ $colors = array(
             'fields'    => array(                      
                 array(
                     'selector'     => array( 
-                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-cart input.button.alt, .woocommerce button.button.alt, .header .atom-cart button.button.alt, .woocommerce a.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-button.components-default-background, .wp-block-file .wp-block-file__button, .wp-block-button__link', 
+                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-cart input.button.alt, .woocommerce button.button.alt, .header .atom-cart button.button.alt, .woocommerce a.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-button.components-default-background, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-cart-count, .woocommerce button.button.alt.disabled', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',
@@ -692,7 +692,7 @@ $colors = array(
                 ),
                 array(
                     'selector'      => array( 
-                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-button.components-default-background:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover', 
+                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-button.components-default-background:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-cart-count:hover, .woocommerce button.button.alt.disabled:hover', 
                         'property' => 'background-color' 
                     ),
                     'default'       => '',

@@ -9,7 +9,7 @@ $enqueue = array(
 );
 
 // If we have lightbox in the configurations
-if( wf_get_theme_option('customizer', 'lightbox') ) {
+if( wf_get_theme_option('customizer', 'lightbox') || wf_get_theme_option('woocommerce', 'product_content_lightbox') || wf_get_theme_option('woocommerce', 'product_content_slider') ) {
     $enqueue[] = array( 'handle' => 'swipebox', 'src' => get_template_directory_uri() . '/assets/js/vendor/swipebox.min.js' );
     $enqueue[] = array( 
         'handle' => 'waterfall', 
