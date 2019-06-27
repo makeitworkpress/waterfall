@@ -724,7 +724,7 @@ if( $types ) {
                     'type'          => 'number'
                 ),    
                 array(
-                    'default'       => 'square-ld',
+                    'default'       => 'medium',
                     'description'   => __('Featured Image size within archive posts.', 'waterfall'),
                     'id'            => $type . '_archive_content_image',
                     'choices'       => wf_get_image_sizes(),
@@ -820,7 +820,7 @@ $layout['sections']['search_page'] = array(
             'type'          => 'select'
         ),    
         array(
-            'default'       => 'grid',
+            'default'       => 'list',
             'description'   => __('Style of posts in the search page.', 'waterfall'),
             'id'            => 'search_content_style',
             'choices'       => wf_get_grid_options(),
@@ -828,7 +828,7 @@ $layout['sections']['search_page'] = array(
             'type'          => 'select'
         ),
         array(
-            'default'       => 'third',
+            'default'       => 'full',
             'description'   => __('Amount of grid columns for search page posts.', 'waterfall'),
             'id'            => 'search_content_columns',
             'choices'       => wf_get_column_options(),

@@ -90,6 +90,14 @@ class Index extends Base {
 
         // Retrieve our global query.
         global $wp_query;
+
+        // Some defaults are different for search pages
+        $defaults = [
+            'columns'   => is_search() ? 'full' : 'third',
+            'float'     => is_search() ? 'left' : 'none',
+            'size'      => is_search() ? 'thumbnail' : 'medium',
+            'style'     => is_search() ? 'list' : 'grid'
+        ];
         
         $args = apply_filters( 'waterfall_archive_posts_args', [            
             'attributes'        => [
@@ -106,19 +114,19 @@ class Index extends Base {
                 'footerAtoms'   => [ 
                     'button'    => ['atom' => 'button', 'properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
                 ], 
-                'grid'          => $this->layout['content_columns'] ? $this->layout['content_columns'] : 'third',   
+                'grid'          => $this->layout['content_columns'] ? $this->layout['content_columns'] : $defaults['columns'],   
                 'headerAtoms'   => [ 
                     'title'     => ['atom' => 'title', 'properties' => ['attributes' => ['itemprop' => 'name', 'class' => 'entry-title'], 'tag' => 'h2', 'link' => 'post']] 
                 ],                                 
                 'image'         => [
                     'enlarge'   => $this->layout['content_image_enlarge'] ? true : false, 
-                    'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : 'none', 
+                    'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : $defaults['float'], 
                     'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,                     
                     'link'      => 'post', 
-                    'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : 'medium'                    
+                    'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : $defaults['size']                    
                 ]
             ],
-            'view'              => $this->layout['content_style'] ? $this->layout['content_style'] : 'grid',
+            'view'              => $this->layout['content_style'] ? $this->layout['content_style'] : $defaults['style'],
             'query'             => $wp_query
         ] );
 
