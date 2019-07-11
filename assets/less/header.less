@@ -78,21 +78,23 @@
  */
 .molecule-header-top.molecule-header-transparent {
     border: none;
-    .atom-search-expand, .atom-menu-hamburger span {
-        color: #fff;
-    }
-    .atom-menu-mobile-hamburger.atom-menu-default, .atom-menu-mobile-hamburger.atom-menu-dark {
-        @media screen and (min-width: 768px) {
-            .menu > li > a {
-                color: #fff;
-            }   
-        }     
-    }
-    .atom-menu-tablet-hamburger.atom-menu-default, .atom-menu-tablet-hamburger.atom-menu-dark {
-        @media screen and (min-width: 1025px) {
-            .menu > li > a {
-                color: #fff;
-            }   
-        }     
-    }    
+    .molecule-header-atoms {
+        .atom-search-expand, .atom-menu-hamburger span {
+            color: #fff;
+        }
+        .atom-menu-mobile-hamburger.atom-menu-default, .atom-menu-mobile-hamburger.atom-menu-dark {
+            @media screen and (min-width: 768px) {
+                .menu > li > a {
+                    color: #fff;
+                }   
+            }     
+        }
+        .atom-menu-tablet-hamburger.atom-menu-default, .atom-menu-tablet-hamburger.atom-menu-dark {
+            @media screen and (min-width: 1025px) {
+                .menu > li > a {
+                    color: #fff;
+                }   
+            }     
+        } 
+    }   
 }

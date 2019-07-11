@@ -19,6 +19,7 @@ class Index extends Base {
                 'header_align', 
                 'header_breadcrumbs', 
                 'header_height', 
+                'header_title', 
                 'header_width', 
                 // Grid
                 'content_button', 
@@ -59,7 +60,25 @@ class Index extends Base {
         }
         
         // Default title
-        $atoms['archive-title'] = ['atom' => 'archive-title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];    
+        $atoms['archive-title'] = ['atom' => 'archive-title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];   
+        
+        // Adjustments in the default title
+        if( $this->layout['header_title'] ) {
+            
+            global $wp_query;
+
+            if( is_search() ) {   
+                $atoms['archive-title']['properties']['types']['search']    = str_replace( 
+                    ['{number}', '{term}'], 
+                    ['<span>' . number_format_i18n( $wp_query->found_posts ) . '</span>', '<span>' . get_search_query() . '</span>'], 
+                    $this->layout['header_title']
+                );  
+            } else {
+                $atoms['archive-title']['properties']['types']['default']   = $this->layout['header_title'];
+                $atoms['archive-title']['properties']['types']['home']      = $this->layout['header_title'];
+            } 
+
+        }
         
         // Add searchform on search pages
         if( is_search() ) {     

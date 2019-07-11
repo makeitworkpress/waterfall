@@ -636,6 +636,13 @@ if( $types ) {
                 ),
                 array(
                     'default'       => '',
+                    'id'            => $type . '_archive_header_title',
+                    'title'         => __('Default Archives Page Title ', 'waterfall'),
+                    'description'   => __('Add a custom title for the default archives page. Shown if no category, tag, term, author or date is queried.', 'waterfall'),
+                    'type'          => 'input'
+                ),                 
+                array(
+                    'default'       => '',
                     'id'            => $type . '_archive_posts_header',
                     'title'         => __('Archive Posts Section', 'waterfall'),
                     'type'          => 'heading'
@@ -796,7 +803,14 @@ $layout['sections']['search_page'] = array(
             'description'   => __('How should text be aligned within the search title section?', 'waterfall'),
             'type'          => 'select',
             'choices'       => wf_get_align_options()
-        ), 
+        ),
+        array(
+            'default'       => '',
+            'id'            => 'search_header_title',
+            'title'         => __('Custom Title for the Search Page', 'waterfall'),
+            'description'   => __('Add a custom title for the search page. The {term} and {number} tags may be used to display the search term and number of results respectively.', 'waterfall'),
+            'type'          => 'input'
+        ),          
         array(
             'default'       => '',
             'id'            => 'search_posts_header',
