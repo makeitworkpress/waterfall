@@ -12,6 +12,7 @@ var Waterfall = {
     },
     // Fixes height bug for gallery images inside a slider
     woocommerceGallery: function() {
+        
         var slider = jQuery('.product').find('.woocommerce-product-gallery'),
             slides = slider.find('.woocommerce-product-gallery__image'),
             lazy = slides.find('.lazy');

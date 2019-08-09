@@ -76,9 +76,10 @@ function wf_get_theme_option( $type = '', $key = '', $prefix = '' ) {
  */
 function wf_get_main_schema() {
     
-    $schema = 'http://schema.org/WebPageElement';
+    $archive    = wf_get_archive_post_type();
+    $schema     = 'http://schema.org/WebPageElement';
     
-    if( is_single() || is_archive() ) {
+    if( is_singular('post') || (is_archive() && $archive== 'post') ) {
         $schema = 'https://schema.org/Blog';
     }
         
@@ -333,13 +334,17 @@ function wf_get_archive_post_type() {
  */
 function wf_get_post_types( $simple = false, $available = false ) {
 
-    $saved = get_option('waterfall_post_types');
-    $types = [];
+    $db     = get_option('waterfall_post_types');
+
+    $saved  = $db && is_array($db) ? $db : [];
+    $types  = [];
 
     if( $simple ) {
+
         foreach( $saved as $name => $type ) {
             $types[$name] = $type['name'];
         }
+
     } else {
         $types = $saved;
     }
