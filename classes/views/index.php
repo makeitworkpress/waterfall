@@ -18,6 +18,7 @@ class Index extends Base {
                 // Header
                 'header_align', 
                 'header_breadcrumbs', 
+                'header_description', 
                 'header_height', 
                 'header_title', 
                 'header_width', 
@@ -60,7 +61,7 @@ class Index extends Base {
         }
         
         // Default title
-        $atoms['archive-title'] = ['atom' => 'archive-title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];   
+        $atoms['title'] = ['atom' => 'archive-title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];   
         
         // Adjustments in the default title
         if( $this->layout['header_title'] ) {
@@ -74,10 +75,15 @@ class Index extends Base {
                     $this->layout['header_title']
                 );  
             } else {
-                $atoms['archive-title']['properties']['types']['default']   = $this->layout['header_title'];
-                $atoms['archive-title']['properties']['types']['home']      = $this->layout['header_title'];
+                $atoms['title']['properties']['types']['default']   = $this->layout['header_title'];
+                $atoms['title']['properties']['types']['home']      = $this->layout['header_title'];
             } 
 
+        }
+
+        if( $this->layout['header_description'] ) {
+            $description            = str_replace('{description}', term_description(), $this->layout['header_description'] );
+            $atoms['description']   = ['atom' => 'description', 'properties' => ['attributes' => ['class' => 'page-description'], 'description' => $description]];
         }
         
         // Add searchform on search pages

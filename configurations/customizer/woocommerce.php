@@ -109,28 +109,34 @@ $woocommerce = [
             'id'            => 'woocommerce_product',
             'title'         => __('Single Products', 'waterfall'),
             'fields'        => [            
-                array(
+                [
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out for a single product.', 'waterfall'),
                     'id'            => 'product_sidebar_position',
                     'choices'       => wf_get_sidebar_options(),
                     'title'         => __('Sidebar Lay-Out', 'waterfall'),
                     'type'          => 'select'
-                ), 
-                array(
+                ], 
+                [
                     'default'       => 'default',
                     'description'   => __('Width of the product Display.', 'waterfall'),
                     'id'            => 'product_content_width',
                     'choices'       => wf_get_container_options(),
                     'title'         => __('Single Product Width', 'waterfall'),
                     'type'          => 'select'
-                ),        
-                array(
+                ],        
+                [
                     'default'       => '',
                     'id'            => 'product_content_breadcrumbs',
                     'title'         => __('Display Breadcrumbs in Single Products', 'waterfall'),
                     'type'          => 'checkbox'
-                )         
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'product_content_breadcrumbs_taxonomy',
+                    'title'         => __('Display Product Category in Breadcrumbs', 'waterfall'),
+                    'type'          => 'checkbox'
+                ]                                         
             ]
         ]        
     ]

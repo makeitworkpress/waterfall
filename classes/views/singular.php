@@ -154,7 +154,7 @@ class Singular extends Base {
             'container'     => $this->layout['header_width'] == 'full' ? false : true,
             'height'        => $this->layout['header_height'] ? $this->layout['header_height'] : 'quarter',
             'lazyload'      => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,
-            'parallax'      => $this->layout['header_parallax'],
+            'parallax'      => $this->layout['header_parallax'] ? true : false,
         ];    
     
         /**

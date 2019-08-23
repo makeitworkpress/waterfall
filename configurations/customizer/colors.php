@@ -9,7 +9,7 @@ $menu   = wf_get_theme_option('layout', 'header_menu_hamburger');
 $colors = array(
     'description'   => __('Adjust the colors of all of the theme sections.', 'waterfall'),
     'id'            => 'waterfall_colors',
-    'title'         => __('Theme Colors', 'waterfall'),
+    'title'         => __('Colors', 'waterfall'),
     'panel'         => true,
     'priority'      => 10,
     'sections'      => array(
@@ -423,6 +423,22 @@ $colors = array(
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ), 
+                array(
+                    'selector'      => '.main-sidebar a',
+                    'default'       => '',
+                    'id'            => 'content_sidebar_link_color',
+                    'title'         => __('Main Sidebar Link Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ), 
+                array(
+                    'selector'      => '.main-sidebar a:hover',
+                    'default'       => '',
+                    'id'            => 'content_sidebar_link_color',
+                    'title'         => __('Main Sidebar Link Hover Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ),                                
                 array(
                     'default'       => '',
                     'id'            => 'colors_main_content_related_header',

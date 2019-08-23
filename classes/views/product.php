@@ -14,7 +14,11 @@ class Product extends Base {
      */
     protected function setProperties() {
         $this->properties = apply_filters( 'waterfall_product_properties', [
-            'woocommerce' => ['content_breadcrumbs', 'sidebar_position']                                    
+            'woocommerce' => [
+                'content_breadcrumbs', 
+                'content_breadcrumbs_taxonomy',
+                'sidebar_position'
+            ]                                    
         ] );
     }
 
@@ -26,10 +30,12 @@ class Product extends Base {
         $this->getProperties();
 
         if( $this->woocommerce['content_breadcrumbs'] ) {
-            return WP_Components\Build::atom('breadcrumbs', apply_filters('waterfall_single_product_breadcrumbs', ['taxonomy' => true, 'archive' => true]), false); 
+            $taxonomy = $this->woocommerce['content_breadcrumbs_taxonomy'] ? true : false;
+            return WP_Components\Build::atom('breadcrumbs', apply_filters('waterfall_single_product_breadcrumbs', ['taxonomy' => $taxonomy, 'archive' => true]), false);
         } else {
             return false;
-        }       
+        }
+               
     }
 
     /**

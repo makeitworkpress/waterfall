@@ -12,11 +12,16 @@
 
 /* Nav Menu Widget
 -----------------------------*/
-.widget .menu li a:before {
-    color: @e-grey;
-    content: "\f105";
-    font-family: 'FontAwesome';
-    padding-right: 7px;
+.widget .menu li {
+    a:before {
+        color: @e-grey;
+        content: "\f105";
+        font-family: 'FontAwesome';
+        padding-right: 7px;
+    }
+    .sub-menu {
+        margin-left: 0.8em;
+    }
 }
 
 /* Search Widget

@@ -11,7 +11,7 @@ $types  = wf_get_post_types( false, true );
 $layout = array(
     'description'   => __('Adjust extensive settings and elements for various parts of the website here.', 'waterfall'),
     'id'            => 'waterfall_layout',
-    'title'         => __('Theme Layout', 'waterfall'),
+    'title'         => __('Elements', 'waterfall'),
     'panel'         => true,
     'sections'      => array(
         'style_header' => array(
@@ -640,7 +640,14 @@ if( $types ) {
                     'title'         => __('Default Archives Page Title ', 'waterfall'),
                     'description'   => __('Add a custom title for the default archives page. Shown if no category, tag, term, author or date is queried.', 'waterfall'),
                     'type'          => 'input'
-                ),                 
+                ),   
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_archive_header_description',
+                    'title'         => __('Archives Page Description', 'waterfall'),
+                    'description'   => __('Add a custom title description for the given archive. Use {description} to use the term description in taxonomy archives.', 'waterfall'),
+                    'type'          => 'textarea'
+                ),                               
                 array(
                     'default'       => '',
                     'id'            => $type . '_archive_posts_header',

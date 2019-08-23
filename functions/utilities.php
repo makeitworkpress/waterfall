@@ -302,7 +302,7 @@ function wf_get_archive_post_type() {
     
     if( isset($wp_query->query['post_type']) ) {
         $type = $wp_query->query['post_type'];
-    } elseif( $wp_query->tax_query->queried_terms ) {
+    } elseif( isset($wp_query->tax_query->queried_terms) && $wp_query->tax_query->queried_terms ) {
 
         // Get the first of the queried taxonomies
         foreach( $wp_query->tax_query->queried_terms as $key => $vars ) {
