@@ -50,6 +50,8 @@
 
 </div>
 
+<?php do_action('waterfall_after_search_main_content'); ?>
+
 <?php
 
     /**

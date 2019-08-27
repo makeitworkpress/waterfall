@@ -50,6 +50,8 @@
 
 </div>
 
+<?php do_action('waterfall_after_archive_main_content'); ?>
+
 <?php 
     /**
      * Retrieves our footer

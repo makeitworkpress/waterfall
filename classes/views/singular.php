@@ -376,7 +376,7 @@ class Singular extends Base {
             $args = apply_filters( 'waterfall_related_args', [
                 'attributes'        => ['class' => 'related-posts'],
                 'gridGap'           => $this->layout['related_grid_gap'] ? $this->layout['related_grid_gap'] : 'default',
-                'none'              => $this->layout['related_none'] ? $this->layout['related_height'] : __('Bummer! No related posts have been found.', 'waterfall'),
+                'none'              => $this->layout['related_none'] ? $this->layout['related_none'] : __('Bummer! No related posts have been found.', 'waterfall'),
                 'pagination'        => false,
                 'postProperties'    => [
                     'appear'        => 'bottom',

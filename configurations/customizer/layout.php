@@ -11,7 +11,7 @@ $types  = wf_get_post_types( false, true );
 $layout = array(
     'description'   => __('Adjust extensive settings and elements for various parts of the website here.', 'waterfall'),
     'id'            => 'waterfall_layout',
-    'title'         => __('Elements', 'waterfall'),
+    'title'         => __('Layout', 'waterfall'),
     'panel'         => true,
     'sections'      => array(
         'style_header' => array(
@@ -424,9 +424,7 @@ if( $types ) {
                     'default'       => __('View Post', 'waterfall'),
                     'id'            => $type . '_related_button',
                     'title'         => __('Text of Related Posts Button', 'waterfall'),
-                    'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'), 
-                    'selector'      => array('selector' => '.related-posts .molecule-post .atom-button span', 'html' => true),
-                    'transport'     => 'postMessage',                   
+                    'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'),              
                     'type'          => 'input'
                 ),
                 array(
@@ -716,9 +714,7 @@ if( $types ) {
                     'default'       => __('View Post', 'waterfall'),
                     'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
                     'id'            => $type . '_archive_content_button',
-                    'title'         => __('Posts Button Label', 'waterfall'),
-                    'selector'      => array('selector' => '.archive-posts .molecule-post .atom-button span', 'html' => true),
-                    'transport'     => 'postMessage',                   
+                    'title'         => __('Posts Button Label', 'waterfall'),                 
                     'type'          => 'input'
                 ),
                 array(
