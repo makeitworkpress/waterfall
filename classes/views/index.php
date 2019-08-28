@@ -13,11 +13,13 @@ class Index extends Base {
      * Sets the properties for the index
      */
     protected function setProperties() {
+        
         $this->properties = apply_filters( 'waterfall_index_properties', [
             'layout' => [
                 // Header
                 'header_align', 
                 'header_breadcrumbs', 
+                'header_breadcrumbs_posts', 
                 'header_description', 
                 'header_height', 
                 'header_title', 
@@ -38,7 +40,7 @@ class Index extends Base {
                 'sidebar_position'
             ]                                     
         ] );
-
+       
 
     }
 
@@ -57,7 +59,7 @@ class Index extends Base {
 
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] ) {
-            $atoms['breadcrumbs'] = [ 'atom' => 'breadcrumbs', 'properties' => []];    
+            $atoms['breadcrumbs'] = ['atom' => 'breadcrumbs', 'properties' => ['archive' => $this->layout['header_breadcrumbs_posts'] ? true : false]];    
         }
         
         // Default title
@@ -123,18 +125,27 @@ class Index extends Base {
             'size'      => is_search() ? 'thumbnail' : 'medium',
             'style'     => is_search() ? 'list' : 'grid'
         ];
+
+        // Settings to determina what Microdata to show
+        $type        = str_replace('_archive', '', $this->type);
+        $blogTypes   = apply_filters( 'waterfall_blog_scheme_post_types', ['post'] );
+        $noSchema    = isset($this->options['scheme_post_types_disable']) && $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : [];          
         
         $args = apply_filters( 'waterfall_archive_posts_args', [            
             'attributes'        => [
-                'class'         => 'content archive-posts'
+                'class'         => 'content archive-posts',
+                'itemtype'      => in_array($type, $blogTypes) ? 'http://schema.org/Blog' : '' 
             ],
             'gridGap'           => $this->layout['content_gap'] ? $this->layout['content_gap'] : 'default', 
             'none'              => $this->layout['content_none'] ? $this->layout['content_none'] : __('Bummer! No posts have been found.', 'waterfall'),
             'postProperties'    => [
                 'appear'        => 'bottom',
                 'attributes'    => [
+                    'itemprop'  => in_array($type, $blogTypes) ? 'blogPost' : '', 
+                    'itemtype'  => in_array($type, $blogTypes) ? 'http://schema.org/BlogPosting' : 'http://schema.org/CreativeWork', 
                     'style'     => ['min-height' => $this->layout['content_height'] ? $this->layout['content_height'] . 'px' : '']
                 ],
+                'blogSchema'    => in_array($type, $blogTypes) ? true : false,
                 'contentAtoms'  => $this->layout['content_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
                 'footerAtoms'   => [ 
                     'button'    => ['atom' => 'button', 'properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
@@ -151,6 +162,7 @@ class Index extends Base {
                     'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : $defaults['size']                    
                 ]
             ],
+            'schema'            => in_array($type, $noSchema) ? false : true,
             'view'              => $this->layout['content_style'] ? $this->layout['content_style'] : $defaults['style'],
             'query'             => $wp_query
         ] );

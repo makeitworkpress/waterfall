@@ -28,7 +28,7 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_width',
                     'title'         => __('Maximum Width of Content', 'waterfall'),
-                    'description'   => __('Adapts the maximum width of content containers. Also overwrites the content width for elementor.', 'waterfall'),
+                    'description'   => __('Adapts the maximum width of content containers. Also overwrites the content width for Elementor.', 'waterfall'),
                     'type'          => 'dimension'  
                 ], 
                 [
@@ -206,3 +206,25 @@ $customizer = [
         ]         
     ]
 ];  
+
+/**
+ * Additional fields if the Elementor plugin is active
+ */
+if( did_action('elementor/loaded') ) {
+    $customizer['sections']['static_front_page']['fields'][] = [
+        'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-top'],
+        'default'       => '',
+        'id'            => 'layout_elementor_padding_top',
+        'title'         => __('Elementor Section Top Padding', 'waterfall'),
+        'description'   => __('The default top padding for primary elementor sections.', 'waterfall'),
+        'type'          => 'dimension'  
+    ];
+    $customizer['sections']['static_front_page']['fields'][] = [
+        'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-bottom'],
+        'default'       => '',
+        'id'            => 'layout_elementor_padding_bottom',
+        'title'         => __('Elementor Section Bottom Padding', 'waterfall'),
+        'description'   => __('The default bottom padding for primary elementor sections.', 'waterfall'),
+        'type'          => 'dimension'  
+    ];    
+}

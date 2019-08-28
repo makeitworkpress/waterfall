@@ -27,11 +27,16 @@ class Waterfall_Elementor {
         // Our widgets
         $this->widgets = $widgets;
 
-        // Register custom categories
-        $this->widgetCategories();
+        // These actions are only executed if elementor is installed
+        if ( did_action('elementor/loaded') ) {
 
-        // Register custom widgets
-        $this->registerWidgets();
+            // Register custom categories
+            $this->widgetCategories();
+
+            // Register custom widgets
+            $this->registerWidgets();
+
+        }
 
     }
 

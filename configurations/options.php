@@ -19,17 +19,26 @@ $options = [
             'id'            => 'general',
             'title'         => __('General Settings', 'waterfall'),
             'description'   => __('The general settings for the theme. Are you looking for lay-out options? Those can be found in the Customizer.', 'waterfall'),
-            'fields'        => [                
+            'fields'        => [ 
                 [
                     'columns'       => 'half',
                     'default'       => '',
-                    'description'   => __('This determines what scheme is used, so that Google knows your website is resembling a person or organization.', 'waterfall'),
+                    'description'   => __('This automatically set-ups the correct JavaScript for loading Google Analytics. The Tracking ID has a format of UA-000000-01.', 'waterfall'),
+                    'id'            => 'analytics',
+                    'title'         => __('Google Analytics Tracking ID', 'waterfall'),
+                    'type'          => 'input'
+                ],                                 
+                [
+                    'columns'       => 'half',
+                    'default'       => '',
+                    'description'   => __('This determines what microdata is used for the website logo, usually representing the organization. Select none to discard.', 'waterfall'),
                     'id'            => 'represent_scheme',
                     'options'       => [
+                        ''             => __('None', 'waterfall'),
                         'organization' => __('Organization', 'waterfall'),
                         'person'       => __('Person', 'waterfall')
                     ],
-                    'title'         => __('Microscheme for Website Representation', 'waterfall'),
+                    'title'         => __('Microdata for Website Representation', 'waterfall'),
                     'type'          => 'select'
                 ],
                 [
@@ -41,14 +50,17 @@ $options = [
                     'title'         => __('Customizer Post Types', 'waterfall'),
                     'multiple'      => true,
                     'type'          => 'select'
-                ],                
+                ], 
                 [
-                    'default'       => '',
-                    'description'   => __('This automatically set-ups the correct JavaScript for loading Google Analytics. The Tracking ID has a format of UA-000000-01.', 'waterfall'),
-                    'id'            => 'analytics',
-                    'title'         => __('Google Analytics Tracking ID', 'waterfall'),
-                    'type'          => 'input'
-                ],                 
+                    'columns'       => 'half',
+                    'default'       => [],
+                    'description'   => __('This removes the microdata for the selected post types.', 'waterfall'),
+                    'id'            => 'scheme_post_types_disable',
+                    'options'       => wf_get_post_types(true),
+                    'title'         => __('Disable Microdata', 'waterfall'),
+                    'multiple'      => true,
+                    'type'          => 'select'
+                ],                                               
                 [
                     'action'        => 'syncMultiSiteOptions',
                     'description'   => __('This function synchronizes Waterfall Customizer and Option settings for all the sites registered in a multisite network. It will use the options of the current site.', 'waterfall'),
@@ -68,7 +80,7 @@ $options = [
             'fields'        => [                  
                 [
                     'default'       => '',
-                    'description'   => __('Improve the loading performance by enabling optimalizations. Be aware that some optimizations such as Disabling the REST API can break plugins.', 'waterfall'),
+                    'description'   => __('Improve the loading performance by enabling optimalizations. Be aware that some optimizations such as Disabling XMLRPC can break plugins.', 'waterfall'),
                     'id'            => 'optimize',
                     'options'       => [
                         'lazyLoad'                  => ['label' => __('Enable Images and Iframe Lazyload', 'waterfall')],
@@ -83,7 +95,6 @@ $options = [
                         'jqueryToFooter'            => ['label' => __('Move the jQuery Script to Footer', 'waterfall')],
                         'disablejQuery'             => ['label' => __('Disable jQuery', 'waterfall')],
                         'disablejQueryMigrate'      => ['label' => __('Disable jQuery Migrate', 'waterfall')],
-                        // 'disableRestApi'            => ['label' => __('Disable the REST API', 'waterfall')],
                         'disableRSD'                => ['label' => __('Disable RSD', 'waterfall')],
                         'disableShortlinks'         => ['label' => __('Disable WordPress Shortlinks', 'waterfall')],                      
                         'disableVersionNumbers'     => ['label' => __('Remove WordPress Version Numbers from Scripts', 'waterfall')],            

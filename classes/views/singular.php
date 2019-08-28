@@ -10,16 +10,28 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Singular extends Base {
 
     /**
+     * Holds the post types that may receive a BlogPosting microdata schema
+     * @access public
+     */
+    public $blogTypes;    
+
+    /**
      * Holds the social networks for a singular post or page
      * @access public
      */
-    public $networks;    
-
+    public $networks; 
+    
     /**
-     * Holds the scheme for a singular post or page
+     * Holds the post types for which schemes are disabled
      * @access public
      */
-    public $scheme;
+    public $noSchema;      
+
+    /**
+     * Holds the primary microdata schema for a singular post or page (that is used in the article tag)
+     * @access public
+     */
+    public $schema;  
 
     /**
      * Sets the data properties for the index
@@ -37,7 +49,8 @@ class Singular extends Base {
                 'header_align', 
                 'header_author', 
                 'header_breadcrumbs', 
-                'header_breadcrumbs_archive', 
+                'header_breadcrumbs_archive',
+                'header_breadcrumbs_terms', 
                 'header_comments',
                 'header_date', 
                 'header_disable_title', 
@@ -99,8 +112,11 @@ class Singular extends Base {
             ]                                     
         ] );
 
-        $this->scheme   = apply_filters( 'waterfall_singular_scheme', $this->type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"',  $this->type );
-
+        // Main Microscheme
+        $this->blogTypes    = apply_filters( 'waterfall_blog_scheme_post_types', ['post'] );
+        $this->noSchema     = isset($this->options['scheme_post_types_disable']) && $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : []; 
+        $this->schema       = in_array($this->type, $this->blogTypes) ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
+        $this->schema       = in_array($this->type, $this->noSchema) ? '' : apply_filters( 'waterfall_singular_schema', $this->schema);
 
     }
 
@@ -109,8 +125,13 @@ class Singular extends Base {
      */
     public function structuredData() {
 
-        // This only counts for blog articles
-        if( $this->type != 'post' ) {
+        // This only counts for types that may have this kind of microdata
+        if( ! in_array($this->type, $this->blogTypes) ) {
+            return;
+        }
+
+        // If schemes are disabled for this post type, return
+        if( in_array($this->type, $this->noSchema) ) {
             return;
         }
 
@@ -158,17 +179,24 @@ class Singular extends Base {
         ];    
     
         /**
-        * Elements
-        */
+         * Elements
+         */
         if( $this->layout['header_breadcrumbs'] ) {
-            $args['atoms']['breadcrumbs'] = ['atom' => 'breadcrumbs', 'properties' => ['archive' => $this->layout['header_breadcrumbs_archive'] ? true : false]];  
+            $args['atoms']['breadcrumbs'] = [
+                'atom' => 'breadcrumbs', 
+                'properties' => ['archive' => $this->layout['header_breadcrumbs_archive'] ? true : false, 'taxonomy' => $this->layout['header_breadcrumbs_terms'] ? true : false]
+            ];  
         }    
         
         // Title
         if( ! $this->layout['header_disable_title'] ) {
             $args['atoms']['title'] = [
                 'atom'          => 'title',
-                'properties'    => ['attributes' => ['class' => 'entry-title'], 'tag' => 'h1', 'schema' => is_single() ? 'name headline' : 'name']
+                'properties'    => [
+                    'attributes'    => ['class' => 'entry-title'], 
+                    'schema'        => in_array($this->type, $this->noSchema) ? false : true,
+                    'tag'           => 'h1'
+                ]
             ];   
         }
         
@@ -177,7 +205,8 @@ class Singular extends Base {
             $args['atoms']['description'] = [ 
                 'atom'              => 'description',
                 'properties'        => [
-                    'description'   =>  $this->meta['page_header_subtitle'] 
+                    'description'   =>  $this->meta['page_header_subtitle'],
+                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
                 ]
             ];
         }
@@ -198,7 +227,10 @@ class Singular extends Base {
             
         // Time
         if( $this->layout['header_date'] ) {
-            $args['atoms']['date']      = ['atom' => 'date', 'properties' => ['attributes' => ['class' => 'entry-time']]];    
+            $args['atoms']['date']      = [
+                'atom'          => 'date', 
+                'properties'    => ['attributes' => ['class' => 'entry-time', 'schema' => in_array($this->type, $this->noSchema) ? false : true]]
+            ];    
         }
     
         // Terms
@@ -221,8 +253,9 @@ class Singular extends Base {
         // Featured image
         $featured       = $this->layout['header_featured'] ? $this->layout['header_featured'] : 'after';
         $featuredArgs   = [ 
+            'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,
             'size'      => $this->layout['header_size'] ? $this->layout['header_size'] : 'half-hd', 
-            'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false 
+            'schema'    => in_array($this->type, $this->noSchema) ? false : true
         ]; 
         
         if( $featured == 'before' ) {
@@ -256,6 +289,7 @@ class Singular extends Base {
                     'description'   => false, 
                     'imageFloat'    => 'left', 
                     'prepend'       => __('Article by ', 'waterfall'),
+                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
                 ]
             ]; 
         }                                                
@@ -287,7 +321,8 @@ class Singular extends Base {
         }
 
         $args = apply_filters( 'waterfall_content_content_args', [
-            'attributes' => ['class' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content']
+            'attributes'    => ['class' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content'],
+            'schema'        => in_array($this->type, $this->noSchema) ? false : true,
         ] );
 
         WP_Components\Build::atom( 'content', $args );     
@@ -392,7 +427,11 @@ class Singular extends Base {
                     'headerAtoms'   => [
                         'title' => [
                             'atom'          => 'title', 
-                            'properties'    => ['attributes' => ['itemprop' => 'name headline', 'class' => 'entry-title'], 'tag' => 'h3', 'link' => 'post' ] 
+                            'properties'    => [
+                                'attributes'    => ['class' => 'entry-title'], 
+                                'tag'           => 'h3', 
+                                'link'          => 'post' 
+                            ] 
                         ] 
                     ],              
                     'grid'          => $this->layout['related_grid'] ? $this->layout['related_grid'] : 'third',
@@ -405,6 +444,7 @@ class Singular extends Base {
                     ]
                 ],                
                 'queryArgs'         => $query,
+                'schema'            => in_array($this->type, $this->noSchema) ? false : true,
                 'view'              => $this->layout['related_style'] ? $this->layout['related_style'] : 'grid'
             ] );
                 
@@ -476,7 +516,11 @@ class Singular extends Base {
         if( $this->layout['footer_author'] ) {
             $args['atoms']['author'] = [ 
                 'atom'          => 'author',
-                'properties'    => ['attributes' => ['class' => 'entry-author'], 'imageFloat' => 'left']
+                'properties'    => [
+                    'attributes'    => ['class' => 'entry-author'], 
+                    'imageFloat'    => 'left',
+                    'schema'        => in_array($this->type, $this->noSchema) ? false : true,
+                ]
             ];
         }      
         

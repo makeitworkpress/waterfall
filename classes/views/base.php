@@ -88,6 +88,7 @@ abstract class Base {
         $this->relatedContainer = true;      
         $this->relatedSection   = true;      
         $this->mainLayout();
+        
     }
 
     /**

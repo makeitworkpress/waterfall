@@ -11,6 +11,7 @@ $atom = MakeitWorkPress\WP_Components\Build::multiParseArgs( $atom, [
     ],  
     'content'   => '',                      // Allows developers to set their own string of content 
     'pages'     => wp_link_pages( ['echo' => false] ),
+    'schema'    => true,                    // If microdata is rendered or not
     'type'      => 'content'                // Accepts content, excerpt;
 ] ); 
 
@@ -29,7 +30,7 @@ if( ! $atom['content'] ) {
             global $more; $more = 0; 
             $atom['content'] = wpautop( get_the_content() ); 
         } else {
-            $atom['content'] = wpautop( get_the_excerpt() ); 
+            $atom['content'] = wpautop( get_the_excerpt($post) );
         }
     
     } elseif( $atom['type'] == 'content' ) {
@@ -37,6 +38,10 @@ if( ! $atom['content'] ) {
     }
     
 } 
+
+if( ! $atom['schema'] ) {
+    unset($atom['attributes']['itemprop']);
+}
 
 $attributes = MakeitWorkPress\WP_Components\Build::attributes($atom['attributes']); ?>
 

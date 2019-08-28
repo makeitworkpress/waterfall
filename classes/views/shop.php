@@ -44,8 +44,8 @@ class Shop extends Base {
             $atoms['archive-title'] = [
                 'atom'  => 'archive-title',
                 'properties' => [
-                    'attributes' => ['class' => 'woocommerce-products-header__title page-title'],
-                    'custom' => woocommerce_page_title(false) 
+                    'attributes'    => ['class' => 'woocommerce-products-header__title page-title'],
+                    'custom'        => woocommerce_page_title(false) 
                 ]
             ];    
         }

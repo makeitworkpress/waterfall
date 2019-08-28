@@ -66,8 +66,7 @@ $register['sidebars'][] = ['id' => 'search', 'name' => __('Search Sidebar', 'wat
 /**
  * Dynamic Footer Sidebars
  */
-$footer     = wf_get_theme_option('layout');
-$sidebars   = isset($footer['footer_sidebars']) && $footer['footer_sidebars'] ? $footer['footer_sidebars'] : 'third';
+$sidebars   = wf_get_theme_option('layout', 'footer_sidebars') ? wf_get_theme_option('layout', 'footer_sidebars') : 'third';
 $columns    = [
     'full'      => ['one', __('One', 'waterfall'), __('first', 'waterfall')], 
     'half'      => ['two', __('Two', 'waterfall'), __('second', 'waterfall')], 

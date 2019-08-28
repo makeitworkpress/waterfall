@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Waterfall\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-28 09:26+0000\n"
-"PO-Revision-Date: 2019-08-28 09:59+0000\n"
+"POT-Creation-Date: 2019-08-28 11:36+0000\n"
+"PO-Revision-Date: 2019-08-28 11:46+0000\n"
 "Last-Translator: leichim <michielsite@hotmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -67,22 +67,26 @@ msgstr "Microschema voor Website"
 #: configurations/options.php:38
 msgid ""
 "This determines for which post types you can adjust the lay-out settings in "
-"the customizer"
+"the customizer for and which post types will get a sidebar."
 msgstr ""
+"Dit bepaalt voor welke Post typen je de lay-out instellingen in de "
+"Customizer kunt aanpassen en welke Post typen een sidebar krijgen."
 
 #: configurations/options.php:41
 msgid "Customizer Post Types"
-msgstr ""
+msgstr "Customizer Post Types"
 
 #: configurations/options.php:47
 msgid ""
 "This automatically set-ups the correct JavaScript for loading Google "
 "Analytics. The Tracking ID has a format of UA-000000-01."
 msgstr ""
+"Hierdoor wordt automatisch het juiste scriptingesteld voor het laden van "
+"Google Analytics. De Tracking ID heeft een formaat van UA-00000000-01."
 
 #: configurations/options.php:49
 msgid "Google Analytics Tracking ID"
-msgstr ""
+msgstr "Google Analytics Tracking ID"
 
 #: configurations/options.php:54
 msgid ""
@@ -90,237 +94,253 @@ msgid ""
 "the sites registered in a multisite network. It will use the options of the "
 "current site."
 msgstr ""
+"Deze functie synchroniseert de Waterfall Customizer en optie-instellingen "
+"voor alle sites die zijn geregistreerd in een multisite-netwerk. Deze "
+"functie gebruikt de opties van de huidige site."
 
 #: configurations/options.php:56
 msgid "Synchronize"
-msgstr ""
+msgstr "Synchroniseer"
 
 #: configurations/options.php:58
 msgid "Synchronize Settings"
-msgstr ""
+msgstr "Synchroniseer Instellingen"
 
 #: configurations/options.php:66
 msgid "Optimizations"
-msgstr ""
+msgstr "Optimalisaties"
 
 #: configurations/options.php:71
 msgid ""
 "Improve the loading performance by enabling optimalizations. Be aware that "
-"some optimizations such as Disabling the REST API can break plugins."
+"some optimizations such as Disabling XMLRPC can break plugins."
 msgstr ""
+"Verbeter de laadprestaties door optimalisaties in te schakelen. Houd er "
+"rekening mee dat sommige optimalisaties zoals het uitschakelen van XMLRPC "
+"plugins kunnen breken."
 
 #: configurations/options.php:74
 msgid "Enable Images and Iframe Lazyload"
-msgstr ""
+msgstr "Afbeeldingen en Iframe Lazyload inschakelen"
 
 #: configurations/options.php:75
 msgid "Defer CSS"
-msgstr ""
+msgstr "Defer CSS"
 
 #: configurations/options.php:76
 msgid "Defer Javascript Loading"
-msgstr ""
+msgstr "Defer Javascript Loading"
 
 #: configurations/options.php:77
 msgid "Disable Comments"
-msgstr ""
+msgstr "Commentaar uitschakelen"
 
 #: configurations/options.php:78
 msgid "Disable Embed Scripts. Breaks video embedding."
-msgstr ""
+msgstr "Embed Scripts uitschakelen. Breekt video embedding."
 
 #: configurations/options.php:79
 msgid "Disable Emoji"
-msgstr ""
+msgstr "Emoji uitschakelen"
 
 #: configurations/options.php:80
 msgid "Disable Feeds"
-msgstr ""
+msgstr "Feeds uitschakelen"
 
 #: configurations/options.php:81
 msgid "Disable Heartbeat"
-msgstr ""
+msgstr "Heartbeat uitschakelen"
 
 #: configurations/options.php:82
 msgid "Slow Down Heartbeat Script"
-msgstr ""
+msgstr "Heartbeat Script vertragen"
 
 #: configurations/options.php:83
 msgid "Move the jQuery Script to Footer"
-msgstr ""
+msgstr "Verplaats het jQuery Script naar de Footer"
 
 #: configurations/options.php:84
 msgid "Disable jQuery"
-msgstr ""
+msgstr "JQuery uitschakelen"
 
 #: configurations/options.php:85
 msgid "Disable jQuery Migrate"
-msgstr ""
+msgstr "JQuery Migrate uitschakelen"
+
+#: configurations/options.php:86
+msgid "Disable RSD"
+msgstr "RSD uitschakelen"
 
 #: configurations/options.php:87
-msgid "Disable RSD"
-msgstr ""
+msgid "Disable WordPress Shortlinks"
+msgstr "WordPress Shortlinks uitschakelen"
 
 #: configurations/options.php:88
-msgid "Disable WordPress Shortlinks"
-msgstr ""
+msgid "Remove WordPress Version Numbers from Scripts"
+msgstr "WordPress-versie nummers te verwijderen uit de scripts"
 
 #: configurations/options.php:89
-msgid "Remove WordPress Version Numbers from Scripts"
-msgstr ""
+msgid "Disable the WLW Manifest"
+msgstr "Het WLW-manifest uitschakelen"
 
 #: configurations/options.php:90
-msgid "Disable the WLW Manifest"
-msgstr ""
+msgid "Remove the WordPress Version from front-end"
+msgstr "Verwijder de WordPress-versie uit front-end"
 
 #: configurations/options.php:91
-msgid "Remove the WordPress Version from front-end"
-msgstr ""
+msgid "Disable XMLRPC"
+msgstr "XMLRPC uitschakelen"
 
 #: configurations/options.php:92
-msgid "Disable XMLRPC"
-msgstr ""
+msgid "Limit Post Revisions to 5"
+msgstr "Beperk revisies tot 5"
 
 #: configurations/options.php:93
-msgid "Limit Post Revisions to 5"
-msgstr ""
+msgid "Block external HTTP Requests. Breaks external embeds."
+msgstr "Externe HTTP-verzoeken blokkeren. Breekt externe embeds."
 
 #: configurations/options.php:94
-msgid "Block external HTTP Requests. Breaks external embeds."
-msgstr ""
+msgid "Enqueue Comment JavaScript only on Comments"
+msgstr "Enqueue Comment JavaScript alleen bij Reacties"
 
 #: configurations/options.php:95
-msgid "Enqueue Comment JavaScript only on Comments"
-msgstr ""
-
-#: configurations/options.php:96
 msgid "Remove Additional Styling for Comments"
-msgstr ""
+msgstr "Verwijder extra styling voor Reacties."
 
-#: configurations/options.php:98
+#: configurations/options.php:97
 msgid "Theme Optimizations"
-msgstr ""
+msgstr "Thema-optimalisaties"
 
 #: configurations/postmeta.php:21
 msgid "Waterfall Options"
-msgstr ""
+msgstr "Waterfall opties"
 
 #: configurations/postmeta.php:28 configurations/customizer/general.php:19
 #: configurations/customizer/layout.php:14
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: configurations/postmeta.php:34
 msgid "Fullwidth Main Content"
-msgstr ""
+msgstr "Volledige breedte Hoofdinhoud"
 
 #: configurations/postmeta.php:35
 msgid ""
 "Makes the main content fullwidth without any padding and sidebars. Useful if "
 "using page-builders."
 msgstr ""
+"Maakt de hoofdinhoud de volle breedte, zonder marges en zijbalken. Handig "
+"bij gebruik van paginabouwers.\n"
 
 #: configurations/postmeta.php:39
 msgid "Enable Fullwidth Content"
-msgstr ""
+msgstr "Volledige breedte-inhoud inschakelen"
 
 #: configurations/postmeta.php:45
 msgid "Give this post or page a transparent header."
-msgstr ""
+msgstr "Geef deze post of pagina een transparante header."
 
 #: configurations/postmeta.php:47
 msgid "Header Transparency"
 msgstr ""
+"Header transparantie\n"
 
 #: configurations/postmeta.php:51
 msgid "Enable Transparent Header"
-msgstr ""
+msgstr "Header transparantie inschakelen"
 
 #: configurations/postmeta.php:56
 msgid ""
 "The Header is the main header of the site, usually containing the main "
 "navigation."
 msgstr ""
+"De Header is het begin van de site, meestal met daarin de hoofdnavigatie."
 
 #: configurations/postmeta.php:58 configurations/customizer/layout.php:24
 msgid "Disable Header"
-msgstr ""
+msgstr "Header uitschakelen"
 
 #: configurations/postmeta.php:62
 msgid "Disable the header"
-msgstr ""
+msgstr "De header uitschakelen"
 
 #: configurations/postmeta.php:67
 msgid ""
 "The Footer is the main footer of the site, usually containing widgets, "
 "copyright and more."
 msgstr ""
+"De Footer staat onderdaan de site, meestal met widgets, copyright en meer."
 
 #: configurations/postmeta.php:69 configurations/customizer/layout.php:979
 msgid "Disable Footer"
-msgstr ""
+msgstr "Footer uitschakelen"
 
 #: configurations/postmeta.php:73
 msgid "Disable the footer"
-msgstr ""
+msgstr "De footer uitschakelen"
 
 #: configurations/postmeta.php:78
 msgid ""
 "The Title Section usually shows elements such as the title, the featured "
 "image and so forth."
 msgstr ""
+"De titelsectie toont meestal elementen zoals de titel, de uitgelichte "
+"afbeelding, enzovoort."
 
 #: configurations/postmeta.php:80 configurations/customizer/layout.php:177
 msgid "Disable Title Section"
-msgstr ""
+msgstr "Titelsectie uitschakelen"
 
 #: configurations/postmeta.php:84
 msgid "Disable title section"
-msgstr ""
+msgstr "Titelsectie uitschakelen"
 
 #: configurations/postmeta.php:89
 msgid "The sidebar is usually shown left or right of your pages."
-msgstr ""
+msgstr "De zijbalk wordt meestal links of rechts van je pagina's getoond."
 
 #: configurations/postmeta.php:91
 msgid "Disable Sidebar"
-msgstr ""
+msgstr "Zijbalk uitschakelen"
 
 #: configurations/postmeta.php:95
 msgid "Disable sidebar"
-msgstr ""
+msgstr "Zijbalk uitschakelen"
 
 #: configurations/postmeta.php:100
 msgid "The Related Section usually contains related posts and post navigation."
 msgstr ""
+"De gerelateerde sectie bevat meestal gerelateerde berichten en postnavigatie."
 
 #: configurations/postmeta.php:102
 msgid "Disable Page Related Section"
-msgstr ""
+msgstr "Gerelateerde sectie uitschakelen"
 
 #: configurations/postmeta.php:106
 msgid "Disable related section"
-msgstr ""
+msgstr "Gerelateerde sectie uitschakelen"
 
 #: configurations/postmeta.php:111
 msgid ""
 "The Content Footer usually shows elements such as comments, the author and "
 "so forth."
 msgstr ""
+"De Content Footer toont meestal elementen zoals de reacties, de auteur, "
+"enzovoort."
 
 #: configurations/postmeta.php:113
 msgid "Disable Page Content Footer"
-msgstr ""
+msgstr "De contentfooter uitschakelen"
 
 #: configurations/postmeta.php:117
 msgid "Disable page footer"
-msgstr ""
+msgstr "De paginafooter uitschakelen"
 
 #: configurations/postmeta.php:123
 msgid ""
 "The title section displays your title, featured images, meta information and "
 "more."
-msgstr ""
+msgstr "De titelsectie toont uw titel, afbeeldingen, meta-informatie en meer."
 
 #: configurations/postmeta.php:126 configurations/customizer/colors.php:265
 #: configurations/customizer/layout.php:171
@@ -329,7 +349,7 @@ msgstr "Titelgedeelte"
 
 #: configurations/postmeta.php:131
 msgid "Subtitle Title Section"
-msgstr ""
+msgstr "Ondertitel titelsectie"
 
 #: configurations/postmeta.php:137
 msgid "Button Title Section Text"
@@ -367,169 +387,179 @@ msgstr ""
 msgid "Footer Menu"
 msgstr ""
 
-#: configurations/register.php:41
+#: configurations/register.php:43
 #, php-format
 msgid "%s Sidebar"
 msgstr "Zijbalk voor %s"
 
-#: configurations/register.php:42
+#: configurations/register.php:44
 #, php-format
 msgid "The sidebar for a single %s."
 msgstr ""
 
-#: configurations/register.php:52
+#: configurations/register.php:54
 #, php-format
 msgid "%s Archive Sidebar"
 msgstr "Zijbalk voor %s Archieven"
 
-#: configurations/register.php:53
+#: configurations/register.php:55
 #, php-format
 msgid "The sidebar for the %s archives."
 msgstr ""
 
-#: configurations/register.php:59
+#: configurations/register.php:64
 msgid "Search Sidebar"
 msgstr ""
 
-#: configurations/register.php:59
+#: configurations/register.php:64
 msgid "The sidebar for search page."
 msgstr ""
 
-#: configurations/register.php:60
-msgid "Footer One"
+#: configurations/register.php:72
+msgid "One"
 msgstr ""
 
-#: configurations/register.php:60
-msgid "The first footer column sidebar."
+#: configurations/register.php:72
+msgid "first"
 msgstr ""
 
-#: configurations/register.php:61
-msgid "Footer Two"
+#: configurations/register.php:73
+msgid "Two"
 msgstr ""
 
-#: configurations/register.php:61
-msgid "The second footer column sidebar."
-msgstr ""
-
-#: configurations/register.php:62
-msgid "Footer Three"
-msgstr ""
-
-#: configurations/register.php:62
-msgid "The third footer column sidebar."
-msgstr ""
-
-#: configurations/register.php:63
-msgid "Footer Four"
-msgstr ""
-
-#: configurations/register.php:63
-msgid "The fourth footer column sidebar."
-msgstr ""
-
-#: configurations/register.php:64
-msgid "Footer Five"
-msgstr ""
-
-#: configurations/register.php:64
-msgid "The fifth footer column sidebar."
-msgstr ""
-
-#: configurations/register.php:69
-msgid "Woocommerce Product Archive"
-msgstr "Producten Archief WooCommerce"
-
-#: configurations/register.php:70
-msgid "The sidebar for product archives, also known as the shop page."
+#: configurations/register.php:73
+msgid "second"
 msgstr ""
 
 #: configurations/register.php:74
+msgid "Three"
+msgstr ""
+
+#: configurations/register.php:74
+msgid "third"
+msgstr ""
+
+#: configurations/register.php:75
+msgid "Four"
+msgstr ""
+
+#: configurations/register.php:75
+msgid "fourth"
+msgstr ""
+
+#: configurations/register.php:76
+msgid "Five"
+msgstr ""
+
+#: configurations/register.php:76
+msgid "fifth"
+msgstr ""
+
+#: configurations/register.php:83
+#, php-format
+msgid "Footer %s"
+msgstr ""
+
+#: configurations/register.php:84
+#, php-format
+msgid "The %s footer column sidebar."
+msgstr ""
+
+#: configurations/register.php:96
+msgid "Woocommerce Product Archive"
+msgstr "Producten Archief WooCommerce"
+
+#: configurations/register.php:97
+msgid "The sidebar for product archives, also known as the shop page."
+msgstr ""
+
+#: configurations/register.php:101
 msgid "Woocommerce Product Sidebar"
 msgstr "Zijbalk voor WooCommerce Producten"
 
-#: configurations/register.php:75
+#: configurations/register.php:102
 msgid "The sidebar for products."
-msgstr ""
+msgstr "De sidebar voor producten."
 
 #: functions/utilities.php:114
 msgid "Thumbnail"
-msgstr ""
+msgstr "Thumbnail"
 
 #: functions/utilities.php:115 functions/utilities.php:159
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: functions/utilities.php:116 functions/utilities.php:160
 msgid "Large"
-msgstr ""
+msgstr "Large"
 
 #: functions/utilities.php:117
 msgid "Fullsize"
-msgstr ""
+msgstr "Fullsize"
 
 #: functions/utilities.php:118
 msgid "LD (640x360)"
-msgstr ""
+msgstr "LD (640x360)"
 
 #: functions/utilities.php:119
 msgid "SD (854x480)"
-msgstr ""
+msgstr "SD (854x480)"
 
 #: functions/utilities.php:120
 msgid "HD (1280x720)"
-msgstr ""
+msgstr "HD (1280x720)"
 
 #: functions/utilities.php:121
 msgid "FHD (1920x1080)"
-msgstr ""
+msgstr "FHD (1920x1080)"
 
 #: functions/utilities.php:122
 msgid "QHD (2560x1440)"
-msgstr ""
+msgstr "QHD (2560x1440)"
 
 #: functions/utilities.php:123
 msgid "UHD (3840x2560)"
-msgstr ""
+msgstr "UHD (3840x2560)"
 
 #: functions/utilities.php:124
 msgid "Half LD (640x240)"
-msgstr ""
+msgstr "Half LD (640x240)"
 
 #: functions/utilities.php:125
 msgid "Half SD (854x360)"
-msgstr ""
+msgstr "Half SD (854x360)"
 
 #: functions/utilities.php:126
 msgid "Half HD (1280x540)"
-msgstr ""
+msgstr "Half HD (1280x540)"
 
 #: functions/utilities.php:127
 msgid "Half FHD (1920x720)"
-msgstr ""
+msgstr "Half FHD (1920x720)"
 
 #: functions/utilities.php:128
 msgid "Half QHD (2560x1080)"
-msgstr ""
+msgstr "Half QHD (2560x1080)"
 
 #: functions/utilities.php:129
 msgid "Half UHD (3840x1440)"
-msgstr ""
+msgstr "Half UHD (3840x1440)"
 
 #: functions/utilities.php:130
 msgid "Square LD (360x360)"
-msgstr ""
+msgstr "Square LD (360x360)"
 
 #: functions/utilities.php:131
 msgid "Square SD (480x480)"
-msgstr ""
+msgstr "Square SD (480x480)"
 
 #: functions/utilities.php:132
 msgid "Square HD (720x720)"
-msgstr ""
+msgstr "Square HD (720x720)"
 
 #: functions/utilities.php:133
 msgid "Square FHD (1080x1080)"
-msgstr ""
+msgstr "Square FHD (1080x1080)"
 
 #: functions/utilities.php:142
 msgid "No columns"
@@ -2398,19 +2428,19 @@ msgstr "Productcatalogus"
 
 #: configurations/customizer/woocommerce.php:32
 msgid "Disable Product Archive Title Section"
-msgstr ""
+msgstr "De titelsectie van het productenarchief uitschakelen"
 
 #: configurations/customizer/woocommerce.php:38
 msgid "Display Breadcrumbs in Product Archive"
-msgstr ""
+msgstr "Broodkruimels weergeven in het productenarchief"
 
 #: configurations/customizer/woocommerce.php:43
 msgid "Width of title section in product archives."
-msgstr ""
+msgstr "Breedte van de titelsectie in productarchieven."
 
 #: configurations/customizer/woocommerce.php:46
-msgid "Product Archive Header Width"
-msgstr ""
+msgid "Product Archive Title Section Width"
+msgstr "Breedte Titel Sectie Productenarchief "
 
 #: configurations/customizer/woocommerce.php:51
 msgid "Height of title section in product archives."

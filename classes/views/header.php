@@ -55,18 +55,20 @@ class Header extends Base {
          * Set-up our atoms
          * The header atoms form the building blocks for the header
          */
+        $represents = wf_get_theme_option('options', 'represent_scheme');
 
         // Default header items
         $atoms = [
             'logo'  => [
                 'atom'                      => 'logo',
                 'properties'                => [
-                    'attributes'            => ['itemtype' => wf_get_theme_option('options', 'represent_scheme') == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
+                    'attributes'            => ['itemtype' => $represents == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
                     'float'                 => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
                     'default'               => $this->customizer['logo'] ? $this->customizer['logo'] : ['src' => get_template_directory_uri() . '/assets/img/waterfall.png', 'height' => 64, 'width' => 306],
                     'defaultTransparent'    => $this->customizer['logo_transparent'],
                     'mobile'                => $this->customizer['logo_mobile'], 
-                    'mobileTransparent'     => $this->customizer['logo_mobile_transparent']
+                    'mobileTransparent'     => $this->customizer['logo_mobile_transparent'],
+                    'schema'                => $represents ? true : false
                 ]
             ],
             'menu'  => [ 

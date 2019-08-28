@@ -81,7 +81,8 @@ class Footer extends Base {
             $sidebarGrid = [];
         }
 
-        $itemType = wf_get_theme_option('options', 'represent_scheme') == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'; 
+        $represents = wf_get_theme_option('options', 'represent_scheme');
+        $itemType   = $represents == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'; 
 
         // Logo
         if( is_numeric($this->customizer['footer_logo']) ) {
@@ -94,7 +95,8 @@ class Footer extends Base {
                         'itemtype' => $itemType
                     ],
                     'float'         => 'center',
-                    'default'       => ['src' => $logo[0], 'height' => $logo[2], 'width' => $logo[1]]
+                    'default'       => ['src' => $logo[0], 'height' => $logo[2], 'width' => $logo[1]],
+                    'schema'        => $represents ? true : false
                 ]
             ];
         }       

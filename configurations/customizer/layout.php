@@ -246,7 +246,13 @@ if( $types ) {
                     'id'            => $type . '_header_breadcrumbs_archive',
                     'title'         => __('Display Archive in Breadcrumbs', 'waterfall'),
                     'type'          => 'checkbox'
-                ),                
+                ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_header_breadcrumbs_terms',
+                    'title'         => __('Display Associated Terms in Breadcrumbs', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                                 
                 array(
                     'default'       => '',
                     'id'            => $type . '_header_date',
@@ -608,6 +614,12 @@ if( $types ) {
                     'title'         => __('Display Breadcrumbs', 'waterfall'),
                     'type'          => 'checkbox'
                 ),
+                array(
+                    'default'       => '',
+                    'id'            => $type . '_archive_header_breadcrumbs_posts',
+                    'title'         => __('Display Post Type in Breadcrumbs', 'waterfall'),
+                    'type'          => 'checkbox'
+                ),                
                 array(
                     'default'       => 'default',
                     'description'   => __('Width of title section in posts archives.', 'waterfall'),

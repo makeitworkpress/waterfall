@@ -72,22 +72,33 @@ function wf_get_theme_option( $type = '', $key = '', $prefix = '' ) {
 }
 
 /**
- * Retrieves the main microscheme for a theme
+ * Retrieves the main microdata for a theme
  */
 function wf_get_main_schema() {
     
-    $archive    = wf_get_archive_post_type();
+
+    $blogTypes  = apply_filters( 'waterfall_blog_scheme_post_types', ['post'] );
+    $disabled   = wf_get_theme_option('options', 'scheme_post_types_disable') ? wf_get_theme_option('options', 'scheme_post_types_disable') : [];
     $schema     = 'http://schema.org/WebPageElement';
-    
-    if( is_singular('post') || (is_archive() && $archive== 'post') ) {
-        $schema = 'https://schema.org/Blog';
+
+    if( is_singular($blogTypes) ) {
+        global $post;
+        if( in_array($post->post_type, $blogTypes) && ! in_array($post->post_type, $disabled) ) {
+            $schema = 'https://schema.org/Blog';
+        }
     }
+
+    // Archive blog schemes
+    $archive    = wf_get_archive_post_type();
+    if( is_archive() && in_array($archive, $blogTypes) && ! in_array($archive, $disabled) ) {
+        $schema = 'https://schema.org/Blog';
+    }    
         
     if( is_search() ) {
         $schema = 'https://schema.org/SearchResultsPage';
     }
         
-    return apply_filters('waterfall_main_scheme', $schema);
+    return apply_filters('waterfall_main_schema', $schema);
     
 }
 
@@ -110,7 +121,7 @@ function wf_is_custom() {
  * Retrieves all image sizes for this theme
  */
 function wf_get_image_sizes() {
-    return apply_filters( 'waterfall_image_sizes', array(
+    return apply_filters( 'waterfall_image_sizes', [
         'thumbnail'     => __('Thumbnail', 'waterfall'),
         'medium'        => __('Medium', 'waterfall'),
         'large'         => __('Large', 'waterfall'),
@@ -131,27 +142,27 @@ function wf_get_image_sizes() {
         'square-sd'     => __('Square SD (480x480)', 'waterfall'),
         'square-hd'     => __('Square HD (720x720)', 'waterfall'),
         'square-fhd'    => __('Square FHD (1080x1080)', 'waterfall')          
-    ) );
+    ] );
 }
 
 /**
  * Retrieves the default grid columns of the grid system
  */
 function wf_get_column_options() {
-    return apply_filters( 'waterfall_column_options', array(
+    return apply_filters( 'waterfall_column_options', [
         'full'      => __('No columns', 'waterfall'),
         'half'      => __('Two columns', 'waterfall'),
         'third'     => __('Three columns', 'waterfall'),
         'fourth'    => __('Four columns', 'waterfall'),
         'fifth'     => __('Five columns', 'waterfall')
-    ) );
+    ] );
 }
 
 /**
  * Retrieves the default grid columns of the grid system
  */
 function wf_get_grid_gaps() {
-    return apply_filters( 'waterfall_grid_gaps', array(
+    return apply_filters( 'waterfall_grid_gaps', [
         'default'   => __('Default', 'waterfall'),
         'none'      => __('None', 'waterfall'),
         'tiny'      => __('Tiny', 'waterfall'),
@@ -159,37 +170,37 @@ function wf_get_grid_gaps() {
         'medium'    => __('Medium', 'waterfall'),
         'large'     => __('Large', 'waterfall'),
         'huge'      => __('Huge', 'waterfall')
-    ) );
+    ] );
 }
 
 /**
  * Retrieve options for displaying the sidebar
  */
 function wf_get_sidebar_options() {
-    return apply_filters( 'waterfall_sidebar_options', array(
+    return apply_filters( 'waterfall_sidebar_options', [
         'full'      => __('No Sidebars', 'waterfall'),
         'left'      => __('Left Sidebar', 'waterfall'),
         'right'     => __('Right Sidebar', 'waterfall'),
         'bottom'    => __('Bottom Sidebar', 'waterfall'),
-    ) );      
+    ] );      
 }
 
 /**
  * Retrieve options for container/fullwidth
  */
 function wf_get_container_options() {
-    return apply_filters( 'waterfall_container_options', array(
+    return apply_filters( 'waterfall_container_options', [
         ''          => __('Select Option', 'waterfall'),
         'default'   => __('Default', 'waterfall'),
         'full'      => __('Fullwidth', 'waterfall')
-    ) );  
+    ] );  
 }
                          
 /**
  * Retrieves screen heights
  */
 function wf_get_height_options() {
-    return apply_filters( 'waterfall_height_options', array(
+    return apply_filters( 'waterfall_height_options', [
         'default'   => __('No minimum height', 'waterfall'),
         'full'      => __('Fullscreen height', 'waterfall'),
         'normal'    => __('Three quarter of screen height', 'waterfall'),
@@ -197,64 +208,63 @@ function wf_get_height_options() {
         'half'      => __('Half of screen height', 'waterfall'),
         'third'     => __('Third of screen height', 'waterfall'),
         'quarter'   => __('Quarter of screen height', 'waterfall')
-    ) );  
+    ] );  
 }
 
 /**
  * Retrieves alignments
  */
 function wf_get_align_options() {
-    return apply_filters( 'waterfall_align_options', array(
+    return apply_filters( 'waterfall_align_options', [
         'left'    => __('Left', 'waterfall'),
         'center'  => __('Center', 'waterfall'),
         'right'   => __('Right', 'waterfall')
-    ) );  
+    ] );  
 }
 
 /**
  * Retrieves button options
  */
 function wf_get_button_options() {
-    return apply_filters( 'waterfall_button_options', array(
+    return apply_filters( 'waterfall_button_options', [
         'none'      => __('No button', 'waterfall'),
         'default'   => __('Default button', 'waterfall'),
         'arrow'     => __('Downwards Arrow', 'waterfall')
-    ) );  
+    ] );  
 }
 
 /**
  * Retrieves background options
  */
 function wf_get_background_options() {
-    return apply_filters( 'waterfall_background_options', array(
+    return apply_filters( 'waterfall_background_options', [
         'background'    => __('As background of the title section', 'waterfall'),
         'before'        => __('Before the page title in the title section', 'waterfall'),
         'after'         => __('After the page title in the title section', 'waterfall'),
         'none'          => __('Do not use the featured image in the title section', 'waterfall')
-    ) );  
+    ] );  
 }
 
 /**
  * Retrieves float options
  */
 function wf_get_float_options() {
-    return apply_filters( 'waterfall_float_options', array(
+    return apply_filters( 'waterfall_float_options', [
         'center' => __('Center', 'waterfall'),
         'left'   => __('Left', 'waterfall'),
         'none'   => __('None', 'waterfall'),
         'right'  => __('Right', 'waterfall')
-    ) );  
+     ] );  
 }
 
 /**
  * Retrieves grid view options
  */
 function wf_get_grid_options() {
-    return apply_filters( 'waterfall_grid_options', array(
+    return apply_filters( 'waterfall_grid_options', [
         'grid'      => __('Grid', 'waterfall'),
-        'list'      => __('List', 'waterfall'),
-        'magazine'  => __('Magazine', 'waterfall')
-    ) );
+        'list'      => __('List', 'waterfall')
+    ] );
 }
 
 /**
@@ -263,7 +273,8 @@ function wf_get_grid_options() {
  * @return array $urls The array with social network urls as values, and their sanitized names as keys
  */
 function wf_get_social_networks() {
-    $networks   = apply_filters( 'waterfall_social_loaded_networks', array(
+    
+    $networks   = apply_filters( 'waterfall_social_loaded_networks', [
         'telephone'     => __('Telephone', 'waterfall'), 
         'email'         => __('Email', 'waterfall'), 
         'facebook'      => __('Facebook', 'waterfall'), 
@@ -277,9 +288,10 @@ function wf_get_social_networks() {
         'reddit'        => __('Reddit', 'waterfall'),   
         'github'        => __('Github', 'waterfall'),   
         'whatsapp'      => __('Whatsapp', 'waterfall')           
-    ));
+    ] );
+    
     $options    = wf_get_theme_option('customizer');
-    $urls       = array();
+    $urls       = [];
     
     foreach( $networks as $network => $label ) {
         if( isset($options[$network]) && $options[$network] )

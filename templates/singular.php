@@ -14,7 +14,7 @@ while( have_posts() ) {
     // Initialize our post
     $postView = new Views\Singular('singular'); ?>
 
-    <article <?php post_class(); ?> <?php echo $postView->scheme; ?>>
+    <article <?php post_class(); ?> <?php echo $postView->schema; ?>>
 
         <?php
 

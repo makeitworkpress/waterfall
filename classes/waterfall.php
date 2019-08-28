@@ -120,10 +120,10 @@ class Waterfall {
         /**
          * Enable optimizations for the theme
          */
-        $options            = wf_get_theme_option();
+        $optimize           = wf_get_theme_option('options', 'optimize');
 
-        if( isset($options['optimize']) && $options['optimize'] ) {
-            $optimize       = new MakeitWorkPress\WP_Optimize\Optimize($options['optimize']);    
+        if( $optimize ) {
+            $optimize       = new MakeitWorkPress\WP_Optimize\Optimize($optimize);    
         }
 
         /**

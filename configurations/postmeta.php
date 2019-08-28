@@ -134,14 +134,14 @@ $postmeta = array(
                 array(
                     'columns'       => 'fourth',
                     'id'            => 'page_header_button_text',
-                    'title'         => __('Button Title Section Text', 'waterfall'),
+                    'title'         => __('Title Button Section Text', 'waterfall'),
                     'description'   => __('Enter the text for an optional button here.', 'waterfall'),
                     'type'          => 'input'
                 ),
                 array(
                     'columns'       => 'fourth',
                     'id'            => 'page_header_button_link',
-                    'title'         => __('Button Title Section Link', 'waterfall'),
+                    'title'         => __('Title Section Button Link', 'waterfall'),
                     'description'   => __('Enter the link for this button here.', 'waterfall'),
                     'type'          => 'input',
                     'subtype'       => 'url',
