@@ -43,7 +43,7 @@ $woocommerce = [
                     'description'   => __('Width of title section in product archives.', 'waterfall'),
                     'id'            => 'product_archive_header_width',
                     'choices'       => wf_get_container_options(),
-                    'title'         => __('Product Archive Header Width', 'waterfall'),
+                    'title'         => __('Product Archive Title Section Width', 'waterfall'),
                     'type'          => 'select'
                 ),
                 array(

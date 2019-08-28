@@ -87,7 +87,7 @@ class Waterfall {
         /**
          * Include basic utility functions
          */
-        require_once( get_template_directory() . '/functions/utilities.php' );   
+        require_once( get_template_directory() . '/functions/utilities.php' );
         
         /**
          * Enables our theme to be updated through an external repository, in this case github

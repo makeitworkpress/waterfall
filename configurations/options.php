@@ -35,7 +35,7 @@ $options = [
                 [
                     'columns'       => 'half',
                     'default'       => class_exists('Waterfall_Reviews\Plugin') ? ['post', 'page', 'reviews'] : ['post', 'page'],
-                    'description'   => __('This determines for which post types you can adjust the lay-out settings in the customizer', 'waterfall'),
+                    'description'   => __('This determines for which post types you can adjust the lay-out settings in the customizer for and which post types will get a sidebar.', 'waterfall'),
                     'id'            => 'customizer_post_types',
                     'options'       => wf_get_post_types(true),
                     'title'         => __('Customizer Post Types', 'waterfall'),
