@@ -128,8 +128,9 @@ class Meta {
     public function add( $object ) {
         
         // We should have an id
-        if( ! isset($this->metaBox['id']) )
+        if( ! isset($this->metaBox['id']) ) {
             return;
+        }
         
         // Post type metabox uses the add meta box function
         if( $this->type == 'post' ) {
@@ -205,6 +206,7 @@ class Meta {
         }
         
         $frame                  = new Frame( $this->metaBox, $values );
+        $frame->type            = $this->type;
         $frame->settingsFields  = wp_nonce_field( 'wp-custom-fields-metaboxes-' . $frame->id, 'wp-custom-fields-metaboxes-nonce-' . $frame->id, true, false );
         
         // Render our output
@@ -223,27 +225,27 @@ class Meta {
 
         // Do not save on autosaves
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-            return $id; 
+            return; 
         }
         
         // Some pages do not have the nonce
         if( ! isset($_POST['wp-custom-fields-metaboxes-nonce-' . $this->metaBox['id']]) ) {
-            return $id;
+            return;
         }
 
         // Check our user capabilities
         if( ! current_user_can( 'edit_posts', $id ) || ! current_user_can( 'edit_pages', $id ) ) {
-            return $id;
+            return;
         }
 
         // If we are editing users, we are more limited
         if( $this->type == 'user' && ! current_user_can('edit_users') ) {
-            return $id;  
+            return;  
         }  
          
         // Check our nonces
         if( ! wp_verify_nonce( $_POST['wp-custom-fields-metaboxes-nonce-' . $this->metaBox['id']], 'wp-custom-fields-metaboxes-' . $this->metaBox['id'] ) ) {
-            return $id;
+            return;
         }
         
         // Retrieve our current meta values

@@ -14,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) )
     die;
 
 class Framework extends Base {
+
+    // Contains the css generator module
+    public $css;    
     
     // Contains icons available in the frame
     public static $icons;
@@ -67,9 +70,7 @@ class Framework extends Base {
         ];
         
         // Setup our styling
-        if( ! is_admin() || is_customize_preview() ) {
-            Styling::instance( [] );
-        }
+        $this->css = Styling::instance( [] );
         
     }
     
@@ -113,12 +114,16 @@ class Framework extends Base {
         require_once( WP_CUSTOM_FIELDS_PATH . 'config/fonts.php' );
         self::$fonts                = apply_filters( 'wp_custom_fields_fonts', $fonts ); 
                 
-        // Setup the supported datatypes
-        $this->types                = apply_filters( 'wp_custom_fields_frames',  $this->types );
+        if( is_admin() || is_customize_preview() ) { 
+            
+            // Setup the supported datatypes
+            $this->types                = apply_filters( 'wp_custom_fields_frames',  $this->types );
         
-        // Adds filterable data for the various types.
-        foreach( $this->types as $type ) {
-            $this->frames[$type]    = apply_filters( 'wp_custom_fields_frame_' . $type, isset($this->frames[$type]) ? $this->frames[$type] : [] );
+            // Adds filterable data for the various types.
+            foreach( $this->types as $type ) {
+                $this->frames[$type]    = apply_filters( 'wp_custom_fields_frame_' . $type, isset($this->frames[$type]) ? $this->frames[$type] : [] );
+            }
+
         }
         
     }
@@ -132,20 +137,24 @@ class Framework extends Base {
         foreach( $this->frames as $frame => $optionsGroups ) {
             
             // Only predefined frames are allowed            
-            if( ! in_array($frame, $this->types) )
+            if( ! in_array($frame, $this->types) ) {
                 continue;
+            }
             
             // We should have something defined
-            if( empty($optionsGroups) )
+            if( empty($optionsGroups) ) {
                 continue;
+            }
             
             // Option and meta pages are only visible on admin
-            if( ! is_admin() && ($frame == 'meta' || $frame == 'options') )
+            if( ! is_admin() && ($frame == 'meta' || $frame == 'options') ) {
                 continue;
+            }
             
             // And our customizer only on preview
-            if( ! is_customize_preview() && $frame == 'customizer' )
+            if( ! is_customize_preview() && $frame == 'customizer' ) {
                 continue;
+            }
             
             // Create a new instance for each group
             foreach( $optionsGroups as $group ) {
@@ -175,11 +184,13 @@ class Framework extends Base {
     final public function enqueue() {
 
         // Enqueue Styles
-        foreach( $this->styles as $style )
+        foreach( $this->styles as $style ) {
             wp_enqueue_style( $style['handle'], $style['src'], $style['deps'], $style['ver'], $style['media'] );     
+        }
         
         // Enqueue Scripts
         foreach( $this->scripts as $script ) {
+
             $action = 'wp_' . $script['action'] . '_script';
             $action( $script['handle'], $script['src'], $script['deps'], $script['ver'], $script['in_footer'] );
             
@@ -196,7 +207,7 @@ class Framework extends Base {
      * Retrieves certain configurations
      *
      * @param string $type The kind of configurations to get
-     * @return array $configurations The array of configurations for the respective type
+     * @return array $configurations The array of configurations for the respective type, accepts 'meta', 'options', 'customizer' or 'all'
      */
     public function get( $type ) {
         return $type == 'all' ? $this->frames : $this->frames[$type];
@@ -206,7 +217,7 @@ class Framework extends Base {
      * Allows to adds certain data, such as data for fields. 
      * If hooked late on after_setup_theme but before init, this will add fields.
      *
-     * @param string    $type   The type to which you want to add values, Meta or Options
+     * @param string    $type   The type to which you want to add, accepts 'meta', 'options', 'customizer'
      * @param array     $values The respective values in form of an associative array
      */
     public function add( $type, $values ) {
@@ -223,7 +234,7 @@ class Framework extends Base {
      * Allows to adds certain data, such as data for fields. 
      * If hooked late on after_setup_theme but before init, this will be able to edit fields.
      *
-     * @param string    $type       The type to which you want to add values, such as meta, options or customizer
+     * @param string    $type       The type to which you want to add values, accepts 'meta', 'options', 'customizer'
      * @param array     $values     The respective values in form of an associative array
      * @param string    $id         The id of the option to edit
      * @param string    $section    The section of the option to edit

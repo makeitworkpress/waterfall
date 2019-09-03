@@ -154,30 +154,39 @@ class Waterfall {
      */
     private function configure() {
         
-        // Load our configurations file
-        require_once( get_template_directory() . '/configurations/customizer.php' );
+        // Load our basic configurations file
         require_once( get_template_directory() . '/configurations/enqueue.php' );
-        require_once( get_template_directory() . '/configurations/options.php' );
-        require_once( get_template_directory() . '/configurations/postmeta.php' );
         require_once( get_template_directory() . '/configurations/register.php' );
         
         $configurations = [
             'enqueue'   => $enqueue, 
             'register'  => $register, 
-            'options'   => [
+            'options'   => []
+        ];
+
+        // The custom fields options are only loaded in admin or customizer contexts to ensure better front-end performance
+        if( is_admin() || is_customize_preview() ) {
+
+            // Load the custom fields configuration files
+            require_once( get_template_directory() . '/configurations/customizer.php' );            
+            require_once( get_template_directory() . '/configurations/options.php' );
+            require_once( get_template_directory() . '/configurations/postmeta.php' );
+
+            $configurations['options'] = [
                 'customizerGeneral' => ['frame' => 'customizer', 'fields' => $customizer],
                 'colorsPanel'       => ['frame' => 'customizer', 'fields' => $colors],
                 'layoutPanel'       => ['frame' => 'customizer', 'fields' => $layout],
                 'typographyPanel'   => ['frame' => 'customizer', 'fields' => $typography],
                 'postMeta'          => ['frame' => 'meta', 'fields' => $postmeta],
                 'options'           => ['frame' => 'options', 'fields' => $options]
-            ] 
-        ];
+            ]; 
 
-        // Woocommerce configurations
-        if( class_exists( 'WooCommerce' ) ) {
-            require_once( get_template_directory() . '/configurations/customizer/woocommerce.php' );
-            $configurations['options']['woocommerce'] = ['frame' => 'customizer', 'fields' => $woocommerce];
+            // Woocommerce configurations
+            if( class_exists( 'WooCommerce' ) ) {
+                require_once( get_template_directory() . '/configurations/customizer/woocommerce.php' );
+                $configurations['options']['woocommerce'] = ['frame' => 'customizer', 'fields' => $woocommerce];
+            }
+
         }
 
         /**
@@ -233,14 +242,20 @@ class Waterfall {
                 // Divergent framework
                 $this->options = MakeitWorkPress\WP_Custom_Fields\Framework::instance($this->config->configurations['options']['params']);
                 
-                // Walk through all the option types
-                foreach( $this->config->configurations['options'] as $key => $options ) {
-
-                    if( $key == 'params' )
-                        continue;
+                // Walk through all the option types for the back-end
+                if( is_admin() || is_customize_preview() ) {
                     
-                    $this->options->add( $options['frame'], $options['fields'] );    
-                }                
+                    foreach( $this->config->configurations['options'] as $key => $options ) {
+
+                        if( $key == 'params' ) {
+                            continue;
+                        }
+                        
+                        $this->options->add( $options['frame'], $options['fields'] );
+
+                    }  
+                
+                }
                 
             } else {
                 $this->{$key} = new $methods[$key]( $this->config->configurations[$key] );    
