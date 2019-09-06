@@ -6,18 +6,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "3021b35cc05a5dbaa47bf0bf9bea8c5adba8e13e"
+            "reference": "132c665b018d6bc19012bcca5be19d2b58f151ce"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/3021b35cc05a5dbaa47bf0bf9bea8c5adba8e13e",
-            "reference": "3021b35cc05a5dbaa47bf0bf9bea8c5adba8e13e",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/132c665b018d6bc19012bcca5be19d2b58f151ce",
+            "reference": "132c665b018d6bc19012bcca5be19d2b58f151ce",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2019-08-28T15:46:12+00:00",
+        "time": "2019-09-06T15:09:58+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -92,18 +92,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "5b4214b696f552a1765ed951a57f64e53f94981b"
+            "reference": "5905cc1368327df695ecd0f14160a2205c81c510"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/5b4214b696f552a1765ed951a57f64e53f94981b",
-            "reference": "5b4214b696f552a1765ed951a57f64e53f94981b",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/5905cc1368327df695ecd0f14160a2205c81c510",
+            "reference": "5905cc1368327df695ecd0f14160a2205c81c510",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2019-09-03T10:09:55+00:00",
+        "time": "2019-09-05T13:59:37+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

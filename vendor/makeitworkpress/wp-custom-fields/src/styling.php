@@ -71,18 +71,22 @@ class Styling extends Base {
             // Retrieve all our options frames, so we can filter for the given hook
             $optionFrames = Framework::instance()->get('options');
 
-            foreach( $optionFrames as $page ) {
-                
-                if( isset($page['id']) && $key == $page['id'] ) {
-                    $update = true;
+            if( is_array($optionFrames) ) {
+
+                foreach( $optionFrames as $page ) {
+                    
+                    if( isset($page['id']) && $key == $page['id'] ) {
+                        $update = true;
+                    }
+
                 }
 
+                // Check if we may update our option
+                if( ! $update ) {
+                    return;   
+                }  
+            
             }
-
-            // Check if we may update our option
-            if( ! $update ) {
-                return;   
-            }            
 
         }
 
@@ -406,6 +410,11 @@ class Styling extends Base {
                 if( ! $field['values'] ) {
                     $properties['font-family'] = '';
                 } else {
+
+                    // Retrieve the fonts from our framework of not set
+                    if( ! isset($this->fonts) ) {
+                        $this->fonts = Framework::$fonts;  
+                    }                     
                 
                     foreach( $this->fonts as $fonts ) {
                         

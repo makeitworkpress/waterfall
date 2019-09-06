@@ -167,25 +167,32 @@ class Waterfall {
         // The custom fields options are only loaded in admin or customizer contexts to ensure better front-end performance
         if( is_admin() || is_customize_preview() ) {
 
-            // Load the custom fields configuration files
-            require_once( get_template_directory() . '/configurations/customizer.php' );            
+            // Load the custom fields configuration files          
             require_once( get_template_directory() . '/configurations/options.php' );
             require_once( get_template_directory() . '/configurations/postmeta.php' );
 
             $configurations['options'] = [
-                'customizerGeneral' => ['frame' => 'customizer', 'fields' => $customizer],
-                'colorsPanel'       => ['frame' => 'customizer', 'fields' => $colors],
-                'layoutPanel'       => ['frame' => 'customizer', 'fields' => $layout],
-                'typographyPanel'   => ['frame' => 'customizer', 'fields' => $typography],
                 'postMeta'          => ['frame' => 'meta', 'fields' => $postmeta],
                 'options'           => ['frame' => 'options', 'fields' => $options]
             ]; 
 
+        }
+
+        // The custom fields options are only loaded in admin or customizer contexts to ensure better front-end performance
+        if( is_customize_preview() ) {
+
+            require_once( get_template_directory() . '/configurations/customizer.php' );  
+
+            $configurations['options']['customizerGeneral'] = ['frame' => 'customizer', 'fields' => $customizer];
+            $configurations['options']['colorsPanel']       = ['frame' => 'customizer', 'fields' => $colors];
+            $configurations['options']['layoutPanel']       = ['frame' => 'customizer', 'fields' => $layout];
+            $configurations['options']['typographyPanel']   = ['frame' => 'customizer', 'fields' => $typography];
+
             // Woocommerce configurations
             if( class_exists( 'WooCommerce' ) ) {
                 require_once( get_template_directory() . '/configurations/customizer/woocommerce.php' );
-                $configurations['options']['woocommerce'] = ['frame' => 'customizer', 'fields' => $woocommerce];
-            }
+                $configurations['options']['woocommerce']   = ['frame' => 'customizer', 'fields' => $woocommerce];
+            }            
 
         }
 
