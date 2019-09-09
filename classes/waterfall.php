@@ -95,7 +95,7 @@ class Waterfall {
         $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );
         
         /**
-         * Load standard configurations
+         * Load all configurations
          */
         $this->configure();
         
@@ -165,7 +165,7 @@ class Waterfall {
         ];
 
         // The custom fields options are only loaded in admin or customizer contexts to ensure better front-end performance
-        if( is_admin() || is_customize_preview() ) {
+        if( is_admin() ) {
 
             // Load the custom fields configuration files          
             require_once( get_template_directory() . '/configurations/options.php' );
