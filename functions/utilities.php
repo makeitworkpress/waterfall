@@ -76,8 +76,7 @@ function wf_get_theme_option( $type = '', $key = '', $prefix = '' ) {
  */
 function wf_get_main_schema() {
     
-
-    $blogTypes  = apply_filters( 'waterfall_blog_scheme_post_types', ['post'] );
+    $blogTypes  = apply_filters( 'waterfall_blog_schema_post_types', ['post'] );
     $disabled   = wf_get_theme_option('options', 'scheme_post_types_disable') ? wf_get_theme_option('options', 'scheme_post_types_disable') : [];
     $schema     = 'http://schema.org/WebPageElement';
 
