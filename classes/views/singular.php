@@ -374,6 +374,7 @@ class Singular extends Base {
             global $post;
     
             // Base query
+            $elastic = false;
             $query = [
                 'post__not_in'      => [$post->ID], 
                 'posts_per_page'    => $this->layout['related_number'] ? $this->layout['related_number'] : 3, 
@@ -384,10 +385,27 @@ class Singular extends Base {
              * This looks for taxonomies/terms attached to the post and loads these based on these terms
              * If ElasticPress is installed on this site, it uses elasticpress to search for posts
              */
-            if( function_exists('ep_find_related') ) {
-                $query['post__in']      = ep_find_related( $post->ID, $this->layout['related_number'] );
-                $query['ep_integrate']  = true;
-            } else {
+            if( function_exists('ep_find_related') && isset($this->options['enable_elastic_related']) && $this->options['enable_elastic_related'] ) {
+                $related                = ep_find_related( $post->ID, $this->layout['related_number'] );
+
+                // Related posts can be found
+                if( is_array($related) ) {
+                    $elastic                = true;
+                    $posts                  = [];
+
+                    foreach( $related as $post ) {
+                        $posts[] = $post->ID;
+                    }
+
+                    $query['post__in']      = $posts;
+                    $query['ep_integrate']  = true;
+
+                }
+
+            } 
+            
+            // If no elasticsearch is present or it can't find anything related.
+            if( ! $elastic ) {
                 $taxonomies = get_post_taxonomies( $post );
 
                 if( $taxonomies ) {
@@ -406,7 +424,7 @@ class Singular extends Base {
                     }
                 }
 
-            }         
+            }        
 
             $args = apply_filters( 'waterfall_related_args', [
                 'attributes'        => ['class' => 'related-posts'],

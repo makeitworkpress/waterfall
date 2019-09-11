@@ -22,12 +22,32 @@ $options = [
             'fields'        => [ 
                 [
                     'columns'       => 'half',
+                    'default'       => class_exists('Waterfall_Reviews\Plugin') ? ['post', 'page', 'reviews'] : ['post', 'page'],
+                    'description'   => __('This determines for which post types you can adjust the lay-out settings in the customizer for and which post types will get a sidebar.', 'waterfall'),
+                    'id'            => 'customizer_post_types',
+                    'options'       => wf_get_post_types(true),
+                    'title'         => __('Customizer Post Types', 'waterfall'),
+                    'multiple'      => true,
+                    'type'          => 'select'
+                ],
+                [
+                    'columns'       => 'half',
+                    'description'   => __('Enable this to Enable ElasticPress for Related Posts. To function, ElasticSearch and the ElasticPress plugin are required.', 'waterfall'),
+                    'id'            => 'enable_elastic_related',
+                    'title'         => __('Enable ElasticPress for Related Posts', 'waterfall'),
+                    'single'        => true,
+                    'type'          => 'checkbox',
+                    'options'       => [
+                        'enable' => ['label' => __('Enable ElasticPress')],
+                    ]
+                ],                                  
+                [
                     'default'       => '',
                     'description'   => __('This automatically set-ups the correct JavaScript for loading Google Analytics. The Tracking ID has a format of UA-000000-01.', 'waterfall'),
                     'id'            => 'analytics',
                     'title'         => __('Google Analytics Tracking ID', 'waterfall'),
                     'type'          => 'input'
-                ],                                 
+                ],                                                 
                 [
                     'columns'       => 'half',
                     'default'       => '',
@@ -40,17 +60,7 @@ $options = [
                     ],
                     'title'         => __('Microdata for Website Representation', 'waterfall'),
                     'type'          => 'select'
-                ],
-                [
-                    'columns'       => 'half',
-                    'default'       => class_exists('Waterfall_Reviews\Plugin') ? ['post', 'page', 'reviews'] : ['post', 'page'],
-                    'description'   => __('This determines for which post types you can adjust the lay-out settings in the customizer for and which post types will get a sidebar.', 'waterfall'),
-                    'id'            => 'customizer_post_types',
-                    'options'       => wf_get_post_types(true),
-                    'title'         => __('Customizer Post Types', 'waterfall'),
-                    'multiple'      => true,
-                    'type'          => 'select'
-                ], 
+                ],              
                 [
                     'columns'       => 'half',
                     'default'       => [],
@@ -60,7 +70,7 @@ $options = [
                     'title'         => __('Disable Microdata', 'waterfall'),
                     'multiple'      => true,
                     'type'          => 'select'
-                ],                                               
+                ],                                                               
                 [
                     'action'        => 'syncMultiSiteOptions',
                     'description'   => __('This function synchronizes Waterfall Customizer and Option settings for all the sites registered in a multisite network. It will use the options of the current site.', 'waterfall'),
