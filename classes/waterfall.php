@@ -283,7 +283,7 @@ class Waterfall {
     private function savePostTypes() {
 
         add_action('init', function() {
-            $commons    = apply_filters( 'waterfall_exlude_post_types', ['attachment', 'elementor_library', 'product'] );
+            $commons    = apply_filters( 'waterfall_exlude_post_types', ['attachment', 'elementor_library', 'product', 'affiliate-links'] );
             $initial    = get_post_types( ['public' => true] );
             $types      = [];
 

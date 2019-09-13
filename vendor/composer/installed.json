@@ -92,18 +92,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-            "reference": "8a31cd3702ea6240640f4fa572eef9ca3826f30f"
+            "reference": "8d70ac57227bbae31c5f9e97c7273f662783fffd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/8a31cd3702ea6240640f4fa572eef9ca3826f30f",
-            "reference": "8a31cd3702ea6240640f4fa572eef9ca3826f30f",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/8d70ac57227bbae31c5f9e97c7273f662783fffd",
+            "reference": "8d70ac57227bbae31c5f9e97c7273f662783fffd",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2019-09-09T14:50:29+00:00",
+        "time": "2019-09-13T10:25:16+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

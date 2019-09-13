@@ -12,7 +12,7 @@ if( $initial ) {
         $postTypes[] = $key;
     }
 }
-$screen = $postTypes ? $postTypes : array('page', 'post');
+$screen = $postTypes ? $postTypes : ['page', 'post'];
 
 $postmeta = array(
     'context'       => 'normal',
