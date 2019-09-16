@@ -6,10 +6,6 @@
 
 /* Content Wrappers
 ----------------------*/
-.main {
-    overflow: hidden;
-}
-
 .molecule-header-transparent ~ .main .main-header.components-image-background {
     padding-top: 80px + @grid-space;
 }
@@ -110,6 +106,7 @@
 /* Main Content Section
 ----------------------*/
 .content {
+    overflow: hidden;
     ul {
         list-style: disc;
         padding: 0 0 1.5em 1.5em;
@@ -155,11 +152,10 @@
 
 /* Sidebars */
 .main-sidebar {
-    margin: @grid-space -@grid-space 0 -@grid-space;
-    padding: @grid-space;
-    width: ~"calc(100% + 64px)";
+    margin: @grid-space 0 0 0;
+    width: 100%;
     .waterfall-colored-sidebar & {
-        margin: @grid-space 0 0 0;
+        padding: @grid-space;
         width: 100%;
     }
 }
@@ -182,8 +178,8 @@
             width: 100%;
         }
         .main-sidebar {
-            margin: @grid-space -@grid-space 0 -@grid-space;
-            width: ~"calc(100% + 64px)";
+            margin: @grid-space 0 0 0;
+            width: 100%;
         }
         /* The WooCommerce sidebar is always on top */
         &.woocommerce {
@@ -198,7 +194,6 @@
         /* Colored Sidebars */
         &.waterfall-colored-sidebar {
             .main-sidebar {
-                margin: @grid-space 0 0 0;
                 width: 100%;
             } 
             &.woocommerce .main-sidebar {
@@ -211,11 +206,8 @@
 .waterfall-right-sidebar {
     @media screen and (min-width: 768px) { 
         .main-sidebar {
-            margin: -@grid-space -@grid-space 0 2.5%;
-        }
-        &.waterfall-colored-sidebar .main-sidebar {
             margin: 0 0 0 2.5%;
-        }  
+        }
     }       
 }
 
@@ -226,11 +218,8 @@
         }            
         .main-sidebar {
             order: 0; 
-            margin: -@grid-space 2.5% 0 -@grid-space;
+            margin: 0 2.5% 0 0;
         }
-        &.waterfall-colored-sidebar .main-sidebar {
-            margin: 0 2.5% 0 0;  
-        }  
     }
 }
 
