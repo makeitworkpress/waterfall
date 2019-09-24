@@ -115,7 +115,7 @@
         list-style: decimal;
         padding: 0 0 1.5em 1.5em;
     }
-    p, ul, ol, h2, h3, h4, code, pre { 
+    p, ul, ol, h2, h3, h4, code, pre, .wp-block-button, table { 
         + h2, + h3, + h4, + h2, + h3, + h4, + h2, + h3, + h4, + h2, + h3, + h4, + h3, + h4, + h4 {
             margin-top: 1em;    
         } 
@@ -156,7 +156,6 @@
     width: 100%;
     .waterfall-colored-sidebar & {
         padding: @grid-space;
-        width: 100%;
     }
 }
 
@@ -188,18 +187,9 @@
             }
             .main-sidebar {
                 order: 0;
-                margin: 0 -@grid-space @grid-space -@grid-space;
-            }
-        }
-        /* Colored Sidebars */
-        &.waterfall-colored-sidebar {
-            .main-sidebar {
-                width: 100%;
-            } 
-            &.woocommerce .main-sidebar {
                 margin: 0 0 @grid-space 0;
             }
-        }         
+        }       
     } 
 }
 
