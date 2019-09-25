@@ -120,15 +120,24 @@ class Waterfall_View {
 
             // Set-up the sidebars for default archives and pages set-up as posts page under Settings, Reading
             $page = isset( get_queried_object()->ID ) ? get_queried_object()->ID : 0;
+            
             if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') || ( is_home() && $page = get_option('page_for_posts') ) ) {
                 $type       = wf_get_archive_post_type();
 
-                if( isset($layout[$type . '_archive_sidebar_position']) ) {
+                // Default archives
+                if( isset($layout[$type . '_archive_sidebar_position']) && $layout[$type . '_archive_sidebar_position'] ) {
                     $sidebar = $layout[$type . '_archive_sidebar_position'];  
-                } elseif( isset($woocommerce[$type . '_archive_sidebar_position']) && $woocommerce[$type . '_archive_sidebar_position'] ) {   
-                    $sidebar = $woocommerce[$type . '_archive_sidebar_position'];
-                } elseif( ! isset($woocommerce[$type . '_archive_sidebar_position']) || ! $woocommerce[$type . '_archive_sidebar_position'] ) {
-                    $sidebar = 'left'; // A non set Woocommerce Sidebar defaults to a left sidebar.
+                } 
+                
+                // Woocommerce archives
+                if( function_exists('is_woocommerce') && is_woocommerce() ) {
+
+                    if( isset($woocommerce[$type . '_archive_sidebar_position']) && $woocommerce[$type . '_archive_sidebar_position'] ) {   
+                        $sidebar = $woocommerce[$type . '_archive_sidebar_position'];
+                    } elseif( (! isset($woocommerce[$type . '_archive_sidebar_position']) || ! $woocommerce[$type . '_archive_sidebar_position']) ) {
+                        $sidebar = 'left'; // A non set Woocommerce Sidebar defaults to a left sidebar.
+                    }
+
                 }
 
             }

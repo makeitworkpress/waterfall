@@ -307,18 +307,31 @@ function wf_get_social_networks() {
  */
 function wf_get_archive_post_type() {
 
+
     $type = 'post';
     
     global $wp_query;
     
+    // Default post type archives
     if( isset($wp_query->query['post_type']) ) {
         $type = $wp_query->query['post_type'];
+    // The page set-up as blog page
+    } elseif( isset($wp_query->queried_object->ID) && $wp_query->queried_object->ID == get_option('page_for_posts') ) {
+        $type = 'post';
+    // Taxonomy archives
     } elseif( isset($wp_query->tax_query->queried_terms) && $wp_query->tax_query->queried_terms ) {
 
         // Get the first of the queried taxonomies
         foreach( $wp_query->tax_query->queried_terms as $key => $vars ) {
+            
+            // If our key is language (from polylang), we skip it
+            if( $key == 'language' ) {
+                continue;
+            }
+
             $taxonomy = $key;
             break;
+            
         }
 
         // If our taxonomy is a string, get the object first
@@ -333,6 +346,7 @@ function wf_get_archive_post_type() {
     }
 
     return $type;
+
 }
 
 /**

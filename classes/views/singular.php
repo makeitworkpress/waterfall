@@ -409,7 +409,14 @@ class Singular extends Base {
                 $taxonomies = get_post_taxonomies( $post );
 
                 if( $taxonomies ) {
+                    
                     foreach( $taxonomies as $taxonomy ) {
+
+                        // Skip polylang language taxonomies
+                        if( in_array($taxonomy, ['language', 'post_translations']) ) {
+                            continue;
+                        }                        
+
                         $terms = get_the_terms( $post->ID, $taxonomy );
                         if( $terms ) {
                             $termIDs = [];
@@ -421,7 +428,9 @@ class Singular extends Base {
                                 'terms'     => $termIDs
                             ];
                         }
+
                     }
+
                 }
 
             }        

@@ -306,7 +306,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ),    
                 array(
-                    'selector'      => '.main-header .entry-meta a, .main-header .entry-time',
+                    'selector'      => '.main-header .entry-meta a, .main-header .entry-time, .main-header .entry-meta i, .main-header .entry-meta ',
                     'default'       => '',
                     'id'            => 'title_section_meta',
                     'title'         => __('Title Section Meta Color', 'waterfall'),
@@ -314,7 +314,7 @@ $colors = array(
                     'type'          => 'colorpicker'
                 ), 
                 array(
-                    'selector'      => '.main-header.components-image-background .entry-meta a, .main-header.components-image-background .entry-time, .main-header.components-image-background a, .main-header.components-image-background a:hover, .main-header.components-image-background, .main-header.components-image-background h1, .main-header.components-image-background h2, .main-header.components-image-background h3, .main-header.components-image-background h4, .main-header.components-image-background h5, .main-header.components-image-background h6',
+                    'selector'      => '.main-header.components-image-background .entry-meta, .main-header.components-image-background .entry-meta a, .main-header.components-image-background .entry-meta i, .main-header.components-image-background .entry-time, .main-header.components-image-background a, .main-header.components-image-background a:hover, .main-header.components-image-background, .main-header.components-image-background h1, .main-header.components-image-background h2, .main-header.components-image-background h3, .main-header.components-image-background h4, .main-header.components-image-background h5, .main-header.components-image-background h6',
                     'default'       => '',
                     'id'            => 'title_section_featured_background_color',
                     'title'         => __('Title Section Text Color with Image Background', 'waterfall'),
