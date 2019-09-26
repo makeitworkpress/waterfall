@@ -493,7 +493,7 @@ class Singular extends Base {
         if( $this->layout['related_pagination'] ) {
 
             $next = $this->layout['related_pagination_next'] ? $this->layout['related_pagination_next'] : __('Next Article &rsaquo;', 'waterfall');
-            $prev = $this->layout['related_pagination_prev'] ? $this->layout['related_pagination_prev'] : __('Previous Article &rsaquo;', 'waterfall');
+            $prev = $this->layout['related_pagination_prev'] ? $this->layout['related_pagination_prev'] : __('&lsaquo; Previous Article', 'waterfall');
 
             $args = apply_filters( 'waterfall_related_paginate_args', [ 
                 'next' => '<span>' . $next . '</span>%title', 
