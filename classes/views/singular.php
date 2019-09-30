@@ -44,7 +44,8 @@ class Singular extends Base {
         );
 
         $this->properties = apply_filters( 'waterfall_singular_properties', [
-            'layout' => [
+            'customizer'    => [],
+            'layout'        => [
                 // Header
                 'header_align', 
                 'header_author', 
@@ -105,7 +106,7 @@ class Singular extends Base {
                 'share_pocket',
                 'share_whatsapp',
             ],
-            'meta'  => [
+            'meta'      => [
                 'page_header_subtitle',
                 'page_header_button_text',
                 'page_header_button_link'
@@ -135,6 +136,8 @@ class Singular extends Base {
             return;
         }
 
+
+        global $post;
         $logo = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : get_template_directory_uri() . '/assets/img/waterfall.png';
 
         ?>
@@ -143,11 +146,15 @@ class Singular extends Base {
             </span>
             <span class="components-structured-data" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
                 <meta itemprop="name" content="<?php bloginfo('name'); ?>">
-                <meta itemprop="logo" content="<?php echo $logo; ?>">
+                <span itemprop="logo" itemscope="itemscope" itemtype="http://schema.org/ImageObject">
+                    <meta itemprop="contentUrl" content="<?php echo $logo; ?>">
+                    <meta itemprop="url" content="<?php bloginfo('url'); ?>">
+                </span>
             </span>                    
             <meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>" />
             <meta itemprop="datePublished" content="<?php the_date('c') ?>" />
-            <meta itemprop="dateModified" content="<?php the_modified_date('c') ?>" />        
+            <meta itemprop="dateModified" content="<?php the_modified_date('c') ?>" />   
+            <meta itemprop="image" content="<?php echo has_post_thumbnail($post) ? get_the_post_thumbnail_url($post, 'full') : $logo; ?>" />     
         <?php 
     }    
 
@@ -193,7 +200,7 @@ class Singular extends Base {
             $args['atoms']['title'] = [
                 'atom'          => 'title',
                 'properties'    => [
-                    'attributes'    => ['class' => 'entry-title'], 
+                    'attributes'    => ['class' => 'entry-title', 'itemprop' =>  'name headline'], 
                     'schema'        => in_array($this->type, $this->noSchema) ? false : true,
                     'tag'           => 'h1'
                 ]

@@ -335,7 +335,9 @@ function wf_get_archive_post_type() {
         }
 
         // If our taxonomy is a string, get the object first
-        if( is_string($taxonomy) ) {
+
+
+        if( isset($taxonomy) && is_string($taxonomy) ) {
             $taxonomy = get_taxonomy($taxonomy);
         }
 
