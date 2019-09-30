@@ -138,7 +138,7 @@ class Singular extends Base {
 
 
         global $post;
-        $logo = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_src( $this->customizer['logo'], 'large' ) : get_template_directory_uri() . '/assets/img/waterfall.png';
+        $logo = is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_url( $this->customizer['logo'], 'full' ) : get_template_directory_uri() . '/assets/img/waterfall.png';
 
         ?>
             <span class="components-structured-data" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
