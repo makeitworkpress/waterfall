@@ -413,6 +413,7 @@ class Singular extends Base {
             
             // If no elasticsearch is present or it can't find anything related.
             if( ! $elastic ) {
+                
                 $taxonomies = get_post_taxonomies( $post );
 
                 if( $taxonomies ) {
@@ -425,7 +426,9 @@ class Singular extends Base {
                         }                        
 
                         $terms = get_the_terms( $post->ID, $taxonomy );
+
                         if( $terms ) {
+
                             $termIDs = [];
                             foreach( $terms as $term ) {
                                 $termIDs[] = $term->term_id;   
@@ -434,9 +437,13 @@ class Singular extends Base {
                                 'taxonomy'  => $taxonomy,
                                 'terms'     => $termIDs
                             ];
+
                         }
 
                     }
+
+                    // Related posts should have one of the related terms
+                    $query['tax_query']['relation'] = 'OR';
 
                 }
 
