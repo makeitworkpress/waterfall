@@ -24,4 +24,4 @@ These dependencies are included using composer.
 For more details on the functioning of these dependencies, visit the repositories of the respective dependency.
 
 ## About
-Waterfall is written by [Michiel Tramper](https://michieltramper.com) and maintained by [Make it WorkPress](https://makeitworkpress.com/wordpress-themes/waterfall)
+Waterfall is written by [Michiel Tramper](https://michieltramper.com) and maintained by [Make it WorkPress](https://makeitwork.press/wordpress-themes/waterfall)
