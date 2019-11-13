@@ -1,7 +1,7 @@
 # wp-enqueue
 The WP Enqueue class provides a wrapper to make enqueueing scripts and styles in WordPress more easily.
 
-WP Enqueue is maintained by [Make it WorkPress](https://www.makeitworkpress.com/wordpress-solutions/scripts/wp-enqueue/).
+WP Enqueue is maintained by [Make it WorkPress](https://makeitwork.press/scripts/wp-enqueue/).
 
 ## Usage
 Include the WP Enqueue class in your plugin, theme or child theme file or use an autoloader. You can read more about autoloading in [the readme of wp-autoload](https://github.com/makeitworkpress/wp-autoload). 

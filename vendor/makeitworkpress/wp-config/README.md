@@ -1,7 +1,7 @@
 # wp-config
 A class for setting up configurations in WordPress projects. 
 
-WP Config is maintained by [Make it WorkPress](https://www.makeitworkpress.com/wordpress-solutions/scripts/wp-config/).
+WP Config is maintained by [Make it WorkPress](https://www.makeitwork.press/scripts/wp-config/).
 
 ## Usage
 The WP Config class set-ups a single configurations object which can be used for your configuration files within custom theme and plugin development. You can use it to set-up a configurations object by injecting an array of configurations upon constructing.
