@@ -28,14 +28,7 @@ class Waterfall {
      *
      * @access private
      */
-    private static $instance = null;
-    
-    /**
-     * Contains the WP Updater object
-     *
-     * @access private
-     */
-    private $updater;      
+    private static $instance = null;     
 
     /**
      * Contains the views object for this theme
@@ -92,7 +85,7 @@ class Waterfall {
         /**
          * Enables our theme to be updated through an external repository, in this case github
          */
-        $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );
+        new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );
         
         /**
          * Load all configurations

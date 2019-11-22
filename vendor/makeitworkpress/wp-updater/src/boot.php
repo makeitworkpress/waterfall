@@ -17,11 +17,11 @@ class Boot {
      */
     private $config;
     
-	/**
-	 * Stores data retrieved from GitHub
-	 * @access private
-	 */
-	private $github;    
+    /**
+     * Contains the updater class for either a theme or plugin
+     * @access private
+     */
+    private $updater;    
     
     /**
      * Constructor
@@ -34,25 +34,25 @@ class Boot {
     public function __construct( $params ) {
         
         // This script only works in admin context
-        if( ! is_admin() )
+        if( ! is_admin() ) {
             return;
+        }
         
         // Default parameters 
-        $defaults = array(
-            'request'   => array( 'method' => 'GET' ),  // The request can be customized with custom parameters, such as a licensing token needed in the request
+        $defaults = [
+            'cache'     => 43200,                       // The default cache lifetime for update requests
+            'request'   => ['method' => 'GET'],         // The request can be customized with custom parameters, such as a licensing token needed in the request
             'source'    => '',                          // The source, where to retrieve the update from
             'type'      => 'theme',                     // The type to update, either theme or plugin
             'verifySSL' => true
-        );
+        ];
         
         $this->config = wp_parse_args( $params, $defaults );
         
         /** 
          * If we are missing correctly formatted parameters, bail out.
          */
-        $check = $this->checkParameters();
-        
-        if( is_wp_error( $check ) ) {
+        if( is_wp_error( $this->checkParameters() ) ) {
             echo $check->get_error_message();
             return;
         }
@@ -64,12 +64,12 @@ class Boot {
 
         // Runs the scripts for updating a theme
         if( $this->config['type'] == 'theme' ) {
-            new Theme_Updater( $this->config );
+            $this->updater = new Theme_Updater( $this->config );
         }
         
         // Runs the scripts for updating a plugin
         if( $this->config['type'] == 'plugin' ) {
-            new Plugin_Updater( $this->config );
+            $this->updater = new Plugin_Updater( $this->config );
         }
         
         /**
@@ -81,13 +81,10 @@ class Boot {
          * @return array $args
          */
         if( $this->config['verifySSL'] ) {
-            add_filter( 'http_request_args', function( $args, $url ) {
-                $args[ 'sslverify' ] = true;
-                return $args;            
-            }, 10, 2 );
+            add_filter( 'http_request_args', [$this, 'verifySSL'], 10, 2 );
         }
         
-                
+                            
         /** 
          * Renames the source during upgrading, so it fits the structure from WordPress
          *
@@ -95,25 +92,63 @@ class Boot {
          * @param string    $remote_sourc   The remote source
          * @param object    $upgrader       The upgrader object
          */
-        add_filter( 'upgrader_source_selection', function( $source, $remote_source = NULL, $upgrader = NULL ) {
-            
-            if( isset($source, $remote_source, $upgrader->skin->theme_info->stylesheet) ) {
-                $correctSource = $remote_source . '/' . $upgrader->skin->theme_info->stylesheet . '/';
-                
-                if( rename($source, $correctSource) ) {
-                    return $correctSource;
-                } else {
-                    $upgrader->skin->feedback( "Unable to rename downloaded theme." );
-                    return new WP_Error();
-                }
-                
+        add_filter( 'upgrader_source_selection', [$this, 'sourceSelection'] , 10, 4 );
+        
+    } 
+
+    /**
+     * Filters our SSL verification to true
+     * 
+     * @param Array $args The arguments for the http request
+     * @param String $url  The url for the request
+     * @return Array $args The modified arguments
+     */
+    public function verifySSL( $args, $url ) {
+        $args[ 'sslverify' ] = true;
+        return $args;
+    }
+    
+    /**
+     * Updates our source selection for the upgrader
+     *
+     * @param string    $source         The upgrading destination source
+     * @param string    $remote_sourc   The remote source
+     * @param object    $upgrader       The upgrader object
+     * @param array     $hook_extra     The extra hook
+     * @return string     $source       The source
+     */
+    public function sourceSelection( $source, $remote_source = NULL, $upgrader = NULL, $hook_extra = NULL ) {
+
+        if( isset($source, $remote_source) ) {
+
+            // Retrieves the source for themes
+            if( isset($upgrader->skin->theme_info->stylesheet) && $upgrader->skin->theme_info->stylesheet ) {
+                $correctSource = trailingslashit( $remote_source . '/' . $upgrader->skin->theme_info->stylesheet );
             }
 
-            return $source; 
-            
-        }, 10, 3 );
+            // Retrieves for plugins
+            if( isset($hook_extra['plugin']) && $hook_extra['plugin'] ) {
+                $correctSource = trailingslashit( $remote_source ) . dirname( $hook_extra['plugin'] );
+            } 
+
+        }
         
-    }   
+        // We have an adjusted source
+        if( isset($correctSource) ) {
+                
+            if( rename($source, $correctSource) ) {
+                return $correctSource;
+            } else {
+                $upgrader->skin->feedback( __("Unable to rename downloaded theme or plugin.", "wp-updater") );
+                return new WP_Error();
+            }
+
+        }         
+        
+        return $source;
+
+    }
+    
     
     /**
      * Checks our parameters and see if we have everything
@@ -123,14 +158,17 @@ class Boot {
      */
     private function checkParameters() {
         
-        if( $this->config['type'] !== 'theme' && $this->config['type'] !== 'plugin' )
-            return new WP_Error( 'wrong', __( "Your updater type is not theme or plugin!", "wp-updater" ) );         
+        if( $this->config['type'] !== 'theme' && $this->config['type'] !== 'plugin' ) {
+            return new WP_Error( 'wrong', __( "Your updater type is not theme or plugin!", "wp-updater" ) );  
+        }       
         
-        if( empty($this->config['type']) )
-            return new WP_Error( 'missing', __( "You are missing what to update, either theme or plugin.", "wp-updater" ) );        
+        if( empty($this->config['type']) ) {
+            return new WP_Error( 'missing', __( "You are missing what to update, either theme or plugin.", "wp-updater" ) );  
+        }      
         
-        if( empty($this->config['source']) )
+        if( empty($this->config['source']) ) {
             return new WP_Error( 'missing', __( "You are missing the url where to update from.", "wp-updater" ) );
+        }
         
         return true;
         

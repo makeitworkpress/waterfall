@@ -6,18 +6,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-components.git",
-            "reference": "a4dcaa49aa924652266c7df8f62125990687d76b"
+            "reference": "71c15ae5da4a21bf7bb278cd8cecdebe7271ad78"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/a4dcaa49aa924652266c7df8f62125990687d76b",
-            "reference": "a4dcaa49aa924652266c7df8f62125990687d76b",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/71c15ae5da4a21bf7bb278cd8cecdebe7271ad78",
+            "reference": "71c15ae5da4a21bf7bb278cd8cecdebe7271ad78",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2019-11-13T15:10:11+00:00",
+        "time": "2019-11-20T10:48:06+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -307,18 +307,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/makeitworkpress/wp-updater.git",
-            "reference": "a31944f6cfcd284b0688c3a0dbc4ce2583547fa1"
+            "reference": "5507f6fad1a24311a28e661adb445c061b8aba45"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/a31944f6cfcd284b0688c3a0dbc4ce2583547fa1",
-            "reference": "a31944f6cfcd284b0688c3a0dbc4ce2583547fa1",
+            "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/5507f6fad1a24311a28e661adb445c061b8aba45",
+            "reference": "5507f6fad1a24311a28e661adb445c061b8aba45",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2019-11-13T15:10:37+00:00",
+        "time": "2019-11-20T12:56:13+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
