@@ -12,15 +12,19 @@
     <?php
 
         /**
-         * Initializes our 404 page
+         * Initializes our 404 page with support for custom pages by elementor
          */
-        $nothing = new Views\Nothing('404');
+        if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) {
+            
+            $nothing = new Views\Nothing('404');
+            
+            do_action('waterfall_before_404_header');
         
-        do_action('waterfall_before_404_header');
-    
-        $nothing->header();
-    
-        do_action('waterfall_after_404_header');
+            $nothing->header();
+        
+            do_action('waterfall_after_404_header');
+
+        }
     
     ?>
 

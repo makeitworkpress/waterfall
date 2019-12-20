@@ -30,6 +30,6 @@ spl_autoload_register( function($classname) {
 } );
 
 /**
- * Boot our theme
+ * Boot our theme.
  */
 $theme = Waterfall::instance();

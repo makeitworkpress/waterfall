@@ -38,7 +38,7 @@ class Footer extends Base {
     }
 
     /**
-     * Displays the header
+     * Displays the footer
      */
     public function footer() {
 

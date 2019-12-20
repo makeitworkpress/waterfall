@@ -393,3 +393,25 @@ function wf_get_post_types( $simple = false, $available = false ) {
     return $types;
 
 }
+
+/**
+ * Checks if a certain theme location was build by elementor
+ * 
+ * @param string $location The theme location of the template
+ */
+function wf_elementor_theme_has_location( $location ) {
+    
+    /**
+     * The elementor plugin should be installed
+     */
+    if ( ! did_action( 'elementor_pro/init' ) ) {
+		return false;
+    }
+    
+    // Let's look up our theme conditions
+	$conditions_manager = \ElementorPro\Plugin::instance()->modules_manager->get_modules( 'theme-builder' )->get_conditions_manager();
+	$documents          = $conditions_manager->get_documents_for_location( $location );
+    
+    return ! empty($documents);
+    
+}

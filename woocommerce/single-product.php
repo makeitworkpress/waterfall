@@ -6,57 +6,63 @@
  */
 wf_get_theme_header(); 
 
-/**
- * Initiate our new product
- */
-$productView = new Views\Product('product'); ?>
+// Outputs our elementor templates, unless we have the product archive running
+if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'product' ) ) {   
 
-<div class="main-content product-content">
+    /**
+     * Initiate our new product
+     */
+    $productView = new Views\Product('product'); ?>
 
-    <?php do_action('waterfall_before_product_breadcrumbs'); ?> 
+    <div class="main-content product-content">
 
-    <?php if( $productView->breadcrumbs() ) { ?>
-        <div class="components-container"><?php echo $productView->breadcrumbs(); ?></div>
-    <?php } ?>
+        <?php do_action('waterfall_before_product_breadcrumbs'); ?> 
 
-    <?php do_action('waterfall_before_product_content_container'); ?> 
+        <?php if( $productView->breadcrumbs() ) { ?>
+            <div class="components-container"><?php echo $productView->breadcrumbs(); ?></div>
+        <?php } ?>
 
-    <?php if( $productView->contentContainer ) { ?>
-        <div class="components-container">
-    <?php } ?>
+        <?php do_action('waterfall_before_product_content_container'); ?> 
 
-        <?php
-            do_action('waterfall_before_product_content');
-        ?>
+        <?php if( $productView->contentContainer ) { ?>
+            <div class="components-container">
+        <?php } ?>
 
-        <div class="content">
-
-            <?php      
-                /**
-                * Retrieves the loop for the single product from woocommerce
-                */
-                $productView->content();                                  
+            <?php
+                do_action('waterfall_before_product_content');
             ?>
-    
-        </div> 
 
-        <?php
-            do_action('waterfall_after_product_content');
+            <div class="content">
 
-            $productView->sidebar();
+                <?php      
+                    /**
+                    * Retrieves the loop for the single product from woocommerce
+                    */
+                    $productView->content();                                  
+                ?>
+        
+            </div> 
 
-            do_action('waterfall_after_product_sidebar');
-        ?>
+            <?php
+                do_action('waterfall_after_product_content');
 
-    <?php if( $productView->contentContainer ) { ?>
-        </div>
-    <?php } ?>
+                $productView->sidebar();
 
-    <?php do_action('waterfall_after_product_content_container'); ?> 
+                do_action('waterfall_after_product_sidebar');
+            ?>
 
-</div>
+        <?php if( $productView->contentContainer ) { ?>
+            </div>
+        <?php } ?>
 
-<?php 
+        <?php do_action('waterfall_after_product_content_container'); ?> 
+
+    </div>
+
+    <?php 
+
+}
+
 /**
  * Retrieves our footer
  */

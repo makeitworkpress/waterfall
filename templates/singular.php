@@ -20,91 +20,95 @@ while( have_posts() ) {
 
             $postView->structuredData();
 
-            // The header of our article
-            do_action('waterfall_before_' . $postView->type . '_header');
-    
-            $postView->header();
-    
-            do_action('waterfall_after_' . $postView->type . '_header');
+            if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) {  
 
-        ?>
-
-        <div class="main-content singular-content">
-
-            <?php do_action('waterfall_before_' . $postView->type . '_content_container'); ?>
+                // The header of our article
+                do_action('waterfall_before_' . $postView->type . '_header');
         
-            <?php if( $postView->contentContainer ) { ?>
-                <div class="components-container">    
-            <?php } ?>            
+                $postView->header();
+        
+                do_action('waterfall_after_' . $postView->type . '_header');
 
-                <?php
+            ?>
 
-                    do_action('waterfall_before_' . $postView->type . '_content');
+            <div class="main-content singular-content">
 
-                    // The content of our post
-                    $postView->content();
-
-                    do_action('waterfall_after_' . $postView->type . '_content');
-
-                    // The sidebar
-                    $postView->sidebar();
-
-                    do_action('waterfall_after_' . $postView->type . '_sidebar');
-
-                ?>
-
-            <?php if( $postView->contentContainer ) { ?>
-                </div>    
-            <?php } ?>
-
-            <?php do_action('waterfall_after_' . $postView->type . '_content_container'); ?>
+                <?php do_action('waterfall_before_' . $postView->type . '_content_container'); ?>
             
-        </div>
+                <?php if( $postView->contentContainer ) { ?>
+                    <div class="components-container">    
+                <?php } ?>            
 
-        <?php
-            do_action('waterfall_after_' . $postView->type . '_main_content');
-        ?>        
+                    <?php
 
-        <?php
-            /**
-             * This section shows the related sections
-             */
-            if( $postView->relatedSection ) {
-        ?>
-            
-            <aside class="main-related singular-related">
+                        do_action('waterfall_before_' . $postView->type . '_content');
 
-                <?php if( $postView->relatedContainer ) { ?>
-                    <div class="components-container">
+                        // The content of our post
+                        $postView->content();
+
+                        do_action('waterfall_after_' . $postView->type . '_content');
+
+                        // The sidebar
+                        $postView->sidebar();
+
+                        do_action('waterfall_after_' . $postView->type . '_sidebar');
+
+                    ?>
+
+                <?php if( $postView->contentContainer ) { ?>
+                    </div>    
                 <?php } ?>
 
-                <?php
-        
-                    do_action('waterfall_before_' . $postView->type . '_related');
+                <?php do_action('waterfall_after_' . $postView->type . '_content_container'); ?>
+                
+            </div>
+
+            <?php
+                do_action('waterfall_after_' . $postView->type . '_main_content');
+            ?>        
+
+            <?php
+                /**
+                 * This section shows the related sections
+                 */
+                if( $postView->relatedSection ) {
+            ?>
+                
+                <aside class="main-related singular-related">
+
+                    <?php if( $postView->relatedContainer ) { ?>
+                        <div class="components-container">
+                    <?php } ?>
+
+                    <?php
             
-                    // Related posts
-                    $postView->related();
+                        do_action('waterfall_before_' . $postView->type . '_related');
+                
+                        // Related posts
+                        $postView->related();
 
-                    do_action('waterfall_after_' . $postView->type . '_related');
+                        do_action('waterfall_after_' . $postView->type . '_related');
 
-                ?>
+                    ?>
 
-                <?php if( $postView->relatedContainer ) { ?>
-                    </div>
-                <?php } ?>
+                    <?php if( $postView->relatedContainer ) { ?>
+                        </div>
+                    <?php } ?>
 
-            </aside>           
+                </aside>           
 
-        <?php
+            <?php
+
+                }
+        
+                do_action('waterfall_before_' . $postView->type . '_footer');
+            
+                // The footer of our post
+                $postView->footer();
+        
+                do_action('waterfall_after_' . $postView->type . '_footer');
 
             }
-    
-            do_action('waterfall_before_' . $postView->type . '_footer');
-        
-            // The footer of our post
-            $postView->footer();
-    
-            do_action('waterfall_after_' . $postView->type . '_footer');
 
         ?>
 

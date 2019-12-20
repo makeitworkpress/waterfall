@@ -155,6 +155,7 @@ class Singular extends Base {
             <meta itemprop="datePublished" content="<?php the_date('c') ?>" />
             <meta itemprop="dateModified" content="<?php the_modified_date('c') ?>" />   
             <meta itemprop="image" content="<?php echo has_post_thumbnail($post) ? get_the_post_thumbnail_url($post, 'full') : $logo; ?>" />     
+            <meta itemprop="name headline" content="<?php the_title(); ?>" />     
         <?php 
     }    
 

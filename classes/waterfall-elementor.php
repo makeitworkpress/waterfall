@@ -19,16 +19,43 @@ class Waterfall_Elementor {
      */
     public function __construct( $widgets = [] ) {
 
-        // We don't do anything without the widgets
-        if( ! $widgets || ! is_array($widgets) ) {
-            return;
-        }
-
-        // Our widgets
-        $this->widgets = $widgets;
-
         // These actions are only executed if elementor is installed
         if ( did_action('elementor/loaded') ) {
+
+            /**
+             * Registers support for Elementor Pro Theme Builder Locations
+             */
+            add_action( 'elementor/theme/register_locations', function($elementor_theme_manager) {
+                $elementor_theme_manager->register_all_core_location();
+            } );  
+
+            /**
+             * Prevent elementor inserting weird templates
+             */
+            add_filter('template_include', function($template) {
+
+                /**
+                 * If we are viewing an archive, we want to display the archive from Waterfall
+                 */
+
+                /**
+                 * If we are viewing a WooCommerce product archive, we want to display the Product archive from Waterfall
+                 */                 
+
+                return $template;
+
+            }, 20);
+            
+            /**
+             * As we're going to register Widgets here,
+             * we don't do anything without the widgets
+             */ 
+            if( ! $widgets || ! is_array($widgets) ) {
+                return;
+            }
+
+            // Our widgets
+            $this->widgets = $widgets;            
 
             // Register custom categories
             $this->widgetCategories();

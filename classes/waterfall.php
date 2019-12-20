@@ -78,7 +78,7 @@ class Waterfall {
         load_theme_textdomain( 'waterfall', apply_filters('waterfall_language_path', $path) );     
 
         /**
-         * Include basic utility functions
+         * Include basic utility functions, so that these are available throughout the theme
          */
         require_once( get_template_directory() . '/functions/utilities.php' );
         
@@ -94,15 +94,16 @@ class Waterfall {
         
         /**
          * The execution of our configurations is hooked in after_setup_theme, 
-         * so (child) themes can add configurations if they want on an earlier point
+         * so (child) themes can add configurations if they want on an earlier point.
+         * This executes all our custom modules, such as custom fields and post types
          */
         add_action('after_setup_theme', [$this, 'execute'], 10);
         
         /**
          * Flush our rewrite rules for new posts
          */
-        add_action('after_switch_theme', function() {
-            flush_rewrite_rules();    
+        add_action('after_switch_theme', function() { 
+            flush_rewrite_rules(); 
         });
         
         /**
@@ -125,7 +126,7 @@ class Waterfall {
         $ajax               = new Waterfall_Ajax();        
         
         /**
-         * Initialize the view component so templates are load and additional settings are added
+         * Important! Initialize the view component so templates are load and additional settings are added
          */
         $this->view         = new Waterfall_View(); 
         
@@ -223,16 +224,19 @@ class Waterfall {
         foreach( $this->config->configurations as $key => $configurations ) {
             
             // If we have a type executed, it should match a key
-            if( $type && $type != $key )
-                continue;            
+            if( $type && $type != $key ) {
+                continue;   
+            }         
             
             // The method should be set
-            if( ! isset($methods[$key]) )
+            if( ! isset($methods[$key]) ) {
                 continue;
+            }
             
             // And the class should exist
-            if( ! class_exists($methods[$key]) )
+            if( ! class_exists($methods[$key]) ) {
                 continue;
+            }
             
             if( $key == 'options' ) {
                 
@@ -263,7 +267,10 @@ class Waterfall {
             
         }
 
-        // Save our additional post types to the database, so we can modify them later
+        /**
+         * Save our additional post types to the database, so we can modify them later
+         * This is done on this location because before the configurations are executed, these post types are not available.
+         */
         if( is_admin() ) {
             $this->savePostTypes();     
         }  

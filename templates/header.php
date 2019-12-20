@@ -26,9 +26,13 @@
         
             do_action('waterfall_before_header');
 
-            // Echoes the header elements. 
-            $header = new Views\Header();
-            $header->header();
+            /**
+             * Displays our header elements, unless we have a custom header from elementor
+             */ 
+            if( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) {
+                $header = new Views\Header();
+                $header->header();
+            }
         
             do_action('waterfall_after_header');
         

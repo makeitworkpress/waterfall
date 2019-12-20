@@ -1,10 +1,13 @@
 <?php
-    /**
-     * Displays a single woocommerce product
-     *
-     * Retrieves our header
-     */
-    wf_get_theme_header(); 
+/**
+ * Displays a single woocommerce product
+ *
+ * Retrieves our header
+ */
+wf_get_theme_header(); 
+
+// Outputs our elementor templates, unless we have the product archive running
+if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'product-archive' ) ) {    
 
     // Initialize our shop archive
     $shop = new Views\Shop('product_archive');
@@ -59,8 +62,11 @@
 </div>
 
 <?php
-    /**
-     * Retrieves our footer
-     */
-    wf_get_theme_footer(); 
+
+}
+
+/**
+ * Retrieves our footer
+ */
+wf_get_theme_footer(); 
 ?>
