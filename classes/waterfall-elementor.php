@@ -35,12 +35,36 @@ class Waterfall_Elementor {
             add_filter('template_include', function($template) {
 
                 /**
-                 * If we are viewing an archive, we want to display the archive from Waterfall
-                 */
-
-                /**
+                 * If we are viewing an archive, we want to display the archive from Waterfall, not the elementor file
                  * If we are viewing a WooCommerce product archive, we want to display the Product archive from Waterfall
-                 */                 
+                 * However, elementor sometimes throwns in their own template, disturbing our template structure. 
+                 * Maybe we should rethink that structure?
+                 */
+                if( strpos($template, 'elementor/modules/page-templates/templates/header-footer.php') ) {
+                    
+                    $name = '';
+
+                    // Check conditions
+                    if( is_home() || is_archive() ) {
+                        $name = '/templates/index.php'; 
+                    } elseif( is_singular('product') ) {
+                        $name = '/woocommerce/single-product.php';
+                    } elseif( is_singular() ) {
+                        $name = '/templates/singular.php'; 
+                    } elseif( is_search() ) {
+                        $name = '/templates/search.php'; 
+                    } elseif( is_404() ) {
+                        $name = '/templates/404.php'; 
+                    } 
+                    
+                    // Check if our file exists
+                    if ( file_exists( STYLESHEETPATH . $name ) ) {
+                        $template = STYLESHEETPATH . $name;
+                    } elseif ( file_exists( TEMPLATEPATH . $name ) ) {
+                        $template = TEMPLATEPATH . $name;
+                    }
+
+                }
 
                 return $template;
 

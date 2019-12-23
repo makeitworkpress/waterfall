@@ -13,7 +13,7 @@ $colors = [
     'panel'         => true,
     'priority'      => 10,
     'sections'      => [
-       [
+       'general' => [
             'id'            => 'colors_general',
             'title'         => __('General Colors', 'waterfall'),
             'fields'    => [        
@@ -59,7 +59,7 @@ $colors = [
                 ],
             ]
         ],
-        [
+        'header' => [
             'id'            => 'colors_header',
             'title'         => __('Header Colors', 'waterfall'),
             'fields'    => [
@@ -255,7 +255,7 @@ $colors = [
                 ]
             ]              
         ],   
-        [
+        'content' => [
             'id'            => 'colors_main_content',
             'title'         => __('Content Colors', 'waterfall'),
             'fields'    => [
@@ -565,7 +565,7 @@ $colors = [
                 ]
             ]              
         ],   
-        [
+        'footer' => [
             'id'            => 'colors_footer',
             'title'         => __('Footer Colors', 'waterfall'),
             'fields'    => [                    
@@ -691,7 +691,7 @@ $colors = [
                 ]                                                                
             ]              
         ],   
-        [
+        'buttons' => [
             'id'            => 'colors_buttons',
             'title'         => __('Button Colors', 'waterfall'),
             'fields'    => [                      
@@ -775,3 +775,13 @@ $colors = [
         ]     
     ]
 ];
+
+/**
+ * Conditional settings. 
+ * If some areas are designed by elementor, their display is conditional
+ */
+add_action('init', function() use($colors) {
+
+    wf_elementor_theme_has_location('header');
+
+}, 20 );

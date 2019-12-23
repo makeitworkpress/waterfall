@@ -194,6 +194,11 @@ class Waterfall {
          * Set-up our configurations
          */
         $this->config = new MakeitWorkPress\WP_Config\Config( $configurations );
+
+
+        if( wf_elementor_theme_has_location('header') ) {
+         
+        }        
         
     }   
     
