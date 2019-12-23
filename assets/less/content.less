@@ -105,6 +105,18 @@
 
 /* Main Content Section
 ----------------------*/
+
+.main-content {
+    // Floating images don't float on mobile
+    @media screen and (max-width: 767px) {
+        .molecule-post > .atom-image.components-left-float, .molecule-post > .atom-image.components-right-float {
+            float: none;
+            margin: 0;
+        }
+    }
+}
+
+
 .content {
     overflow: hidden;
     ul {
@@ -250,6 +262,13 @@
         span {
             color: @grey;
             font-size: 1rem;
+        }
+    }
+    // Floating images don't float on mobile
+    @media screen and (max-width: 767px) {
+        .molecule-post > .atom-image.components-left-float, .molecule-post > .atom-image.components-right-float {
+            float: none;
+            margin: 0;
         }
     }
 }

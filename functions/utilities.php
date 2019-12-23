@@ -388,30 +388,93 @@ function wf_get_post_types( $simple = false, $available = false ) {
 
         }
 
-    }   
+    }
 
     return $types;
 
 }
 
 /**
- * Checks if a certain theme location was build by elementor
+ * Checks if a certain theme location was build by elementor. We can use the options to see if a condition applies.
+ * It does not yet support display based on tags, categories and taxonomies
  * 
  * @param string $location  The theme location of the template
- * @param string $condition The optional condition, such as a post type or post type archive display (use post type name) 
+ * @param string $type      The optional condition type, such as a post type or post type archive display (use post type name or 404) or search or author
  */
-function wf_elementor_theme_has_location( $location ) {
+function wf_elementor_theme_has_location( $location, $type = '' ) {
 
     $conditions = get_option('elementor_pro_theme_builder_conditions');
+    $shown      = false;
 
-    if( isset($conditions[$location]) ) {
+    // There should be something to show
+    if( ! isset($conditions[$location]) || empty($conditions[$location]) || ! is_array($conditions[$location]) ) {
+        return $shown;
+    }
 
-        switch($location) {
+    switch($location) {
+        case 'header':
+        case 'footer':
+            foreach( $conditions[$location] as $condition ) {
+                if( $condition[0] == 'include/general' ) {
+                    $shown = true;
+                }
+            }
+            break;
+        case 'single':
+            foreach( $conditions[$location] as $condition ) {
+                              
+                // For single template applying to all types
+                if( $condition[0] == 'include/singular' ) {
+                    $shown = true;
+                }
 
-        }
+                if( $condition[0] == 'include/singular/not_found404' && $type == '404' ) {
+                    $shown = true;
+                }                
+
+                // For single template applying to products
+                if( $condition[0] == 'include/product' && $type == 'product' ) {
+                    $shown = true;
+                }                
+
+                // For a single templates applying to a specific type
+                if( $condition[0] == 'include/singular/' . $type ) {
+                    $shown = true;
+                }
+
+            }
+            break;
+        case 'archive':
+
+            foreach( $conditions[$location] as $condition ) {
+
+                // For an archive template applying to all types
+                if( $condition[0] == 'include/archive' ) {
+                    $shown = true;
+                }
+
+                // For a search, author or date templates 
+                if( $condition[0] == 'include/archive/' . $type ) {
+                    $shown = true;
+                } 
+
+                // For condition archives
+                if( $condition[0] == 'include/product_archive' && $type == 'product' ) {
+                    $shown = true;
+                }                 
+
+                // For a specific post type 
+                if( $condition[0] == 'include/archive/' . $type . '_archive' ) {
+                    $shown = true;
+                }
+
+            }                 
+
+        break;
 
     }
+
    
-    return false;
+    return $shown;
     
 }

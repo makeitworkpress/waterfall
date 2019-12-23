@@ -192,6 +192,21 @@ class Waterfall_View {
             }, 999, 1);  
         }         
         
+
+        /**
+         * Moves our WooCommerce Templates path inside the templates folder
+         * 
+         * @param string $path The path to Woocommerce templates
+         */
+        add_filter('woocommerce_template_path', function($path) {
+
+            $path = 'templates/woocommerce/';
+
+            return $path;
+
+        });
+
+
     }
     
     /**

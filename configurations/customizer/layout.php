@@ -5,7 +5,7 @@
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 // Receive our public post types
-$types  = wf_get_post_types( false, true );
+$types  = wf_get_post_types( true, true );
 
 // Set-up the settings array
 $layout = [
@@ -14,7 +14,7 @@ $layout = [
     'title'         => __('Layout', 'waterfall'),
     'panel'         => true,
     'sections'      => [
-        'style_header' => [
+        'header' => [
             'id'            => 'style_header',
             'title'         => __('Header', 'waterfall'),
             'fields'    => [ 
@@ -159,11 +159,11 @@ $layout = [
 // Based on our post types, we add variable settings if supported
 if( $types ) {
 
-    foreach( $types as $type => $properties ) {
+    foreach( $types as $type => $name ) {
 
         $layout['sections'][$type . '_content'] = [
             'id'        => $type . '_content',
-            'title'     => $properties['name'],
+            'title'     => $name,
             'fields'    => [
                 [
                     'default'       => '',
@@ -584,6 +584,20 @@ if( $types ) {
             ]
         ];
 
+        /**
+         * If a page has been designed by elementor, we only show one field.
+         */
+        if( wf_elementor_theme_has_location('single', $type) ) {
+            $layout['sections'][$type . '_content']['fields'] = [
+                [
+                    'id'            => $type . '_content_elementor',
+                    'description'   => sprintf( __('The %s page is designed by the Elementor Theme Builder. Thus, no layout settings are shown here.', 'waterfall'), $name ),
+                    'title'         => __('Designed by Elementor', 'waterfall'),
+                    'type'          => 'heading'
+                ] 
+            ];  
+        }       
+
         // Skip archives for pages
         if( $type == 'page' ) {
             continue;
@@ -594,7 +608,7 @@ if( $types ) {
          */
         $layout['sections'][$type . '_archives'] = [
             'id'        => $type . '_archives',
-            'title'     => sprintf( __('%s Archives', 'waterfall'), $properties['name'] ),
+            'title'     => sprintf( __('%s Archives', 'waterfall'), $name ),
             'fields'    => [
                 [
                     'default'       => '',
@@ -769,8 +783,28 @@ if( $types ) {
                 ]                        
             ]              
         ];
+
+        /**
+         * If a page has been designed by elementor, we only show one field.
+         */
+        if( wf_elementor_theme_has_location('archive', $type) ) {
+
+            $layout['sections'][$type . '_archives']['fields'] = [
+                [
+                    'id'            => $type . '_archives_elementor',
+                    'description'   => sprintf( __('The %s archive is designed by the Elementor Theme Builder. Thus, no layout settings are shown here.', 'waterfall'), $name ),
+                    'title'         => __('Designed by Elementor', 'waterfall'),
+                    'type'          => 'heading'
+                ] 
+            ];          
+
+        }
+
+
     }
 }
+
+
 
 // Search Page
 $layout['sections']['search_page'] = [
@@ -981,7 +1015,7 @@ $layout['sections']['404_page'] = [
 ];
     
 // Footer   
-$layout['sections']['styling_footer'] = [
+$layout['sections']['footer'] = [
     'id'            => 'styling_footer',
     'title'         => __('Footer', 'waterfall'),
     'fields'    => [
@@ -1095,3 +1129,48 @@ $layout['sections']['styling_footer'] = [
         ]                                      
     ]              
 ];
+
+/**
+ * Other conditional settings. 
+ * If some areas are designed by elementor, their display is conditional
+ */
+foreach(['header' => __('Header', 'waterfall'), 'footer' => __('Header', 'waterfall')] as $part => $label ) {
+    
+    if( ! wf_elementor_theme_has_location($part) ) {
+        continue;
+    }
+
+    $layout['sections'][$part]['fields'] = [
+        [
+            'id'            => $part . '_elementor',
+            'description'   => sprintf( __('The %s is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'), $label ),
+            'title'         => __('Designed by Elementor', 'waterfall'),
+            'type'          => 'heading'
+        ] 
+    ]; 
+
+}
+
+// 404 Page
+if( wf_elementor_theme_has_location('single', '404') ) {
+    $layout['sections']['404_page']['fields'] = [
+        [
+            'id'            => '404_page_elementor',
+            'description'   => __('The 404 page is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'),
+            'title'         => __('Designed by Elementor', 'waterfall'),
+            'type'          => 'heading'
+        ] 
+    ];     
+}
+
+// Search Page
+if( wf_elementor_theme_has_location('archive', 'search') ) {
+    $layout['sections']['search_page']['fields'] = [
+        [
+            'id'            => 'search_page_elementor',
+            'description'   => __('The search page is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'),
+            'title'         => __('Designed by Elementor', 'waterfall'),
+            'type'          => 'heading'
+        ] 
+    ];     
+}

@@ -30,38 +30,23 @@ class Waterfall_Elementor {
             } );  
 
             /**
-             * Prevent elementor inserting weird templates
+             * Prevent elementor inserting weird header and footer templates, but use the ones from waterfall instead
              */
             add_filter('template_include', function($template) {
 
                 /**
-                 * If we are viewing an archive, we want to display the archive from Waterfall, not the elementor file
-                 * If we are viewing a WooCommerce product archive, we want to display the Product archive from Waterfall
-                 * However, elementor sometimes throwns in their own template, disturbing our template structure. 
-                 * Maybe we should rethink that structure?
+                 * We need to overwrite the elementor basic template display with our own, so the correct
+                 * header and footer is rendered. Sounds like a deal!
                  */
                 if( strpos($template, 'elementor/modules/page-templates/templates/header-footer.php') ) {
                     
-                    $name = '';
-
-                    // Check conditions
-                    if( is_home() || is_archive() ) {
-                        $name = '/templates/index.php'; 
-                    } elseif( is_singular('product') ) {
-                        $name = '/woocommerce/single-product.php';
-                    } elseif( is_singular() ) {
-                        $name = '/templates/singular.php'; 
-                    } elseif( is_search() ) {
-                        $name = '/templates/search.php'; 
-                    } elseif( is_404() ) {
-                        $name = '/templates/404.php'; 
-                    } 
+                    $template = '/templates/elementor/header-footer.php';
                     
                     // Check if our file exists
-                    if ( file_exists( STYLESHEETPATH . $name ) ) {
-                        $template = STYLESHEETPATH . $name;
-                    } elseif ( file_exists( TEMPLATEPATH . $name ) ) {
-                        $template = TEMPLATEPATH . $name;
+                    if ( file_exists( STYLESHEETPATH . $template ) ) {
+                        $template = STYLESHEETPATH . $template;
+                    } elseif ( file_exists( TEMPLATEPATH . $template ) ) {
+                        $template = TEMPLATEPATH . $template;
                     }
 
                 }

@@ -91,7 +91,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .menu > li > a, .atom-search-expand',
                     'default'       => '',
                     'id'            => 'navigation_link_color',
-                    'title'         => __('Navigation Link Color', 'waterfall'),
+                    'title'         => __('Menu Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -99,7 +99,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .menu > li > a:hover, .atom-search-expand:hover',
                     'default'       => '',
                     'id'            => 'navigation_link_hover_color',
-                    'title'         => __('Navigation Link Hover Color', 'waterfall'),
+                    'title'         => __('Menu Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -110,7 +110,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_hover_background',
-                    'title'         => __('Navigation Link Hover Background', 'waterfall'),
+                    'title'         => __('Menu Link Hover Background', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -118,7 +118,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .menu > li.current-menu-item > a, .molecule-header-atoms .menu > li.current-menu-ancestor > a',
                     'default'       => '',
                     'id'            => 'navigation_link_active_color',
-                    'title'         => __('Navigation Link Active Color', 'waterfall'),
+                    'title'         => __('Menu Link Active Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                 
@@ -129,29 +129,29 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_active_background',
-                    'title'         => __('Navigation Link Active Background Color', 'waterfall'),
+                    'title'         => __('Menu Link Active Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                
                 [
                     'selector'      => [
                         'min-width' => $menu == 'tablet' ? '1025px' : '768px',
-                        'selector'  => '.molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu-default .menu > li > a, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-search-expand',
+                        'selector'  => '.molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-default .menu > li > a, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-search-expand',
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_transparent_color',
-                    'title'         => __('Navigation Link Color Transparent Header', 'waterfall'),
+                    'title'         => __('Menu Link Color Transparent Header', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
                 [
                     'selector'      => [
                         'min-width' => $menu == 'tablet' ? '1025px' : '768px',
-                        'selector'  => '.molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu-default .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-search-expand:hover',
+                        'selector'  => '.molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-default .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-search-expand:hover',
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_transparent_hover_color',
-                    'title'         => __('Navigation Link Hover Transparent Header', 'waterfall'),
+                    'title'         => __('Menu Link Hover Transparent Header', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -162,7 +162,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_mobile_link_color',
-                    'title'         => __('Mobile Menu Navigation Link Color', 'waterfall'),
+                    'title'         => __('Mobile Menu Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -173,7 +173,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_mobile_link_hover_color',
-                    'title'         => __('Mobile Menu Navigation Link Hover Color', 'waterfall'),
+                    'title'         => __('Mobile Menu Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                
@@ -780,8 +780,39 @@ $colors = [
  * Conditional settings. 
  * If some areas are designed by elementor, their display is conditional
  */
-add_action('init', function() use($colors) {
+foreach(['header' => __('Header', 'waterfall'), 'footer' => __('Footer', 'waterfall')] as $part => $label ) {
+    
+    if( ! wf_elementor_theme_has_location($part) ) {
+        continue;
+    }
 
-    wf_elementor_theme_has_location('header');
+    $colors['sections'][$part]['fields'] = [
+        [
+            'id'            => 'colors_' . $part . '_elementor',
+            'description'   => sprintf( __('The %s is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'), $label ),
+            'title'         => __('Designed by Elementor', 'waterfall'),
+            'type'          => 'heading'
+        ] 
+    ]; 
 
-}, 20 );
+}
+
+/**
+ * Look if one of the post types is designed and give a warning accordingly.
+ */
+$types = wf_get_post_types(true, true);
+
+foreach( $types as $type => $label ) {
+    if( wf_elementor_theme_has_location('single', $type) || wf_elementor_theme_has_location('archive', $type) ) {
+        array_unshift(
+            $colors['sections']['content']['fields'], 
+            [
+                'id'            => 'colors_content_elementor',
+                'description'   => sprintf( __('One or more pages are designed by the Elementor Theme Builder. Color settings thus may not apply to all pages.', 'waterfall'), $label ),
+                'title'         => __('Elementor Notification', 'waterfall'),
+                'type'          => 'heading'
+            ]             
+        );
+        break;
+    }
+}

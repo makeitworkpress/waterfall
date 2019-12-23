@@ -11,7 +11,7 @@ $typography = [
     'panel'         => true,
     'priority'      => 20,
     'sections'      => [
-        [
+        'general_typography' => [
             'id'            => 'general_typography',
             'title'         => __('General', 'waterfall'),
             'fields'    => [                   
@@ -24,7 +24,7 @@ $typography = [
                 ],               
                 [
                     'default'       => '',
-                    'selector'      => '.header',
+                    'selector'      => '.molecule-header-atoms .atom-menu',
                     'id'            => 'header_menu_typography',
                     'title'         => __('Header Navigation Menu', 'waterfall'),
                     'type'          => 'typography'
@@ -76,7 +76,7 @@ $typography = [
                 ]                
             ]              
         ], 
-        [
+        'headings_typography' => [
             'id'            => 'headings_typography',
             'title'         => __('General Headings', 'waterfall'),
             'fields'    => [ 
@@ -138,7 +138,7 @@ $typography = [
                 ]                                                  
             ]
         ],                
-        [
+        'headings_typography_specific' => [
             'id'            => 'headings_typography_specific',
             'title'         => __('Specific Headings', 'waterfall'),
             'fields'    => [                                 
@@ -192,7 +192,7 @@ $typography = [
                 ],                                                                               
             ]              
         ],        
-        [
+        'footer_typography' => [
             'id'            => 'footer_typography',
             'title'         => __('Footer', 'waterfall'),
             'fields'    => [                   
@@ -228,3 +228,17 @@ $typography = [
         ]
     ]
 ];
+
+
+/**
+ * Conditional configurations based on our elementor settings
+ */
+if( wf_elementor_theme_has_location('header') ) {
+    foreach([1,3,4,5] as $key) {
+        unset($typography['sections']['general_typography']['fields'][$key]);
+    }
+}
+
+if( wf_elementor_theme_has_location('footer') ) {
+    unset($typography['sections']['footer_typography']);
+}

@@ -80,7 +80,7 @@ $woocommerce = [
                 ]        
             ]                     
         ],
-        [
+        'woocommerce_product_images' => [
             'id'            => 'woocommerce_product_images',
             'title'         => __('Product Images', 'waterfall'),
             'fields'        => [ 
@@ -105,7 +105,7 @@ $woocommerce = [
                 ]                   
             ]
         ],        
-        [
+        'woocommerce_product' => [
             'id'            => 'woocommerce_product',
             'title'         => __('Single Products', 'waterfall'),
             'fields'        => [            
@@ -141,3 +141,18 @@ $woocommerce = [
         ]        
     ]
 ];
+
+/**
+ * Conditional configurations based on our elementor settings
+ */
+if( wf_elementor_theme_has_location('header') ) {
+    unset($woocommerce['sections']['header']);
+}
+
+if( wf_elementor_theme_has_location('single', 'product') ) {
+    unset($woocommerce['sections']['woocommerce_product']);
+}
+
+if( wf_elementor_theme_has_location('archive', 'product') ) {
+    unset($woocommerce['sections']['woocommerce_product_catalog']);
+}
