@@ -2,8 +2,9 @@
 
 /**
  * Contains elementor specific styling
- *
- * 
+ * ----------------------------------------/
+ 
+/** 
  * Sections do have some margins with lower resolutions (unless they are fullwidth sections)
  */
 .elementor-section-wrap > .elementor-section {
@@ -65,4 +66,18 @@
 .elementor-section .elementor-section-full_width > .elementor-column-gap-wider > .elementor-row {
     margin: 0 -30px;
     width: ~"calc(100% + 60px)";
+}
+
+/** 
+ * Elementor Widgets
+ */
+
+/* Breadcrumb Widget */
+.waterfall-breadcrumbs ol {
+    padding: 0;
+} 
+
+/* Termlist */
+ul.waterfall-terms {
+    padding: 0;
 }

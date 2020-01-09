@@ -153,6 +153,10 @@ class Waterfall {
         require_once( get_template_directory() . '/configurations/register.php' );
         
         $configurations = [
+            'elementor' => [
+                'Views\Widgets\Breadcrumbs',
+                'Views\Widgets\Terms',
+            ],
             'enqueue'   => $enqueue, 
             'register'  => $register, 
             'options'   => []
