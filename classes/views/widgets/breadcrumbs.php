@@ -154,7 +154,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 
 			wpc_atom('breadcrumbs', [
 				'attributes'	=> ['class' => 'waterfall-breadcrumbs'],
-				'archive'       => $settings['archive'] ? $settings['archive'] : false,
+				'archive'       => $settings['archive'] ? true : false,
 				'home'        	=> $settings['home'] ? $settings['home'] : __('Home', 'waterfall'),
 				'seperator'     => $settings['seperator'] ? $settings['seperator'] : '&rsaquo'
 			]);

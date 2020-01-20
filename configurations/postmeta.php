@@ -10,16 +10,10 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
  */
 $postTypes = [];
 foreach( wf_get_post_types(true) as $type => $label ) {
-
-    // Post types that are designed by elementor do not get metaboxes
-    if( wf_elementor_theme_has_location('single', $type) ) {
-        continue;
-    }
     $postTypes[] = $type;
-
 }
 
-// No metaboxes will be added if no post type is suppored
+// No metaboxes will be added if no post type is supported
 if( ! $postTypes ) {
     $postmeta = [];
     return;
@@ -36,7 +30,7 @@ $postmeta = [
     'type'          => 'post',
     'screen'        => $postTypes,
     'sections'      => [
-        [
+        'layout' => [
             'icon'      => 'web_asset',
             'id'        => 'footer',
             'title'     => __('Layout', 'waterfall'),
@@ -133,7 +127,7 @@ $postmeta = [
                 ]   
             ]              
         ],    
-        [
+        'title' => [
             'description' => __('The title section displays your title, featured images, meta information and more.', 'waterfall'),
             'icon'      => 'remove_from_queue',
             'id'        => 'page_header',
