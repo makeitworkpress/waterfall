@@ -4,7 +4,6 @@
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-
 /**
  * All custom post types receive these metaboxes
  */

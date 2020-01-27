@@ -64,7 +64,7 @@ $colors = [
             'title'         => __('Header Colors', 'waterfall'),
             'fields'    => [
                 [
-                    'selector'      => ['selector' => '.header', 'property' => 'background-color'],
+                    'selector'      => ['selector' => '.header, .molecule-header.molecule-header-transparent.molecule-header-scrolled', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'header_background',
                     'title'         => __('Header Background Color', 'waterfall'),
