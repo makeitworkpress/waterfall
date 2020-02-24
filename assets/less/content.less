@@ -3,6 +3,9 @@
 /**
  * Styling Rules for content types
  */
+body {
+    overflow-x: hidden; // Prevents a wider than screen width body on smaller screen sizes, which results in a horizontal scrollbar.
+} 
 
 /* Content Wrappers
 ----------------------*/
@@ -71,7 +74,7 @@
     .atom-button:not(.wfr-price-button) {
         display: block;
         margin-bottom: @grid-space;
-        max-width: 256px;
+        max-width: 288px;
         text-align: center;
     }
     &.components-image-background {
@@ -118,7 +121,6 @@
 
 
 .content {
-    overflow: hidden;
     ul {
         list-style: disc;
         padding: 0 0 1.5em 1.5em;

@@ -71,7 +71,7 @@ class Index extends Base {
             global $wp_query;
 
             if( is_search() ) {   
-                $atoms['archive-title']['properties']['types']['search']    = str_replace( 
+                $atoms['title']['properties']['types']['search']    = str_replace( 
                     ['{number}', '{term}'], 
                     ['<span>' . number_format_i18n( $wp_query->found_posts ) . '</span>', '<span>' . get_search_query() . '</span>'], 
                     $this->layout['header_title']

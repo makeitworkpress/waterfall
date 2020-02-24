@@ -63,7 +63,7 @@ class Waterfall_View {
                 echo '<style type="text/css"> 
                     .molecule-header-atoms .atom-logo img { height: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 16px); width: auto;} 
                     .molecule-header-atoms .atom-menu-hamburger { margin: calc( (' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 30px)/2 ) 4px; }
-                    .molecule-header-transparent ~ .main .main-header { padding-top: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' + 32px); }
+                    .molecule-header-transparent ~ .main .main-header, .molecule-header-transparent ~ .main .main-header.components-image-background { padding-top: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' + 32px); }
                 </style>';
             }
         }, 20 );
