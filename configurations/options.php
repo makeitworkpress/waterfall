@@ -8,11 +8,11 @@ $options = [
     'capability'    => 'manage_options',
     'class'         => 'tabs-left',
     'id'            => 'waterfall_options',
-    'location'      => 'menu', 
+    'location'      => 'theme', 
     'menu_icon'     => 'dashicons-admin-generic',
-    'menu_title'    => __('Waterfall', 'waterfall'),
-    'menu_position' => 99,
-    'title'         => __('Waterfall Settings', 'waterfall'),
+    'menu_title'    => __('Theme Options', 'waterfall'),
+    'menu_position' => 0,
+    'title'         => __('Waterfall Theme Settings', 'waterfall'),
     'sections'      => [
         'general'   => [
             'icon'          => 'settings',
@@ -93,7 +93,6 @@ $options = [
                     'description'   => __('Improve the loading performance by enabling optimalizations. Be aware that some optimizations such as Disabling XMLRPC can break plugins.', 'waterfall'),
                     'id'            => 'optimize',
                     'options'       => [
-                        'lazyLoad'                  => ['label' => __('Enable Images and Iframe Lazyload', 'waterfall')],
                         'deferCSS'                  => ['label' => __('Defer CSS', 'waterfall')],
                         'deferJS'                   => ['label' => __('Defer Javascript Loading', 'waterfall')],
                         'disableComments'           => ['label' => __('Disable Comments', 'waterfall')],
