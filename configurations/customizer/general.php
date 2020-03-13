@@ -41,7 +41,7 @@ $customizer = [
                 ],                 
                 [
                     'selector'     => [
-                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-field-type-submit button', 
+                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, .elementor-element .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-field-type-submit button', 
                         'property' => 'border-radius'
                     ],
                     'default'       => '',
@@ -67,14 +67,8 @@ $customizer = [
         [
             'id'            => 'title_tagline',
             'priority'      => 2,
-            'title'         => __('Site Identity', 'waterfall'),
-            'fields'        => [                  
-                [
-                    'default'       => '',
-                    'id'            => 'logo',
-                    'title'         => __('Logo Image', 'waterfall'),
-                    'type'          => 'media',
-                ],
+            'title'         => __('Identity', 'waterfall'),
+            'fields'        => [
                 [
                     'default'       => '',
                     'id'            => 'logo_transparent',

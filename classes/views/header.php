@@ -57,14 +57,19 @@ class Header extends Base {
          */
         $represents = wf_get_theme_option('options', 'represent_scheme');
 
+        // Get our logo and alt
+        $logo       = $this->customizer['logo'] ? $this->customizer['logo'] : get_theme_mod( 'custom_logo' );
+        $alt        = get_post_meta( $logo, '_wp_attachment_image_alt', true );
+
         // Default header items
         $atoms = [
             'logo'  => [
                 'atom'                      => 'logo',
                 'properties'                => [
+                    'alt'                   => $alt,
                     'attributes'            => ['itemtype' => $represents == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
                     'float'                 => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
-                    'default'               => $this->customizer['logo'] ? $this->customizer['logo'] : ['src' => get_template_directory_uri() . '/assets/img/waterfall.png', 'height' => 64, 'width' => 306],
+                    'default'               => $logo ? $logo : ['src' => get_template_directory_uri() . '/assets/img/waterfall.png', 'height' => 64, 'width' => 306],
                     'defaultTransparent'    => $this->customizer['logo_transparent'],
                     'mobile'                => $this->customizer['logo_mobile'], 
                     'mobileTransparent'     => $this->customizer['logo_mobile_transparent'],

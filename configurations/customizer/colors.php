@@ -56,7 +56,7 @@ $colors = [
                     'title'         => __('Blockquotes Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ],
+                ]                               
             ]
         ],
         'header' => [
@@ -693,7 +693,7 @@ $colors = [
         ],   
         'buttons' => [
             'id'            => 'colors_buttons',
-            'title'         => __('Button Colors', 'waterfall'),
+            'title'         => __('Button & Form Colors', 'waterfall'),
             'fields'    => [                      
                 [
                     'selector'     => [ 
@@ -770,7 +770,29 @@ $colors = [
                     'title'         => __('Secondary Button Text Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ]    
+                ],
+                [
+                    'default'       => '',
+                    'selector'      => [
+                        'selector' => 'input:not[type=\'submit\'], input:not[type=\'reset\'], input:not[type=\'button\'], input:not[type=\'radio\'], input:not[type=\'range\'], input:not[type=\'checkbox\'], select, textarea, .elementor-field-group .elementor-field-textual', 
+                        'property' => 'border-color'
+                    ],
+                    'id'            => 'border_color',
+                    'title'         => __('Form Input Border Colors', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ], 
+                [
+                    'default'       => '',
+                    'selector'      => [
+                        'selector' => 'input:not[type=\'submit\'], input:not[type=\'reset\'], input:not[type=\'button\'], input:not[type=\'radio\'], input:not[type=\'range\'], input:not[type=\'checkbox\'], select, textarea, .elementor-field-group .elementor-field-textual', 
+                        'property' => 'background-color'
+                    ],
+                    'id'            => 'border_color',
+                    'title'         => __('Form Input Background Colors', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ]                     
             ]
         ]     
     ]

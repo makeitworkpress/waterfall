@@ -181,17 +181,21 @@ class Waterfall_View {
 
         /**
          * Alters the excerpt length based on our settings
+         * and updates our logo for older versions of Waterfall
          */
         $customize      = wf_get_theme_option('customizer');
-
 
         if( isset($customize['excerpt_length']) && is_numeric($customize['excerpt_length']) ) {
             add_filter( 'excerpt_length', function($length) use($customize) {
                 $length = absint($customize['excerpt_length']);
                 return $length;
             }, 999, 1);  
-        }         
+        }
         
+        // Older themes still use the customizer value for the main logo, so update it automatically.
+        if( (isset($customize['logo']) && $customize['logo']) && ! get_theme_mod('custom_logo') ) {
+            set_theme_mod( 'custom_logo', intval($customize['logo']) );
+        }        
 
         /**
          * Moves our WooCommerce Templates path inside the templates folder
@@ -218,6 +222,7 @@ class Waterfall_View {
          * Basic theme supports
          */
         add_theme_support( 'custom-background' ); 
+        add_theme_support( 'custom-logo' ); 
 		add_theme_support( 'post-thumbnails' ); 
         add_theme_support( 'title-tag' );
 		add_theme_support( 'html5', ['comment-list', 'comment-form', 'search-form', 'caption'] );
