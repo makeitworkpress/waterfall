@@ -20,9 +20,14 @@ class Datepicker implements Field {
     
     public static function render( $field = [] ) {
 
-        // Only Enqueue if it is not enqueued yet
+        // Only enqueue if it is not enqueued yet
         if( apply_filters('wp_custom_fields_datepicker_field_js', true) && ! wp_script_is('flatpicker-js', 'enqueued') ) {
             wp_enqueue_script('flatpicker-js');
+        }
+
+        // Also enqueue our locale script is registered and set-up
+        if( isset($field['locale']) && wp_script_is('flatpicker-i18n-' . $field['locale'], 'registered') && ! wp_script_is('flatpicker-i18n-' . $field['locale']) ) {
+            wp_enqueue_script('flatpicker-i18n-' . $field['locale']);
         }
         
         $configurations = self::configurations();
@@ -54,10 +59,10 @@ class Datepicker implements Field {
             }
         } ?>
         
-            <div class="wp-custom-fields-datepicker"' . $attributes . '>';
+            <div class="wp-custom-fields-datepicker" <?php echo $attributes; ?>>
                 <input id="<?php echo $id; ?>" name="<?php echo $name; ?>" type="input" value="<?php echo $value; ?>" data-input="true" <?php echo $placeholder; ?>/>
-                <a class="wp-custom-fields-input-button" title="<?php echo $toggle; ?>" data-toggle="true"><i class="material-icons">calendar_today</i></a>';
-                <a class="wp-custom-fields-input-button input-button-clear" title="<?php echo $clear; ?>" data-clear="true"><i class="material-icons">clear</i></a>';
+                <a class="wp-custom-fields-input-button" title="<?php echo $toggle; ?>" data-toggle="true"><i class="material-icons">calendar_today</i></a>
+                <a class="wp-custom-fields-input-button input-button-clear" title="<?php echo $clear; ?>" data-clear="true"><i class="material-icons">clear</i></a>
             </div>
 
         <?php 
