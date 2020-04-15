@@ -25,7 +25,7 @@ class Checkbox implements Field {
         // Accepts an optional .buttonset style, for a set of styled buttons or .switcher/.switcher .switcher-disable style for a switch display
         $style      = isset($field['style']) ? esc_attr($field['style']) : ''; ?> 
 
-            <ul class="wp-custom-fields-field-checkbox-wrapper <?php echo $style; ?>">
+            <ul class="wpcf-field-checkbox-wrapper <?php echo $style; ?>">
 
                 <?php 
                     foreach($options as $key => $option) { 
@@ -44,8 +44,8 @@ class Checkbox implements Field {
 
                         $label  = isset($option['label']) ? esc_html($option['label']) : '';
                         $icon   = isset($option['icon']) ? '<i class="material-icons">' . esc_html($option['icon'])  . '</i>' : ''; ?> 
-                        <li class="wp-custom-fields-field-checkbox-input">
-                            <input type="checkbox" id="<?php echo $id; ?>" name="<?php echo $name; ?>" <?php checked($value, true); ?> />
+                        <li class="wpcf-field-checkbox-input">
+                            <input type="checkbox" id="<?php echo $id; ?>" name="<?php echo $name; ?>" <?php checked($value, true); ?> data-key="<?php esc_attr_e($key); ?>" />
                             <?php if( ! empty($label) ) { ?>
                                 <label for="<?php echo $id; ?>"><?php echo $icon . $label; ?></label>  
                             <?php } ?>

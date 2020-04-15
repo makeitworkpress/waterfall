@@ -4,6 +4,7 @@
   */
 namespace MakeitWorkPress\WP_Custom_Fields\Fields;
 use MakeitWorkPress\WP_Custom_Fields\Field as Field;
+use MakeitWorkPress\WP_Custom_Fields\Framework as Framework;
 
 // Bail if accessed directly
 if ( ! defined('ABSPATH') ) {
@@ -46,15 +47,15 @@ class Repeatable implements Field {
             
         } ?>
         
-            <div class="wp-custom-fields-repeatable-container">
+            <div class="wpcf-repeatable-container">
 
-                <div class="wp-custom-fields-repeatable-groups">
+                <div class="wpcf-repeatable-groups">
         
                     <?php foreach( $groups as $key => $fields) { ?>
 
-                        <div class="wp-custom-fields-repeatable-group">
-                            <a class="wp-custom-fields-repeatable-toggle" href="#"><i class="material-icons">arrow_drop_down</i></a>
-                            <div class="wp-custom-fields-repeatable-fields grid flex <?php echo $display; ?>">
+                        <div class="wpcf-repeatable-group">
+                            <a class="wpcf-repeatable-toggle" href="#"><i class="material-icons">arrow_drop_down</i></a>
+                            <div class="wpcf-repeatable-fields grid flex <?php echo $display; ?>">
 
                                 <?php 
                                     // Loop through each of the saved fields
@@ -71,39 +72,50 @@ class Repeatable implements Field {
                                         }                
 
                                         // Render each field based upon the values
-                                        $subfield['columns']  = isset($subfield['columns']) ? 'wcf-' . $subfield['columns'] : 'wcf-full';
-                                        $subfield['values']   = isset($subfield['values']) ? $subfield['values'] : '';
-                                        $subfield['name']     = $field['name'] . '[' . $key . ']' . '[' . $subfield['id'] . ']';
-                                        $subfield['id']       = $field['id'] . '_' . $key  . '_' . $subfield['id'];
+                                        $subfield['classes']        = isset($subfield['columns']) ? ' wpcf-' . esc_attr($subfield['columns']) : 'wpcf-full';
+                                        $subfield['classes']       .= ' field-' . esc_attr($subfield['type']) . ' field-id-' . $subfield['id'];
+                                        $subfield['values']         = isset($subfield['values']) ? $subfield['values'] : '';
+                                        $subfield['name']           = $field['name'] . '[' . $key . ']' . '[' . esc_attr($subfield['id']) . ']';
+                                        $subfield['id']             = $field['id'] . '_' . $key  . '_' . esc_attr($subfield['id']);
+                                        $subfield['dependency']     = isset($subfield['dependency']) ? $subfield['dependency'] : [];
+
+                                        // Additional classes
+                                        if( $subfield['dependency'] ) {
+                                            $subfield['classes']   .= ' wpcf-dependent-field' . Framework::returnDependencyClass($subfield['dependency'], [['fields' => $fields]], $field['values'][$key]);   
+                                        }
+
+                                        // If our dependency is fullfilled, the active class should be added
                                     
                                         $class                = 'MakeitWorkPress\WP_Custom_Fields\Fields\\' . ucfirst( $subfield['type'] );
                                     
                                     
                                     if( class_exists($class) ) { ?>
-                                        <div class="wp-custom-fields-repeatable-field wp-custom-fields-option-field field-<?php echo esc_attr($subfield['type'] . ' ' . $subfield['columns']); ?>">
+                                        <div class="wpcf-repeatable-field wpcf-field <?php echo $subfield['classes']; ?>">
                                             <h5><?php esc_html_e($subfield['title']); ?></h5>
-                                            <?php $class::render($subfield); ?>
+                                            <div class="wpcf-repeatable-field-input" <?php foreach($subfield['dependency'] as $k => $v) { ?> data-<?php echo $k; ?>="<?php echo $v; ?>" <?php } ?>>
+                                                <?php $class::render($subfield); ?>
+                                            </div>
                                             <?php if( isset($subfield['description']) ) {  ?>
-                                                <div class="wp-custom-fields-field-description"><p><?php echo esc_textarea($subfield['description']); ?></p></div>
+                                                <div class="wpcf-field-description"><p><?php echo esc_textarea($subfield['description']); ?></p></div>
                                             <?php } ?>
                                         </div>
                                     <?php }
 
                                 } ?>
             
-                            </div><!-- .wp-custom-fields-repeatable-fields -->
-                        </div><!-- .wp-custom-fields-repeatable-group -->
+                            </div><!-- .wpcf-repeatable-fields -->
+                        </div><!-- .wpcf-repeatable-group -->
 
                     <?php } ?>
 
-                </div><!-- .wp-custom-fields-repeatable-groups -->           
+                </div><!-- .wpcf-repeatable-groups -->           
         
-                <div class="wp-custom-fields-repeatable-buttons">
-                    <a href="#" class="button wp-custom-fields-repeatable-remove" title="<?php _e('Remove', 'wp-custom-fields'); ?>"><?php echo $remove; ?></a>
-                    <a href="#" class="button wp-custom-fields-repeatable-add button-primary" title="<?php _e('Add', 'wp-custom-fields'); ?>"><?php echo $add; ?></a>
+                <div class="wpcf-repeatable-buttons">
+                    <a href="#" class="button wpcf-repeatable-remove" title="<?php echo $configurations['labels']['remove_title']; ?>"><?php echo $remove; ?></a>
+                    <a href="#" class="button wpcf-repeatable-add button-primary" title="<?php echo $configurations['labels']['add_title']; ?>"><?php echo $add; ?></a>
                 </div>
 
-            </div><!-- .wp-custom-fields-repeatable-container -->
+            </div><!-- ..wpcf-repeatable-container -->
         
         <?php
   
@@ -120,8 +132,10 @@ class Repeatable implements Field {
             'type'          => 'repeatable',
             'defaults'      => [],
             'labels'        => [
-                'add'       => '<i class="dashicons dashicons-plus"></i>',
-                'remove'    => '<i class="dashicons dashicons-minus"></i>'
+                'add'           => '<i class="dashicons dashicons-plus"></i>',
+                'add_title'     => __('Add', 'wp-custom-fields'),
+                'remove'        => '<i class="dashicons dashicons-minus"></i>',
+                'remove_title'  => __('Remove', 'wp-custom-fields')
             ],            
         ];
             

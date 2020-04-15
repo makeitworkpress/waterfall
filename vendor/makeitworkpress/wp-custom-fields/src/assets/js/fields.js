@@ -11,12 +11,20 @@ var media = require('./modules/media');
 var select = require('./modules/select');
 var slider = require('./modules/slider');
 
+var dependency = require('./modules/dependency');
+
 module.exports.init = function(framework) {
+
+    // Fields that require JS
     button.init(framework);
     code.init(framework);
     datepicker.init(framework);
     location.init(framework);
     media.init(framework);
     select.init(framework);   
-    slider.init(framework);   
+    slider.init(framework); 
+
+    // Dependent fields
+    dependency.init(framework); 
+    
 };
