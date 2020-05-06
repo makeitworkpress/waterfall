@@ -169,7 +169,27 @@ if( $types ) {
                     'default'       => '',
                     'id'            => $type . '_main_content_title_header',
                     'title'         => __('Title Section', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        $type . '_header_disable',
+                        $type . '_header_disable_title',
+                        $type . '_header_featured',
+                        $type . '_header_size',
+                        $type . '_header_height',
+                        $type . '_header_height_image',
+                        $type . '_header_width',
+                        $type . '_header_align',
+                        $type . '_header_parallax',
+                        $type . '_header_breadcrumbs',
+                        $type . '_header_breadcrumbs_archive',
+                        $type . '_header_breadcrumbs_terms',
+                        $type . '_header_date',
+                        $type . '_header_terms',
+                        $type . '_header_comments',
+                        $type . '_header_share',
+                        $type . '_header_author',
+                        $type . '_header_scroll'
+                    ]
                 ],             
                 [
                     'default'       => '',
@@ -295,7 +315,12 @@ if( $types ) {
                     'default'       => '',
                     'id'            => $type . '_main_content_content_header',
                     'title'         => __('Main Content', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        $type . '_content_width',
+                        $type . '_content_readable',
+                        $type . '_sidebar_position'
+                    ]                    
                 ],             
                 [
                     'default'       => 'default',
@@ -324,7 +349,27 @@ if( $types ) {
                     'default'       => '',
                     'id'            => $type . '_main_content_related_header',
                     'title'         => __('Related Posts', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        $type . '_related_disable',
+                        $type . '_related_width',
+                        $type . '_related_posts',
+                        $type . '_related_title',
+                        $type . '_related_grid',
+                        $type . '_related_grid_gap',
+                        $type . '_related_height',
+                        $type . '_related_number',
+                        $type . '_related_style',
+                        $type . '_related_content',
+                        $type . '_related_image',
+                        $type . '_related_image_float',
+                        $type . '_related_image_enlarge',
+                        $type . '_related_button',
+                        $type . '_related_none',
+                        $type . '_related_pagination',
+                        $type . '_related_pagination_prev',
+                        $type . '_related_pagination_next'
+                    ]                      
                 ],            
                 [
                     'default'       => '',
@@ -466,8 +511,27 @@ if( $types ) {
                     'default'       => '',
                     'id'            => $type . '_main_content_footer_header',
                     'title'         => __('Content Footer', 'waterfall'),
-                    'type'          => 'heading'
-                ],                
+                    'type'          => 'heading',
+                    'choices'       => [
+                        $type . '_footer_disable',
+                        $type . '_footer_width',
+                        $type . '_footer_author',
+                        $type . '_footer_comments',
+                        $type . '_footer_comments_closed',
+                        $type . '_footer_comments_title',
+                        $type . '_footer_comments_reply',
+                        $type . '_footer_share',
+                        $type . '_footer_share_fixed',
+                        $type . '_share_text',
+                        $type . '_share_facebook',
+                        $type . '_share_twitter',
+                        $type . '_share_linkedin',
+                        $type . '_share_pinterest',
+                        $type . '_share_reddit',
+                        $type . '_share_pocket',
+                        $type . '_share_whatsapp'
+                    ]                     
+                ],       
                 [
                     'default'       => '',
                     'id'            => $type . '_footer_disable',
@@ -614,7 +678,17 @@ if( $types ) {
                     'default'       => '',
                     'id'            => $type . '_archive_title_header',
                     'title'         => __('Archive Title Section', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        $type . '_archive_header_disable',
+                        $type . '_archive_header_breadcrumbs',
+                        $type . '_archive_header_breadcrumbs_posts',
+                        $type . '_archive_header_width',
+                        $type . '_archive_header_height',
+                        $type . '_archive_header_align',
+                        $type . '_archive_header_title',
+                        $type . '_archive_header_description'
+                    ]                    
                 ],            
                 [
                     'default'       => '',
@@ -676,7 +750,22 @@ if( $types ) {
                     'default'       => '',
                     'id'            => $type . '_archive_posts_header',
                     'title'         => __('Archive Posts Section', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        $type . '_archive_sidebar_position',
+                        $type . '_archive_content_width',
+                        $type . '_archive_content_style',
+                        $type . '_archive_content_columns',
+                        $type . '_archive_content_gap',
+                        $type . '_archive_content_content',
+                        $type . '_archive_content_type',
+                        $type . '_archive_content_button',
+                        $type . '_archive_content_none',
+                        $type . '_archive_content_height',
+                        $type . '_archive_content_image',
+                        $type . '_archive_content_image_float',
+                        $type . '_archive_content_image_enlarge'                       
+                    ]
                 ],                
                 [
                     'default'       => 'full',
@@ -815,7 +904,15 @@ $layout['sections']['search_page'] = [
             'default'       => '',
             'id'            => 'search_title_header',
             'title'         => __('Search Title Section', 'waterfall'),
-            'type'          => 'heading'
+            'type'          => 'heading',
+            'choices'       => [
+                'search_header_disable',                  
+                'search_header_breadcrumbs',                  
+                'search_header_width',                  
+                'search_header_height',                  
+                'search_header_align',                  
+                'search_header_title'                  
+            ]            
         ],
         [
             'default'       => '',
@@ -864,7 +961,20 @@ $layout['sections']['search_page'] = [
             'default'       => '',
             'id'            => 'search_posts_header',
             'title'         => __('Search Results Section', 'waterfall'),
-            'type'          => 'heading'
+            'type'          => 'heading',
+            'choices'       => [
+                'search_sidebar_position',                  
+                'search_content_width',                  
+                'search_content_style',                  
+                'search_content_columns',                  
+                'search_content_content',                  
+                'search_content_type',                  
+                'search_content_button',                  
+                'search_content_height',                  
+                'search_content_image',                  
+                'search_content_image_float',                  
+                'search_content_image_enlarge'                  
+            ]            
         ],           
         [
             'default'       => 'full',

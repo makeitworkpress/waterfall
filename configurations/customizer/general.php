@@ -12,7 +12,25 @@ $customizer = [
         'static_front_page' => [
             'id'            => 'static_front_page',
             'title'         => __('General', 'waterfall'),
-            'fields'    => [                   
+            'fields'    => [ 
+                [
+                    'id'            => 'excerpt_length',
+                    'title'         => __('Excerpt Length', 'waterfall'),
+                    'description'   => __('The maximum number of words for excerpts in post archives.', 'waterfall'),
+                    'type'          => 'number'  
+                ],                                              
+                [
+                    'default'       => '',
+                    'id'            => 'lightbox',
+                    'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
+                    'type'          => 'checkbox'
+                ], 
+                [
+                    'default'       => '',
+                    'id'            => 'general_layout_heading',
+                    'title'         => __('Global Layout Settings', 'waterfall'),
+                    'type'          => 'heading'          
+                ],                                                   
                 [
                     'default'       => 'default',
                     'id'            => 'layout',
@@ -49,19 +67,7 @@ $customizer = [
                     'title'         => __('Border radius for buttons', 'waterfall'),
                     'description'   => __('Adapts the border radius for all buttons on the site.', 'waterfall'),
                     'type'          => 'dimension'  
-                ], 
-                [
-                    'id'            => 'excerpt_length',
-                    'title'         => __('Excerpt Length', 'waterfall'),
-                    'description'   => __('The maximum number of words for excerpts in post archives.', 'waterfall'),
-                    'type'          => 'number'  
-                ],                                              
-                [
-                    'default'       => '',
-                    'id'            => 'lightbox',
-                    'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
-                    'type'          => 'checkbox'
-                ]                 
+                ]                
             ]              
         ],        
         [

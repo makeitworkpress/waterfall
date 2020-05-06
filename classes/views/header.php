@@ -48,6 +48,11 @@ class Header extends Base {
             return;
         }
 
+        // Elementor is rendering our header
+        if( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'header' ) ) {
+            return;
+        }
+
         // Retrieve our header properties from the DB
         $this->getProperties();
 

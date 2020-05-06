@@ -64,6 +64,13 @@ $colors = [
             'title'         => __('Header Colors', 'waterfall'),
             'fields'    => [
                 [
+                    'default'       => '',
+                    'id'            => 'header_colors_general',
+                    'title'         => __('General Colors', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => ['header_background', 'header_background_image']
+                ],                
+                [
                     'selector'      => ['selector' => '.header, .molecule-header.molecule-header-transparent.molecule-header-scrolled', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'header_background',
@@ -79,14 +86,20 @@ $colors = [
                     'type'          => 'image'
                 ],
                 [
-                    'selector'      => ['selector' => '.molecule-header-atoms .menu', 'property' => 'background-color'],
                     'default'       => '',
-                    'id'            => 'navigation_background',
-                    'title'         => __('Mobile Menu Background Color', 'waterfall'),
-                    'description'   => __('This color applies to the default mobile menu.', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ],                
+                    'id'            => 'header_colors_menu',
+                    'title'         => __('Menu Colors', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'navigation_link_color', 
+                        'navigation_link_hover_color',
+                        'navigation_link_hover_background',
+                        'navigation_link_active_color',
+                        'navigation_link_active_background',
+                        'navigation_link_transparent_color',
+                        'navigation_link_transparent_hover_color'
+                    ]
+                ],                              
                 [
                     'selector'      => '.molecule-header-atoms .menu > li > a, .atom-search-expand',
                     'default'       => '',
@@ -156,6 +169,74 @@ $colors = [
                     'type'          => 'colorpicker'
                 ],
                 [
+                    'default'       => '',
+                    'id'            => 'header_colors_submenu',
+                    'title'         => __('Submenu Colors', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'navigation_submenu_background', 
+                        'navigation_submenu_color',
+                        'navigation_submenu_hover_color',
+                        'navigation_submenu_hover_background'
+                    ]
+                ],                
+                [
+                    'selector'      => ['selector' => '.molecule-header-atoms .sub-menu', 'property' => 'background-color'],
+                    'default'       => '',
+                    'id'            => 'navigation_submenu_background',
+                    'title'         => __('Drop-down Menu Background Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ],
+                [
+                    'selector'      => '.molecule-header-atoms .sub-menu a',
+                    'default'       => '',
+                    'id'            => 'navigation_submenu_color',
+                    'title'         => __('Drop-down Menu Link Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ], 
+                [
+                    'selector'      => '.molecule-header-atoms .sub-menu a:hover',
+                    'default'       => '',
+                    'id'            => 'navigation_submenu_hover_color',
+                    'title'         => __('Drop-down Menu Link Hover Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ],
+                [
+                    'selector'      => ['selector' => '.molecule-header-atoms .sub-menu a:hover', 'property' => 'background-color'],
+                    'default'       => '',
+                    'id'            => 'navigation_submenu_hover_background',
+                    'title'         => __('Drop-down Menu Link Hover Background Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ], 
+                [
+                    'default'       => '',
+                    'id'            => 'header_colors_mobile',
+                    'title'         => __('Mobile Menu Colors', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'navigation_background', 
+                        'navigation_mobile_link_color',
+                        'navigation_mobile_link_hover_color',
+                        'navigation_hamburger_normal_color',
+                        'navigation_hamburger_normal_hover_color',
+                        'navigation_hamburger_transparent_color',
+                        'navigation_hamburger_transparent_hover_color'
+                    ]
+                ],                               
+                [
+                    'selector'      => ['selector' => '.molecule-header-atoms .menu', 'property' => 'background-color'],
+                    'default'       => '',
+                    'id'            => 'navigation_background',
+                    'title'         => __('Mobile Menu Background Color', 'waterfall'),
+                    'description'   => __('This color applies to the default mobile menu.', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ],                
+                [
                     'selector'      => [
                         'max-width' => $menu == 'tablet' ? '1024px' : '767px',
                         'selector'  => '.molecule-header-atoms .menu > li > a, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .menu > li > a, .atom-menu-mobile-hamburger.atom-menu-dark .molecule-header-atoms .menu .menu-item > a, .molecule-header-atoms .sub-menu a'
@@ -220,38 +301,6 @@ $colors = [
                     'title'         => __('Hamburger Menu Hover Transparent Header', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ],    
-                [
-                    'selector'      => ['selector' => '.molecule-header-atoms .sub-menu', 'property' => 'background-color'],
-                    'default'       => '',
-                    'id'            => 'navigation_submenu_background',
-                    'title'         => __('Drop-down Menu Background Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ],
-                [
-                    'selector'      => '.molecule-header-atoms .sub-menu a',
-                    'default'       => '',
-                    'id'            => 'navigation_submenu_color',
-                    'title'         => __('Drop-down Menu Link Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ], 
-                [
-                    'selector'      => '.molecule-header-atoms .sub-menu a:hover',
-                    'default'       => '',
-                    'id'            => 'navigation_submenu_hover_color',
-                    'title'         => __('Drop-down Menu Link Hover Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ],
-                [
-                    'selector'      => ['selector' => '.molecule-header-atoms .sub-menu a:hover', 'property' => 'background-color'],
-                    'default'       => '',
-                    'id'            => 'navigation_submenu_hover_background',
-                    'title'         => __('Drop-down Menu Link Hover Background Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
                 ]
             ]              
         ],   
@@ -263,7 +312,16 @@ $colors = [
                     'default'       => '',
                     'id'            => 'colors_main_content_title_header',
                     'title'         => __('Title Section', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'title_section',
+                        'title_section_title',
+                        'title_section_text',
+                        'title_section_link',
+                        'title_section_link_hover',
+                        'title_section_meta',
+                        'title_section_featured_background_color',
+                    ]
                 ],                                    
                 [
                     'selector'      => ['selector' => '.main-header', 'property' => 'background-color'],
@@ -325,7 +383,19 @@ $colors = [
                     'default'       => '',
                     'id'            => 'colors_main_content_content_header',
                     'title'         => __('Main Content', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'content_main',
+                        'content_main_title',
+                        'content_main_text',
+                        'content_main_link',
+                        'content_main_link_hover',
+                        'content_sidebar_color',
+                        'content_sidebar_title_color',
+                        'content_sidebar_background',
+                        'content_sidebar_link_color',
+                        'content_sidebar_link_color_hover'
+                    ]                    
                 ],                                       
                 [
                     'selector'      => ['selector' => '.main-content', 'property' => 'background-color'],
@@ -434,7 +504,7 @@ $colors = [
                 [
                     'selector'      => '.main-sidebar a:hover',
                     'default'       => '',
-                    'id'            => 'content_sidebar_link_color',
+                    'id'            => 'content_sidebar_link_color_hover',
                     'title'         => __('Main Sidebar Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
@@ -443,7 +513,18 @@ $colors = [
                     'default'       => '',
                     'id'            => 'colors_main_content_related_header',
                     'title'         => __('Related Section', 'waterfall'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'content_related',
+                        'content_related_title',
+                        'content_related_text',
+                        'content_related_link',
+                        'content_related_link_hover',
+                        'content_related_posts_link',
+                        'content_related_posts_link_hover',
+                        'content_related_posts_featured_link',
+                        'content_related_posts_featured_link_hover'
+                    ]                    
                 ],                                
                 [
                     'selector'      => ['selector' => '.main-related', 'property' => 'background-color'],
@@ -520,8 +601,15 @@ $colors = [
                 [
                     'default'       => '',
                     'id'            => 'colors_main_content_footer_header',
-                    'title'         => __('Content Footer Section', 'waterfall'),
-                    'type'          => 'heading'
+                    'title'         => __('Content Footer', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'content_footer',
+                        'content_footer_title',
+                        'content_footer_text',
+                        'content_footer_link',
+                        'content_footer_link_hover'
+                    ]                    
                 ],                                   
                 [
                     'selector'     => ['selector' => '.main-footer', 'property' => 'background-color'],
@@ -568,7 +656,21 @@ $colors = [
         'footer' => [
             'id'            => 'colors_footer',
             'title'         => __('Footer Colors', 'waterfall'),
-            'fields'    => [                    
+            'fields'    => [ 
+                [
+                    'default'       => '',
+                    'id'            => 'colors_footer_sidebars_heading',
+                    'title'         => __('Footer Widget Section', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'footer_background',
+                        'footer_background_image',
+                        'footer_text_color',
+                        'footer_title_color',
+                        'footer_link_color',
+                        'footer_link_hover_color'
+                    ]                    
+                ],                                   
                 [
                     'selector'      => ['selector' => '.molecule-footer-sidebars', 'property' => 'background-color'],
                     'default'       => '',
@@ -616,7 +718,20 @@ $colors = [
                     'title'         => __('Footer Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ],      
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'colors_footer_socket_heading',
+                    'title'         => __('Footer Socket', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'socket_background',
+                        'socket_background_image',
+                        'socket_text_color',
+                        'socket_link_color',
+                        'socket_link_hover_color'
+                    ]                    
+                ],                       
                 [
                     'selector'      => ['selector' => '.molecule-footer-socket', 'property' => 'background-color'],
                     'default'       => '',
@@ -657,6 +772,18 @@ $colors = [
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
+                [
+                    'default'       => '',
+                    'id'            => 'colors_footer_scroll_heading',
+                    'title'         => __('Scroll Button Colors', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'scroll_top_color',
+                        'scroll_top_hover_color',
+                        'scroll_top_background',
+                        'scroll_top_background_hover'
+                    ]                    
+                ],                 
                 [
                     'selector'      => '.atom-scroll.waterfall-scroll-top',
                     'default'       => '',
@@ -777,7 +904,7 @@ $colors = [
                         'selector' => 'input:not[type=\'submit\'], input:not[type=\'reset\'], input:not[type=\'button\'], input:not[type=\'radio\'], input:not[type=\'range\'], input:not[type=\'checkbox\'], select, textarea, .elementor-field-group .elementor-field-textual', 
                         'property' => 'border-color'
                     ],
-                    'id'            => 'border_color',
+                    'id'            => 'form_border_color',
                     'title'         => __('Form Input Border Colors', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
@@ -788,7 +915,7 @@ $colors = [
                         'selector' => 'input:not[type=\'submit\'], input:not[type=\'reset\'], input:not[type=\'button\'], input:not[type=\'radio\'], input:not[type=\'range\'], input:not[type=\'checkbox\'], select, textarea, .elementor-field-group .elementor-field-textual', 
                         'property' => 'background-color'
                     ],
-                    'id'            => 'border_color',
+                    'id'            => 'form_background_color',
                     'title'         => __('Form Input Background Colors', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'

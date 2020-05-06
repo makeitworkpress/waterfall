@@ -47,6 +47,11 @@ class Footer extends Base {
             return;
         }
 
+        // Elementor is rendering our footer
+        if( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'footer' ) ) {
+            return;
+        }
+
         // Retrieve our footer properties from the DB
         $this->getProperties();   
 
