@@ -21,21 +21,23 @@
 
 	</head>
 	<body <?php body_class(); ?> itemscope="itemscope" itemtype="http://www.schema.org/WebPage">
-        
-        <?php
-        
-            do_action('waterfall_before_header');
 
-            /**
-             * Displays our header elements, unless we have a custom header from elementor
-             */ 
-            $header = new Views\Header();
-            $header->header();
+        <div class="wrapper">
         
-            do_action('waterfall_after_header');
-        
-        ?>
-
-        <main class="main" itemscope="itemscope" itemtype="<?php echo wf_get_main_schema(); ?>">
+            <?php
             
-            <?php do_action('waterfall_main_content_begin'); ?>
+                do_action('waterfall_before_header');
+
+                /**
+                 * Displays our header elements, unless we have a custom header from elementor
+                 */ 
+                $header = new Views\Header();
+                $header->header();
+            
+                do_action('waterfall_after_header');
+            
+            ?>
+
+            <main class="main" itemscope="itemscope" itemtype="<?php echo wf_get_main_schema(); ?>">
+                
+                <?php do_action('waterfall_main_content_begin'); ?>

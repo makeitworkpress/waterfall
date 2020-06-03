@@ -3,21 +3,23 @@
  * Displays the footer of the page
  */
 ?>      
-            <?php do_action('waterfall_main_content_end'); ?>
+                <?php do_action('waterfall_main_content_end'); ?>
 
-        </main>
-        
-        <?php
-
-            do_action('waterfall_before_footer');
+            </main>
             
-            // Echoes the footer elements.
-            $footer = new Views\Footer();
-            $footer->footer();
+            <?php
 
-            do_action('waterfall_after_footer');
+                do_action('waterfall_before_footer');
+                
+                // Echoes the footer elements.
+                $footer = new Views\Footer();
+                $footer->footer();
 
-        ?>
+                do_action('waterfall_after_footer');
+
+            ?>
+
+        </div><!-- .wrapper -->
 
 		<?php wp_footer(); ?>
 
