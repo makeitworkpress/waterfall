@@ -104,7 +104,7 @@ class Waterfall_Elementor {
         // Add our custom widgets
         $classes    = $this->widgets;
 
-        add_action( 'elementor/init', function() use($classes) {
+        add_action( 'elementor/widgets/widgets_registered', function() use($classes) {
 
             // Some things should be here....
             if( ! defined('ELEMENTOR_PATH') || ! class_exists('Elementor\Widget_Base') || ! class_exists( 'Elementor\Plugin' ) || ! is_callable( 'Elementor\Plugin', 'instance' ) ) { 
@@ -120,9 +120,9 @@ class Waterfall_Elementor {
                     if( ! class_exists($widget) ) {
                         continue;
                     }
+                    
+                    $elementor->widgets_manager->register_widget_type( new $widget() );
 
-                    $widget = new $widget();
-                    $elementor->widgets_manager->register_widget_type( $widget );
                 }
 
             }
