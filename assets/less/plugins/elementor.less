@@ -20,12 +20,14 @@
                 padding: 0 @grid-space/2;    
             }
         }
-    } 
-    .waterfall-fullwidth-content .elementor-widget-template & {
-        > .elementor-container {
-            padding: 0;
-        }   
     }  
+}
+
+/**
+ * Elementor Templates in full-width sections don't get a responsive padding
+ */
+.content > .elementor > .elementor-inner > .elementor-section-wrap > .elementor-section-full_width > .elementor-container {
+    padding: 0;
 }
 
 .elementor-image img {
