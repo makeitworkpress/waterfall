@@ -6,7 +6,7 @@
 
 <?php if( $frame->type == 'options' ) { ?>
     <div class="wrap">
-        <form method="post" action="options.php" enctype="multipart/form-data"> 
+        <form method="post" action="<?php echo $frame->action; ?>" enctype="multipart/form-data"> 
 <?php } ?>
 
 <div class="wpcf-framework <?php if( $frame->type == 'options' ) { ?>wpcf-options-page <?php } echo $frame->class; ?>" id="<?php echo $frame->id; ?>">
@@ -91,7 +91,7 @@
                                         <?php do_action('wcf_before_field', $field); ?>
                                         
                                         <?php if( $field['title'] ) { ?>
-                                            <div class="wpcf-field-title<?php echo $field['titleClass']; ?>"<?php if($field['titleSections']) { ?> data-sections="<?php esc_attr_e($field['titleSections']); ?>" <?php } ?>>
+                                            <div class="wpcf-field-title<?php echo $field['titleClass']; ?>"<?php if($field['titleSections']) { ?> data-sections="<?php echo esc_attr($field['titleSections']); ?>" <?php } ?>>
                                                 <?php           
                                                     echo '<' . $field['titleTag'] . '>' . $field['title'] . '</' . $field['titleTag'] .'>';
                                                 ?>
@@ -142,6 +142,10 @@
             ?>
             
             <input type="hidden" name="wp_custom_fields_section_<?php echo $frame->id; ?>" id="wp_custom_fields_section_<?php echo $frame->id; ?>" value="<?php echo $frame->currentSection; ?>" />
+
+            <?php if( $frame->type == 'options' ) { ?>
+
+            <?php } ?>
 
 <?php if( $frame->type == 'options' ) { ?>
         </form>
