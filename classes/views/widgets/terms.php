@@ -4,9 +4,6 @@
  */
 namespace Views\Widgets;
 use Elementor as Elementor;
-use Elementor\Controls_Manager as Controls_Manager;
-use Elementor\Group_Control_Typography as Group_Control_Typography;
-use Elementor\Core\Schemes as Schemes;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
@@ -76,7 +73,7 @@ class Terms extends Elementor\Widget_Base {
 			[
 				'label'     	=> __( 'Taxonomy', 'waterfall' ),
 				'description'   => __( 'The taxonomy to load terms from.', 'waterfall' ),
-				'type'      	=> Controls_Manager::SELECT2,
+				'type'      	=> Elementor\Controls_Manager::SELECT2,
 				'default'   	=> '',
 				'multiple'		=> false,
 				'options'		=> $taxonomies
@@ -88,7 +85,7 @@ class Terms extends Elementor\Widget_Base {
 			[
 				'label'     	=> __( 'Show Empty Terms', 'waterfall' ),
 				'description'   => __( 'Shows terms with no posts attached.', 'waterfall' ),
-				'type'      	=> Controls_Manager::SWITCHER,
+				'type'      	=> Elementor\Controls_Manager::SWITCHER,
 				'default'   	=> 'no',
 				'label_on'  	=> __( 'Yes', 'waterfall' ),
 				'label_off' 	=> __( 'No', 'waterfall' ),
@@ -100,7 +97,7 @@ class Terms extends Elementor\Widget_Base {
 			[
 				'label'     	=> __( 'Before Text', 'waterfall' ),
 				'description'   => __( 'The text before each term.', 'waterfall' ),
-				'type'      	=> Controls_Manager::TEXT,
+				'type'      	=> Elementor\Controls_Manager::TEXT,
 				'default'   	=> '',
 			]
         ); 
@@ -110,7 +107,7 @@ class Terms extends Elementor\Widget_Base {
 			[
 				'label'     	=> __( 'After Text', 'waterfall' ),
 				'description'   => __( 'The text after each term.', 'waterfall' ),
-				'type'      	=> Controls_Manager::TEXT,
+				'type'      	=> Elementor\Controls_Manager::TEXT,
 				'default'   	=> '',
 			]
         );        
@@ -119,7 +116,7 @@ class Terms extends Elementor\Widget_Base {
 			'seperator',
 			[
 				'label'     	=> __( 'Separator', 'waterfall' ),
-				'type'      	=> Controls_Manager::TEXT,
+				'type'      	=> Elementor\Controls_Manager::TEXT,
 				'default'   	=> '',
 			]
 		);
@@ -130,15 +127,15 @@ class Terms extends Elementor\Widget_Base {
 			'section_style',
 			[
 				'label' => __( 'Styling', 'waterfall' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'tab' => Elementor\Controls_Manager::TAB_STYLE,
 			]
         );
         
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+			Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Elementor\Schemes\Typography::TYPOGRAPHY_3,
 			]
 		);
 		
@@ -146,7 +143,7 @@ class Terms extends Elementor\Widget_Base {
 			'button',
 			[
 				'label'     	=> __( 'Button Style', 'waterfall' ),
-				'type'      	=> Controls_Manager::SWITCHER,
+				'type'      	=> Elementor\Controls_Manager::SWITCHER,
 				'default'   	=> 'no',
 				'label_on'  	=> __( 'Yes', 'waterfall' ),
 				'label_off' 	=> __( 'No', 'waterfall' ),
@@ -157,10 +154,10 @@ class Terms extends Elementor\Widget_Base {
 		$this->add_control(
 			'border_radius',
 			[
-				'label' => __( 'Button Border Radius', 'waterfall' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
+				'label' 		=> __( 'Button Border Radius', 'waterfall' ),
+				'type' 			=> Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' 	=> [ 'px', '%' ],
+				'selectors' 	=> [
 					'{{WRAPPER}} .atom-term' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition' => [
@@ -181,9 +178,9 @@ class Terms extends Elementor\Widget_Base {
 		$this->add_control(
 			'text_color',
 			[
-				'label' => __( 'Term Text Color', 'waterfall' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
+				'label' 	=> __( 'Term Text Color', 'waterfall' ),
+				'type' 		=> Elementor\Controls_Manager::COLOR,
+				'default' 	=> '',
 				'selectors' => [
 					'{{WRAPPER}} .atom-term' => 'color: {{VALUE}};',
 				]
@@ -193,9 +190,9 @@ class Terms extends Elementor\Widget_Base {
 		$this->add_control(
 			'background_color',
 			[
-				'label' => __( 'Term Background Color', 'waterfall' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
+				'label' 	=> __( 'Term Background Color', 'waterfall' ),
+				'type' 		=> Elementor\Controls_Manager::COLOR,
+				'default' 	=> '',
 				'selectors' => [
 					'{{WRAPPER}} .atom-term' => 'background-color: {{VALUE}};',
 				]
@@ -214,9 +211,9 @@ class Terms extends Elementor\Widget_Base {
 		$this->add_control(
 			'text_color_hover',
 			[
-				'label' => __( 'Term Text Color', 'waterfall' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
+				'label' 	=> __( 'Term Text Color', 'waterfall' ),
+				'type' 		=> Elementor\Controls_Manager::COLOR,
+				'default' 	=> '',
 				'selectors' => [
 					'{{WRAPPER}} .atom-term:hover' => 'color: {{VALUE}};',
 				]
@@ -226,9 +223,9 @@ class Terms extends Elementor\Widget_Base {
 		$this->add_control(
 			'background_color_hover',
 			[
-				'label' => __( 'Term Background Color', 'waterfall' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
+				'label' 	=> __( 'Term Background Color', 'waterfall' ),
+				'type' 		=> Elementor\Controls_Manager::COLOR,
+				'default' 	=> '',
 				'selectors' => [
 					'{{WRAPPER}} .atom-term:hover' => 'background-color: {{VALUE}};',
 				],
@@ -242,9 +239,9 @@ class Terms extends Elementor\Widget_Base {
 		$this->add_control(
 			'separator_color',
 			[
-				'label' => __( 'Separator Color', 'waterfall' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
+				'label' 	=> __( 'Separator Color', 'waterfall' ),
+				'type' 		=> Elementor\Controls_Manager::COLOR,
+				'default' 	=> '',
 				'selectors' => [
 					'{{WRAPPER}} .atom-terms-seperator' => 'color: {{VALUE}};',
 				],

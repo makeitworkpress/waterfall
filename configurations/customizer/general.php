@@ -59,7 +59,7 @@ $customizer = [
                 ],                 
                 [
                     'selector'     => [
-                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, .elementor-element .elementor-button, .woocommerce input.button.alt, input.button, .woocommerce button.button, .woocommerce a.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-field-type-submit button', 
+                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .elementor-element .elementor-button, .woocommerce input.button.alt, .woocommerce input.button, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-field-type-submit button', 
                         'property' => 'border-radius'
                     ],
                     'default'       => '',

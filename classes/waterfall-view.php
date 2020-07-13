@@ -59,7 +59,7 @@ class Waterfall_View {
         add_action( 'wp_head', function() {
             $headerHeight = wf_get_theme_option( 'layout', 'header_height' ); 
 
-            if( isset($headerHeight['amount']) && $headerHeight['unit'] ) {
+            if( isset($headerHeight['amount']) && $headerHeight['amount'] && $headerHeight['unit'] ) {
                 echo '<style type="text/css"> 
                     .molecule-header-atoms .atom-logo img { height: calc(' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 16px); width: auto;} 
                     .molecule-header-atoms .atom-menu-hamburger { margin: calc( (' . $headerHeight['amount'] . $headerHeight['unit'] . ' - 30px)/2 ) 4px; }

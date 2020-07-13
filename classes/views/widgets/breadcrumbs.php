@@ -4,9 +4,6 @@
  */
 namespace Views\Widgets;
 use Elementor as Elementor;
-use Elementor\Controls_Manager as Controls_Manager;
-use Elementor\Group_Control_Typography as Group_Control_Typography;
-use Elementor\Core\Schemes as Schemes;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
@@ -69,7 +66,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			[
 				'label'     	=> __( 'Home Text', 'waterfall' ),
 				'description'   => __( 'The text for the first breadcrumb.', 'waterfall' ),
-				'type'      	=> Controls_Manager::TEXT,
+				'type'      	=> Elementor\Controls_Manager::TEXT,
 				'default'   	=> __('Home', 'waterfall'),
 			]
         ); 
@@ -78,7 +75,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			'seperator',
 			[
 				'label'     	=> __( 'Separator', 'waterfall' ),
-				'type'      	=> Controls_Manager::TEXT,
+				'type'      	=> Elementor\Controls_Manager::TEXT,
 				'default'   	=> __('&rsaquo;', 'waterfall'),
 			]
 		);         
@@ -87,7 +84,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			'archive',
 			[
 				'label'     	=> __( 'Display Archive', 'waterfall' ),
-				'type'      	=> Controls_Manager::SWITCHER,
+				'type'      	=> Elementor\Controls_Manager::SWITCHER,
 				'default'   	=> 'no',
 				'label_on'  	=> __( 'Yes', 'waterfall' ),
 				'label_off' 	=> __( 'No', 'waterfall' ),
@@ -100,7 +97,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			'section_style',
 			[
 				'label' => __( 'Text Styling', 'waterfall' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'tab' => Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);	
 
@@ -108,7 +105,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			'text_color',
 			[
 				'label' => __( 'Link Color', 'waterfall' ),
-				'type' => Controls_Manager::COLOR,
+				'type' => Elementor\Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} a' => 'color: {{VALUE}};',
@@ -120,7 +117,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			'separator_color',
 			[
 				'label' => __( 'Separator Color', 'waterfall' ),
-				'type' => Controls_Manager::COLOR,
+				'type' => Elementor\Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .atom-breadcrumbs-seperator' => 'color: {{VALUE}};',
@@ -129,10 +126,10 @@ class Breadcrumbs extends Elementor\Widget_Base {
 		);
 		
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+			Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Elementor\Schemes\Typography::TYPOGRAPHY_3,
 			]
 		);		
 		
