@@ -129,7 +129,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography',
-				'scheme' => Elementor\Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_3,
 			]
 		);		
 		
