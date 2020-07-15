@@ -9,19 +9,11 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Waterfall {
     
     /**
-     * Contains the WP Components Object
-     *
-     * @access private
-     */
-    private $components;     
-
-    /**
-     * Contains the configurations object for this theme
+     * Contains the configurations object
      *
      * @access public
      */
-    public $config;     
-   
+    public $config;      
     
     /**
      * Determines whether a class has already been instanciated.
@@ -31,11 +23,11 @@ class Waterfall {
     private static $instance = null;     
 
     /**
-     * Contains the views object for this theme
+     * Contains the database options object
      *
      * @access public
      */
-    public $view;     
+    public $options;      
     
  
     /**
@@ -51,88 +43,152 @@ class Waterfall {
         return self::$instance[$class];
 
     }    
-     
-    
+      
     /** 
      * Constructor. This allows the class to be only initialized once.
      */
     private function __construct() {
-        $this->initialize();
-    }
-    
-    
-    /**
-     * Initializes the basic settings for a theme
-     */
-    private function initialize() {
 
-        /**
-         * Loads our translations before loading anything else
-         */
+        // Sets our languages - before anything else loads
+        $this->loadLanguages();     
+
+        // Loads utilityFunctions and other static dependencies
+        $this->requireDependencies();
+
+        // Sets our database options from option pages and the customizer - before anything else loads
+        $this->loadOptions();           
+
+        // Boot the updater
+        $this->bootUpdater();
+
+        // Loads and executes configurations
+        $this->configure();
+
+        // Flush rewrite rules
+        $this->flushRewriteRules();
+
+        // Setup Ajax related functions
+        $this->setupAjax();
+
+        // Setup the view - loading templates, components and modifiying the front-end
+        $this->setupView();
+        
+        // Setup WooCommerce related functions
+        $this->setupWooCommerce();
+
+        // Setup Events Calendar related functions
+        $this->setupEventsCalendar();
+         
+        // Adapt some of the customizer sections
+        $this->adaptCustomizer();
+        
+        // Setup supportive functions for deprecated functionalities
+        $this->deprecatedSupport();
+        
+        // Enable optimizations
+        $this->enableOptimizations();        
+
+    }
+
+    /**
+     * Loads our translations before loading anything else
+     */
+    private function loadLanguages() {
         if( is_dir( get_stylesheet_directory() . '/languages' ) ) {
             $path = get_stylesheet_directory() . '/languages';
         } else {
             $path = get_template_directory() . '/languages'; 
         }
         
-        load_theme_textdomain( 'waterfall', apply_filters('waterfall_language_path', $path) );     
+        load_theme_textdomain( 'waterfall', apply_filters('waterfall_language_path', $path) ); 
+    }
 
-        /**
-         * Include basic utility functions, so that these are available throughout the theme
-         */
-        require_once( get_template_directory() . '/functions/utilities.php' );
+    /**
+     * Loads our theme options
+     */
+    private function loadOptions() {
+        $this->options = [
+            'options'       => wf_get_theme_option(),
+            'colors'        => wf_get_theme_option('colors'),
+            'customizer'    => wf_get_theme_option('customizer'),
+            'layout'        => wf_get_theme_option('layout'),
+            'woocommerce'   => wf_get_theme_option('woocommerce'),
+        ];
+    }
+
+    /**
+     * Loads utilityFunctions and other static dependencies
+     *  Include basic utility functions, so that these are available throughout the theme
+     */
+    private function requireDependencies() { 
+        require_once( get_template_directory() . '/functions/utilities.php' );   
+    }
+
+    /**
+     * Enables our theme to be updated through an external repository, in this case github
+     */
+    private function bootUpdater() { 
+        new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );   
+    }    
         
-        /**
-         * Enables our theme to be updated through an external repository, in this case github
-         */
-        new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );
-        
-        /**
-         * Load all configurations
-         */
-        $this->configure();
-        
-        /**
-         * The execution of our configurations is hooked in after_setup_theme, 
-         * so (child) themes can add configurations if they want on an earlier point.
-         * This executes all our custom modules, such as custom fields and post types
-         */
-        add_action('after_setup_theme', [$this, 'execute'], 10);
-        
-        /**
-         * Flush our rewrite rules for new posts
-         */
+    /**
+     * Flush our rewrite rules for new posts
+     */
+    private function flushRewriteRules() {
+
         add_action('after_switch_theme', function() { 
             flush_rewrite_rules(); 
         });
-        
-        /**
-         * Initialize our components which are used to display elements
-         */
-        $this->components   = new MakeitWorkPress\WP_Components\Boot();
 
-        /**
-         * Enable optimizations for the theme
-         */
-        $optimize           = wf_get_theme_option('options', 'optimize');
+    }
 
-        if( $optimize ) {
-            $optimize       = new MakeitWorkPress\WP_Optimize\Optimize($optimize);    
+    /**
+     * Initializes the basic settings for a theme
+     */
+    private function enableOptimizations() {    
+
+        if( isset($this->options['options']['optimize']) && $this->options['options']['optimize'] ) {
+            new MakeitWorkPress\WP_Optimize\Optimize($this->options['options']['optimize'] );    
         }
+    
+    }
 
-        /**
-         * Initializes our ajax actions
-         */
-        $ajax               = new Waterfall_Ajax();        
-        
-        /**
-         * Important! Initialize the view component so templates are load and additional settings are added
-         */
-        $this->view         = new Waterfall_View(); 
-        
-        /**
-         * Adapt some of the customizer sections with custom names
-         */
+    /**
+     * Initializes our ajax actions
+     */
+    private function setupAjax() {     
+        new Waterfall_Ajax();   
+    }
+    
+    /**
+     * Initializes the view component so components and templates are load and additional settings are added
+     */
+    private function setupView() {     
+        new Waterfall_View( $this->options );  
+    }     
+
+    /**
+     * Initializes all WooCommerce related functions
+     */
+    private function setupWooCommerce() {     
+        if( class_exists('WooCommerce') ) {
+            new Waterfall_WooCommerce( $this->options );
+        }
+    } 
+    
+    /**
+     * Initializes all Event Calendar Related functions
+     */
+    private function setupEventsCalendar() {     
+        if( class_exists('Tribe__Events__Main') ) {
+            new Waterfall_Events( $this->options );
+        }
+    }    
+    
+    /**
+     * Adapt some of the customizer sections with custom names
+     */
+    private function adaptCustomizer() {  
         add_action( 'customize_register', function($wp_customize) {
             $wp_customize->get_section('background_image')->title = __( 'Background' );
             $wp_customize->get_section('background_image')->priority = 110;
@@ -140,6 +196,17 @@ class Waterfall {
             $wp_customize->get_section('static_front_page')->priority = 1;
             $wp_customize->remove_section('colors');
         }, 20 );
+    }
+
+    /**
+     * Supportive functions for deprecated functionalities
+     */
+    private function deprecatedSupport() {
+
+        // Older themes still use the customizer value for the main logo, so update it automatically.
+        if( (isset($this->options['customizer']['logo']) && $this->options['customizer']['logo']) && ! get_theme_mod('custom_logo') ) {
+            set_theme_mod( 'custom_logo', intval($this->options['customizer']['logo']) );
+        }        
     
     }
     
@@ -197,18 +264,28 @@ class Waterfall {
         /**
          * Set-up our configurations
          */
-        $this->config = new MakeitWorkPress\WP_Config\Config( $configurations );     
+        $this->config = new MakeitWorkPress\WP_Config\Config( $configurations );   
+        
+        /**
+         * The execution of our configurations is hooked in after_setup_theme, 
+         * so (child) themes can add configurations if they want on an earlier point.
+         * This executes all our custom modules, such as custom fields and post types
+         */
+        add_action('after_setup_theme', [$this, 'executeConfiguration'], 10);        
         
     }   
     
     /**
-     * Executes all configuration registrations, so that the configurations have effect. This is executed on after_theme_setup.
+     * Executes all configuration registrations, so that the configurations have effect. This is hooked on after_theme_setup.
      *
      * @param string $type If defined, executes a specific registration, otherwise executes all
      */
-    public function execute( $type = '' ) {
+    public function executeConfiguration( $type = '' ) {
         
-        // General filter for changing configurations upon execution
+        /**
+         * General filter for changing configurations upon execution. 
+         * Filtered here so it is accessible by external code
+         */
         $this->config = apply_filters( 'waterfall_configurations', $this->config );
 
         /**
@@ -247,8 +324,8 @@ class Waterfall {
                 // Default parameters
                 $this->config->configurations['options']['params'] = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
                 
-                // Divergent framework
-                $this->options = MakeitWorkPress\WP_Custom_Fields\Framework::instance($this->config->configurations['options']['params']);
+                // Custom Fields framework
+                $customFields = MakeitWorkPress\WP_Custom_Fields\Framework::instance($this->config->configurations['options']['params']);
                 
                 // Walk through all the option types for the back-end
                 if( is_admin() || is_customize_preview() ) {
@@ -259,7 +336,7 @@ class Waterfall {
                             continue;
                         }
                         
-                        $this->options->add( $options['frame'], $options['fields'] );
+                        $customFields->add( $options['frame'], $options['fields'] );
 
                     }  
                 
@@ -287,7 +364,7 @@ class Waterfall {
     private function savePostTypes() {
 
         add_action('init', function() {
-            $commons    = apply_filters( 'waterfall_exlude_post_types', ['attachment', 'elementor_library', 'product', 'affiliate-links'] );
+            $commons    = apply_filters( 'waterfall_exlude_post_types', ['attachment', 'elementor_library', 'product', 'tribe_events', 'affiliate-links'] );
             $initial    = get_post_types( ['public' => true] );
             $types      = [];
 

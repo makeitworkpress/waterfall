@@ -36,7 +36,7 @@ class Waterfall_Elementor {
 
                 /**
                  * We need to overwrite the elementor basic template display with our own, so the correct
-                 * header and footer is rendered. Sounds like a deal!
+                 * header and footer is rendered for the theme builder templates. Sounds like a deal!
                  */
                 if( strpos($template, 'elementor/modules/page-templates/templates/header-footer.php') ) {
                     

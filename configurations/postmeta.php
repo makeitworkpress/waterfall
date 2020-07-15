@@ -12,6 +12,13 @@ foreach( wf_get_post_types(true) as $type => $label ) {
     $postTypes[] = $type;
 }
 
+/**
+ * If the Events Calendar is Active, it will support some metaboxes
+ */
+if( class_exists('Tribe__Events__Main') ) {
+    $postTypes[] = 'tribe_events';
+}
+
 // No metaboxes will be added if no post type is supported
 if( ! $postTypes ) {
     $postmeta = [];
@@ -80,7 +87,7 @@ $postmeta = [
                         'disable' => ['label' => __('Disable the footer', 'waterfall')]
                     ]
                 ],    
-                [
+                'content_header_disable' => [
                     'columns'       => 'fourth',
                     'description'   => __('The Title Section usually shows elements such as the title, the featured image and so forth.', 'waterfall'),
                     'id'            => 'content_header_disable',
@@ -91,7 +98,7 @@ $postmeta = [
                         'disable' => ['label' => __('Disable title section', 'waterfall')] 
                     ]
                 ],
-                [
+                'content_sidebar_disable' => [
                     'columns'       => 'fourth',
                     'description'   => __('The sidebar is usually shown left or right of your pages.', 'waterfall'),
                     'id'            => 'content_sidebar_disable',
@@ -102,7 +109,7 @@ $postmeta = [
                         'disable' => [ 'label' => __('Disable sidebar', 'waterfall') ] 
                     ]
                 ],                
-                [
+                'content_related_disable' => [
                     'columns'       => 'fourth',
                     'description'   => __('The Related Section usually contains related posts and post navigation.', 'waterfall'),
                     'id'            => 'content_related_disable',
@@ -113,7 +120,7 @@ $postmeta = [
                         'disable' => [ 'label' => __('Disable related section', 'waterfall') ] 
                     ]
                 ],     
-                [
+                'content_footer_disable' => [
                     'columns'       => 'fourth',
                     'description'   => __('The Content Footer usually shows elements such as comments, the author and so forth.', 'waterfall'),
                     'id'            => 'content_footer_disable',
@@ -179,3 +186,33 @@ $postmeta = [
         ]  
     ]
 ];
+
+/**
+ * For the events calendar, certain parts are disabled
+ */
+if( is_admin() && class_exists('Tribe__Events__Main') ) {
+
+    if( in_array($_SERVER["SCRIPT_NAME"], ['/wp-admin/post.php', '/wp-admin/post-new.php']) ) {
+        $tribe = false;
+
+        // Editing a post
+        if( isset($_GET['post']) && get_post_type( intval($_GET['post']) ) == 'tribe_events' && isset($_GET['action']) && $_GET['action'] == 'edit' ) {
+            $tribe = true;
+        }
+
+        // A new post
+        if( isset($_GET['post_type']) && $_GET['post_type'] == 'tribe_events' ) {
+            $tribe = true;
+        }
+
+        if( $tribe ) {
+            unset($postmeta['sections']['title']);
+            unset($postmeta['sections']['layout']['fields']['content_header_disable']);
+            unset($postmeta['sections']['layout']['fields']['content_sidebar_disable']);
+            unset($postmeta['sections']['layout']['fields']['content_related_disable']);
+            unset($postmeta['sections']['layout']['fields']['content_footer_disable']);
+        }
+
+    }
+    
+}
