@@ -12,8 +12,11 @@ class Waterfall_Events extends Waterfall_Base {
     public function initialize() { 
         
         $this->filters = [
-            ['template_include', 'locateTemplate', 50]
+            ['template_include', 'locateTemplate', 50],
+            ['the_content', 'filterContent']
         ];
+
+
 
     } 
 
@@ -50,7 +53,19 @@ class Waterfall_Events extends Waterfall_Base {
     }
 
     /**
-     * If an event is not being built with Elementor, make sure the Event Calendar outputs it's content
+     * If an event is  being built with Elementor, make sure the Event Calendar doesn't output it's content
      */
+    public function filterContent($content) {
+
+        // Remove the front-end content filtering if this page is been designed by Elementor
+        if( class_exists('Elementor\Plugin') ) {
+            var_dump( Elementor\Plugin::$instance->frontend->has_elementor_in_page() );
+
+        }
+        
+        // Always return content here! Otherwise, it ill crank up your WordPress Bigtime
+        return $content;
+
+    }
 
 }
