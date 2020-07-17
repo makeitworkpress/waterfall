@@ -1,32 +1,25 @@
 <?php
 /**
  * View: Default Template for Events
- *
- * Override this template in your own theme by creating a file at:
- * [your-theme]/tribe/events/v2/default-template.php
- *
- * See more documentation about our views templating system.
- *
- * @link {INSERT_ARTCILE_LINK_HERE}
- *
  * @version 5.0.0
  */
+wf_get_theme_header(); 
 
-use Tribe\Events\Views\V2\Template_Bootstrap;
-
-wf_get_theme_header(); ?>
+$events = new Views\Events(); ?>
 
 <div class="main-content singular-content events-calendar-template">
 
-    <div class="components-container">
-
-        <div class="content entry-content">
-
-            <?php echo tribe( Template_Bootstrap::class )->get_view_html(); ?>
-
+    <?php if( $events->contentContainer ) { ?>
+        <div class="components-container">
+    <?php } ?> 
+    
+        <div class="entry-content content">
+            <?php $events->content(); ?>
         </div>
 
-    </div>
+    <?php if( $events->contentContainer ) { ?>
+        </div>
+     <?php } ?>      
 
 </div>
 

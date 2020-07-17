@@ -12,11 +12,8 @@ class Waterfall_Events extends Waterfall_Base {
     public function initialize() { 
         
         $this->filters = [
-            ['template_include', 'locateTemplate', 50],
-            ['the_content', 'filterContent']
+            ['template_include', 'locateTemplate', 50]
         ];
-
-
 
     } 
 
@@ -29,15 +26,8 @@ class Waterfall_Events extends Waterfall_Base {
 
         if( strpos($template, 'the-events-calendar/src/views/v2/default-template.php') ) {
 
+            // Use the custom theme template
             $template = '/templates/events-calendar/default-template.php';
-                
-            if( tribe_get_option( 'tribeEventsTemplate') == 'default' ) {
-                if( is_singular() ) {
-                    $template = '/templates/singular.php';
-                } else {
-                    $template = '/templates/index.php';
-                }
-            }
             
             // Check if our file exists
             if ( file_exists( STYLESHEETPATH . $template ) ) {
@@ -49,22 +39,6 @@ class Waterfall_Events extends Waterfall_Base {
         }
 
         return $template;
-
-    }
-
-    /**
-     * If an event is  being built with Elementor, make sure the Event Calendar doesn't output it's content
-     */
-    public function filterContent($content) {
-
-        // Remove the front-end content filtering if this page is been designed by Elementor
-        if( class_exists('Elementor\Plugin') ) {
-            var_dump( Elementor\Plugin::$instance->frontend->has_elementor_in_page() );
-
-        }
-        
-        // Always return content here! Otherwise, it ill crank up your WordPress Bigtime
-        return $content;
 
     }
 
