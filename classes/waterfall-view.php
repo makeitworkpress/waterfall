@@ -174,11 +174,11 @@ class Waterfall_View extends Waterfall_Base  {
             } 
 
             // Posts or pages with an overlay and adjustable width
-            if( $this->meta['page_header_overlay'] ) {
+            if( isset($this->meta['page_header_overlay']) && $this->meta['page_header_overlay'] ) {
                 $classes[] = 'waterfall-content-header-overlay';
             }
             
-            if( (isset($this->meta['content_width']['full']) && $this->meta['content_width']['full']) || isset($layout [$type . '_content_width']) && $layout[$type . '_content_width'] == 'full' ) {
+            if( (isset($this->meta['content_width']['full']) && $this->meta['content_width']['full']) || (isset($layout[$type . '_content_width']) && $layout[$type . '_content_width'] == 'full') ) {
                 $sidebar    = 'default';
                 $classes[]  = 'waterfall-fullwidth-content';
             }
