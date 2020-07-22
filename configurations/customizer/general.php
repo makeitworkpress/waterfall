@@ -228,3 +228,31 @@ if( did_action('elementor/loaded') ) {
         'type'          => 'dimension'  
     ];    
 }
+
+/**
+ * Additional Fields if the Events Calendar is active
+ */
+if( class_exists('Tribe__Events__Main') ) {
+
+    $choices = [];
+    $pages = get_posts(['post_type' => 'page', 'posts_per_page' => -1, 'fields' => 'ids']);
+
+    if( is_array($pages) ) {
+
+        foreach( $pages as $page ) {
+            $choices[$page] = get_the_title($page);
+        }
+
+        array_unshift( 
+            $customizer['sections']['static_front_page']['fields'], 
+            [
+                'default'       => '',
+                'id'            => 'tribe_events_page',
+                'title'         => __('Events Page', 'waterfall'),
+                'description'   => __('Changes the Tribe Events page for a custom events page.', 'waterfall'),
+                'type'          => 'select',
+                'choices'       => $choices             
+            ]
+        );
+    }
+}

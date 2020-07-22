@@ -12,7 +12,8 @@ class Waterfall_Events extends Waterfall_Base {
     public function initialize() { 
         
         $this->filters = [
-            ['template_include', 'locateTemplate', 50]
+            ['template_include', 'locateTemplate', 50],
+            ['tribe_get_events_link', 'adaptEventsLink']
         ];
 
     } 
@@ -41,5 +42,22 @@ class Waterfall_Events extends Waterfall_Base {
         return $template;
 
     }
+
+    /**
+     * Setup a custom link for the Events Calendar Page
+     * 
+     * @param String $link The link for the events overview page
+     */
+    public function adaptEventsLink($link) {
+
+        $options = wf_get_theme_option('customizer');
+
+        if( isset($options['tribe_events_page']) && is_numeric($options['tribe_events_page']) ) {
+            $link = esc_url(get_permalink($options['tribe_events_page']));
+        }
+        
+        return $link;
+
+    }    
 
 }

@@ -9,11 +9,25 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Waterfall {
     
     /**
+     * Contains the ajax object
+     *
+     * @access public
+     */
+    public $ajax;    
+
+    /**
      * Contains the configurations object
      *
      * @access public
      */
-    public $config;      
+    public $config; 
+    
+    /**
+     * Contains the events object
+     *
+     * @access public
+     */
+    public $events;     
     
     /**
      * Determines whether a class has already been instanciated.
@@ -23,11 +37,32 @@ class Waterfall {
     private static $instance = null;     
 
     /**
-     * Contains the database options object
+     * Contains the queried database options, for customizer, options and meta options;
      *
      * @access public
      */
-    public $options;      
+    public $options; 
+    
+    /**
+     * Contains the updater object
+     *
+     * @access public
+     */
+    public $updater;     
+  
+    /**
+     * Contains the view object
+     *
+     * @access public
+     */
+    public $view;    
+     
+    /**
+     * Contains the woocommerce object
+     *
+     * @access public
+     */
+    public $woocommerce;
     
  
     /**
@@ -128,7 +163,7 @@ class Waterfall {
      * Enables our theme to be updated through an external repository, in this case github
      */
     private function bootUpdater() { 
-        new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );   
+        $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );   
     }    
         
     /**
@@ -157,14 +192,14 @@ class Waterfall {
      * Initializes our ajax actions
      */
     private function setupAjax() {     
-        new Waterfall_Ajax();   
+        $this->ajax = new Waterfall_Ajax();   
     }
     
     /**
      * Initializes the view component so components and templates are load and additional settings are added
      */
     private function setupView() {     
-        new Waterfall_View( $this->options );  
+        $this->view = new Waterfall_View( $this->options );  
     }     
 
     /**
@@ -172,7 +207,7 @@ class Waterfall {
      */
     private function setupWooCommerce() {     
         if( class_exists('WooCommerce') ) {
-            new Waterfall_WooCommerce( $this->options );
+            $this->woocommerce = new Waterfall_WooCommerce( $this->options );
         }
     } 
     
@@ -181,7 +216,7 @@ class Waterfall {
      */
     private function setupEventsCalendar() {     
         if( class_exists('Tribe__Events__Main') ) {
-            new Waterfall_Events( $this->options );
+            $this->events = new Waterfall_Events( $this->options );
         }
     }    
     
