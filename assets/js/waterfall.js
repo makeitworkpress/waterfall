@@ -2,14 +2,21 @@
  * Custom JS for the WaterFall theme
  */
 var Waterfall = {
+
     init: function () {
         this.lightbox();
         this.woocommerceGallery();
     },
+
     // Set-up the lightbox
     lightbox: function () {
-        jQuery('.waterfall-lightbox').find('a[href$=".png"], a[href$=".gif"], a[href$=".jpg"], a[href$=".svg"], a[href$=".webp"]').swipebox();
+
+        if( typeof swipebox === 'function' ) {
+            jQuery('.waterfall-lightbox').not('.elementor-element').find('a[href$=".png"], a[href$=".gif"], a[href$=".jpg"], a[href$=".svg"], a[href$=".webp"]').swipebox();
+        }
+
     },
+
     // Fixes height bug for gallery images inside a slider
     woocommerceGallery: function() {
         
