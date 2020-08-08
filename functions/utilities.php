@@ -1,12 +1,12 @@
 <?php
-
 /**
  * Utility functions that are used by the waterfall theme
  */
+use Waterfall as Waterfall;
 
 /**
  * Retrieves the theme header
-* Replaces the standard get_header call that WordPress uses
+ * Replaces the standard get_header call that WordPress uses
  */
 function wf_get_theme_header() {
     get_template_part('templates/header');
@@ -21,54 +21,58 @@ function wf_get_theme_footer() {
 }
 
 /**
- * Retrieves a certain setting for the theme
+ * Retrieves certain data from the database for the theme
  *
- * @param   string    $type     The type of options to retrieve
- * @param   mixed     $key      The array of option keys or single option key to retrieve
- * @param   string    $prefix   A common prefix for the option
+ * @param   String          $type     The type of options to retrieve
+ * @param   Array/String    $keys      The array of option keys or single option key to retrieve
+ * @param   String          $prefix   A common prefix for the option, such as archive or single
  *
- * @return  mixed     $options   The array with options; 
+ * @return  Array/String    $options   The array with options; 
  */
-function wf_get_theme_option( $type = '', $key = '', $prefix = '' ) {
+function wf_get_data( $type = '', $keys = '', $prefix = '' ) {
 
-    $options    = '';
-    
-    // Determine our source
-    switch( $type ) {
-        case 'customizer':
-            $options = get_theme_mod('waterfall_customizer');
-            break;        
-        case 'colors':
-            $options = get_theme_mod('waterfall_colors');
-            break;        
-        case 'layout':
-            $options = get_theme_mod('waterfall_layout');
-            break;        
-        case 'typography':
-            $options = get_theme_mod('waterfall_typography');
-            break;
-        case 'woocommerce':
-            $options = get_theme_mod('woocommerce');
-            break;            
-        case 'meta':
-            $options = get_post_meta( get_the_ID(), 'waterfall_meta', true);
-            break;
-        default: 
-            $options = get_option('waterfall_options');
+    /**
+     * Retrieves our data from the instance
+     * This ensures data is only queried once
+     */
+    $type   = ! $type ? 'options' : $type;
+
+    if( ! in_array($type, ['colors', 'customizer', 'layout', 'meta', 'options', 'woocommerce']) ) {
+        return [];
     }
-    
-    // Switch option type, whether to receive a single option or multiple at once
-    if( is_array($key) ) {
+
+    // $data       = Waterfall::instance()->getData();
+    $options    = $data[$type];
+
+    /**
+     * Allows only to return a certain set of options. 
+     * Either receive a single option or multiple at once, but not all
+     */
+    if( is_array($keys) ) {
         $formatted = array();
-        foreach( $key as $value ) {
-            $formatted[$value] = isset($options[$prefix . $value]) ? $options[$prefix . $value] : false;
+        foreach( $keys as $key ) {
+            $formatted[$key] = isset($options[$prefix . $key]) ? $options[$prefix . $key] : false;
         }        
-    } elseif( $key ) {
-        $formatted = isset($options[$prefix . $key]) ? $options[$prefix . $key] : false;
+    } elseif( $keys ) {
+        $formatted = isset($options[$prefix . $keys]) ? $options[$prefix . $keys] : false;
     }
     
     return isset($formatted) ? $formatted : $options;
-    
+
+}
+
+/**
+ * Retrieves a certain setting for the theme
+ * @deprecated, use wf_get_data instead
+ *
+ * @param   String          $type     The type of options to retrieve
+ * @param   Array/String    $keys      The array of option keys or single option key to retrieve
+ * @param   String          $prefix   A common prefix for the option, such as archive or single
+ *
+ * @return  Array/String    $options   The array with options; 
+ */
+function wf_get_theme_option( $type = '', $keys = '', $prefix = '' ) {
+    return wf_get_data($type, $keys, $prefix);   
 }
 
 /**

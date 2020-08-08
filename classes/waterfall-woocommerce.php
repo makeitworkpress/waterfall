@@ -24,19 +24,21 @@ class Waterfall_WooCommerce extends Waterfall_Base {
      */
     private function themeSupport() {
 
-        add_theme_support( 'woocommerce' );   
+        add_theme_support( 'woocommerce' );  
         
-        if( isset($this->options['woocommerce']['product_content_zoom']) && $this->options['woocommerce']['product_content_zoom'] ) {
+        $woocommerce = wf_get_data('woocommere', ['product_content_zoom', 'product_content_lightbox', 'product_content_slider']);
+        
+        if( $woocommerce['product_content_zoom'] ) {
             add_theme_support( 'wc-product-gallery-zoom' );
         }
     
         // Lightbox Support
-        if( isset($this->options['woocommerce']['product_content_lightbox']) && $this->options['woocommerce']['product_content_lightbox'] ) {
+        if( $woocommerce['product_content_lightbox'] ) {
             add_theme_support( 'wc-product-gallery-lightbox' );
         }
         
         // Slider support
-        if( isset($this->options['woocommerce']['product_content_slider']) && $this->options['woocommerce']['product_content_slider'] ) {
+        if( $woocommerce['product_content_slider']  ) {
             add_theme_support( 'wc-product-gallery-slider' );
         }
 
@@ -48,9 +50,11 @@ class Waterfall_WooCommerce extends Waterfall_Base {
      * @param Array $classes The passed body classes
      */
     public function templatePath( $path ) {
+        
         $path = 'templates/woocommerce/';
 
         return $path;
+
     }    
 
 }

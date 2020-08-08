@@ -4,7 +4,7 @@
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-$menu   = wf_get_theme_option('layout', 'header_menu_hamburger');
+$menu   = wf_get_data('layout', 'header_menu_hamburger');
 
 $colors = [
     'description'   => __('Adjust the colors of all of the theme sections.', 'waterfall'),

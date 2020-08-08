@@ -37,7 +37,7 @@ abstract class Waterfall_Base {
     /**
      * Constructor
      * 
-     * @param Array $options The options passed to this element
+     * @param Array $options Any sort of custom options passed to this element
      */
     public function __construct( Array $options = [] ) {   
         
@@ -47,6 +47,7 @@ abstract class Waterfall_Base {
 
         $this->hook( $this->actions, 'action' );
         $this->hook( $this->filters, 'filter' );
+
     }
 
     /**

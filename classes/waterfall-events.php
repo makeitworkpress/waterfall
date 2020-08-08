@@ -50,10 +50,10 @@ class Waterfall_Events extends Waterfall_Base {
      */
     public function adaptEventsLink($link) {
 
-        $options = wf_get_theme_option('customizer');
+        $page = wf_get_data('customizer', 'tribe_events_page');
 
-        if( isset($options['tribe_events_page']) && is_numeric($options['tribe_events_page']) ) {
-            $link = esc_url(get_permalink($options['tribe_events_page']));
+        if( is_numeric($page) ) {
+            $link = esc_url( get_permalink($page) );
         }
         
         return $link;

@@ -5,13 +5,20 @@
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 class Waterfall_View extends Waterfall_Base  {
+
+    /**
+     * Contains the components object
+     *
+     * @access public
+     */
+    public $components;      
     
     /**
      * Contains the templates that are routed to the /templates/ folder
      *
      * @access private
      */
-    private $files;
+    private $files; 
 
     /**
      * Initialize our view functions
@@ -41,7 +48,7 @@ class Waterfall_View extends Waterfall_Base  {
         $this->themeSupport();
 
         // Loads our custom components from Make it WorkPress
-        new MakeitWorkPress\WP_Components\Boot();       
+        $this->components = new MakeitWorkPress\WP_Components\Boot();       
         
     }
     
@@ -75,13 +82,22 @@ class Waterfall_View extends Waterfall_Base  {
      */
     public function headerHeight() {
 
-        if( isset($this->options['layout']['header_height']['amount']) && $this->options['layout']['header_height']['amount'] && $this->options['layout']['header_height']['unit'] ) {
+        $height = wf_get_data('layout', 'header_height');
+
+        if( isset($height['amount']) && $height['amount'] && $height['unit'] ) {
 
             echo '<style type="text/css"> 
-                .molecule-header-atoms .atom-logo img { height: calc(' . $this->options['layout']['header_height']['amount'] . $this->options['layout']['header_height']['unit'] . ' - 16px); width: auto;} 
-                .molecule-header-atoms .atom-menu-hamburger { margin: calc( (' . $this->options['layout']['header_height']['amount'] . $this->options['layout']['header_height']['unit'] . ' - 30px)/2 ) 4px; }
-                .molecule-header-transparent ~ .main .main-header, .molecule-header-transparent ~ .main .main-header.components-image-background { padding-top: calc(' . $this->options['layout']['header_height']['amount'] . $headerHeight['unit'] . ' + 32px); }
+                .molecule-header-atoms .atom-logo img { 
+                    height: calc(' . $height['amount'] . $height['unit'] . ' - 16px); width: auto;
+                } 
+                .molecule-header-atoms .atom-menu-hamburger { 
+                    margin: calc( (' . $height['amount'] . $height['unit'] . ' - 30px)/2 ) 4px; 
+                }
+                .molecule-header-transparent ~ .main .main-header, .molecule-header-transparent ~ .main .main-header.components-image-background { 
+                    padding-top: calc(' . $height['amount'] . $height['unit'] . ' + 32px);
+                }
             </style>';
+
         } 
 
     }
@@ -90,14 +106,15 @@ class Waterfall_View extends Waterfall_Base  {
      * Adds the analytics script to the header
      */
     public function analytics() {
-        if( isset($this->options['options']['analytics']) && $this->options['options']['analytics'] ) {
+        $analytics = wf_get_data('options', 'analytics');
+        if( $analytics ) {
             echo '<!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async="async" src="https://www.googletagmanager.com/gtag/js?id=' . $this->options['options']['analytics'] . '"></script>
+            <script async="async" src="https://www.googletagmanager.com/gtag/js?id=' . $analytics . '"></script>
             <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag("js", new Date());
-            gtag("config", "' . $this->options['options']['analytics'] . '", {"anonymize_ip": true });
+            gtag("config", "' . $analytics . '", {"anonymize_ip": true });
             </script>';
         }
     }
@@ -111,24 +128,30 @@ class Waterfall_View extends Waterfall_Base  {
 
         global $wp_query;
 
-        // Retrieve configurations
-        $customize      = $this->options['customizer']; 
-        $colors         = $this->options['colors']; 
-        $layout         = $this->options['layout'];
-        $woocommerce    = $this->options['woocommerce'];
-        $sidebar        = 'default';
+        // Retrieve default customizer and metadata
+        $data       = [];
+        $types      = [
+            'customizer'    => ['layout', 'lightbox'],
+            'colors'        => ['content_sidebar_background'],
+            'layout'        => ['search_sidebar_position'],
+            'meta'          => ['content_width', 'page_header_overlay']
+        ];
+
+        foreach( $types as $type => $keys ) {
+            $data[$type] = wf_get_data($type, $keys);
+        }
         
         // Default layout class for boxed and non-boxed
-        if( isset($customize['layout']) ) {
-            $classes[]  = 'waterfall-' . $customize['layout'] . '-layout';    
+        if( $data['customizer']['layout'] ) {
+            $classes[]  = 'waterfall-' . $data['customizer']['layout'] . '-layout';
         }
 
-        if( isset($colors['content_sidebar_background']) && $colors['content_sidebar_background'] ) {
+        if( $data['colors']['content_sidebar_background'] ) {
             $classes[]  = 'waterfall-colored-sidebar';    
         }
         
         // Initialize lightbox
-        if( isset($customize['lightbox']) ) {
+        if( $data['customizer']['lightbox'] ) {
             $classes[]  = 'waterfall-lightbox';
         }
 
@@ -136,49 +159,41 @@ class Waterfall_View extends Waterfall_Base  {
         $page = isset( get_queried_object()->ID ) ? get_queried_object()->ID : 0;
         
         if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') || ( is_home() && $page = get_option('page_for_posts') ) ) {
-            $type       = wf_get_archive_post_type();
-
-            // Default archives
-            if( isset($layout[$type . '_archive_sidebar_position']) && $layout[$type . '_archive_sidebar_position'] ) {
-                $sidebar = $layout[$type . '_archive_sidebar_position'];  
-            } 
+            
+            $type               = wf_get_archive_post_type();
             
             // Woocommerce archives
             if( function_exists('is_woocommerce') && is_woocommerce() ) {
 
-                if( isset($woocommerce[$type . '_archive_sidebar_position']) && $woocommerce[$type . '_archive_sidebar_position'] ) {   
-                    $sidebar = $woocommerce[$type . '_archive_sidebar_position'];
-                } elseif( (! isset($woocommerce[$type . '_archive_sidebar_position']) || ! $woocommerce[$type . '_archive_sidebar_position']) ) {
-                    $sidebar = 'left'; // A non set Woocommerce Sidebar defaults to a left sidebar.
-                }
+                $sidebar_position   = wf_get_data('woocommerce', $type . '_archive_sidebar_position');
+                $sidebar            =  $sidebar_position  ? $sidebar_position : 'left';
 
+            // Default archives
+            } else {
+                $sidebar_position   = wf_get_data('layout', $type . '_archive_sidebar_position');
+                $sidebar            = $sidebar_position ? $sidebar_position : 'default';
             }
 
         }
         
         // Search Archives
         if( is_search() ) {
-            $sidebar = isset($layout['search_sidebar_position']) ? $layout['search_sidebar_position'] : 'default';  
+            $sidebar = $data['layout']['search_sidebar_position'] ? $layout['search_sidebar_position'] : 'default';  
         }
 
         // Single Posts and pages
         if( is_singular() ) {
 
-            $type       = $wp_query->queried_object->post_type;
-            $this->meta = wf_get_theme_option('meta');
-
-            if( isset($layout[$type . '_sidebar_position']) ) {
-                $sidebar = $layout[$type . '_sidebar_position'];  
-            } elseif( isset($woocommerce[$type . '_sidebar_position']) ) {
-                $sidebar = $woocommerce[$type . '_sidebar_position'];
-            } 
+            $type               = isset($wp_query->queried_object->post_type) ? $wp_query->queried_object->post_type : 'post';
+            $sidebar_position   = function_exists('is_product') && is_product() ? wf_get_data('woocommerce', $type . '_sidebar_position') : wf_get_data('layout', $type . '_sidebar_position');
+            $content_width      = wf_get_data('layout', $type . '_content_width');
 
             // Posts or pages with an overlay and adjustable width
-            if( isset($this->meta['page_header_overlay']) && $this->meta['page_header_overlay'] ) {
+            if( $data['meta']['page_header_overlay'] ) {
                 $classes[] = 'waterfall-content-header-overlay';
             }
             
-            if( (isset($this->meta['content_width']['full']) && $this->meta['content_width']['full']) || (isset($layout[$type . '_content_width']) && $layout[$type . '_content_width'] == 'full') ) {
+            if( $data['meta']['content_width']['full'] || $content_width == 'full' ) {
                 $sidebar    = 'default';
                 $classes[]  = 'waterfall-fullwidth-content';
             }
@@ -198,10 +213,13 @@ class Waterfall_View extends Waterfall_Base  {
      */    
     public function excerptLength($length) {
 
-        if( isset($this->options['customizer']['excerpt_length']) && is_numeric($this->options['customizer']['excerpt_length']) ) {
-            $length = absint($customize['excerpt_length']);
-            return $length;
+        $excerpt_length = wf_get_data('customizer', 'excerpt_length');
+
+        if( is_numeric($excerpt_length) ) {
+            return absint($excerpt_length);
         }
+
+        return $length;
 
     }
  

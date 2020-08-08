@@ -21,6 +21,14 @@ class Waterfall {
      * @access public
      */
     public $config; 
+
+
+    /**
+     * Contains the queried database data, for customizer, options and meta values;
+     *
+     * @access private
+     */
+    private $data;     
     
     /**
      * Contains the events object
@@ -34,14 +42,15 @@ class Waterfall {
      *
      * @access private
      */
-    private static $instance = null;     
-
+    private static $instance = null;  
+    
     /**
-     * Contains the queried database options, for customizer, options and meta options;
+     * Contains the WP Optimize object
      *
      * @access public
      */
-    public $options; 
+    public $optimize;     
+      
     
     /**
      * Contains the updater object
@@ -64,18 +73,17 @@ class Waterfall {
      */
     public $woocommerce;
     
- 
     /**
      * Gets the single instance. Applies Singleton Pattern
      */
     public static function instance() {
-        
-        $class = get_called_class();
-        if ( ! isset(self::$instance[$class]) ) {
-            self::$instance[$class] = new $class();
+
+        if( self::$instance == null ) {    
+            var_dump('WATERFALL_INSTANCE');  
+            self::$instance = new Waterfall();
         }
 
-        return self::$instance[$class];
+        return self::$instance;
 
     }    
       
@@ -87,11 +95,11 @@ class Waterfall {
         // Sets our languages - before anything else loads
         $this->loadLanguages();     
 
-        // Loads utilityFunctions and other static dependencies
-        $this->requireDependencies();
-
         // Sets our database options from option pages and the customizer - before anything else loads
-        $this->loadOptions();           
+        $this->loadData();
+
+        // Loads utilityFunctions and other static dependencies
+        $this->requireDependencies();        
 
         // Boot the updater
         $this->bootUpdater();
@@ -121,14 +129,29 @@ class Waterfall {
         $this->deprecatedSupport();
         
         // Enable optimizations
-        $this->enableOptimizations();        
+        $this->enableOptimizations();
 
     }
+
+    /**
+     * Retrieves the theme configurations
+     */
+    public function getConfig() {
+        return $this->config;
+    }
+
+    /**
+     * Retrieves data saved from the Database
+     */
+    public function getData() {
+        return $this->data;
+    }    
 
     /**
      * Loads our translations before loading anything else
      */
     private function loadLanguages() {
+
         if( is_dir( get_stylesheet_directory() . '/languages' ) ) {
             $path = get_stylesheet_directory() . '/languages';
         } else {
@@ -136,19 +159,39 @@ class Waterfall {
         }
         
         load_theme_textdomain( 'waterfall', apply_filters('waterfall_language_path', $path) ); 
+
     }
 
     /**
-     * Loads our theme options
+     * Loads our theme options and meta values
      */
-    private function loadOptions() {
-        $this->options = [
-            'options'       => wf_get_theme_option(),
-            'colors'        => wf_get_theme_option('colors'),
-            'customizer'    => wf_get_theme_option('customizer'),
-            'layout'        => wf_get_theme_option('layout'),
-            'woocommerce'   => wf_get_theme_option('woocommerce'),
+    private function loadData() {
+
+        // Default values
+        $this->data = [
+            'meta'          => [],
+            'options'       => get_option('waterfall_options'),
         ];
+
+        $mods = get_theme_mods();
+
+        // Customizer values
+        foreach(['colors', 'customizer', 'layout', 'woocommerce'] as $mod) {
+            $this->data[$mod] = isset($mods[$mod]) ? apply_filters( "theme_mod_{$mod}", $mods[$mod]) : apply_filters( "theme_mod_{$mod}", []);
+        }
+
+        // Meta values
+        add_action('wp', [$this, 'loadMeta']);
+
+    }
+
+    /**
+     * Loads metaData (hooked to WP)
+     */
+    public function loadMeta() {
+
+        $this->data['meta'] = get_post_meta( get_the_ID(), 'waterfall_meta', true);
+        
     }
 
     /**
@@ -182,8 +225,8 @@ class Waterfall {
      */
     private function enableOptimizations() {    
 
-        if( isset($this->options['options']['optimize']) && $this->options['options']['optimize'] ) {
-            new MakeitWorkPress\WP_Optimize\Optimize($this->options['options']['optimize'] );    
+        if( isset($this->data['options']['optimize']) && $this->data['options']['optimize'] ) {
+            $this->optimize = new MakeitWorkPress\WP_Optimize\Optimize( $this->data['options']['optimize'] );    
         }
     
     }
@@ -199,7 +242,7 @@ class Waterfall {
      * Initializes the view component so components and templates are load and additional settings are added
      */
     private function setupView() {     
-        $this->view = new Waterfall_View( $this->options );  
+        $this->view = new Waterfall_View();  
     }     
 
     /**
@@ -207,7 +250,7 @@ class Waterfall {
      */
     private function setupWooCommerce() {     
         if( class_exists('WooCommerce') ) {
-            $this->woocommerce = new Waterfall_WooCommerce( $this->options );
+            $this->woocommerce = new Waterfall_WooCommerce();
         }
     } 
     
@@ -216,7 +259,7 @@ class Waterfall {
      */
     private function setupEventsCalendar() {     
         if( class_exists('Tribe__Events__Main') ) {
-            $this->events = new Waterfall_Events( $this->options );
+            $this->events = new Waterfall_Events();
         }
     }    
     
@@ -239,8 +282,8 @@ class Waterfall {
     private function deprecatedSupport() {
 
         // Older themes still use the customizer value for the main logo, so update it automatically.
-        if( (isset($this->options['customizer']['logo']) && $this->options['customizer']['logo']) && ! get_theme_mod('custom_logo') ) {
-            set_theme_mod( 'custom_logo', intval($this->options['customizer']['logo']) );
+        if( (isset($this->data['customizer']['logo']) && $this->data['customizer']['logo']) && ! get_theme_mod('custom_logo') ) {
+            set_theme_mod( 'custom_logo', intval($this->data['customizer']['logo']) );
         }        
     
     }
