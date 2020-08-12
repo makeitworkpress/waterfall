@@ -26,7 +26,7 @@ class Waterfall_WooCommerce extends Waterfall_Base {
 
         add_theme_support( 'woocommerce' );  
         
-        $woocommerce = wf_get_data('woocommere', ['product_content_zoom', 'product_content_lightbox', 'product_content_slider']);
+        $woocommerce = wf_get_data( 'woocommerce', ['product_content_zoom', 'product_content_lightbox', 'product_content_slider'] );
         
         if( $woocommerce['product_content_zoom'] ) {
             add_theme_support( 'wc-product-gallery-zoom' );

@@ -110,12 +110,16 @@ class Singular extends Base {
                 'page_header_subtitle',
                 'page_header_button_text',
                 'page_header_button_link'
-            ]                                     
+            ],
+            'options' => [
+                'enable_elastic_related',
+                'scheme_post_types_disable'
+            ]                                    
         ] );
 
         // Main Microscheme
         $this->blogTypes    = apply_filters( 'waterfall_blog_schema_post_types', ['post'] );
-        $this->noSchema     = isset($this->options['scheme_post_types_disable']) && $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : []; 
+        $this->noSchema     = $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : [];
         $this->schema       = in_array($this->type, $this->blogTypes) ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
         $this->schema       = in_array($this->type, $this->noSchema) ? '' : apply_filters( 'waterfall_singular_schema', $this->schema);
 
@@ -182,7 +186,6 @@ class Singular extends Base {
             'attributes'    => ['class' => 'main-header entry-header singular-header'],
             'container'     => $this->layout['header_width'] == 'full' ? false : true,
             'height'        => $this->layout['header_height'] ? $this->layout['header_height'] : 'quarter',
-            'lazyload'      => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,
             'parallax'      => $this->layout['header_parallax'] ? true : false,
         ];    
     
@@ -260,8 +263,7 @@ class Singular extends Base {
     
         // Featured image
         $featured       = $this->layout['header_featured'] ? $this->layout['header_featured'] : 'after';
-        $featuredArgs   = [ 
-            'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,
+        $featuredArgs   = [
             'size'      => $this->layout['header_size'] ? $this->layout['header_size'] : 'half-hd', 
             'schema'    => in_array($this->type, $this->noSchema) ? false : true
         ]; 
@@ -393,7 +395,7 @@ class Singular extends Base {
              * This looks for taxonomies/terms attached to the post and loads these based on these terms
              * If ElasticPress is installed on this site, it uses elasticpress to search for posts
              */
-            if( function_exists('ep_find_related') && isset($this->options['enable_elastic_related']) && $this->options['enable_elastic_related'] ) {
+            if( function_exists('ep_find_related') && $this->options['enable_elastic_related'] ) {
                 $related                = ep_find_related( $post->ID, $this->layout['related_number'] );
 
                 // Related posts can be found
@@ -480,7 +482,6 @@ class Singular extends Base {
                     'image'         => [ 
                         'enlarge'   => $this->layout['related_image_enlarge'] ? true : false, 
                         'float'     => $this->layout['related_image_float'] ? $this->layout['related_image_float'] : 'none',
-                        'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,
                         'link'      => 'post', 
                         'size'      => $this->layout['related_image'] ? $this->layout['related_image'] : 'square-ld'                         
                     ]

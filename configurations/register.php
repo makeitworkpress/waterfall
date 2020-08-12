@@ -7,22 +7,22 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 // Default registrations 
 $register = [
     'imageSizes' => [
-        array('name' => 'square-ld', 'width' => 360, 'height' => 360, 'crop' => true),
-        array('name' => 'square-sd', 'width' => 480, 'height' => 480, 'crop' => true),
-        array('name' => 'square-hd', 'width' => 720, 'height' => 720, 'crop' => true),
-        array('name' => 'square-fhd', 'width' => 1080, 'height' => 1080, 'crop' => true),
-        array('name' => 'half-ld', 'width' => 640, 'height' => 240, 'crop' => true),
-        array('name' => 'ld', 'width' => 640, 'height' => 360, 'crop' => true),
-        array('name' => 'half-sd', 'width' => 854, 'height' => 360, 'crop' => true),
-        array('name' => 'sd', 'width' => 854, 'height' => 480, 'crop' => true),
-        array('name' => 'half-hd', 'width' => 1280, 'height' => 480, 'crop' => true),
-        array('name' => 'hd', 'width' => 1280, 'height' => 720, 'crop' => true),
-        array('name' => 'half-fhd', 'width' => 1920, 'height' => 720, 'crop' => true),
-        array('name' => 'fhd', 'width' => 1920, 'height' => 1080, 'crop' => true),
-        array('name' => 'half-qhd', 'width' => 2560, 'height' => 1080, 'crop' => true),
-        array('name' => 'qhd', 'width' => 2560, 'height' => 1440, 'crop' => true),
-        array('name' => 'half-uhd', 'width' => 3840, 'height' => 1440, 'crop' => true),
-        array('name' => 'uhd', 'width' => 3840, 'height' => 2160, 'crop' => true)
+        ['name' => 'square-ld', 'width' => 360, 'height' => 360, 'crop' => true],
+        ['name' => 'square-sd', 'width' => 480, 'height' => 480, 'crop' => true],
+        ['name' => 'square-hd', 'width' => 720, 'height' => 720, 'crop' => true],
+        ['name' => 'square-fhd', 'width' => 1080, 'height' => 1080, 'crop' => true],
+        ['name' => 'half-ld', 'width' => 640, 'height' => 240, 'crop' => true],
+        ['name' => 'ld', 'width' => 640, 'height' => 360, 'crop' => true],
+        ['name' => 'half-sd', 'width' => 854, 'height' => 360, 'crop' => true],
+        ['name' => 'sd', 'width' => 854, 'height' => 480, 'crop' => true],
+        ['name' => 'half-hd', 'width' => 1280, 'height' => 480, 'crop' => true],
+        ['name' => 'hd', 'width' => 1280, 'height' => 720, 'crop' => true],
+        ['name' => 'half-fhd', 'width' => 1920, 'height' => 720, 'crop' => true],
+        ['name' => 'fhd', 'width' => 1920, 'height' => 1080, 'crop' => true],
+        ['name' => 'half-qhd', 'width' => 2560, 'height' => 1080, 'crop' => true],
+        ['name' => 'qhd', 'width' => 2560, 'height' => 1440, 'crop' => true],
+        ['name' => 'half-uhd', 'width' => 3840, 'height' => 1440, 'crop' => true],
+        ['name' => 'uhd', 'width' => 3840, 'height' => 2160, 'crop' => true]
     ],
     'menus' => [
         'header-menu' => __('Header Menu', 'waterfall'),
@@ -65,8 +65,8 @@ $register['sidebars'][] = ['id' => 'search', 'name' => __('Search Sidebar', 'wat
 
 /**
  * Dynamic Footer Sidebars
+ * $sidebars is retrieved from classes/waterfall.php
  */
-$sidebars   = wf_get_theme_option('layout', 'footer_sidebars') ? wf_get_theme_option('layout', 'footer_sidebars') : 'third';
 $columns    = [
     'full'      => ['one', __('One', 'waterfall'), __('first', 'waterfall')], 
     'half'      => ['two', __('Two', 'waterfall'), __('second', 'waterfall')], 

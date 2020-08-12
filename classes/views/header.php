@@ -33,7 +33,8 @@ class Header extends Base {
                 'header_width'   
             ],
             'woocommerce'   => ['header_cart'],
-            'meta'          => ['transparent_header']                                      
+            'meta'          => ['transparent_header'],
+            'options'       => ['represent_scheme']                                      
         ] );
 
     }
@@ -60,7 +61,7 @@ class Header extends Base {
          * Set-up our atoms
          * The header atoms form the building blocks for the header
          */
-        $represents = wf_get_theme_option('options', 'represent_scheme');
+        $represents = $this->options['represent_scheme'];
 
         // Get our logo and alt
         $logo       = $this->customizer['logo'] ? $this->customizer['logo'] : get_theme_mod( 'custom_logo' );

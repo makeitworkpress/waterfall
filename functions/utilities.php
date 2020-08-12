@@ -41,7 +41,7 @@ function wf_get_data( $type = '', $keys = '', $prefix = '' ) {
         return [];
     }
 
-    // $data       = Waterfall::instance()->getData();
+    $data       = Waterfall_Data::instance()->getData();
     $options    = $data[$type];
 
     /**
@@ -81,7 +81,7 @@ function wf_get_theme_option( $type = '', $keys = '', $prefix = '' ) {
 function wf_get_main_schema() {
     
     $blogTypes  = apply_filters( 'waterfall_blog_schema_post_types', ['post'] );
-    $disabled   = wf_get_theme_option('options', 'scheme_post_types_disable') ? wf_get_theme_option('options', 'scheme_post_types_disable') : [];
+    $disabled   = wf_get_data('options', 'scheme_post_types_disable') ? wf_get_data('options', 'scheme_post_types_disable') : [];
     $schema     = 'http://schema.org/WebPageElement';
 
     if( is_singular($blogTypes) ) {
@@ -293,7 +293,7 @@ function wf_get_social_networks() {
         'whatsapp'      => __('Whatsapp', 'waterfall')           
     ] );
     
-    $options    = wf_get_theme_option('customizer');
+    $options    = wf_get_data('customizer', array_keys($networks));
     $urls       = [];
     
     foreach( $networks as $network => $label ) {

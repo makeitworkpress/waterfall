@@ -75,9 +75,6 @@ abstract class Base {
             global $post;
             $this->type = $post->post_type;
         }  
-        
-        // Load our theme settings
-        $this->options = wf_get_theme_option();
 
         // Set our properties based upon the arrays defined within a view
         $this->setProperties();
@@ -103,26 +100,29 @@ abstract class Base {
      */
     protected final function getProperties() {
 
+        // Loads specific theme options
+        $this->options          = wf_get_data('options', $this->properties['options']);
+
         // Loads meta data from the postmeta
         if( is_singular() && isset($this->properties['meta']) ) {
-            $this->meta         = apply_filters( 'waterfall_meta_properties', wf_get_theme_option('meta', $this->properties['meta']), get_called_class() );
+            $this->meta         = apply_filters( 'waterfall_meta_properties', wf_get_data('meta', $this->properties['meta']), get_called_class() );
         }
 
         // Sets general customizer properties
         if( isset($this->properties['customizer']) ) {
-            $this->customizer   = apply_filters( 'waterfall_customizer_properties', wf_get_theme_option('customizer', $this->properties['customizer']), get_called_class() );
+            $this->customizer   = apply_filters( 'waterfall_customizer_properties', wf_get_data('customizer', $this->properties['customizer']), get_called_class() );
         }
 
         // Sets layout customizer properties
         if( isset($this->properties['layout']) ) {
             $prefix             = $this->type ? $this->type . '_' : '';
-            $this->layout       = apply_filters( 'waterfall_layout_properties', wf_get_theme_option('layout', $this->properties['layout'], $prefix), get_called_class() );    
+            $this->layout       = apply_filters( 'waterfall_layout_properties', wf_get_data('layout', $this->properties['layout'], $prefix), get_called_class() );    
         } 
         
         // Sets woocommerce customizer properties
         if( isset($this->properties['woocommerce']) ) {
             $prefix             = $this->type ? $this->type . '_' : '';
-            $this->woocommerce  = apply_filters( 'waterfall_woocommerce_properties', wf_get_theme_option('woocommerce', $this->properties['woocommerce'], $prefix), get_called_class() );    
+            $this->woocommerce  = apply_filters( 'waterfall_woocommerce_properties', wf_get_data('woocommerce', $this->properties['woocommerce'], $prefix), get_called_class() );    
         }         
 
     }
@@ -142,19 +142,19 @@ abstract class Base {
         
         // For singular items
         if( is_singular() ) {
-            $disable    = wf_get_theme_option( 'meta', $context . $prefix . '_disable' );
+            $disable    = wf_get_data( 'meta', $context . $prefix . '_disable' );
             $meta       = $disable ? $disable : $meta;
         }
 
         // General (most likely used for the general header and footer)
         $prefix     = $this->type ? $this->type . '_' . $prefix : $prefix; // If a type is defined, this will have a different prefix
-        $customizer = wf_get_theme_option( 'layout', $prefix . '_disable' );    
+        $customizer = wf_get_data( 'layout', $prefix . '_disable' );    
 
         // We hide the related section if we haven't saved anything yet for pages
         if( $prefix == $this->type . '_related' ) {
 
-            $pagination = wf_get_theme_option( 'layout', $prefix . '_pagination' );
-            $posts      = wf_get_theme_option( 'layout', $prefix . '_posts' );
+            $pagination = wf_get_data( 'layout', $prefix . '_pagination' );
+            $posts      = wf_get_data( 'layout', $prefix . '_posts' );
 
             if( ! $posts && ! $pagination && ! has_action('waterfall_before_' . $this->type . '_related') && ! has_action('waterfall_after_' . $this->type . '_related') ) {
                 $disabled = true;
@@ -165,9 +165,9 @@ abstract class Base {
         // We hide our post content footer is there is nothing to show
         if( $prefix == $this->type . '_footer' ) {
 
-            $author     = wf_get_theme_option( 'layout', $prefix . '_author' );
-            $comments   = wf_get_theme_option( 'layout', $prefix . '_comments' );
-            $share      = wf_get_theme_option( 'layout', $prefix . '_share' );
+            $author     = wf_get_data( 'layout', $prefix . '_author' );
+            $comments   = wf_get_data( 'layout', $prefix . '_comments' );
+            $share      = wf_get_data( 'layout', $prefix . '_share' );
 
             if( ! $author && ! $comments && ! $share && ! has_action('waterfall_before_' . $this->type . '_footer') && ! has_action('waterfall_after_' . $this->type . '_footer') ) {
                 $disabled = true;
@@ -193,8 +193,8 @@ abstract class Base {
          */
         
         // Look if our display of content inside .main-content should be fullwidth or not
-        $contentWidth               = wf_get_theme_option( 'layout', $this->type . '_content_width' );
-        $metaContentWidth           = wf_get_theme_option( 'meta', 'content_width' );
+        $contentWidth               = wf_get_data( 'layout', $this->type . '_content_width' );
+        $metaContentWidth           = wf_get_data( 'meta', 'content_width' );
 
         if( $contentWidth == 'full' || ( is_singular() && (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) ) {
             $this->contentContainer = false;
@@ -203,7 +203,7 @@ abstract class Base {
         /**
          * Determines the appearance and width for the related section
          */
-        $relatedWidth               = wf_get_theme_option( 'layout', $this->type . '_related_width' );
+        $relatedWidth               = wf_get_data( 'layout', $this->type . '_related_width' );
 
         if( $relatedWidth == 'full' ) {
             $this->relatedContainer = false;

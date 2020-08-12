@@ -86,7 +86,7 @@ class Footer extends Base {
             $sidebarGrid = [];
         }
 
-        $represents = wf_get_theme_option('options', 'represent_scheme');
+        $represents = wf_get_data('options', 'represent_scheme');
         $itemType   = $represents == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'; 
 
         // Logo

@@ -1,0 +1,82 @@
+<?php
+/**
+ * This class loads all theme data from the database
+ * From customizer settings to meta settings.
+ */
+class Waterfall_Data {
+
+    /**
+     * Contains the queried database data, for customizer, options and meta values;
+     *
+     * @access private
+     */
+    private $data;
+    
+    /**
+     * Determines whether a class has already been instanciated.
+     *
+     * @access private
+     */
+    private static $instance = null;  
+
+    
+    /**
+     * Gets the single instance. Applies Singleton Pattern
+     */
+    public static function instance() {
+
+        if( self::$instance == null ) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+
+    } 
+
+    /** 
+     * Constructor. This allows the class to be only initialized once.
+     */
+    private function __construct() {
+        $this->loadData();
+    }       
+
+    /**
+     * Retrieves data saved from the Database
+     */
+    public function getData() {
+        return $this->data;
+    }          
+
+    /**
+     * Loads our theme options and meta values
+     */
+    private function loadData() {
+
+        // Default values
+        $this->data = [
+            'meta'          => [],
+            'options'       => get_option('waterfall_options'),
+        ];
+
+        $mods = get_theme_mods();
+
+        // Customizer values
+        foreach(['colors', 'customizer', 'layout', 'woocommerce'] as $mod) {
+            $this->data[$mod] = isset($mods[$mod]) ? apply_filters( "theme_mod_{$mod}", $mods[$mod]) : apply_filters( "theme_mod_{$mod}", []);
+        }
+
+        // Meta values
+        add_action('wp', [$this, 'loadMeta']);
+
+    }
+
+    /**
+     * Loads metaData (hooked to WP)
+     */
+    public function loadMeta() {
+
+        $this->data['meta'] = get_post_meta( get_the_ID(), 'waterfall_meta', true);
+        
+    }
+    
+}

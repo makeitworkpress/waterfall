@@ -106,7 +106,9 @@ class Waterfall_View extends Waterfall_Base  {
      * Adds the analytics script to the header
      */
     public function analytics() {
+
         $analytics = wf_get_data('options', 'analytics');
+        
         if( $analytics ) {
             echo '<!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="async" src="https://www.googletagmanager.com/gtag/js?id=' . $analytics . '"></script>
@@ -117,6 +119,7 @@ class Waterfall_View extends Waterfall_Base  {
             gtag("config", "' . $analytics . '", {"anonymize_ip": true });
             </script>';
         }
+
     }
 
     /**
@@ -166,7 +169,7 @@ class Waterfall_View extends Waterfall_Base  {
             if( function_exists('is_woocommerce') && is_woocommerce() ) {
 
                 $sidebar_position   = wf_get_data('woocommerce', $type . '_archive_sidebar_position');
-                $sidebar            =  $sidebar_position  ? $sidebar_position : 'left';
+                $sidebar            = $sidebar_position  ? $sidebar_position : 'left';
 
             // Default archives
             } else {
@@ -185,7 +188,7 @@ class Waterfall_View extends Waterfall_Base  {
         if( is_singular() ) {
 
             $type               = isset($wp_query->queried_object->post_type) ? $wp_query->queried_object->post_type : 'post';
-            $sidebar_position   = function_exists('is_product') && is_product() ? wf_get_data('woocommerce', $type . '_sidebar_position') : wf_get_data('layout', $type . '_sidebar_position');
+            $sidebar            = function_exists('is_product') && is_product() ? wf_get_data('woocommerce', $type . '_sidebar_position') : wf_get_data('layout', $type . '_sidebar_position');
             $content_width      = wf_get_data('layout', $type . '_content_width');
 
             // Posts or pages with an overlay and adjustable width

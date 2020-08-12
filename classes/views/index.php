@@ -11,6 +11,7 @@ class Index extends Base {
 
     /**
      * Sets the properties for the index
+     * This loads the specific values from the database for the given options
      */
     protected function setProperties() {
         
@@ -38,6 +39,9 @@ class Index extends Base {
                 'content_style',
                 // Sidebar
                 'sidebar_position'
+            ],
+            'options' => [
+                'scheme_post_types_disable'
             ]                                     
         ] );
        
@@ -129,7 +133,7 @@ class Index extends Base {
         // Settings to determina what Microdata to show
         $type        = str_replace('_archive', '', $this->type);
         $blogTypes   = apply_filters( 'waterfall_blog_scheme_post_types', ['post'] );
-        $noSchema    = isset($this->options['scheme_post_types_disable']) && $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : [];          
+        $noSchema    = $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : [];
         
         $args = apply_filters( 'waterfall_archive_posts_args', [            
             'attributes'        => [
@@ -156,8 +160,7 @@ class Index extends Base {
                 ],                                 
                 'image'         => [
                     'enlarge'   => $this->layout['content_image_enlarge'] ? true : false, 
-                    'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : $defaults['float'], 
-                    'lazyload'  => isset($this->options['optimize']['lazyLoad']) && $this->options['optimize']['lazyLoad'] ? true : false,                     
+                    'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : $defaults['float'],                   
                     'link'      => 'post', 
                     'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : $defaults['size']                    
                 ]

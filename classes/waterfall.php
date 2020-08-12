@@ -20,15 +20,7 @@ class Waterfall {
      *
      * @access public
      */
-    public $config; 
-
-
-    /**
-     * Contains the queried database data, for customizer, options and meta values;
-     *
-     * @access private
-     */
-    private $data;     
+    public $config;  
     
     /**
      * Contains the events object
@@ -78,9 +70,8 @@ class Waterfall {
      */
     public static function instance() {
 
-        if( self::$instance == null ) {    
-            var_dump('WATERFALL_INSTANCE');  
-            self::$instance = new Waterfall();
+        if( self::$instance == null ) {
+            self::$instance = new self();
         }
 
         return self::$instance;
@@ -93,10 +84,7 @@ class Waterfall {
     private function __construct() {
 
         // Sets our languages - before anything else loads
-        $this->loadLanguages();     
-
-        // Sets our database options from option pages and the customizer - before anything else loads
-        $this->loadData();
+        $this->loadLanguages();
 
         // Loads utilityFunctions and other static dependencies
         $this->requireDependencies();        
@@ -141,13 +129,6 @@ class Waterfall {
     }
 
     /**
-     * Retrieves data saved from the Database
-     */
-    public function getData() {
-        return $this->data;
-    }    
-
-    /**
      * Loads our translations before loading anything else
      */
     private function loadLanguages() {
@@ -160,38 +141,6 @@ class Waterfall {
         
         load_theme_textdomain( 'waterfall', apply_filters('waterfall_language_path', $path) ); 
 
-    }
-
-    /**
-     * Loads our theme options and meta values
-     */
-    private function loadData() {
-
-        // Default values
-        $this->data = [
-            'meta'          => [],
-            'options'       => get_option('waterfall_options'),
-        ];
-
-        $mods = get_theme_mods();
-
-        // Customizer values
-        foreach(['colors', 'customizer', 'layout', 'woocommerce'] as $mod) {
-            $this->data[$mod] = isset($mods[$mod]) ? apply_filters( "theme_mod_{$mod}", $mods[$mod]) : apply_filters( "theme_mod_{$mod}", []);
-        }
-
-        // Meta values
-        add_action('wp', [$this, 'loadMeta']);
-
-    }
-
-    /**
-     * Loads metaData (hooked to WP)
-     */
-    public function loadMeta() {
-
-        $this->data['meta'] = get_post_meta( get_the_ID(), 'waterfall_meta', true);
-        
     }
 
     /**
@@ -225,8 +174,10 @@ class Waterfall {
      */
     private function enableOptimizations() {    
 
-        if( isset($this->data['options']['optimize']) && $this->data['options']['optimize'] ) {
-            $this->optimize = new MakeitWorkPress\WP_Optimize\Optimize( $this->data['options']['optimize'] );    
+        $optimizations = wf_get_data('options', 'optimize');
+
+        if( $optimizations ) {
+            $this->optimize = new MakeitWorkPress\WP_Optimize\Optimize( $optimizations );    
         }
     
     }
@@ -282,8 +233,9 @@ class Waterfall {
     private function deprecatedSupport() {
 
         // Older themes still use the customizer value for the main logo, so update it automatically.
-        if( (isset($this->data['customizer']['logo']) && $this->data['customizer']['logo']) && ! get_theme_mod('custom_logo') ) {
-            set_theme_mod( 'custom_logo', intval($this->data['customizer']['logo']) );
+        $logo = wf_get_data('customizer', 'logo');
+        if( $logo  && ! get_theme_mod('custom_logo') ) {
+            set_theme_mod( 'custom_logo', $logo );
         }        
     
     }
@@ -294,6 +246,9 @@ class Waterfall {
     private function configure() {
         
         // Load our basic configurations file
+        $lightbox       = wf_get_data('customizer', 'lightbox');
+        $sidebars       = wf_get_data('layout', 'footer_sidebars') ? wf_get_data('layout', 'footer_sidebars') : 'third';
+        $slider         = wf_get_data('woocommerce', 'product_content_slider');
         require_once( get_template_directory() . '/configurations/enqueue.php' );
         require_once( get_template_directory() . '/configurations/register.php' );
         
