@@ -5,7 +5,7 @@
  * ----------------------------------------/
  
 /** 
- * Sections do have some margins with lower resolutions (unless they are fullwidth sections)
+ * Main Sections (NOT inner sections) do have some margins with lower resolutions (unless they are fullwidth sections)
  */
 .elementor-section-wrap > .elementor-section {
     padding: @grid-space 0;
@@ -24,55 +24,91 @@
 }
 
 /**
- * Elementor Templates in full-width sections don't get a responsive padding
+ * Elementor full-width sections don't get a responsive padding
+ * This makes it easier to insert custom elementor templates using the template element
+ *
+ * Sections that have been loaded through a template don't get a padding either
  */
-.content > .elementor > .elementor-inner > .elementor-section-wrap > .elementor-section-full_width > .elementor-container {
-    padding: 0;
-}
-
-.elementor-image img {
-    margin-bottom: 0;
-}
-
-/**
- * The max width of the elementor container is determined by the theme. This is the default value.
- */
-.elementor-section.elementor-section-boxed > .elementor-container {
-    max-width: 1280px;
+.content > .elementor > .elementor-section-wrap {
+    > .elementor-section-full_width > .elementor-container, 
+    > .elementor-section-boxed .elementor-template .elementor-section-wrap > .elementor-section > .elementor-container {
+        padding: 0;
+    }
 }
 
 /**
  * We need to align our rows with the rest of the theme; meaning that only direct child columns are aligned.
- * Secondly, if we set inner sections (a section within a section) to fullwidth, the same styling is applied
+ * The below is the default width for containers. This can be altered in the themesettings.
+ * 
+ * First, this applies to top-level containers
+ *
+ * @since Changed from Rows to containers in Elementor 3.0.0
  */
-.elementor-section-wrap > .elementor-section > .elementor-column-gap-narrow > .elementor-row, 
-.elementor-section .elementor-section-full_width > .elementor-column-gap-narrow > .elementor-row {
-    margin: 0 -5px;
-    width: ~"calc(100% + 10px)";
+.elementor-section-wrap > .elementor-section.elementor-section-boxed {
+    > .elementor-column-gap-no {
+        max-width: 1280px;
+    }    
+    > .elementor-column-gap-narrow {
+        max-width: 1290px;
+        @media screen and (max-width: 1280px) {
+            margin: 0 -5px;
+        }        
+    }
+    > .elementor-column-gap-default {
+        max-width: 1300px;
+        @media screen and (max-width: 1280px) {
+            margin: 0 -10px;
+        }          
+    }
+    > .elementor-column-gap-extended {
+        max-width: 1310px;
+        @media screen and (max-width: 1280px) {
+            margin: 0 -15px;
+        }          
+    }
+    > .elementor-column-gap-wide {
+        max-width: 1320px;
+        @media screen and (max-width: 1280px) {
+            margin: 0 -20px;
+        }          
+    }    
+    > .elementor-column-gap-wider {
+        max-width: 1340px;
+        @media screen and (max-width: 1280px) {
+            margin: 0 -30px;
+        }          
+    }
 }
 
-.elementor-section-wrap > .elementor-section > .elementor-column-gap-default > .elementor-row,
-.elementor-section .elementor-section-full_width > .elementor-column-gap-default > .elementor-row {
-    margin: 0 -10px;
-    width: ~"calc(100% + 20px)";
-}
-    
-.elementor-section-wrap > .elementor-section > .elementor-column-gap-extended > .elementor-row,
-.elementor-section .elementor-section-full_width > .elementor-column-gap-extended > .elementor-row {
-    margin: 0 -15px;
-    width: ~"calc(100% + 30px)";
-}
+/**
+ * This theme extends inner sections that have fullwidth containers
+ * .elementor-section .elementor-section-full_width is a fullwidth section within another section, thus an inner section
+ *
+ * @since Changed since Elementor 3.0.0
+ */
+.elementor-section .elementor-section-full_width { 
+    > .elementor-column-gap-narrow {
+        margin: 0 -5px;
+    }
+    > .elementor-column-gap-default {
+        margin: 0 -10px;
+    }
+    > .elementor-column-gap-extended {
+        margin: 0 -15px;
+    }
+    > .elementor-column-gap-wide {
+        margin: 0 -20px;
+    }    
+    > .elementor-column-gap-wider {
+        margin: 0 -30px;
+    }
+}  
 
-.elementor-section-wrap > .elementor-section > .elementor-column-gap-wide > .elementor-row,
-.elementor-section .elementor-section-full_width > .elementor-column-gap-wide > .elementor-row {
-    margin: 0 -20px;
-    width: ~"calc(100% + 40px)";
-}
-
-.elementor-section-wrap > .elementor-section > .elementor-column-gap-wider > .elementor-row,
-.elementor-section .elementor-section-full_width > .elementor-column-gap-wider > .elementor-row {
-    margin: 0 -30px;
-    width: ~"calc(100% + 60px)";
+/** 
+ * Images
+ */
+.elementor-image img {
+    margin-bottom: 0;
 }
 
 /** 

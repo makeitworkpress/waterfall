@@ -113,10 +113,10 @@ class Waterfall_View extends Waterfall_Base  {
             echo '<!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="async" src="https://www.googletagmanager.com/gtag/js?id=' . $analytics . '"></script>
             <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag("js", new Date());
-            gtag("config", "' . $analytics . '", {"anonymize_ip": true });
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag("js", new Date());
+                gtag("config", "' . $analytics . '", {"anonymize_ip": true });
             </script>';
         }
 
