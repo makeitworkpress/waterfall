@@ -9,7 +9,7 @@
  */
 .elementor-section-wrap > .elementor-section {
     padding: @grid-space 0;
-    .waterfall-fullwidth-content & {
+    .waterfall-fullwidth-content &, [class*="elementor-location-"] & {
         @media screen and (max-width: 1280px) {
             > .elementor-container {
                 padding: 0 @grid-space;   
@@ -45,9 +45,12 @@
  * @since Changed from Rows to containers in Elementor 3.0.0
  */
 .elementor-section-wrap > .elementor-section.elementor-section-boxed {
+
+    // This is the default width of the theme
     > .elementor-column-gap-no {
         max-width: 1280px;
-    }    
+    }
+
     > .elementor-column-gap-narrow {
         max-width: 1290px;
         @media screen and (max-width: 1280px) {

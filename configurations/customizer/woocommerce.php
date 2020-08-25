@@ -19,7 +19,13 @@ $woocommerce = [
                     'id'            => 'header_cart',
                     'title'         => __('Add a Shopping Cart to the Menu', 'waterfall'),
                     'type'          => 'checkbox'                    
-                ]
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'header_cart_border_disable',
+                    'title'         => __('Remove Borders from Shopping Cart', 'waterfall'),
+                    'type'          => 'checkbox'                    
+                ]                
             ]
         ],
         'woocommerce_product_catalog' => [
@@ -97,7 +103,7 @@ $woocommerce = [
                     'type'          => 'checkbox'
                 ],
                 [
-                    'description'   => __('Be aware that the lightbox will not apply when Product Zoom is enabled', 'waterfall'),
+                    'description'   => __('The lightbox will not apply when Product Zoom is enabled. If Elementor is active on the product, it may interfere.', 'waterfall'),
                     'default'       => '',
                     'id'            => 'product_content_lightbox',
                     'title'         => __('Enable product images lightbox', 'waterfall'),

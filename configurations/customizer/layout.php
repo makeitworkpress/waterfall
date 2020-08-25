@@ -92,6 +92,13 @@ $layout = [
                 ],
                 [
                     'default'       => '',
+                    'id'            => 'header_disable_arrow_down',
+                    'title'         => __('Disable Dropdown Indicators', 'waterfall'),
+                    'description'   => __('Disables the downward arrow that appears for menu items with children.', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                
+                [
+                    'default'       => '',
                     'id'            => 'header_search',
                     'title'         => __('Add a Search Icon to the Header', 'waterfall'),
                     'type'          => 'checkbox'

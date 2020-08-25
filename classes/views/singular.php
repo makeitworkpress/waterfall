@@ -119,8 +119,10 @@ class Singular extends Base {
 
         // Main Microscheme
         $this->blogTypes    = apply_filters( 'waterfall_blog_schema_post_types', ['post'] );
-        $this->noSchema     = $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : [];
+        $this->noSchema     = wf_get_data('options', 'scheme_post_types_disable') ? wf_get_data('options', 'scheme_post_types_disable') : [];
         $this->schema       = in_array($this->type, $this->blogTypes) ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
+        
+        // Clear schema if it is not allowed, otherwise proceed and filter
         $this->schema       = in_array($this->type, $this->noSchema) ? '' : apply_filters( 'waterfall_singular_schema', $this->schema);
 
     }

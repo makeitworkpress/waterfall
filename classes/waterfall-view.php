@@ -33,6 +33,7 @@ class Waterfall_View extends Waterfall_Base  {
 
         $this->actions = [
             ['wp_head', 'headerHeight', 10, 0],
+            ['wp_head', 'containerWidth', 10, 0],
             ['wp_head', 'analytics', 20, 0],
         ];        
 
@@ -86,7 +87,7 @@ class Waterfall_View extends Waterfall_Base  {
 
         if( isset($height['amount']) && $height['amount'] && $height['unit'] ) {
 
-            echo '<style type="text/css"> 
+            echo '<style type="text/css" id="waterfall-header-height"> 
                 .molecule-header-atoms .atom-logo img { 
                     height: calc(' . $height['amount'] . $height['unit'] . ' - 16px); width: auto;
                 } 
@@ -99,6 +100,80 @@ class Waterfall_View extends Waterfall_Base  {
             </style>';
 
         } 
+
+    }
+
+    /**
+     * Adds additional styling for page builders if the container width is set
+     */
+    public function containerWidth() {
+        
+        $media      = '';
+        $reset      = '';
+        $styles     = '';
+        $width      = wf_get_data('customizer', 'layout_width');
+
+        if( isset($width['amount']) && $width['amount'] && $width['unit'] ) {
+
+            /** For Element */
+            if( did_action('elementor/loaded') ) {      
+                foreach( ['narrow' => 10, 'default' => 20, 'extended' => 30, 'wide' => 40, 'wider' => 60] as $gap => $value ) {
+                    
+                    // Default container styles
+                    $styles .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container.elementor-column-gap-' . $gap . ' {
+                        max-width: calc(' . $width['amount'] . $width['unit'] . ' + ' . $value . 'px)
+                    }';
+
+                    // Adapted media queries for our grid
+                    $media .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
+                        margin: 0 -' . $value/2 . 'px;
+                    }';
+
+                    // Resets our 1280px styling
+                    if( $width['unit'] == 'px' && ($width['amount'] < 1280) ) {
+                        $reset .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
+                            margin: 0 auto;
+                        }';   
+                    }
+                }
+
+                /**
+                 * If we have a larger grid in our settings, we have to adapt responsive containers more early.
+                 * Secondly, we need to redeclare mobile padding as the inline styling overwrites the whole range.
+                 */
+                if( $width['unit'] == 'px' && ($width['amount'] > 1280) ) {
+                    $styles .= '@media screen and (max-width: ' . $width['amount'] . $width['unit'] . ') {
+                        .waterfall-fullwidth-content .elementor-section-wrap > .elementor-section > .elementor-container, 
+                        [class*="elementor-location-"] .elementor-section-wrap > .elementor-section > .elementor-container {
+                            padding: 0 32px;
+                        }
+                    }
+                    @media screen and (max-width: 767px) {
+                        .waterfall-fullwidth-content .elementor-section-wrap > .elementor-section > .elementor-container, 
+                        [class*="elementor-location-"] .elementor-section-wrap > .elementor-section > .elementor-container {
+                            padding: 0 16px;
+                        }
+                    }';                    
+                }
+
+                // Reset media queries for 1280px if our containers are smaller than 1280px
+                if( $reset ) {
+                    $styles .= '@media screen and (max-width: 1280px) {' . $reset . '}';
+                }                
+
+                // Adaptive queries depending on container width
+                $styles .= '@media screen and (max-width: ' . $width['amount'] . $width['unit'] . ') {' . $media . '}';
+
+            }
+        
+        }
+
+        // Output our styles
+        if( ! $styles ) {
+            return;
+        }
+
+        echo '<style type="text/css" id="waterfall-container-width">' . $styles . '</style>'; 
 
     }
 

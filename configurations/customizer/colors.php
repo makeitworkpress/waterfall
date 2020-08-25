@@ -74,7 +74,7 @@ $colors = [
                     'selector'      => ['selector' => '.header, .molecule-header.molecule-header-transparent.molecule-header-scrolled', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'header_background',
-                    'title'         => __('Header Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -82,7 +82,7 @@ $colors = [
                     'selector'      => '.header',
                     'default'       => '',
                     'id'            => 'header_background_image',
-                    'title'         => __('Header Background Image', 'waterfall'),
+                    'title'         => __('Background Image', 'waterfall'),
                     'type'          => 'image'
                 ],
                 [
@@ -104,7 +104,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .menu > li > a, .atom-search-expand',
                     'default'       => '',
                     'id'            => 'navigation_link_color',
-                    'title'         => __('Menu Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -112,7 +112,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .menu > li > a:hover, .atom-search-expand:hover',
                     'default'       => '',
                     'id'            => 'navigation_link_hover_color',
-                    'title'         => __('Menu Link Hover Color', 'waterfall'),
+                    'title'         => __('Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -123,7 +123,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_hover_background',
-                    'title'         => __('Menu Link Hover Background', 'waterfall'),
+                    'title'         => __('Link Hover Background', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -131,7 +131,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .menu > li.current-menu-item > a, .molecule-header-atoms .menu > li.current-menu-ancestor > a',
                     'default'       => '',
                     'id'            => 'navigation_link_active_color',
-                    'title'         => __('Menu Link Active Color', 'waterfall'),
+                    'title'         => __('Link Active Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                 
@@ -142,7 +142,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_active_background',
-                    'title'         => __('Menu Link Active Background Color', 'waterfall'),
+                    'title'         => __('Link Active Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                
@@ -153,7 +153,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_transparent_color',
-                    'title'         => __('Menu Link Color Transparent Header', 'waterfall'),
+                    'title'         => __('Link Color Transparent Header', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -164,7 +164,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_link_transparent_hover_color',
-                    'title'         => __('Menu Link Hover Transparent Header', 'waterfall'),
+                    'title'         => __('Link Hover Transparent Header', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -184,7 +184,7 @@ $colors = [
                     'selector'      => ['selector' => '.molecule-header-atoms .sub-menu', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'navigation_submenu_background',
-                    'title'         => __('Drop-down Menu Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -192,7 +192,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .sub-menu a',
                     'default'       => '',
                     'id'            => 'navigation_submenu_color',
-                    'title'         => __('Drop-down Menu Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -200,7 +200,7 @@ $colors = [
                     'selector'      => '.molecule-header-atoms .sub-menu a:hover',
                     'default'       => '',
                     'id'            => 'navigation_submenu_hover_color',
-                    'title'         => __('Drop-down Menu Link Hover Color', 'waterfall'),
+                    'title'         => __('Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -208,7 +208,7 @@ $colors = [
                     'selector'      => ['selector' => '.molecule-header-atoms .sub-menu a:hover', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'navigation_submenu_hover_background',
-                    'title'         => __('Drop-down Menu Link Hover Background Color', 'waterfall'),
+                    'title'         => __('Hover Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -231,7 +231,7 @@ $colors = [
                     'selector'      => ['selector' => '.molecule-header-atoms .menu', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'navigation_background',
-                    'title'         => __('Mobile Menu Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'description'   => __('This color applies to the default mobile menu.', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
@@ -243,7 +243,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_mobile_link_color',
-                    'title'         => __('Mobile Menu Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -254,7 +254,7 @@ $colors = [
                     ],
                     'default'       => '',
                     'id'            => 'navigation_mobile_link_hover_color',
-                    'title'         => __('Mobile Menu Link Hover Color', 'waterfall'),
+                    'title'         => __('Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                
@@ -327,7 +327,7 @@ $colors = [
                     'selector'      => ['selector' => '.main-header', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'title_section',
-                    'title'         => __('Title Section Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -335,7 +335,7 @@ $colors = [
                     'selector'      => '.main-header h1, .main-header h2, .main-header h3, .main-header h4, .main-header h5, .main-header h6',
                     'default'       => '',
                     'id'            => 'title_section_title',
-                    'title'         => __('Title Section Title Colors', 'waterfall'),
+                    'title'         => __('Title Colors', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -343,7 +343,7 @@ $colors = [
                     'selector'      => '.main-header',
                     'default'       => '',
                     'id'            => 'title_section_text',
-                    'title'         => __('Title Section Text Color', 'waterfall'),
+                    'title'         => __('Text Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],     
@@ -351,7 +351,7 @@ $colors = [
                     'selector'      => '.main-header a',
                     'default'       => '',
                     'id'            => 'title_section_link',
-                    'title'         => __('Title Section Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -359,7 +359,7 @@ $colors = [
                     'selector'      => '.main-header a:hover',
                     'default'       => '',
                     'id'            => 'title_section_link_hover',
-                    'title'         => __('Title Section Link Hover', 'waterfall'),
+                    'title'         => __('Link Hover', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],    
@@ -367,7 +367,7 @@ $colors = [
                     'selector'      => '.main-header .entry-meta a, .main-header .entry-time, .main-header .entry-meta i, .main-header .entry-meta ',
                     'default'       => '',
                     'id'            => 'title_section_meta',
-                    'title'         => __('Title Section Meta Color', 'waterfall'),
+                    'title'         => __('Meta Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -375,7 +375,7 @@ $colors = [
                     'selector'      => '.main-header.components-image-background .entry-meta, .main-header.components-image-background .entry-meta a, .main-header.components-image-background .entry-meta i, .main-header.components-image-background .entry-time, .main-header.components-image-background a, .main-header.components-image-background a:hover, .main-header.components-image-background, .main-header.components-image-background h1, .main-header.components-image-background h2, .main-header.components-image-background h3, .main-header.components-image-background h4, .main-header.components-image-background h5, .main-header.components-image-background h6',
                     'default'       => '',
                     'id'            => 'title_section_featured_background_color',
-                    'title'         => __('Title Section Text Color with Image Background', 'waterfall'),
+                    'title'         => __('Text Color with Image Background', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                
@@ -389,19 +389,14 @@ $colors = [
                         'content_main_title',
                         'content_main_text',
                         'content_main_link',
-                        'content_main_link_hover',
-                        'content_sidebar_color',
-                        'content_sidebar_title_color',
-                        'content_sidebar_background',
-                        'content_sidebar_link_color',
-                        'content_sidebar_link_color_hover'
+                        'content_main_link_hover'
                     ]                    
                 ],                                       
                 [
                     'selector'      => ['selector' => '.main-content', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'content_main',
-                    'title'         => __('Main Content Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -409,7 +404,7 @@ $colors = [
                     'selector'      => '.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6',
                     'default'       => '',
                     'id'            => 'content_main_title',
-                    'title'         => __('Main Content Title Color', 'waterfall'),
+                    'title'         => __('Title Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -417,7 +412,7 @@ $colors = [
                     'selector'      => '.main-content',
                     'default'       => '',
                     'id'            => 'content_main_text',
-                    'title'         => __('Main Content Text Color', 'waterfall'),
+                    'title'         => __('Text Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],     
@@ -425,7 +420,7 @@ $colors = [
                     'selector'      => '.main-content a',
                     'default'       => '',
                     'id'            => 'content_main_link',
-                    'title'         => __('Main Content Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -433,47 +428,28 @@ $colors = [
                     'selector'      => '.main-content a:hover',
                     'default'       => '',
                     'id'            => 'content_main_link_hover',
-                    'title'         => __('Main Content Link Hover', 'waterfall'),
+                    'title'         => __('Link Hover', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
                 [
-                    'selector'      => '.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6',
                     'default'       => '',
-                    'id'            => 'content_main_title',
-                    'title'         => __('Main Content Title Colors', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ],
-                [
-                    'selector'      => '.main-content',
-                    'default'       => '',
-                    'id'            => 'content_main_text',
-                    'title'         => __('Main Content Text Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ],     
-                [
-                    'selector'      => '.main-content a',
-                    'default'       => '',
-                    'id'            => 'content_main_link',
-                    'title'         => __('Main Content Link Color', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ],
-                [
-                    'selector'     => '.main-content a:hover',
-                    'default'       => '',
-                    'id'            => 'content_main_link_hover',
-                    'title'         => __('Main Content Link Hover', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ],
+                    'id'            => 'colors_main_sidebar_content_header',
+                    'title'         => __('Main Sidebar', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'content_sidebar_color',
+                        'content_sidebar_title_color',
+                        'content_sidebar_background',
+                        'content_sidebar_link_color',
+                        'content_sidebar_link_color_hover'
+                    ]                    
+                ],                 
                 [
                     'selector'      => '.main-sidebar',
                     'default'       => '',
                     'id'            => 'content_sidebar_color',
-                    'title'         => __('Main Sidebar Text Color', 'waterfall'),
+                    'title'         => __('Text Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -481,7 +457,7 @@ $colors = [
                     'selector'      => '.main-sidebar h1, .main-sidebar h2, .main-sidebar h3, .main-sidebar h4, .main-sidebar h5, .main-sidebar h6',
                     'default'       => '',
                     'id'            => 'content_sidebar_title_color',
-                    'title'         => __('Main Sidebar Title Color', 'waterfall'),
+                    'title'         => __('Title Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                
@@ -489,7 +465,7 @@ $colors = [
                     'selector'      => ['selector' => '.main-sidebar', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'content_sidebar_background',
-                    'title'         => __('Main Sidebar Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -497,7 +473,7 @@ $colors = [
                     'selector'      => '.main-sidebar a',
                     'default'       => '',
                     'id'            => 'content_sidebar_link_color',
-                    'title'         => __('Main Sidebar Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -505,7 +481,7 @@ $colors = [
                     'selector'      => '.main-sidebar a:hover',
                     'default'       => '',
                     'id'            => 'content_sidebar_link_color_hover',
-                    'title'         => __('Main Sidebar Link Hover Color', 'waterfall'),
+                    'title'         => __('Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                                
@@ -530,7 +506,7 @@ $colors = [
                     'selector'      => ['selector' => '.main-related', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'content_related',
-                    'title'         => __('Related Content Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -538,7 +514,7 @@ $colors = [
                     'selector'      => '.main-related h1, .main-related h2, .main-related h3, .main-related h4, .main-related h5, .main-related h6',
                     'default'       => '',
                     'id'            => 'content_related_title',
-                    'title'         => __('Related Content Title Color', 'waterfall'),
+                    'title'         => __('Title Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -546,7 +522,7 @@ $colors = [
                     'selector'      => '.main-related',
                     'default'       => '',
                     'id'            => 'content_related_text',
-                    'title'         => __('Related Content Text Color', 'waterfall'),
+                    'title'         => __('Text Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],     
@@ -554,7 +530,7 @@ $colors = [
                     'selector'      => '.main-related a',
                     'default'       => '',
                     'id'            => 'content_related_link',
-                    'title'         => __('Related Content Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -562,7 +538,7 @@ $colors = [
                     'selector'      => '.main-related a:hover',
                     'default'       => '',
                     'id'            => 'content_related_link_hover',
-                    'title'         => __('Related Content Link Hover Color', 'waterfall'),
+                    'title'         => __('Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -615,7 +591,7 @@ $colors = [
                     'selector'     => ['selector' => '.main-footer', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'content_footer',
-                    'title'         => __('Content Footer Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                      
@@ -623,7 +599,7 @@ $colors = [
                     'selector'      => '.main-footer h1, .main-footer h2, .main-footer h3, .main-footer h4, .main-footer h5, .main-footer h6',
                     'default'       => '',
                     'id'            => 'content_footer_title',
-                    'title'         => __('Content Footer Title Color', 'waterfall'),
+                    'title'         => __('Title Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -631,7 +607,7 @@ $colors = [
                     'selector'      => '.main-footer',
                     'default'       => '',
                     'id'            => 'content_footer_text',
-                    'title'         => __('Content Footer Text Color', 'waterfall'),
+                    'title'         => __('Text Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],     
@@ -639,7 +615,7 @@ $colors = [
                     'selector'      => '.main-footer a',
                     'default'       => '',
                     'id'            => 'content_footer_link',
-                    'title'         => __('Content Footer Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -647,7 +623,7 @@ $colors = [
                     'selector'      => '.main-footer a:hover',
                     'default'       => '',
                     'id'            => 'content_footer_link_hover',
-                    'title'         => __('Content Footer Link Hover', 'waterfall'),
+                    'title'         => __('Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ]
@@ -675,7 +651,7 @@ $colors = [
                     'selector'      => ['selector' => '.molecule-footer-sidebars', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'footer_background',
-                    'title'         => __('Footer Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -683,7 +659,7 @@ $colors = [
                     'selector'      => '.molecule-footer-sidebars',
                     'default'       => '',
                     'id'            => 'footer_background_image',
-                    'title'         => __('Footer Background Image', 'waterfall'),
+                    'title'         => __('Background Image', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'image'
                 ],
@@ -691,7 +667,7 @@ $colors = [
                     'selector'      => '.molecule-footer-sidebars',
                     'default'       => '',
                     'id'            => 'footer_text_color',
-                    'title'         => __('Footer Text Color', 'waterfall'),
+                    'title'         => __('Text Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -707,7 +683,7 @@ $colors = [
                     'selector'      => '.molecule-footer-sidebars a',
                     'default'       => '',
                     'id'            => 'footer_link_color',
-                    'title'         => __('Footer Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ], 
@@ -715,14 +691,14 @@ $colors = [
                     'selector'      => '.molecule-footer-sidebars a:hover',
                     'default'       => '',
                     'id'            => 'footer_link_hover_color',
-                    'title'         => __('Footer Link Hover Color', 'waterfall'),
+                    'title'         => __('Link Hover Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
                 [
                     'default'       => '',
                     'id'            => 'colors_footer_socket_heading',
-                    'title'         => __('Footer Socket', 'waterfall'),
+                    'title'         => __('Socket', 'waterfall'),
                     'type'          => 'heading',
                     'choices'       => [
                         'socket_background',
@@ -736,7 +712,7 @@ $colors = [
                     'selector'      => ['selector' => '.molecule-footer-socket', 'property' => 'background-color'],
                     'default'       => '',
                     'id'            => 'socket_background',
-                    'title'         => __('Socket Background Color', 'waterfall'),
+                    'title'         => __('Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -744,7 +720,7 @@ $colors = [
                     'selector'      => '.molecule-footer-socket',
                     'default'       => '',
                     'id'            => 'socket_background_image',
-                    'title'         => __('Socket Background Image', 'waterfall'),
+                    'title'         => __('Background Image', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'image'
                 ],
@@ -752,7 +728,7 @@ $colors = [
                     'selector'      => '.molecule-footer-socket',
                     'default'       => '',
                     'id'            => 'socket_text_color',
-                    'title'         => __('Socket Text Color', 'waterfall'),
+                    'title'         => __('Text Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],                
@@ -760,7 +736,7 @@ $colors = [
                     'selector'      => '.molecule-footer-socket a',
                     'default'       => '',
                     'id'            => 'socket_link_color',
-                    'title'         => __('Socket Link Color', 'waterfall'),
+                    'title'         => __('Link Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -768,7 +744,7 @@ $colors = [
                     'selector'      => '.molecule-footer-socket a:hover',
                     'default'       => '',
                     'id'            => 'socket_link_hover_color',
-                    'title'         => __('Socket Link Hover', 'waterfall'),
+                    'title'         => __('Link Hover', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
@@ -824,7 +800,7 @@ $colors = [
             'fields'    => [                      
                 [
                     'selector'     => [ 
-                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-cart input.button.alt, .woocommerce button.button.alt, .header .atom-cart button.button.alt, .woocommerce a.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-button.components-default-background, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-cart-count, .woocommerce button.button.alt.disabled, .elementor-field-type-submit button', 
+                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-button.components-default-background, .header .atom-cart button.button.alt, .header .atom-cart input.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-cart-count, .elementor-field-type-submit .elementor-button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce button.button.alt.disabled, .elementor-element .elementor-field-type-submit button', 
                         'property' => 'background-color' 
                     ],
                     'default'       => '',
@@ -835,7 +811,7 @@ $colors = [
                 ],
                 [
                     'selector'      => [ 
-                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-button.components-default-background:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-cart-count:hover, .woocommerce button.button.alt.disabled:hover, .elementor-field-type-submit button:hover', 
+                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-button.components-default-background:hover, .header .atom-cart button.button.alt:hover, .header .atom-cart input.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-cart-count:hover, .elementor-field-type-submit .elementor-button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt.disabled:hover, .elementor-element .elementor-field-type-submit button:hover',                         
                         'property' => 'background-color' 
                     ],
                     'default'       => '',
@@ -845,7 +821,7 @@ $colors = [
                     'type'          => 'colorpicker'
                 ],    
                 [
-                    'selector'      => 'input[type=\'submit\'], input[type=\'submit\'].button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .header .atom-cart input.button.alt, .woocommerce button.button.alt, .header .atom-cart button.button.alt, .woocommerce a.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-button.components-default-background, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-cart-count, .woocommerce button.button.alt.disabled, .elementor-field-type-submit button',
+                    'selector'      => 'input[type=\'submit\'], input[type=\'submit\'].button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-button.components-default-background, .header .atom-cart button.button.alt, .header .atom-cart input.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-cart-count, .elementor-field-type-submit .elementor-button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce button.button.alt.disabled, .elementor-field-type-submit button', 
                     'default'       => '',
                     'id'            => 'primary_button_color',
                     'title'         => __('Primary Button Text Color', 'waterfall'),
@@ -853,7 +829,7 @@ $colors = [
                     'type'          => 'colorpicker'
                 ],
                 [
-                    'selector'      => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .header .atom-cart input.button.alt:hover, .woocommerce button.button.alt:hover, .header .atom-cart button.button.alt:hover, .woocommerce a.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-button.components-default-background:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-cart-count:hover, .woocommerce button.button.alt.disabled:hover, .elementor-field-type-submit button:hover',
+                    'selector'      => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-button.components-default-background:hover, .header .atom-cart button.button.alt:hover, .header .atom-cart input.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-cart-count:hover, .elementor-field-type-submit .elementor-button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt.disabled:hover, .elementor-field-type-submit button:hover',                         
                     'default'       => '',
                     'id'            => 'primary_button_color_hover',
                     'title'         => __('Primary Button Text Hover Color', 'waterfall'),
@@ -862,8 +838,8 @@ $colors = [
                 ],    
                 [
                     'selector'      => [ 
-                        'selector' => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-cart input.button, .woocommerce button.button, .header .atom-cart button.button, .woocommerce a.button, .header .atom-cart a.button, .woocommerce #respond input#submit', 
-                        'property' => 'background-color' 
+                        'selector'  => '.atom-button, .elementor-element .elementor-button, .header .atom-cart input.button, .header .atom-cart button.button, .header .atom-cart a.button, .woocommerce input.button,  .woocommerce input[type=\'submit\'].button, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit',
+                        'property'  => 'background-color' 
                     ],
                     'default'       => '',
                     'id'            => 'secondary_button_background',
@@ -873,8 +849,8 @@ $colors = [
                 ],
                 [
                     'selector'      => [ 
-                        'selector' => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover .header .atom-cart input.button:hover, .woocommerce button.button:hover, .header .atom-cart button.button:hover, .woocommerce a.button:hover, .header .atom-cart a.button:hover, .woocommerce #respond input#submit:hover', 
-                        'property' => 'background-color' 
+                        'selector'  => '.atom-button:hover, .elementor-element .elementor-button:hover, .header .atom-cart input.button:hover, .header .atom-cart button.button:hover, .header .atom-cart a.button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover, .woocommerce button.button:hover, .woocommerce a.button:hover, .woocommerce #respond input#submit:hover',
+                        'property'  => 'background-color' 
                     ],
                     'default'       => '',
                     'id'            => 'secondary_button_background_hover',
@@ -883,7 +859,7 @@ $colors = [
                     'type'          => 'colorpicker'
                 ],    
                 [
-                    'selector'      => '.elementor-button, .woocommerce input.button, .woocommerce input[type=\'submit\'].button, .header .atom-cart input.button, .woocommerce button.button, .header .atom-cart button.button, .woocommerce a.button, .header .atom-cart a.button, .woocommerce #respond input#submit:hover',
+                    'selector'      => '.atom-button, .elementor-element .elementor-button, .header .atom-cart input.button, .header .atom-cart button.button, .header .atom-cart a.button, .woocommerce input.button,  .woocommerce input[type=\'submit\'].button, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit',
                     'default'       => '',
                     'id'            => 'secondary_button_color',
                     'title'         => __('Secondary Button Text Color', 'waterfall'),
@@ -891,32 +867,40 @@ $colors = [
                     'type'          => 'colorpicker'
                 ],
                 [
-                    'selector'      => '.elementor-button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover, .header .atom-cart input.button:hover, .woocommerce button.button:hover, .header .atom-cart button.button:hover, .woocommerce a.button:hover, .header .atom-cart a.button:hover, .woocommerce #respond input#submit:hover',
+                    'selector'      => '.atom-button:hover, .elementor-element .elementor-button:hover, .header .atom-cart input.button:hover, .header .atom-cart button.button:hover, .header .atom-cart a.button:hover, .woocommerce input.button:hover, .woocommerce input[type=\'submit\'].button:hover, .woocommerce button.button:hover, .woocommerce a.button:hover, .woocommerce #respond input#submit:hover',
                     'default'       => '',
                     'id'            => 'secondary_button_color_hover',
                     'title'         => __('Secondary Button Text Hover Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ],                
+                [
+                    'default'       => '',
+                    'selector'      => [
+                        'selector'  => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
+                        'property'  => 'border-color'
+                    ],
+                    'id'            => 'form_border_color',
+                    'title'         => __('Form Field Border Colors', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ], 
+                [
+                    'default'       => '',
+                    'selector'      => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), input:not([type=\'checkbox\']), input:not([type=\'radio\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
+                    'id'            => 'form_text_color',
+                    'title'         => __('Form Field Text Colors', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ],
                 [
                     'default'       => '',
                     'selector'      => [
-                        'selector' => 'input:not[type=\'submit\'], input:not[type=\'reset\'], input:not[type=\'button\'], input:not[type=\'radio\'], input:not[type=\'range\'], input:not[type=\'checkbox\'], select, textarea, .elementor-field-group .elementor-field-textual', 
-                        'property' => 'border-color'
-                    ],
-                    'id'            => 'form_border_color',
-                    'title'         => __('Form Input Border Colors', 'waterfall'),
-                    'transport'     => 'postMessage',
-                    'type'          => 'colorpicker'
-                ], 
-                [
-                    'default'       => '',
-                    'selector'      => [
-                        'selector' => 'input:not[type=\'submit\'], input:not[type=\'reset\'], input:not[type=\'button\'], input:not[type=\'radio\'], input:not[type=\'range\'], input:not[type=\'checkbox\'], select, textarea, .elementor-field-group .elementor-field-textual', 
-                        'property' => 'background-color'
+                        'selector'  => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), input:not([type=\'checkbox\']), input:not([type=\'radio\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
+                        'property'  => 'background-color'
                     ],
                     'id'            => 'form_background_color',
-                    'title'         => __('Form Input Background Colors', 'waterfall'),
+                    'title'         => __('Form Field Background Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
                 ]                     

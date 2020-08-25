@@ -61,8 +61,9 @@ class Waterfall_Data {
         $mods = get_theme_mods();
 
         // Customizer values
-        foreach(['colors', 'customizer', 'layout', 'woocommerce'] as $mod) {
-            $this->data[$mod] = isset($mods[$mod]) ? apply_filters( "theme_mod_{$mod}", $mods[$mod]) : apply_filters( "theme_mod_{$mod}", []);
+        foreach( ['colors', 'customizer', 'layout', 'typography', 'woocommerce'] as $key ) {
+            $mod = $key == 'woocommerce' ? $key : 'waterfall_' . $key; // Most of the mods have waterfall_ before, execept for woocommerce mods
+            $this->data[$key] = isset($mods[$mod]) ? apply_filters( "theme_mod_{$mod}", $mods[$mod]) : apply_filters( "theme_mod_{$mod}", []);
         }
 
         // Meta values

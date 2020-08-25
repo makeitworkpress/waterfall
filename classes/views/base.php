@@ -54,7 +54,7 @@ abstract class Base {
     /**
      * Contains the custom options from the Theme Settings Panel
      */
-    protected $options;
+    protected $options = [];
   
     /**
      * The initial state of our class
@@ -101,7 +101,9 @@ abstract class Base {
     protected final function getProperties() {
 
         // Loads specific theme options
-        $this->options          = wf_get_data('options', $this->properties['options']);
+        if( isset($this->properties['options']) ) {
+            $this->options      = wf_get_data('options', $this->properties['options']);
+        }
 
         // Loads meta data from the postmeta
         if( is_singular() && isset($this->properties['meta']) ) {

@@ -42,15 +42,21 @@ $customizer = [
                     ]    
                 ],
                 [
-                    'selector'      => ['selector' => '.components-container, .elementor-section.elementor-section-boxed > .elementor-container', 'property' => 'max-width'],
+                    'selector'      => [
+                        'selector'  => '.components-container, .elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container', 
+                        'property'  => 'max-width'
+                    ],
                     'default'       => '',
                     'id'            => 'layout_width',
                     'title'         => __('Maximum Width of Content', 'waterfall'),
-                    'description'   => __('Adapts the maximum width of content containers. Also overwrites the content width for Elementor.', 'waterfall'),
+                    'description'   => __('Sets maximum width of content and page builders containers. If using non-pixel values, you may have to add manual styling.', 'waterfall'),
                     'type'          => 'dimension'  
                 ], 
                 [
-                    'selector'      => ['selector' => '.waterfall-boxed-layout .header, .waterfall-boxed-layout .main, .waterfall-boxed-layout .footer', 'property' => 'max-width'],
+                    'selector'      => [
+                        'selector'  => '.waterfall-boxed-layout .wrapper', 
+                        'property'  => 'max-width'
+                    ],
                     'default'       => '',
                     'id'            => 'layout_boxed_width',
                     'title'         => __('Maximum Width of Boxed Layout', 'waterfall'),
@@ -59,7 +65,7 @@ $customizer = [
                 ],                 
                 [
                     'selector'     => [
-                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .elementor-element .elementor-button, .woocommerce input.button.alt, .woocommerce input.button, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-field-type-submit button', 
+                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-element .elementor-button, .elementor-field-type-submit button, .woocommerce input.button .woocommerce input.button.alt, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .widget_shopping_cart_content .button', 
                         'property' => 'border-radius'
                     ],
                     'default'       => '',

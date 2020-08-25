@@ -19,6 +19,7 @@ class Header extends Base {
                 'header_border',
                 'header_disable_logo',
                 'header_disable_menu',
+                'header_disable_arrow_down',
                 'header_fixed',
                 'header_logo_float',
                 'header_headroom',
@@ -32,7 +33,7 @@ class Header extends Base {
                 'header_transparent', 
                 'header_width'   
             ],
-            'woocommerce'   => ['header_cart'],
+            'woocommerce'   => ['header_cart', 'header_cart_border_disable'],
             'meta'          => ['transparent_header'],
             'options'       => ['represent_scheme']                                      
         ] );
@@ -88,6 +89,7 @@ class Header extends Base {
                     'args'          => ['theme_location' => 'header-menu'], 
                     'float'         => $this->layout['header_menu_float'] ? $this->layout['header_menu_float'] : 'right',
                     'hamburger'     => $this->layout['header_menu_hamburger'] ? $this->layout['header_menu_hamburger'] : 'mobile',
+                    'indicator'     => $this->layout['header_disable_arrow_down'] ? false : true,
                     'view'          => $this->layout['header_menu_style'] ? $this->layout['header_menu_style'] : 'default'
                 ]
             ]               
@@ -111,7 +113,13 @@ class Header extends Base {
        
         // The cart
         if( $this->woocommerce['header_cart'] ) {
-            $atoms['cart'] = [ 'atom' => 'cart', 'properties' => ['float' => 'right'] ];
+            $atoms['cart'] = [ 
+                'atom' => 'cart', 
+                'properties' => [
+                    'attributes'    => ['class' => $this->woocommerce['header_cart_border_disable'] ? 'atom-cart-no-border' : ''],
+                    'float'         => 'right'
+                ] 
+            ];
         }          
 
         // Social icons
