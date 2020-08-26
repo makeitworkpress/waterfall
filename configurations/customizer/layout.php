@@ -401,7 +401,7 @@ if( $types ) {
                 [
                     'default'       => __('You also might like', 'waterfall'),
                     'id'            => $type . '_related_title',
-                    'title'         => __('Title above Related Posts', 'waterfall'),
+                    'title'         => __('Title Above Related Posts', 'waterfall'),
                     'selector'      => ['selector' => '.main-related > h3,  .main-related .components-container > h3', 'html' => true],
                     'transport'     => 'postMessage',                  
                     'type'          => 'input'
@@ -411,7 +411,7 @@ if( $types ) {
                     'description'   => __('Amount of grid columns for posts.', 'waterfall'),
                     'id'            => $type . '_related_grid',
                     'choices'       => wf_get_column_options(),
-                    'title'         => __('Related Posts Columns', 'waterfall'),
+                    'title'         => __('Posts Columns', 'waterfall'),
                     'type'          => 'select'
                 ],
                 [
@@ -426,7 +426,7 @@ if( $types ) {
                     'default'       => '',
                     'description'   => __('Minimum height of related posts in pixels.', 'waterfall'),
                     'id'            => $type . '_related_height',
-                    'title'         => __('Related Posts Height', 'waterfall'),
+                    'title'         => __('Posts Height', 'waterfall'),
                     'selector'      => ['selector' => '.main-related .molecule-post', 'property' => 'min-height'],
                     'transport'     => 'postMessage',                 
                     'type'          => 'number'
@@ -435,14 +435,14 @@ if( $types ) {
                     'default'       => 3,
                     'description'   => __('Number of related posts to show', 'waterfall'),
                     'id'            => $type . '_related_number',
-                    'title'         => __('Related Posts Amount', 'waterfall'),
+                    'title'         => __('Posts Amount', 'waterfall'),
                     'type'          => 'number'
                 ], 
                 [
                     'default'       => 'grid',
                     'id'            => $type . '_related_style',
                     'choices'       => wf_get_grid_options(),
-                    'title'         => __('Related Posts Style', 'waterfall'),
+                    'title'         => __('Posts Style', 'waterfall'),
                     'type'          => 'select'
                 ],                    
                 [
@@ -453,7 +453,7 @@ if( $types ) {
                         'excerpt'   => __('Excerpt', 'waterfall'),
                         'none'      => __('No excerpt', 'waterfall'),
                     ],
-                    'title'         => __('Related Post Excerpt', 'waterfall'),
+                    'title'         => __('Post Excerpt', 'waterfall'),
                     'type'          => 'select'
                 ],    
                 [
@@ -461,7 +461,7 @@ if( $types ) {
                     'description'   => __('Featured Image size within related posts.', 'waterfall'),
                     'id'            => $type . '_related_image',
                     'choices'       => wf_get_image_sizes(),
-                    'title'         => __('Related Featured Image Size', 'waterfall'),
+                    'title'         => __('Featured Image Size', 'waterfall'),
                     'type'          => 'select'
                 ],    
                 [
@@ -469,7 +469,7 @@ if( $types ) {
                     'description'   => __('Float of featured image within the related posts.', 'waterfall'),
                     'id'            => $type . '_related_image_float',
                     'choices'       => wf_get_float_options(),
-                    'title'         => __('Related Featured Image Float', 'waterfall'),
+                    'title'         => __('Featured Image Float', 'waterfall'),
                     'type'          => 'select'
                 ],
                 [
@@ -605,7 +605,7 @@ if( $types ) {
                 [
                     'default'       => '',
                     'id'            => $type . '_share_text',
-                    'title'         => __('Text in sharing sharing button', 'waterfall'),
+                    'title'         => __('Text before sharing buttons', 'waterfall'),
                     'type'          => 'input',
                     'transport'     => 'postMessage',
                     'selector'      => ['selector' => '.atom-share-title', 'html' => true]
@@ -910,7 +910,7 @@ $layout['sections']['search_page'] = [
         [
             'default'       => '',
             'id'            => 'search_title_header',
-            'title'         => __('Search Title Section', 'waterfall'),
+            'title'         => __('Title Section', 'waterfall'),
             'type'          => 'heading',
             'choices'       => [
                 'search_header_disable',                  
@@ -924,7 +924,7 @@ $layout['sections']['search_page'] = [
         [
             'default'       => '',
             'id'            => 'search_header_disable',
-            'title'         => __('Disable Search Title Section', 'waterfall'),
+            'title'         => __('Disable Title Section', 'waterfall'),
             'type'          => 'checkbox'
         ],
         [
@@ -938,7 +938,7 @@ $layout['sections']['search_page'] = [
             'description'   => __('Width of header in search archives.', 'waterfall'),
             'id'            => 'search_header_width',
             'choices'       => wf_get_container_options(),
-            'title'         => __('Search Title Section Width', 'waterfall'),
+            'title'         => __('Title Section Width', 'waterfall'),
             'type'          => 'select'
         ],
         [
@@ -946,13 +946,13 @@ $layout['sections']['search_page'] = [
             'description'   => __('Height of header in search archives.', 'waterfall'),
             'id'            => 'search_header_height',
             'choices'       => wf_get_height_options(),
-            'title'         => __('Search Title Section Height', 'waterfall'),
+            'title'         => __('Title Section Height', 'waterfall'),
             'type'          => 'select'
         ],    
         [
             'default'       => 'left',
             'id'            => 'search_header_align',
-            'title'         => __('Search Title Section Text Align', 'waterfall'),
+            'title'         => __('Title Section Text Align', 'waterfall'),
             'description'   => __('How should text be aligned within the search title section?', 'waterfall'),
             'type'          => 'select',
             'choices'       => wf_get_align_options()
@@ -996,7 +996,7 @@ $layout['sections']['search_page'] = [
             'description'   => __('Width of the grid for search results.', 'waterfall'),
             'id'            => 'search_content_width',
             'choices'       => wf_get_container_options(),
-            'title'         => __('Search Page Width', 'waterfall'),
+            'title'         => __('Search Page Results Width', 'waterfall'),
             'type'          => 'select'
         ],    
         [
