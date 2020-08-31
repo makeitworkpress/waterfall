@@ -116,12 +116,18 @@ class Waterfall_View extends Waterfall_Base  {
         if( isset($width['amount']) && $width['amount'] && $width['unit'] ) {
 
             /** For Element */
-            if( did_action('elementor/loaded') ) {      
+            if( did_action('elementor/loaded') ) { 
+                
+                // Width for elements with no gap
+                $styles .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container.elementor-column-gap-no {
+                    max-width:' . $width['amount'] . $width['unit'] . ';
+                }';                
+
                 foreach( ['narrow' => 10, 'default' => 20, 'extended' => 30, 'wide' => 40, 'wider' => 60] as $gap => $value ) {
                     
                     // Default container styles
                     $styles .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container.elementor-column-gap-' . $gap . ' {
-                        max-width: calc(' . $width['amount'] . $width['unit'] . ' + ' . $value . 'px)
+                        max-width: calc(' . $width['amount'] . $width['unit'] . ' + ' . $value . 'px);
                     }';
 
                     // Adapted media queries for our grid
@@ -129,7 +135,7 @@ class Waterfall_View extends Waterfall_Base  {
                         margin: 0 -' . $value/2 . 'px;
                     }';
 
-                    // Resets our 1280px styling
+                    // Resets our 1280px styling, which is applied to the media query for max-width:1280px;
                     if( $width['unit'] == 'px' && ($width['amount'] < 1280) ) {
                         $reset .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
                             margin: 0 auto;
