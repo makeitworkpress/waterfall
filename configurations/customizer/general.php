@@ -54,7 +54,7 @@ $customizer = [
                 ], 
                 [
                     'selector'      => [
-                        'selector'  => '.waterfall-boxed-layout .wrapper', 
+                        'selector'  => '.waterfall-boxed-layout .wrapper, .waterfall-boxed-layout .header',
                         'property'  => 'max-width'
                     ],
                     'default'       => '',
