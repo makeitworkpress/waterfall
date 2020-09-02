@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Waterfall\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 14:21+0000\n"
-"PO-Revision-Date: 2020-08-26 14:25+0000\n"
+"PO-Revision-Date: 2020-09-02 09:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: Nederlands\n"
 "Language: nl_NL\n"
@@ -243,7 +243,7 @@ msgstr "Layout"
 
 #: configurations/postmeta.php:48
 msgid "Fullwidth Main Content"
-msgstr "Volledige breedte Hoofdinhoud"
+msgstr "Volledige breedte inhoud"
 
 #: configurations/postmeta.php:49
 msgid ""
@@ -833,7 +833,7 @@ msgstr "Volgende artikel &rsaquo;"
 
 #: classes/views/singular.php:514 configurations/customizer/layout.php:502
 msgid "&lsaquo; Previous Article"
-msgstr "&lsaquo; Vorig Artikel"
+msgstr "&lsaquo; Vorig artikel"
 
 #: classes/views/singular.php:581 configurations/customizer/layout.php:569
 msgid "Comments are closed."
@@ -979,7 +979,7 @@ msgstr "Kleur hamburger-menu transparante header bij hover"
 
 #: configurations/customizer/colors.php:309
 msgid "Content Colors"
-msgstr "Content Kleuren"
+msgstr "Content kleuren"
 
 #: configurations/customizer/colors.php:338
 msgid "Title Colors"

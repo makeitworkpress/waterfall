@@ -213,6 +213,7 @@ class Waterfall_View extends Waterfall_Base  {
         global $wp_query;
 
         // Retrieve default customizer and metadata
+        $classes    = $classes ? $classes : [];
         $data       = [];
         $types      = [
             'customizer'    => ['layout', 'lightbox'],
