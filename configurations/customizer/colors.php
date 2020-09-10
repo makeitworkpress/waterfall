@@ -56,7 +56,39 @@ $colors = [
                     'title'         => __('Blockquotes Color', 'waterfall'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
-                ]                               
+                ],
+                [
+                    'default'       => '',
+                    'selector'      => 'h1',
+                    'id'            => 'body_heading_one_color',
+                    'title'         => __('Heading 1 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ], 
+                [
+                    'default'       => '',
+                    'selector'      => 'h2',
+                    'id'            => 'body_heading_two_color',
+                    'title'         => __('Heading 2 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ],
+                [
+                    'default'       => '',
+                    'selector'      => 'h3',
+                    'id'            => 'body_heading_three_color',
+                    'title'         => __('Heading 3 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ],
+                [
+                    'default'       => '',
+                    'selector'      => 'h4',
+                    'id'            => 'body_heading_four_color',
+                    'title'         => __('Heading 4 Color', 'waterfall'),
+                    'transport'     => 'postMessage',
+                    'type'          => 'colorpicker'
+                ]                                                                                               
             ]
         ],
         'header' => [

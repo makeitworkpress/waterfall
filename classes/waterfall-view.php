@@ -111,7 +111,7 @@ class Waterfall_View extends Waterfall_Base  {
         $media      = '';
         $reset      = '';
         $styles     = '';
-        $width      = wf_get_data('customizer', 'layout_width');
+        $width      = wf_get_data('layout', 'layout_width');
 
         if( isset($width['amount']) && $width['amount'] && $width['unit'] ) {
 
@@ -215,10 +215,11 @@ class Waterfall_View extends Waterfall_Base  {
         // Retrieve default customizer and metadata
         $classes    = $classes ? $classes : [];
         $data       = [];
+        $sidebar    = 'default';
         $types      = [
-            'customizer'    => ['layout', 'lightbox'],
+            'customizer'    => ['lightbox'],
             'colors'        => ['content_sidebar_background'],
-            'layout'        => ['search_sidebar_position'],
+            'layout'        => ['layout', 'search_sidebar_position'],
             'meta'          => ['content_width', 'page_header_overlay']
         ];
 
@@ -227,8 +228,8 @@ class Waterfall_View extends Waterfall_Base  {
         }
         
         // Default layout class for boxed and non-boxed
-        if( $data['customizer']['layout'] ) {
-            $classes[]  = 'waterfall-' . $data['customizer']['layout'] . '-layout';
+        if( $data['layout']['layout'] ) {
+            $classes[]  = 'waterfall-' . $data['layout']['layout'] . '-layout';
         }
 
         if( $data['colors']['content_sidebar_background'] ) {
@@ -245,7 +246,10 @@ class Waterfall_View extends Waterfall_Base  {
         
         if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') || ( is_home() && $page = get_option('page_for_posts') ) ) {
             
-            $type               = wf_get_archive_post_type();
+            $type                   = wf_get_archive_post_type();
+
+            // Adds archive types to the classes. Used by customizer settings for sidebar styling.
+            $classes[]              = 'archive-' . $type;
             
             // Woocommerce archives
             if( function_exists('is_woocommerce') && is_woocommerce() ) {
@@ -278,7 +282,7 @@ class Waterfall_View extends Waterfall_Base  {
                 $classes[] = 'waterfall-content-header-overlay';
             }
             
-            if( $data['meta']['content_width']['full'] || $content_width == 'full' ) {
+            if( (isset($data['meta']['content_width']['full']) && $data['meta']['content_width']['full'] ) || $content_width == 'full' ) {
                 $sidebar    = 'default';
                 $classes[]  = 'waterfall-fullwidth-content';
             }

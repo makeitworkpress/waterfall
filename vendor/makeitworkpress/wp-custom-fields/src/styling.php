@@ -181,7 +181,7 @@ class Styling extends Base {
                 // Loop through our fields and see if some have a CSS target defined
                 foreach( $section['fields'] as $key => $field ) {
 
-                    // A selector should be defined. A selector supports selector, size (for the background thumbnail size), max-width (for the max-width media query), property
+                    // A selector should be defined.
                     if( ! isset($field['selector']) ) {
                         continue;
                     }

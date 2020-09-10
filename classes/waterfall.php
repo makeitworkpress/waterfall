@@ -232,11 +232,47 @@ class Waterfall {
      */
     private function deprecatedSupport() {
 
-        // Older themes still use the customizer value for the main logo, so update it automatically.
+        /**
+         * Older themes still use the customizer value for the main logo, so we need to update it automatically.
+         */
         $logo = wf_get_data('customizer', 'logo');
         if( $logo  && ! get_theme_mod('custom_logo') ) {
             set_theme_mod( 'custom_logo', $logo );
-        }        
+        }  
+        
+        /**
+         * Before version 2.3.9, layout was saved under the customizer thememod.
+         * Hence, we need to transfer existing lay-out values to the new theme mod if not done so
+         */
+        $updated_layout_ids         = ['layout', 'layout_width', 'layout_boxed_width', 'border_radius', 'layout_elementor_padding_top', 'layout_elementor_padding_bottom'];
+        $destination_layout_values  = wf_get_data('layout', $updated_layout_ids);
+        $layout_values_set          = false;
+
+        // Our values have been transferred
+        foreach( $destination_layout_values as $key => $value ) {
+            if( $value ) {
+                $layout_values_set  = true;    
+            }
+        }
+
+        // If our values have not been set, retrieve our old values and reset the new layout array. Only done once to save queries.
+        if( ! $layout_values_set ) {
+
+            $original_layout_values = wf_get_data('customizer', $updated_layout_ids);
+
+            if( $original_layout_values ) {
+                
+                $customizer_values  = get_theme_mod('waterfall_layout');
+
+                foreach( $original_layout_values as $key => $value ) {
+                    $customizer_values[$key] = $value;
+                }
+
+                set_theme_mod('waterfall_layout', $customizer_values);
+
+            }
+
+        }
     
     }
     

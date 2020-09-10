@@ -18,62 +18,13 @@ $customizer = [
                     'title'         => __('Excerpt Length', 'waterfall'),
                     'description'   => __('The maximum number of words for excerpts in post archives.', 'waterfall'),
                     'type'          => 'number'  
-                ],                                              
+                ],
                 [
                     'default'       => '',
                     'id'            => 'lightbox',
                     'title'         => __('Enable Lightbox for Linked Images', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
-                [
-                    'default'       => '',
-                    'id'            => 'general_layout_heading',
-                    'title'         => __('Global Layout Settings', 'waterfall'),
-                    'type'          => 'heading'          
-                ],                                                   
-                [
-                    'default'       => 'default',
-                    'id'            => 'layout',
-                    'title'         => __('Layout', 'waterfall'),
-                    'type'          => 'select',
-                    'choices'       => [
-                        'default' => __('Default Layout', 'waterfall'),
-                        'boxed'   => __('Boxed Layout', 'waterfall'),
-                    ]    
-                ],
-                [
-                    'selector'      => [
-                        'selector'  => '.components-container, .elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container', 
-                        'property'  => 'max-width'
-                    ],
-                    'default'       => '',
-                    'id'            => 'layout_width',
-                    'title'         => __('Maximum Width of Content', 'waterfall'),
-                    'description'   => __('Sets maximum width of content and page builders containers. If using non-pixel values, you may have to add manual styling.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ], 
-                [
-                    'selector'      => [
-                        'selector'  => '.waterfall-boxed-layout .wrapper, .waterfall-boxed-layout .header',
-                        'property'  => 'max-width'
-                    ],
-                    'default'       => '',
-                    'id'            => 'layout_boxed_width',
-                    'title'         => __('Maximum Width of Boxed Layout', 'waterfall'),
-                    'description'   => __('Adapts the maximum width of the boxed layout.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ],                 
-                [
-                    'selector'     => [
-                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-element .elementor-button, .elementor-field-type-submit button, .woocommerce input.button .woocommerce input.button.alt, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .widget_shopping_cart_content .button', 
-                        'property' => 'border-radius'
-                    ],
-                    'default'       => '',
-                    'id'            => 'border_radius',
-                    'title'         => __('Border radius for buttons', 'waterfall'),
-                    'description'   => __('Adapts the border radius for all buttons on the site.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ]                
+                ]                                                                                         
             ]              
         ],        
         [
@@ -211,29 +162,7 @@ $customizer = [
             ]              
         ]         
     ]
-];  
-
-/**
- * Additional fields if the Elementor plugin is active
- */
-if( did_action('elementor/loaded') ) {
-    $customizer['sections']['static_front_page']['fields'][] = [
-        'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-top'],
-        'default'       => '',
-        'id'            => 'layout_elementor_padding_top',
-        'title'         => __('Elementor Section Top Padding', 'waterfall'),
-        'description'   => __('The default top padding for primary elementor sections.', 'waterfall'),
-        'type'          => 'dimension'  
-    ];
-    $customizer['sections']['static_front_page']['fields'][] = [
-        'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-bottom'],
-        'default'       => '',
-        'id'            => 'layout_elementor_padding_bottom',
-        'title'         => __('Elementor Section Bottom Padding', 'waterfall'),
-        'description'   => __('The default bottom padding for primary elementor sections.', 'waterfall'),
-        'type'          => 'dimension'  
-    ];    
-}
+]; 
 
 /**
  * Additional Fields if the Events Calendar is active

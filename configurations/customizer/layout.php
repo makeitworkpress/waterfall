@@ -14,6 +14,55 @@ $layout = [
     'title'         => __('Layout', 'waterfall'),
     'panel'         => true,
     'sections'      => [
+        'global' => [
+            'id'            => 'style_global',
+            'title'         => __('Global', 'waterfall'),
+            'fields'    => [                                                
+                [
+                    'default'       => 'default',
+                    'id'            => 'layout',
+                    'title'         => __('Layout', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => [
+                        'default' => __('Default Layout', 'waterfall'),
+                        'boxed'   => __('Boxed Layout', 'waterfall'),
+                    ]    
+                ],
+                [
+                    'selector'      => [
+                        'selector'  => '.components-container, .elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container', 
+                        'property'  => 'max-width'
+                    ],
+                    'default'       => '',
+                    'id'            => 'layout_width',
+                    'title'         => __('Maximum Width of Content', 'waterfall'),
+                    'description'   => __('Sets maximum width of content and page builders containers. If using non-pixel values, you may have to add manual styling.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ], 
+                [
+                    'selector'      => [
+                        'selector'  => '.waterfall-boxed-layout .header, .waterfall-boxed-layout .main, .waterfall-boxed-layout .footer',
+                        'property'  => 'max-width'
+                    ],
+                    'default'       => '',
+                    'id'            => 'layout_boxed_width',
+                    'title'         => __('Maximum Width of Boxed Layout', 'waterfall'),
+                    'description'   => __('Adapts the maximum width of the boxed layout.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ],                 
+                [
+                    'selector'     => [
+                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-element .elementor-button, .elementor-field-type-submit button, .woocommerce input.button .woocommerce input.button.alt, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .widget_shopping_cart_content .button', 
+                        'property' => 'border-radius'
+                    ],
+                    'default'       => '',
+                    'id'            => 'border_radius',
+                    'title'         => __('Border radius for buttons', 'waterfall'),
+                    'description'   => __('Adapts the border radius for all buttons on the site.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ]                                
+            ]
+        ],        
         'header' => [
             'id'            => 'style_header',
             'title'         => __('Header', 'waterfall'),
@@ -326,15 +375,17 @@ if( $types ) {
                     'choices'       => [
                         $type . '_content_width',
                         $type . '_content_readable',
-                        $type . '_sidebar_position'
+                        $type . '_content_sidebar_width',
+                        $type . '_sidebar_position',
+                        $type . '_sidebar_width'
                     ]                    
                 ],             
                 [
                     'default'       => 'default',
-                    'description'   => __('Width of the main content section.', 'waterfall'),
+                    'description'   => __('Width of the container of the whole main content section.', 'waterfall'),
                     'id'            => $type . '_content_width',
                     'choices'       => wf_get_container_options(),
-                    'title'         => __('Main Content Width', 'waterfall'),
+                    'title'         => __('Container Width', 'waterfall'),
                     'type'          => 'select'
                 ],
                 [
@@ -343,7 +394,19 @@ if( $types ) {
                     'title'         => __('Limit content to readable width', 'waterfall'),
                     'description'   => __('Limits paragraphs, lists and smaller titles to a readable width and centers them.', 'waterfall'),
                     'type'          => 'checkbox'
-                ],     
+                ],
+                [
+                    'selector'      => [
+                        'min-width' => '768px',
+                        'property'  => 'width',
+                        'selector'  => '.single-' . $type . '.waterfall-left-sidebar .content, .single-' . $type . '.waterfall-right-sidebar .content'
+                    ],
+                    'default'       => '',
+                    'id'            => $type . '_content_sidebar_width',
+                    'title'         => __('Content Custom Width', 'waterfall'),
+                    'description'   => __('Sets the width of the actual content within the main content section.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ],                     
                 [
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out.', 'waterfall'),
@@ -352,6 +415,18 @@ if( $types ) {
                     'title'         => __('Sidebar Lay-Out', 'waterfall'),
                     'type'          => 'select'
                 ],
+                [
+                    'selector'      => [
+                        'min-width' => '768px',
+                        'property'  => 'width',
+                        'selector'  => '.single-' . $type . '.waterfall-left-sidebar .main-sidebar, .single-' . $type . '.waterfall-right-sidebar .main-sidebar'
+                    ],
+                    'default'       => '',
+                    'id'            => $type . '_sidebar_width',
+                    'title'         => __('Sidebar Custom Width ', 'waterfall'),
+                    'description'   => __('Sets the width of the sidebar.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ],                
                 [
                     'default'       => '',
                     'id'            => $type . '_main_content_related_header',
@@ -759,8 +834,10 @@ if( $types ) {
                     'title'         => __('Archive Posts Section', 'waterfall'),
                     'type'          => 'heading',
                     'choices'       => [
-                        $type . '_archive_sidebar_position',
                         $type . '_archive_content_width',
+                        $type . '_archive_content_sidebar_width',
+                        $type . '_archive_sidebar_position',
+                        $type . '_archive_sidebar_width',
                         $type . '_archive_content_style',
                         $type . '_archive_content_columns',
                         $type . '_archive_content_gap',
@@ -773,7 +850,27 @@ if( $types ) {
                         $type . '_archive_content_image_float',
                         $type . '_archive_content_image_enlarge'                       
                     ]
-                ],                
+                ], 
+                [
+                    'default'       => 'default',
+                    'description'   => __('Width of container in posts archives.', 'waterfall'),
+                    'id'            => $type . '_archive_content_width',
+                    'choices'       => wf_get_container_options(),
+                    'title'         => __('Container Width', 'waterfall'),
+                    'type'          => 'select'
+                ],
+                [
+                    'selector'      => [
+                        'min-width' => '768px',
+                        'property'  => 'width',
+                        'selector'  => '.archive-' . $type . '.waterfall-left-sidebar .content, .archive-' . $type . '.waterfall-right-sidebar .content'
+                    ],
+                    'default'       => '',
+                    'id'            => $type . '_archive_content_sidebar_width',
+                    'title'         => __('Posts Custom Width', 'waterfall'),
+                    'description'   => __('Sets the width of the grid or list of posts.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ],                                               
                 [
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
@@ -783,13 +880,17 @@ if( $types ) {
                     'type'          => 'select'
                 ],
                 [
-                    'default'       => 'default',
-                    'description'   => __('Width of grid in posts archives.', 'waterfall'),
-                    'id'            => $type . '_archive_content_width',
-                    'choices'       => wf_get_container_options(),
-                    'title'         => __('Grid Width', 'waterfall'),
-                    'type'          => 'select'
-                ],   
+                    'selector'      => [
+                        'min-width' => '768px',
+                        'property'  => 'width',
+                        'selector'  => '.archive-' . $type . '.waterfall-left-sidebar .main-sidebar, .archive-' . $type . '.waterfall-right-sidebar .main-sidebar'
+                    ],
+                    'default'       => '',
+                    'id'            => $type . '_archive_sidebar_width',
+                    'title'         => __('Sidebar Custom Width ', 'waterfall'),
+                    'description'   => __('Sets the width of the sidebar.', 'waterfall'),
+                    'type'          => 'dimension'  
+                ],                  
                 [
                     'default'       => 'grid',
                     'description'   => __('Style of posts in archives.', 'waterfall'),
@@ -1246,6 +1347,28 @@ $layout['sections']['footer'] = [
         ]                                      
     ]              
 ];
+
+/**
+ * Page Builder Section Paddings
+ */
+if( did_action('elementor/loaded') ) {
+    $layout['sections']['global']['fields'][] = [
+        'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-top'],
+        'default'       => '',
+        'id'            => 'layout_elementor_padding_top',
+        'title'         => __('Elementor Section Top Padding', 'waterfall'),
+        'description'   => __('The default top padding for primary elementor sections.', 'waterfall'),
+        'type'          => 'dimension'  
+    ];
+    $layout['sections']['global']['fields'][] = [
+        'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-bottom'],
+        'default'       => '',
+        'id'            => 'layout_elementor_padding_bottom',
+        'title'         => __('Elementor Section Bottom Padding', 'waterfall'),
+        'description'   => __('The default bottom padding for primary elementor sections.', 'waterfall'),
+        'type'          => 'dimension'  
+    ];    
+}
 
 /**
  * Other conditional settings. 

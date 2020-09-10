@@ -4,7 +4,7 @@
  * Basic layout classes
  */
 .waterfall-boxed-layout {
-    .wrapper {
+    .header, .main, .footer {
         margin: 0 auto;
         max-width: 1440px;
     }
@@ -24,7 +24,6 @@
  * Prevents a wider than screen width body on smaller screen sizes, which results in a horizontal scrollbar and unwanted behaviour on mobile devices.
  */
 .wrapper {
-    @media screen and (max-width: 767px) {
-        overflow: hidden;
-    }
+    max-width: 100%;
+    overflow: hidden;
 }

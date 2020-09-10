@@ -4,6 +4,67 @@
  * Styling Rules for the Sidebar and Widgets
  */
 
+/* Lay-out
+-----------------------------*/
+.main-sidebar {
+    width: 100%;
+    .waterfall-colored-sidebar & {
+        padding: @grid-space;
+    }
+}
+
+.waterfall-left-sidebar, .waterfall-right-sidebar {
+    .main-content, .main-content > .components-container { 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .content {
+        width: 70%;
+    }
+    .main-sidebar {
+        width: 27%;
+    }
+    @media screen and (max-width: 767px) {     
+        .content {
+            width: 100%;
+        }
+        .main-sidebar {
+            margin: @grid-space 0 0 0;
+            width: 100%;
+        }
+        /* The WooCommerce sidebar is always on top */
+        &.woocommerce {
+            .content {
+                order: 1;
+            }
+            .main-sidebar {
+                order: 0;
+                margin: 0 0 @grid-space 0;
+            }
+        }       
+    } 
+}
+
+.waterfall-left-sidebar {
+    @media screen and (min-width: 768px) {  
+        .content {
+            order: 1;   
+        }            
+        .main-sidebar {
+            order: 0; 
+        }
+    }
+}
+
+.widget {
+    padding-bottom: @grid-space;
+    &:last-child {
+        padding-bottom: 0;
+    }
+}
+
+
 /* General
 -----------------------------*/
 .widget-title {

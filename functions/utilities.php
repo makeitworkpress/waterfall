@@ -400,12 +400,18 @@ function wf_get_post_types( $simple = false, $available = false ) {
 
 /**
  * Checks if a certain theme location was build by elementor. We can use the options to see if a condition applies.
+ * It looks the the primary condition available
  * It does not yet support display based on tags, categories and taxonomies
  * 
  * @param string $location  The theme location of the template
  * @param string $type      The optional condition type, such as a post type or post type archive display (use post type name or 404) or search or author
  */
 function wf_elementor_theme_has_location( $location, $type = '' ) {
+
+    // Elementor should be active
+    if( ! did_action('elementor/loaded') ) {
+        return false;
+    }
 
     $conditions = get_option('elementor_pro_theme_builder_conditions');
     $shown      = false;
