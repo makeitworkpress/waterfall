@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Waterfall\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-11 13:41+0000\n"
-"PO-Revision-Date: 2020-09-11 13:44+0000\n"
+"PO-Revision-Date: 2020-09-11 15:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: Nederlands\n"
 "Language: nl_NL\n"
@@ -732,7 +732,7 @@ msgstr "Gebruik de uitgelichte afbeelding in de titelsectie niet."
 
 #: functions/utilities.php:268
 msgid "Grid"
-msgstr "Grid"
+msgstr "Raster"
 
 #: functions/utilities.php:269
 msgid "List"
@@ -1264,7 +1264,7 @@ msgstr "Algemene melding tekstkleur"
 
 #: configurations/customizer/colors.php:1130
 msgid "General Message Link Color"
-msgstr "Algemene melding linkkleur"
+msgstr "Algemene melding link kleur"
 
 #: configurations/customizer/colors.php:1138
 msgid "General Message Background Color"
@@ -1280,7 +1280,7 @@ msgstr "Info-melding tekstkleur"
 
 #: configurations/customizer/colors.php:1162
 msgid "Info Message Link Color"
-msgstr "Info-melding linkkleur"
+msgstr "Info-melding link kleur"
 
 #: configurations/customizer/colors.php:1170
 msgid "Info Message Background Color"
@@ -1296,7 +1296,7 @@ msgstr "Foutmelding tekstkleur"
 
 #: configurations/customizer/colors.php:1194
 msgid "Error Message Link Color"
-msgstr "Foutmelding linkkleur"
+msgstr "Foutmelding link kleur"
 
 #: configurations/customizer/colors.php:1202
 msgid "Error Message Background Color"
@@ -2127,7 +2127,7 @@ msgstr "Stijl van de berichten in de archieven."
 
 #: configurations/customizer/layout.php:996
 msgid "Grid Style"
-msgstr "Grid stijl"
+msgstr "Stijl raster"
 
 #: configurations/customizer/layout.php:1001
 msgid "The amount of columns used for displaying posts."
@@ -2136,7 +2136,7 @@ msgstr ""
 
 #: configurations/customizer/layout.php:1004
 msgid "Grid Columns"
-msgstr "Grid kolommen"
+msgstr "Aantal kolommen"
 
 #: configurations/customizer/layout.php:1009
 msgid "The width of the gap between various posts."
@@ -2144,7 +2144,7 @@ msgstr "De breedte van de ruimte tussen de verschillende berichten."
 
 #: configurations/customizer/layout.php:1012
 msgid "Grid Gap Width"
-msgstr "Grid Tussenruimte"
+msgstr "Tussenruimte raster"
 
 #: configurations/customizer/layout.php:1017
 msgid "Excerpt within archive posts."

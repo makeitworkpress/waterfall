@@ -11,7 +11,7 @@ class Index extends Base {
 
     /**
      * Sets the properties for the index
-     * This loads the specific values from the database for the given options
+     * This loads the specific values from the database for the given options - it automatically prefixes the archive and the given post type
      */
     protected function setProperties() {
         
@@ -34,6 +34,9 @@ class Index extends Base {
                 'content_image', 
                 'content_image_enlarge',  
                 'content_image_float',  
+                'content_meta_author', 
+                'content_meta_avatar', 
+                'content_meta_date', 
                 'content_none', 
                 'content_type', 
                 'content_style',
@@ -170,6 +173,36 @@ class Index extends Base {
             'view'              => $this->layout['content_style'] ? $this->layout['content_style'] : $defaults['style'],
             'query'             => $wp_query
         ] );
+
+        // Adds the post author
+        if( $this->layout['content_meta_author'] ) {
+            $args['postProperties']['headerAtoms']['author'] = [
+                'atom'          => 'author',
+                'properties'    => [
+                    'attributes'    => ['class' => 'entry-author'],
+                    'description'   => false, 
+                    'imageFloat'    => 'left',
+                    'schema'        => in_array($type, $noSchema) ? false : true,
+                ]
+            ];
+
+            // Disables the avatar bu default
+            if( ! $this->layout['content_meta_avatar'] ) {
+                $args['postProperties']['headerAtoms']['author']['properties']['avatar'] = false;
+            }
+
+        }
+
+        // Adds the post date
+        if( $this->layout['content_meta_date'] ) {
+            $args['postProperties']['headerAtoms']['date'] = [
+                'atom'              => 'date', 
+                'properties'        => [
+                    'attributes'    => ['class' => 'entry-time'], 
+                    'schema'        => in_array($type, $noSchema) ? false : true
+                ]
+            ]; 
+        }        
 
         // Adds the post type indicator
         if( $this->layout['content_type'] ) {

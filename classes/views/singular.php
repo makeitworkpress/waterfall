@@ -242,8 +242,11 @@ class Singular extends Base {
         // Time
         if( $this->layout['header_date'] ) {
             $args['atoms']['date']      = [
-                'atom'          => 'date', 
-                'properties'    => ['attributes' => ['class' => 'entry-time', 'schema' => in_array($this->type, $this->noSchema) ? false : true]]
+                'atom'              => 'date', 
+                'properties'        => [
+                    'attributes'    => ['class' => 'entry-time'], 
+                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
+                ]
             ];    
         }
     

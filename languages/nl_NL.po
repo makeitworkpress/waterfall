@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Waterfall\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-11 13:41+0000\n"
-"PO-Revision-Date: 2020-09-11 13:44+0000\n"
+"POT-Creation-Date: 2020-09-11 15:31+0000\n"
+"PO-Revision-Date: 2020-09-11 15:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: Nederlands\n"
 "Language: nl_NL\n"
@@ -89,7 +89,7 @@ msgstr ""
 "meestal de organisatie vertegenwoordigt. Selecteer geen om uit te schakelen."
 
 #: configurations/options.php:57 functions/utilities.php:170
-#: functions/utilities.php:258 configurations/customizer/layout.php:1429
+#: functions/utilities.php:258 configurations/customizer/layout.php:1471
 msgid "None"
 msgstr "Geen"
 
@@ -292,7 +292,7 @@ msgid ""
 msgstr ""
 "De Footer staat onderdaan de site, meestal met widgets, copyright en meer."
 
-#: configurations/postmeta.php:83 configurations/customizer/layout.php:1340
+#: configurations/postmeta.php:83 configurations/customizer/layout.php:1382
 msgid "Disable Footer"
 msgstr "Footer uitschakelen"
 
@@ -309,7 +309,7 @@ msgstr ""
 "afbeelding, enzovoort."
 
 #: configurations/postmeta.php:94 configurations/customizer/layout.php:343
-#: configurations/customizer/layout.php:1125
+#: configurations/customizer/layout.php:1146
 msgid "Disable Title Section"
 msgstr "Titelsectie uitschakelen"
 
@@ -366,7 +366,7 @@ msgstr "De titelsectie toont uw titel, afbeeldingen, meta-informatie en meer."
 
 #: configurations/postmeta.php:140 configurations/customizer/colors.php:346
 #: configurations/customizer/layout.php:317
-#: configurations/customizer/layout.php:1111
+#: configurations/customizer/layout.php:1132
 msgid "Title Section"
 msgstr "Titelgedeelte"
 
@@ -610,7 +610,7 @@ msgstr "Vijf kolommen"
 
 #: functions/utilities.php:169 functions/utilities.php:197
 #: configurations/customizer/layout.php:210
-#: configurations/customizer/layout.php:1441
+#: configurations/customizer/layout.php:1483
 msgid "Default"
 msgstr "Standaard"
 
@@ -732,7 +732,7 @@ msgstr "Gebruik de uitgelichte afbeelding in de titelsectie niet."
 
 #: functions/utilities.php:268
 msgid "Grid"
-msgstr "Grid"
+msgstr "Raster"
 
 #: functions/utilities.php:269
 msgid "List"
@@ -802,54 +802,54 @@ msgstr "Toon alle resultaten"
 msgid "Nothing found!"
 msgstr "Niets gevonden!"
 
-#: classes/views/index.php:144
+#: classes/views/index.php:147
 msgid "Bummer! No posts have been found."
 msgstr "Jammer! Er zijn geen berichten gevonden."
 
-#: classes/views/nothing.php:48 configurations/customizer/layout.php:1302
+#: classes/views/nothing.php:48 configurations/customizer/layout.php:1344
 msgid "Woops! Nothing found here..."
 msgstr "Oeps! Hier is niets gevonden..."
 
-#: classes/views/nothing.php:57 configurations/customizer/layout.php:1310
+#: classes/views/nothing.php:57 configurations/customizer/layout.php:1352
 msgid "Try visiting another page or searching."
 msgstr "Probeer een andere pagina te bezoeken of te zoeken."
 
-#: classes/views/singular.php:262
+#: classes/views/singular.php:265
 msgid "Respond"
 msgstr "Reageer"
 
-#: classes/views/singular.php:262
+#: classes/views/singular.php:265
 #, php-format
 msgid "%s comment"
 msgid_plural "%s comments"
 msgstr[0] "%s reactie"
 msgstr[1] "%s reacties"
 
-#: classes/views/singular.php:283
+#: classes/views/singular.php:286
 msgid "Share"
 msgstr "Delen"
 
-#: classes/views/singular.php:304
+#: classes/views/singular.php:307
 msgid "Article by "
 msgstr "Artikel door "
 
-#: classes/views/singular.php:461 configurations/customizer/layout.php:654
+#: classes/views/singular.php:464 configurations/customizer/layout.php:654
 msgid "Bummer! No related posts have been found."
 msgstr "Jammer! Er zijn geen gerelateerde berichten gevonden."
 
-#: classes/views/singular.php:515
+#: classes/views/singular.php:518
 msgid "Next Article &rsaquo;"
 msgstr "Volgende artikel &rsaquo;"
 
-#: classes/views/singular.php:516 configurations/customizer/layout.php:667
+#: classes/views/singular.php:519 configurations/customizer/layout.php:667
 msgid "&lsaquo; Previous Article"
 msgstr "&lsaquo; Vorig artikel"
 
-#: classes/views/singular.php:583 configurations/customizer/layout.php:735
+#: classes/views/singular.php:586 configurations/customizer/layout.php:735
 msgid "Comments are closed."
 msgstr "Reacties zijn gesloten."
 
-#: classes/views/singular.php:585
+#: classes/views/singular.php:588
 #, php-format
 msgid "One Response to %2$s"
 msgid_plural "%1$s Responses to %2$s"
@@ -1164,19 +1164,19 @@ msgstr "Formulierveld achtergrondkleur"
 
 #: configurations/customizer/colors.php:948
 #: configurations/customizer/layout.php:68
-#: configurations/customizer/layout.php:1474
-#: configurations/customizer/layout.php:1474
+#: configurations/customizer/layout.php:1516
+#: configurations/customizer/layout.php:1516
 msgid "Header"
 msgstr "Header"
 
 #: configurations/customizer/colors.php:948
-#: configurations/customizer/layout.php:1335
+#: configurations/customizer/layout.php:1377
 #: configurations/customizer/typography.php:197
 msgid "Footer"
 msgstr "Footer"
 
 #: configurations/customizer/colors.php:957
-#: configurations/customizer/layout.php:1483
+#: configurations/customizer/layout.php:1525
 #, php-format
 msgid ""
 "The %s is designed by the Elementor Theme Builder. Thus, no settings are "
@@ -1187,10 +1187,10 @@ msgstr ""
 
 #: configurations/customizer/colors.php:958
 #: configurations/customizer/layout.php:838
-#: configurations/customizer/layout.php:1090
-#: configurations/customizer/layout.php:1484
-#: configurations/customizer/layout.php:1497
-#: configurations/customizer/layout.php:1509
+#: configurations/customizer/layout.php:1111
+#: configurations/customizer/layout.php:1526
+#: configurations/customizer/layout.php:1539
+#: configurations/customizer/layout.php:1551
 msgid "Designed by Elementor"
 msgstr "Ontworpen door Elementor"
 
@@ -1658,7 +1658,7 @@ msgid "Size Featured Image"
 msgstr "Grootte uitgelichte afbeelding"
 
 #: configurations/customizer/layout.php:369
-#: configurations/customizer/layout.php:1147
+#: configurations/customizer/layout.php:1168
 msgid "Title Section Height"
 msgstr "Hoogte titelsectie"
 
@@ -1682,13 +1682,13 @@ msgid "Width of the content in the Title Section"
 msgstr "Breedte van de inhoud in de titelsectie."
 
 #: configurations/customizer/layout.php:387
-#: configurations/customizer/layout.php:1139
+#: configurations/customizer/layout.php:1160
 msgid "Title Section Width"
 msgstr "Breedte titelsectie"
 
 #: configurations/customizer/layout.php:393
 #: configurations/customizer/layout.php:909
-#: configurations/customizer/layout.php:1153
+#: configurations/customizer/layout.php:1174
 msgid "Title Section Text Align"
 msgstr "Tekstuitlijning titelsectie"
 
@@ -1702,8 +1702,8 @@ msgstr "Parallax voor titelsecties inschakelen"
 
 #: configurations/customizer/layout.php:407
 #: configurations/customizer/layout.php:881
-#: configurations/customizer/layout.php:1131
-#: configurations/customizer/layout.php:1320
+#: configurations/customizer/layout.php:1152
+#: configurations/customizer/layout.php:1362
 msgid "Display Breadcrumbs"
 msgstr "Toon broodkruimels"
 
@@ -1752,7 +1752,8 @@ msgid "Width of the container of the whole main content section."
 msgstr "Breedte van de container voor de gehele sectie,"
 
 #: configurations/customizer/layout.php:478
-#: configurations/customizer/layout.php:956
+#: configurations/customizer/layout.php:959
+#: configurations/customizer/layout.php:1221
 msgid "Container Width"
 msgstr "Breedte container"
 
@@ -1781,20 +1782,20 @@ msgid "Choose the sidebar lay-out."
 msgstr "Kies de lay-out van de sidebar."
 
 #: configurations/customizer/layout.php:505
-#: configurations/customizer/layout.php:976
-#: configurations/customizer/layout.php:1189
+#: configurations/customizer/layout.php:979
+#: configurations/customizer/layout.php:1213
 #: configurations/customizer/woocommerce.php:76
 #: configurations/customizer/woocommerce.php:135
 msgid "Sidebar Lay-Out"
 msgstr "Lay-out Sidebar"
 
 #: configurations/customizer/layout.php:516
-#: configurations/customizer/layout.php:987
+#: configurations/customizer/layout.php:990
 msgid "Sidebar Custom Width "
 msgstr "Aangepaste breedte sidebar"
 
 #: configurations/customizer/layout.php:517
-#: configurations/customizer/layout.php:988
+#: configurations/customizer/layout.php:991
 msgid "Sets the width of the sidebar."
 msgstr "Bepaalt de breedte van de sidebar"
 
@@ -1847,7 +1848,7 @@ msgid "Minimum height of related posts in pixels."
 msgstr "Minimumhoogte van gerelateerde berichten in pixels."
 
 #: configurations/customizer/layout.php:594
-#: configurations/customizer/layout.php:1051
+#: configurations/customizer/layout.php:1072
 msgid "Posts Height"
 msgstr "Hoogte berichten"
 
@@ -1868,14 +1869,14 @@ msgid "Excerpt within related posts."
 msgstr "Samenvatting in gerelateerde berichten."
 
 #: configurations/customizer/layout.php:618
-#: configurations/customizer/layout.php:1020
-#: configurations/customizer/layout.php:1221
+#: configurations/customizer/layout.php:1023
+#: configurations/customizer/layout.php:1245
 msgid "Excerpt"
 msgstr "Samenvatting"
 
 #: configurations/customizer/layout.php:619
-#: configurations/customizer/layout.php:1021
-#: configurations/customizer/layout.php:1222
+#: configurations/customizer/layout.php:1024
+#: configurations/customizer/layout.php:1246
 msgid "No excerpt"
 msgstr "Geen samenvatting"
 
@@ -1888,7 +1889,7 @@ msgid "Featured Image size within related posts."
 msgstr "Grootte uitgelichte afbeelding bij gerelateerde berichten."
 
 #: configurations/customizer/layout.php:629
-#: configurations/customizer/layout.php:1061
+#: configurations/customizer/layout.php:1082
 msgid "Featured Image Size"
 msgstr "Grootte uitgelichte afbeelding"
 
@@ -1897,19 +1898,19 @@ msgid "Float of featured image within the related posts."
 msgstr "Float van uitgelichte afbeelding bij gerelateerde berichten."
 
 #: configurations/customizer/layout.php:637
-#: configurations/customizer/layout.php:1069
+#: configurations/customizer/layout.php:1090
 msgid "Featured Image Float"
 msgstr " Float uitgelicht afbeelding"
 
 #: configurations/customizer/layout.php:643
-#: configurations/customizer/layout.php:1075
-#: configurations/customizer/layout.php:1267
+#: configurations/customizer/layout.php:1096
+#: configurations/customizer/layout.php:1309
 msgid "Enlarge Featured Image on Hover"
 msgstr "Vergroot uitgelichte afbeelding bij Hover"
 
 #: configurations/customizer/layout.php:647
-#: configurations/customizer/layout.php:1034
-#: configurations/customizer/layout.php:1235
+#: configurations/customizer/layout.php:1055
+#: configurations/customizer/layout.php:1277
 msgid "View Post"
 msgstr "Bekijken"
 
@@ -2105,97 +2106,112 @@ msgstr ""
 msgid "Archive Posts Section"
 msgstr "Berichten sectie"
 
-#: configurations/customizer/layout.php:953
+#: configurations/customizer/layout.php:956
 msgid "Width of container in posts archives."
 msgstr "Breedte van de container in archieven"
 
-#: configurations/customizer/layout.php:967
+#: configurations/customizer/layout.php:970
 msgid "Posts Custom Width"
 msgstr "Berichten aangepaste breedte"
 
-#: configurations/customizer/layout.php:968
+#: configurations/customizer/layout.php:971
 msgid "Sets the width of the grid or list of posts."
 msgstr "Bepaalt de breedte van het raster of de lijst van berichten."
 
-#: configurations/customizer/layout.php:973
+#: configurations/customizer/layout.php:976
 msgid "Choose the sidebar lay-out for archives."
 msgstr "Kies de lay-out van de sidebar voor archieven."
 
-#: configurations/customizer/layout.php:993
+#: configurations/customizer/layout.php:996
 msgid "Style of posts in archives."
 msgstr "Stijl van de berichten in de archieven."
 
-#: configurations/customizer/layout.php:996
+#: configurations/customizer/layout.php:999
 msgid "Grid Style"
-msgstr "Grid stijl"
+msgstr "Stijl raster"
 
-#: configurations/customizer/layout.php:1001
+#: configurations/customizer/layout.php:1004
 msgid "The amount of columns used for displaying posts."
 msgstr ""
 "Het aantal kolommen dat wordt gebruikt voor het weergeven van berichten."
 
-#: configurations/customizer/layout.php:1004
+#: configurations/customizer/layout.php:1007
 msgid "Grid Columns"
-msgstr "Grid kolommen"
+msgstr "Aantal kolommen"
 
-#: configurations/customizer/layout.php:1009
+#: configurations/customizer/layout.php:1012
 msgid "The width of the gap between various posts."
 msgstr "De breedte van de ruimte tussen de verschillende berichten."
 
-#: configurations/customizer/layout.php:1012
+#: configurations/customizer/layout.php:1015
 msgid "Grid Gap Width"
-msgstr "Grid Tussenruimte"
+msgstr "Tussenruimte raster"
 
-#: configurations/customizer/layout.php:1017
+#: configurations/customizer/layout.php:1020
 msgid "Excerpt within archive posts."
 msgstr "Samenvatting in archiefberichten."
 
-#: configurations/customizer/layout.php:1023
+#: configurations/customizer/layout.php:1026
 msgid " Excerpt"
 msgstr "Samenvatting"
 
-#: configurations/customizer/layout.php:1028
+#: configurations/customizer/layout.php:1031
 msgid "Shows the post type under the title of each post."
 msgstr "Toont het type post onder de titel van elke post."
 
-#: configurations/customizer/layout.php:1030
+#: configurations/customizer/layout.php:1033
 msgid "Post Type in Posts"
 msgstr "Post-type in berichten"
 
-#: configurations/customizer/layout.php:1035
-#: configurations/customizer/layout.php:1236
+#: configurations/customizer/layout.php:1039
+#: configurations/customizer/layout.php:1261
+msgid "Show Author in Posts"
+msgstr "Toon de auteur"
+
+#: configurations/customizer/layout.php:1045
+#: configurations/customizer/layout.php:1267
+msgid "Show Author Avatar in Posts"
+msgstr "Toon afbeelding van de auteur bij berichten"
+
+#: configurations/customizer/layout.php:1051
+#: configurations/customizer/layout.php:1273
+msgid "Show Post Date in Posts"
+msgstr "Toon datum in berichten"
+
+#: configurations/customizer/layout.php:1056
+#: configurations/customizer/layout.php:1278
 msgid "The label for this button. Leave empty to remove the button."
 msgstr "Het label voor deze knop. Laat leeg om de knop te verwijderen."
 
-#: configurations/customizer/layout.php:1037
+#: configurations/customizer/layout.php:1058
 msgid "Posts Button Label"
 msgstr "Label knop berichten"
 
-#: configurations/customizer/layout.php:1041
+#: configurations/customizer/layout.php:1062
 msgid "Bummer! No posts found."
 msgstr "Jammer! Geen berichten gevonden."
 
-#: configurations/customizer/layout.php:1042
+#: configurations/customizer/layout.php:1063
 msgid "The text if no posts are found."
 msgstr "De tekst als er geen berichten worden gevonden."
 
-#: configurations/customizer/layout.php:1044
+#: configurations/customizer/layout.php:1065
 msgid "No Posts Found Text"
 msgstr "Geen berichten gevonden tekst"
 
-#: configurations/customizer/layout.php:1049
+#: configurations/customizer/layout.php:1070
 msgid "Minimum height of posts in the archive in pixels."
 msgstr "Minimale hoogte van de berichten in het archief in pixels."
 
-#: configurations/customizer/layout.php:1058
+#: configurations/customizer/layout.php:1079
 msgid "Featured Image size within archive posts."
 msgstr "Grootte uitgelichte afbeelding bij archiefberichten."
 
-#: configurations/customizer/layout.php:1066
+#: configurations/customizer/layout.php:1087
 msgid "Float of featured image within the posts."
 msgstr "Float van uitgelichte afbeelding bij berichten."
 
-#: configurations/customizer/layout.php:1089
+#: configurations/customizer/layout.php:1110
 #, php-format
 msgid ""
 "The %s archive is designed by the Elementor Theme Builder. Thus, no layout "
@@ -2204,28 +2220,28 @@ msgstr ""
 "Het %s archief is ontworpen door de Elementor Thema Bouwer. Er worden hier "
 "dus geen lay-out instellingen getoond."
 
-#: configurations/customizer/layout.php:1106
+#: configurations/customizer/layout.php:1127
 msgid "Search Page"
 msgstr "Zoekpagina"
 
-#: configurations/customizer/layout.php:1136
+#: configurations/customizer/layout.php:1157
 msgid "Width of header in search archives."
 msgstr "Breedte van de titelsectie in de zoekarchieven."
 
-#: configurations/customizer/layout.php:1144
+#: configurations/customizer/layout.php:1165
 msgid "Height of header in search archives."
 msgstr "Hoogte van de titelsectie in de zoekarchieven."
 
-#: configurations/customizer/layout.php:1154
+#: configurations/customizer/layout.php:1175
 msgid "How should text be aligned within the search title section?"
 msgstr ""
 "Hoe moet de tekst binnen in de kop van de zoekpagina worden uitgelijnd?"
 
-#: configurations/customizer/layout.php:1161
+#: configurations/customizer/layout.php:1182
 msgid "Custom Title for the Search Page"
 msgstr "Aangepaste titel voor de zoekpagina"
 
-#: configurations/customizer/layout.php:1162
+#: configurations/customizer/layout.php:1183
 msgid ""
 "Add a custom title for the search page. The {term} and {number} tags may be "
 "used to display the search term and number of results respectively."
@@ -2234,191 +2250,187 @@ msgstr ""
 "kunnen worden gebruikt om respectievelijk de zoekterm en het aantal "
 "resultaten weer te geven."
 
-#: configurations/customizer/layout.php:1168
+#: configurations/customizer/layout.php:1189
 msgid "Search Results Section"
 msgstr "Zoekresultaten Sectie"
 
-#: configurations/customizer/layout.php:1186
+#: configurations/customizer/layout.php:1210
 msgid "Choose the sidebar lay-out for the search page."
 msgstr "Kies de lay-out van de sidebar voor de zoekpagina."
 
-#: configurations/customizer/layout.php:1194
-msgid "Width of the grid for search results."
-msgstr "Breedte van het grid voor zoekresultaten."
+#: configurations/customizer/layout.php:1218
+msgid "Width of the container for search results."
+msgstr "Breedte van de container voor zoekresultaten"
 
-#: configurations/customizer/layout.php:1197
-msgid "Search Page Results Width"
-msgstr "Breedte resultaten zoekpagina"
-
-#: configurations/customizer/layout.php:1202
+#: configurations/customizer/layout.php:1226
 msgid "Style of posts in the search page."
 msgstr "Stijl van de berichten op de zoekpagina."
 
-#: configurations/customizer/layout.php:1205
-msgid "Search Page Results Style"
-msgstr "Zoekpagina resultaten stijl"
+#: configurations/customizer/layout.php:1229
+msgid "Results Style"
+msgstr "Stijl resultaten"
 
-#: configurations/customizer/layout.php:1210
+#: configurations/customizer/layout.php:1234
 msgid "Amount of grid columns for search page posts."
 msgstr "Aantal kolommen in de zoekpagina's voor berichten."
 
-#: configurations/customizer/layout.php:1213
-msgid "Search Page Columns"
-msgstr "Zoekpagina Kolommen"
+#: configurations/customizer/layout.php:1237
+msgid "Columns"
+msgstr "Aantal kolommen"
 
-#: configurations/customizer/layout.php:1218
+#: configurations/customizer/layout.php:1242
 msgid "Excerpt within search page results."
 msgstr "Samenvatting in resultaten zoekpagina."
 
-#: configurations/customizer/layout.php:1224
-msgid "Search Page Results Excerpt"
-msgstr " Samenvatting in zoekpagina-resultaten"
+#: configurations/customizer/layout.php:1248
+msgid "Display Excerpt"
+msgstr "Toon excerpt"
 
-#: configurations/customizer/layout.php:1229
+#: configurations/customizer/layout.php:1253
 msgid "Shows the post type under the title of each result."
 msgstr "Toont het type post onder de titel van elk resultaat."
 
-#: configurations/customizer/layout.php:1231
-msgid "Search Post Type in Results"
-msgstr "Post-type in resultaten"
+#: configurations/customizer/layout.php:1255
+msgid "Post Type in Results"
+msgstr "Post type in resultaten"
 
-#: configurations/customizer/layout.php:1238
+#: configurations/customizer/layout.php:1280
 msgid "Search Page Results Button Label"
 msgstr "Zoekpagina resultaten knop"
 
-#: configurations/customizer/layout.php:1243
+#: configurations/customizer/layout.php:1285
 msgid "Minimum height of results in the search page."
 msgstr "Minimale hoogte van de resultaten in de zoekpagina."
 
-#: configurations/customizer/layout.php:1245
+#: configurations/customizer/layout.php:1287
 msgid "Search Page Results Height"
 msgstr "Zoekpagina resultaten hoogte"
 
-#: configurations/customizer/layout.php:1250
+#: configurations/customizer/layout.php:1292
 msgid "Featured Image size within search page results."
 msgstr "Grootte uitgelichte afbeelding bij zoekresultaten."
 
-#: configurations/customizer/layout.php:1253
+#: configurations/customizer/layout.php:1295
 msgid "Search Page Results Image Size"
 msgstr "Zoekpagina resultaten afbeeldingsformaat"
 
-#: configurations/customizer/layout.php:1258
+#: configurations/customizer/layout.php:1300
 msgid "Float of featured image within the results."
 msgstr "Float van uitgelichte afbeelding bij zoekresultaten."
 
-#: configurations/customizer/layout.php:1261
+#: configurations/customizer/layout.php:1303
 msgid "Search Page Featured Image Float"
 msgstr "Zoekpagina Uitgelichte Afbeelding Float"
 
-#: configurations/customizer/layout.php:1276
+#: configurations/customizer/layout.php:1318
 msgid "404 Page"
 msgstr "404 Pagina"
 
-#: configurations/customizer/layout.php:1281
+#: configurations/customizer/layout.php:1323
 msgid "404 Header Minimum Height"
 msgstr "Minimum Hoogte Titel 404 Pagina"
 
-#: configurations/customizer/layout.php:1287
+#: configurations/customizer/layout.php:1329
 msgid "Width of the 404 Header"
 msgstr "Breedte van de 404 Header"
 
-#: configurations/customizer/layout.php:1290
+#: configurations/customizer/layout.php:1332
 msgid "404 Header Width"
 msgstr "Breedte Titel 404 Pagina"
 
-#: configurations/customizer/layout.php:1296
+#: configurations/customizer/layout.php:1338
 msgid "Header Text Align"
 msgstr "Header tekstuitlijning"
 
-#: configurations/customizer/layout.php:1297
+#: configurations/customizer/layout.php:1339
 msgid "How should text be aligned within the 404 header?"
 msgstr "Hoe moet de tekst in de 404-kop worden uitgelijnd?"
 
-#: configurations/customizer/layout.php:1304
+#: configurations/customizer/layout.php:1346
 msgid "Default 404 Title"
 msgstr "Standaard 404 titel"
 
-#: configurations/customizer/layout.php:1312
+#: configurations/customizer/layout.php:1354
 msgid "Default 404 Description"
 msgstr "Standaard 404 beschrijving"
 
-#: configurations/customizer/layout.php:1326
+#: configurations/customizer/layout.php:1368
 msgid "Display Searchform"
 msgstr "Toon zoekformulier"
 
-#: configurations/customizer/layout.php:1346
+#: configurations/customizer/layout.php:1388
 msgid "Footer Width"
 msgstr "Footer breedte"
 
-#: configurations/customizer/layout.php:1353
+#: configurations/customizer/layout.php:1395
 msgid "Display Sidebars"
 msgstr "Toon sidebars"
 
-#: configurations/customizer/layout.php:1358
+#: configurations/customizer/layout.php:1400
 msgid "Amount of sidebars in the footer."
 msgstr "Hoeveelheid sidebars in de footer."
 
-#: configurations/customizer/layout.php:1361
+#: configurations/customizer/layout.php:1403
 msgid "One sidebar"
 msgstr "Eén Sidebar"
 
-#: configurations/customizer/layout.php:1362
+#: configurations/customizer/layout.php:1404
 msgid "Two sidebars"
 msgstr "Twee Sidebars"
 
-#: configurations/customizer/layout.php:1363
+#: configurations/customizer/layout.php:1405
 msgid "Three sidebars"
 msgstr "Drie Sidebars"
 
-#: configurations/customizer/layout.php:1364
+#: configurations/customizer/layout.php:1406
 msgid "Four sidebars"
 msgstr "Vier Sidebars"
 
-#: configurations/customizer/layout.php:1365
+#: configurations/customizer/layout.php:1407
 msgid "Five sidebars"
 msgstr "Vijf Sidebars"
 
-#: configurations/customizer/layout.php:1367
+#: configurations/customizer/layout.php:1409
 msgid "Footer Sidebars"
 msgstr "Footer Sidebars"
 
-#: configurations/customizer/layout.php:1372
+#: configurations/customizer/layout.php:1414
 msgid "The gap width between the sidebars."
 msgstr "De ruimte tussen de Sidebars"
 
-#: configurations/customizer/layout.php:1375
+#: configurations/customizer/layout.php:1417
 msgid "Sidebar Gap Width"
 msgstr "Ruimte tussen Sidebars"
 
-#: configurations/customizer/layout.php:1381
+#: configurations/customizer/layout.php:1423
 msgid "Display Socket"
 msgstr "Toon socket"
 
-#: configurations/customizer/layout.php:1387
+#: configurations/customizer/layout.php:1429
 msgid "Display Copyright"
 msgstr "Toon Copyright"
 
-#: configurations/customizer/layout.php:1394
+#: configurations/customizer/layout.php:1436
 msgid "Copyright Message"
 msgstr "Copyright bericht"
 
-#: configurations/customizer/layout.php:1401
+#: configurations/customizer/layout.php:1443
 msgid "Display Footer Menu"
 msgstr "Toon Footer Menu"
 
-#: configurations/customizer/layout.php:1407
+#: configurations/customizer/layout.php:1449
 msgid "Display Social Icons"
 msgstr "Toon sociale iconen"
 
-#: configurations/customizer/layout.php:1413
+#: configurations/customizer/layout.php:1455
 msgid "Remove Background in Social Icons"
 msgstr "Achtergrond in sociale iconen verwijderen"
 
-#: configurations/customizer/layout.php:1419
+#: configurations/customizer/layout.php:1461
 msgid "Put Footer Logo above other elements."
 msgstr "Zet Footer Logo boven andere elementen."
 
-#: configurations/customizer/layout.php:1420
+#: configurations/customizer/layout.php:1462
 msgid ""
 "If you have defined a footer logo under Site Identity, it will appear in the "
 "bottom of your footer. Normally, it will center, but if this box is ticked "
@@ -2428,47 +2440,47 @@ msgstr ""
 "deze onder aan je Footer. Normaal gesproken zal dit log in het midden staan, "
 "maar als dit vakje is aangevinkt zal het boven de andere elementen staan."
 
-#: configurations/customizer/layout.php:1426
+#: configurations/customizer/layout.php:1468
 msgid "Scroll to Top Button"
 msgstr "Knop Scroll to Top"
 
-#: configurations/customizer/layout.php:1430
+#: configurations/customizer/layout.php:1472
 msgid "On the left"
 msgstr "Links"
 
-#: configurations/customizer/layout.php:1431
+#: configurations/customizer/layout.php:1473
 msgid "On the center"
 msgstr "In het midden"
 
-#: configurations/customizer/layout.php:1432
+#: configurations/customizer/layout.php:1474
 msgid "On the right"
 msgstr "Rechts"
 
-#: configurations/customizer/layout.php:1438
+#: configurations/customizer/layout.php:1480
 msgid "Scroll to Top Button Style"
 msgstr "Knopstijl Scroll to Top"
 
-#: configurations/customizer/layout.php:1442
+#: configurations/customizer/layout.php:1484
 msgid "Rounded"
 msgstr "Afgerond"
 
-#: configurations/customizer/layout.php:1456
+#: configurations/customizer/layout.php:1498
 msgid "Elementor Section Top Padding"
 msgstr "Elementor Sectie Top Padding"
 
-#: configurations/customizer/layout.php:1457
+#: configurations/customizer/layout.php:1499
 msgid "The default top padding for primary elementor sections."
 msgstr "De standaard top-padding voor Elementor Secties."
 
-#: configurations/customizer/layout.php:1464
+#: configurations/customizer/layout.php:1506
 msgid "Elementor Section Bottom Padding"
 msgstr "Elementor Sectie Bottom Padding"
 
-#: configurations/customizer/layout.php:1465
+#: configurations/customizer/layout.php:1507
 msgid "The default bottom padding for primary elementor sections."
 msgstr "De standaard bottom-padding voor Elementor Secties."
 
-#: configurations/customizer/layout.php:1496
+#: configurations/customizer/layout.php:1538
 msgid ""
 "The 404 page is designed by the Elementor Theme Builder. Thus, no settings "
 "are shown here."
@@ -2476,7 +2488,7 @@ msgstr ""
 "De 404 pagina is ontworpen door de Elementor Thema Bouwer. Er worden hier "
 "dus geen instellingen getoond."
 
-#: configurations/customizer/layout.php:1508
+#: configurations/customizer/layout.php:1550
 msgid ""
 "The search page is designed by the Elementor Theme Builder. Thus, no "
 "settings are shown here."

@@ -939,6 +939,9 @@ if( $types ) {
                         $type . '_archive_content_columns',
                         $type . '_archive_content_gap',
                         $type . '_archive_content_content',
+                        $type . '_archive_content_meta_author',
+                        $type . '_archive_content_meta_avatar',
+                        $type . '_archive_content_meta_date',
                         $type . '_archive_content_type',
                         $type . '_archive_content_button',
                         $type . '_archive_content_none',
@@ -1029,7 +1032,25 @@ if( $types ) {
                     'id'            => $type . '_archive_content_type',
                     'title'         => __('Post Type in Posts', 'waterfall'),
                     'type'          => 'checkbox'
-                ],    
+                ], 
+                [
+                    'default'       => '',
+                    'id'            => $type . '_archive_content_meta_author',
+                    'title'         => __('Show Author in Posts', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],
+                [
+                    'default'       => '',
+                    'id'            => $type . '_archive_content_meta_avatar',
+                    'title'         => __('Show Author Avatar in Posts', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],
+                [
+                    'default'       => '',
+                    'id'            => $type . '_archive_content_meta_date',
+                    'title'         => __('Show Post Date in Posts', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                                                      
                 [
                     'default'       => __('View Post', 'waterfall'),
                     'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
@@ -1172,7 +1193,10 @@ $layout['sections']['search_page'] = [
                 'search_content_width',                  
                 'search_content_style',                  
                 'search_content_columns',                  
-                'search_content_content',                  
+                'search_content_content',
+                'search_content_meta_author',
+                'search_content_meta_avatar',
+                'search_content_meta_date',                                  
                 'search_content_type',                  
                 'search_content_button',                  
                 'search_content_height',                  
@@ -1191,10 +1215,10 @@ $layout['sections']['search_page'] = [
         ], 
         [
             'default'       => 'default',
-            'description'   => __('Width of the grid for search results.', 'waterfall'),
+            'description'   => __('Width of the container for search results.', 'waterfall'),
             'id'            => 'search_content_width',
             'choices'       => wf_get_container_options(),
-            'title'         => __('Search Page Results Width', 'waterfall'),
+            'title'         => __('Container Width', 'waterfall'),
             'type'          => 'select'
         ],    
         [
@@ -1202,7 +1226,7 @@ $layout['sections']['search_page'] = [
             'description'   => __('Style of posts in the search page.', 'waterfall'),
             'id'            => 'search_content_style',
             'choices'       => wf_get_grid_options(),
-            'title'         => __('Search Page Results Style', 'waterfall'),
+            'title'         => __('Results Style', 'waterfall'),
             'type'          => 'select'
         ],
         [
@@ -1210,7 +1234,7 @@ $layout['sections']['search_page'] = [
             'description'   => __('Amount of grid columns for search page posts.', 'waterfall'),
             'id'            => 'search_content_columns',
             'choices'       => wf_get_column_options(),
-            'title'         => __('Search Page Columns', 'waterfall'),
+            'title'         => __('Columns', 'waterfall'),
             'type'          => 'select'
         ],    
         [
@@ -1221,16 +1245,34 @@ $layout['sections']['search_page'] = [
                 'excerpt'   => __('Excerpt', 'waterfall'),
                 'none'      => __('No excerpt', 'waterfall'),
             ],
-            'title'         => __('Search Page Results Excerpt', 'waterfall'),
+            'title'         => __('Display Excerpt', 'waterfall'),
             'type'          => 'select'
         ],
         [
             'default'       => '',
             'description'   => __('Shows the post type under the title of each result.', 'waterfall'),
             'id'            => 'search_content_type',
-            'title'         => __('Search Post Type in Results', 'waterfall'),
+            'title'         => __('Post Type in Results', 'waterfall'),
             'type'          => 'checkbox'
         ],
+        [
+            'default'       => '',
+            'id'            => 'search_content_meta_author',
+            'title'         => __('Show Author in Posts', 'waterfall'),
+            'type'          => 'checkbox'
+        ],
+        [
+            'default'       => '',
+            'id'            => 'search_content_meta_avatar',
+            'title'         => __('Show Author Avatar in Posts', 'waterfall'),
+            'type'          => 'checkbox'
+        ],
+        [
+            'default'       => '',
+            'id'            => 'search_content_meta_date',
+            'title'         => __('Show Post Date in Posts', 'waterfall'),
+            'type'          => 'checkbox'
+        ],         
         [
             'default'       => __('View Post', 'waterfall'),
             'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
