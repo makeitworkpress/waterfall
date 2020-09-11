@@ -72,7 +72,24 @@ $layout = [
                     'id'            => 'header_disable',
                     'title'         => __('Disable Header', 'waterfall'),
                     'type'          => 'checkbox'
-                ],    
+                ], 
+                [
+                    'default'       => '',
+                    'id'            => 'header_general_header',
+                    'title'         => __('General', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'header_width',
+                        'header_height',
+                        'header_fixed',
+                        'header_border',
+                        'header_headroom',
+                        'header_transparent',
+                        'header_logo_float',
+                        'header_disable_logo',
+                        'header_social'
+                    ]
+                ],                   
                 [
                     'default'       => 'full',
                     'id'            => 'header_width',
@@ -127,7 +144,27 @@ $layout = [
                     'id'            => 'header_disable_logo',
                     'title'         => __('Disable Header Logo', 'waterfall'),
                     'type'          => 'checkbox'
-                ],        
+                ],                
+                [
+                    'default'       => '',
+                    'id'            => 'header_social',
+                    'title'         => __('Add Social Icons to the Header', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                               
+                [
+                    'default'       => '',
+                    'id'            => 'header_menu_header',
+                    'title'         => __('Navigation Menu', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'header_menu_float',
+                        'header_disable_arrow_down',
+                        'header_disable_menu',
+                        'header_menu_hamburger',
+                        'header_menu_style',
+                        'header_disable_menu'
+                    ]
+                ],                               
                 [
                     'default'       => 'right',
                     'id'            => 'header_menu_float',
@@ -145,37 +182,7 @@ $layout = [
                     'title'         => __('Disable Dropdown Indicators', 'waterfall'),
                     'description'   => __('Disables the downward arrow that appears for menu items with children.', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                
-                [
-                    'default'       => '',
-                    'id'            => 'header_search',
-                    'title'         => __('Add a Search Icon to the Header', 'waterfall'),
-                    'type'          => 'checkbox'
-                ],
-                [
-                    'default'       => __('Nothing found!', 'waterfall'),
-                    'id'            => 'header_search_none',
-                    'title'         => __('Nothing Found Search Text', 'waterfall'),
-                    'description'   => __('Text when nothing is found in search', 'waterfall'),
-                    'selector'      => ['selector' => '.atom-search-results .atom-posts-none', 'html' => true],
-                    'transport'     => 'postMessage',                    
-                    'type'          => 'input'
-                ],
-                [
-                    'default'       => __('View All Results', 'waterfall'),
-                    'id'            => 'header_search_all',
-                    'title'         => __('All Results Search Text', 'waterfall'),
-                    'description'   => __('Text for link to all the results', 'waterfall'),
-                    'selector'      => ['selector' => '.atom-search-results .atom-search-all', 'html' => true],
-                    'transport'     => 'postMessage',                      
-                    'type'          => 'input'
-                ],                
-                [
-                    'default'       => '',
-                    'id'            => 'header_social',
-                    'title'         => __('Add Social Icons to the Header', 'waterfall'),
-                    'type'          => 'checkbox'
-                ],     
+                ],                                      
                 [
                     'default'       => '',
                     'id'            => 'header_disable_menu',
@@ -206,7 +213,90 @@ $layout = [
                         'left'      => __('Left (Always Hamburger)', 'waterfall'),
                         'right'     => __('Right (Always Hamburger)', 'waterfall'),
                     ]
-                ]  
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'header_search_header',
+                    'title'         => __('Search Element', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'header_search',
+                        'header_search_none',
+                        'header_search_all'
+                    ]
+                ],                                       
+                [
+                    'default'       => '',
+                    'id'            => 'header_search',
+                    'title'         => __('Add a Search Icon to the Header', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],
+                [
+                    'default'       => __('Nothing found!', 'waterfall'),
+                    'id'            => 'header_search_none',
+                    'title'         => __('Nothing Found Search Text', 'waterfall'),
+                    'description'   => __('Text when nothing is found in search', 'waterfall'),
+                    'selector'      => ['selector' => '.atom-search-results .atom-posts-none', 'html' => true],
+                    'transport'     => 'postMessage',                    
+                    'type'          => 'input'
+                ],
+                [
+                    'default'       => __('View All Results', 'waterfall'),
+                    'id'            => 'header_search_all',
+                    'title'         => __('All Results Search Text', 'waterfall'),
+                    'description'   => __('Text for link to all the results', 'waterfall'),
+                    'selector'      => ['selector' => '.atom-search-results .atom-search-all', 'html' => true],
+                    'transport'     => 'postMessage',                      
+                    'type'          => 'input'
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'header_top_header',
+                    'title'         => __('Top Header', 'waterfall'),
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'header_top_menu',
+                        'header_top_menu_float',
+                        'header_top_description',
+                        'header_top_description_float'
+                    ]
+                ],                                 
+                [
+                    'default'       => '',
+                    'id'            => 'header_top_menu',
+                    'title'         => __('Add Top Menu', 'waterfall'),
+                    'description'   => __('Adds an additional menu on top of the header. This menu can be set using the menu editor using the top menu location.', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],
+                [
+                    'default'       => 'right',
+                    'id'            => 'header_top_menu_float',
+                    'title'         => __('Top Menu Position', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => [
+                        'center'    => __('Center', 'waterfall'),
+                        'left'      => __('Left', 'waterfall'),
+                        'right'     => __('Right', 'waterfall'),
+                    ]
+                ],                 
+                [
+                    'default'       => '',
+                    'id'            => 'header_top_description',
+                    'title'         => __('Top Description', 'waterfall'),
+                    'description'   => __('Adds an optional description on top of the header.', 'waterfall'),
+                    'type'          => 'textarea'
+                ],
+                [
+                    'default'       => 'right',
+                    'id'            => 'header_top_description_float',
+                    'title'         => __('Top Description Position', 'waterfall'),
+                    'type'          => 'select',
+                    'choices'       => [
+                        'center'    => __('Center', 'waterfall'),
+                        'left'      => __('Left', 'waterfall'),
+                        'right'     => __('Right', 'waterfall'),
+                    ]
+                ]                                                   
             ]              
         ]
     ]
@@ -600,6 +690,7 @@ if( $types ) {
                         $type . '_footer_author',
                         $type . '_footer_comments',
                         $type . '_footer_comments_closed',
+                        $type . '_footer_comments_closed_disable',
                         $type . '_footer_comments_title',
                         $type . '_footer_comments_reply',
                         $type . '_footer_share',
@@ -647,7 +738,13 @@ if( $types ) {
                     'selector'      => ['selector' => '.main-footer .atom-comments-closed', 'html' => true],
                     'transport'     => 'postMessage',                  
                     'type'          => 'input'
-                ], 
+                ],
+                [
+                    'default'       => '',
+                    'id'            => $type . '_footer_comments_closed_disable',
+                    'title'         => __('Remove comments element when closed', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                 
                 [
                     'default'       => '',
                     'id'            => $type . '_footer_comments_title',

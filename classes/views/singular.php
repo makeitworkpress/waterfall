@@ -90,6 +90,7 @@ class Singular extends Base {
                 'footer_author',
                 'footer_comments',
                 'footer_comments_closed',
+                'footer_comments_closed_disable',
                 'footer_comments_title',
                 'footer_comments_reply',
                 'footer_share',
@@ -482,10 +483,11 @@ class Singular extends Base {
                     ],              
                     'grid'          => $this->layout['related_grid'] ? $this->layout['related_grid'] : 'third',
                     'image'         => [ 
-                        'enlarge'   => $this->layout['related_image_enlarge'] ? true : false, 
-                        'float'     => $this->layout['related_image_float'] ? $this->layout['related_image_float'] : 'none',
-                        'link'      => 'post', 
-                        'size'      => $this->layout['related_image'] ? $this->layout['related_image'] : 'square-ld'                         
+                        'attributes'    => ['class' => 'entry-image'],
+                        'enlarge'       => $this->layout['related_image_enlarge'] ? true : false, 
+                        'float'         => $this->layout['related_image_float'] ? $this->layout['related_image_float'] : 'none',
+                        'link'          => 'post', 
+                        'size'          => $this->layout['related_image'] ? $this->layout['related_image'] : 'square-ld'                         
                     ]
                 ],                
                 'queryArgs'         => $query,
@@ -598,7 +600,12 @@ class Singular extends Base {
                 } );
             }
             
-        }    
+        } 
+        
+        // Disable comments if they are closed
+        if( $this->layout['footer_comments_closed_disable'] && ! comments_open() ) {
+            unset($args['atoms']['comments']);
+        }
         
         $args = apply_filters( 'waterfall_content_footer_args', $args );
         

@@ -262,7 +262,7 @@ class Waterfall {
 
             if( $original_layout_values ) {
                 
-                $customizer_values  = get_theme_mod('waterfall_layout');
+                $customizer_values  = wf_get_data('layout');
 
                 foreach( $original_layout_values as $key => $value ) {
                     $customizer_values[$key] = $value;

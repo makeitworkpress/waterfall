@@ -25,8 +25,9 @@ $register = [
         ['name' => 'uhd', 'width' => 3840, 'height' => 2160, 'crop' => true]
     ],
     'menus' => [
-        'header-menu' => __('Header Menu', 'waterfall'),
-        'footer-menu' => __('Footer Menu', 'waterfall')
+        'header-menu'   => __('Header Menu', 'waterfall'),
+        'footer-menu'   => __('Footer Menu', 'waterfall'),
+        'top-menu'      => __('Top Menu', 'waterfall')
     ],
     'sidebars' => [],    
 ];

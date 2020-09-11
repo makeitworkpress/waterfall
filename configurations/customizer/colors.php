@@ -832,7 +832,7 @@ $colors = [
             'fields'    => [                      
                 [
                     'selector'     => [ 
-                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-button.components-default-background, .header .atom-cart button.button.alt, .header .atom-cart input.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-cart-count, .elementor-field-type-submit .elementor-button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce button.button.alt.disabled, .elementor-element .elementor-field-type-submit button', 
+                        'selector' => 'input[type=\'submit\'], input[type=\'submit\'].button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-button.components-default-background, .header .atom-cart button.button.alt, .header .atom-cart input.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .elementor-field-type-submit .elementor-button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce button.button.alt.disabled, .elementor-element .elementor-field-type-submit button', 
                         'property' => 'background-color' 
                     ],
                     'default'       => '',
@@ -843,7 +843,7 @@ $colors = [
                 ],
                 [
                     'selector'      => [ 
-                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-button.components-default-background:hover, .header .atom-cart button.button.alt:hover, .header .atom-cart input.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-cart-count:hover, .elementor-field-type-submit .elementor-button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt.disabled:hover, .elementor-element .elementor-field-type-submit button:hover',                         
+                        'selector' => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-button.components-default-background:hover, .header .atom-cart button.button.alt:hover, .header .atom-cart input.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .elementor-field-type-submit .elementor-button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt.disabled:hover, .elementor-element .elementor-field-type-submit button:hover',                         
                         'property' => 'background-color' 
                     ],
                     'default'       => '',
@@ -853,7 +853,7 @@ $colors = [
                     'type'          => 'colorpicker'
                 ],    
                 [
-                    'selector'      => 'input[type=\'submit\'], input[type=\'submit\'].button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-button.components-default-background, .header .atom-cart button.button.alt, .header .atom-cart input.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .atom-cart-count, .elementor-field-type-submit .elementor-button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce button.button.alt.disabled, .elementor-field-type-submit button', 
+                    'selector'      => 'input[type=\'submit\'], input[type=\'submit\'].button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .atom-button.components-default-background, .header .atom-cart button.button.alt, .header .atom-cart input.button.alt, .header .atom-cart a.button.alt, .header .atom-cart a.button.checkout, .elementor-field-type-submit .elementor-button, .elementor-element.elementor-button-danger .elementor-button, .woocommerce input.button.alt, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce button.button.alt.disabled, .elementor-field-type-submit button', 
                     'default'       => '',
                     'id'            => 'primary_button_color',
                     'title'         => __('Primary Button Text Color', 'waterfall'),
@@ -861,7 +861,7 @@ $colors = [
                     'type'          => 'colorpicker'
                 ],
                 [
-                    'selector'      => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-button.components-default-background:hover, .header .atom-cart button.button.alt:hover, .header .atom-cart input.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .atom-cart-count:hover, .elementor-field-type-submit .elementor-button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt.disabled:hover, .elementor-field-type-submit button:hover',                         
+                    'selector'      => 'input[type=\'submit\']:hover, input[type=\'submit\'].button:hover, .wp-block-file .wp-block-file__button:hover, .wp-block-button__link:hover, .atom-button.components-default-background:hover, .header .atom-cart button.button.alt:hover, .header .atom-cart input.button.alt:hover, .header .atom-cart a.button.alt:hover, .header .atom-cart a.button.checkout:hover, .elementor-field-type-submit .elementor-button:hover, .elementor-element.elementor-button-danger .elementor-button:hover, .woocommerce input.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt.disabled:hover, .elementor-field-type-submit button:hover',                         
                     'default'       => '',
                     'id'            => 'primary_button_color_hover',
                     'title'         => __('Primary Button Text Hover Color', 'waterfall'),
@@ -909,7 +909,7 @@ $colors = [
                 [
                     'default'       => '',
                     'selector'      => [
-                        'selector'  => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
+                        'selector'  => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual, #add_payment_method table.cart td.actions .coupon .input-text, .woocommerce-cart table.cart td.actions .coupon .input-text, .woocommerce-checkout table.cart td.actions .coupon .input-text', 
                         'property'  => 'border-color'
                     ],
                     'id'            => 'form_border_color',
@@ -980,4 +980,230 @@ foreach( $types as $type => $label ) {
         );
         break;
     }
+}
+
+/**
+ * If WooCommerce is installed, some additional colors may be adjusted
+ */
+if( class_exists('WooCommerce') ) {
+
+    $colors['sections']['woocommerce'] = [
+        'id'            => 'colors_woocommerce',
+        'title'         => __('WooCommerce Colors', 'waterfall'),
+        'fields'    => [ 
+            // [
+            //     'selector'      => ['selector' => '.atom-scroll.waterfall-scroll-top:hover', 'property' => 'background-color'],
+            //     'default'       => '',
+            //     'id'            => 'scroll_top_background_hover',
+            //     'title'         => __('Scroll to Top Background Hover Color', 'waterfall'),
+            //     'transport'     => 'postMessage',
+            //     'type'          => 'colorpicker'
+            // ]
+            [
+                'default'       => '',
+                'id'            => 'colors_woocommerce_cart_header',
+                'title'         => __('Cart', 'waterfall'),
+                'type'          => 'heading',
+                'choices'       => [
+                    'colors_woocommerce_cart_icon',
+                    'colors_woocommerce_cart_count',
+                    'colors_woocommerce_cart_count_background'
+                ]                    
+            ],
+            [
+                'selector'      => '.atom-cart-icon, .atom-cart-icon:hover',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_cart_icon',
+                'title'         => __('Cart Icon Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],            
+            [
+                'selector'      => '.atom-cart-count',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_cart_count',
+                'title'         => __('Cart Count Text Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => ['selector' => '.atom-cart-count', 'property' => 'background-color'],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_cart_count_background',
+                'title'         => __('Cart Count Background Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],                           
+            [
+                'default'       => '',
+                'id'            => 'colors_woocommerce_product_header',
+                'title'         => __('Products', 'waterfall'),
+                'type'          => 'heading',
+                'choices'       => [
+                    'colors_woocommerce_price',
+                    'colors_woocommerce_price_shop',
+                    'colors_woocommerce_onsale',
+                    'colors_woocommerce_onsale_background',
+                    'colors_woocommerce_stars'
+                ]                    
+            ],            
+            [
+                'selector'      => '.woocommerce div.product p.price',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_price',
+                'title'         => __('Single Product Price Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => '.woocommerce ul.products li.product .price',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_price_shop',
+                'title'         => __('Shop Price Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],            
+            [
+                'selector'      => '.woocommerce span.onsale',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_onsale',
+                'title'         => __('On Sale Badge Text Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => ['selector' => '.woocommerce span.onsale', 'property' => 'background-color'],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_onsale_background',
+                'title'         => __('On Sale Badge Background Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],                        
+            [
+                'selector'      => '.woocommerce .stars a',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_stars',
+                'title'         => __('Product Rating Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],                         
+            [
+                'default'       => '',
+                'id'            => 'colors_woocommerce_message_header',
+                'title'         => __('Messages', 'waterfall'),
+                'type'          => 'heading',
+                'choices'       => [
+                    'colors_woocommerce_message_accent',
+                    'colors_woocommerce_message_text',
+                    'colors_woocommerce_message_link',
+                    'colors_woocommerce_message_background',
+                    'colors_woocommerce_info_accent',
+                    'colors_woocommerce_info_text',
+                    'colors_woocommerce_info_link',
+                    'colors_woocommerce_info_background',
+                    'colors_woocommerce_error_accent',
+                    'colors_woocommerce_error_text',
+                    'colors_woocommerce_error_link',
+                    'colors_woocommerce_error_background'
+                ]                    
+            ],            
+            [
+                'selector'      => ['selector' => '.woocommerce .woocommerce-message, .woocommerce .woocommerce-message:before', 'property' => ['border-top-color', 'color']],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_message_accent',
+                'title'         => __('General Message Accent Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => '.woocommerce .woocommerce-message',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_message_text',
+                'title'         => __('General Message Text Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ], 
+            [
+                'selector'      => '.woocommerce .woocommerce-message a:not(.button)',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_message_link',
+                'title'         => __('General Message Link Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],                         
+            [
+                'selector'      => ['selector' => '.woocommerce .woocommerce-message', 'property' => 'background-color'],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_message_background',
+                'title'         => __('General Message Background Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => ['selector' => '.woocommerce .woocommerce-info, .woocommerce .woocommerce-info:before', 'property' => ['border-top-color', 'color']],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_info_accent',
+                'title'         => __('Info Message Accent Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => '.woocommerce .woocommerce-info',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_info_text',
+                'title'         => __('Info Message Text Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => '.woocommerce .woocommerce-info a:not(.button)',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_info_link',
+                'title'         => __('Info Message Link Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],                         
+            [
+                'selector'      => ['selector' => '.woocommerce .woocommerce-info', 'property' => 'background-color'],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_info_background',
+                'title'         => __('Info Message Background Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => ['selector' => '.woocommerce .woocommerce-error, .woocommerce .woocommerce-error:before', 'property' => ['border-top-color', 'color']],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_error_accent',
+                'title'         => __('Error Message Accent Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => '.woocommerce .woocommerce-error',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_error_text',
+                'title'         => __('Error Message Text Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],
+            [
+                'selector'      => '.woocommerce .woocommerce-error a:not(.button)',
+                'default'       => '',
+                'id'            => 'colors_woocommerce_error_link',
+                'title'         => __('Error Message Link Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ],                         
+            [
+                'selector'      => ['selector' => '.woocommerce .woocommerce-error', 'property' => 'background-color'],
+                'default'       => '',
+                'id'            => 'colors_woocommerce_error_background',
+                'title'         => __('Error Message Background Color', 'waterfall'),
+                'transport'     => 'postMessage',
+                'type'          => 'colorpicker'
+            ]                        
+        ]
+    ];    
+
 }

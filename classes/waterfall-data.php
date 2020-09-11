@@ -72,11 +72,13 @@ class Waterfall_Data {
     }
 
     /**
-     * Loads metaData (hooked to WP)
+     * Loads metaData for singular posts or pages (hooked to WP)
      */
     public function loadMeta() {
 
-        $this->data['meta'] = get_post_meta( get_the_ID(), 'waterfall_meta', true);
+        if( is_singular() ) {
+            $this->data['meta'] = get_post_meta( get_the_ID(), 'waterfall_meta', true);
+        }
         
     }
     

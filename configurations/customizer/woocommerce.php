@@ -103,6 +103,18 @@ $woocommerce = [
                     'type'          => 'checkbox'
                 ],
                 [
+                    'default'       => '',
+                    'id'            => 'product_content_slider_dots',
+                    'title'         => __('Enable dot navigation in slider', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'product_content_slider_arrows',
+                    'title'         => __('Enable arrow navigation in slider', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                                
+                [
                     'description'   => __('The lightbox will not apply when Product Zoom is enabled. If Elementor is active on the product, it may interfere.', 'waterfall'),
                     'default'       => '',
                     'id'            => 'product_content_lightbox',

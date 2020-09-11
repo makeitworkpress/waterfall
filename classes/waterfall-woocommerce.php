@@ -7,11 +7,26 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Waterfall_WooCommerce extends Waterfall_Base {
 
     /**
+     * Holds our customizer data
+     * @access private
+     */
+    private $customizer = [];
+
+    /**
      * Initialize our WooCommerce functions
      */
     public function initialize() { 
+
+        $this->customizer   = wf_get_data( 'woocommerce', [
+            'product_content_zoom', 
+            'product_content_lightbox', 
+            'product_content_slider',
+            'product_content_slider_arrows',
+            'product_content_slider_dots'
+        ]);
         
-        $this->filters = [
+        $this->filters      = [
+            ['woocommerce_single_product_carousel_options', 'productCarouselSettings'],
             ['woocommerce_template_path', 'templatePath']
         ];
         
@@ -26,21 +41,43 @@ class Waterfall_WooCommerce extends Waterfall_Base {
 
         add_theme_support( 'woocommerce' );  
         
-        $woocommerce = wf_get_data( 'woocommerce', ['product_content_zoom', 'product_content_lightbox', 'product_content_slider'] );
-        
-        if( $woocommerce['product_content_zoom'] ) {
+        if( $this->customizer['product_content_zoom'] ) {
             add_theme_support( 'wc-product-gallery-zoom' );
         }
     
         // Lightbox Support
-        if( $woocommerce['product_content_lightbox'] ) {
+        if( $this->customizer['product_content_lightbox'] ) {
             add_theme_support( 'wc-product-gallery-lightbox' );
         }
         
         // Slider support
-        if( $woocommerce['product_content_slider']  ) {
+        if( $this->customizer['product_content_slider']  ) {
             add_theme_support( 'wc-product-gallery-slider' );
         }
+
+    }
+
+    /**
+     * Adds support for arrow and dot navigation in the carousel
+     * 
+     * @param Array {$args} The carousel arguments
+     * @return Array {$args} The modifiedcarousel arguments
+     */
+    public function productCarouselSettings( $args ) {
+        
+        // Dot navigation
+        if( $this->customizer['product_content_slider_dots'] ) {
+            $args['controlNav']     = true;
+        }
+
+        // Arrows
+        if( $this->customizer['product_content_slider_arrows'] ) {
+            $args['directionNav']   = true;
+            $args['nextText']       = '<i class="fa fa-angle-right"></i>';
+            $args['prevText']       = '<i class="fa fa-angle-left"></i>';
+        }
+        
+        return $args;
 
     }
 

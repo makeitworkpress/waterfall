@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Header extends Base {
 
     /**
-     * Sets the properties for the heading
+     * Sets the properties for the heading. For these properties, data is loaded.
      */
     protected function setProperties() {
         $this->properties = apply_filters( 'waterfall_header_properties', [
@@ -25,11 +25,15 @@ class Header extends Base {
                 'header_headroom',
                 'header_menu_float',
                 'header_menu_hamburger',
+                'header_menu_style',
                 'header_search',
                 'header_search_all',
                 'header_search_none',
                 'header_social',
-                'header_menu_style',
+                'header_top_description',
+                'header_top_description_float',  
+                'header_top_menu',
+                'header_top_menu_float',                               
                 'header_transparent', 
                 'header_width'   
             ],
@@ -152,8 +156,9 @@ class Header extends Base {
             unset($atoms['logo']['properties']['defaultTransparent']);
             unset($atoms['logo']['properties']['mobileTransparent']);
         }
-    
-        $args = apply_filters( 'waterfall_header_args', [
+
+        // Our arguments
+        $args = [
             'atoms'         => $atoms,
             'attributes'    => [
                 'class'     => $this->layout['header_border'] ? 'header waterfall-no-border molecule-header-top' : 'header molecule-header-top'
@@ -162,7 +167,40 @@ class Header extends Base {
             'headroom'      => $this->layout['header_headroom'],
             'fixed'         => $this->layout['header_fixed'],
             'transparent'   => $transparent
-        ] );
+        ];        
+
+        /**
+         * Set-up our top header, a small header on top of the regular header
+         */
+        
+        // Top Atoms menu
+        if( $this->layout['header_top_menu'] ) {
+            $args['topAtoms']['menu'] = [ 
+                'atom'          => 'menu',
+                'properties'    => [
+                    'args'          => ['theme_location' => 'top-menu'], 
+                    'dropdown'      => false,
+                    'float'         => $this->layout['header_top_menu_float'] ? $this->layout['header_top_menu_float'] : 'right',
+                    'hamburger'     => false,
+                ]
+            ];    
+        }
+
+        // Top Atoms description
+        if( $this->layout['header_top_description'] ) {
+            $args['topAtoms']['description'] = [ 
+                'atom'          => 'description',
+                'properties'    => [
+                    'description'   => $this->layout['header_top_description'], 
+                    'float'         => $this->layout['header_top_description_float'] ? $this->layout['header_top_description_float'] : 'right',
+                ]
+            ];             
+        }        
+    
+        /**
+         * Render the element and set the arguments
+         */
+        $args = apply_filters( 'waterfall_header_args', $args );
     
         // Build the header!
         WP_Components\Build::molecule( 'header', $args );        

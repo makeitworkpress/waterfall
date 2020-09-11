@@ -159,10 +159,11 @@ class Index extends Base {
                     'title'     => ['atom' => 'title', 'properties' => ['attributes' => ['itemprop' => 'name', 'class' => 'entry-title'], 'tag' => 'h2', 'link' => 'post']] 
                 ],                                 
                 'image'         => [
-                    'enlarge'   => $this->layout['content_image_enlarge'] ? true : false, 
-                    'float'     => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : $defaults['float'],                   
-                    'link'      => 'post', 
-                    'size'      => $this->layout['content_image'] ? $this->layout['content_image'] : $defaults['size']                    
+                    'attributes'    => ['class' => 'entry-image'],
+                    'enlarge'       => $this->layout['content_image_enlarge'] ? true : false, 
+                    'float'         => $this->layout['content_image_float'] ? $this->layout['content_image_float'] : $defaults['float'],                   
+                    'link'          => 'post', 
+                    'size'          => $this->layout['content_image'] ? $this->layout['content_image'] : $defaults['size']                    
                 ]
             ],
             'schema'            => in_array($type, $noSchema) ? false : true,

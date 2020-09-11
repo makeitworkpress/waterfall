@@ -1264,7 +1264,7 @@ msgstr "Algemene melding tekstkleur"
 
 #: configurations/customizer/colors.php:1130
 msgid "General Message Link Color"
-msgstr "Algemene melding link kleur"
+msgstr "Algemene melding linkkleur"
 
 #: configurations/customizer/colors.php:1138
 msgid "General Message Background Color"
@@ -1280,7 +1280,7 @@ msgstr "Info-melding tekstkleur"
 
 #: configurations/customizer/colors.php:1162
 msgid "Info Message Link Color"
-msgstr "Info-melding link kleur"
+msgstr "Info-melding linkkleur"
 
 #: configurations/customizer/colors.php:1170
 msgid "Info Message Background Color"
@@ -1296,7 +1296,7 @@ msgstr "Foutmelding tekstkleur"
 
 #: configurations/customizer/colors.php:1194
 msgid "Error Message Link Color"
-msgstr "Foutmelding link kleur"
+msgstr "Foutmelding linkkleur"
 
 #: configurations/customizer/colors.php:1202
 msgid "Error Message Background Color"
