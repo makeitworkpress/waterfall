@@ -15,7 +15,7 @@ $molecule = MakeitWorkPress\WP_Components\Build::multiParseArgs( $molecule, [
     'filter'            => false,                       // Adds a custom filter for a certain taxonomy. Accepts a certain taxonomy name in an array.  
     'gridGap'           => 'default',                                                
     'infinite'          => false,    
-    'none'              => __('Bummer! No posts found.', 'components'),
+    'none'              => __('Bummer! No posts found.', WP_COMPONENTS_LANGUAGE),
     /**
      * Accepts properties for each post
      */
@@ -35,7 +35,7 @@ $molecule = MakeitWorkPress\WP_Components\Build::multiParseArgs( $molecule, [
         'footerAtoms'   => [                                // Accepts a set of atoms for use in the post footer
             'button' => [
                 'atom'          => 'button', 
-                'properties'    => ['float' => 'right', 'label' => __('View post', 'components'), 'link' => 'post', 'size' => 'small'] 
+                'properties'    => ['float' => 'right', 'label' => __('View post', WP_COMPONENTS_LANGUAGE), 'link' => 'post', 'size' => 'small'] 
             ]
         ],          
         'headerAtoms'   => [                                // Accepts a set of atoms for use in the post header
@@ -170,6 +170,7 @@ $attributes = MakeitWorkPress\WP_Components\Build::attributes($molecule['attribu
 
                     $key++;
 
+                    // Allows our posts to have default attributes as regular atoms and molecules can have.
                     $postProperties = MakeitWorkPress\WP_Components\Build::setDefaultProperties('post', $molecule['postProperties']);
                     $postAttributes = MakeitWorkPress\WP_Components\Build::attributes($postProperties['attributes']);
 

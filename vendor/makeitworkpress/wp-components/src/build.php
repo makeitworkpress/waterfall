@@ -16,6 +16,8 @@ class Build {
      * @param string    $template   The template to load, either a template in the molecule or atom's folder
      * @param array     $properties The custom properties for the template    
      * @param array     $render     If the element is rendered. If set to false, the contents of the elements are returned  
+     * 
+     * @return string|void          The rendered string for the given atom or molecule
      */
     private static function render( $type = 'atom', $template, $properties = [], $render = true ) {
         
@@ -43,7 +45,7 @@ class Build {
         }
             
         // Our template path
-        $path = apply_filters( 'components_' . $type . '_path', COMPONENTS_PATH . $type . 's/' . $template . '.php', $template );
+        $path = apply_filters( 'components_' . $type . '_path', WP_COMPONENTS_PATH . $type . 's/' . $template . '.php', $template );
         
         if( file_exists($path) ) {
             
@@ -82,12 +84,40 @@ class Build {
         $properties['attributes']['class']  = isset($properties['attributes']['class']) ? $type . ' ' . $properties['attributes']['class'] : $type;
         $properties['attributes']['class'] .= ' ' . $type . '-' . $template;
 
+        // These are the common properties that each element can have
+        $classes = [
+            'align', 
+            'animation', 
+            'appear', 
+            'background', 
+            'border',
+            'boxshadow', 
+            'color', 
+            'display', 
+            'float', 
+            'grid', 
+            'height', 
+            'hover', 
+            'overlay',
+            'parallax', 
+            'position', 
+            'rounded', 
+            'video', 
+            'width'
+        ];
+
         /**
          * Properties that generate a specific class for a style or are generic
          */
-        foreach( ['align', 'animation', 'appear', 'background', 'border', 'color', 'display', 'float', 'grid', 'height', 'hover', 'parallax', 'position', 'rounded', 'width'] as $class ) {
+        foreach( $classes as $class ) {
             
             if( isset($properties[$class]) && $properties[$class] ) {
+
+                // Advanced animations using animate.css (should be enabled in the configurations during instance boot as well)
+                if( $class == 'animation' && ! in_array($properties[$class], ['fadein', 'fadeindown', 'slideinleft', 'slideinright']) ) {
+                    $properties['attributes']['class'] .= ' animate__animated animate__' . $properties[$class]; 
+                    continue;
+                }                
 
                 // Backgrounds
                 if( $class == 'background' && preg_match('/hsl|http|https|rgb|linear-gradient|#/', $properties[$class]) ) {
@@ -115,6 +145,24 @@ class Build {
                     }
                     continue;
                 }
+
+                // Box Shadow
+                if( $class == 'boxshadow' && isset($properties[$class]) ) {
+                    
+                    // Custom shadows using CSS attr()
+                    if( is_array($properties[$class]) ) {
+                        $properties['attributes']['class'] .= ' components-custom-boxshadow';
+                        foreach( ['x', 'y', 'blur', 'spread', 'color', 'type'] as $value) {
+                            if( isset($properties[$class][$value]) ) {
+                                $properties['attributes']['data'][$value] = $properties[$class][$value];
+                            }
+                        }
+                    // Predefined shadows    
+                    } elseif( is_string($properties[$class]) ) {
+                        $properties['attributes']['class'] .= ' components-' . $properties[$class] . '-boxshadow';
+                    }
+                    continue;
+                }                
                 
                 // Color
                 if( $class == 'color' && preg_match('/hsl|rgb|#/', $properties[$class]) ) {
@@ -133,7 +181,36 @@ class Build {
                     continue;
                 }
 
-                // Set our definite class
+                // Advanced hover settings using hover.css (should be enabled in the configurations during instance boot as well)
+                if( $class == 'hover' ) {
+                    $properties['attributes']['class'] .= ' hvr-' . $properties[$class]; 
+                    continue;
+                } 
+                
+                // Overlay
+                if( $class == 'overlay' && isset($properties[$class]) ) {
+                    
+                    // Custom overlays using CSS attr()
+                    if( is_array($properties[$class]) ) {
+                        $properties['attributes']['class'] .= ' components-overlay components-custom-overlay';
+                        foreach( ['color', 'opacity'] as $value) {
+                            if( isset($properties[$class][$value]) ) {
+                                $properties['attributes']['data'][$value] = $properties[$class][$value];
+                            }
+                        }
+                    // Predefined overlays  
+                    } elseif( is_string($properties[$class]) ) {
+                        $properties['attributes']['class'] .= ' components-overlay components-' . $properties[$class] . '-overlay';
+                    }
+                    continue;
+                }                 
+
+                if( $class == 'video' ) {
+                    $properties['attributes']['class'] .= ' components-video-background'; 
+                    continue;
+                }                
+
+                // Set our definite class for other properties
                 $properties['attributes']['class'] .= is_bool($properties[$class]) ? ' components-' . $class : ' components-' . $properties[$class] . '-' . $class;
 
             }
@@ -247,8 +324,7 @@ class Build {
                 // Atoms are always overwritten by the arguments
                 } elseif( in_array($key, ['atoms', 'contentAtoms', 'footerAtoms', 'headerAtoms', 'image', 'socketAtoms', 'topAtoms']) ) { 
                     $array[$key] = $element;
-                } 
-                elseif( isset( $array[$key] ) && (is_array( $array[$key] )) && ! empty($array[$key]) && is_array($element) ) {
+                } elseif( isset( $array[$key] ) && (is_array( $array[$key] )) && ! empty($array[$key]) && is_array($element) ) {
                     $array[$key] = self::multiParseArgs( $element, $array[$key] );
                 } else {
                     $array[$key] = $element;

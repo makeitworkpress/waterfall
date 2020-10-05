@@ -75,42 +75,43 @@ class Background implements Field {
             'defaults'      => [],
             // Default labels
             'labels'        => [
-                'add'       => __('Select', 'wp-custom-fields'),
-                'button'    => __('Add Background', 'wp-custom-fields'),
-                'title'     => __('Select a Background', 'wp-custom-fields')
+                'add'           => __('Select', 'wp-custom-fields'),
+                'button'        => __('Add Background', 'wp-custom-fields'),
+                'placeholder'   => __('— Select —', 'wp-custom-fields'),
+                'title'         => __('Select a Background', 'wp-custom-fields')
             ],
             // Properties
             'properties'    => [
                 'repeat' => [
-                    'placeholder' => __('Repeat', 'wp-custom-fields'),
-                    'options'  => [
+                    'placeholder'   => __('Background Repeat', 'wp-custom-fields'),
+                    'options'       => [
                         'no-repeat' => __('No Repeat', 'wp-custom-fields'),
-                        'repeat' => __('Repeat', 'wp-custom-fields'),
-                        'repeat-x' => __('Repeat Horizontally', 'wp-custom-fields'),
-                        'repeat-y' => __('Repeat Vertically', 'wp-custom-fields'),
-                        'inherit' => __('Inherit', 'wp-custom-fields')
+                        'repeat'    => __('Repeat', 'wp-custom-fields'),
+                        'repeat-x'  => __('Repeat Horizontally', 'wp-custom-fields'),
+                        'repeat-y'  => __('Repeat Vertically', 'wp-custom-fields'),
+                        'inherit'   => __('Inherit', 'wp-custom-fields')
                     ]
                 ],
                 'attachment' => [
-                    'placeholder' => __('Attachment', 'wp-custom-fields'),
-                    'options'  => [
-                        'fixed' => __('Fixed', 'wp-custom-fields'),
-                        'scroll' => __('Scroll', 'wp-custom-fields'),
-                        'inherit' => __('Inherit', 'wp-custom-fields') 
+                    'placeholder'   => __('Background Attachment', 'wp-custom-fields'),
+                    'options'       => [
+                        'fixed'     => __('Fixed', 'wp-custom-fields'),
+                        'scroll'    => __('Scroll', 'wp-custom-fields'),
+                        'inherit'   => __('Inherit', 'wp-custom-fields') 
                     ]
                 ],
                 'size' => [
-                    'placeholder' => __('Size', 'wp-custom-fields'),
-                    'options'  => [
-                        'cover' => __('Cover', 'wp-custom-fields'),
-                        'contain' => __('Contain', 'wp-custom-fields'),
-                        '100%' => __('100%', 'wp-custom-fields'),
-                        'inherit' => __('Inherit', 'wp-custom-fields')
+                    'placeholder'   => __('Background Size', 'wp-custom-fields'),
+                    'options'       => [
+                        'cover'     => __('Cover', 'wp-custom-fields'),
+                        'contain'   => __('Contain', 'wp-custom-fields'),
+                        '100%'      => __('100%', 'wp-custom-fields'),
+                        'inherit'   => __('Inherit', 'wp-custom-fields')
                     ]
                 ],            
                 'position' => [
-                    'placeholder' => __('Position', 'wp-custom-fields'),
-                    'options'  => [
+                    'placeholder'   => __('Background Position', 'wp-custom-fields'),
+                    'options'       => [
                         'center top' => __('Center Top', 'wp-custom-fields'),
                         'center center' => __('Center Center', 'wp-custom-fields'),
                         'center bottom' => __('Center Bottom', 'wp-custom-fields'),
@@ -122,7 +123,15 @@ class Background implements Field {
                         'right bottom' => __('Right Bottom', 'wp-custom-fields')
                     ]
                 ]
-            ]
+            ],
+            'settings' => [
+                '[color]', 
+                '[upload]', 
+                '[repeat]', 
+                '[attachment]', 
+                '[size]',
+                '[position]'
+            ]            
         ];
             
         return apply_filters( 'wp_custom_fields_background_config', $configurations );

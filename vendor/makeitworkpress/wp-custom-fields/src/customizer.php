@@ -12,6 +12,10 @@ use WP_Customize_Cropped_Image_Control as WP_Customize_Cropped_Image_Control;
 use WP_Customize_Image_Control as WP_Customize_Image_Control;
 use WP_Customize_Media_Control as WP_Customize_Media_Control;
 use WP_Customize_Upload_Control as WP_Customize_Upload_Control;
+use WP_Customize_Code_Editor_Control as WP_Customize_Code_Editor_Control;
+use WP_Customize_Background_Image_Control as WP_Customize_Background_Image_Control;
+use WP_Customize_Background_Position_Control as WP_Customize_Background_Position_Control;
+use WP_Customize_Date_Time_Control as WP_Customize_Date_Time_Control;
 
 // Bail if accessed directly
 if ( ! defined('ABSPATH') ) {
@@ -193,18 +197,26 @@ class Customizer {
                  * Add our settings. Elaborate controls have multiple settings.
                  */
                 switch( $field['type'] ) {
+                    case 'background-properties':
                     case 'dimension':
                     case 'typography':
+
+ 
+                        if( $field['type'] == 'background-properties') {
+                            $configurations = Fields\Background::configurations();
+                            unset($configurations['settings'][0]); // Remove the upload setting field, as it is not used as a setting (key = 0)
+                            unset($configurations['settings'][1]); // Remove the color setting field, as it is not used as a setting (key = 1)
+                        } 
+                        
+                        if( $field['type'] == 'dimension') {
+                            $configurations = Fields\Dimension::configurations();
+                        }                        
 
                         if( $field['type'] == 'typography') {
                             $configurations = Fields\Typography::configurations();
                         }
 
-                        if( $field['type'] == 'dimension') {
-                            $configurations = Fields\Dimension::configurations();
-                        }
-
-                        // Add all custom settings
+                        // Add all custom settings for the given field
                         foreach( $configurations['settings'] as $setting ) {  
                             $settingArgs['sanitize_callback'] = Validate::sanitizeCustomizerField($setting);
                             $wp_customize->add_setting($panel['id'] . '[' . $field['id'] . ']' . $setting, $settingArgs );    
@@ -213,7 +225,7 @@ class Customizer {
                         break;                      
                     default:
 
-                        // Sanitize values. @todo Move this to another function
+                        // Sanitize values.
                         if( ! isset($field['sanitize']) ) {
                             $settingArgs['sanitize_callback'] = Validate::sanitizeCustomizerField($field['type']);
                         }
@@ -231,7 +243,7 @@ class Customizer {
                 ];
                 
                 // Define our additional control arguments that may be added
-                $controls = [ 'choices', 'description', 'height', 'input_attrs', 'mime_type', 'type', 'width' ];
+                $controls = [ 'choices', 'code_type', 'description', 'height', 'input_attrs', 'mime_type', 'type', 'width' ];
                 
                 foreach( $controls as $type ) {
                     if( isset($field[$type]) ) {
@@ -242,15 +254,20 @@ class Customizer {
                 /**
                  * Custom Control types
                  */
-                switch( $field['type'] ) {
+                switch( $field['type'] ) {                                           
+                    case 'code-editor':
+                        unset($controlArgs['type']);
+                        $controlArgs['code_type'] = isset($controlArgs['code_type']) ? $controlArgs['code_type'] : 'text/css';
+                        $wp_customize->add_control( new WP_Customize_Code_Editor_Control($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) ); 
+                        break;                      
                     case 'colorpicker':
-                        unset($controlArgs['type']); // Having a defined type breaks the color picker somehow
+                        unset($controlArgs['type']);
                         $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) ); 
                         break;                    
-                    // @todo somehow this doesn't pop-up yet
                     case 'cropped-image':
+                        unset($controlArgs['type']);
                         $wp_customize->add_control( new WP_Customize_Cropped_Image_Control($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) ); 
-                        break;
+                        break;                       
                     case 'image':
                         $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) ); 
                         break;                    
@@ -262,13 +279,12 @@ class Customizer {
                         break;
                     case 'heading':
                         $wp_customize->add_control( new Fields\Customizer\Heading($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) );
-                        break; 
-                    case 'section':
-                        $wp_customize->add_control( new Fields\Customizer\Section($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) );
                         break;
                     case 'textarea':
                         $wp_customize->add_control( new Fields\Customizer\TextArea($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) );
                         break;
+                    // Fields with multiple input fields
+                    case 'background-properties':                          
                     case 'dimension':                          
                     case 'typography':
                         
@@ -278,13 +294,17 @@ class Customizer {
                             $link = str_replace( ['[', ']'], '', $setting );
                             $controlArgs['settings'][$link] = $panel['id'] . '[' . $field['id'] . ']' . $setting;
                         }
-                        
-                        if( $field['type'] == 'typography' ) {
-                            $wp_customize->add_control( new Fields\Customizer\Typography($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) );
-                        }
+
+                        if( $field['type'] == 'background-properties' ) {
+                            $wp_customize->add_control( new Fields\Customizer\Background_Properties($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) );
+                        }                         
 
                         if( $field['type'] == 'dimension' ) {
                             $wp_customize->add_control( new Fields\Customizer\Dimension($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) );
+                        }                        
+                        
+                        if( $field['type'] == 'typography' ) {
+                            $wp_customize->add_control( new Fields\Customizer\Typography($wp_customize, $panel['id'] . '[' . $field['id'] . ']', $controlArgs) );
                         }
 
                         break;                         
