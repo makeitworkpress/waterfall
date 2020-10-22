@@ -1,11 +1,20 @@
 /**
- *	Theme Name: Waterfall
- *	Theme URI: https://makeitwork.press/wordpress-themes/waterfall/
- *	Description: A versatile WordPress theme build for customization
- *	Version: 2.4.0
- *	Author: Michiel Tramper (@michieltramper)
- *	Author URI: https://makeitwork.press
- *  Github Theme URI: https://github.com/makeitworkpress/waterfall
+ * Theme Name: Waterfall
+ * Theme URI: https://makeitwork.press/wordpress-themes/waterfall/
+ * Description: A versatile WordPress theme build for customization
+ * Version: 2.4.0
+ * Author: Michiel Tramper (@michieltramper)
+ * Author URI: https://makeitwork.press
+ * Github Theme URI: https://github.com/makeitworkpress/waterfall
+ * 
+ * License: GNU General Public License v3 or later
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.htm
+ * 
+ * Requires at least: 5.0
+ * Requires PHP: 7.0
+ * Tested up to: 5.5.1
+ *
+ * Tags: blog, one-column, two-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks
  */
 
- /* This file is only there to let Wordpress know there is a theme! */
+/* This file is only there to let Wordpress know there is a theme! */

@@ -176,7 +176,13 @@ body:not(.elementor-page):not(.woocommerce-page) .readable-content {
     }
 }
 
-/* Archive Posts */
+/* Other Styles */
+.bypostauthor {
+    color: inherit; // Required to comply with Theme Requirements
+}
+
+/* Posts Arcives and Post Grids
+----------------------*/
 .molecule-post {
     .entry-author {
         display: inline-block;
@@ -203,6 +209,9 @@ body:not(.elementor-page):not(.woocommerce-page) .readable-content {
         img {
             margin: 0;
         }
+    }
+    &.sticky {
+        border-bottom: 1px solid @e-grey;
     }
 }
 
