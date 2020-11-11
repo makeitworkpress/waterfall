@@ -489,7 +489,7 @@ if( $types ) {
                     'selector'      => [
                         'min-width' => '768px',
                         'property'  => 'width',
-                        'selector'  => '.single-' . $type . '.waterfall-left-sidebar .content, .single-' . $type . '.waterfall-right-sidebar .content'
+                        'selector'  => $type == 'page' ? '.page .content' : '.single-' . $type . ' .content'
                     ],
                     'default'       => '',
                     'id'            => $type . '_content_sidebar_width',
@@ -509,7 +509,7 @@ if( $types ) {
                     'selector'      => [
                         'min-width' => '768px',
                         'property'  => 'width',
-                        'selector'  => '.single-' . $type . '.waterfall-left-sidebar .main-sidebar, .single-' . $type . '.waterfall-right-sidebar .main-sidebar'
+                        'selector'  => $type == 'page' ? '.page .main-sidebar' : '.single-' . $type . ' .main-sidebar'
                     ],
                     'default'       => '',
                     'id'            => $type . '_sidebar_width',
@@ -963,7 +963,7 @@ if( $types ) {
                     'selector'      => [
                         'min-width' => '768px',
                         'property'  => 'width',
-                        'selector'  => '.archive-' . $type . '.waterfall-left-sidebar .content, .archive-' . $type . '.waterfall-right-sidebar .content'
+                        'selector'  => '.archive-' . $type . ' .content'
                     ],
                     'default'       => '',
                     'id'            => $type . '_archive_content_sidebar_width',
@@ -983,7 +983,7 @@ if( $types ) {
                     'selector'      => [
                         'min-width' => '768px',
                         'property'  => 'width',
-                        'selector'  => '.archive-' . $type . '.waterfall-left-sidebar .main-sidebar, .archive-' . $type . '.waterfall-right-sidebar .main-sidebar'
+                        'selector'  => '.archive-' . $type . ' .main-sidebar'
                     ],
                     'default'       => '',
                     'id'            => $type . '_archive_sidebar_width',
