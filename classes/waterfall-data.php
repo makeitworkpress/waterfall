@@ -4,13 +4,14 @@
  * From customizer settings to meta settings.
  */
 class Waterfall_Data {
+   
 
     /**
      * Contains the queried database data, for customizer, options and meta values;
      *
      * @access private
      */
-    private $data;
+    private $data;   
     
     /**
      * Determines whether a class has already been instanciated.
@@ -19,13 +20,20 @@ class Waterfall_Data {
      */
     private static $instance = null;  
 
-    
+    /**
+     * Determines if customizer data already has been reloaded
+     *
+     * @access private
+     */
+    private static $reloadedCustomizerData = false;        
+
     /**
      * Gets the single instance. Applies Singleton Pattern
+     *
      */
     public static function instance() {
 
-        if( self::$instance == null ) {
+        if( self::$instance == null  ) {
             self::$instance = new self();
         }
 
@@ -58,16 +66,47 @@ class Waterfall_Data {
             'options'       => get_option('waterfall_options'),
         ];
 
+        // Customizer data
+        $this->loadCustomizerData();
+
+        // Meta values
+        add_action('wp', [$this, 'loadMeta']);
+
+    }
+
+    /**
+     * Loads customizer data
+     */
+    public function loadCustomizerData() {
+
         $mods = get_theme_mods();
 
         // Customizer values
         foreach( ['colors', 'customizer', 'layout', 'typography', 'woocommerce'] as $key ) {
-            $mod = $key == 'woocommerce' ? $key : 'waterfall_' . $key; // Most of the mods have waterfall_ before, execept for woocommerce mods
+            $mod = $key == 'woocommerce' ? $key : 'waterfall_' . $key; // Most of the mods have waterfall_ before, except for woocommerce mods
             $this->data[$key] = isset($mods[$mod]) ? apply_filters( "theme_mod_{$mod}", $mods[$mod]) : apply_filters( "theme_mod_{$mod}", []);
         }
 
-        // Meta values
-        add_action('wp', [$this, 'loadMeta']);
+    }
+
+    /**
+     * Reloads customizer data 
+     * This is done so the customizer preview can access it
+     * The previewer needs to access data at a later point than theme initialization 
+     * (That is the e first time data is retrieved is in waterfall.php, using wf_get_data which creates an Waterfall_Data insance)
+     * Thus, in some cases we need to reload data later so updates in the customizer are reflected. 
+     * That is because customizer live reloads are not 'really' saved if not published
+     */
+    public function reloadCustomizerData() {
+
+        // We can only reload once
+        if( self::$reloadedCustomizerData ) {
+            return;
+        }
+
+        $this->loadCustomizerData();
+
+        self::$reloadedCustomizer = true;
 
     }
 

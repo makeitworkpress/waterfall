@@ -23,13 +23,13 @@ function wf_get_theme_footer() {
 /**
  * Retrieves certain data from the database for the theme
  *
- * @param   String          $type     The type of options to retrieve
- * @param   Array/String    $keys      The array of option keys or single option key to retrieve
- * @param   String          $prefix   A common prefix for the option, such as archive or single
+ * @param   String          $type       The type of options to retrieve
+ * @param   Array/String    $keys       The array of option keys or single option key to retrieve
+ * @param   String          $prefix     A common prefix for the option, such as archive or single
  *
  * @return  Array/String    $options   The array with options; 
  */
-function wf_get_data( $type = '', $keys = '', $prefix = '' ) {
+function wf_get_data( $type = '', $keys = '', $prefix = '') {
 
     /**
      * Retrieves our data from the instance

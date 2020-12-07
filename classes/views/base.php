@@ -3,6 +3,7 @@
  * Contains the basic class for new view controllers
  */
 namespace Views;
+use Waterfall_Data as Waterfall_Data;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
@@ -76,12 +77,16 @@ abstract class Base {
             $this->type = $post->post_type;
         }  
 
+        // Reloads our data so the customizer can access it and updates are reflected
+        if( is_customize_preview() ) {
+            Waterfall_Data::instance()->reloadCustomizerData();
+        }
+
         // Set our properties based upon the arrays defined within a view
         $this->setProperties();
 
         // Determine odd, but default layout properties that can occur for archives and singulars
-        $this->contentContainer = true;
-        $this->mainContainer    = false; // @todo In the future, this allows us to have a more flexible placement of the sidebar        
+        $this->contentContainer = true;      
         $this->relatedContainer = true;      
         $this->relatedSection   = true;      
         $this->mainLayout();
@@ -102,7 +107,7 @@ abstract class Base {
 
         // Loads specific theme options
         if( isset($this->properties['options']) ) {
-            $this->options      = wf_get_data('options', $this->properties['options']);
+            $this->options      = wf_get_data('options', $this->properties['options'], '');
         }
 
         // Loads meta data from the postmeta
@@ -133,7 +138,7 @@ abstract class Base {
      * Examines whether an module is disabled.
      * The parameters can be used to do a manual check
      *
-     * @param string $prefix    The current prefix, such as post_related or header_
+     * @param string $prefix    The current context prefix, such as post_related or header_
      * @param string $context   An optional context which is used for singular items to load post meta, which may indicate an item is disabeld
      */
     protected function disabled( $prefix = '', $context = 'content_') {
