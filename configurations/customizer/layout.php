@@ -196,7 +196,7 @@ $layout = [
                     'type'          => 'select',
                     'choices'       => [
                         'always'    => __('Always Display', 'waterfall'),
-                        'tablet'    => __('Display on Tablets', 'waterfall'),
+                        'tablet'    => __('Display on Tablets & Mobile', 'waterfall'),
                         'mobile'    => __('Display on Mobile', 'waterfall'),
                     ]
                 ],
