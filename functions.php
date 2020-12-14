@@ -12,19 +12,27 @@
 /**
  * Registers the autoloading for theme classes
  */
-spl_autoload_register( function($classname) {
+spl_autoload_register( function($className) {
     
-    $class      = str_replace( '\\', DIRECTORY_SEPARATOR, str_replace( '_', '-', strtolower($classname) ) );
-    $classes    = dirname(__FILE__) .  DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $class . '.php';
+    $calledClass    = str_replace( '\\', DIRECTORY_SEPARATOR, str_replace( '_', '-', strtolower($className) ) );
+    $parentDir      = get_template_directory() . DIRECTORY_SEPARATOR;
     
-    $vendor     = str_replace( 'makeitworkpress' . DIRECTORY_SEPARATOR, '', $class );
-    $vendor     = 'makeitworkpress' . DIRECTORY_SEPARATOR . preg_replace( '/\//', '/src/', $vendor, 1 ); // Replace the first slash for the src folder
-    $vendors    = dirname(__FILE__) .  DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . $vendor . '.php';
+    // Require main parent classes
+    $parentClass    = $parentDir . 'classes' . DIRECTORY_SEPARATOR . $calledClass . '.php';
 
-    if( file_exists($classes) ) {
-        require_once( $classes );
-    } elseif( file_exists($vendors) ) {
-        require_once( $vendors );    
+    if( file_exists($parentClass) ) {
+        require_once( $parentClass );
+        return;
+    } 
+    
+    // Require Vendor (composer) classes
+    $classNames     = explode(DIRECTORY_SEPARATOR, $calledClass);
+    array_splice($classNames, 2, 0, 'src');
+
+    $vendorClass    = $parentDir . 'vendor' . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $classNames) . '.php';
+
+    if( file_exists($vendorClass) ) {
+        require_once( $vendorClass );    
     }
    
 } );

@@ -5,7 +5,6 @@
  */
 class Waterfall_Data {
    
-
     /**
      * Contains the queried database data, for customizer, options and meta values;
      *
@@ -93,7 +92,7 @@ class Waterfall_Data {
      * Reloads customizer data 
      * This is done so the customizer preview can access it
      * The previewer needs to access data at a later point than theme initialization 
-     * (That is the e first time data is retrieved is in waterfall.php, using wf_get_data which creates an Waterfall_Data insance)
+     * (That is the first time data is retrieved is in waterfall.php, using wf_get_data which creates an Waterfall_Data instance)
      * Thus, in some cases we need to reload data later so updates in the customizer are reflected. 
      * That is because customizer live reloads are not 'really' saved if not published
      */
@@ -106,7 +105,7 @@ class Waterfall_Data {
 
         $this->loadCustomizerData();
 
-        self::$reloadedCustomizer = true;
+        self::$reloadedCustomizerData = true;
 
     }
 
