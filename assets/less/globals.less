@@ -188,12 +188,26 @@ input[type="submit"], input[type="submit"].button {
     }
 }
 
-.wp-block-button {
+.wp-block-buttons {
     margin-bottom: 1.5rem;
+    .wp-block-button__link {
+        font-size: 1em;
+    }
 }
 
 .wp-block-table {
     margin-bottom: 2em;
+}
+
+p, h1, h2, h3, h4, h5, h6, .content ul {
+    &.has-background {
+        margin-bottom: 1.5rem;
+        padding: 1.25rem 2.375rem;
+    }
+}
+
+.content ul.has-background {
+    padding-left: 3.5rem;
 }
 
 /* Theme Classes 
