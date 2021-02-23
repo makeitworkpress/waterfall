@@ -13,9 +13,12 @@ class Nothing extends Base {
      * Sets the properties for the index
      */
     protected function setProperties() {
-        $this->properties = apply_filters( 'waterfall_404_properties', [
+
+        $this->type         = '404';
+        $this->properties   = apply_filters( 'waterfall_404_properties', [
             'layout' => ['header_align', 'header_breadcrumbs', 'header_description', 'header_height', 'header_title', 'header_search', 'header_width']                                    
-         ] );
+        ]);
+
     }
 
     /**

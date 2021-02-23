@@ -2,18 +2,19 @@
 /**
  * Contains the class for initiating a new shop or product archive page
  */
-namespace Views;
+namespace Views\Vendor;
 use MakeitWorkPress\WP_Components as WP_Components;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-class Shop extends Base {
+class Shop extends \Views\Base {
 
     /**
      * Sets the properties for the index
      */
     protected function setProperties() {
-        $this->properties = apply_filters( 'waterfall_catalog_properties', [
+        $this->type         = 'product_archive';
+        $this->properties   = apply_filters( 'waterfall_catalog_properties', [
             'woocommerce' => ['header_disable', 'header_align', 'header_breadcrumbs', 'header_height', 'header_position', 'header_width', 'sidebar_position' ]                                     
         ] );
     }
@@ -23,16 +24,17 @@ class Shop extends Base {
      */
     public function header() {
 
+        // Get our properties
+        $this->getProperties();
+
         /**
          * Completely disables the title section
          * Our woocommerce recieves options from a different customizer id, 
          * hence we do not use the built-in disabled function from the extended base class in classes/views/base.php.
          */ 
-        if( ! $this->woocommerce['header_disable'] ) {
+        if( $this->woocommerce['header_disable'] ) {
             return;
         }
-
-        $this->getProperties();
 
         // Breadcrumbs
         if( $this->woocommerce['header_breadcrumbs'] ) {

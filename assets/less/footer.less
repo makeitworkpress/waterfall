@@ -15,7 +15,7 @@
     padding: @grid-space;
     width: 100%;
     @media screen and (max-width: 767px) {
-        padding: @grid-space @grid-space/2;   
+        padding: @grid-space @grid-space*0.5;   
     }
     a {
         color: @white;
@@ -54,7 +54,7 @@
         margin-bottom: -@grid-space * 2;
         z-index: 0;
         &.footer-logo-stack {
-            margin-bottom: @grid-space/2;
+            margin-bottom: @grid-space*0.5;
         }
         img {
             max-height: @grid-space * 2;
@@ -72,7 +72,7 @@
             text-align: center;
         }
         li a {
-            padding: @grid-space/2;
+            padding: @grid-space*0.5;
         }
     }
     .atom-social {
@@ -99,7 +99,7 @@
     &.position-left {
         left: @grid-space;
         @media screen and (max-width: 767px) {
-            left: @grid-space/2;
+            left: @grid-space*0.5;
         }
     }
     &.position-center {
@@ -109,13 +109,13 @@
         left: inherit;
         right: @grid-space;
         @media screen and (max-width: 767px) {
-            right: @grid-space/2;
+            right: @grid-space*0.5;
         }        
     } 
     &.atom-scroll-top {
         bottom: @grid-space;
         @media screen and (max-width: 767px) {
-            bottom: @grid-space/2;
+            bottom: @grid-space*0.5;
         } 
     }      
 }

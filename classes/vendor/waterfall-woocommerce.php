@@ -2,6 +2,9 @@
 /**
  * Contains all WooCommerce related options
  */
+namespace Vendor;
+use Waterfall_Base as Waterfall_Base;
+
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 class Waterfall_WooCommerce extends Waterfall_Base {

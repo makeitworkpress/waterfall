@@ -15,7 +15,7 @@
 .main-header, .main-content, .main-related, .main-footer {
     padding: @grid-space;
     @media screen and (max-width: 767px) {
-        padding: @grid-space @grid-space/2;   
+        padding: @grid-space @grid-space*0.5;   
     }
 }
 
@@ -38,16 +38,16 @@
         font-size: @small-fontsize;
     }
     &.components-center-align .atom-image {
-        margin: @grid-space/2 -50%;
+        margin: @grid-space*0.5 -50%;
     }
     .atom-image {
-        margin: @grid-space/2 0;
+        margin: @grid-space*0.5 0;
         img {
             display: inline-block;
         }
     }
     .atom-author {
-        padding: @grid-space/2 0;
+        padding: @grid-space*0.5 0;
         h4 {
             font-size: 1em;
             line-height: @grid-space * 2;
@@ -90,7 +90,7 @@
     color: @grey;
     font-size: @small-fontsize;
     display: inline-block;
-    margin-right: @grid-space/4;
+    margin-right: @grid-space*0.25;
     text-transform: uppercase;
     vertical-align: top;
     i {
@@ -217,7 +217,7 @@ body.elementor-page, body.woocommerce-page {
         padding-top: 7px;
     }
     .atom-author-description {
-        margin-right: @grid-space/4;
+        margin-right: @grid-space*0.25;
     }  
     .atom-author-avatar {
         margin-top: -7px;
@@ -264,10 +264,10 @@ body.elementor-page, body.woocommerce-page {
             line-height: @heading-lineheight;
         }
         a[rel="prev"]:hover {
-            transform: translate(@grid-space/4, 0);
+            transform: translate(@grid-space*0.25, 0);
         }
         a[rel="next"]:last-child:hover {
-            transform: translate(-@grid-space/4, 0);    
+            transform: translate(-@grid-space*0.25, 0);    
         }       
         span {
             color: @grey;
@@ -294,7 +294,7 @@ body.elementor-page, body.woocommerce-page {
 }
 
 .atom-share {
-    margin: @grid-space/2 0;
+    margin: @grid-space*0.5 0;
     &.atom-share-fixed {
         margin: 0;
     }
@@ -304,7 +304,7 @@ body.elementor-page, body.woocommerce-page {
     .atom-author {
         display: flex;
         max-width: 768px;
-        padding: @grid-space/2 0;   
+        padding: @grid-space*0.5 0;   
         .avatar {
             min-width: 100px;
         }
@@ -315,7 +315,7 @@ body.elementor-page, body.woocommerce-page {
         }
         .atom-author-avatar {
             float: none;
-            margin-bottom: @grid-space/2;
+            margin-bottom: @grid-space*0.5;
             text-align: center;
             width: 100%;
             img {

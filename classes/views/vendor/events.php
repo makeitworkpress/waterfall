@@ -2,19 +2,20 @@
 /**
  * The view wrapper for displaying events
  */
-namespace Views;
-use MakeitWorkPress\WP_Components as WP_Components;
+namespace Views\Vendor;
 use Tribe\Events\Views\V2\Template_Bootstrap;
 use Elementor;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-class Events extends Base {
+class Events extends \Views\Base {
 
     /**
      * No properties are set for this template - we're not using the customizer
      */
-    protected function setProperties() {}
+    protected function setProperties() {
+        $this->type = 'product_archive';
+    }
 
     /**
      * Displays the single post or page content

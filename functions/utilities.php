@@ -37,7 +37,7 @@ function wf_get_data( $type = '', $keys = '', $prefix = '') {
      */
     $type   = ! $type ? 'options' : $type;
 
-    if( ! in_array($type, ['colors', 'customizer', 'layout', 'meta', 'options', 'woocommerce']) ) {
+    if( ! in_array($type, ['bbpress', 'colors', 'customizer', 'layout', 'meta', 'options', 'woocommerce']) ) {
         return [];
     }
 
@@ -306,11 +306,11 @@ function wf_get_social_networks() {
 
 /**
  * Retrieves the post type of the archive, whether we are looking into our homepage with posts, a taxonomy page or a post type archive
+ * Only works properly in archives
  * 
  * @return string $type the post type
  */
 function wf_get_archive_post_type() {
-
 
     $type = 'post';
     
@@ -322,6 +322,9 @@ function wf_get_archive_post_type() {
     // The page set-up as blog page
     } elseif( isset($wp_query->queried_object->ID) && $wp_query->queried_object->ID == get_option('page_for_posts') ) {
         $type = 'post';
+    // bbPress search (will equal forums archive)
+    } else if( isset($wp_query->bbp_is_search) && $wp_query->bbp_is_search ) {
+        $type = 'forum';
     // Taxonomy archives
     } elseif( isset($wp_query->tax_query->queried_terms) && $wp_query->tax_query->queried_terms ) {
 
@@ -339,8 +342,6 @@ function wf_get_archive_post_type() {
         }
 
         // If our taxonomy is a string, get the object first
-
-
         if( isset($taxonomy) && is_string($taxonomy) ) {
             $taxonomy = get_taxonomy($taxonomy);
         }
@@ -351,7 +352,7 @@ function wf_get_archive_post_type() {
 
     }
 
-    return $type;
+    return apply_filters('waterfall_archive_post_type', $type);
 
 }
 
@@ -396,6 +397,20 @@ function wf_get_post_types( $simple = false, $available = false ) {
 
     return $types;
 
+}
+
+/**
+ * Returns bbPress archives and post types
+ * 
+ * @return Array $types The bbPress types
+ */
+function wf_get_bbpress_types() {
+    return apply_filters('waterfall_bbpress_types', [
+        'forum_archive' => __('Forums Page', 'waterfall'), 
+        'forum'         => __('Forum', 'waterfall'), 
+        'topic'         => __('Topic', 'waterfall'), 
+        'reply'         => __('Reply', 'waterfall')
+    ]);
 }
 
 /**

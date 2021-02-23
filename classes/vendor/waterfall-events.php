@@ -2,6 +2,9 @@
 /**
  * Contains all Event Calendar related options
  */
+namespace Vendor;
+use Waterfall_Base as Waterfall_Base;
+
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 class Waterfall_Events extends Waterfall_Base {
@@ -25,10 +28,10 @@ class Waterfall_Events extends Waterfall_Base {
      */
     public function locateTemplate($template) {
 
-        if( strpos($template, 'the-events-calendar/src/views/v2/default-template.php') ) {
+        if( strpos($template, 'the-events-calendar/src/views/v2/default-template.php') || strpos($template, 'the-events-calendar\src\views\v2\default-template.php') ) {
 
             // Use the custom theme template
-            $template = '/templates/events-calendar/default-template.php';
+            $template = '/templates/events-calendar/events-template.php';
             
             // Check if our file exists
             if ( file_exists( STYLESHEETPATH . $template ) ) {

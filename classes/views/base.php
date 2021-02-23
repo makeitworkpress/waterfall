@@ -12,6 +12,7 @@ abstract class Base {
     /**
      * The current type we are looking at
      * This is used to make a distinction between archives and search or pages and posts, as they share similar settings.
+     * Should be defined by child classes extending this class
      *
      * @access public
      */
@@ -46,11 +47,18 @@ abstract class Base {
     protected $meta; 
     
     /**
-     * Contains our woocommerce properties
+     * Contains our WooCommerce properties
      *
      * @access protected
      */
-    protected $woocommerce; 
+    protected $woocommerce;
+    
+    /**
+     * Contains our bbPress properties
+     *
+     * @access protected
+     */
+    protected $bbpress;     
     
     /**
      * Contains the custom options from the Theme Settings Panel
@@ -59,23 +67,8 @@ abstract class Base {
   
     /**
      * The initial state of our class
-     *
-     * @param string $type The type of content we are looking at. This determines a context based prefix for retrieving settings from the customizer
      */
-    public function __construct( $type = '' ) {
-
-        global $wp_query;
-
-        // Determine our type
-        $this->type = $type;
-
-        // Determine our type on rendering 
-        if( $this->type == 'archive' ) {
-            $this->type = wf_get_archive_post_type() . '_archive';
-        } elseif( is_singular() && $type == 'singular' ) { 
-            global $post;
-            $this->type = $post->post_type;
-        }  
+    public function __construct() {
 
         // Reloads our data so the customizer can access it and updates are reflected
         if( is_customize_preview() ) {
@@ -105,6 +98,8 @@ abstract class Base {
      */
     protected final function getProperties() {
 
+        $prefix = $this->type ? $this->type . '_' : '';
+
         // Loads specific theme options
         if( isset($this->properties['options']) ) {
             $this->options      = wf_get_data('options', $this->properties['options'], '');
@@ -122,14 +117,17 @@ abstract class Base {
 
         // Sets layout customizer properties
         if( isset($this->properties['layout']) ) {
-            $prefix             = $this->type ? $this->type . '_' : '';
             $this->layout       = apply_filters( 'waterfall_layout_properties', wf_get_data('layout', $this->properties['layout'], $prefix), get_called_class() );    
         } 
         
         // Sets woocommerce customizer properties
         if( isset($this->properties['woocommerce']) ) {
-            $prefix             = $this->type ? $this->type . '_' : '';
             $this->woocommerce  = apply_filters( 'waterfall_woocommerce_properties', wf_get_data('woocommerce', $this->properties['woocommerce'], $prefix), get_called_class() );    
+        } 
+        
+        // Sets woocommerce customizer properties
+        if( isset($this->properties['bbpress']) ) {
+            $this->bbpress      = apply_filters( 'waterfall_bbpress_properties', wf_get_data('bbpress', $this->properties['bbpress'], $prefix), get_called_class() );    
         }         
 
     }
@@ -154,8 +152,8 @@ abstract class Base {
         }
 
         // General (most likely used for the general header and footer)
-        $prefix     = $this->type ? $this->type . '_' . $prefix : $prefix; // If a type is defined, this will have a different prefix
-        $customizer = wf_get_data( 'layout', $prefix . '_disable' );    
+        $prefix         = $this->type ? $this->type . '_' . $prefix : $prefix; // If a type is defined, this will have a different prefix
+        $customizer     = wf_get_data( 'layout', $prefix . '_disable' );    
 
         // We hide the related section if we haven't saved anything yet for pages
         if( $prefix == $this->type . '_related' ) {
@@ -193,14 +191,22 @@ abstract class Base {
     /**
      * Determines if we need to do some odd lay-out conditions for the main layout - we can also limit showing the actual template parts
      */
-     private function mainLayout() {
+    private function mainLayout() {
 
         /**
          * Determines the settings for the content section
          */
         
         // Look if our display of content inside .main-content should be fullwidth or not
-        $contentWidth               = wf_get_data( 'layout', $this->type . '_content_width' );
+        if( function_exists('is_woocommerce') && is_woocommerce() ) {
+            $context                = 'woocommerce';
+        } elseif( class_exists('bbPress') && in_array($this->type, ['forum', 'topic', 'reply', 'forum_archive']) ) {
+            $context                = 'bbpress';
+        } else {
+            $context                = 'layout';
+        }
+        
+        $contentWidth               = wf_get_data( $context, $this->type . '_content_width' );
         $metaContentWidth           = wf_get_data( 'meta', 'content_width' );
 
         if( $contentWidth == 'full' || ( is_singular() && (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) ) {

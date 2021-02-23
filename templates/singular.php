@@ -12,7 +12,7 @@ while( have_posts() ) {
     the_post(); 
 
     // Initialize our post
-    $postView = new Views\Singular('singular'); ?>
+    $postView = new Views\Singular(); ?>
 
     <article <?php post_class(); ?> <?php echo $postView->schema; ?>>
 

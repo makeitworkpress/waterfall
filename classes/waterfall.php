@@ -16,6 +16,13 @@ class Waterfall {
     public $ajax;    
 
     /**
+     * Contains the bbPress object
+     *
+     * @access public
+     */
+    public $bbPress;    
+
+    /**
      * Contains the configurations object
      *
      * @access public
@@ -106,6 +113,9 @@ class Waterfall {
         
         // Setup WooCommerce related functions
         $this->setupWooCommerce();
+
+        // Setup bbPress related functions
+        $this->setupForum();        
 
         // Setup Events Calendar related functions
         $this->setupEventsCalendar();
@@ -201,16 +211,25 @@ class Waterfall {
      */
     private function setupWooCommerce() {     
         if( class_exists('WooCommerce') ) {
-            $this->woocommerce = new Waterfall_WooCommerce();
+            $this->woocommerce = new Vendor\Waterfall_WooCommerce();
         }
     } 
+
+    /**
+     * Provides bbPress compatibility
+     */
+    private function setupForum() {     
+        if( class_exists('bbPress') ) {
+            $this->bbPress = new Vendor\Waterfall_bbPress();
+        }
+    }     
     
     /**
      * Initializes all Event Calendar Related functions
      */
     private function setupEventsCalendar() {     
         if( class_exists('Tribe__Events__Main') ) {
-            $this->events = new Waterfall_Events();
+            $this->events = new Vendor\Waterfall_Events();
         }
     }    
     
@@ -326,7 +345,13 @@ class Waterfall {
             if( class_exists( 'WooCommerce' ) ) {
                 require_once( get_template_directory() . '/configurations/customizer/woocommerce.php' );
                 $configurations['options']['woocommerce']   = ['frame' => 'customizer', 'fields' => $woocommerce];
-            }            
+            } 
+            
+            // bbPress configurations
+            if( class_exists( 'bbPress' ) ) {
+                require_once( get_template_directory() . '/configurations/customizer/bbpress.php' );
+                $configurations['options']['bbpress']       = ['frame' => 'customizer', 'fields' => $bbpress];
+            }               
 
         }
 
@@ -362,7 +387,7 @@ class Waterfall {
          */
         $methods = apply_filters( 'waterfall_execute_methods', [
             'enqueue'   => 'MakeitWorkPress\WP_Enqueue\Enqueue',
-            'elementor' => 'Waterfall_Elementor',
+            'elementor' => 'Vendor\Waterfall_Elementor',
             'register'  => 'MakeitWorkPress\WP_Register\Register', 
             'routes'    => 'MakeitWorkPress\WP_Router\Router', 
             'options'   => 'MakeitWorkPress\WP_Custom_Fields\Framework'
@@ -433,7 +458,10 @@ class Waterfall {
     private function savePostTypes() {
 
         add_action('init', function() {
-            $commons    = apply_filters( 'waterfall_exlude_post_types', ['attachment', 'elementor_library', 'product', 'tribe_events', 'affiliate-links'] );
+            $commons    = apply_filters( 
+                'waterfall_exlude_post_types', 
+                ['attachment', 'elementor_library', 'product', 'tribe_events', 'affiliate-links', 'forum', 'topic', 'reply'] 
+            );
             $initial    = get_post_types( ['public' => true] );
             $types      = [];
 

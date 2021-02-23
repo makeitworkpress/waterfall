@@ -12,7 +12,7 @@ if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_
     /**
      * Initiate our new product
      */
-    $productView = new Views\Product('product'); ?>
+    $productView = new Views\Vendor\Product(); ?>
 
     <div class="main-content product-content">
 

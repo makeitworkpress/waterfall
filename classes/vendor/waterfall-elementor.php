@@ -2,7 +2,9 @@
 /**
  * Registers our custom elementor widgets
  */
+namespace Vendor;
 use Elementor as Elementor;
+use Waterfall_Base as Waterfall_Base;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

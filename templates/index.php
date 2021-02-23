@@ -10,7 +10,7 @@
     if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'archive' ) ) {
 
         // Displays the archive
-        $archive = new Views\Index('archive');
+        $archive = new Views\Index();
 
         do_action('waterfall_before_archive_header');
         

@@ -5,7 +5,7 @@
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 $woocommerce = [
-    'description'   => __('Adjust extensive settings and elements for various parts of the website here.', 'waterfall'),
+    'description'   => __('Adjust WooCommerce related lay-out settings here.', 'waterfall'),
     'id'            => 'woocommerce',
     'title'         => __('Woocommerce', 'waterfall'),
     'panel'         => true,

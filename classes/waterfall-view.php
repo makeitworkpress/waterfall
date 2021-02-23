@@ -28,7 +28,25 @@ class Waterfall_View extends Waterfall_Base  {
         // Template files used by Waterfall
         $this->files = apply_filters(
             'waterfall_templates', 
-            ['index', '404', 'archive', 'author', 'category', 'tag', 'taxonomy', 'date', 'home', 'frontpage', 'page', 'paged', 'search', 'single', 'singular', 'attachment']
+            [
+                'index', 
+                '404', 
+                'archive', 
+                'author', 
+                'category', 
+                'tag', '
+                taxonomy', 
+                'date', 
+                'home', 
+                'frontpage', 
+                'page', 
+                'paged', 
+                'search', 
+                'single', 
+                'singular', 
+                'attachment',
+                'bbpress'
+            ]
         );
 
         $this->actions = [
@@ -244,6 +262,7 @@ class Waterfall_View extends Waterfall_Base  {
         // Set-up the sidebars for default archives and pages set-up as posts page under Settings, Reading
         $page = isset( get_queried_object()->ID ) ? get_queried_object()->ID : 0;
         
+        // Archives
         if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') || ( is_home() && $page = get_option('page_for_posts') ) ) {
             
             $type                   = wf_get_archive_post_type();
@@ -251,12 +270,17 @@ class Waterfall_View extends Waterfall_Base  {
             // Adds archive types to the classes. Used by customizer settings for sidebar styling.
             $classes[]              = 'archive-' . $type;
             
-            // Woocommerce archives
+            // WooCommerce archives
             if( function_exists('is_woocommerce') && is_woocommerce() ) {
 
                 $sidebar_position   = wf_get_data('woocommerce', $type . '_archive_sidebar_position');
                 $sidebar            = $sidebar_position  ? $sidebar_position : 'left';
 
+            // bbPress archives
+            } elseif( class_exists('bbPress') && $type == 'forum' ) { 
+                $sidebar_position   = wf_get_data('bbpress', $type . '_archive_sidebar_position');
+                $sidebar            = $sidebar_position ? $sidebar_position : 'default';
+            
             // Default archives
             } else {
                 $sidebar_position   = wf_get_data('layout', $type . '_archive_sidebar_position');
@@ -274,7 +298,18 @@ class Waterfall_View extends Waterfall_Base  {
         if( is_singular() ) {
 
             $type               = isset($wp_query->queried_object->post_type) ? $wp_query->queried_object->post_type : 'post';
-            $sidebar            = function_exists('is_product') && is_product() ? wf_get_data('woocommerce', $type . '_sidebar_position') : wf_get_data('layout', $type . '_sidebar_position');
+
+            // WooCommerce sidebar
+            if( function_exists('is_product') && is_product() ) {
+                $sidebar        = wf_get_data('woocommerce', $type . '_sidebar_position');
+            // bbPress sidebar
+            } elseif( class_exists('bbPress') && ( is_singular('forum') || is_singular('topic') ) ) {
+                $sidebar        = wf_get_data('bbpress', $type . '_sidebar_position');
+            // Default sidebars
+            } else {
+                wf_get_data('layout', $type . '_sidebar_position');
+            }
+
             $content_width      = wf_get_data('layout', $type . '_content_width');
 
             // Posts or pages with an overlay and adjustable width

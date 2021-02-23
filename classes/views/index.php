@@ -11,11 +11,11 @@ class Index extends Base {
 
     /**
      * Sets the properties for the index
-     * This loads the specific values from the database for the given options - it automatically prefixes the archive and the given post type
      */
     protected function setProperties() {
-        
-        $this->properties = apply_filters( 'waterfall_index_properties', [
+
+        $this->type         = is_search() ? 'search' : wf_get_archive_post_type() . '_archive';
+        $this->properties   = apply_filters( 'waterfall_index_properties', [
             'layout' => [
                 // Header
                 'header_align', 

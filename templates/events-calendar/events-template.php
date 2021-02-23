@@ -1,11 +1,10 @@
 <?php
 /**
  * View: Default Template for Events
- * @version 5.0.0
  */
 wf_get_theme_header(); 
 
-$events = new Views\Events(); ?>
+$events = new Views\Vendor\Events(); ?>
 
 <div class="main-content singular-content events-calendar-template">
 

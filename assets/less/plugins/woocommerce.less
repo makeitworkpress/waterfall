@@ -37,7 +37,7 @@
                 border-color: @e-grey;
                 border-radius: 0;
                 margin: 0;
-                padding: 0 @grid-space/2;
+                padding: 0 @grid-space*0.5;
                 &:after, &:before {
                     display: none;
                 }
@@ -46,7 +46,7 @@
         .panel {
             border: 1px solid @e-grey;
             border-top: none;
-            padding: @grid-space @grid-space/2;
+            padding: @grid-space @grid-space*0.5;
             h2 {
                 font-size: 1.5em;
             }
@@ -66,7 +66,7 @@
     .related, .upsells {
         background: @f-grey;
         margin: 0 -50vw -@grid-space -50vw;
-        padding: @grid-space*2 50vw @grid-space/2 50vw;
+        padding: @grid-space*2 50vw @grid-space*0.5 50vw;
         ul.products {
             margin-bottom: 0;
         }
@@ -160,7 +160,7 @@
         border-radius: @grid-space;
         left: inherit;
         line-height: 1;
-        padding: @grid-space/2;
+        padding: @grid-space*0.5;
         right: 0;
     }
     
@@ -365,7 +365,7 @@
     margin-bottom: @grid-space;
 }
 .woocommerce-cart table.cart img {
-    margin: 0 @grid-space/2;
+    margin: 0 @grid-space*0.5;
 }
 
 .woocommerce-cart table.cart td.actions .coupon .input-text {

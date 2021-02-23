@@ -13,6 +13,8 @@ class Footer extends Base {
      * Sets the properties for the footer
      */
     protected function setProperties() {
+
+        $this->type       = ''; // The footer applies to all content types
         $this->properties = apply_filters( 'waterfall_footer_properties', [
             'customizer'    => [
                 'footer_logo', 

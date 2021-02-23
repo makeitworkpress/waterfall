@@ -10,7 +10,7 @@
     if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'archive' ) ) {    
 
         // Initializes our search
-        $search = new Views\Index('search');
+        $search = new Views\Index();
         
         // Build the header for our search page
         do_action('waterfall_before_search_header');

@@ -16,7 +16,7 @@
          */
         if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) {
             
-            $nothing = new Views\Nothing('404');
+            $nothing = new Views\Nothing();
             
             do_action('waterfall_before_404_header');
         

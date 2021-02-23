@@ -117,7 +117,7 @@ input, textarea, select {
     border-radius: @radius;
     margin: 0;
     min-height: @grid-space * 1.5;
-    padding: 11.5px @grid-space/2;
+    padding: 11.5px @grid-space*0.5;
     width: 100%;
     &:focus {
         border: 1px solid @d-grey;
@@ -126,11 +126,11 @@ input, textarea, select {
 }
 
 textarea {
-    padding: @grid-space/2;
+    padding: @grid-space*0.5;
 }
 
 input[type="radio"], input[type="checkbox"] {
-    margin: 0 @grid-space/8 0 0 !important;
+    margin: 0 @grid-space*0.125 0 0 !important;
     min-height: inherit;
     width: auto;
 }

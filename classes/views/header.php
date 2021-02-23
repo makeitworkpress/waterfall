@@ -13,7 +13,8 @@ class Header extends Base {
      * Sets the properties for the heading. For these properties, data is loaded.
      */
     protected function setProperties() {
-        $this->properties = apply_filters( 'waterfall_header_properties', [
+        $this->type         = ''; // The header applies to all content types
+        $this->properties   = apply_filters( 'waterfall_header_properties', [
             'customizer'    => ['logo', 'logo_transparent', 'logo_mobile', 'logo_mobile_transparent'],
             'layout'        => [
                 'header_border',

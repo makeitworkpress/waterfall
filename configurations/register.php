@@ -60,6 +60,19 @@ if( $types ) {
 }
 
 /**
+ * bbPress Sidebars
+ */
+if( class_exists('bbPress') ) {
+    foreach( wf_get_bbpress_types() as $type => $label ) {
+        $register['sidebars'][] = [
+            'id'            => $type, 
+            'name'          => sprintf( __('%s Sidebar', 'waterfall'), $label ), 
+            'description'   => sprintf( __('The sidebar for a bbPress %s.', 'waterfall'), $label )
+        ];
+    }    
+}
+
+/**
  *  Search Sidebar
  */
 $register['sidebars'][] = ['id' => 'search', 'name' => __('Search Sidebar', 'waterfall'), 'description' => __('The sidebar for search page.', 'waterfall')];

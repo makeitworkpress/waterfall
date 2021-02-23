@@ -38,12 +38,16 @@ class Singular extends Base {
      */
     protected function setProperties() {
 
-        $this->networks   = apply_filters(
+        // The type: determines what data to load!
+        global $post;
+        $this->type         = $post->post_type;
+
+        $this->networks     = apply_filters(
             'waterfall_social_share_networks', 
             ['facebook', 'twitter', 'linkedin', 'pinterest', 'reddit', 'pocket', 'whatsapp']
         );
 
-        $this->properties = apply_filters( 'waterfall_singular_properties', [
+        $this->properties   = apply_filters( 'waterfall_singular_properties', [
             'customizer'    => [],
             'layout'        => [
                 // Header
@@ -346,7 +350,7 @@ class Singular extends Base {
     }
 
     /**
-     * Displays the grid with sidebar
+     * Displays the sidebar
      */
     public function sidebar() {
 

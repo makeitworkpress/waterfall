@@ -2,19 +2,20 @@
 /**
  * Contains the class for initiating a new single product
  */
-namespace Views;
+namespace Views\Vendor;
 use MakeitWorkPress\WP_Components as WP_Components;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-class Product extends Base {
+class Product extends \Views\Base {
 
     /**
      * Sets the properties for the index
      */
     protected function setProperties() {
-        $this->properties = apply_filters( 'waterfall_product_properties', [
-            'woocommerce' => [
+        $this->type         = 'product';
+        $this->properties   = apply_filters( 'waterfall_product_properties', [
+            'woocommerce'   => [
                 'content_breadcrumbs', 
                 'content_breadcrumbs_taxonomy',
                 'sidebar_position'
