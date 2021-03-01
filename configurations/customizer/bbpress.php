@@ -16,7 +16,91 @@ foreach( wf_get_bbpress_types() as $type => $label ) {
     $bbpress['sections'][$type] = [
         'id'        => 'bbpress_' .  $type,
         'title'     => $label,
-        'fields'    => [    
+        'fields'    => [ 
+            [
+                'default'       => '',
+                'id'            => $type . '_title_header',
+                'title'         => __('Title Section', 'waterfall'),
+                'type'          => 'heading',
+                'choices'       => [
+                    $type . '_header',
+                    $type . '_header_breadcrumbs',
+                    $type . '_header_width',
+                    $type . '_header_height',
+                    $type . '_header_align',
+                    $type . '_header_title',
+                    $type . '_header_description',
+                    $type . '_header_search'
+                ]                    
+            ],                  
+            [
+                'default'       => '',
+                'id'            => $type . '_header',
+                'title'         => __('Display Title Section', 'waterfall'),
+                'type'          => 'checkbox'
+            ],
+            [
+                'default'       => '',
+                'id'            => $type . '_header_breadcrumbs',
+                'title'         => __('Display Breadcrumbs in title section', 'waterfall'),
+                'type'          => 'checkbox'
+            ],              
+            [
+                'default'       => 'default',
+                'description'   => __('Width of title section.', 'waterfall'),
+                'id'            => $type . '_header_width',
+                'choices'       => wf_get_container_options(),
+                'title'         => __('Header Width', 'waterfall'),
+                'type'          => 'select'
+            ],
+            [
+                'default'       => 'default',
+                'description'   => __('Height of title section.', 'waterfall'),
+                'id'            => $type . '_header_height',
+                'choices'       => wf_get_height_options(),
+                'title'         => __('Header Height', 'waterfall'),
+                'type'          => 'select'
+            ],    
+            [
+                'default'       => 'left',
+                'id'            => $type . '_header_align',
+                'title'         => __('Title Section Text Align', 'waterfall'),
+                'description'   => __('How should text be aligned within the title section?', 'waterfall'),
+                'type'          => 'select',
+                'choices'       => wf_get_align_options()
+            ],
+            [
+                'default'       => '',
+                'id'            => $type . '_header_title',
+                'title'         => __('Custom Title ', 'waterfall'),
+                'description'   => __('Add a custom title, overwrites the default title.', 'waterfall'),
+                'type'          => 'input'
+            ],   
+            [
+                'default'       => '',
+                'id'            => $type . '_header_description',
+                'title'         => __('Title Description', 'waterfall'),
+                'description'   => __('Add a custom title description.', 'waterfall'),
+                'type'          => 'textarea'
+            ],
+            [
+                'default'       => '',
+                'id'            => $type . '_header_search',
+                'title'         => __('Display Searchform in Header', 'waterfall'),
+                'type'          => 'checkbox'
+            ],
+            [
+                'default'       => '',
+                'id'            => $type . '_title_content',
+                'title'         => __('Content Section', 'waterfall'),
+                'type'          => 'heading',
+                'choices'       => [
+                    $type . '_content_width',
+                    $type . '_content_sidebar_width',
+                    $type . '_sidebar_position',
+                    $type . '_sidebar_width'
+                ]                    
+            ],               
             [
                 'default'       => 'default',
                 'description'   => __('Width of the container of the content section.', 'waterfall'),
@@ -66,94 +150,6 @@ foreach( wf_get_bbpress_types() as $type => $label ) {
         ] 
     ];
 }
-
-// Additional settings for the forums archive page
-array_unshift($bbpress['sections']['forum_archive']['fields'],
-    [
-        'default'       => '',
-        'id'            => 'forum_archive_title_header',
-        'title'         => __('Title Section', 'waterfall'),
-        'type'          => 'heading',
-        'choices'       => [
-            'forum_archive_header',
-            'forum_archive_header_breadcrumbs',
-            'forum_archive_header_width',
-            'forum_archive_header_height',
-            'forum_archive_header_align',
-            'forum_archive_header_title',
-            'forum_archive_header_description',
-            'forum_archive_header_search'
-        ]                    
-    ],                  
-    [
-        'default'       => '',
-        'id'            => 'forum_archive_header',
-        'title'         => __('Display Title Section', 'waterfall'),
-        'type'          => 'checkbox'
-    ],
-    [
-        'default'       => '',
-        'id'            => 'forum_archive_header_breadcrumbs',
-        'title'         => __('Display Breadcrumbs in title section', 'waterfall'),
-        'type'          => 'checkbox'
-    ],              
-    [
-        'default'       => 'default',
-        'description'   => __('Width of title section in forum archives.', 'waterfall'),
-        'id'            => 'forum_archive_header_width',
-        'choices'       => wf_get_container_options(),
-        'title'         => __('Header Width', 'waterfall'),
-        'type'          => 'select'
-    ],
-    [
-        'default'       => 'default',
-        'description'   => __('Height of title section in forum archives.', 'waterfall'),
-        'id'            => 'forum_archive_header_height',
-        'choices'       => wf_get_height_options(),
-        'title'         => __('Header Height', 'waterfall'),
-        'type'          => 'select'
-    ],    
-    [
-        'default'       => 'left',
-        'id'            => 'forum_archive_header_align',
-        'title'         => __('Title Section Text Align', 'waterfall'),
-        'description'   => __('How should text be aligned within the archive header?', 'waterfall'),
-        'type'          => 'select',
-        'choices'       => wf_get_align_options()
-    ],
-    [
-        'default'       => '',
-        'id'            => 'forum_archive_header_title',
-        'title'         => __('Default Forums Page Title ', 'waterfall'),
-        'description'   => __('Add a custom title for the default forum archives.', 'waterfall'),
-        'type'          => 'input'
-    ],   
-    [
-        'default'       => '',
-        'id'            => 'forum_archive_header_description',
-        'title'         => __('Forum Page Description', 'waterfall'),
-        'description'   => __('Add a custom title description for the forum archives', 'waterfall'),
-        'type'          => 'textarea'
-    ],
-    [
-        'default'       => '',
-        'id'            => 'forum_archive_header_search',
-        'title'         => __('Display Searchform in Header', 'waterfall'),
-        'type'          => 'checkbox'
-    ],
-    [
-        'default'       => '',
-        'id'            => 'forum_archive_title_content',
-        'title'         => __('Content Section', 'waterfall'),
-        'type'          => 'heading',
-        'choices'       => [
-            'forum_archive_content_width',
-            'forum_archive_content_sidebar_width',
-            'forum_archive_sidebar_position',
-            'forum_archive_sidebar_width'
-        ]                    
-    ],        
-);
 
 // Additional settings for the profile page
 $bbpress['sections']['profile'] = [
