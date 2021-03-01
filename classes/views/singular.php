@@ -113,8 +113,7 @@ class Singular extends Base {
             ],
             'meta'      => [
                 'page_header_subtitle',
-                'page_header_button_text',
-                'page_header_button_link'
+                'page_header_buttons'
             ],
             'options' => [
                 'enable_elastic_related',
@@ -229,19 +228,29 @@ class Singular extends Base {
             ];
         }
 
-        // Button  
-        if( $this->meta['page_header_button_text'] && $this->meta['page_header_button_link'] ) {
-            $args['atoms']['button'] = [ 
-                'atom'              => 'button',
-                'properties'        => [
-                    'attributes'    => [
-                        'href'      => $this->meta['page_header_button_link']
-                    ],
-                    'background'    => 'default',
-                    'label'         =>  $this->meta['page_header_button_text'] 
-                ]
-            ];
-        }        
+        // This is a button  
+        if( isset($this->meta['page_header_buttons'][0]['text']) && isset($this->meta['page_header_buttons'][0]['link']) ) {
+
+            foreach($this->meta['page_header_buttons'] as $key => $button ) {
+
+               if( ! $button['link'] || ! $button['text'] ) {
+                   continue;
+               }
+
+               $args['atoms']['button_' . $key] = [ 
+                    'atom'              => 'button',
+                    'properties'        => [
+                        'attributes'    => [
+                            'class'     => $key == 0 ? 'primary main-header-button' : 'secondary main-header-button',
+                            'href'      => $button['link']
+                        ],
+                        'background'    => 'default',
+                        'label'         =>  $button['text']
+                    ]
+                ];
+
+            }
+        }     
             
         // Time
         if( $this->layout['header_date'] ) {

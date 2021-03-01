@@ -27,7 +27,7 @@ class bbPress extends \Views\Base {
 
         $this->properties = [
             'bbpress' => [
-                // Header (for archives)
+                // Header (for archives and single forums)
                 'header',
                 'header_breadcrumbs',
                 'header_title',
@@ -74,7 +74,7 @@ class bbPress extends \Views\Base {
      */
     public function header() {
 
-        if( $this->type != 'forum_archive' && $this->type != 'user' ) {
+        if( ! in_array($this->type, ['forum_archive', 'user', 'forum', 'topic', 'reply']) ) {
             return;
         }
 
@@ -84,19 +84,18 @@ class bbPress extends \Views\Base {
         }
      
         // If the archive doesn't have a header, it's disabled...
-        if( $this->type == 'forum_archive' && ! $this->bbpress['header'] ) {
+        if( in_array($this->type, ['forum_archive', 'forum', 'topic', 'reply']) && ! $this->bbpress['header'] ) {
             return;
         }
 
-        // Headers don't display on private pages
-        if( $this->isPrivate() && $this->type == 'user' ) {
+        // Headers don't display on private users, topics and replies
+        if( $this->isPrivate() && in_array($this->type, ['user', 'topic', 'reply']) ) {
             return;
         }       
 
         if( $this->bbpress['header_breadcrumbs'] ) {
             $atoms['breadcrumbs'] = ['atom' => 'string', 'properties' => ['string' => bbp_get_breadcrumb()] ];    
         }         
-
 
         // Switch our arguments atoms
         switch( $this->type ) {
@@ -116,14 +115,18 @@ class bbPress extends \Views\Base {
 
                 break;
 
+            case 'forum':
+            case 'topic':
+            case 'reply':
             case 'forum_archive':
 
                 // Default title
-                $atoms['title'] = ['atom' => 'archive-title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];  
+                $atoms['title'] = ['atom' => $this->type == 'forum_archive' ? 'archive-title' : 'title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];  
                 
                 if( $this->bbpress['header_title'] ) {
+                    $atoms['title']['properties']['title']              = $this->bbpress['header_title'];
                     $atoms['title']['properties']['types']['default']   = $this->bbpress['header_title'];
-                    $atoms['title']['properties']['types']['home']      = $this->bbpress['header_title'];                    
+                    $atoms['title']['properties']['types']['home']      = $this->bbpress['header_title'];           
                 }
 
                 if( $this->bbpress['header_description'] ) {
@@ -138,9 +141,10 @@ class bbPress extends \Views\Base {
                     $atoms['search'] = ['atom' => 'string', 'properties' => ['string' => do_shortcode('[bbp-search-form]')] ];    
                 }                  
             
-                $args = apply_filters( 'waterfall_archive_header_args', [
+                $context = $this->type == 'forum_archive' ? 'archive' : 'singular';
+                $args = apply_filters( 'waterfall_' . $context . '_header_args', [
                     'atoms'         => $atoms,
-                    'attributes'    => ['class' => 'main-header archive-header'],
+                    'attributes'    => ['class' => $this->type == 'forum_archive' ? 'main-header archive-header' : 'main-header singular-header'],
                     'align'         => $this->bbpress['header_align'],
                     'container'     => $this->bbpress['header_width'] == 'full' ? false : true,
                     'height'        => $this->bbpress['header_height']

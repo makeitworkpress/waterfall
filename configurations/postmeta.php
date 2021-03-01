@@ -146,20 +146,29 @@ $postmeta = [
                     'type'          => 'textarea'
                 ], 
                 [
-                    'columns'       => 'fourth',
-                    'id'            => 'page_header_button_text',
-                    'title'         => __('Button Text', 'waterfall'),
-                    'description'   => __('Enter the text for an optional button in the title section.', 'waterfall'),
-                    'type'          => 'input'
-                ],
-                [
-                    'columns'       => 'fourth',
-                    'id'            => 'page_header_button_link',
-                    'title'         => __('Button Link', 'waterfall'),
-                    'description'   => __('Enter the link for this button here.', 'waterfall'),
-                    'type'          => 'input',
-                    'subtype'       => 'url',
-                ],                                      
+                    'columns'       => 'half',
+                    'description'   => __('Adds additional buttons in the title section.', 'waterfall'),
+                    'id'            => 'page_header_buttons',
+                    'title'         => __('Buttons', 'waterfall'),
+                    'type'          => 'repeatable',
+                    'fields'        => [
+                        [
+                            'columns'       => 'half',
+                            'id'            => 'text',
+                            'title'         => __('Button Text', 'waterfall'),
+                            'description'   => __('Enter the text for the button.', 'waterfall'),
+                            'type'          => 'input'
+                        ],
+                        [
+                            'columns'       => 'half',
+                            'id'            => 'link',
+                            'title'         => __('Button Link', 'waterfall'),
+                            'description'   => __('Enter the link for this button here.', 'waterfall'),
+                            'type'          => 'input',
+                            'subtype'       => 'url',
+                        ]
+                    ]
+                ],                                    
                 [
                     'selector'      => '.main-header',
                     'columns'       => 'half',
