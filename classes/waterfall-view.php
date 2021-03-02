@@ -307,7 +307,7 @@ class Waterfall_View extends Waterfall_Base  {
                 $sidebar        = wf_get_data('bbpress', $type . '_sidebar_position');
             // Default sidebars
             } else {
-                wf_get_data('layout', $type . '_sidebar_position');
+                $sidebar        = wf_get_data('layout', $type . '_sidebar_position');
             }
 
             $content_width      = wf_get_data('layout', $type . '_content_width');
