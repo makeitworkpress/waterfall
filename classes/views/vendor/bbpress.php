@@ -129,6 +129,7 @@ class bbPress extends \Views\Base {
                     $atoms['title']['properties']['types']['home']      = $this->bbpress['header_title'];           
                 }
 
+                // @todo add subtitle from header (re-add the post meta settings)
                 if( $this->bbpress['header_description'] ) {
                     $atoms['description']   = [
                         'atom' => 'description', 
@@ -141,7 +142,7 @@ class bbPress extends \Views\Base {
                     $atoms['search'] = ['atom' => 'string', 'properties' => ['string' => do_shortcode('[bbp-search-form]')] ];    
                 }                  
             
-                $context = $this->type == 'forum_archive' ? 'archive' : 'singular';
+                $context = $this->type == 'forum_archive' ? 'archive' : 'content';
                 $args = apply_filters( 'waterfall_' . $context . '_header_args', [
                     'atoms'         => $atoms,
                     'attributes'    => ['class' => $this->type == 'forum_archive' ? 'main-header archive-header' : 'main-header singular-header'],

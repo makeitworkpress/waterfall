@@ -113,7 +113,7 @@ foreach( wf_get_bbpress_types() as $type => $label ) {
                 'selector'      => [
                     'min-width' => '768px',
                     'property'  => 'width',
-                    'selector'  => $type == 'forum_archive' ? '.post-type-archive-forum .content' : '.single-' . $type . ' .content'
+                    'selector'  => $type == 'forum_archive' ? '.forum-archive .content, .forum-search .content' : '.single-' . $type . ' .content'
                 ],
                 'default'       => '',
                 'id'            => $type . '_content_sidebar_width',
@@ -133,7 +133,7 @@ foreach( wf_get_bbpress_types() as $type => $label ) {
                 'selector'      => [
                     'min-width' => '768px',
                     'property'  => 'width',
-                    'selector'  => $type == 'forum_archive' ? '.post-type-archive-forum .main-sidebar' : '.single-' . $type . ' .main-sidebar'
+                    'selector'  => $type == 'forum_archive' ? '.forum-archive .main-sidebar, .forum-search .main-sidebar' : '.single-' . $type . ' .main-sidebar'
                 ],
                 'default'       => '',
                 'id'            => $type . '_sidebar_width',
