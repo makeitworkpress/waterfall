@@ -67,7 +67,7 @@ class Waterfall_View extends Waterfall_Base  {
         $this->themeSupport();
 
         // Loads our custom components from Make it WorkPress
-        $this->components = new MakeitWorkPress\WP_Components\Boot();       
+        $this->components = new MakeitWorkPress\WP_Components\Boot(['maps' => wf_get_data('options', 'maps_api_key')]);
         
     }
     

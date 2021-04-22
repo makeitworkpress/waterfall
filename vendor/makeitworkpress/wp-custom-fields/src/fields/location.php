@@ -32,18 +32,21 @@ class Location implements Field {
         } ?>
         
             <div class="wpcf-location">
-                <input class="regular-text wpcf-map-search" type="text" />
-                <div class="wpcf-map-canvas"></div>        
-                <input class="latitude" id="<?php echo $id; ?>-lat" name="<?php echo $name; ?>[lat]" type="hidden" value="<?php echo $lat; ?>" />
-                <input class="longitude" id="<?php echo $id; ?>-long" name="<?php echo $name; ?>[lng]" type="hidden" value="<?php echo $lng; ?>" />
-            
-                <?php foreach( $config['labels'] as $key => $label ) { ?>
-                    <div class="wpcf-field-left">
-                        <label for="<?php echo $id . '-' . $key; ?>"><?php echo $label; ?></label>
-                        <input type="text" class="regular-text <?php echo $key; ?>'" id="<?php echo $id . '-' . $key; ?>" name="<?php echo $name .'[' . $key .']'; ?>" value="<?php if( isset($field['values'][$key]) ) { echo esc_attr($field['values'][$key]); } ?>" />
-                    </div>
-                <?php } ?>
-            
+                <div class="wpcf-location-search grid flex">
+                    <input class="regular-text wpcf-half wpcf-map-search" type="search" placeholder="<?php echo $config['placeholders']['search']; ?>" />
+                    <input class="regular-text wpcf-fourth latitude" id="<?php echo $id; ?>-lat" name="<?php echo $name; ?>[lat]" type="text" readonly="readonly" value="<?php echo $lat; ?>" />
+                    <input class="regular-text wpcf-fourth longitude" id="<?php echo $id; ?>-long" name="<?php echo $name; ?>[lng]" type="text" readonly="readonly" value="<?php echo $lng; ?>" />
+                </div>
+                <div class="wpcf-map-canvas"></div>       
+                <div class="wpcf-location-details grid flex">
+                    <?php foreach( $config['labels'] as $key => $label ) { ?>
+                        <?php $column = in_array($key, ['country']) ? 'full' : 'fourth'; ?>
+                        <div class="wpcf-location-detail wpcf-<?php echo $column; ?>">
+                            <label for="<?php echo $id . '-' . $key; ?>"><?php echo $label; ?></label>
+                            <input type="text" class="regular-text <?php echo $key; ?>" id="<?php echo $id . '-' . $key; ?>" name="<?php echo $name .'[' . $key .']'; ?>" value="<?php if( isset($field['values'][$key]) ) { echo esc_attr($field['values'][$key]); } ?>" />
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
         
         <?php 
@@ -59,6 +62,7 @@ class Location implements Field {
         $configurations = [
             'defaults'  => [
                 'city'          => '',
+                'country'       => '',
                 'lat'           => '',
                 'lng'           => '',
                 'number'        => '',
@@ -69,9 +73,13 @@ class Location implements Field {
                 'street'        => __('Street Address', 'wp-custom-fields'),
                 'number'        => __('Street Number', 'wp-custom-fields'),
                 'postal_code'   => __('Postal Code', 'wp-custom-fields'),
-                'city'          => __('City', 'wp-custom-fields')
+                'city'          => __('City', 'wp-custom-fields'),
+                'country'       => __('Country', 'wp-custom-fields')
             ],
-            'type'      => 'location'
+            'placeholders'      => [
+                'search'        => __('Search for a location', 'wp-custom-fields')
+            ],
+            'type'              => 'location'
         ];
             
         return apply_filters( 'wp_custom_fields_location_config', $configurations );

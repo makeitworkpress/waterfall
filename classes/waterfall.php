@@ -314,7 +314,9 @@ class Waterfall {
             ],
             'enqueue'   => $enqueue, 
             'register'  => $register, 
-            'options'   => []
+            'options'   => [
+                
+            ]
         ];
 
         // The custom fields options are only loaded in admin or customizer contexts to ensure better front-end performance
@@ -325,6 +327,7 @@ class Waterfall {
             require_once( get_template_directory() . '/configurations/postmeta.php' );
 
             $configurations['options'] = [
+                'params'            => ['google_maps_key' => wf_get_data('options', 'maps_api_key') ],
                 'postMeta'          => ['frame' => 'meta', 'fields' => $postmeta],
                 'options'           => ['frame' => 'options', 'fields' => $options]
             ]; 
@@ -415,11 +418,9 @@ class Waterfall {
             
             if( $key == 'options' ) {
                 
-                // Default parameters
-                $this->config->configurations['options']['params'] = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
-                
                 // Custom Fields framework
-                $customFields = MakeitWorkPress\WP_Custom_Fields\Framework::instance($this->config->configurations['options']['params']);
+                $params       = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
+                $customFields = MakeitWorkPress\WP_Custom_Fields\Framework::instance($params);
                 
                 // Walk through all the option types for the back-end
                 if( is_admin() || is_customize_preview() ) {

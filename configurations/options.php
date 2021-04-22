@@ -4,6 +4,16 @@
  */  
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
+// Default posts types supported in customzer
+$defaultPosts = ['post', 'page'];
+if( class_exists('Waterfall_Reviews\Plugin') ) {
+    $defaultPosts[] = 'reviews';
+}
+if( class_exists('Waterfall_Events\Plugin') ) {
+    $defaultPosts[] = 'events';   
+}
+
+// The options
 $options = [
     'capability'    => 'manage_options',
     'class'         => 'tabs-left',
@@ -17,13 +27,13 @@ $options = [
         'general'   => [
             'icon'          => 'settings',
             'id'            => 'general',
-            'title'         => __('General Settings', 'waterfall'),
+            'title'         => __('General', 'waterfall'),
             'description'   => __('The general settings for the theme. Are you looking for lay-out options? Those can be found in the Customizer.', 'waterfall'),
             'fields'        => [ 
                 [
                     'columns'       => 'half',
-                    'default'       => class_exists('Waterfall_Reviews\Plugin') ? ['post', 'page', 'reviews'] : ['post', 'page'],
-                    'description'   => __('This determines for which post types you can adjust the lay-out settings in the customizer for and which post types will get a sidebar.', 'waterfall'),
+                    'default'       => $defaultPosts,
+                    'description'   => __('For these post types, lay-out settings will be available in the customizer, and a sidebar under widgets.', 'waterfall'),
                     'id'            => 'customizer_post_types',
                     'options'       => wf_get_post_types(true),
                     'title'         => __('Customizer Post Types', 'waterfall'),
@@ -32,65 +42,78 @@ $options = [
                 ],
                 [
                     'columns'       => 'half',
-                    'description'   => __('Enable this to Enable ElasticPress for Related Posts. To function, ElasticSearch and the ElasticPress plugin are required.', 'waterfall'),
+                    'description'   => __('Enable this to Enable ElasticPress for Related Posts. ElasticSearch and the ElasticPress plugin are required.', 'waterfall'),
                     'id'            => 'enable_elastic_related',
                     'title'         => __('Enable ElasticPress for Related Posts', 'waterfall'),
                     'single'        => true,
                     'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-enable',
                     'options'       => [
                         'enable' => ['label' => __('Enable ElasticPress')],
                     ]
-                ],                                  
+                ],   
                 [
                     'default'       => '',
-                    'description'   => __('This automatically set-ups the correct JavaScript for loading Google Analytics. The Tracking ID has a format of UA-000000-01.', 'waterfall'),
-                    'id'            => 'analytics',
-                    'title'         => __('Google Analytics Tracking ID', 'waterfall'),
-                    'type'          => 'input'
-                ],                                                 
+                    'id'            => 'integrations_heading',
+                    'title'         => __('Integrations', 'waterfall'),
+                    'type'          => 'heading'
+                ],                                                
                 [
                     'columns'       => 'half',
                     'default'       => '',
-                    'description'   => __('This determines what microdata is used for the website logo, usually representing the organization. Select none to discard.', 'waterfall'),
+                    'description'   => __('This set-ups the correct script for loading Google Analytics. The Tracking ID should have a format of UA-000000-01.', 'waterfall'),
+                    'id'            => 'analytics',
+                    'title'         => __('Google Analytics Tracking ID', 'waterfall'),
+                    'type'          => 'input'
+                ], 
+                [
+                    'columns'       => 'half',
+                    'default'       => '',
+                    'description'   => __('This allows extensions of Waterfall to properly display Google Maps.', 'waterfall'),
+                    'id'            => 'maps_api_key',
+                    'title'         => __('Google Maps API Key', 'waterfall'),
+                    'type'          => 'input'
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'structured_data_heading',
+                    'title'         => __('Structured Data', 'waterfall'),
+                    'type'          => 'heading'
+                ],                                                                                   
+                [
+                    'columns'       => 'half',
+                    'default'       => '',
+                    'description'   => __('This determines what structured data is used for the website logo, usually representing the organization. Select none to discard.', 'waterfall'),
                     'id'            => 'represent_scheme',
                     'options'       => [
                         ''             => __('None', 'waterfall'),
                         'organization' => __('Organization', 'waterfall'),
                         'person'       => __('Person', 'waterfall')
                     ],
-                    'title'         => __('Microdata for Website Representation', 'waterfall'),
+                    'title'         => __('Structured data for Website Representation', 'waterfall'),
                     'type'          => 'select'
                 ],              
                 [
                     'columns'       => 'half',
                     'default'       => [],
-                    'description'   => __('This removes the microdata for the selected post types.', 'waterfall'),
+                    'description'   => __('This removes the Structured data for the selected post types.', 'waterfall'),
                     'id'            => 'scheme_post_types_disable',
                     'options'       => wf_get_post_types(true),
                     'title'         => __('Disable Microdata', 'waterfall'),
                     'multiple'      => true,
                     'type'          => 'select'
-                ],                                                               
-                [
-                    'action'        => 'syncMultiSiteOptions',
-                    'description'   => __('This function synchronizes Waterfall Customizer and Option settings for all the sites registered in a multisite network. It will use the options of the current site.', 'waterfall'),
-                    'id'            => 'sync_settings',
-                    'label'         => __('Synchronize', 'waterfall'),
-                    'message'       => true,
-                    'title'         => __('Synchronize Settings', 'waterfall'),
-                    'type'          => 'button'
                 ]
             ]
         ],
         'optimize'   => [
             'icon'          => 'access_time',
             'id'            => 'optimize',
-            'title'         => __('Optimizations', 'waterfall'),
-            'description'   => __('The general settings for the theme. Are you looking for lay-out options? Those can be found in the Customizer.', 'waterfall'),
+            'title'         => __('Optimize', 'waterfall'),
+            'description'   => __('Custom optimizations for the theme, slightly improving performance.', 'waterfall'),
             'fields'        => [                  
                 [
                     'default'       => '',
-                    'description'   => __('Improve the loading performance by enabling optimalizations. Be aware that some optimizations such as Disabling XMLRPC can break plugins.', 'waterfall'),
+                    'description'   => __('Improve the loading performance by enabling optimizations. Be aware that some optimizations such as Disabling XMLRPC can break plugins.', 'waterfall'),
                     'id'            => 'optimize',
                     'options'       => [
                         'deferCSS'                  => ['label' => __('Defer CSS', 'waterfall')],
@@ -119,6 +142,23 @@ $options = [
                     'type'          => 'checkbox'
                 ]
             ]      
-        ]
+        ],
+        'advanced'   => [
+            'icon'          => 'autorenew',
+            'id'            => 'advanced',
+            'title'         => __('Advanced', 'waterfall'),
+            'description'   => __('Advanced theme settings', 'waterfall'),
+            'fields'        => [                  
+                [
+                    'action'        => 'syncMultiSiteOptions',
+                    'description'   => __('This function synchronizes Waterfall Customizer and Option settings for all the sites registered in a multisite network. It will use the options of the current site.', 'waterfall'),
+                    'id'            => 'sync_settings',
+                    'label'         => __('Synchronize', 'waterfall'),
+                    'message'       => true,
+                    'title'         => __('Synchronize Settings', 'waterfall'),
+                    'type'          => 'button'
+                ]
+            ]
+        ]        
     ] 
 ];

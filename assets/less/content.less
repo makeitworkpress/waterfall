@@ -22,13 +22,10 @@
 /* Header Section 
 ----------------------*/
 .main-header {
+    overflow: hidden;
     padding-top: @grid-space*2;
     &.components-image-background {
         padding-top: @grid-space;
-    }
-    overflow: hidden;
-    h1 {
-        margin: 0;
     }
     .atom-description {
         font-size: 1.5em;
@@ -67,6 +64,9 @@
             position: relative;
             z-index: 1;
         }
+    }
+    .main-header-buttons {
+        margin: 1.5rem 0;
     }
     .main-header-button {
         display: inline-block;

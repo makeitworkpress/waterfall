@@ -19,8 +19,6 @@ module.exports.initialize = function() {
         if( jQuery(this).hasClass('atom-menu-collapse') ) {
             jQuery(this).find('.menu-item-has-children > a').append('<i class="fa fa-angle-down"></i>');
             
-            var expandable = jQuery(this).find('.fa-angle-down');
-            
             jQuery('body').on('click', '.menu-item-has-children a > i', function(event) {
                 
                 event.preventDefault();

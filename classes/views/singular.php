@@ -216,42 +216,7 @@ class Singular extends Base {
                 ]
             ];   
         }
-        
-        // Subtitle  
-        if( $this->meta['page_header_subtitle']  ) {
-            $args['atoms']['description'] = [ 
-                'atom'              => 'description',
-                'properties'        => [
-                    'description'   =>  $this->meta['page_header_subtitle'],
-                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
-                ]
-            ];
-        }
-
-        // This is a button  
-        if( isset($this->meta['page_header_buttons'][0]['text']) && isset($this->meta['page_header_buttons'][0]['link']) ) {
-
-            foreach($this->meta['page_header_buttons'] as $key => $button ) {
-
-               if( ! $button['link'] || ! $button['text'] ) {
-                   continue;
-               }
-
-               $args['atoms']['button_' . $key] = [ 
-                    'atom'              => 'button',
-                    'properties'        => [
-                        'attributes'    => [
-                            'class'     => $key == 0 ? 'primary main-header-button' : 'secondary main-header-button',
-                            'href'      => $button['link']
-                        ],
-                        'background'    => 'default',
-                        'label'         =>  $button['text']
-                    ]
-                ];
-
-            }
-        }     
-            
+   
         // Time
         if( $this->layout['header_date'] ) {
             $args['atoms']['date']      = [
@@ -278,7 +243,44 @@ class Singular extends Base {
                     'string' => '<div class="entry-meta"><i class="fa fa-comment"></i> <a href="' . $link . '" title="' . __('Respond', 'waterfall') . '">' . sprintf( _n( '%s comment', '%s comments', $comments, 'waterfall' ), $comments ) . '</a></div>'
                 ]
             ];    
-        }          
+        }           
+        
+        // Subtitle  
+        if( $this->meta['page_header_subtitle']  ) {
+            $args['atoms']['description'] = [ 
+                'atom'              => 'description',
+                'properties'        => [
+                    'description'   =>  $this->meta['page_header_subtitle'],
+                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
+                ]
+            ];
+        }
+
+        // This is a button  
+        if( isset($this->meta['page_header_buttons'][0]['text']) && isset($this->meta['page_header_buttons'][0]['link']) ) {
+
+            $args['atoms']['buttons_open'] = ['atom' => 'string', 'properties' => ['string' => '<div class="main-header-buttons">']];
+
+            foreach($this->meta['page_header_buttons'] as $key => $button ) {
+               if( ! $button['link'] || ! $button['text'] ) {
+                   continue;
+               }
+               $args['atoms']['button_' . $key] = [ 
+                    'atom'              => 'button',
+                    'properties'        => [
+                        'attributes'    => [
+                            'class'     => $key == 0 ? 'primary main-header-button' : 'secondary main-header-button',
+                            'href'      => $button['link']
+                        ],
+                        'background'    => 'default',
+                        'label'         =>  $button['text']
+                    ]
+                ];
+            }
+
+            $args['atoms']['buttons_close'] = ['atom' => 'string', 'properties' => ['string' => '</div>']];
+
+        }            
     
         // Featured image
         $featured       = $this->layout['header_featured'] ? $this->layout['header_featured'] : 'after';
