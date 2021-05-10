@@ -50,13 +50,12 @@ class Waterfall {
      */
     public $optimize;     
       
-    
     /**
      * Contains the updater object
      *
      * @access public
      */
-    public $updater;     
+    public $updater;
   
     /**
      * Contains the view object
@@ -164,8 +163,9 @@ class Waterfall {
     /**
      * Enables our theme to be updated through an external repository, in this case github
      */
-    private function bootUpdater() { 
-        $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/waterfall'] );   
+    private function bootUpdater() {
+        $this->updater = MakeitWorkPress\WP_Updater\Boot::instance();
+        $this->updater->add(['source' => 'https://github.com/makeitworkpress/waterfall', 'type' => 'theme']);
     }    
         
     /**

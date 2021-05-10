@@ -46,6 +46,11 @@
  */
 .elementor-section-wrap > .elementor-section.elementor-section-boxed {
 
+    // Inner sections inside a boxed section shouldn't have a limited max-width;
+    .elementor-inner-section > .elementor-container {
+        max-width: none;
+    }
+
     // This is the default width of the theme
     > .elementor-column-gap-no {
         max-width: 1280px;
@@ -85,11 +90,10 @@
 
 /**
  * This theme extends inner sections that have fullwidth containers
- * .elementor-section .elementor-section-full_width is a fullwidth section within another section, thus an inner section
  *
  * @since Changed since Elementor 3.0.0
  */
-.elementor-section .elementor-section-full_width { 
+.elementor-inner-section.elementor-section-full_width {
     > .elementor-column-gap-narrow {
         margin: 0 -5px;
     }

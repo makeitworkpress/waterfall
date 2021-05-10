@@ -1,15 +1,5 @@
 <?php 
 /**
- * Main Functions file
- *
- * Table of Functions (ToF)
- * 1. Autoload Registration
- * 2. Basic functions for retrieving headers and so forth
- * 3. Boot components
- * 4. Theme instanciation and registration
- */
-
-/**
  * Registers the autoloading for theme classes
  */
 spl_autoload_register( function($className) {

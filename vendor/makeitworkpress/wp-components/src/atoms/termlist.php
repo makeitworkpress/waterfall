@@ -49,15 +49,25 @@ if( empty($atom['taxonomies']) ) {
 }
 
 // Retrieve our lists
+$hasTerms = false;
 foreach( $atom['taxonomies'] as $taxonomy => $properties ) { 
-    $atom['taxonomies'][$taxonomy]['list'] = get_the_term_list( $atom['id'], $taxonomy, $properties['before'], $properties['seperator'], $properties['after'] );
+    $termlist                                   = get_the_term_list( $atom['id'], $taxonomy, $properties['before'], $properties['seperator'], $properties['after'] );
+    if( $termlist ) {
+        $atom['taxonomies'][$taxonomy]['list']  = $termlist;
+        $hasTerms                               = true;
+    }
 } 
+
+// Don't output html if no terms are found
+if( ! $hasTerms ) {
+    return;
+}
 
 $attributes = MakeitWorkPress\WP_Components\Build::attributes($atom['attributes']); ?>
 
 <div <?php echo $attributes; ?>>
     <?php foreach( $atom['taxonomies'] as $taxonomy => $properties ) { ?>
-        <?php if( $properties['list'] ) { ?> 
+        <?php if( isset($properties['list']) && $properties['list'] ) { ?>
             <div class="atom-termlist-item entry-<?php echo $taxonomy; ?>" <?php if( isset($properties['schema']) && $properties['schema'] && $atom['schema'] ) { echo 'itemprop="' . $properties['schema'] . '"'; } ?>>
                 <?php if( $properties['icon'] ) { ?>
                     <i class="fa fa-<?php echo $properties['icon']; ?> hvr-icon"></i>
