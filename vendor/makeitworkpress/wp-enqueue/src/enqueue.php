@@ -27,16 +27,24 @@ class Enqueue {
     private function enqueue() {
         
         if( isset($this->frontAssets) ) {
-            add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 20);    
+            add_action('wp_enqueue_scripts', [$this, 'enqueueFront'], 20);    
         }
         
         if( isset($this->adminAssets) ) {
-            add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 20, 1);    
+            add_action('admin_enqueue_scripts', [$this, 'enqueueAdmin'], 20, 1);    
         }
         
         if( isset($this->loginAssets) ) {
-            add_action('login_enqueue_scripts', array($this, 'enqueueLogin'), 20);    
+            add_action('login_enqueue_scripts', [$this, 'enqueueLogin'], 20);    
         }
+
+        if( isset($this->blockEditorAssets) ) {
+            add_action('enqueue_block_editor_assets', [$this, 'enqueueBlockEditorAssets'], 20); 
+        }
+
+        if( isset($this->blockAssets) ) {
+            add_action('enqueue_block_assets', [$this, 'enqueueBlockAssets'], 20);
+        }        
         
     }
     
@@ -76,6 +84,10 @@ class Enqueue {
             // Add the assets to their context
             if( $asset['context'] == 'admin' || $asset['context'] == 'both' ) {
                 $this->adminAssets[] = $asset;      
+            } elseif( $asset['context'] == 'block-editor' ) {
+                $this->blockEditorAssets[] = $asset;
+            } elseif( $asset['context'] == 'block-assets' ) {
+                $this->blockAssets[] = $asset;
             } elseif( $asset['context'] == 'login' ) {
                 $this->loginAssets[] = $asset;    
             } else {
@@ -150,6 +162,24 @@ class Enqueue {
         }
         
     } 
+
+    /**
+     * Enqueues the block editor scripts and styles
+     */
+    public function enqueueBlockEditorAssets() {   
+        foreach( $this->blockEditorAssets as $asset ) {  
+            $this->action($asset);  
+        }  
+    }
+    
+    /**
+     * Enqueues the block scripts and styles
+     */
+    public function enqueueBlockAssets() {   
+        foreach( $this->blockAssets as $asset ) {  
+            $this->action($asset);  
+        }
+    }     
     
     /**
      * Executes the action itself

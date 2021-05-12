@@ -63,7 +63,7 @@ The array with data which you want to have localized. The ``'name'`` property is
 Allows to determine the action by using ``'enqueue'``, ``'dequeue'`` or ``'register'``. For example, if you add a css stylesheet with action register as key, this will result in the stylesheet being registered using wp_enqueue_style.
 
 **context (string)**
-Allows you to specifically define the context in which something needs to be enqueued using ``'admin'``, ``'login'``, ``'both'``. Only on the admin side, on the front-end or on both?  You can also add your assets to the login page.
+Allows you to specifically define the context in which something needs to be enqueued using ``'admin'``, ``'login'``, ``'block-editor'``, ``'block-assets'``, or ``'both'``. Only on the admin side, on the front-end, or on both? You can also add your assets to the login page, the on the Gutenberg Editor (``'block-editor'``) and Gutenberg Block Assets (``'block-assets'``).
 
 **exclude (array)**
 Accepts an array with admin page hooks, such as ``'edit.php'`` on which you want to exclude the enqueueing of admin scripts and styles or a set of conditionals such as ``'is_page'`` for front-end enqueing.
