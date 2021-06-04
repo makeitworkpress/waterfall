@@ -85,7 +85,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 			[
 				'label'     	=> __( 'Display Archive', 'waterfall' ),
 				'type'      	=> Elementor\Controls_Manager::SWITCHER,
-				'default'   	=> 'no',
+				'default'   	=> '',
 				'label_on'  	=> __( 'Yes', 'waterfall' ),
 				'label_off' 	=> __( 'No', 'waterfall' ),
 			]

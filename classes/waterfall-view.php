@@ -4,7 +4,7 @@
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-class Waterfall_View extends Waterfall_Base  {
+class Waterfall_View extends Waterfall_Base {
 
     /**
      * Contains the components object

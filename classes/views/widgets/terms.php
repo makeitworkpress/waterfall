@@ -86,7 +86,7 @@ class Terms extends Elementor\Widget_Base {
 				'label'     	=> __( 'Show Empty Terms', 'waterfall' ),
 				'description'   => __( 'Shows terms with no posts attached.', 'waterfall' ),
 				'type'      	=> Elementor\Controls_Manager::SWITCHER,
-				'default'   	=> 'no',
+				'default'   	=> '',
 				'label_on'  	=> __( 'Yes', 'waterfall' ),
 				'label_off' 	=> __( 'No', 'waterfall' ),
 			]
@@ -144,7 +144,7 @@ class Terms extends Elementor\Widget_Base {
 			[
 				'label'     	=> __( 'Button Style', 'waterfall' ),
 				'type'      	=> Elementor\Controls_Manager::SWITCHER,
-				'default'   	=> 'no',
+				'default'   	=> '',
 				'label_on'  	=> __( 'Yes', 'waterfall' ),
 				'label_off' 	=> __( 'No', 'waterfall' ),
 				'separator' 	=> 'before',
