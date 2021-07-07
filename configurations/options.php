@@ -105,44 +105,6 @@ $options = [
                 ]
             ]
         ],
-        'optimize'   => [
-            'icon'          => 'access_time',
-            'id'            => 'optimize',
-            'title'         => __('Optimize', 'waterfall'),
-            'description'   => __('Custom optimizations for the theme, slightly improving performance.', 'waterfall'),
-            'fields'        => [                  
-                [
-                    'default'       => '',
-                    'description'   => __('Improve the loading performance by enabling optimizations. Be aware that some optimizations such as Disabling XMLRPC can break plugins.', 'waterfall'),
-                    'id'            => 'optimize',
-                    'options'       => [
-                        'deferCSS'                  => ['label' => __('Defer CSS', 'waterfall')],
-                        'deferJS'                   => ['label' => __('Defer Javascript Loading', 'waterfall')],
-                        'disableComments'           => ['label' => __('Disable Comments', 'waterfall')],
-                        'disableEmbed'              => ['label' => __('Disable Embed Scripts. Breaks video embedding.', 'waterfall')],
-                        'disableEmoji'              => ['label' => __('Disable Emoji', 'waterfall')],
-                        'disableFeeds'              => ['label' => __('Disable Feeds', 'waterfall')],
-                        'disableHeartbeat'          => ['label' => __('Disable Heartbeat', 'waterfall')],
-                        'slowHeartbeat'             => ['label' => __('Slow Down Heartbeat Script', 'waterfall')],
-                        'jqueryToFooter'            => ['label' => __('Move the jQuery Script to Footer', 'waterfall')],
-                        'disablejQuery'             => ['label' => __('Disable jQuery', 'waterfall')],
-                        'disablejQueryMigrate'      => ['label' => __('Disable jQuery Migrate', 'waterfall')],
-                        'disableRSD'                => ['label' => __('Disable RSD', 'waterfall')],
-                        'disableShortlinks'         => ['label' => __('Disable WordPress Shortlinks', 'waterfall')],                      
-                        'disableVersionNumbers'     => ['label' => __('Remove WordPress Version Numbers from Scripts', 'waterfall')],            
-                        'disableWLWManifest'        => ['label' => __('Disable the WLW Manifest', 'waterfall')],
-                        'disableWPVersion'          => ['label' => __('Remove the WordPress Version from front-end', 'waterfall')],           
-                        'disableXMLRPC'             => ['label' => __('Disable XMLRPC', 'waterfall')],
-                        'limitRevisions'            => ['label' => __('Limit Post Revisions to 5', 'waterfall')],
-                        'blockExternalHTTP'         => ['label' => __('Block external HTTP Requests. Breaks external embeds.', 'waterfall')],
-                        'limitCommentsJS'           => ['label' => __('Enqueue Comment JavaScript only on Comments', 'waterfall')],
-                        'removeCommentsStyle'       => ['label' => __('Remove Additional Styling for Comments', 'waterfall')]
-                    ],
-                    'title'         => __('Theme Optimizations', 'waterfall'),
-                    'type'          => 'checkbox'
-                ]
-            ]      
-        ],
         'advanced'   => [
             'icon'          => 'autorenew',
             'id'            => 'advanced',
@@ -157,7 +119,37 @@ $options = [
                     'message'       => true,
                     'title'         => __('Synchronize Settings', 'waterfall'),
                     'type'          => 'button'
-                ]
+                ],
+                [
+                    'default'       => '',
+                    'description'   => __('Improve the loading performance by enabling optimizations. Be aware that some optimizations such as Disabling XMLRPC can break plugins.', 'waterfall'),
+                    'id'            => 'optimize',
+                    'options'       => [
+                        'deferCSS'                  => ['label' => __('Defer CSS', 'waterfall')],
+                        'deferJS'                   => ['label' => __('Defer Javascript Loading', 'waterfall')],
+                        'disableComments'           => ['label' => __('Disable Comments', 'waterfall')],
+                        'disableEmbed'              => ['label' => __('Disable Embed Scripts (breaks video embedding).', 'waterfall')],
+                        'disableEmoji'              => ['label' => __('Disable Emoji', 'waterfall')],
+                        'disableFeeds'              => ['label' => __('Disable Feeds', 'waterfall')],
+                        'disableHeartbeat'          => ['label' => __('Disable Heartbeat', 'waterfall')],
+                        'slowHeartbeat'             => ['label' => __('Slow Down Heartbeat Script', 'waterfall')],
+                        'jqueryToFooter'            => ['label' => __('Move the jQuery Script to Footer', 'waterfall')],
+                        'disablejQuery'             => ['label' => __('Disable jQuery', 'waterfall')],
+                        'disablejQueryMigrate'      => ['label' => __('Disable jQuery Migrate', 'waterfall')],
+                        'disableRSD'                => ['label' => __('Disable RSD', 'waterfall')],
+                        'disableShortlinks'         => ['label' => __('Disable WordPress Shortlinks', 'waterfall')],                      
+                        'disableVersionNumbers'     => ['label' => __('Remove WordPress Version Numbers from Scripts', 'waterfall')],            
+                        'disableWLWManifest'        => ['label' => __('Disable the WLW Manifest', 'waterfall')],
+                        'disableWPVersion'          => ['label' => __('Remove the WordPress Version from front-end', 'waterfall')],           
+                        'disableXMLRPC'             => ['label' => __('Disable XMLRPC', 'waterfall')],
+                        'limitRevisions'            => ['label' => __('Limit Post Revisions to 5', 'waterfall')],
+                        'blockExternalHTTP'         => ['label' => __('Block external HTTP Requests (breaks external embeds).', 'waterfall')],
+                        'limitCommentsJS'           => ['label' => __('Enqueue Comment JavaScript only on Comments', 'waterfall')],
+                        'removeCommentsStyle'       => ['label' => __('Remove Additional Styling for Comments', 'waterfall')]
+                    ],
+                    'title'         => __('Theme Optimizations', 'waterfall'),
+                    'type'          => 'checkbox'
+                ]                
             ]
         ]        
     ] 

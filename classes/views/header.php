@@ -6,7 +6,6 @@ namespace Views;
 use MakeitWorkPress\WP_Components as WP_Components;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
-
 class Header extends Base {
 
     /**
@@ -70,7 +69,7 @@ class Header extends Base {
         $represents = $this->options['represent_scheme'];
 
         // Get our logo and alt
-        $logo       = $this->customizer['logo'] ? $this->customizer['logo'] : get_theme_mod( 'custom_logo' );
+        $logo       = get_theme_mod( 'custom_logo' ) ? get_theme_mod( 'custom_logo' ) : $this->customizer['logo'];
         $alt        = get_post_meta( $logo, '_wp_attachment_image_alt', true );
 
         // Default header items
