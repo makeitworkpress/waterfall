@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b039781522289de6ea10aa37fff7a4b68cc98e81',
+    'reference' => 'f37702fe21f445936e9f8fea09c1deacda7c6334',
     'name' => 'makeitworkpress/waterfall',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b039781522289de6ea10aa37fff7a4b68cc98e81',
+      'reference' => 'f37702fe21f445936e9f8fea09c1deacda7c6334',
     ),
     'makeitworkpress/wp-components' => 
     array (
@@ -28,7 +28,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'dd526df5e974373fcff1a3b0936b246469218231',
+      'reference' => 'a647943e99aa31eeea82f7aea150b8d027bc7d97',
     ),
     'makeitworkpress/wp-config' => 
     array (
