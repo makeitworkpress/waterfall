@@ -250,7 +250,7 @@ class Singular extends Base {
             $args['atoms']['description'] = [ 
                 'atom'              => 'description',
                 'properties'        => [
-                    'description'   =>  $this->meta['page_header_subtitle'],
+                    'description'   => do_shortcode($this->meta['page_header_subtitle']),
                     'schema'        => in_array($this->type, $this->noSchema) ? false : true
                 ]
             ];

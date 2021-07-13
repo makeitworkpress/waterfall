@@ -93,7 +93,6 @@ class Footer extends Base {
 
         // Logo
         if( is_numeric($this->customizer['footer_logo']) ) {
-            $logo = wp_get_attachment_image_src( $this->customizer['footer_logo'], 'medium' );
             $atoms['logo'] = [
                 'atom'       => 'logo',
                 'properties' => [
@@ -102,7 +101,7 @@ class Footer extends Base {
                         'itemtype' => $itemType
                     ],
                     'float'         => 'center',
-                    'default'       => ['src' => $logo[0], 'height' => $logo[2], 'width' => $logo[1]],
+                    'default'       => $this->customizer['footer_logo'],
                     'schema'        => $represents ? true : false
                 ]
             ];

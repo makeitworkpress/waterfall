@@ -92,7 +92,13 @@ class Index extends Base {
 
         if( $this->layout['header_description'] ) {
             $description            = str_replace('{description}', str_replace( ['<p>', '</p>'], '', term_description() ), $this->layout['header_description'] );
-            $atoms['description']   = ['atom' => 'description', 'properties' => ['attributes' => ['class' => 'page-description'], 'description' => $description]];
+            $atoms['description']   = [
+                'atom'              => 'description', 
+                'properties'        => [
+                    'attributes'    => ['class' => 'page-description'], 
+                    'description'   => do_shortcode($description)
+                ]
+            ];
         }
         
         // Add searchform on search pages
