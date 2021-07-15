@@ -209,7 +209,8 @@ abstract class Base {
         $contentWidth               = wf_get_data( $context, $this->type . '_content_width' );
         $metaContentWidth           = wf_get_data( 'meta', 'content_width' );
 
-        if( $contentWidth == 'full' || ( is_singular() && (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) ) {
+        // Container is disabled when a post or type is set to full width content, or when viewing an elementor library
+        if( $contentWidth == 'full' || ( is_singular() && (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) || is_singular('elementor_library') ) {
             $this->contentContainer = false;
         }
 

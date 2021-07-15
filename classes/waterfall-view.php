@@ -317,7 +317,8 @@ class Waterfall_View extends Waterfall_Base {
                 $classes[] = 'waterfall-content-header-overlay';
             }
             
-            if( (isset($data['meta']['content_width']['full']) && $data['meta']['content_width']['full'] ) || $content_width == 'full' ) {
+            // We add a fullwidth content class if it is a setting in our customizer, post meta or when viewing an elementor template
+            if( (isset($data['meta']['content_width']['full']) && $data['meta']['content_width']['full'] ) || $content_width == 'full' || is_singular('elementor_library') ) {
                 $sidebar    = 'default';
                 $classes[]  = 'waterfall-fullwidth-content';
             }
