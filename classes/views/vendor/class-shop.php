@@ -12,7 +12,7 @@ class Shop extends \Views\Base {
     /**
      * Sets the properties for the index
      */
-    protected function setProperties() {
+    protected function set_properties() {
         $this->type         = 'product_archive';
         $this->properties   = apply_filters( 'waterfall_catalog_properties', [
             'woocommerce' => ['header_disable', 'header_align', 'header_breadcrumbs', 'header_height', 'header_position', 'header_width', 'sidebar_position' ]                                     
@@ -25,7 +25,7 @@ class Shop extends \Views\Base {
     public function header() {
 
         // Get our properties
-        $this->getProperties();
+        $this->get_properties();
 
         /**
          * Completely disables the title section
@@ -61,7 +61,7 @@ class Shop extends \Views\Base {
             'align'         => $this->woocommerce['header_align'],
             'atoms'         => $atoms,
             'attributes'    => ['class' => 'main-header woocommerce-products-header'],
-            'container'     => $this->woocommerce['header_width'] == 'full' ? false : true,
+            'container'     => $this->woocommerce['header_width'] === 'full' ? false : true,
             'height'        => $this->woocommerce['header_height']
         ] );
         
@@ -132,10 +132,10 @@ class Shop extends \Views\Base {
     public function sidebar() {
 
         if( ! isset($this->woocommerce) ) {
-            $this->getProperties();
+            $this->get_properties();
         }
 
-        if( $this->woocommerce['sidebar_position'] == 'left' || $this->woocommerce['sidebar_position'] == 'right' || $this->woocommerce['sidebar_position'] == 'bottom' || ! $this->woocommerce['sidebar_position'] )
+        if( $this->woocommerce['sidebar_position'] === 'left' || $this->woocommerce['sidebar_position'] === 'right' || $this->woocommerce['sidebar_position'] === 'bottom' || ! $this->woocommerce['sidebar_position'] )
             WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => ['product-archive']] );         
         
     }    

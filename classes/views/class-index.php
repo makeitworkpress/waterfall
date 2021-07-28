@@ -12,7 +12,7 @@ class Index extends Base {
     /**
      * Sets the properties for the index
      */
-    protected function setProperties() {
+    protected function set_properties() {
 
         $this->type         = is_search() ? 'search' : wf_get_archive_post_type() . '_archive';
         $this->properties   = apply_filters( 'waterfall_index_properties', [
@@ -62,7 +62,7 @@ class Index extends Base {
         }
 
         // Retrieve our properties for the archive header
-        $this->getProperties();
+        $this->get_properties();
 
         // Breadcrumbs
         if( $this->layout['header_breadcrumbs'] ) {
@@ -110,7 +110,7 @@ class Index extends Base {
             'atoms'         => $atoms,
             'attributes'    => ['class' => 'main-header archive-header'],
             'align'         => $this->layout['header_align'],
-            'container'     => $this->layout['header_width'] == 'full' ? false : true,
+            'container'     => $this->layout['header_width'] === 'full' ? false : true,
             'height'        => $this->layout['header_height']
         ] );
         
@@ -125,7 +125,7 @@ class Index extends Base {
 
         // Retrieve our properties for the posts
         if( ! isset($this->layout) ) {
-            $this->getProperties();
+            $this->get_properties();
         }
 
         // Retrieve our global query.
@@ -141,30 +141,30 @@ class Index extends Base {
 
         // Settings to determina what Microdata to show
         $type        = str_replace('_archive', '', $this->type);
-        $blogTypes   = apply_filters( 'waterfall_blog_scheme_post_types', ['post'] );
-        $noSchema    = $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : [];
+        $blog_types  = apply_filters( 'waterfall_blog_scheme_post_types', ['post'] );
+        $no_schema   = $this->options['scheme_post_types_disable'] ? $this->options['scheme_post_types_disable'] : [];
         
         $args = apply_filters( 'waterfall_archive_posts_args', [            
             'attributes'        => [
                 'class'         => 'content archive-posts',
-                'itemtype'      => in_array($type, $blogTypes) ? 'http://schema.org/Blog' : '' 
+                'itemtype'      => in_array($type, $blog_types) ? 'http://schema.org/Blog' : '' 
             ],
-            'gridGap'           => $this->layout['content_gap'] ? $this->layout['content_gap'] : 'default', 
+            'grid_gap'          => $this->layout['content_gap'] ? $this->layout['content_gap'] : 'default', 
             'none'              => $this->layout['content_none'] ? $this->layout['content_none'] : __('Bummer! No posts have been found.', 'waterfall'),
-            'postProperties'    => [
+            'post_properties'   => [
                 'appear'        => 'bottom',
                 'attributes'    => [
-                    'itemprop'  => in_array($type, $blogTypes) ? 'blogPost' : '', 
-                    'itemtype'  => in_array($type, $blogTypes) ? 'http://schema.org/BlogPosting' : 'http://schema.org/CreativeWork', 
+                    'itemprop'  => in_array($type, $blog_types) ? 'blogPost' : '', 
+                    'itemtype'  => in_array($type, $blog_types) ? 'http://schema.org/BlogPosting' : 'http://schema.org/CreativeWork', 
                     'style'     => ['min-height' => $this->layout['content_height'] ? $this->layout['content_height'] . 'px' : '']
                 ],
-                'blogSchema'    => in_array($type, $blogTypes) ? true : false,
-                'contentAtoms'  => $this->layout['content_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
-                'footerAtoms'   => [ 
+                'blog_schema'   => in_array($type, $blog_types) ? true : false,
+                'content_atoms' => $this->layout['content_content'] === 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
+                'footer_atoms'  => [ 
                     'button'    => ['atom' => 'button', 'properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
                 ], 
                 'grid'          => $this->layout['content_columns'] ? $this->layout['content_columns'] : $defaults['columns'],   
-                'headerAtoms'   => [ 
+                'header_atoms'   > [ 
                     'title'     => ['atom' => 'title', 'properties' => ['attributes' => ['itemprop' => 'name', 'class' => 'entry-title'], 'tag' => 'h2', 'link' => 'post']] 
                 ],                                 
                 'image'         => [
@@ -175,49 +175,49 @@ class Index extends Base {
                     'size'          => $this->layout['content_image'] ? $this->layout['content_image'] : $defaults['size']                    
                 ]
             ],
-            'schema'            => in_array($type, $noSchema) ? false : true,
+            'schema'            => in_array($type, $no_schema) ? false : true,
             'view'              => $this->layout['content_style'] ? $this->layout['content_style'] : $defaults['style'],
             'query'             => $wp_query
         ] );
 
         // Adds the post author
         if( $this->layout['content_meta_author'] ) {
-            $args['postProperties']['headerAtoms']['author'] = [
+            $args['post_properties']['header_atoms']['author'] = [
                 'atom'          => 'author',
                 'properties'    => [
                     'attributes'    => ['class' => 'entry-author'],
                     'description'   => false, 
                     'imageFloat'    => 'left',
-                    'schema'        => in_array($type, $noSchema) ? false : true,
+                    'schema'        => in_array($type, $no_schema) ? false : true,
                 ]
             ];
 
             // Disables the avatar bu default
             if( ! $this->layout['content_meta_avatar'] ) {
-                $args['postProperties']['headerAtoms']['author']['properties']['avatar'] = false;
+                $args['post_properties']['header_atoms']['author']['properties']['avatar'] = false;
             }
 
         }
 
         // Adds the post date
         if( $this->layout['content_meta_date'] ) {
-            $args['postProperties']['headerAtoms']['date'] = [
+            $args['post_properties']['header_atoms']['date'] = [
                 'atom'              => 'date', 
                 'properties'        => [
                     'attributes'    => ['class' => 'entry-time'], 
-                    'schema'        => in_array($type, $noSchema) ? false : true
+                    'schema'        => in_array($type, $no_schema) ? false : true
                 ]
             ]; 
         }        
 
         // Adds the post type indicator
         if( $this->layout['content_type'] ) {
-            $args['postProperties']['headerAtoms']['type'] = ['atom' => 'type', 'properties' => ['attributes' => ['class' => 'entry-meta']]];
+            $args['post_properties']['header_atoms']['type'] = ['atom' => 'type', 'properties' => ['attributes' => ['class' => 'entry-meta']]];
         }
 
         // Unset button if no text is set
         if( ! $this->layout['content_button'] ) {
-            unset( $args['postProperties']['footerAtoms']['button'] );
+            unset( $args['post_properties']['footer_atoms']['button'] );
         }        
         
         WP_Components\Build::molecule( 'posts', $args );
@@ -231,12 +231,17 @@ class Index extends Base {
 
         // Retrieve our properties for the sidebar
         if( ! isset($this->layout) ) {
-            $this->getProperties(); 
+            $this->get_properties(); 
         }
         
-        // Adds sidebars. Sidebards ids are similar to the type displayed (archive, post, etc)
-        if( $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'bottom' ) {
-            WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => [$this->type]] );
+        // Adds sidebars. Sidebars ids are similar to the type displayed (archive, post, etc)
+        if( $this->layout['sidebar_position'] === 'left' || $this->layout['sidebar_position'] === 'right' || $this->layout['sidebar_position'] === 'bottom' ) {
+            $args = apply_filters( 'waterfall_archive_sidebar_args', [
+                'attributes'    => ['class' => 'main-sidebar'], 
+                'sidebars'      => [$this->type]
+            ] );
+
+            WP_Components\Build::atom( 'sidebar', $args);
         }
 
     }

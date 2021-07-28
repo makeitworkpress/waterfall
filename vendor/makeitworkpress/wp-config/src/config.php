@@ -63,7 +63,7 @@ class Config {
 
         // If the configuration alreday exists for the array, we merge those arrays
         if( isset($this->configurations[$type]) && is_array($this->configurations[$type]) ) {
-            $configurations = $this->multiParseArgs( $configurations, $this->configurations[$type] );    
+            $configurations = $this->multi_parse_args( $configurations, $this->configurations[$type] );    
         }
 
         // Now, set our configurations
@@ -117,7 +117,7 @@ class Config {
      * 
      * @return array $array The merged array
      */
-    public function multiParseArgs( $args, $default ) {
+    public function multi_parse_args( $args, $default ) {
 
         if( ! is_array($default) ) {
             return wp_parse_args( $args, $default );
@@ -133,7 +133,7 @@ class Config {
                 if( is_integer($key) ) {
                     $array[] = $element;
                 } elseif( isset( $array[$key] ) && (is_array( $array[$key] )) ) {
-                    $array[$key] = $this->multiParseArgs( $element, $array[$key] );
+                    $array[$key] = $this->multi_parse_args( $element, $array[$key] );
                 } else {
                     $array[$key] = $element;
                 }

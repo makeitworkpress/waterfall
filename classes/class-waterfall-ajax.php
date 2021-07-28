@@ -29,7 +29,7 @@ class Waterfall_Ajax {
      */
     public function __construct() {
         
-        $this->private = ['syncMultiSiteOptions'];
+        $this->private = ['sync_multisite_options'];
         $this->public = [];
                 
         // Execute our hooks
@@ -68,9 +68,9 @@ class Waterfall_Ajax {
          * The sanitize_option filter strips out the values of our options while synchronizing 
          * because we have a custom hook in our register_settings at WP Custom Fields. Hence, we need to filter it out.
          */
-        $currentTheme   = get_option( 'stylesheet' );
+        $current_theme   = get_option( 'stylesheet' );
         
-        foreach( ['waterfall_options', 'theme_mods_' . $currentTheme] as $option ) {
+        foreach( ['waterfall_options', 'theme_mods_' . $current_theme] as $option ) {
 
             add_filter( 'sanitize_option_' . $option, function( $value, $option, $original ) {
 
@@ -90,7 +90,7 @@ class Waterfall_Ajax {
     /**
      * Syncs our settings over multiple sites in the network - taking the current site as a measure.
      */
-    public function syncMultiSiteOptions() {
+    public function sync_multisite_options() {
 
         wp_verify_nonce( 'wp-custom-fields', $_POST['action'] );
 
@@ -102,10 +102,10 @@ class Waterfall_Ajax {
         $this->syncing  = true;
  
         $current        = get_current_blog_id();
-        $currentTheme   = get_option( 'stylesheet' );
+        $current_theme  = get_option( 'stylesheet' );
         $sites          = get_sites( ['fields' => 'ids'] );
 
-        $customizer     = get_option( 'theme_mods_' . $currentTheme );
+        $customizer     = get_option( 'theme_mods_' . $current_theme );
         $options        = get_option( 'waterfall_options' );
 
         foreach( $sites as $site ) {
@@ -113,12 +113,12 @@ class Waterfall_Ajax {
             $theme = get_blog_option( $site, 'stylesheet' );
 
             // Only update options for sites that have the same theme activated
-            if( $currentTheme != $theme ) {
+            if( $current_theme !== $theme ) {
                 continue;
             }
 
             // Skip our current site
-            if( $current == $site ) {
+            if( $current === $site ) {
                 continue;
             }
             

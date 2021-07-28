@@ -12,7 +12,7 @@ class Product extends \Views\Base {
     /**
      * Sets the properties for the index
      */
-    protected function setProperties() {
+    protected function set_properties() {
         $this->type         = 'product';
         $this->properties   = apply_filters( 'waterfall_product_properties', [
             'woocommerce'   => [
@@ -28,7 +28,7 @@ class Product extends \Views\Base {
      */
     public function breadcrumbs() {   
 
-        $this->getProperties();
+        $this->get_properties();
 
         if( $this->woocommerce['content_breadcrumbs'] ) {
             $taxonomy = $this->woocommerce['content_breadcrumbs_taxonomy'] ? true : false;
@@ -56,10 +56,10 @@ class Product extends \Views\Base {
     public function sidebar() {
 
         if( ! isset($this->woocommerce) ) {
-            $this->getProperties();
+            $this->get_properties();
         }
 
-        if( $this->woocommerce['sidebar_position'] == 'left' || $this->woocommerce['sidebar_position'] == 'right' || $this->woocommerce['sidebar_position'] == 'bottom' ) {
+        if( $this->woocommerce['sidebar_position'] === 'left' || $this->woocommerce['sidebar_position'] === 'right' || $this->woocommerce['sidebar_position'] === 'bottom' ) {
             WP_Components\Build::atom( 'sidebar', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => ['product']] );   
         }      
         

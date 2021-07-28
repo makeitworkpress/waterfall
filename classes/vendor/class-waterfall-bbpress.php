@@ -15,7 +15,7 @@ class Waterfall_bbPress extends Waterfall_Base {
     public function initialize() { 
         
         $this->filters      = [
-            ['bbp_get_bbpress_template', 'modifyTemplate']
+            ['bbp_get_bbpress_template', 'modify_template']
         ];
 
     } 
@@ -27,7 +27,7 @@ class Waterfall_bbPress extends Waterfall_Base {
      * @param Array {$args} The template arguments
      * @return Array {$args} The modified template arguments
      */
-    public function modifyTemplate( $args ) {
+    public function modify_template( $args ) {
         
         array_unshift($args, 'templates/bbpress/bbpress-template.php');
         

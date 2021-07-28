@@ -41,7 +41,7 @@ function wf_get_data( $type = '', $keys = '', $prefix = '') {
         return [];
     }
 
-    $data       = Waterfall_Data::instance()->getData();
+    $data       = Waterfall_Data::instance()->get_data();
     $options    = $data[$type];
 
     /**
@@ -319,12 +319,15 @@ function wf_get_archive_post_type() {
     // Default post type archives
     if( isset($wp_query->query['post_type']) ) {
         $type = $wp_query->query['post_type'];
+    
     // The page set-up as blog page
-    } elseif( isset($wp_query->queried_object->ID) && $wp_query->queried_object->ID == get_option('page_for_posts') ) {
+    } elseif( isset($wp_query->queried_object->ID) && (int) $wp_query->queried_object->ID === (int) get_option('page_for_posts') ) {
         $type = 'post';
+    
     // bbPress search (will equal forums archive)
-    } else if( isset($wp_query->bbp_is_search) && $wp_query->bbp_is_search ) {
+    } elseif( isset($wp_query->bbp_is_search) && $wp_query->bbp_is_search ) {
         $type = 'forum';
+    
     // Taxonomy archives
     } elseif( isset($wp_query->tax_query->queried_terms) && $wp_query->tax_query->queried_terms ) {
 
@@ -332,7 +335,7 @@ function wf_get_archive_post_type() {
         foreach( $wp_query->tax_query->queried_terms as $key => $vars ) {
             
             // If our key is language (from polylang), we skip it
-            if( $key == 'language' ) {
+            if( $key === 'language' ) {
                 continue;
             }
 
@@ -415,7 +418,8 @@ function wf_get_bbpress_types() {
 
 /**
  * Checks if a certain theme location was build by elementor. We can use the options to see if a condition applies.
- * It looks the the primary condition available
+ * It looks to the primary condition available
+ * 
  * It does not yet support display based on tags, categories and taxonomies
  * 
  * @param string $location  The theme location of the template
@@ -440,7 +444,7 @@ function wf_elementor_theme_has_location( $location, $type = '' ) {
         case 'header':
         case 'footer':
             foreach( $conditions[$location] as $condition ) {
-                if( $condition[0] == 'include/general' ) {
+                if( $condition[0] === 'include/general' ) {
                     $shown = true;
                 }
             }
@@ -449,21 +453,21 @@ function wf_elementor_theme_has_location( $location, $type = '' ) {
             foreach( $conditions[$location] as $condition ) {
                               
                 // For single template applying to all types
-                if( $condition[0] == 'include/singular' ) {
+                if( $condition[0] === 'include/singular' ) {
                     $shown = true;
                 }
 
-                if( $condition[0] == 'include/singular/not_found404' && $type == '404' ) {
+                if( $condition[0] === 'include/singular/not_found404' && $type === '404' ) {
                     $shown = true;
                 }                
 
                 // For single template applying to products
-                if( $condition[0] == 'include/product' && $type == 'product' ) {
+                if( $condition[0] === 'include/product' && $type === 'product' ) {
                     $shown = true;
                 }                
 
                 // For a single templates applying to a specific type
-                if( $condition[0] == 'include/singular/' . $type ) {
+                if( $condition[0] === 'include/singular/' . $type ) {
                     $shown = true;
                 }
 
@@ -474,22 +478,22 @@ function wf_elementor_theme_has_location( $location, $type = '' ) {
             foreach( $conditions[$location] as $condition ) {
 
                 // For an archive template applying to all types
-                if( $condition[0] == 'include/archive' ) {
+                if( $condition[0] === 'include/archive' ) {
                     $shown = true;
                 }
 
                 // For a search, author or date templates 
-                if( $condition[0] == 'include/archive/' . $type ) {
+                if( $condition[0] === 'include/archive/' . $type ) {
                     $shown = true;
                 } 
 
                 // For condition archives
-                if( $condition[0] == 'include/product_archive' && $type == 'product' ) {
+                if( $condition[0] === 'include/product_archive' && $type === 'product' ) {
                     $shown = true;
                 }                 
 
                 // For a specific post type 
-                if( $condition[0] == 'include/archive/' . $type . '_archive' ) {
+                if( $condition[0] === 'include/archive/' . $type . '_archive' ) {
                     $shown = true;
                 }
 

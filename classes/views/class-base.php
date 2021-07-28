@@ -72,17 +72,17 @@ abstract class Base {
 
         // Reloads our data so the customizer can access it and updates are reflected
         if( is_customize_preview() ) {
-            Waterfall_Data::instance()->reloadCustomizerData();
+            Waterfall_Data::instance()->reload_customizer_data();
         }
 
         // Set our properties based upon the arrays defined within a view
-        $this->setProperties();
+        $this->set_properties();
 
         // Determine odd, but default layout properties that can occur for archives and singulars
-        $this->contentContainer = true;      
-        $this->relatedContainer = true;      
-        $this->relatedSection   = true;      
-        $this->mainLayout();
+        $this->content_container = true;      
+        $this->related_container = true;      
+        $this->related_section   = true;      
+        $this->set_main_layout();
         
     }
 
@@ -90,14 +90,15 @@ abstract class Base {
      * Sets all basic properties that are retrieved from our customizer or meta settings. Can only be defined in child class
      * This function should define $this->properties
      */
-    abstract protected function setProperties();
+    abstract protected function set_properties();
 
     /**
      * This function automatically sets all properties based upon the array mentioned above.
      * It should be called during rendering.
      */
-    protected final function getProperties() {
+    protected final function get_properties() {
 
+        $called = get_called_class();
         $prefix = $this->type ? $this->type . '_' : '';
 
         // Loads specific theme options
@@ -107,27 +108,27 @@ abstract class Base {
 
         // Loads meta data from the postmeta
         if( is_singular() && isset($this->properties['meta']) ) {
-            $this->meta         = apply_filters( 'waterfall_meta_properties', wf_get_data('meta', $this->properties['meta']), get_called_class() );
+            $this->meta         = apply_filters( 'waterfall_meta_properties', wf_get_data('meta', $this->properties['meta']), $called );
         }
 
         // Sets general customizer properties
         if( isset($this->properties['customizer']) ) {
-            $this->customizer   = apply_filters( 'waterfall_customizer_properties', wf_get_data('customizer', $this->properties['customizer']), get_called_class() );
+            $this->customizer   = apply_filters( 'waterfall_customizer_properties', wf_get_data('customizer', $this->properties['customizer']), $called );
         }
 
         // Sets layout customizer properties
         if( isset($this->properties['layout']) ) {
-            $this->layout       = apply_filters( 'waterfall_layout_properties', wf_get_data('layout', $this->properties['layout'], $prefix), get_called_class() );    
+            $this->layout       = apply_filters( 'waterfall_layout_properties', wf_get_data('layout', $this->properties['layout'], $prefix), $called );    
         } 
         
         // Sets woocommerce customizer properties
         if( isset($this->properties['woocommerce']) ) {
-            $this->woocommerce  = apply_filters( 'waterfall_woocommerce_properties', wf_get_data('woocommerce', $this->properties['woocommerce'], $prefix), get_called_class() );    
+            $this->woocommerce  = apply_filters( 'waterfall_woocommerce_properties', wf_get_data('woocommerce', $this->properties['woocommerce'], $prefix), $called );    
         } 
         
         // Sets woocommerce customizer properties
         if( isset($this->properties['bbpress']) ) {
-            $this->bbpress      = apply_filters( 'waterfall_bbpress_properties', wf_get_data('bbpress', $this->properties['bbpress'], $prefix), get_called_class() );    
+            $this->bbpress      = apply_filters( 'waterfall_bbpress_properties', wf_get_data('bbpress', $this->properties['bbpress'], $prefix), $called );    
         }         
 
     }
@@ -156,7 +157,7 @@ abstract class Base {
         $customizer     = wf_get_data( 'layout', $prefix . '_disable' );    
 
         // We hide the related section if we haven't saved anything yet for pages
-        if( $prefix == $this->type . '_related' ) {
+        if( $prefix === $this->type . '_related' ) {
 
             $pagination = wf_get_data( 'layout', $prefix . '_pagination' );
             $posts      = wf_get_data( 'layout', $prefix . '_posts' );
@@ -168,7 +169,7 @@ abstract class Base {
         }
 
         // We hide our post content footer is there is nothing to show
-        if( $prefix == $this->type . '_footer' ) {
+        if( $prefix === $this->type . '_footer' ) {
 
             $author     = wf_get_data( 'layout', $prefix . '_author' );
             $comments   = wf_get_data( 'layout', $prefix . '_comments' );
@@ -180,7 +181,7 @@ abstract class Base {
 
         }
 
-        if( $meta['disable'] == true || $customizer == true ) {
+        if( $meta['disable'] === true || $customizer) {
             $disabled   = true;
         }
 
@@ -191,7 +192,7 @@ abstract class Base {
     /**
      * Determines if we need to do some odd lay-out conditions for the main layout - we can also limit showing the actual template parts
      */
-    private function mainLayout() {
+    private function set_main_layout() {
 
         /**
          * Determines the settings for the content section
@@ -199,33 +200,33 @@ abstract class Base {
         
         // Look if our display of content inside .main-content should be fullwidth or not
         if( function_exists('is_woocommerce') && is_woocommerce() ) {
-            $context                = 'woocommerce';
+            $context                    = 'woocommerce';
         } elseif( class_exists('bbPress') && in_array($this->type, ['forum', 'topic', 'reply', 'forum_archive']) ) {
-            $context                = 'bbpress';
+            $context                    = 'bbpress';
         } else {
-            $context                = 'layout';
+            $context                    = 'layout';
         }
         
-        $contentWidth               = wf_get_data( $context, $this->type . '_content_width' );
-        $metaContentWidth           = wf_get_data( 'meta', 'content_width' );
+        $content_width                  = wf_get_data( $context, $this->type . '_content_width' );
+        $meta_Content_width             = wf_get_data( 'meta', 'content_width' );
 
         // Container is disabled when a post or type is set to full width content, or when viewing an elementor library
-        if( $contentWidth == 'full' || ( is_singular() && (isset($metaContentWidth['full']) && $metaContentWidth['full']) ) || is_singular('elementor_library') ) {
-            $this->contentContainer = false;
+        if( $content_width === 'full' || ( is_singular() && (isset($meta_Content_width['full']) && $meta_Content_width['full']) ) || is_singular('elementor_library') ) {
+            $this->content_container    = false;
         }
 
         /**
          * Determines the appearance and width for the related section
          */
-        $relatedWidth               = wf_get_data( 'layout', $this->type . '_related_width' );
+        $related_width                  = wf_get_data( 'layout', $this->type . '_related_width' );
 
-        if( $relatedWidth == 'full' ) {
-            $this->relatedContainer = false;
+        if( $related_width === 'full' ) {
+            $this->related_container    = false;
         }
 
         // And obviously, we also bail out if disabled
         if( $this->disabled('related') ) {
-            $this->relatedSection   = false;
+            $this->related_section      = false;
         }
 
      }

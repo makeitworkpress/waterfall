@@ -7,17 +7,15 @@
 wf_get_theme_header(); 
 
 // Outputs our elementor templates, unless we have the product archive running
-if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'product-archive' ) ) {    
-
-    // Initialize our shop archive
-    $shop = new Views\Vendor\Shop();
+if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'product-archive' ) ) {
 
     do_action('waterfall_before_product_archive_header');
         
     /**
      * Displays the default header for WooCommerce Pages
      */
-    $shop->header();
+    $wf_shop = $GLOBALS['wf_shop'];
+    $wf_shop->header();
         
     do_action('waterfall_after_product_archive_header');
 
@@ -27,7 +25,7 @@ if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_
 
     <?php do_action('waterfall_before_product_archive_content_container'); ?>
 
-    <?php if( $shop->contentContainer ) { ?>
+    <?php if( $wf_shop->content_container ) { ?>
         <div class="components-container">    
     <?php } ?> 
 
@@ -41,19 +39,19 @@ if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_
                 /**
                 * Displays the default post-loop from WooCommerce
                 */
-                $shop->posts();
+                $wf_shop->posts();
             ?>
         </div>
 
         <?php 
             do_action('waterfall_after_product_archive_posts');
 
-            $shop->sidebar();
+            $wf_shop->sidebar();
 
             do_action('waterfall_after_product_archive_sidebar');
         ?>
 
-    <?php if( $shop->contentContainer ) { ?>
+    <?php if( $wf_shop->content_container ) { ?>
         </div>    
     <?php } ?>  
 

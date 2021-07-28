@@ -29,18 +29,18 @@ class Waterfall_WooCommerce extends Waterfall_Base {
         ]);
         
         $this->filters      = [
-            ['woocommerce_single_product_carousel_options', 'productCarouselSettings'],
-            ['woocommerce_template_path', 'templatePath']
+            ['woocommerce_single_product_carousel_options', 'modify_product_carousel_args'],
+            ['woocommerce_template_path', 'modify_template_path']
         ];
         
-        $this->themeSupport();
+        $this->add_theme_supports();
 
     } 
     
     /**
-     * Extends themesupport
+     * Extends themesupport for various woocommerce settings
      */
-    private function themeSupport() {
+    private function add_theme_supports() {
 
         add_theme_support( 'woocommerce' );  
         
@@ -66,7 +66,7 @@ class Waterfall_WooCommerce extends Waterfall_Base {
      * @param Array {$args} The carousel arguments
      * @return Array {$args} The modifiedcarousel arguments
      */
-    public function productCarouselSettings( $args ) {
+    public function modify_product_carousel_args( $args ) {
         
         // Dot navigation
         if( $this->customizer['product_content_slider_dots'] ) {
@@ -87,9 +87,10 @@ class Waterfall_WooCommerce extends Waterfall_Base {
     /**
      * Alters the default WooCommerce template path
      * 
-     * @param Array $classes The passed body classes
+     * @param   String  $path   The WooCommerce template path
+     * @return  Array   $path   The WooCommerce template path
      */
-    public function templatePath( $path ) {
+    public function modify_template_path( $path ) {
         
         $path = 'templates/woocommerce/';
 

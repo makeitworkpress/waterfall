@@ -13,7 +13,7 @@ class Singular extends Base {
      * Holds the post types that may receive a BlogPosting microdata schema
      * @access public
      */
-    public $blogTypes;    
+    public $blog_types;    
 
     /**
      * Holds the social networks for a singular post or page
@@ -25,7 +25,7 @@ class Singular extends Base {
      * Holds the post types for which schemes are disabled
      * @access public
      */
-    public $noSchema;      
+    public $no_schema;      
 
     /**
      * Holds the primary microdata schema for a singular post or page (that is used in the article tag)
@@ -36,7 +36,7 @@ class Singular extends Base {
     /**
      * Sets the data properties for the index
      */
-    protected function setProperties() {
+    protected function set_properties() {
 
         // The type: determines what data to load!
         global $post;
@@ -122,30 +122,32 @@ class Singular extends Base {
         ] );
 
         // Main Microscheme
-        $this->blogTypes    = apply_filters( 'waterfall_blog_schema_post_types', ['post'] );
-        $this->noSchema     = wf_get_data('options', 'scheme_post_types_disable') ? wf_get_data('options', 'scheme_post_types_disable') : [];
-        $this->schema       = in_array($this->type, $this->blogTypes) ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
+        $this->blog_types   = apply_filters( 'waterfall_blog_schema_post_types', ['post'] );
+        $this->no_schema    = wf_get_data('options', 'scheme_post_types_disable') ? wf_get_data('options', 'scheme_post_types_disable') : [];
+        $this->schema       = in_array($this->type, $this->blog_types) ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
         
         // Clear schema if it is not allowed, otherwise proceed and filter
-        $this->schema       = in_array($this->type, $this->noSchema) ? '' : apply_filters( 'waterfall_singular_schema', $this->schema);
+        $this->schema       = in_array($this->type, $this->no_schema) ? '' : apply_filters( 'waterfall_singular_schema', $this->schema);
+
+        // Set-up the post class
+        $this->post_class   = esc_attr( implode(' ', get_post_class('', $post->ID)) );
 
     }
 
     /**
      * Displays structured data for single types
      */
-    public function structuredData() {
+    public function structured_data() {
 
         // This only counts for types that may have this kind of microdata
-        if( ! in_array($this->type, $this->blogTypes) ) {
+        if( ! in_array($this->type, $this->blog_types) ) {
             return;
         }
 
         // If schemes are disabled for this post type, return
-        if( in_array($this->type, $this->noSchema) ) {
+        if( in_array($this->type, $this->no_schema) ) {
             return;
         }
-
 
         global $post;
         $logo = isset($this->customizer['logo']) && is_numeric( $this->customizer['logo'] ) ? wp_get_attachment_image_url( $this->customizer['logo'], 'full' ) : get_template_directory_uri() . '/assets/img/waterfall.png';
@@ -158,7 +160,7 @@ class Singular extends Base {
                 <meta itemprop="name" content="<?php bloginfo('name'); ?>">
                 <span itemprop="logo" itemscope="itemscope" itemtype="http://schema.org/ImageObject">
                     <meta itemprop="contentUrl" content="<?php echo $logo; ?>">
-                    <meta itemprop="url" content="<?php bloginfo('url'); ?>">
+                    <meta itemprop="url" content="<?php  echo esc_url( home_url() ); ?>">
                 </span>
             </span>                    
             <meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>" />
@@ -180,7 +182,7 @@ class Singular extends Base {
         }
 
         // Set our layout properties
-        $this->getProperties();
+        $this->get_properties();
 
         $this->layout['header_height'] = has_post_thumbnail() ? $this->layout['header_height_image'] : $this->layout['header_height'];
      
@@ -190,7 +192,7 @@ class Singular extends Base {
         $args = [
             'align'         => $this->layout['header_align'] ? $this->layout['header_align'] : 'left',
             'attributes'    => ['class' => 'main-header entry-header singular-header'],
-            'container'     => $this->layout['header_width'] == 'full' ? false : true,
+            'container'     => $this->layout['header_width'] === 'full' ? false : true,
             'height'        => $this->layout['header_height'] ? $this->layout['header_height'] : 'quarter',
             'parallax'      => $this->layout['header_parallax'] ? true : false,
         ];    
@@ -201,7 +203,10 @@ class Singular extends Base {
         if( $this->layout['header_breadcrumbs'] ) {
             $args['atoms']['breadcrumbs'] = [
                 'atom' => 'breadcrumbs', 
-                'properties' => ['archive' => $this->layout['header_breadcrumbs_archive'] ? true : false, 'taxonomy' => $this->layout['header_breadcrumbs_terms'] ? true : false]
+                'properties' => [
+                    'archive'   => $this->layout['header_breadcrumbs_archive'] ? true : false, 
+                    'taxonomy'  => $this->layout['header_breadcrumbs_terms'] ? true : false
+                ]
             ];  
         }    
         
@@ -210,8 +215,8 @@ class Singular extends Base {
             $args['atoms']['title'] = [
                 'atom'          => 'title',
                 'properties'    => [
-                    'attributes'    => ['class' => 'entry-title', 'itemprop' =>  'name headline'], 
-                    'schema'        => in_array($this->type, $this->noSchema) ? false : true,
+                    'attributes'    => ['class' => 'entry-title', 'itemprop' => 'name headline'], 
+                    'schema'        => in_array($this->type, $this->no_schema) ? false : true,
                     'tag'           => 'h1'
                 ]
             ];   
@@ -223,14 +228,17 @@ class Singular extends Base {
                 'atom'              => 'date', 
                 'properties'        => [
                     'attributes'    => ['class' => 'entry-time'], 
-                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
+                    'schema'        => in_array($this->type, $this->no_schema) ? false : true
                 ]
             ];    
         }
     
         // Terms
         if( $this->layout['header_terms'] ) {
-            $args['atoms']['termlist']  = ['atom' => 'termlist', 'properties' => ['attributes' => ['class' => 'entry-meta'], 'taxonomies' => []]];    
+            $args['atoms']['termlist']  = [
+                'atom' => 'termlist', 
+                'properties' => ['attributes' => ['class' => 'entry-meta'], 'taxonomies' => []]
+            ];    
         }
         
         // Comments
@@ -251,7 +259,7 @@ class Singular extends Base {
                 'atom'              => 'description',
                 'properties'        => [
                     'description'   => do_shortcode($this->meta['page_header_subtitle']),
-                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
+                    'schema'        => in_array($this->type, $this->no_schema) ? false : true
                 ]
             ];
         }
@@ -269,7 +277,7 @@ class Singular extends Base {
                     'atom'              => 'button',
                     'properties'        => [
                         'attributes'    => [
-                            'class'     => $key == 0 ? 'primary main-header-button' : 'secondary main-header-button',
+                            'class'     => $key === 0 ? 'primary main-header-button' : 'secondary main-header-button',
                             'href'      => $button['link']
                         ],
                         'background'    => 'default',
@@ -286,19 +294,22 @@ class Singular extends Base {
         $featured       = $this->layout['header_featured'] ? $this->layout['header_featured'] : 'after';
         $featuredArgs   = [
             'size'      => $this->layout['header_size'] ? $this->layout['header_size'] : 'half-hd', 
-            'schema'    => in_array($this->type, $this->noSchema) ? false : true
+            'schema'    => in_array($this->type, $this->no_schema) ? false : true
         ]; 
         
-        if( $featured == 'before' ) {
+        if( $featured === 'before' ) {
             $args['atoms']          = ['image' => ['atom' => 'image', 'properties' => $featuredArgs]] + $args['atoms'];
-        } elseif( $featured == 'after' ) {
+        } elseif( $featured === 'after' ) {
             $args['atoms']['image'] = ['atom' => 'image', 'properties' => $featuredArgs];    
-        } elseif( $featured == 'background' ) {
+        } elseif( $featured === 'background' ) {
             $args['background']     = get_the_post_thumbnail_url( null, $this->layout['header_size'] );
         } 
         
         if( $this->layout['header_share'] ) {
-            $args['atoms']['share'] = ['atom' => 'share', 'properties' => ['share' => $this->layout['share_text'] ? $this->layout['share_text'] : __('Share', 'waterfall')]];
+            $args['atoms']['share'] = [
+                'atom' => 'share', 
+                'properties' => ['share' => $this->layout['share_text'] ? $this->layout['share_text'] : __('Share', 'waterfall')]
+            ];
             
             // Networks should be enabled
             foreach( $this->networks as $network ) {
@@ -318,18 +329,24 @@ class Singular extends Base {
                     'attributes'    => ['class' => 'entry-author'],
                     'avatar'        => get_avatar($post->post_author, 64),
                     'description'   => false, 
-                    'imageFloat'    => 'left', 
+                    'image_float'   => 'left', 
                     'prepend'       => __('Article by ', 'waterfall'),
-                    'schema'        => in_array($this->type, $this->noSchema) ? false : true
+                    'schema'        => in_array($this->type, $this->no_schema) ? false : true
                 ]
             ]; 
         }                                                
         
         // Scroll-button
-        if( $this->layout['header_scroll'] == 'default' ) {
-            $args['atoms']['scroll'] = ['atom' => 'scroll', 'properties' => ['icon' => false]];
-        } elseif( $this->layout['header_scroll'] == 'arrow' ) {
-            $args['atoms']['scroll'] = ['atom' => 'scroll', 'properties' => ['icon' => 'angle-down']];
+        if( $this->layout['header_scroll'] === 'default' ) {
+            $args['atoms']['scroll'] = [
+                'atom'          => 'scroll', 
+                'properties'    => ['icon' => false]
+            ];
+        } elseif( $this->layout['header_scroll'] === 'arrow' ) {
+            $args['atoms']['scroll'] = [
+                'atom'          => 'scroll', 
+                'properties'    => ['icon' => 'angle-down']
+            ];
         }     
         
         $args = apply_filters( 'waterfall_content_header_args', $args );
@@ -348,15 +365,19 @@ class Singular extends Base {
 
         // Set our layout properties
         if( ! isset($this->layout) ) {
-            $this->getProperties();  
+            $this->get_properties();  
         }
 
+        // The loop
         $args = apply_filters( 'waterfall_content_content_args', [
-            'attributes'    => ['class' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content'],
-            'schema'        => in_array($this->type, $this->noSchema) ? false : true,
+            'attributes'    => [
+                'class' => $this->layout['content_readable'] ? 'entry-content readable-content content' : 'entry-content content'
+            ],
+            'schema'        => in_array($this->type, $this->no_schema) ? false : true,
         ] );
 
-        WP_Components\Build::atom( 'content', $args );     
+        WP_Components\Build::atom( 'content', $args );
+        wp_link_pages();
 
     }
 
@@ -366,17 +387,21 @@ class Singular extends Base {
     public function sidebar() {
 
         // If we have a fullwidth lay-out, our sidebar is removed.
-        if( ! $this->contentContainer || $this->disabled('sidebar') ) {
+        if( ! $this->content_container || $this->disabled('sidebar') ) {
             return;
         }
 
         // Retrieve our properties for the sidebar
         if( ! isset($this->layout) ) {
-            $this->getProperties();     
+            $this->get_properties();     
         }   
         
-        if( $this->layout['sidebar_position'] == 'right' || $this->layout['sidebar_position'] == 'left' || $this->layout['sidebar_position'] == 'bottom' ) {
-            $args = apply_filters( 'waterfall_content_sidebar_args', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => [$this->type]] );            
+        if( $this->layout['sidebar_position'] === 'right' || $this->layout['sidebar_position'] === 'left' || $this->layout['sidebar_position'] === 'bottom' ) {
+            $args = apply_filters( 'waterfall_content_sidebar_args', [
+                'attributes'    => ['class' => 'main-sidebar'], 
+                'sidebars'      => [$this->type]
+            ] );            
+            
             WP_Components\Build::atom( 'sidebar', $args );
         }
 
@@ -394,7 +419,7 @@ class Singular extends Base {
 
         // Set our layout properties for the related section
         if( ! isset($this->layout) ) {
-            $this->getProperties();
+            $this->get_properties();
         }
 
         /**
@@ -437,11 +462,8 @@ class Singular extends Base {
             
             // If no elasticsearch is present or it can't find anything related.
             if( ! $elastic ) {
-                
                 $taxonomies = get_post_taxonomies( $post );
-
                 if( $taxonomies ) {
-                    
                     foreach( $taxonomies as $taxonomy ) {
 
                         // Skip polylang language taxonomies
@@ -452,7 +474,6 @@ class Singular extends Base {
                         $terms = get_the_terms( $post->ID, $taxonomy );
 
                         if( $terms ) {
-
                             $termIDs = [];
                             foreach( $terms as $term ) {
                                 $termIDs[] = $term->term_id;   
@@ -461,9 +482,7 @@ class Singular extends Base {
                                 'taxonomy'  => $taxonomy,
                                 'terms'     => $termIDs
                             ];
-
                         }
-
                     }
 
                     // Related posts should have one of the related terms
@@ -475,21 +494,21 @@ class Singular extends Base {
 
             $args = apply_filters( 'waterfall_related_args', [
                 'attributes'        => ['class' => 'related-posts'],
-                'gridGap'           => $this->layout['related_grid_gap'] ? $this->layout['related_grid_gap'] : 'default',
+                'grid_gap'          => $this->layout['related_grid_gap'] ? $this->layout['related_grid_gap'] : 'default',
                 'none'              => $this->layout['related_none'] ? $this->layout['related_none'] : __('Bummer! No related posts have been found.', 'waterfall'),
                 'pagination'        => false,
-                'postProperties'    => [
+                'post_properties'    => [
                     'appear'        => 'bottom',
                     'attributes'    => [
                         'style'     => ['min-height' => $this->layout['related_height'] ? $this->layout['related_height'] . 'px' : '']
                     ],
-                    'contentAtoms'  => $this->layout['related_content'] == 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],
-                    'footerAtoms'   => [
+                    'content_atoms' => $this->layout['related_content'] === 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],
+                    'footer_atoms'   => [
                         'button'    => [
                             'atom' => 'button', 'properties' => ['iconAfter' => 'angle-right', 'iconVisible' => 'hover', 'label' => $this->layout['related_button'], 'size' => 'small']
                         ] 
                     ],  
-                    'headerAtoms'   => [
+                    'header_atoms'   => [
                         'title' => [
                             'atom'          => 'title', 
                             'properties'    => [
@@ -508,14 +527,14 @@ class Singular extends Base {
                         'size'          => $this->layout['related_image'] ? $this->layout['related_image'] : 'square-ld'                         
                     ]
                 ],                
-                'queryArgs'         => $query,
-                'schema'            => in_array($this->type, $this->noSchema) ? false : true,
+                'query_args'        => $query,
+                'schema'            => in_array($this->type, $this->no_schema) ? false : true,
                 'view'              => $this->layout['related_style'] ? $this->layout['related_style'] : 'grid'
             ] );
                 
             // Remove the button if the text is empty
             if( ! $this->layout['related_button'] ) {
-                unset( $args['postProperties']['footerAtoms']['button'] );
+                unset( $args['post_properties']['footer_atoms']['button'] );
             }
 
             // Echo a title above the related posts
@@ -552,13 +571,13 @@ class Singular extends Base {
 
         // Set our layout properties for the footer section
         if( ! isset($this->layout) ) {
-            $this->getProperties();
+            $this->get_properties();
         }
         
         // Default arguments
         $args = [
             'attributes'    => ['class' => 'main-footer entry-footer singular-footer'],
-            'container'     => $this->layout['footer_width'] == 'full' ? false : true
+            'container'     => $this->layout['footer_width'] === 'full' ? false : true
         ];
             
         // Sharing Buttons
@@ -583,8 +602,8 @@ class Singular extends Base {
                 'atom'          => 'author',
                 'properties'    => [
                     'attributes'    => ['class' => 'entry-author'], 
-                    'imageFloat'    => 'left',
-                    'schema'        => in_array($this->type, $this->noSchema) ? false : true,
+                    'image_float'    => 'left',
+                    'schema'        => in_array($this->type, $this->no_schema) ? false : true,
                 ]
             ];
         }      
@@ -598,21 +617,19 @@ class Singular extends Base {
             $args['atoms']['comments'] = [
                 'atom'          => 'comments',
                 'properties'    => [
-                    'closedText' => $this->layout['footer_comments_closed'] ? $this->layout['footer_comments_closed'] : __('Comments are closed.', 'waterfall'),
-                    'title'      => $this->layout['footer_comments_title'] ? str_replace( ['{number}', '{title}'], [$number, $title], $this->layout['footer_comments_title'] ) : sprintf( 
-                        _n( 'One Response to %2$s', '%1$s Responses to %2$s', $number, 'waterfall' ),
-                        number_format_i18n( $number ),
-                        $title
-                    ) 
+                    'closed_text'   => $this->layout['footer_comments_closed'] 
+                        ? $this->layout['footer_comments_closed'] 
+                        : __('Comments are closed.', 'waterfall'),
+                    'title'         => $this->layout['footer_comments_title'] 
+                        ? str_replace( ['{number}', '{title}'], [$number, $title], $this->layout['footer_comments_title'] ) 
+                        : sprintf( _n( 'One Response to %2$s', '%1$s Responses to %2$s', $number, 'waterfall' ), number_format_i18n( $number ), $title) 
                 ]
             ];
 
             // Adjust the reply title
             if( $this->layout['footer_comments_reply'] ) {    
                 add_filter('comment_form_defaults', function($defaults) {
-
                     $defaults['title_reply'] = $this->layout['footer_comments_reply'];
-
                     return $defaults;
                     
                 } );

@@ -266,12 +266,12 @@ class Terms extends Elementor\Widget_Base {
 		if( function_exists('wpc_atom') ) {
 
 			wpc_atom( 'terms', [
-				'attributes'	=> ['class' => 'waterfall-terms'],
+				'attributes'		=> ['class' => 'waterfall-terms'],
 				'after'       	=> $settings['after'],
-				'args'       	=> ['taxonomy' => $settings['taxonomy'] ? $settings['taxonomy'] : 'post_tag', 'hide_empty' => $settings['empty'] ? false : true],
+				'args'       		=> ['taxonomy' => $settings['taxonomy'] ? $settings['taxonomy'] : 'post_tag', 'hide_empty' => $settings['empty'] ? false : true],
 				'before'       	=> $settings['before'],
 				'seperator'     => $settings['seperator'] ? $settings['seperator'] : '',
-				'termStyle'		=> $settings['button'] ? 'button' : 'normal'
+				'term_style'		=> $settings['button'] ? 'button' : 'normal'
 			] );
 		
 		}

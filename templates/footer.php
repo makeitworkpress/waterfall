@@ -12,8 +12,8 @@
                 do_action('waterfall_before_footer');
                 
                 // Echoes the footer elements.
-                $footer = new Views\Footer();
-                $footer->footer();
+                $wf_footer = $GLOBALS['wf_footer'];
+                $wf_footer->footer();
 
                 do_action('waterfall_after_footer');
 

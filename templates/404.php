@@ -16,11 +16,10 @@
          */
         if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) {
             
-            $nothing = new Views\Nothing();
-            
             do_action('waterfall_before_404_header');
         
-            $nothing->header();
+            $wf_nothing = $GLOBALS['wf_nothing'];
+            $wf_nothing->header();
         
             do_action('waterfall_after_404_header');
 

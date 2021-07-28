@@ -4,7 +4,7 @@
  */
 wf_get_theme_header();
 
-$bbPress = new Views\Vendor\bbPress();
+$bb_press = new Views\Vendor\bbPress();
 
 while( have_posts() ) {
         
@@ -16,7 +16,7 @@ while( have_posts() ) {
 
         <?php do_action('waterfall_before_bbpress_header'); ?>
         
-        <?php $bbPress->header(); ?>
+        <?php $bb_press->header(); ?>
             
         <?php do_action('waterfall_after_bbpress_header'); ?>
 
@@ -24,11 +24,11 @@ while( have_posts() ) {
 
             <?php do_action('waterfall_before_bbpress_content_container'); ?>
 
-            <?php if( $bbPress->contentContainer ) { ?>
+            <?php if( $bb_press->content_container ) { ?>
                 <div class="components-container">
             <?php } ?> 
 
-                <?php if( ! $bbPress->isPrivate() ) { ?> 
+                <?php if( ! $bb_press->isPrivate() ) { ?> 
 
                     <?php do_action('waterfall_before_bbpress_content'); ?>
 
@@ -38,15 +38,15 @@ while( have_posts() ) {
 
                     <?php do_action('waterfall_after_bbpress_content'); ?>
 
-                    <?php $bbPress->sidebar(); ?>
+                    <?php $bb_press->sidebar(); ?>
 
                 <?php } else { ?>
 
-                    <?php $bbPress->notifyPrivate(); ?>
+                    <?php $bb_press->notifyPrivate(); ?>
 
                 <?php } ?>  
 
-            <?php if( $bbPress->contentContainer ) { ?>
+            <?php if( $bb_press->content_container ) { ?>
                 </div>
             <?php } ?>
 

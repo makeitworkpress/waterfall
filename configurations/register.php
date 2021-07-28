@@ -46,7 +46,7 @@ if( $types ) {
         ];
 
         // Skip pages for archives
-        if( $type == 'page') {
+        if( $type === 'page') {
             continue;
         }
 

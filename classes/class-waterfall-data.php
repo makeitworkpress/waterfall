@@ -3,28 +3,27 @@
  * This class loads all theme data from the database
  * From customizer settings to meta settings.
  */
+defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+
 class Waterfall_Data {
    
     /**
      * Contains the queried database data, for customizer, options and meta values;
-     *
      * @access private
      */
     private $data;   
     
     /**
      * Determines whether a class has already been instanciated.
-     *
      * @access private
      */
     private static $instance = null;  
 
     /**
      * Determines if customizer data already has been reloaded
-     *
      * @access private
      */
-    private static $reloadedCustomizerData = false;        
+    private static $reloaded_customizer_data = false;        
 
     /**
      * Gets the single instance. Applies Singleton Pattern
@@ -32,7 +31,7 @@ class Waterfall_Data {
      */
     public static function instance() {
 
-        if( self::$instance == null  ) {
+        if( self::$instance === null ) {
             self::$instance = new self();
         }
 
@@ -44,20 +43,20 @@ class Waterfall_Data {
      * Constructor. This allows the class to be only initialized once.
      */
     private function __construct() {
-        $this->loadData();
+        $this->load_data();
     }       
 
     /**
      * Retrieves data saved from the Database
      */
-    public function getData() {
+    public function get_data() {
         return $this->data;
     }          
 
     /**
      * Loads our theme options and meta values
      */
-    private function loadData() {
+    private function load_data() {
 
         // Default values
         $this->data = [
@@ -66,17 +65,17 @@ class Waterfall_Data {
         ];
 
         // Customizer data
-        $this->loadCustomizerData();
+        $this->load_customizer_data();
 
         // Meta values
-        add_action('wp', [$this, 'loadMeta']);
+        add_action('wp', [$this, 'load_meta']);
 
     }
 
     /**
      * Loads customizer data
      */
-    public function loadCustomizerData() {
+    public function load_customizer_data() {
 
         $mods = get_theme_mods();
 
@@ -89,30 +88,29 @@ class Waterfall_Data {
     }
 
     /**
-     * Reloads customizer data 
-     * This is done so the customizer preview can access it
+     * Reloads customizer data, which is done so the customizer preview can access it
      * The previewer needs to access data at a later point than theme initialization 
      * (That is the first time data is retrieved is in waterfall.php, using wf_get_data which creates an Waterfall_Data instance)
      * Thus, in some cases we need to reload data later so updates in the customizer are reflected. 
-     * That is because customizer live reloads are not 'really' saved if not published
+     * That is because customizer live reloads are not 'really' saved if not published.
      */
-    public function reloadCustomizerData() {
+    public function reload_customizer_data() {
 
         // We can only reload once
-        if( self::$reloadedCustomizerData ) {
+        if( self::$reloaded_customizer_data ) {
             return;
         }
 
-        $this->loadCustomizerData();
+        $this->load_customizer_data();
 
-        self::$reloadedCustomizerData = true;
+        self::$reloaded_customizer_data = true;
 
     }
 
     /**
      * Loads metaData for singular posts or pages (hooked to WP)
      */
-    public function loadMeta() {
+    public function load_meta() {
 
         if( is_singular() ) {
             $this->data['meta'] = get_post_meta( get_the_ID(), 'waterfall_meta', true);

@@ -127,11 +127,13 @@
 .content {
     ul {
         list-style: disc;
-        padding: 0 0 1.5em 1.5em;
+        margin-bottom: 1.5rem;
+        padding: 0 0 0 1.5em;
     }
     ol {
         list-style: decimal;
-        padding: 0 0 1.5em 1.5em;
+        margin-bottom: 1.5rem;
+        padding: 0 0 0 1.5em;
     }
     p, ul, ol, h2, h3, h4, code, pre, .wp-block-buttons, table { 
         + h2, + h3, + h4, + h2, + h3, + h4, + h2, + h3, + h4, + h2, + h3, + h4, + h3, + h4, + h4 {
@@ -139,13 +141,13 @@
         } 
     }
     img {
-        margin-bottom: 1.5em;
+        margin-bottom: 1.5rem;
     }
     .wp-caption {
-        margin-bottom: 1.5em;
+        margin-bottom: 1.5rem;
         max-width: 100%;
         img {
-            margin-bottom: 0.5em;
+            margin-bottom: 0.5rem;
         }
     }
     video, embed {
@@ -155,6 +157,10 @@
     iframe {
         max-width: 100%;
     }
+}
+
+.atom-content ~ .post-nav-links {
+    display: none;
 }
 
 /* Makes content readable width. Does not apply to pagebuilders and woocommerce */

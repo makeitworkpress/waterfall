@@ -11,7 +11,7 @@ class bbPress extends \Views\Base {
     /**
      * a couple of properties are set-up
      */
-    protected function setProperties() {
+    protected function set_properties() {
 
         global $wp_query;
 
@@ -38,7 +38,7 @@ class bbPress extends \Views\Base {
                 'header_height',
                 // Sidebars
                 'sidebar_position',
-                // Private PAges
+                // Private Pages
                 'private'
             ]
         ];
@@ -52,7 +52,7 @@ class bbPress extends \Views\Base {
 
         // Retrieve properties first
         if( ! isset($this->bbpress) ) {
-            $this->getProperties();     
+            $this->get_properties();     
         }
         return (bool) $this->bbpress['private'] && ! is_user_logged_in();
 
@@ -80,7 +80,7 @@ class bbPress extends \Views\Base {
 
         // Retrieve our properties for the archive header
         if( ! isset($this->bbpress) ) {
-            $this->getProperties();     
+            $this->get_properties();     
         }
      
         // If the archive doesn't have a header, it's disabled...
@@ -121,7 +121,7 @@ class bbPress extends \Views\Base {
             case 'forum_archive':
 
                 // Default title
-                $atoms['title'] = ['atom' => $this->type == 'forum_archive' ? 'archive-title' : 'title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];  
+                $atoms['title'] = ['atom' => $this->type === 'forum_archive' ? 'archive-title' : 'title', 'properties' => [ 'attributes' => ['class' => 'page-title']]];  
                 
                 if( $this->bbpress['header_title'] ) {
                     $atoms['title']['properties']['title']              = $this->bbpress['header_title'];
@@ -129,7 +129,6 @@ class bbPress extends \Views\Base {
                     $atoms['title']['properties']['types']['home']      = $this->bbpress['header_title'];           
                 }
 
-                // @todo add subtitle from header (re-add the post meta settings)
                 if( $this->bbpress['header_description'] ) {
                     $atoms['description']   = [
                         'atom' => 'description', 
@@ -142,12 +141,12 @@ class bbPress extends \Views\Base {
                     $atoms['search'] = ['atom' => 'string', 'properties' => ['string' => do_shortcode('[bbp-search-form]')] ];    
                 }                  
             
-                $context = $this->type == 'forum_archive' ? 'archive' : 'content';
+                $context = $this->type === 'forum_archive' ? 'archive' : 'content';
                 $args = apply_filters( 'waterfall_' . $context . '_header_args', [
                     'atoms'         => $atoms,
-                    'attributes'    => ['class' => $this->type == 'forum_archive' ? 'main-header archive-header' : 'main-header singular-header'],
+                    'attributes'    => ['class' => $this->type === 'forum_archive' ? 'main-header archive-header' : 'main-header singular-header'],
                     'align'         => $this->bbpress['header_align'],
-                    'container'     => $this->bbpress['header_width'] == 'full' ? false : true,
+                    'container'     => $this->bbpress['header_width'] === 'full' ? false : true,
                     'height'        => $this->bbpress['header_height']
                 ] );                
 
@@ -165,16 +164,16 @@ class bbPress extends \Views\Base {
     public function sidebar() {
 
         // If we have a fullwidth lay-out, our sidebar is removed.
-        if( ! $this->contentContainer || $this->disabled('sidebar') ) {
+        if( ! $this->content_container || $this->disabled('sidebar') ) {
             return;
         }
 
         // Retrieve our properties for the sidebar
         if( ! isset($this->bbpress) ) {
-            $this->getProperties();     
+            $this->get_properties();     
         }
         
-        if( $this->bbpress['sidebar_position'] == 'right' || $this->bbpress['sidebar_position'] == 'left' || $this->bbpress['sidebar_position'] == 'bottom' ) {       
+        if( $this->bbpress['sidebar_position'] === 'right' || $this->bbpress['sidebar_position'] === 'left' || $this->bbpress['sidebar_position'] === 'bottom' ) {       
             wpc_atom( 'sidebar', ['attributes' => ['class' => 'main-sidebar'], 'sidebars' => [$this->type]] );
         }
 

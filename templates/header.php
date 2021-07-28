@@ -22,6 +22,8 @@
 	</head>
 	<body <?php body_class(); ?> itemscope="itemscope" itemtype="http://www.schema.org/WebPage">
 
+        <?php wp_body_open(); ?>
+
         <div class="wrapper">
         
             <?php
@@ -31,8 +33,8 @@
                 /**
                  * Displays our header elements, unless we have a custom header from elementor
                  */ 
-                $header = new Views\Header();
-                $header->header();
+                $wf_header = $GLOBALS['wf_header'];
+                $wf_header->header();
             
                 do_action('waterfall_after_header');
             

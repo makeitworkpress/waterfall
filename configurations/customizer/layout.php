@@ -489,7 +489,7 @@ if( $types ) {
                     'selector'      => [
                         'min-width' => '768px',
                         'property'  => 'width',
-                        'selector'  => $type == 'page' ? '.page .content' : '.single-' . $type . ' .content'
+                        'selector'  => $type === 'page' ? '.page .content' : '.single-' . $type . ' .content'
                     ],
                     'default'       => '',
                     'id'            => $type . '_content_sidebar_width',
@@ -509,7 +509,7 @@ if( $types ) {
                     'selector'      => [
                         'min-width' => '768px',
                         'property'  => 'width',
-                        'selector'  => $type == 'page' ? '.page .main-sidebar' : '.single-' . $type . ' .main-sidebar'
+                        'selector'  => $type === 'page' ? '.page .main-sidebar' : '.single-' . $type . ' .main-sidebar'
                     ],
                     'default'       => '',
                     'id'            => $type . '_sidebar_width',
@@ -842,7 +842,7 @@ if( $types ) {
         }       
 
         // Skip archives for pages
-        if( $type == 'page' ) {
+        if( $type === 'page' ) {
             continue;
         }
 
@@ -1023,7 +1023,7 @@ if( $types ) {
                         'excerpt'   => __('Excerpt', 'waterfall'),
                         'none'      => __('No excerpt', 'waterfall'),
                     ],
-                    'title'         => __($type . ' Excerpt', 'waterfall'),
+                    'title'         => __('Show Excerpt', 'waterfall'),
                     'type'          => 'select'
                 ],
                 [

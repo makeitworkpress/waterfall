@@ -9,13 +9,11 @@
     // Outputs our elementor templates, unless we have the archive running
     if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'archive' ) ) {
 
-        // Displays the archive
-        $archive = new Views\Index();
-
         do_action('waterfall_before_archive_header');
         
         // Build the header for the archive
-        $archive->header();
+        $wf_archive = $GLOBALS['wf_archive'];
+        $wf_archive->header();
             
         do_action('waterfall_after_archive_header');
 
@@ -25,7 +23,7 @@
 
         <?php do_action('waterfall_before_archive_content_container'); ?>
 
-        <?php if( $archive->contentContainer ) { ?>
+        <?php if( $wf_archive->content_container ) { ?>
             <div class="components-container">    
         <?php } ?>
 
@@ -34,18 +32,18 @@
                 do_action('waterfall_before_archive_posts');
 
                 // Displays the grid with our posts
-                $archive->posts();
+                $wf_archive->posts();
 
                 do_action('waterfall_after_archive_posts');
 
                 // Displays our optional sidebar
-                $archive->sidebar();
+                $wf_archive->sidebar();
 
                 do_action('waterfall_after_archive_sidebar');
 
             ?>
 
-        <?php if( $archive->contentContainer ) { ?>
+        <?php if( $wf_archive->content_container ) { ?>
             </div>    
         <?php } ?>
 

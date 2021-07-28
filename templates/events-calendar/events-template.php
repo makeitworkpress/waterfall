@@ -2,27 +2,25 @@
 /**
  * View: Default Template for Events
  */
-wf_get_theme_header(); 
-
-$events = new Views\Vendor\Events(); ?>
+wf_get_theme_header(); ?>
 
 <div class="main-content singular-content events-calendar-template">
 
     <?php do_action('waterfall_before_tribe_events_content_container'); ?>
 
-    <?php if( $events->contentContainer ) { ?>
+    <?php if( $wf_events->content_container ) { ?>
         <div class="components-container">
     <?php } ?> 
 
         <?php do_action('waterfall_before_tribe_events_content'); ?>
 
         <div class="entry-content content">
-            <?php $events->content(); ?>
+            <?php $wf_events->content(); ?>
         </div>
 
         <?php do_action('waterfall_after_tribe_events_content'); ?>
 
-    <?php if( $events->contentContainer ) { ?>
+    <?php if( $wf_events->content_container ) { ?>
         </div>
      <?php } ?>   
 

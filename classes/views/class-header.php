@@ -11,7 +11,7 @@ class Header extends Base {
     /**
      * Sets the properties for the heading. For these properties, data is loaded.
      */
-    protected function setProperties() {
+    protected function set_properties() {
         $this->type         = ''; // The header applies to all content types
         $this->properties   = apply_filters( 'waterfall_header_properties', [
             'customizer'    => ['logo', 'logo_transparent', 'logo_mobile', 'logo_mobile_transparent'],
@@ -60,7 +60,7 @@ class Header extends Base {
         }
 
         // Retrieve our header properties from the DB
-        $this->getProperties();
+        $this->get_properties();
 
         /**
          * Set-up our atoms
@@ -78,12 +78,12 @@ class Header extends Base {
                 'atom'                      => 'logo',
                 'properties'                => [
                     'alt'                   => $alt,
-                    'attributes'            => ['itemtype' => $represents == 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
+                    'attributes'            => ['itemtype' => $represents === 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
                     'float'                 => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
                     'default'               => $logo ? $logo : ['src' => get_template_directory_uri() . '/assets/img/waterfall.png', 'height' => 64, 'width' => 306],
-                    'defaultTransparent'    => $this->customizer['logo_transparent'],
+                    'default_transparent'   => $this->customizer['logo_transparent'],
                     'mobile'                => $this->customizer['logo_mobile'], 
-                    'mobileTransparent'     => $this->customizer['logo_mobile_transparent'],
+                    'mobile_transparent'     => $this->customizer['logo_mobile_transparent'],
                     'schema'                => $represents ? true : false
                 ]
             ],
@@ -135,7 +135,7 @@ class Header extends Base {
         }          
         
         // For right float, our menu's comes last - so our other items float right of it.
-        if( $atoms['menu']['properties']['float'] == 'right' ) {
+        if( $atoms['menu']['properties']['float'] === 'right' ) {
             $menu = $atoms['menu'];
             unset($atoms['menu']);
             $atoms['menu'] = $menu;
@@ -153,8 +153,8 @@ class Header extends Base {
         
         // For non transparent areas, the logo's are not load - reduces some kb's.
         if( ! $transparent ) {
-            unset($atoms['logo']['properties']['defaultTransparent']);
-            unset($atoms['logo']['properties']['mobileTransparent']);
+            unset($atoms['logo']['properties']['default_transparent']);
+            unset($atoms['logo']['properties']['mobile_transparent']);
         }
 
         // Our arguments
@@ -163,7 +163,7 @@ class Header extends Base {
             'attributes'    => [
                 'class'     => $this->layout['header_border'] ? 'header waterfall-no-border molecule-header-top' : 'header molecule-header-top'
             ],
-            'container'     => $this->layout['header_width'] == 'default' ? true : false,
+            'container'     => $this->layout['header_width'] === 'default' ? true : false,
             'headroom'      => $this->layout['header_headroom'],
             'fixed'         => $this->layout['header_fixed'],
             'transparent'   => $transparent

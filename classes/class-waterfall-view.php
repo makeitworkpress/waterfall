@@ -29,13 +29,12 @@ class Waterfall_View extends Waterfall_Base {
         $this->files = apply_filters(
             'waterfall_templates', 
             [
-                'index', 
                 '404', 
                 'archive', 
                 'author', 
                 'category', 
-                'tag', '
-                taxonomy', 
+                'tag',
+                'taxonomy', 
                 'date', 
                 'home', 
                 'frontpage', 
@@ -45,50 +44,108 @@ class Waterfall_View extends Waterfall_Base {
                 'single', 
                 'singular', 
                 'attachment',
-                'bbpress'
+                'embed',
+                'bbpress',
+                'index'
             ]
         );
 
         $this->actions = [
-            ['wp_head', 'headerHeight', 10, 0],
-            ['wp_head', 'containerWidth', 10, 0],
-            ['wp_head', 'analytics', 20, 0],
+            ['get_header', 'get_theme_header'],
+            ['wp_head', 'wp_head_header_height', 10, 0],
+            ['wp_head', 'wp_head_container_width', 10, 0],
+            ['wp_head', 'wp_head_analytics', 20, 0],
         ];        
 
         $this->filters = [
-            ['body_class', 'bodyClasses'],
-            ['excerpt_length', 'excerptLength', 999],
+            ['body_class', 'modify_body_classes'],
+            ['excerpt_length', 'modify_excerpt_length', 999],
         ];
+
+        // Execute view based controllers on the templates
+        $this->construct_views();
                 
-        // Execute our hooks
-        $this->modifyTemplateFolder();
+        // Modify the template folders and hierarchy
+        $this->modify_template_folder();
         
         // Extend theme support
-        $this->themeSupport();
+        $this->theme_support();
 
         // Loads our custom components from Make it WorkPress
         $this->components = new MakeitWorkPress\WP_Components\Boot(['maps' => wf_get_data('options', 'maps_api_key')]);
         
     }
+
+    /**
+     * Construct our view classes, that act as an inbetween of a controller and view; makes the contents of these view objects accessible to the template.
+     * This allows for cleaner seperation of mark-up and code. Unfortunately, there is not an easy way to inject variables into templates, thus globals are used.
+     */
+    private function construct_views() {
+
+        // After WordPress has queried posts and set-up variables, the views can be instanciated.
+        add_action('wp', function() {
+
+            global $wp_query;
+
+            // Global header and footer
+            $GLOBALS['wf_header']       = new Views\Header();
+            $GLOBALS['wf_footer']       = new Views\Footer();
+
+            // @todo bbPress
+
+            // Page specific views
+            if( is_404() ) {
+                $GLOBALS['wf_nothing']  = new Views\Nothing();
+                return;
+            }
+
+            if( isset($wp_query->tribe_is_event) && $wp_query->tribe_is_event ) {
+                $GLOBALS['wf_events']   = new Views\Vendor\Events();
+                return;
+            } 
+
+            if( function_exists('is_product') && is_product() ) {
+                $GLOBALS['wf_product']  = new Views\Vendor\Product();
+                return;                
+            }            
+            
+            if( is_singular() ) {
+                $GLOBALS['wf_singular'] = new Views\Singular();
+                return;
+            }  
+            
+            if( function_exists('is_woocommerce') && is_woocommerce() ) {
+                if( is_shop() || is_product_category() || is_product_tag() ) {
+                    $GLOBALS['wf_shop'] = new Views\Vendor\Shop();
+                    return;   
+                }             
+            }
+
+            if( is_archive() || is_home() ) {
+                $GLOBALS['wf_archive']  = new Views\Index();
+                return;
+            }           
+            
+        });
+    }
     
     /**
      * Modifies the template folder for each template file
+     * This function ensures that the templates from /templates are loaded
      */
-    private function modifyTemplateFolder() {
+    private function modify_template_folder() {
 
-        /**
-         * Redefine where to look for our templates
-         */        
+        // Redefine where to look for our templates       
         foreach( $this->files as $type ) {
             add_action("{$type}_template_hierarchy", function($templates) {
                 
-                $return = [];
+                $foldered_templates = [];
                 
                 foreach($templates as $template) {
-                    $return[] = 'templates/' . $template;    
+                    $foldered_templates[] = 'templates/' . $template;    
                 }
                 
-                return $return;
+                return $foldered_templates;
                 
             });
         } 
@@ -99,7 +156,7 @@ class Waterfall_View extends Waterfall_Base {
      * Adjusts specific styling for the header
      * Adds optional styling which can not yet be covered by wp-custom-fields
      */
-    public function headerHeight() {
+    public function wp_head_header_height() {
 
         $height = wf_get_data('layout', 'header_height');
 
@@ -124,7 +181,7 @@ class Waterfall_View extends Waterfall_Base {
     /**
      * Adds additional styling for page builders if the container width is set
      */
-    public function containerWidth() {
+    public function wp_head_container_width() {
         
         $media      = '';
         $reset      = '';
@@ -133,7 +190,7 @@ class Waterfall_View extends Waterfall_Base {
 
         if( isset($width['amount']) && $width['amount'] && $width['unit'] ) {
 
-            /** For Element */
+            /** For Elementor */
             if( did_action('elementor/loaded') ) { 
                 
                 // Width for elements with no gap
@@ -154,7 +211,7 @@ class Waterfall_View extends Waterfall_Base {
                     }';
 
                     // Resets our 1280px styling, which is applied to the media query for max-width:1280px;
-                    if( $width['unit'] == 'px' && ($width['amount'] < 1280) ) {
+                    if( $width['unit'] === 'px' && ($width['amount'] < 1280) ) {
                         $reset .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
                             margin: 0 auto;
                         }';   
@@ -165,7 +222,7 @@ class Waterfall_View extends Waterfall_Base {
                  * If we have a larger grid in our settings, we have to adapt responsive containers more early.
                  * Secondly, we need to redeclare mobile padding as the inline styling overwrites the whole range.
                  */
-                if( $width['unit'] == 'px' && ($width['amount'] > 1280) ) {
+                if( $width['unit'] === 'px' && ($width['amount'] > 1280) ) {
                     $styles .= '@media screen and (max-width: ' . $width['amount'] . $width['unit'] . ') {
                         .waterfall-fullwidth-content .elementor-section-wrap > .elementor-section > .elementor-container, 
                         [class*="elementor-location-"] .elementor-section-wrap > .elementor-section > .elementor-container {
@@ -202,9 +259,9 @@ class Waterfall_View extends Waterfall_Base {
     }
 
     /**
-     * Adds the analytics script to the header
+     * Adds the Google analytics script to the header
      */
-    public function analytics() {
+    public function wp_head_analytics() {
 
         $analytics = wf_get_data('options', 'analytics');
         
@@ -224,9 +281,10 @@ class Waterfall_View extends Waterfall_Base {
     /**
      * Alters our body classes
      * 
-     * @param Array $classes The passed body classes
+     * @param   Array $classes The passed body classes
+     * @return  Array $classes The modified body classes
      */    
-    public function bodyClasses($classes) {
+    public function modify_body_classes($classes) {
 
         global $wp_query;
 
@@ -263,7 +321,7 @@ class Waterfall_View extends Waterfall_Base {
         $page = isset( get_queried_object()->ID ) ? get_queried_object()->ID : 0;
         
         // Archives
-        if( is_archive() || (is_front_page() && get_option('show_on_front') == 'posts') || ( is_home() && $page = get_option('page_for_posts') ) ) {
+        if( is_archive() || (is_front_page() && get_option('show_on_front') === 'posts') || ( is_home() && $page === get_option('page_for_posts') ) ) {
             
             $type                   = wf_get_archive_post_type();
 
@@ -277,7 +335,7 @@ class Waterfall_View extends Waterfall_Base {
                 $sidebar            = $sidebar_position  ? $sidebar_position : 'left';
 
             // bbPress archives
-            } elseif( class_exists('bbPress') && $type == 'forum' ) { 
+            } elseif( class_exists('bbPress') && $type === 'forum' ) { 
                 $sidebar_position   = wf_get_data('bbpress', $type . '_archive_sidebar_position');
                 $sidebar            = $sidebar_position ? $sidebar_position : 'default';
             
@@ -318,7 +376,7 @@ class Waterfall_View extends Waterfall_Base {
             }
             
             // We add a fullwidth content class if it is a setting in our customizer, post meta or when viewing an elementor template
-            if( (isset($data['meta']['content_width']['full']) && $data['meta']['content_width']['full'] ) || $content_width == 'full' || is_singular('elementor_library') ) {
+            if( (isset($data['meta']['content_width']['full']) && $data['meta']['content_width']['full'] ) || $content_width === 'full' || is_singular('elementor_library') ) {
                 $sidebar    = 'default';
                 $classes[]  = 'waterfall-fullwidth-content';
             }
@@ -336,7 +394,7 @@ class Waterfall_View extends Waterfall_Base {
      * 
      * @param Int $length The excerpt length
      */    
-    public function excerptLength($length) {
+    public function modify_excerpt_length($length) {
 
         $excerpt_length = wf_get_data('customizer', 'excerpt_length');
 
@@ -351,13 +409,17 @@ class Waterfall_View extends Waterfall_Base {
     /**
      * Enables different theme support modules
      */
-    private function themeSupport() {
+    private function theme_support() {
         
+        add_theme_support( 'align-wide' );
+        add_theme_support( 'automatic-feed-links' );
         add_theme_support( 'custom-background' ); 
         add_theme_support( 'custom-logo' ); 
-		add_theme_support( 'post-thumbnails' ); 
-        add_theme_support( 'title-tag' );
 		add_theme_support( 'html5', ['comment-list', 'comment-form', 'search-form', 'caption'] );
+		add_theme_support( 'post-thumbnails' ); 
+        add_theme_support( 'responsive-embeds' );
+        add_theme_support( 'title-tag' ); 
+        add_theme_support( 'wp-block-styles' );       
        
     }    
     

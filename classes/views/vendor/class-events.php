@@ -13,7 +13,7 @@ class Events extends \Views\Base {
     /**
      * No properties are set for this template - we're not using the customizer
      */
-    protected function setProperties() {
+    protected function set_properties() {
         $this->type = 'product_archive';
     }
 
@@ -23,7 +23,7 @@ class Events extends \Views\Base {
     public function content() {
 
         // Displays regular content if we're using Elementor
-        if( is_singular('tribe_events') && class_exists('Elementor\Plugin') && Elementor\Plugin::$instance->db->is_built_with_elementor(get_the_id()) ) {
+        if( is_singular('tribe_events') && class_exists('Elementor\Plugin') && Elementor\Plugin::$instance->db->is_built_with_elementor( get_the_id() ) ) {
             
             echo apply_filters('the_content', '');
 

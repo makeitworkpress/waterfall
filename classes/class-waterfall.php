@@ -76,7 +76,7 @@ class Waterfall {
      */
     public static function instance() {
 
-        if( self::$instance == null ) {
+        if( self::$instance === null ) {
             self::$instance = new self();
         }
 
@@ -90,43 +90,43 @@ class Waterfall {
     private function __construct() {
 
         // Sets our languages - before anything else loads
-        $this->loadLanguages();
+        $this->load_languages();
 
         // Loads utilityFunctions and other static dependencies
-        $this->requireDependencies();        
+        $this->require_dependencies();        
 
         // Boot the updater
-        $this->bootUpdater();
+        $this->boot_updater();
 
         // Loads and executes configurations
         $this->configure();
 
         // Flush rewrite rules
-        $this->flushRewriteRules();
+        $this->flush_rewrite_rules();
 
         // Setup Ajax related functions
-        $this->setupAjax();
+        $this->setup_ajax();
 
         // Setup the view - loading templates, components and modifiying the front-end
-        $this->setupView();
+        $this->setup_view();
         
         // Setup WooCommerce related functions
-        $this->setupWooCommerce();
+        $this->setup_woocommerce();
 
         // Setup bbPress related functions
-        $this->setupForum();        
+        $this->setup_bbpress();        
 
         // Setup Events Calendar related functions
-        $this->setupEventsCalendar();
+        $this->setup_events_calendar();
          
         // Adapt some of the customizer sections
-        $this->adaptCustomizer();
+        $this->adapt_customizer();
         
         // Setup supportive functions for deprecated functionalities
-        $this->deprecatedSupport();
+        $this->deprecated_support();
         
         // Enable optimizations
-        $this->enableOptimizations();
+        $this->enable_optimizations();
 
     }
 
@@ -140,7 +140,7 @@ class Waterfall {
     /**
      * Loads our translations before loading anything else
      */
-    private function loadLanguages() {
+    private function load_languages() {
 
         if( is_dir( get_stylesheet_directory() . '/languages' ) ) {
             $path = get_stylesheet_directory() . '/languages';
@@ -156,14 +156,14 @@ class Waterfall {
      * Loads utilityFunctions and other static dependencies
      *  Include basic utility functions, so that these are available throughout the theme
      */
-    private function requireDependencies() { 
+    private function require_dependencies() { 
         require_once( get_template_directory() . '/functions/utilities.php' );   
     }
 
     /**
      * Enables our theme to be updated through an external repository, in this case github
      */
-    private function bootUpdater() {
+    private function boot_updater() {
         $this->updater = MakeitWorkPress\WP_Updater\Boot::instance();
         $this->updater->add(['source' => 'https://github.com/makeitworkpress/waterfall', 'type' => 'theme']);
     }    
@@ -171,7 +171,7 @@ class Waterfall {
     /**
      * Flush our rewrite rules for new posts
      */
-    private function flushRewriteRules() {
+    private function flush_rewrite_rules() {
 
         add_action('after_switch_theme', function() { 
             flush_rewrite_rules(); 
@@ -182,7 +182,7 @@ class Waterfall {
     /**
      * Initializes the basic settings for a theme
      */
-    private function enableOptimizations() {    
+    private function enable_optimizations() {    
 
         $optimizations = wf_get_data('options', 'optimize');
 
@@ -195,21 +195,21 @@ class Waterfall {
     /**
      * Initializes our ajax actions
      */
-    private function setupAjax() {     
+    private function setup_ajax() {     
         $this->ajax = new Waterfall_Ajax();   
     }
     
     /**
      * Initializes the view component so components and templates are load and additional settings are added
      */
-    private function setupView() {     
+    private function setup_view() {     
         $this->view = new Waterfall_View();  
     }     
 
     /**
      * Initializes all WooCommerce related functions
      */
-    private function setupWooCommerce() {     
+    private function setup_woocommerce() {     
         if( class_exists('WooCommerce') ) {
             $this->woocommerce = new Vendor\Waterfall_WooCommerce();
         }
@@ -218,7 +218,7 @@ class Waterfall {
     /**
      * Provides bbPress compatibility
      */
-    private function setupForum() {     
+    private function setup_bbpress() {     
         if( class_exists('bbPress') ) {
             $this->bbPress = new Vendor\Waterfall_bbPress();
         }
@@ -227,7 +227,7 @@ class Waterfall {
     /**
      * Initializes all Event Calendar Related functions
      */
-    private function setupEventsCalendar() {     
+    private function setup_events_calendar() {     
         if( class_exists('Tribe__Events__Main') ) {
             $this->events = new Vendor\Waterfall_Events();
         }
@@ -236,11 +236,11 @@ class Waterfall {
     /**
      * Adapt some of the customizer sections with custom names
      */
-    private function adaptCustomizer() {  
+    private function adapt_customizer() {  
         add_action( 'customize_register', function($wp_customize) {
-            $wp_customize->get_section('background_image')->title = __( 'Background' );
+            $wp_customize->get_section('background_image')->title = __( 'Background', 'waterfall' );
             $wp_customize->get_section('background_image')->priority = 110;
-            $wp_customize->get_section('static_front_page')->title = __( 'General' );
+            $wp_customize->get_section('static_front_page')->title = __( 'General', 'waterfall'  );
             $wp_customize->get_section('static_front_page')->priority = 1;
             $wp_customize->remove_section('colors');
         }, 20 );
@@ -249,7 +249,7 @@ class Waterfall {
     /**
      * Supportive functions for deprecated functionalities
      */
-    private function deprecatedSupport() {
+    private function deprecated_support() {
 
         /**
          * Older themes still use the customizer value for the main logo, so we need to update it automatically.
@@ -368,7 +368,7 @@ class Waterfall {
          * so (child) themes can add configurations if they want on an earlier point.
          * This executes all our custom modules, such as custom fields and post types
          */
-        add_action('after_setup_theme', [$this, 'executeConfiguration'], 10);        
+        add_action('after_setup_theme', [$this, 'execute_configuration'], 10);        
         
     }   
     
@@ -377,7 +377,7 @@ class Waterfall {
      *
      * @param string $type If defined, executes a specific registration, otherwise executes all
      */
-    public function executeConfiguration( $type = '' ) {
+    public function execute_configuration( $type = '' ) {
         
         /**
          * General filter for changing configurations upon execution. 
@@ -416,7 +416,7 @@ class Waterfall {
                 continue;
             }
             
-            if( $key == 'options' ) {
+            if( $key === 'options' ) {
                 
                 // Custom Fields framework
                 $params       = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
@@ -427,7 +427,7 @@ class Waterfall {
                     
                     foreach( $this->config->configurations['options'] as $key => $options ) {
 
-                        if( $key == 'params' ) {
+                        if( $key === 'params' ) {
                             continue;
                         }
                         
@@ -448,7 +448,7 @@ class Waterfall {
          * This is done on this location because before the configurations are executed, these post types are not available.
          */
         if( is_admin() ) {
-            $this->savePostTypes();     
+            $this->save_post_types();     
         }  
         
     }
@@ -456,7 +456,7 @@ class Waterfall {
     /**
      * Saves the available public post types to the database so we can access them at an earlier point, such as in the configurations
      */
-    private function savePostTypes() {
+    private function save_post_types() {
 
         add_action('init', function() {
             $commons    = apply_filters( 

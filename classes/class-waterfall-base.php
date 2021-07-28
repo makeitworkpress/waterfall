@@ -90,9 +90,9 @@ abstract class Waterfall_Base {
             $hook['arguments'] = isset($hook['arguments']) ? $hook['arguments'] : 1;
 
             // Execute our action
-            if( $type == 'action' ) {
+            if( $type === 'action' ) {
                 add_action( $hook['hook'], [$this, $hook['method']], $hook['priority'], $hook['arguments'] );
-            } elseif( $type == 'filter' ) {
+            } elseif( $type === 'filter' ) {
                 add_filter( $hook['hook'], [$this, $hook['method']], $hook['priority'], $hook['arguments'] );   
             }
 

@@ -205,12 +205,12 @@ if( is_admin() && class_exists('Tribe__Events__Main') ) {
         $tribe = false;
 
         // Editing a post
-        if( isset($_GET['post']) && get_post_type( intval($_GET['post']) ) == 'tribe_events' && isset($_GET['action']) && $_GET['action'] == 'edit' ) {
+        if( isset($_GET['post']) && get_post_type( intval($_GET['post']) ) === 'tribe_events' && isset($_GET['action']) && $_GET['action'] === 'edit' ) {
             $tribe = true;
         }
 
         // A new post
-        if( isset($_GET['post_type']) && $_GET['post_type'] == 'tribe_events' ) {
+        if( isset($_GET['post_type']) && $_GET['post_type'] === 'tribe_events' ) {
             $tribe = true;
         }
 

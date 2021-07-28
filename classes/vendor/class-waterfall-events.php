@@ -15,8 +15,8 @@ class Waterfall_Events extends Waterfall_Base {
     public function initialize() { 
         
         $this->filters = [
-            ['template_include', 'locateTemplate', 50],
-            ['tribe_get_events_link', 'adaptEventsLink']
+            ['template_include', 'locate_template', 50],
+            ['tribe_get_events_link', 'adapt_events_link']
         ];
 
     } 
@@ -26,7 +26,7 @@ class Waterfall_Events extends Waterfall_Base {
      * 
      * @param String $template The template that is included
      */
-    public function locateTemplate($template) {
+    public function locate_template($template) {
 
         if( strpos($template, 'the-events-calendar/src/views/v2/default-template.php') || strpos($template, 'the-events-calendar\src\views\v2\default-template.php') ) {
 
@@ -51,7 +51,7 @@ class Waterfall_Events extends Waterfall_Base {
      * 
      * @param String $link The link for the events overview page
      */
-    public function adaptEventsLink($link) {
+    public function adapt_events_link($link) {
 
         $page = wf_get_data('customizer', 'tribe_events_page');
 

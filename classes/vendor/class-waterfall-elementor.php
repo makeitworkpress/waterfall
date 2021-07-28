@@ -30,17 +30,17 @@ class Waterfall_Elementor extends Waterfall_Base {
         $this->widgets = $this->options;
 
         $this->filters = [
-            ['template_include', 'loadHeaderFooter', 20]
+            ['template_include', 'load_header_footer', 20]
         ];
 
         $this->actions = [
-            ['elementor/theme/register_locations', 'supportThemeBuilder'],
+            ['elementor/theme/register_locations', 'support_theme_builder'],
         ];
 
         // Extra actions if we have widgets
         if( $this->widgets ) {
-            $this->actions[] = ['elementor/elements/categories_registered', 'registerWidgetCategories'];
-            $this->actions[] = ['elementor/widgets/widgets_registered', 'registerWidgets'];   
+            $this->actions[] = ['elementor/elements/categories_registered', 'register_widget_categories'];
+            $this->actions[] = ['elementor/widgets/widgets_registered', 'register_widgets'];   
         }
 
     }
@@ -50,7 +50,7 @@ class Waterfall_Elementor extends Waterfall_Base {
      * 
      * @param Object $elementor_theme_manager The Elements Theme Manager object
      */
-    public function supportThemeBuilder($elementor_theme_manager) {
+    public function support_theme_builder($elementor_theme_manager) {
         $elementor_theme_manager->register_all_core_location();
     }
 
@@ -61,7 +61,7 @@ class Waterfall_Elementor extends Waterfall_Base {
      * 
      * @return String $template The string to the template file returned
      */
-    public function loadHeaderFooter($template) {
+    public function load_header_footer($template) {
 
         /**
          * We need to overwrite the elementor basic template display with our own, so the correct
@@ -89,7 +89,7 @@ class Waterfall_Elementor extends Waterfall_Base {
      * 
      * @param Object $elements_manager The Elements Manager object
      */
-    public function registerWidgetCategories($elements_manager) {
+    public function register_widget_categories($elements_manager) {
             
         $elements_manager->add_category(
             'waterfall-widgets',
@@ -104,7 +104,7 @@ class Waterfall_Elementor extends Waterfall_Base {
     /**
      * Registers our new widgets
      */
-    public function registerWidgets() {
+    public function register_widgets() {
 
         // Add our custom widgets
         $classes    = $this->widgets;

@@ -1,8 +1,8 @@
 # waterfall
-An elaborate WordPress Theme and Framework with incredible possibilities for extending, with support for WooCommerce. 
+An elaborate WordPress Theme and Framework with incredible possibilities for extending, with support for WooCommerce, Elementor, bbPress and the Events Calendar.
 
 ## Installation
-Download the ZIP file for the master file, rename it to waterfall and upload it to your WordPress themes directory in your WordPress install. 
+Download the ZIP file for the master file, rename it to waterfall and upload it to your WordPress themes directory in your WordPress install.
 
 ## Child Theme
 There is a [basic child-theme available](https://github.com/makeitworkpress/waterfall-child) for Waterfall, so you can easily customize the theme.

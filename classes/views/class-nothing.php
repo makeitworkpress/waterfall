@@ -12,7 +12,7 @@ class Nothing extends Base {
     /**
      * Sets the properties for the index
      */
-    protected function setProperties() {
+    protected function set_properties() {
 
         $this->type         = '404';
         $this->properties   = apply_filters( 'waterfall_404_properties', [
@@ -27,7 +27,7 @@ class Nothing extends Base {
     public function header() {
 
         // Retrieve our properties for the header
-        $this->getProperties();
+        $this->get_properties();
 
         $args = [
             'attributes'    => [
