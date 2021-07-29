@@ -18,7 +18,7 @@
             
             do_action('waterfall_before_404_header');
         
-            $wf_nothing = $GLOBALS['wf_nothing'];
+            $wf_nothing = wf_get_view('404');
             $wf_nothing->header();
         
             do_action('waterfall_after_404_header');

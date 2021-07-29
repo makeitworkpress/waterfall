@@ -14,7 +14,7 @@ if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_
     /**
      * Displays the default header for WooCommerce Pages
      */
-    $wf_shop = $GLOBALS['wf_shop'];
+    $wf_shop = wf_get_view('shop');
     $wf_shop->header();
         
     do_action('waterfall_after_product_archive_header');

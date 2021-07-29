@@ -2,7 +2,7 @@
 /**
  * Displays an in between section with a document, for use in the articles itself
  */
-namespace Views\Widgets;
+namespace Views\Elementor_Widgets;
 use Elementor as Elementor;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );

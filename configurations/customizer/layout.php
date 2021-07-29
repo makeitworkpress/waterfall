@@ -537,6 +537,7 @@ if( $types ) {
                         $type . '_related_image_float',
                         $type . '_related_image_enlarge',
                         $type . '_related_button',
+                        $type . '_related_button_icon',
                         $type . '_related_none',
                         $type . '_related_pagination',
                         $type . '_related_pagination_prev',
@@ -592,8 +593,7 @@ if( $types ) {
                     'description'   => __('Minimum height of related posts in pixels.', 'waterfall'),
                     'id'            => $type . '_related_height',
                     'title'         => __('Posts Height', 'waterfall'),
-                    'selector'      => ['selector' => '.main-related .molecule-post', 'property' => 'min-height'],
-                    'transport'     => 'postMessage',                 
+                    'selector'      => ['selector' => '.main-related .molecule-post', 'property' => 'min-height'],              
                     'type'          => 'number'
                 ],     
                 [
@@ -650,6 +650,12 @@ if( $types ) {
                     'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'),              
                     'type'          => 'input'
                 ],
+                [
+                    'default'       => '',
+                    'id'            => $type . '_related_button_icon',
+                    'title'         => __('Show Arrow Icon in Button upon Hover', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                 
                 [
                     'default'       => __('Bummer! No related posts have been found.', 'waterfall'),
                     'id'            => $type . '_related_none',
@@ -944,6 +950,7 @@ if( $types ) {
                         $type . '_archive_content_meta_date',
                         $type . '_archive_content_type',
                         $type . '_archive_content_button',
+                        $type . '_archive_content_button_icon',
                         $type . '_archive_content_none',
                         $type . '_archive_content_height',
                         $type . '_archive_content_image',
@@ -1059,6 +1066,12 @@ if( $types ) {
                     'type'          => 'input'
                 ],
                 [
+                    'default'       => '',
+                    'id'            => $type . '_archive_content_button_icon',
+                    'title'         => __('Show Arrow Icon in Button upon Hover', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                 
+                [
                     'default'       => __('Bummer! No posts found.', 'waterfall'),
                     'description'   => __('The text if no posts are found.', 'waterfall'),
                     'id'            => $type . '_archive_content_none',
@@ -1070,8 +1083,7 @@ if( $types ) {
                     'description'   => __('Minimum height of posts in the archive in pixels.', 'waterfall'),
                     'id'            => $type . '_archive_content_height',
                     'title'         => __('Posts Height', 'waterfall'),
-                    'selector'      => ['selector' => '.archive-posts .molecule-post.' . $type, 'property' => 'min-height'],
-                    'transport'     => 'postMessage',                  
+                    'selector'      => ['selector' => '.archive-posts .molecule-post.' . $type, 'property' => 'min-height'],                 
                     'type'          => 'number'
                 ],    
                 [

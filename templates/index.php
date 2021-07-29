@@ -12,7 +12,7 @@
         do_action('waterfall_before_archive_header');
         
         // Build the header for the archive
-        $wf_archive = $GLOBALS['wf_archive'];
+        $wf_archive = wf_get_view('archive');
         $wf_archive->header();
             
         do_action('waterfall_after_archive_header');

@@ -61,9 +61,6 @@ class Waterfall_View extends Waterfall_Base {
             ['body_class', 'modify_body_classes'],
             ['excerpt_length', 'modify_excerpt_length', 999],
         ];
-
-        // Execute view based controllers on the templates
-        $this->construct_views();
                 
         // Modify the template folders and hierarchy
         $this->modify_template_folder();
@@ -74,59 +71,6 @@ class Waterfall_View extends Waterfall_Base {
         // Loads our custom components from Make it WorkPress
         $this->components = new MakeitWorkPress\WP_Components\Boot(['maps' => wf_get_data('options', 'maps_api_key')]);
         
-    }
-
-    /**
-     * Construct our view classes, that act as an inbetween of a controller and view; makes the contents of these view objects accessible to the template.
-     * This allows for cleaner seperation of mark-up and code. Unfortunately, there is not an easy way to inject variables into templates, thus globals are used.
-     */
-    private function construct_views() {
-
-        // After WordPress has queried posts and set-up variables, the views can be instanciated.
-        add_action('wp', function() {
-
-            global $wp_query;
-
-            // Global header and footer
-            $GLOBALS['wf_header']       = new Views\Header();
-            $GLOBALS['wf_footer']       = new Views\Footer();
-
-            // @todo bbPress
-
-            // Page specific views
-            if( is_404() ) {
-                $GLOBALS['wf_nothing']  = new Views\Nothing();
-                return;
-            }
-
-            if( isset($wp_query->tribe_is_event) && $wp_query->tribe_is_event ) {
-                $GLOBALS['wf_events']   = new Views\Vendor\Events();
-                return;
-            } 
-
-            if( function_exists('is_product') && is_product() ) {
-                $GLOBALS['wf_product']  = new Views\Vendor\Product();
-                return;                
-            }            
-            
-            if( is_singular() ) {
-                $GLOBALS['wf_singular'] = new Views\Singular();
-                return;
-            }  
-            
-            if( function_exists('is_woocommerce') && is_woocommerce() ) {
-                if( is_shop() || is_product_category() || is_product_tag() ) {
-                    $GLOBALS['wf_shop'] = new Views\Vendor\Shop();
-                    return;   
-                }             
-            }
-
-            if( is_archive() || is_home() ) {
-                $GLOBALS['wf_archive']  = new Views\Index();
-                return;
-            }           
-            
-        });
     }
     
     /**
@@ -296,7 +240,7 @@ class Waterfall_View extends Waterfall_Base {
             'customizer'    => ['lightbox'],
             'colors'        => ['content_sidebar_background'],
             'layout'        => ['layout', 'search_sidebar_position'],
-            'meta'          => ['content_width', 'page_header_overlay']
+            'meta'          => ['content_width', 'page_header_overlay', 'content_sidebar_disable']
         ];
 
         foreach( $types as $type => $keys ) {
@@ -379,6 +323,10 @@ class Waterfall_View extends Waterfall_Base {
             if( (isset($data['meta']['content_width']['full']) && $data['meta']['content_width']['full'] ) || $content_width === 'full' || is_singular('elementor_library') ) {
                 $sidebar    = 'default';
                 $classes[]  = 'waterfall-fullwidth-content';
+            }
+
+            if( isset($data['meta']['content_sidebar_disable']['disable']) && $data['meta']['content_sidebar_disable']['disable'] ) {
+                $sidebar    = 'default';   
             }
 
         }

@@ -199,15 +199,30 @@ input[type="submit"], input[type="submit"].button, .atom-button.primary {
     margin-bottom: 2em;
 }
 
-p, h1, h2, h3, h4, h5, h6, .content ul {
+// Full-width sections
+.waterfall-bottom-sidebar, .waterfall-default-sidebar {
+    .alignfull {
+        left: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;           
+        position: relative;
+        right: 50%;
+        width: 100vw;  
+    }
+}
+
+// Fields with background
+p, h1, h2, h3, h4, h5, h6, .content ul, .content ol {
     &.has-background {
         margin-bottom: 1.5rem;
         padding: 1.25rem 2.375rem;
     }
 }
 
-.content ul.has-background {
-    padding-left: 3.5rem;
+.content {
+    ul.has-background, ol.has-background {
+        padding-left: 3.5rem;
+    }
 }
 
 /* Theme Classes 

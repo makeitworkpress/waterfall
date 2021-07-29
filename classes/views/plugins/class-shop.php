@@ -2,7 +2,7 @@
 /**
  * Contains the class for initiating a new shop or product archive page
  */
-namespace Views\Vendor;
+namespace Views\Plugins;
 use MakeitWorkPress\WP_Components as WP_Components;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );

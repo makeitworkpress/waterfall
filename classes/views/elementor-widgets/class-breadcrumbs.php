@@ -2,7 +2,7 @@
 /**
  * Displays an in between section with a document, for use in the articles itself
  */
-namespace Views\Widgets;
+namespace Views\Elementor_Widgets;
 use Elementor as Elementor;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
@@ -128,8 +128,8 @@ class Breadcrumbs extends Elementor\Widget_Base {
 		$this->add_group_control(
 			Elementor\Group_Control_Typography::get_type(),
 			[
-				'name' => 'typography',
-				'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_3,
+				'name' 		=> 'typography',
+				// 'scheme' 	=> Elementor\Core\Schemes\Typography::TYPOGRAPHY_3,
 			]
 		);		
 		

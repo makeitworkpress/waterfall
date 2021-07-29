@@ -2,7 +2,7 @@
 /**
  * Contains all Event Calendar related options
  */
-namespace Vendor;
+namespace Plugins;
 use Waterfall_Base as Waterfall_Base;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );

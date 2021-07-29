@@ -74,6 +74,7 @@ class Singular extends Base {
                 'sidebar_position',
                 // Related
                 'related_button', 
+                'related_button_icon',
                 'related_content',
                 'related_grid', 
                 'related_grid_gap', 
@@ -503,9 +504,15 @@ class Singular extends Base {
                         'style'     => ['min-height' => $this->layout['related_height'] ? $this->layout['related_height'] . 'px' : '']
                     ],
                     'content_atoms' => $this->layout['related_content'] === 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],
-                    'footer_atoms'   => [
+                    'footer_atoms'  => [
                         'button'    => [
-                            'atom' => 'button', 'properties' => ['iconAfter' => 'angle-right', 'iconVisible' => 'hover', 'label' => $this->layout['related_button'], 'size' => 'small']
+                            'atom'          => 'button', 
+                            'properties'    => [
+                                'icon_after'    => $this->layout['related_button_icon'] ? 'angle-right' : '', 
+                                'icon_visible'  => 'hover', 
+                                'label'         => $this->layout['related_button'], 
+                                'size'          => 'small'
+                            ]
                         ] 
                     ],  
                     'header_atoms'   => [

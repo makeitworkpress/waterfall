@@ -2,7 +2,7 @@
 /**
  * The view wrapper for displaying events
  */
-namespace Views\Vendor;
+namespace Views\Plugins;
 use Tribe\Events\Views\V2\Template_Bootstrap;
 use Elementor;
 

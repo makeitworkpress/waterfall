@@ -33,7 +33,7 @@
                 /**
                  * Displays our header elements, unless we have a custom header from elementor
                  */ 
-                $wf_header = $GLOBALS['wf_header'];
+                $wf_header = wf_get_view('header');
                 $wf_header->header();
             
                 do_action('waterfall_after_header');

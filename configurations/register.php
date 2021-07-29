@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 // Default registrations 
 $register = [
-    'imageSizes' => [
+    'image_sizes' => [
         ['name' => 'square-ld', 'width' => 360, 'height' => 360, 'crop' => true],
         ['name' => 'square-sd', 'width' => 480, 'height' => 480, 'crop' => true],
         ['name' => 'square-hd', 'width' => 720, 'height' => 720, 'crop' => true],

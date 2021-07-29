@@ -6,6 +6,8 @@
  */
 wf_get_theme_header(); 
 
+$wf_product = wf_get_view('product');
+
 // Outputs our elementor templates, unless we have the product archive running
 if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'product' ) ) { ?>
 

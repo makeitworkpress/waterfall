@@ -2,7 +2,7 @@
 /**
  * Registers our custom elementor widgets
  */
-namespace Vendor;
+namespace Plugins;
 use Elementor as Elementor;
 use Waterfall_Base as Waterfall_Base;
 

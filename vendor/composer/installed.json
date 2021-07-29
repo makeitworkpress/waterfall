@@ -7,18 +7,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "a8b66e44fcd24c0984b79bfff65669616fe3ec31"
+                "reference": "b22d21588ffb910d81fcb215d957587023e282d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/a8b66e44fcd24c0984b79bfff65669616fe3ec31",
-                "reference": "a8b66e44fcd24c0984b79bfff65669616fe3ec31",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/b22d21588ffb910d81fcb215d957587023e282d9",
+                "reference": "b22d21588ffb910d81fcb215d957587023e282d9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
-            "time": "2021-07-28T14:10:59+00:00",
+            "time": "2021-07-29T14:40:47+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",

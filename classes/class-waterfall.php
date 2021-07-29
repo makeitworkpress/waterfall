@@ -211,7 +211,7 @@ class Waterfall {
      */
     private function setup_woocommerce() {     
         if( class_exists('WooCommerce') ) {
-            $this->woocommerce = new Vendor\Waterfall_WooCommerce();
+            $this->woocommerce = new Plugins\Waterfall_WooCommerce();
         }
     } 
 
@@ -220,7 +220,7 @@ class Waterfall {
      */
     private function setup_bbpress() {     
         if( class_exists('bbPress') ) {
-            $this->bbPress = new Vendor\Waterfall_bbPress();
+            $this->bbPress = new Plugins\Waterfall_bbPress();
         }
     }     
     
@@ -229,7 +229,7 @@ class Waterfall {
      */
     private function setup_events_calendar() {     
         if( class_exists('Tribe__Events__Main') ) {
-            $this->events = new Vendor\Waterfall_Events();
+            $this->events = new Plugins\Waterfall_Events();
         }
     }    
     
@@ -309,8 +309,8 @@ class Waterfall {
         
         $configurations = [
             'elementor' => [
-                'Views\Widgets\Breadcrumbs',
-                'Views\Widgets\Terms',
+                'Views\Elementor_Widgets\Breadcrumbs',
+                'Views\Elementor_Widgets\Terms',
             ],
             'enqueue'   => $enqueue, 
             'register'  => $register, 
@@ -339,10 +339,10 @@ class Waterfall {
 
             require_once( get_template_directory() . '/configurations/customizer.php' );  
 
-            $configurations['options']['customizerGeneral'] = ['frame' => 'customizer', 'fields' => $customizer];
-            $configurations['options']['colorsPanel']       = ['frame' => 'customizer', 'fields' => $colors];
-            $configurations['options']['layoutPanel']       = ['frame' => 'customizer', 'fields' => $layout];
-            $configurations['options']['typographyPanel']   = ['frame' => 'customizer', 'fields' => $typography];
+            $configurations['options']['customizer_general'] = ['frame' => 'customizer', 'fields' => $customizer];
+            $configurations['options']['colors_panel']       = ['frame' => 'customizer', 'fields' => $colors];
+            $configurations['options']['layout_panel']       = ['frame' => 'customizer', 'fields' => $layout];
+            $configurations['options']['typography_panel']   = ['frame' => 'customizer', 'fields' => $typography];
 
             // Woocommerce configurations
             if( class_exists( 'WooCommerce' ) ) {
@@ -390,7 +390,7 @@ class Waterfall {
          */
         $methods = apply_filters( 'waterfall_execute_methods', [
             'enqueue'   => 'MakeitWorkPress\WP_Enqueue\Enqueue',
-            'elementor' => 'Vendor\Waterfall_Elementor',
+            'elementor' => 'Plugins\Waterfall_Elementor',
             'register'  => 'MakeitWorkPress\WP_Register\Register', 
             'routes'    => 'MakeitWorkPress\WP_Router\Router', 
             'options'   => 'MakeitWorkPress\WP_Custom_Fields\Framework'

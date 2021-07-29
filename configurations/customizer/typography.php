@@ -168,7 +168,7 @@ $typography = [
                 ],              
                 [
                     'default'       => '',
-                    'selector'      => '.widget-title',
+                    'selector'      => '.widget-title, .main-sidebar h3',
                     'id'            => 'widget_title_typography',
                     'title'         => __('Widget Titles', 'waterfall'),
                     'description'   => __('Determines the typography for widget headings.', 'waterfall'),

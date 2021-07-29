@@ -2,7 +2,7 @@
 /**
  * The view wrapper for displaying events
  */
-namespace Views\Vendor;
+namespace Views\Plugins;
 
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
@@ -109,7 +109,7 @@ class bbPress extends \Views\Base {
                 }                  
     
                 $args = apply_filters( 'waterfall_content_header_args', [
-                    'atoms'         => $atoms,
+                    'atoms'         => isset($atoms) ? $atoms : [],
                     'attributes'    => ['class' => 'main-header content-header'],
                 ] );
 

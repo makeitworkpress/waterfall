@@ -27,6 +27,7 @@ class Index extends Base {
                 'header_width', 
                 // Grid
                 'content_button', 
+                'content_button_icon',
                 'content_columns', 
                 'content_content', 
                 'content_gap',
@@ -161,11 +162,24 @@ class Index extends Base {
                 'blog_schema'   => in_array($type, $blog_types) ? true : false,
                 'content_atoms' => $this->layout['content_content'] === 'none' ? [] : ['content' => ['atom' => 'content', 'properties' => ['type' => 'excerpt']]],          
                 'footer_atoms'  => [ 
-                    'button'    => ['atom' => 'button', 'properties' => ['attributes' => ['href' => 'post'], 'float' => 'right', 'label' => $this->layout['content_button'], 'size' => 'small']] 
+                    'button'    => [
+                        'atom'      => 'button', 
+                        'properties' => [
+                            'attributes'    => ['href' => 'post'], 
+                            'float'         => 'right', 
+                            'icon_after'    => $this->layout['content_button_icon'] ? 'angle-right' : '',
+                            'icon_visible'  => 'hover',
+                            'label'         => $this->layout['content_button'], 
+                            'size'          => 'small'
+                        ]
+                    ]
                 ], 
                 'grid'          => $this->layout['content_columns'] ? $this->layout['content_columns'] : $defaults['columns'],   
                 'header_atoms'   > [ 
-                    'title'     => ['atom' => 'title', 'properties' => ['attributes' => ['itemprop' => 'name', 'class' => 'entry-title'], 'tag' => 'h2', 'link' => 'post']] 
+                    'title'     => [
+                        'atom' => 'title', 
+                        'properties' => ['attributes' => ['itemprop' => 'name', 'class' => 'entry-title'], 'tag' => 'h2', 'link' => 'post']
+                    ] 
                 ],                                 
                 'image'         => [
                     'attributes'    => ['class' => 'entry-image'],
@@ -212,7 +226,10 @@ class Index extends Base {
 
         // Adds the post type indicator
         if( $this->layout['content_type'] ) {
-            $args['post_properties']['header_atoms']['type'] = ['atom' => 'type', 'properties' => ['attributes' => ['class' => 'entry-meta']]];
+            $args['post_properties']['header_atoms']['type'] = [
+                'atom'          => 'type', 
+                'properties'    => ['attributes' => ['class' => 'entry-meta']]
+            ];
         }
 
         // Unset button if no text is set

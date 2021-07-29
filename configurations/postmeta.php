@@ -7,20 +7,20 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 /**
  * All custom post types receive these metaboxes
  */
-$postTypes = [];
+$post_types = [];
 foreach( wf_get_post_types(true) as $type => $label ) {
-    $postTypes[] = $type;
+    $post_types[] = $type;
 }
 
 /**
  * If the Events Calendar is Active, it will support some metaboxes
  */
 if( class_exists('Tribe__Events__Main') ) {
-    $postTypes[] = 'tribe_events';
+    $post_types[] = 'tribe_events';
 }
 
 // No metaboxes will be added if no post type is supported
-if( ! $postTypes ) {
+if( ! $post_types ) {
     $postmeta = [];
     return;
 }
@@ -34,7 +34,7 @@ $postmeta = [
     'priority'      => 'high',
     'title'         => __('Custom Fields', 'waterfall'),
     'type'          => 'post',
-    'screen'        => $postTypes,
+    'screen'        => $post_types,
     'sections'      => [
         'layout' => [
             'icon'      => 'web_asset',
@@ -113,7 +113,7 @@ $postmeta = [
                     'columns'       => 'fourth',
                     'description'   => __('The Related Section usually contains related posts and post navigation.', 'waterfall'),
                     'id'            => 'content_related_disable',
-                    'title'         => __('Disable Page Related Section', 'waterfall'),
+                    'title'         => __('Disable Related Section', 'waterfall'),
                     'type'          => 'checkbox',
                     'style'         => 'switcher switcher-disable',
                     'options'       => [ 
@@ -124,7 +124,7 @@ $postmeta = [
                     'columns'       => 'fourth',
                     'description'   => __('The Content Footer usually shows elements such as comments, the author and so forth.', 'waterfall'),
                     'id'            => 'content_footer_disable',
-                    'title'         => __('Disable Page Content Footer', 'waterfall'),
+                    'title'         => __('Disable Content Footer', 'waterfall'),
                     'type'          => 'checkbox',
                     'style'         => 'switcher switcher-disable',
                     'options'       => [ 

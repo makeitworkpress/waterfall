@@ -12,7 +12,7 @@
         // Build the header for our search page
         do_action('waterfall_before_search_header');
 
-        $wf_archive = $GLOBALS['wf_archive'];
+        $wf_archive = wf_get_view('archive');
         $wf_archive->header();
 
         do_action('waterfall_after_search_header');

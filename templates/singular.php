@@ -7,7 +7,7 @@
 wf_get_theme_header();
 
 // Retrieve our singular instance
-$wf_singular = $GLOBALS['wf_singular'];
+$wf_singular = wf_get_view('singular');
 
 // Start our loop
 while( have_posts() ) {

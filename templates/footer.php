@@ -12,7 +12,7 @@
                 do_action('waterfall_before_footer');
                 
                 // Echoes the footer elements.
-                $wf_footer = $GLOBALS['wf_footer'];
+                $wf_footer = wf_get_view('footer');
                 $wf_footer->footer();
 
                 do_action('waterfall_after_footer');

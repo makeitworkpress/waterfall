@@ -2,7 +2,9 @@
 /**
  * View: Default Template for Events
  */
-wf_get_theme_header(); ?>
+wf_get_theme_header(); 
+
+$wf_events = wf_get_view('events'); ?>
 
 <div class="main-content singular-content events-calendar-template">
 

@@ -2,7 +2,49 @@
 /**
  * Utility functions that are used by the waterfall theme
  */
-use Waterfall as Waterfall;
+
+/**
+ * Retrieves a view instance
+ * 
+ * @param   String    $type The type of view to retrieve
+ * @return  Object   The view object for the specified type
+ */
+function wf_get_view($type) {
+    
+    switch($type) {
+        case 'header':
+            $view = new Views\Header();
+            break;
+        case 'footer':
+            $view = new Views\Footer();
+            break;
+        case 'singular':
+            $view = new Views\Singular();
+            break;
+        case 'product':
+            $view = new Views\Plugins\Product();
+            break;              
+        case 'events':
+            $view = new Views\Plugins\Events();
+            break;              
+        case 'bbpress':
+            $view = new Views\Plugins\bbPress();
+            break;  
+        case 'archive':
+            $view = new Views\Index();
+            break;
+        case 'shop':
+            $view = new Views\Plugins\Shop();
+            break;
+        case '404';
+            $view = new Views\Nothing();
+            break;
+        default:
+            $view = new Views\Index();
+    }
+
+    return $view;
+}
 
 /**
  * Retrieves the theme header
@@ -181,7 +223,7 @@ function wf_get_grid_gaps() {
  */
 function wf_get_sidebar_options() {
     return apply_filters( 'waterfall_sidebar_options', [
-        'full'      => __('No Sidebars', 'waterfall'),
+        'default'   => __('No Sidebars', 'waterfall'),
         'left'      => __('Left Sidebar', 'waterfall'),
         'right'     => __('Right Sidebar', 'waterfall'),
         'bottom'    => __('Bottom Sidebar', 'waterfall'),
