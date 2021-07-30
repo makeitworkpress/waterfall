@@ -328,7 +328,7 @@ class Waterfall {
 
             $configurations['options'] = [
                 'params'            => ['google_maps_key' => wf_get_data('options', 'maps_api_key') ],
-                'postMeta'          => ['frame' => 'meta', 'fields' => $postmeta],
+                'post_meta'         => ['frame' => 'meta', 'fields' => $postmeta],
                 'options'           => ['frame' => 'options', 'fields' => $options]
             ]; 
 
