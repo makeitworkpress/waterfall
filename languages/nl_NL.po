@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Waterfall\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-11 15:31+0000\n"
-"PO-Revision-Date: 2021-07-29 15:19+0000\n"
+"PO-Revision-Date: 2021-08-02 09:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -1629,6 +1629,10 @@ msgstr "Main Content"
 msgid "Main Sidebar"
 msgstr "Main Sidebar"
 
+#. Author of the theme
+msgid "Make it WorkPress (@makeitworkpress)"
+msgstr "Make it WorkPress (@makeitworkpress)"
+
 #: configurations/postmeta.php:49
 msgid ""
 "Makes the main content fullwidth without any padding and sidebars. Useful if "
@@ -1674,10 +1678,6 @@ msgstr ""
 #: configurations/customizer/colors.php:402
 msgid "Meta Color"
 msgstr "Metakleur"
-
-#. Author of the theme
-msgid "Michiel Tramper (@michieltramper)"
-msgstr "Michiel Tramper (@michieltramper)"
 
 #: configurations/customizer/layout.php:1083
 msgid "Minimum height of posts in the archive in pixels."
