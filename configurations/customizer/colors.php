@@ -909,7 +909,7 @@ $colors = [
                 [
                     'default'       => '',
                     'selector'      => [
-                        'selector'  => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual, #add_payment_method table.cart td.actions .coupon .input-text, .woocommerce-cart table.cart td.actions .coupon .input-text, .woocommerce-checkout table.cart td.actions .coupon .input-text', 
+                        'selector'  => 'input[type=\'text\'], input[type=\'email\'], input[type=\'password\'], input[type=\'tel\'], input[type=\'search\'], input[type=\'url\'], input[type=\'number\'], select, textarea, .elementor-form .elementor-field-group .elementor-field-textual, #add_payment_method table.cart td.actions .coupon .input-text, .woocommerce-cart table.cart td.actions .coupon .input-text, .woocommerce-checkout table.cart td.actions .coupon .input-text', 
                         'property'  => 'border-color'
                     ],
                     'id'            => 'form_border_color',
@@ -919,7 +919,7 @@ $colors = [
                 ], 
                 [
                     'default'       => '',
-                    'selector'      => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), input:not([type=\'checkbox\']), input:not([type=\'radio\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
+                    'selector'      => 'input[type=\'text\'], input[type=\'email\'], input[type=\'password\'], input[type=\'tel\'], input[type=\'search\'], input[type=\'url\'], input[type=\'number\'], select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
                     'id'            => 'form_text_color',
                     'title'         => __('Form Field Text Colors', 'waterfall'),
                     'transport'     => 'postMessage',
@@ -928,7 +928,7 @@ $colors = [
                 [
                     'default'       => '',
                     'selector'      => [
-                        'selector'  => 'input:not([type=\'submit\']), input:not([type=\'reset\']), input:not([type=\'button\']), input:not([type=\'range\']), input:not([type=\'checkbox\']), input:not([type=\'radio\']), select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
+                        'selector'  => 'input[type=\'text\'], input[type=\'email\'], input[type=\'password\'], input[type=\'tel\'], input[type=\'search\'], input[type=\'url\'], input[type=\'number\'], select, textarea, .elementor-form .elementor-field-group .elementor-field-textual', 
                         'property'  => 'background-color'
                     ],
                     'id'            => 'form_background_color',

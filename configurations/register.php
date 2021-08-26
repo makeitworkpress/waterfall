@@ -26,7 +26,7 @@ $register = [
     ],
     'menus' => [
         'header-menu'   => __('Header Menu', 'waterfall'),
-        'footer-menu'   => __('Footer Menu', 'waterfall'),
+        'footer-menu'   => __('Socket Menu', 'waterfall'),
         'top-menu'      => __('Top Menu', 'waterfall')
     ],
     'sidebars' => [],    

@@ -25,7 +25,7 @@ class Terms extends Elementor\Widget_Base {
 	 */
 	public function get_title() {
 		return __( 'Terms', 'waterfall' );
-    }
+  }
     
     /**
 	 * Name for the icon used
@@ -51,14 +51,14 @@ class Terms extends Elementor\Widget_Base {
 	 */
 	protected function _register_controls() {
 
-        /**
-         * Elements
-         */
-        $this->start_controls_section( 
-            'section_elements',
-            [
-                'label' => esc_html__( 'Terms', 'waterfall' ),
-            ]
+		/**
+		 * Elements
+		 */
+    $this->start_controls_section( 
+			'section_elements',
+			[
+					'label' => esc_html__( 'Terms', 'waterfall' ),
+			]
 		);
 
 		$taxonomies = get_taxonomies([], 'objects');
