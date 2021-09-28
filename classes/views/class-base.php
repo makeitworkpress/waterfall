@@ -152,11 +152,26 @@ abstract class Base {
             $meta       = $disable ? $disable : $meta;
         }
 
-        // General (most likely used for the general header and footer)
+        // Elementor libraries are disabled by default
+        if( is_singular('elementor_library') ) {
+            // For maintenance pages, disable the general footer 
+            if( in_array($prefix, ['header', 'footer']) && $context === '' ) {
+                $maintenance = (bool) get_option('elementor_maintenance_mode_mode');
+                $maintenance_page = (int) get_option('elementor_maintenance_mode_template_id');
+                if( $maintenance && is_single($maintenance_page) ) {
+                    $disabled = true;
+                }
+            // Hide all other modules for elementor library pages
+            } else {
+                $disabled   = true;
+            }
+        }        
+
+        // General disable from customizer settings (most likely used for the general header and footer)
         $prefix         = $this->type ? $this->type . '_' . $prefix : $prefix; // If a type is defined, this will have a different prefix
         $customizer     = wf_get_data( 'layout', $prefix . '_disable' );    
 
-        // We hide the related section if we haven't saved anything yet for pages
+        // Hide the related section if we haven't saved anything yet for pages
         if( $prefix === $this->type . '_related' ) {
 
             $pagination = wf_get_data( 'layout', $prefix . '_pagination' );
@@ -168,7 +183,7 @@ abstract class Base {
 
         }
 
-        // We hide our post content footer is there is nothing to show
+        // Hide our post content footer is there is nothing to show
         if( $prefix === $this->type . '_footer' ) {
 
             $author     = wf_get_data( 'layout', $prefix . '_author' );
