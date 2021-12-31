@@ -363,11 +363,16 @@ class Waterfall_View extends Waterfall_Base {
         add_theme_support( 'automatic-feed-links' );
         add_theme_support( 'custom-background' ); 
         add_theme_support( 'custom-logo' ); 
-		add_theme_support( 'html5', ['comment-list', 'comment-form', 'search-form', 'caption'] );
+        add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support( 'html5', ['caption', 'comment-list', 'comment-form', 'gallery', 'search-form' ] );
 		add_theme_support( 'post-thumbnails' ); 
         add_theme_support( 'responsive-embeds' );
         add_theme_support( 'title-tag' ); 
-        add_theme_support( 'wp-block-styles' );       
+        add_theme_support( 'wp-block-styles' );   
+        
+        // @todo Add support for dynamic gutenberg color palettes (add theme support for editor-color-palette) and dynamic gradients (editor-gradient-preset)
+        // Also incorporate this with the colorpicker in the customizer (using default colors)
+        // Someday, use the default pallette kit from gutenberg to merge this all.
        
     }    
     

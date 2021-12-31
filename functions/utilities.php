@@ -48,7 +48,7 @@ function wf_get_view($type) {
 
 /**
  * Retrieves the theme header
- * Replaces the standard get_header call that WordPress uses
+ * Replaces the standard get_header call that WordPress uses (required because our templates are in the templates folder)
  */
 function wf_get_theme_header() {
     get_template_part('templates/header');
@@ -56,7 +56,7 @@ function wf_get_theme_header() {
 
 /**
  * Retrieves the theme footer
- * Replaces the standard get_footer call that WordPress uses
+ * Replaces the standard get_footer call that WordPress uses (required because our templates are in the templates folder)
  */
 function wf_get_theme_footer() {
     get_template_part('templates/footer');

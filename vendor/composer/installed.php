@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '19d2477d942d6b588cf28faf3b654b99fc9c7c8a',
+    'reference' => 'f5ff64d0725174dc68b77c5d03d15fe674a0628f',
     'name' => 'makeitworkpress/waterfall',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '19d2477d942d6b588cf28faf3b654b99fc9c7c8a',
+      'reference' => 'f5ff64d0725174dc68b77c5d03d15fe674a0628f',
     ),
     'makeitworkpress/wp-components' => 
     array (
@@ -48,7 +48,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '0d4d9643a9f24b3804cb05e6d84b42cb75922084',
+      'reference' => '498dacfd878db2c57957d56157142b5dfdfb77f1',
     ),
     'makeitworkpress/wp-enqueue' => 
     array (
