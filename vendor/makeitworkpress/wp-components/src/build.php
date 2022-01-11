@@ -20,7 +20,7 @@ class Build {
      * 
      * @return string|void          The rendered string for the given atom or molecule
      */
-    private static function render( $type = 'atom', $template, $properties = [], $render = true ) {
+    private static function render( $type, $template, $properties = [], $render = true ) {
         
         // Empty properties can be neglected
         if( empty($properties) ) {
