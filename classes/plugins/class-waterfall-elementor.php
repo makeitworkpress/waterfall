@@ -11,6 +11,16 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Waterfall_Elementor extends Waterfall_Base {
 
     /**
+     * Remembers if we're saving in Elementor
+     */
+    private $saving_in_elementor = false;
+
+    /**
+     * Contains shared fields between elementor and Waterfall meta
+     */
+    private $shared_meta = [];
+
+    /**
      * Contains the class references to our custom widgets
      * @access private
      */
@@ -18,23 +28,29 @@ class Waterfall_Elementor extends Waterfall_Base {
 
     /**
      * Initializes the class
+     * 
+     * @return void
      */
     public function initialize() {
 
-        // Elementor should have loaded
-        if( ! did_action('elementor/loaded') ) {
-            return;
-        }
-
         // Passed on from the inherited parent class
-        $this->widgets = $this->options;
+        $this->widgets = $this->options['elementor'];
 
+        // Set our shared meta fields
+        $this->set_shared_meta();
+
+        // Filter hooks
         $this->filters = [
             ['template_include', 'load_header_footer', 20]
         ];
 
+        // Filter actions
         $this->actions = [
+            ['elementor/editor/after_enqueue_scripts', 'enqueue_editor_scripts'],
+            ['updated_postmeta', 'save_waterfall_meta', 10, 3],
+            ['elementor/editor/after_save', 'save_elementor_meta', 10, 2],
             ['elementor/theme/register_locations', 'support_theme_builder'],
+            ['elementor/documents/register_controls', 'register_document_controls'],
         ];
 
         // Extra actions if we have widgets
@@ -46,22 +62,178 @@ class Waterfall_Elementor extends Waterfall_Base {
     }
 
     /**
-     * Registers custom widget categories for elementor
+     * Enqueues our custom editor scripts
+     */
+    public function enqueue_editor_scripts() {
+        wp_enqueue_script('waterfall-elementor', get_template_directory_uri() . '/assets/js/plugins/waterfall-elementor-editor.js');  
+    }
+
+    /**
+     * Sets the shared post meta between Waterfall and Elementor
+     * 
+     * @return void
+     */
+    private function set_shared_meta() {
+
+        $meta = ['content_width', 'header_disable', 'transparent_header', 'content_header_disable', 'content_sidebar_disable', 'content_related_disable', 'content_footer_disable', 'footer_disable'];
+        $fields = isset($this->options['options']['post_meta']['fields']['sections']['layout']['fields']) && $this->options['options']['post_meta']['fields']['sections']['layout']['fields'] ? $this->options['options']['post_meta']['fields']['sections']['layout']['fields'] : [];
+
+        foreach($fields as $field ) {
+            if( ! in_array($field['id'], $meta) ) {
+                continue;
+            }
+
+            $this->shared_meta[$field['id']] = [
+                'label' => $field['title'],
+                'description' => $field['description']
+            ];
+        }
+    }   
+
+    /**
+     * Automatically save the meta in the elementor settings field if we save 
+     * 
+     * @param int $meta_id The meta id for the saved value
+     * @param int $post_id The post id for the saved post
+     * @param array $meta_key The meta key for the saved meta data
+     * @return void
+     */
+    public function save_waterfall_meta($meta_id,  $post_id, $meta_key) {
+
+        // This hook is also triggered when elementor saves, this ignores it
+        if( $this->saving_in_elementor ) {
+            return;
+        }
+
+        if( $meta_key !== 'waterfall_meta' ) {
+            return;
+        }
+
+        // Post types should match these supported by Elementor
+        $elementor_post_types = get_option('elementor_cpt_support');
+        $post_type = get_post_type($post_id);
+
+        if( ! in_array($post_type, $elementor_post_types) ) {
+            return;
+        }
+
+        $waterfall_post_types = array_keys( wf_get_post_types(true) );
+
+        if( ! in_array($post_type, $waterfall_post_types) ) {
+            return;
+        }        
+
+        $this->save_page_settings_meta($post_id, 'waterfall_meta', '_elementor_page_settings');
+
+    }    
+
+    /**
+     * Automatically saves the waterfall meta if we save some values within elementor
+     * 
+     * @param int $post_id The post id for the saved post
+     * @param array $editor_data The array of editor elements
+     * @return void
+     */
+    public function save_elementor_meta($post_id, $editor_data) {
+        $this->saving_in_elementor = true;
+        $this->save_page_settings_meta($post_id, '_elementor_page_settings', 'waterfall_meta');
+    }
+
+    /**
+     * Helper function that helps to switch post meta between waterfall and elementor
+     * 
+     * @param int $post_id The post id to save for
+     * @return void
+     */
+    public function save_page_settings_meta($post_id, $origin, $target) {
+
+        // This can only be executed with the right capabilities
+        if( ! current_user_can('edit_posts') || ! current_user_can('edit_pages') ) {
+            return;
+        }  
+        
+        $origin_post_meta = get_post_meta($post_id, $origin, true);
+        $updated_meta = [];
+
+        foreach( $this->shared_meta as $meta_key => $values ) {
+            if( isset($origin_post_meta[$meta_key]) && $origin_post_meta[$meta_key] ) {
+                $updated_meta[$meta_key] = $origin === '_elementor_page_settings' ? true : 'yes';
+            } else {
+                $updated_meta[$meta_key] = $origin === '_elementor_page_settings' ? false : '';
+            }
+        }
+        
+        $target_meta = get_post_meta($post_id, $target, true);
+        foreach($updated_meta as $key => $value) {
+            $target_meta[$key] = $value;   
+        }
+
+        update_post_meta($post_id, $target, $target_meta);        
+
+    }
+
+
+    /**
+     * Indicates that this theme supports Elementor
      * 
      * @param Object $elementor_theme_manager The Elements Theme Manager object
+     * @return void
      */
     public function support_theme_builder($elementor_theme_manager) {
         $elementor_theme_manager->register_all_core_location();
     }
 
     /**
+     * Add additional settings to the elementor document settings
+     * 
+     * @param \Elementor\Core\DocumentTypes\PageBase $document The PageBase document instance.
+     * @return void
+     */
+    public function register_document_controls( $document ) {
+
+        if ( ! $document instanceof \Elementor\Core\DocumentTypes\PageBase || ! $document::get_property( 'has_elements' ) ) {
+            return;
+        }
+
+        $document->start_controls_section(
+            'waterfall_settings',
+            [
+                'label' => __( 'Layout Settings', 'waterfall' ),
+                'tab' => \Elementor\Controls_Manager::TAB_SETTINGS,
+            ]
+        );
+
+        $document->add_control(
+            'waterfall_settings_description',
+            [
+                'type'          => \Elementor\Controls_Manager::RAW_HTML,
+                'raw'           => '<div class="elementor-control-field-description">' . __('Elementor Settings for the Waterfall theme. If disabled sections do not-reappear, reload the editor after saving.', 'waterfall') . '</div>',
+                'separator'     => 'after'
+            ]
+        );           
+
+        foreach( $this->shared_meta as $meta_key => $values ) {
+            $document->add_control(
+                $meta_key,
+                [
+                    'label'         => $values['label'],
+                    'type'          => \Elementor\Controls_Manager::SWITCHER,
+                    'description'   => $values['description']
+                ]
+            );         
+        }
+    
+        $document->end_controls_section();        
+
+    }
+
+    /**
      * Prevent elementor inserting weird header and footer templates, but use the ones from waterfall instead
      * 
      * @param String $template The template being included
-     * 
      * @return String $template The string to the template file returned
      */
-    public function load_header_footer($template) {
+    public function load_header_footer(string $template) {
 
         /**
          * We need to overwrite the elementor basic template display with our own, so the correct
@@ -88,6 +260,7 @@ class Waterfall_Elementor extends Waterfall_Base {
      * Registers custom widget categories for elementor
      * 
      * @param Object $elements_manager The Elements Manager object
+     * @return void
      */
     public function register_widget_categories($elements_manager) {
             
@@ -103,31 +276,19 @@ class Waterfall_Elementor extends Waterfall_Base {
 
     /**
      * Registers our new widgets
+     * 
+     * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
+     * @return void
      */
-    public function register_widgets() {
+    public function register_widgets( $widgets_manager ) {
+      
+        foreach( $this->widgets as $widget ) {
 
-        // Add our custom widgets
-        $classes    = $this->widgets;
-
-        // Some things should be here....
-        if( ! defined('ELEMENTOR_PATH') || ! class_exists('Elementor\Widget_Base') || ! is_callable( 'Elementor\Plugin', 'instance' ) ) { 
-            return;
-        }
-
-        // Load the elementor plugin instance
-        $elementor  = Elementor\Plugin::instance();
-
-        if( isset($elementor->widgets_manager) && method_exists( $elementor->widgets_manager, 'register_widget_type' ) ) {
-            
-            foreach( $this->widgets as $widget ) {
-
-                if( ! class_exists($widget) ) {
-                    continue;
-                }
-                
-                $elementor->widgets_manager->register_widget_type( new $widget() );
-
+            if( ! class_exists($widget) ) {
+                continue;
             }
+            
+            $widgets_manager->register_widget_type( new $widget() );
 
         }
 

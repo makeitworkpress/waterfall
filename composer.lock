@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "87290fffb3586a20f29a4cbf202723bd07931a79"
+                "reference": "35a587b775af44e361a7522e051d51465a41857a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/87290fffb3586a20f29a4cbf202723bd07931a79",
-                "reference": "87290fffb3586a20f29a4cbf202723bd07931a79",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/35a587b775af44e361a7522e051d51465a41857a",
+                "reference": "35a587b775af44e361a7522e051d51465a41857a",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 "source": "https://github.com/makeitworkpress/wp-components/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-components/issues"
             },
-            "time": "2022-01-07T10:23:05+00:00"
+            "time": "2022-01-11T09:14:39+00:00"
         },
         {
             "name": "makeitworkpress/wp-config",
@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-config.git",
-                "reference": "7ef1a1b0cf36503778099a0bcee5d5e18e72ae87"
+                "reference": "336aa79a7db39ee4b000cdd0f585540431408b21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/7ef1a1b0cf36503778099a0bcee5d5e18e72ae87",
-                "reference": "7ef1a1b0cf36503778099a0bcee5d5e18e72ae87",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/336aa79a7db39ee4b000cdd0f585540431408b21",
+                "reference": "336aa79a7db39ee4b000cdd0f585540431408b21",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "source": "https://github.com/makeitworkpress/wp-config/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-config/issues"
             },
-            "time": "2021-07-28T10:53:44+00:00"
+            "time": "2022-01-07T17:07:44+00:00"
         },
         {
             "name": "makeitworkpress/wp-custom-fields",
@@ -96,12 +96,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "498dacfd878db2c57957d56157142b5dfdfb77f1"
+                "reference": "a68c9c5f897246be1c533eacb4b853f589d02829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/498dacfd878db2c57957d56157142b5dfdfb77f1",
-                "reference": "498dacfd878db2c57957d56157142b5dfdfb77f1",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/a68c9c5f897246be1c533eacb4b853f589d02829",
+                "reference": "a68c9c5f897246be1c533eacb4b853f589d02829",
                 "shasum": ""
             },
             "require": {
@@ -130,7 +130,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2021-10-13T15:28:21+00:00"
+            "time": "2022-01-31T16:53:50+00:00"
         },
         {
             "name": "makeitworkpress/wp-enqueue",
@@ -138,12 +138,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-enqueue.git",
-                "reference": "6846e20e59b20ac87af70d870ca88799fbdc630c"
+                "reference": "950df7dee5dde04b15fbb8a0fb4ecc6cc193a801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/6846e20e59b20ac87af70d870ca88799fbdc630c",
-                "reference": "6846e20e59b20ac87af70d870ca88799fbdc630c",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/950df7dee5dde04b15fbb8a0fb4ecc6cc193a801",
+                "reference": "950df7dee5dde04b15fbb8a0fb4ecc6cc193a801",
                 "shasum": ""
             },
             "require": {
@@ -172,7 +172,7 @@
                 "source": "https://github.com/makeitworkpress/wp-enqueue/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-enqueue/issues"
             },
-            "time": "2021-07-28T10:52:27+00:00"
+            "time": "2022-01-07T17:08:01+00:00"
         },
         {
             "name": "makeitworkpress/wp-optimize",
@@ -180,12 +180,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-optimize.git",
-                "reference": "e42b6a3bba5925e076ae70691d2c61f0a2adecfc"
+                "reference": "c998ffc6240adf1f3b8309babd7cfb345bd3e677"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-optimize/zipball/e42b6a3bba5925e076ae70691d2c61f0a2adecfc",
-                "reference": "e42b6a3bba5925e076ae70691d2c61f0a2adecfc",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-optimize/zipball/c998ffc6240adf1f3b8309babd7cfb345bd3e677",
+                "reference": "c998ffc6240adf1f3b8309babd7cfb345bd3e677",
                 "shasum": ""
             },
             "require": {
@@ -214,7 +214,7 @@
                 "source": "https://github.com/makeitworkpress/wp-optimize/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-optimize/issues"
             },
-            "time": "2021-08-24T13:42:09+00:00"
+            "time": "2022-01-07T17:07:58+00:00"
         },
         {
             "name": "makeitworkpress/wp-register",
@@ -222,12 +222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-register.git",
-                "reference": "6d84e5af6670a0b89c00718b1485edc65ac751ba"
+                "reference": "800fe6744f63587089f939e55ba1000e5d4785b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/6d84e5af6670a0b89c00718b1485edc65ac751ba",
-                "reference": "6d84e5af6670a0b89c00718b1485edc65ac751ba",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/800fe6744f63587089f939e55ba1000e5d4785b2",
+                "reference": "800fe6744f63587089f939e55ba1000e5d4785b2",
                 "shasum": ""
             },
             "require": {
@@ -256,7 +256,7 @@
                 "source": "https://github.com/makeitworkpress/wp-register/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-register/issues"
             },
-            "time": "2021-07-28T10:29:30+00:00"
+            "time": "2022-01-07T17:07:54+00:00"
         },
         {
             "name": "makeitworkpress/wp-router",
@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-router.git",
-                "reference": "cd2a2d83342012ffafd773faca9619b3a7b9d4a1"
+                "reference": "b2375d77b321e09a6d35c9ae9e8e631c6526aba0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/cd2a2d83342012ffafd773faca9619b3a7b9d4a1",
-                "reference": "cd2a2d83342012ffafd773faca9619b3a7b9d4a1",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-router/zipball/b2375d77b321e09a6d35c9ae9e8e631c6526aba0",
+                "reference": "b2375d77b321e09a6d35c9ae9e8e631c6526aba0",
                 "shasum": ""
             },
             "require": {
@@ -298,7 +298,7 @@
                 "source": "https://github.com/makeitworkpress/wp-router/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-router/issues"
             },
-            "time": "2021-07-28T10:30:31+00:00"
+            "time": "2022-01-07T17:07:51+00:00"
         },
         {
             "name": "makeitworkpress/wp-updater",
@@ -306,12 +306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-updater.git",
-                "reference": "61eee29ae99aeae9b8cfac90839b333815da1f46"
+                "reference": "eafa352d1e90ccd85035ab0476d2720354ca8a5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/61eee29ae99aeae9b8cfac90839b333815da1f46",
-                "reference": "61eee29ae99aeae9b8cfac90839b333815da1f46",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/eafa352d1e90ccd85035ab0476d2720354ca8a5c",
+                "reference": "eafa352d1e90ccd85035ab0476d2720354ca8a5c",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-updater/issues"
             },
-            "time": "2021-07-28T09:45:29+00:00"
+            "time": "2022-02-03T16:32:21+00:00"
         }
     ],
     "packages-dev": [],

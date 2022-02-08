@@ -83,7 +83,7 @@ class Header extends Base {
                     'default'               => $logo ? $logo : ['src' => get_template_directory_uri() . '/assets/img/waterfall.png', 'height' => 64, 'width' => 306],
                     'default_transparent'   => $this->customizer['logo_transparent'],
                     'mobile'                => $this->customizer['logo_mobile'], 
-                    'mobile_transparent'     => $this->customizer['logo_mobile_transparent'],
+                    'mobile_transparent'    => $this->customizer['logo_mobile_transparent'],
                     'schema'                => $represents ? true : false
                 ]
             ],
@@ -149,7 +149,7 @@ class Header extends Base {
             unset( $atoms['menu'] );
         
         // Set-up our transparency
-        $transparent    = isset($this->meta['transparent_header']['transparent']) && $this->meta['transparent_header']['transparent'] ? true : $this->layout['header_transparent']; 
+        $transparent    = (isset($this->meta['transparent_header']['transparent']) && $this->meta['transparent_header']['transparent']) || (isset($this->meta['transparent_header']) && $this->meta['transparent_header']) ? true : $this->layout['header_transparent']; 
         
         // For non transparent areas, the logo's are not load - reduces some kb's.
         if( ! $transparent ) {
@@ -175,7 +175,7 @@ class Header extends Base {
         
         // Top Atoms menu
         if( $this->layout['header_top_menu'] ) {
-            $args['topAtoms']['menu'] = [ 
+            $args['top_atoms']['menu'] = [ 
                 'atom'          => 'menu',
                 'properties'    => [
                     'args'          => ['theme_location' => 'top-menu'], 
@@ -188,7 +188,7 @@ class Header extends Base {
 
         // Top Atoms description
         if( $this->layout['header_top_description'] ) {
-            $args['topAtoms']['description'] = [ 
+            $args['top_atoms']['description'] = [ 
                 'atom'          => 'description',
                 'properties'    => [
                     'description'   => $this->layout['header_top_description'], 

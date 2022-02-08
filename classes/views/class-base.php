@@ -196,7 +196,7 @@ abstract class Base {
 
         }
 
-        if( $meta['disable'] === true || $customizer) {
+        if( (isset($meta['disable']) && $meta['disable'] === true) || $meta === true || $customizer) {
             $disabled   = true;
         }
 
@@ -223,10 +223,10 @@ abstract class Base {
         }
         
         $content_width                  = wf_get_data( $context, $this->type . '_content_width' );
-        $meta_Content_width             = wf_get_data( 'meta', 'content_width' );
+        $meta_content_width             = wf_get_data( 'meta', 'content_width' );
 
         // Container is disabled when a post or type is set to full width content, or when viewing an elementor library
-        if( $content_width === 'full' || ( is_singular() && (isset($meta_Content_width['full']) && $meta_Content_width['full']) ) || is_singular('elementor_library') ) {
+        if( $content_width === 'full' || ( is_singular() && (isset($meta_content_width['full']) && $meta_content_width['full']) ) || is_singular() && $meta_content_width || is_singular('elementor_library') ) {
             $this->content_container    = false;
         }
 

@@ -26,7 +26,7 @@ class Config {
      * @param array $configuration The array with initial configurations, which could either be an array or a link to the file with configurations
      * @return void
      */ 
-    public function __construct( $configuration ) {
+    public function __construct( array $configuration ) {
 
         // If the configuration parameter is a string, we expect that it is a file path
         if( is_string($configuration) ) {
@@ -52,7 +52,7 @@ class Config {
      * @param string    $type               The subtype of configurations to add. Refers to a direct key within the configurations.
      * @param array     $configurations     The configurations that you want to add to this type
      */
-    public function add( $type, $configurations= [] ) {
+    public function add( string $type, array $configurations= [] ): void {
         
         // Type should be defined
         if( ! $type ) {
@@ -75,7 +75,7 @@ class Config {
      * Deletes a certain set of configurations
      * @todo To be developed
      */
-    public function delete( $type, $configurations ) {
+    public function delete( string $type, array $configurations ): void {
 
     }    
 
@@ -85,27 +85,17 @@ class Config {
      * @param string $configuration The uri to the configuration file
      * @return WP_Error|array Error if we can't load the file, the configuration if we succeed;
      */
-    private function load( $configuration ) {
+    private function load( string $configuration ) {
 
         // Check's if we have a valid file and loads the configurations.
         if( file_exists( $configuration ) ) {
 
-            // Make sure there the configuration file returns an array of data
             $data = require_once(  $configuration  );
-
             $this->configurations = $data ? (array) $data : [];
 
         } else {
             return new WP_Error( 'missing', __('Could not load the configuration file for your theme or plugin!', 'wp-config') );
         }
-
-    }
-
-    /**
-     * Sanitizes the configurations in the array accordig to a certain pattern
-     * @todo Needs to be developed
-     */
-    private function sanitize() {
 
     }
 
@@ -117,7 +107,7 @@ class Config {
      * 
      * @return array $array The merged array
      */
-    public function multi_parse_args( $args, $default ) {
+    public function multi_parse_args( array $args, array $default ): array {
 
         if( ! is_array($default) ) {
             return wp_parse_args( $args, $default );

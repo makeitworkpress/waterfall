@@ -27,7 +27,7 @@ $customizer = [
                 ]                                                                                         
             ]              
         ],        
-        [
+        'title_tagline' => [
             'id'            => 'title_tagline',
             'priority'      => 2,
             'title'         => __('Identity', 'waterfall'),
@@ -62,7 +62,7 @@ $customizer = [
                 ]    
             ]              
         ],
-        [
+        'background_image' => [
             'id'            => 'background_image',
             'title'         => __('Background', 'waterfall'),
             'fields'    => [                   
@@ -76,7 +76,7 @@ $customizer = [
                 ]                  
             ]              
         ], 
-        [
+        'waterfall_social' => [
             'id'            => 'waterfall_social',
             'title'         => __('Social Media', 'waterfall'),
             'description'   => __('Enter your Social Media channels, so they can appear in the website.', 'waterfall'),

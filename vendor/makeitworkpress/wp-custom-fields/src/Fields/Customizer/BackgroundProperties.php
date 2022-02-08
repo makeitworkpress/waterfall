@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) )
 if ( ! class_exists( 'WP_Customize_Control' ) )
 	return NULL;
 
-class Background_Properties extends WP_Customize_Control {
+class BackgroundProperties extends WP_Customize_Control {
 	
     /**
 	 * Render the control's content.
@@ -22,7 +22,7 @@ class Background_Properties extends WP_Customize_Control {
 	 *
 	 * @return  void
 	 */
-	public function render_content() {
+	public function render_content(): void {
     
         $configurations     = BackgroundField::configurations(); ?>
 

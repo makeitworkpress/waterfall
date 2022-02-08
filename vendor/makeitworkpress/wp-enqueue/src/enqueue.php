@@ -11,11 +11,19 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Enqueue {
 
     /**
+     * The array containing all assets
+     * 
+     * @var array 
+     * @access public
+     */
+    public $assets;
+
+    /**
      * Set the initial state of the class
      *
      * @param array $assets The array with the assets, namely scripts or styles, to be enqueued
      */
-    public function __construct( Array $assets = [] ) {
+    public function __construct( array $assets = [] ) {
         $this->assets = $assets;
         $this->examine();
         $this->enqueue();
@@ -24,7 +32,7 @@ class Enqueue {
     /**
      * Enqueues our scripts and styles, but only if we have them set.
      */
-    private function enqueue() {
+    private function enqueue(): void {
         
         if( isset($this->front_assets) ) {
             add_action('wp_enqueue_scripts', [$this, 'enqueue_front_assets'], 20);    
@@ -51,7 +59,7 @@ class Enqueue {
     /**
      * Examines the array of assets and formalize their properties
      */
-    private function examine() {
+    private function examine(): void {
         
         foreach( $this->assets as $asset ) {
             
@@ -101,7 +109,7 @@ class Enqueue {
     /**
      * Enqueues the front-end scripts and styles
      */
-    public function enqueue_front_assets() {
+    public function enqueue_front_assets(): void {
         
         foreach( $this->front_assets as $asset ) {
             
@@ -130,7 +138,7 @@ class Enqueue {
      * 
      * @param string $hook The current admin screen we are viewing, such as index.php or edit.php
      */
-    public function enqueue_admin_assets( $hook ) {
+    public function enqueue_admin_assets( string $hook ): void {
         
         foreach( $this->admin_assets as $asset ) {
             
@@ -153,7 +161,7 @@ class Enqueue {
     /**
      * Enqueues the login scripts and styles
      */
-    public function enqueue_login_assets() {
+    public function enqueue_login_assets(): void {
         
         foreach( $this->login_assets as $asset ) {
             
@@ -166,7 +174,7 @@ class Enqueue {
     /**
      * Enqueues the block editor scripts and styles
      */
-    public function enqueue_block_editor_assets() {   
+    public function enqueue_block_editor_assets(): void {   
         foreach( $this->block_editor_assets as $asset ) {  
             $this->action($asset);  
         }  
@@ -175,7 +183,7 @@ class Enqueue {
     /**
      * Enqueues the block scripts and styles
      */
-    public function enqueue_block_assets() {   
+    public function enqueue_block_assets(): void {   
         foreach( $this->block_assets as $asset ) {  
             $this->action($asset);  
         }
@@ -186,7 +194,7 @@ class Enqueue {
      *
      * @param array $asset The asset with the properties
      */
-    private function action($asset) {
+    private function action(array $asset): void {
         
         // Enqueing, registering and dequeing.
         if( $asset['action'] == 'dequeue' || $asset['bare'] ) {

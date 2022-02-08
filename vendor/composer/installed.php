@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c1ef468eff5094d077d91b769fd17f7c559775bb',
+    'reference' => '39310a0559571d45a9c2234cc06c4c7491452be1',
     'name' => 'makeitworkpress/waterfall',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c1ef468eff5094d077d91b769fd17f7c559775bb',
+      'reference' => '39310a0559571d45a9c2234cc06c4c7491452be1',
     ),
     'makeitworkpress/wp-components' => 
     array (
@@ -28,7 +28,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '87290fffb3586a20f29a4cbf202723bd07931a79',
+      'reference' => '35a587b775af44e361a7522e051d51465a41857a',
     ),
     'makeitworkpress/wp-config' => 
     array (
@@ -38,7 +38,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '7ef1a1b0cf36503778099a0bcee5d5e18e72ae87',
+      'reference' => '336aa79a7db39ee4b000cdd0f585540431408b21',
     ),
     'makeitworkpress/wp-custom-fields' => 
     array (
@@ -48,7 +48,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '498dacfd878db2c57957d56157142b5dfdfb77f1',
+      'reference' => 'a68c9c5f897246be1c533eacb4b853f589d02829',
     ),
     'makeitworkpress/wp-enqueue' => 
     array (
@@ -58,7 +58,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '6846e20e59b20ac87af70d870ca88799fbdc630c',
+      'reference' => '950df7dee5dde04b15fbb8a0fb4ecc6cc193a801',
     ),
     'makeitworkpress/wp-optimize' => 
     array (
@@ -68,7 +68,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'e42b6a3bba5925e076ae70691d2c61f0a2adecfc',
+      'reference' => 'c998ffc6240adf1f3b8309babd7cfb345bd3e677',
     ),
     'makeitworkpress/wp-register' => 
     array (
@@ -78,7 +78,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '6d84e5af6670a0b89c00718b1485edc65ac751ba',
+      'reference' => '800fe6744f63587089f939e55ba1000e5d4785b2',
     ),
     'makeitworkpress/wp-router' => 
     array (
@@ -88,7 +88,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'cd2a2d83342012ffafd773faca9619b3a7b9d4a1',
+      'reference' => 'b2375d77b321e09a6d35c9ae9e8e631c6526aba0',
     ),
     'makeitworkpress/wp-updater' => 
     array (
@@ -98,7 +98,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '61eee29ae99aeae9b8cfac90839b333815da1f46',
+      'reference' => 'eafa352d1e90ccd85035ab0476d2720354ca8a5c',
     ),
   ),
 );

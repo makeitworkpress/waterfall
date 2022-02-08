@@ -17,10 +17,11 @@ class Select implements Field {
      * @param   array $field The array with field attributes data-alpha
      * @return  void
      */      
-    public static function render( $field = [] ) {
+    public static function render( array $field = [] ): void {
         
         $id             = esc_attr($field['id']);
-        $name           = esc_attr($field['name']);        
+        $name           = esc_attr($field['name']);    
+        $mode           = isset($field['mode']) && in_array($field['mode'], ['advanced', 'plain']) ? $field['mode'] : 'advanced'; 
         $options        = isset($field['options']) ? $field['options'] : [];
         $object         = isset($field['object']) ? sanitize_key($field['object']) : '';
         $placeholder    = isset($field['placeholder']) && $field['placeholder'] ? esc_attr($field['placeholder']) : '';
@@ -82,7 +83,7 @@ class Select implements Field {
 
         } ?>
         
-            <select class="wpcf-select" id="<?php echo $id; ?>" name="<?php echo $name . $namekey; ?>" <?php echo $multiple; if( $placeholder ) { ?> data-placeholder="<?php echo $placeholder; ?>"<?php } ?>>
+            <select class="wpcf-select wpcf-select-<?php echo $mode; ?>" id="<?php echo $id; ?>" name="<?php echo $name . $namekey; ?>" <?php echo $multiple; if( $placeholder ) { ?> data-placeholder="<?php echo $placeholder; ?>"<?php } ?>>
 
                 <?php if( $placeholder ) { ?>
                     <option class="wpcf-placeholder" value=""><?php echo $placeholder; ?></option>
@@ -119,7 +120,7 @@ class Select implements Field {
      *
      * @return array $configurations The configurations
      */      
-    public static function configurations() {
+    public static function configurations(): array {
 
         $configurations = [
             'type'      => 'select',

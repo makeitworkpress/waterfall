@@ -175,7 +175,7 @@ class Index extends Base {
                     ]
                 ], 
                 'grid'          => $this->layout['content_columns'] ? $this->layout['content_columns'] : $defaults['columns'],   
-                'header_atoms'   > [ 
+                'header_atoms'  => [
                     'title'     => [
                         'atom' => 'title', 
                         'properties' => ['attributes' => ['itemprop' => 'name', 'class' => 'entry-title'], 'tag' => 'h2', 'link' => 'post']

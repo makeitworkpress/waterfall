@@ -28,6 +28,13 @@ class Waterfall {
      * @access public
      */
     public $config;  
+
+   /**
+     * Contains the elementor object
+     *
+     * @access public
+     */
+    public $elementor;       
     
     /**
      * Contains the events object
@@ -114,7 +121,10 @@ class Waterfall {
         $this->setup_woocommerce();
 
         // Setup bbPress related functions
-        $this->setup_bbpress();        
+        $this->setup_bbpress();
+        
+        // Setup Events Calendar related functions
+        $this->setup_elementor();        
 
         // Setup Events Calendar related functions
         $this->setup_events_calendar();
@@ -222,6 +232,16 @@ class Waterfall {
         if( class_exists('bbPress') ) {
             $this->bbPress = new Plugins\Waterfall_bbPress();
         }
+    } 
+    
+    
+    /**
+     * Initializes all Elementor Related functions
+     */
+    private function setup_elementor() {     
+        if( did_action('elementor/loaded') ) {
+            $this->elementor = new Plugins\Waterfall_Elementor($this->config->configurations);
+        }
     }     
     
     /**
@@ -314,9 +334,7 @@ class Waterfall {
             ],
             'enqueue'   => $enqueue, 
             'register'  => $register, 
-            'options'   => [
-                
-            ]
+            'options'   => []
         ];
 
         // The custom fields options are only loaded in admin or customizer contexts to ensure better front-end performance
@@ -390,7 +408,6 @@ class Waterfall {
          */
         $methods = apply_filters( 'waterfall_execute_methods', [
             'enqueue'   => 'MakeitWorkPress\WP_Enqueue\Enqueue',
-            'elementor' => 'Plugins\Waterfall_Elementor',
             'register'  => 'MakeitWorkPress\WP_Register\Register', 
             'routes'    => 'MakeitWorkPress\WP_Router\Router', 
             'options'   => 'MakeitWorkPress\WP_Custom_Fields\Framework'
