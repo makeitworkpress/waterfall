@@ -262,10 +262,10 @@ class Waterfall_View extends Waterfall_Base {
         }
 
         // Set-up the sidebars for default archives and pages set-up as posts page under Settings, Reading
-        $page = isset( get_queried_object()->ID ) ? get_queried_object()->ID : 0;
-        
+        $page = isset( get_queried_object()->ID ) ? (int) get_queried_object()->ID : 0;
+
         // Archives
-        if( is_archive() || (is_front_page() && get_option('show_on_front') === 'posts') || ( is_home() && $page === get_option('page_for_posts') ) ) {
+        if( is_archive() || (is_front_page() && get_option('show_on_front') === 'posts') || ( is_home() && $page === (int) get_option('page_for_posts') ) ) {
             
             $type                   = wf_get_archive_post_type();
 
