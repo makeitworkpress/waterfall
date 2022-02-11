@@ -328,7 +328,7 @@ class Waterfall {
                 'content_footer_disable' => 'disable'        
             ];
             $waterfall_post_types = array_keys( wf_get_post_types(true) );
-            $posts = get_posts(['fields' => 'ids', 'post_type' => $waterfall_post_types, 'posts_per_page' => -1, 'post__in' => [139]]);
+            $posts = get_posts(['fields' => 'ids', 'post_type' => $waterfall_post_types, 'posts_per_page' => -1]);
 
             if( $posts ) {
                 foreach($posts as $post_id) {
