@@ -91,14 +91,14 @@ class Waterfall_Elementor extends Waterfall_Base {
     }   
 
     /**
-     * Automatically save the meta in the elementor settings field if we save 
+     * Automatically save the meta in the elementor settings field if we save from Elementor
      * 
      * @param int $meta_id The meta id for the saved value
      * @param int $post_id The post id for the saved post
      * @param array $meta_key The meta key for the saved meta data
      * @return void
      */
-    public function save_waterfall_meta($meta_id,  $post_id, $meta_key) {
+    public function save_waterfall_meta($meta_id, $post_id, $meta_key) {
 
         // This hook is also triggered when elementor saves, this ignores it
         if( $this->saving_in_elementor ) {
@@ -156,10 +156,10 @@ class Waterfall_Elementor extends Waterfall_Base {
         $updated_meta = [];
 
         foreach( $this->shared_meta as $meta_key => $values ) {
-            if( isset($origin_post_meta[$meta_key]) && $origin_post_meta[$meta_key] ) {
-                $updated_meta[$meta_key] = $origin === '_elementor_page_settings' ? true : 'yes';
+            if( isset($origin_post_meta[$meta_key]) && $origin_post_meta[$meta_key] && ! is_array($origin_post_meta[$meta_key]) ) {
+                $updated_meta[$meta_key] = $target === 'waterfall_meta' ? true : 'yes';
             } else {
-                $updated_meta[$meta_key] = $origin === '_elementor_page_settings' ? false : '';
+                $updated_meta[$meta_key] = $target === 'waterfall_meta' ? false : '';
             }
         }
         

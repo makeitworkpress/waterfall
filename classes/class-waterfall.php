@@ -309,6 +309,55 @@ class Waterfall {
             }
 
         }
+
+        /**
+         * Before 2.7.9, meta keys for visibility, transparent headers and more were stored in a key with a boolean value. 
+         * After, they are stored as single values without an extra key. This script converts this when saving a post.
+         */
+        $updated_meta = get_option('waterfall_updated_meta');
+
+        if( ! $updated_meta ) {
+            $updated_meta_array = [
+                'content_width' => 'full', 
+                'transparent_header' => 'transparent', 
+                'header_disable' => 'disable', 
+                'footer_disable' => 'disable',
+                'content_header_disable' => 'disable', 
+                'content_sidebar_disable' => 'disable', 
+                'content_related_disable' => 'disable', 
+                'content_footer_disable' => 'disable'        
+            ];
+            $waterfall_post_types = array_keys( wf_get_post_types(true) );
+            $posts = get_posts(['fields' => 'ids', 'post_type' => $waterfall_post_types, 'posts_per_page' => -1, 'post__in' => [139]]);
+
+            if( $posts ) {
+                foreach($posts as $post_id) {
+                    $waterfall_meta = get_post_meta($post_id, 'waterfall_meta', true);
+                    
+                    foreach( $updated_meta_array as $key => $subkey ) {
+                        if( isset($waterfall_meta[$key][$subkey]) && $waterfall_meta[$key][$subkey] ) {
+                            $waterfall_meta[$key] = $waterfall_meta[$key][$subkey];
+                        }
+                    }
+       
+                    update_post_meta( $post_id, 'waterfall_meta', $waterfall_meta);
+
+                    if( did_action('elementor/loaded') ) {
+                        $elementor_page_meta = (array) get_post_meta( $post_id, '_elementor_page_settings', true);
+                        foreach($waterfall_meta as $meta_key => $meta_value) {
+                            if( ! in_array($meta_key, array_keys($updated_meta_array)) ) {
+                                continue;
+                            }
+                            $elementor_page_meta[$meta_key] = is_bool($meta_value) && $meta_value ? 'yes' : '';
+                        }
+                        update_post_meta( $post_id, '_elementor_page_settings', $elementor_page_meta );
+                    }
+                     
+
+                }
+            }
+            update_option('waterfall_updated_meta', true);
+        }
     
     }
     
@@ -481,7 +530,7 @@ class Waterfall {
         add_action('init', function() {
             $commons    = apply_filters( 
                 'waterfall_exlude_post_types', 
-                ['attachment', 'elementor_library', 'product', 'tribe_events', 'affiliate-links', 'forum', 'topic', 'reply'] 
+                ['attachment', 'elementor_library', 'product', 'tribe_events', 'affiliate-links', 'forum', 'topic', 'reply', 'e-landing-page'] 
             );
             $initial    = get_post_types( ['public' => true] );
             $types      = [];
