@@ -335,7 +335,7 @@ class Waterfall {
                     $waterfall_meta = get_post_meta($post_id, 'waterfall_meta', true);
                     
                     foreach( $updated_meta_array as $key => $subkey ) {
-                        if( isset($waterfall_meta[$key][$subkey]) && $waterfall_meta[$key][$subkey] ) {
+                        if( isset($waterfall_meta[$key][$subkey]) ) {
                             $waterfall_meta[$key] = $waterfall_meta[$key][$subkey];
                         }
                     }
