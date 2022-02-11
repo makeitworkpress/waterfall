@@ -23,9 +23,10 @@ class Repeatable implements Field {
     public static function render( array $field = [] ): void {
 
         $configurations     = self::configurations();
-        $add                = isset($field['labels']['add'])      ? esc_html($field['labels']['add'])     : $configurations['labels']['add'];
-        $remove             = isset($field['labels']['remove'])   ? esc_html($field['labels']['remove'])  : $configurations['labels']['remove'];
-        $display            = isset($field['closed']) && $field['closed']   ? ' hidden'         : '';
+        $add                = isset($field['labels']['add']) ? esc_html($field['labels']['add']) : $configurations['labels']['add'];
+        $collapse           = isset($field['collapse']) ? $field['collapse'] : false;
+        $remove             = isset($field['labels']['remove']) ? esc_html($field['labels']['remove']) : $configurations['labels']['remove'];
+        $closed             = isset($field['closed']) && $field['closed'] ? ' hidden' : '';
         
         // Prepare the array with data
         if( empty($field['values']) ) {
@@ -54,9 +55,12 @@ class Repeatable implements Field {
                     <?php foreach( $groups as $key => $fields) { ?>
 
                         <div class="wpcf-repeatable-group">
-                            <a class="wpcf-repeatable-toggle" href="#"><i class="material-icons">arrow_drop_down</i></a>
+                            <?php if( $collapse ) { ?>
+                                <a class="wpcf-repeatable-toggle" href="#"><i class="material-icons">arrow_drop_down</i></a>
+                            <?php } ?>
+                            <i class="wpcf-repeatable-drag material-icons">drag_indicator</i>
                             <a class="wpcf-repeatable-remove-group" href="#"><i class="material-icons">clear</i></a>
-                            <div class="wpcf-repeatable-fields grid flex <?php echo $display; ?>">
+                            <div class="wpcf-repeatable-fields grid flex<?php echo $closed; ?>">
 
                                 <?php 
                                     // Loop through each of the saved fields
@@ -86,13 +90,14 @@ class Repeatable implements Field {
                                         }
 
                                         // If our dependency is fullfilled, the active class should be added
-                                    
                                         $class                = 'MakeitWorkPress\WP_Custom_Fields\Fields\\' . ucfirst( $subfield['type'] );
                                     
                                     
                                     if( class_exists($class) ) { ?>
                                         <div class="wpcf-repeatable-field wpcf-field <?php echo $subfield['classes']; ?>">
-                                            <h5><?php echo esc_html($subfield['title']); ?></h5>
+                                            <?php if( isset($subfield['title']) ) { ?>
+                                                <h5><?php echo esc_html($subfield['title']); ?></h5>
+                                            <?php } ?>
                                             <div class="wpcf-repeatable-field-input" <?php foreach($subfield['dependency'] as $k => $v) { ?> data-<?php echo $k; ?>="<?php echo $v; ?>" <?php } ?>>
                                                 <?php $class::render($subfield); ?>
                                             </div>

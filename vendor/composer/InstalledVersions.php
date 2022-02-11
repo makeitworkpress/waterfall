@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '7af8cd9bff29a385b368f0d4d73f443fd5b7736b',
+    'reference' => '4fa71a89b3a34eda00f79deebdba507994b67c96',
     'name' => 'makeitworkpress/waterfall',
   ),
   'versions' => 
@@ -44,7 +44,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '7af8cd9bff29a385b368f0d4d73f443fd5b7736b',
+      'reference' => '4fa71a89b3a34eda00f79deebdba507994b67c96',
     ),
     'makeitworkpress/wp-components' => 
     array (
@@ -74,7 +74,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'dffa97d85a71da14b0bc4957f403272838cd072a',
+      'reference' => '5308894aeceeb42264b9b08159af11c524248c0e',
     ),
     'makeitworkpress/wp-enqueue' => 
     array (
