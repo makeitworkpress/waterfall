@@ -149,7 +149,7 @@ class Header extends Base {
             unset( $atoms['menu'] );
         
         // Set-up our transparency
-        $transparent    = (isset($this->meta['transparent_header']['transparent']) && $this->meta['transparent_header']['transparent']) || (isset($this->meta['transparent_header']) && $this->meta['transparent_header']) ? true : $this->layout['header_transparent']; 
+        $transparent    = (isset($this->meta['transparent_header']) && $this->meta['transparent_header']) ? true : $this->layout['header_transparent'];
         
         // For non transparent areas, the logo's are not load - reduces some kb's.
         if( ! $transparent ) {
