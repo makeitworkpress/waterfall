@@ -122,9 +122,6 @@ class Waterfall {
 
         // Setup bbPress related functions
         $this->setup_bbpress();
-        
-        // Setup Events Calendar related functions
-        $this->setup_elementor();        
 
         // Setup Events Calendar related functions
         $this->setup_events_calendar();
@@ -467,6 +464,12 @@ class Waterfall {
         if( is_admin() ) {
             $this->save_post_types();     
         }  
+
+        /**
+         * Setup Elementor related functions
+         * The function is hooked at this point, so that configuration from child themes are still taken into account
+         */
+        $this->setup_elementor();
         
     }
 
