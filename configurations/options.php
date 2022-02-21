@@ -76,6 +76,13 @@ $options = [
                 ],
                 [
                     'default'       => '',
+                    'description'   => __('Paste your token here to set-up CloudFlare Web Analytics. You can retrieve it from the JS Snippet.', 'waterfall'),
+                    'id'            => 'cf_analytics',
+                    'title'         => __('CloudFlare Analytics Token', 'waterfall'),
+                    'type'          => 'input'
+                ],                
+                [
+                    'default'       => '',
                     'id'            => 'structured_data_heading',
                     'title'         => __('Structured Data', 'waterfall'),
                     'type'          => 'heading'

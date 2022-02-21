@@ -55,6 +55,7 @@ class Waterfall_View extends Waterfall_Base {
             ['wp_head', 'wp_head_header_height', 10, 0],
             ['wp_head', 'wp_head_container_width', 10, 0],
             ['wp_head', 'wp_head_analytics', 20, 0],
+            ['wp_footer', 'wp_footer_analytics', 20, 0]
         ];        
 
         $this->filters = [
@@ -203,24 +204,40 @@ class Waterfall_View extends Waterfall_Base {
     }
 
     /**
-     * Adds the Google analytics script to the header
+     * Adds analytics scripts to the header
      */
     public function wp_head_analytics() {
 
-        $analytics = wf_get_data('options', 'analytics');
+        $analytics = wf_get_data('options', ['analytics']);
         
-        if( $analytics ) {
+        if( $analytics['analytics'] ) {
             echo '<!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async="async" src="https://www.googletagmanager.com/gtag/js?id=' . $analytics . '"></script>
+            <script async="async" src="https://www.googletagmanager.com/gtag/js?id=' . esc_attr($analytics['analytics']) . '"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag("js", new Date());
                 gtag("config", "' . $analytics . '", {"anonymize_ip": true });
             </script>';
-        }
+        }     
 
     }
+
+    /**
+     * Adds analytics scripts to the footer
+     */
+    public function wp_footer_analytics() {
+
+        $analytics = wf_get_data('options', ['cf_analytics']);
+        
+        if( $analytics['cf_analytics'] ) {
+            echo '<!-- Cloudflare Web Analytics -->
+            <script defer src="https://static.cloudflareinsights.com/beacon.min.js" 
+            data-cf-beacon="{\'token\': \'' . esc_attr($analytics['cf_analytics']) . '\'}"></script>
+            <!-- End Cloudflare Web Analytics -->';
+        }        
+
+    }    
 
     /**
      * Alters our body classes

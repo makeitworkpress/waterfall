@@ -47,7 +47,7 @@ class Waterfall_Elementor extends Waterfall_Base {
         // Filter actions
         $this->actions = [
             ['elementor/editor/after_enqueue_scripts', 'enqueue_editor_scripts'],
-            ['updated_postmeta', 'save_waterfall_meta', 10, 3],
+            ['save_post', 'save_waterfall_meta', 15],
             ['elementor/editor/after_save', 'save_elementor_meta', 10, 2],
             ['elementor/theme/register_locations', 'support_theme_builder'],
             ['elementor/documents/register_controls', 'register_document_controls'],
@@ -93,35 +93,29 @@ class Waterfall_Elementor extends Waterfall_Base {
     /**
      * Automatically save the meta in the elementor settings field if we save from Elementor
      * 
-     * @param int $meta_id The meta id for the saved value
      * @param int $post_id The post id for the saved post
-     * @param array $meta_key The meta key for the saved meta data
      * @return void
      */
-    public function save_waterfall_meta($meta_id, $post_id, $meta_key) {
+    public function save_waterfall_meta($post_id) {
 
-        // This hook is also triggered when elementor saves, this ignores it
-        if( $this->saving_in_elementor ) {
+        // This hook is also triggered when elementor saves, so ignores it
+        if( $this->saving_in_elementor || (isset($_POST['action']) && $_POST['action'] === 'elementor_ajax' ) ) {
             return;
         }
 
-        if( $meta_key !== 'waterfall_meta' ) {
-            return;
-        }
+        $post_type = get_post_type($post_id);
 
         // Post types should match these supported by Elementor
         $elementor_post_types = get_option('elementor_cpt_support');
-        $post_type = get_post_type($post_id);
-
         if( ! in_array($post_type, $elementor_post_types) ) {
             return;
         }
 
+        // And those supported by Waterfall
         $waterfall_post_types = array_keys( wf_get_post_types(true) );
-
         if( ! in_array($post_type, $waterfall_post_types) ) {
             return;
-        }        
+        }
 
         $this->save_page_settings_meta($post_id, 'waterfall_meta', '_elementor_page_settings');
 
@@ -143,6 +137,8 @@ class Waterfall_Elementor extends Waterfall_Base {
      * Helper function that helps to switch post meta between waterfall and elementor
      * 
      * @param int $post_id The post id to save for
+     * @param string $origin The origin to get the meta values from
+     * @param string $target The destination to set the meta value for
      * @return void
      */
     public function save_page_settings_meta($post_id, $origin, $target) {
@@ -152,7 +148,7 @@ class Waterfall_Elementor extends Waterfall_Base {
             return;
         }  
         
-        $origin_post_meta = get_post_meta($post_id, $origin, true);
+        $origin_post_meta = (array) get_post_meta($post_id, $origin, true);
         $updated_meta = [];
 
         foreach( $this->shared_meta as $meta_key => $values ) {
@@ -163,7 +159,7 @@ class Waterfall_Elementor extends Waterfall_Base {
             }
         }
         
-        $target_meta = get_post_meta($post_id, $target, true);
+        $target_meta = (array) get_post_meta($post_id, $target, true);
         foreach($updated_meta as $key => $value) {
             $target_meta[$key] = $value;   
         }
