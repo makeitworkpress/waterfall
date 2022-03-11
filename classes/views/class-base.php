@@ -196,7 +196,7 @@ abstract class Base {
 
         }
 
-        if( $meta === true || $customizer) {
+        if( $meta === true || $customizer ) {
             $disabled   = true;
         }
 
@@ -226,7 +226,7 @@ abstract class Base {
         $meta_content_width             = wf_get_data( 'meta', 'content_width' );
 
         // Container is disabled when a post or type is set to full width content, or when viewing an elementor library
-        if( $content_width === 'full' || is_singular() && $meta_content_width || is_singular('elementor_library') ) {
+        if( $content_width === 'full' || is_singular() && $meta_content_width === true || is_singular('elementor_library') ) {
             $this->content_container    = false;
         }
 

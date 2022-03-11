@@ -337,12 +337,12 @@ class Waterfall_View extends Waterfall_Base {
             }
             
             // We add a fullwidth content class if it is a setting in our customizer, post meta or when viewing an elementor template
-            if( isset($data['meta']['content_width']) && $data['meta']['content_width'] || $content_width === 'full' || is_singular('elementor_library') ) {
+            if( isset($data['meta']['content_width']) && $data['meta']['content_width'] === true || $content_width === 'full' || is_singular('elementor_library') ) {
                 $sidebar    = 'default';
                 $classes[]  = 'waterfall-fullwidth-content';
             }
 
-            if( isset($data['meta']['content_sidebar_disable']) && $data['meta']['content_sidebar_disable'] ) {
+            if( isset($data['meta']['content_sidebar_disable']) && $data['meta']['content_sidebar_disable'] === true ) {
                 $sidebar    = 'default';   
             }
 

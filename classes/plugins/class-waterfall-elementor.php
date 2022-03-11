@@ -255,7 +255,7 @@ class Waterfall_Elementor extends Waterfall_Base {
     /**
      * Registers custom widget categories for elementor
      * 
-     * @param Object $elements_manager The Elements Manager object
+     * @param \Elementor\Elements_Manager $elements_manager The Elements Manager object
      * @return void
      */
     public function register_widget_categories($elements_manager) {
