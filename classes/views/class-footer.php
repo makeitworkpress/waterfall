@@ -18,6 +18,7 @@ class Footer extends Base {
         $this->properties = apply_filters( 'waterfall_footer_properties', [
             'customizer'    => [
                 'footer_logo', 
+                'footer_logo_url' 
             ],
             'layout' => [ 
                 'footer_copyright', 
@@ -88,7 +89,7 @@ class Footer extends Base {
         }
 
         $represents = wf_get_data('options', 'represent_scheme');
-        $itemType   = $represents === 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'; 
+        $item_type   = $represents === 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'; 
 
         // Logo
         if( is_numeric($this->customizer['footer_logo']) ) {
@@ -96,12 +97,14 @@ class Footer extends Base {
                 'atom'       => 'logo',
                 'properties' => [
                     'attributes'    => [
-                        'class'    => $this->layout['footer_logo_stack'] ? 'footer-logo-stack' : 'footer-logo-default',
-                        'itemtype' => $itemType
+                        'class'     => $this->layout['footer_logo_stack'] ? 'footer-logo-stack' : 'footer-logo-default',
+                        'href'      => $this->customizer['footer_logo_url'] ? esc_url($this->customizer['footer_logo_url']) : esc_url( get_bloginfo( 'url' ) ),
+                        'itemtype'  => $item_type
                     ],
                     'float'         => 'center',
                     'default'       => $this->customizer['footer_logo'],
-                    'schema'        => $represents ? true : false
+                    'schema'        => $represents ? true : false,
+                    'url'           => $this->customizer['footer_logo_url'] ? esc_url($this->customizer['footer_logo_url']) : esc_url( get_bloginfo( 'url' ) )
                 ]
             ];
         }       
@@ -113,7 +116,7 @@ class Footer extends Base {
                 'properties'    => [
                     'float'     => 'left',
                     'name'      => $this->layout['footer_copyright_name'],
-                    'itemtype'  => $itemType
+                    'itemtype'  => $item_type
                 ]
             ];
         }

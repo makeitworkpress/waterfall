@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Waterfall\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-11 15:31+0000\n"
-"PO-Revision-Date: 2021-08-26 14:54+0000\n"
+"PO-Revision-Date: 2022-03-24 15:09+0000\n"
 "Last-Translator: Michiel Tramper\n"
 "Language-Team: Nederlands\n"
 "Language: nl_NL\n"
@@ -12,14 +12,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.3; wp-5.8"
+"X-Loco-Version: 2.6.1; wp-5.9.2"
 
 #: configurations/register.php:55
 #, php-format
 msgid "%s Archive Sidebar"
 msgstr "Zijbalk voor %s Archieven"
 
-#: configurations/customizer/layout.php:860
+#: configurations/customizer/layout.php:875
 #, php-format
 msgid "%s Archives"
 msgstr "Archieven voor %s"
@@ -37,7 +37,7 @@ msgid "%s Sidebar"
 msgstr "Zijbalk voor %s"
 
 #: classes/views/class-singular.php:560
-#: configurations/customizer/layout.php:673
+#: configurations/customizer/layout.php:688
 msgid "&lsaquo; Previous Article"
 msgstr "&lsaquo; Vorig artikel"
 
@@ -45,15 +45,15 @@ msgstr "&lsaquo; Vorig artikel"
 msgid "&rsaquo;"
 msgstr "&rsaquo;"
 
-#: configurations/customizer/layout.php:1335
+#: configurations/customizer/layout.php:1350
 msgid "404 Header Minimum Height"
 msgstr "Minimum Hoogte Titel 404 Pagina"
 
-#: configurations/customizer/layout.php:1344
+#: configurations/customizer/layout.php:1359
 msgid "404 Header Width"
 msgstr "Breedte Titel 404 Pagina"
 
-#: configurations/customizer/layout.php:1330
+#: configurations/customizer/layout.php:1345
 msgid "404 Page"
 msgstr "404 Pagina"
 
@@ -69,7 +69,7 @@ msgstr "Verandert de border-radius voor alle knoppen op de website."
 msgid "Adapts the maximum width of the boxed layout."
 msgstr "Past de maximale breedte van de boxed layout aan."
 
-#: configurations/customizer/layout.php:931
+#: configurations/customizer/layout.php:946
 msgid ""
 "Add a custom title description for the given archive. Use {description} to "
 "use the term description in taxonomy archives."
@@ -81,7 +81,7 @@ msgstr ""
 msgid "Add a custom title description."
 msgstr "Voeg aan aangepaste beschrijving toe."
 
-#: configurations/customizer/layout.php:924
+#: configurations/customizer/layout.php:939
 msgid ""
 "Add a custom title for the default archives page. Shown if no category, tag, "
 "term, author or date is queried."
@@ -89,7 +89,7 @@ msgstr ""
 "Voeg een aangepaste titel toe voor de standaard archiefpagina. Wordt getoond "
 "als er geen categorie, tag, term, auteur of datum wordt gevraagd."
 
-#: configurations/customizer/layout.php:1195
+#: configurations/customizer/layout.php:1210
 msgid ""
 "Add a custom title for the search page. The {term} and {number} tags may be "
 "used to display the search term and number of results respectively."
@@ -102,7 +102,7 @@ msgstr ""
 msgid "Add a custom title, overwrites the default title."
 msgstr "Voeg een aangepaste titel toe, die de standaard titel overschrijft."
 
-#: configurations/customizer/layout.php:231
+#: configurations/customizer/layout.php:246
 msgid "Add a Search Icon to the Header"
 msgstr "Zoek icoon toevoegen aan de Header"
 
@@ -110,19 +110,19 @@ msgstr "Zoek icoon toevoegen aan de Header"
 msgid "Add a Shopping Cart to the Menu"
 msgstr "Winkelwagen toevoegen aan het navigatiemenu."
 
-#: configurations/customizer/layout.php:151
+#: configurations/customizer/layout.php:158
 msgid "Add Social Icons to the Header"
 msgstr "Social Media iconen toevoegen aan de Header"
 
-#: configurations/customizer/layout.php:267
+#: configurations/customizer/layout.php:282
 msgid "Add Top Menu"
 msgstr "Topmenu inschakelen"
 
-#: configurations/postmeta.php:150
+#: configurations/postmeta.php:158
 msgid "Adds additional buttons in the title section."
 msgstr "Voegt aanvullende knoppen toe in het titelgedeelte."
 
-#: configurations/customizer/layout.php:268
+#: configurations/customizer/layout.php:283
 msgid ""
 "Adds an additional menu on top of the header. This menu can be set using the "
 "menu editor using the top menu location."
@@ -130,7 +130,7 @@ msgstr ""
 "Voegt een extra navigatiemenu toe bovenaan de header. Dit menu kan worden "
 "ingesteld met de menu bewerker."
 
-#: configurations/customizer/layout.php:286
+#: configurations/customizer/layout.php:301
 msgid "Adds an optional description on top of the header."
 msgstr "Voegt een optionele beschrijving toe bovenaan de header"
 
@@ -157,11 +157,11 @@ msgstr "Pas hier de typografie op verschillende locaties aan."
 msgid "Adjust WooCommerce related lay-out settings here."
 msgstr "Pas hier WooCommerce gerelateerde lay-out instellingen aan."
 
-#: configurations/options.php:111
+#: configurations/options.php:118
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: configurations/options.php:112
+#: configurations/options.php:119
 msgid "Advanced theme settings"
 msgstr "Geavanceerde thema-instellingen"
 
@@ -181,35 +181,35 @@ msgstr "Uitlijning van de test in het titelgedeelte van het productenarchief."
 msgid "All Headings"
 msgstr "Alle koppen"
 
-#: configurations/customizer/layout.php:246
+#: configurations/customizer/layout.php:261
 msgid "All Results Search Text"
 msgstr "Alle resultaten zoektekst"
 
-#: configurations/customizer/layout.php:198
+#: configurations/customizer/layout.php:193
 msgid "Always Display"
 msgstr "Altijd weergeven"
 
-#: configurations/customizer/layout.php:577
+#: configurations/customizer/layout.php:592
 msgid "Amount of grid columns for posts."
 msgstr "Aantal kolommen voor berichten."
 
-#: configurations/customizer/layout.php:1246
+#: configurations/customizer/layout.php:1261
 msgid "Amount of grid columns for search page posts."
 msgstr "Aantal kolommen in de zoekpagina's voor berichten."
 
-#: configurations/customizer/layout.php:1412
+#: configurations/customizer/layout.php:1427
 msgid "Amount of sidebars in the footer."
 msgstr "Hoeveelheid sidebars in de footer."
 
-#: configurations/customizer/layout.php:937
+#: configurations/customizer/layout.php:952
 msgid "Archive Posts Section"
 msgstr "Berichten sectie"
 
-#: configurations/customizer/layout.php:865
+#: configurations/customizer/layout.php:880
 msgid "Archive Title Section"
 msgstr "Archief titelsectie"
 
-#: configurations/customizer/layout.php:930
+#: configurations/customizer/layout.php:945
 msgid "Archives Page Description"
 msgstr "Archief Paginabeschrijving"
 
@@ -221,7 +221,7 @@ msgstr "Artikel door "
 msgid "As background of the title section"
 msgstr "Als achtergrond van de titelsectie"
 
-#: classes/class-waterfall.php:241 configurations/customizer/general.php:67
+#: classes/class-waterfall.php:258 configurations/customizer/general.php:74
 msgid "Background"
 msgstr "Achtergrond"
 
@@ -235,7 +235,7 @@ msgstr "Achtergrond"
 #: configurations/customizer/colors.php:626
 #: configurations/customizer/colors.php:686
 #: configurations/customizer/colors.php:747
-#: configurations/customizer/general.php:73
+#: configurations/customizer/general.php:80
 msgid "Background Color"
 msgstr "Achtergrondkleur"
 
@@ -261,11 +261,11 @@ msgstr "Voor de pagina titel in de titelsectie"
 msgid "Behance"
 msgstr "Behance"
 
-#: configurations/customizer/general.php:147
+#: configurations/customizer/general.php:154
 msgid "Behance Profile Url"
 msgstr "Behance Profiel Url"
 
-#: configurations/options.php:150
+#: configurations/options.php:157
 msgid "Block external HTTP Requests (breaks external embeds and many plugins)."
 msgstr "Blokkeer externe HTTP verzoeken (breekt embeds en vele plugins)"
 
@@ -294,7 +294,7 @@ msgstr "Boxed Layout"
 msgid "Breadcrumbs"
 msgstr "Broodkruimels"
 
-#: configurations/customizer/layout.php:1075
+#: configurations/customizer/layout.php:1090
 msgid "Bummer! No posts found."
 msgstr "Jammer! Geen berichten gevonden."
 
@@ -303,7 +303,7 @@ msgid "Bummer! No posts have been found."
 msgstr "Jammer! Er zijn geen berichten gevonden."
 
 #: classes/views/class-singular.php:499
-#: configurations/customizer/layout.php:660
+#: configurations/customizer/layout.php:675
 msgid "Bummer! No related posts have been found."
 msgstr "Jammer! Er zijn geen gerelateerde berichten gevonden."
 
@@ -315,7 +315,7 @@ msgstr "Knop & formulier kleuren"
 msgid "Button Border Radius"
 msgstr "Border-radius Knoppen"
 
-#: configurations/postmeta.php:165
+#: configurations/postmeta.php:173
 msgid "Button Link"
 msgstr "Knoplink"
 
@@ -323,11 +323,11 @@ msgstr "Knoplink"
 msgid "Button Style"
 msgstr "Knopstijl"
 
-#: configurations/postmeta.php:158
+#: configurations/postmeta.php:166
 msgid "Button Text"
 msgstr "Knoptekst"
 
-#: configurations/postmeta.php:152
+#: configurations/postmeta.php:160
 msgid "Buttons"
 msgstr "Knoppen"
 
@@ -348,14 +348,14 @@ msgid "Cart Icon Color"
 msgstr "Winkelwagen icoonkleur"
 
 #: functions/utilities.php:265 functions/utilities.php:298
-#: configurations/customizer/layout.php:137
-#: configurations/customizer/layout.php:174
-#: configurations/customizer/layout.php:277
-#: configurations/customizer/layout.php:295
+#: configurations/customizer/layout.php:144
+#: configurations/customizer/layout.php:182
+#: configurations/customizer/layout.php:292
+#: configurations/customizer/layout.php:310
 msgid "Center"
 msgstr "Midden"
 
-#: configurations/customizer/general.php:187
+#: configurations/customizer/general.php:194
 msgid "Changes the Tribe Events page for a custom events page."
 msgstr "Wijzigt de Tribe Events-pagina voor een aangepaste evenementenpagina."
 
@@ -369,7 +369,7 @@ msgstr ""
 msgid "Choose the sidebar lay-out for a single product."
 msgstr "Kies de sidebar lay-out voor een product"
 
-#: configurations/customizer/layout.php:983
+#: configurations/customizer/layout.php:998
 msgid "Choose the sidebar lay-out for archives."
 msgstr "Kies de lay-out van de sidebar voor archieven."
 
@@ -377,36 +377,48 @@ msgstr "Kies de lay-out van de sidebar voor archieven."
 msgid "Choose the sidebar lay-out for the product archives."
 msgstr "Kies een sidebar lay-out voor het productenarchief."
 
-#: configurations/customizer/layout.php:1222
+#: configurations/customizer/layout.php:1237
 msgid "Choose the sidebar lay-out for the search page."
 msgstr "Kies de lay-out van de sidebar voor de zoekpagina."
 
 #: configurations/customizer/bbpress.php:126
-#: configurations/customizer/layout.php:502
+#: configurations/customizer/layout.php:517
 msgid "Choose the sidebar lay-out."
 msgstr "Kies de lay-out van de sidebar."
 
-#: configurations/customizer/layout.php:122
-msgid "Collapse Header when Scrolling"
-msgstr "Header inklappen bij het scrollen"
+#: configurations/options.php:81
+msgid "CloudFlare Analytics Token"
+msgstr "CloudFlare Analytics Token"
+
+#: configurations/customizer/layout.php:215
+msgid "Collapse Submenus"
+msgstr "Submenus inklappen"
+
+#: configurations/customizer/layout.php:216
+msgid ""
+"Collapses submenus by default, which can be useful in mobile menus. Be aware "
+"that this makes parent items unclickable."
+msgstr ""
+"Klapt submenus standaard in, wat handig kan zijn bij mobiele menu's. Dit "
+"maakt hoofditems wel onklikbaar."
 
 #: configurations/customizer/colors.php:12
 msgid "Colors"
 msgstr "Kleuren"
 
-#: configurations/customizer/layout.php:1249
+#: configurations/customizer/layout.php:1264
 msgid "Columns"
 msgstr "Aantal kolommen"
 
 #: classes/views/class-singular.php:629
-#: configurations/customizer/layout.php:741
+#: configurations/customizer/layout.php:756
 msgid "Comments are closed."
 msgstr "Reacties zijn gesloten."
 
 #: configurations/customizer/bbpress.php:109
-#: configurations/customizer/layout.php:478
-#: configurations/customizer/layout.php:966
-#: configurations/customizer/layout.php:1233
+#: configurations/customizer/layout.php:493
+#: configurations/customizer/layout.php:981
+#: configurations/customizer/layout.php:1248
 msgid "Container Width"
 msgstr "Breedte container"
 
@@ -415,16 +427,16 @@ msgid "Content Colors"
 msgstr "Content kleuren"
 
 #: configurations/customizer/bbpress.php:120
-#: configurations/customizer/layout.php:496
+#: configurations/customizer/layout.php:511
 msgid "Content Custom Width"
 msgstr "Aangepaste breedte inhoud"
 
 #: configurations/customizer/colors.php:612
-#: configurations/customizer/layout.php:691
+#: configurations/customizer/layout.php:706
 msgid "Content Footer"
 msgstr "Content Footer"
 
-#: configurations/customizer/layout.php:725
+#: configurations/customizer/layout.php:740
 msgid "Content Footer Width"
 msgstr "Content Footer breedte"
 
@@ -432,11 +444,11 @@ msgstr "Content Footer breedte"
 msgid "Content Section"
 msgstr "Contentsectie"
 
-#: configurations/customizer/layout.php:1448
+#: configurations/customizer/layout.php:1463
 msgid "Copyright Message"
 msgstr "Copyright bericht"
 
-#: configurations/postmeta.php:177
+#: configurations/postmeta.php:185
 msgid "Custom Background"
 msgstr "Aangepaste achtergrond"
 
@@ -444,7 +456,11 @@ msgstr "Aangepaste achtergrond"
 msgid "Custom Fields"
 msgstr "Aangepaste velden"
 
-#: configurations/postmeta.php:184
+#: configurations/customizer/general.php:66
+msgid "Custom Footer Logo Link"
+msgstr "Aangepast Footer Logo Link"
+
+#: configurations/postmeta.php:192
 msgid "Custom Text Color"
 msgstr "Aangepaste tekstkleur"
 
@@ -452,7 +468,7 @@ msgstr "Aangepaste tekstkleur"
 msgid "Custom Title "
 msgstr "Aangepaste titel"
 
-#: configurations/customizer/layout.php:1194
+#: configurations/customizer/layout.php:1209
 msgid "Custom Title for the Search Page"
 msgstr "Aangepaste titel voor de zoekpagina"
 
@@ -464,25 +480,25 @@ msgstr "Customizer Post Types"
 msgid "Customizer settings for the Waterfall theme"
 msgstr "Customizer instellingen voor het Waterfall-thema"
 
-#: configurations/customizer/layout.php:211
+#: configurations/customizer/layout.php:206
 msgid "Dark (Only Mobile)"
 msgstr "Donker (alleen mobiel)"
 
 #: functions/utilities.php:211 functions/utilities.php:239
-#: configurations/customizer/layout.php:210
-#: configurations/customizer/layout.php:1495
+#: configurations/customizer/layout.php:205
+#: configurations/customizer/layout.php:1510
 msgid "Default"
 msgstr "Standaard"
 
-#: configurations/customizer/layout.php:1366
+#: configurations/customizer/layout.php:1381
 msgid "Default 404 Description"
 msgstr "Standaard 404 beschrijving"
 
-#: configurations/customizer/layout.php:1358
+#: configurations/customizer/layout.php:1373
 msgid "Default 404 Title"
 msgstr "Standaard 404 titel"
 
-#: configurations/customizer/layout.php:923
+#: configurations/customizer/layout.php:938
 msgid "Default Archives Page Title "
 msgstr "Standaardarchieven pagina titel"
 
@@ -494,20 +510,20 @@ msgstr "Standaard knop"
 msgid "Default Layout"
 msgstr "Standaard lay-out"
 
-#: configurations/options.php:128
+#: configurations/options.php:135
 msgid "Defer CSS"
 msgstr "Defer CSS"
 
-#: configurations/options.php:129
+#: configurations/options.php:136
 msgid "Defer Javascript Loading"
 msgstr "Defer Javascript Loading"
 
 #: configurations/customizer/colors.php:958
-#: configurations/customizer/layout.php:844
-#: configurations/customizer/layout.php:1123
-#: configurations/customizer/layout.php:1538
-#: configurations/customizer/layout.php:1551
-#: configurations/customizer/layout.php:1563
+#: configurations/customizer/layout.php:859
+#: configurations/customizer/layout.php:1138
+#: configurations/customizer/layout.php:1553
+#: configurations/customizer/layout.php:1566
+#: configurations/customizer/layout.php:1578
 msgid "Designed by Elementor"
 msgstr "Ontworpen door Elementor"
 
@@ -550,85 +566,85 @@ msgstr "Bepaalt de typografie voor widgetkoppen."
 msgid "Determines the typography for widgets."
 msgstr "Bepaalt de typografie voor widgets."
 
-#: configurations/customizer/layout.php:881
+#: configurations/customizer/layout.php:896
 msgid "Disable Archive Title Section"
 msgstr "Uitschakelen archieftitel"
 
-#: configurations/options.php:131
+#: configurations/options.php:138
 msgid "Disable Block Styling"
 msgstr "Schakel Block Styling uit"
 
-#: configurations/options.php:145
+#: configurations/options.php:152
 msgid "Disable Comments"
 msgstr "Commentaar uitschakelen"
 
-#: configurations/postmeta.php:127
+#: configurations/postmeta.php:134
 #| msgid "Disable Page Content Footer"
 msgid "Disable Content Footer"
 msgstr "De content-footer uitschakelen"
 
-#: configurations/customizer/layout.php:717
+#: configurations/customizer/layout.php:732
 msgid "Disable content footer"
 msgstr "Content footer uitschakelen"
 
-#: configurations/customizer/layout.php:182
+#: configurations/customizer/layout.php:222
 msgid "Disable Dropdown Indicators"
 msgstr "Dropdown indicator uitschakelen"
 
-#: configurations/options.php:148
+#: configurations/options.php:155
 #| msgid "Disable Embed Scripts. Breaks video embedding."
 msgid "Disable Embed Scripts (breaks video embedding)."
 msgstr "Embed scripts uitschakelen. Externe video's werken hierdoor niet meer."
 
-#: configurations/options.php:132
+#: configurations/options.php:139
 msgid "Disable Emoji"
 msgstr "Emoji uitschakelen"
 
-#: configurations/options.php:133
+#: configurations/options.php:140
 msgid "Disable Feeds"
 msgstr "Feeds uitschakelen"
 
-#: configurations/postmeta.php:83 configurations/customizer/layout.php:1394
+#: configurations/postmeta.php:86 configurations/customizer/layout.php:1409
 msgid "Disable Footer"
 msgstr "Footer uitschakelen"
 
-#: configurations/postmeta.php:72 configurations/customizer/layout.php:73
+#: configurations/postmeta.php:74 configurations/customizer/layout.php:73
 msgid "Disable Header"
 msgstr "Header uitschakelen"
 
-#: configurations/customizer/layout.php:116
+#: configurations/customizer/layout.php:123
 msgid "Disable Header Bottom Border"
 msgstr "Rand onderkant Header uitschakelen"
 
-#: configurations/customizer/layout.php:145
+#: configurations/customizer/layout.php:152
 msgid "Disable Header Logo"
 msgstr "Header logo uitschakelen"
 
-#: configurations/customizer/layout.php:189
+#: configurations/customizer/layout.php:229
 msgid "Disable Header Menu"
 msgstr "Header Menu uitschakelen"
 
-#: configurations/options.php:134
+#: configurations/options.php:141
 msgid "Disable Heartbeat"
 msgstr "Heartbeat uitschakelen"
 
-#: configurations/options.php:137
+#: configurations/options.php:144
 msgid "Disable jQuery"
 msgstr "JQuery uitschakelen"
 
-#: configurations/options.php:138
+#: configurations/options.php:145
 msgid "Disable jQuery Migrate"
 msgstr "JQuery Migrate uitschakelen"
 
-#: configurations/options.php:102
+#: configurations/options.php:109
 msgid "Disable Microdata"
 msgstr "Microdata uitschakelen"
 
-#: configurations/postmeta.php:131
+#: configurations/postmeta.php:139
 msgid "Disable page footer"
 msgstr "De paginafooter uitschakelen"
 
-#: configurations/customizer/layout.php:349
+#: configurations/customizer/layout.php:364
 msgid "Disable post title in Title Section"
 msgstr "Uitschakelen van de bericht-titel in de titelsectie"
 
@@ -636,65 +652,65 @@ msgstr "Uitschakelen van de bericht-titel in de titelsectie"
 msgid "Disable Product Archive Title Section"
 msgstr "De titelsectie van het productenarchief uitschakelen"
 
-#: configurations/postmeta.php:116
+#: configurations/postmeta.php:122
 #| msgid "Disable Page Related Section"
 msgid "Disable Related Section"
 msgstr "Gerelateerde sectie uitschakelen"
 
-#: configurations/postmeta.php:120
+#: configurations/postmeta.php:127
 msgid "Disable related section"
 msgstr "Gerelateerde sectie uitschakelen"
 
-#: configurations/options.php:139
+#: configurations/options.php:146
 msgid "Disable RSD"
 msgstr "RSD uitschakelen"
 
-#: configurations/postmeta.php:105
+#: configurations/postmeta.php:110
 msgid "Disable Sidebar"
 msgstr "Zijbalk uitschakelen"
 
-#: configurations/postmeta.php:109
+#: configurations/postmeta.php:115
 msgid "Disable sidebar"
 msgstr "Zijbalk uitschakelen"
 
-#: configurations/postmeta.php:87
+#: configurations/postmeta.php:91
 msgid "Disable the footer"
 msgstr "De footer uitschakelen"
 
-#: configurations/postmeta.php:76
+#: configurations/postmeta.php:79
 msgid "Disable the header"
 msgstr "De header uitschakelen"
 
-#: configurations/customizer/layout.php:550
+#: configurations/customizer/layout.php:565
 msgid "Disable the related content section"
 msgstr "Schakel de sectie met gerelateerde content uit"
 
-#: configurations/options.php:142
+#: configurations/options.php:149
 msgid "Disable the WLW Manifest"
 msgstr "Het WLW-manifest uitschakelen"
 
-#: configurations/options.php:130
+#: configurations/options.php:137
 msgid "Disable Theme and Plugin Editor"
 msgstr "Schakel de Plugin en Thema Editor uit"
 
-#: configurations/postmeta.php:94 configurations/customizer/layout.php:343
-#: configurations/customizer/layout.php:1158
+#: configurations/postmeta.php:98 configurations/customizer/layout.php:358
+#: configurations/customizer/layout.php:1173
 msgid "Disable Title Section"
 msgstr "Titelsectie uitschakelen"
 
-#: configurations/postmeta.php:98
+#: configurations/postmeta.php:103
 msgid "Disable title section"
 msgstr "Titelsectie uitschakelen"
 
-#: configurations/options.php:140
+#: configurations/options.php:147
 msgid "Disable WordPress Shortlinks"
 msgstr "WordPress Shortlinks uitschakelen"
 
-#: configurations/options.php:149
+#: configurations/options.php:156
 msgid "Disable XMLRPC (can break some functionalities)"
 msgstr "Schakelt XMLRPC uit (kan sommige functionaliteiten uitschakelen)"
 
-#: configurations/customizer/layout.php:183
+#: configurations/customizer/layout.php:223
 msgid "Disables the downward arrow that appears for menu items with children."
 msgstr "Deactiveert de pijl die verschijnt bij menu-items met kinderen."
 
@@ -702,18 +718,18 @@ msgstr "Deactiveert de pijl die verschijnt bij menu-items met kinderen."
 msgid "Display Archive"
 msgstr "Toon archief"
 
-#: configurations/customizer/layout.php:413
+#: configurations/customizer/layout.php:428
 msgid "Display Archive in Breadcrumbs"
 msgstr "Toon archief in broodkruimels"
 
-#: configurations/customizer/layout.php:419
+#: configurations/customizer/layout.php:434
 msgid "Display Associated Terms in Breadcrumbs"
 msgstr "Geassocieerde categorieën en tags in broodkruimels weergeven"
 
-#: configurations/customizer/layout.php:407
-#: configurations/customizer/layout.php:887
-#: configurations/customizer/layout.php:1164
-#: configurations/customizer/layout.php:1374
+#: configurations/customizer/layout.php:422
+#: configurations/customizer/layout.php:902
+#: configurations/customizer/layout.php:1179
+#: configurations/customizer/layout.php:1389
 msgid "Display Breadcrumbs"
 msgstr "Toon broodkruimels"
 
@@ -733,31 +749,31 @@ msgstr "Broodkruimels weergeven in titelsectie"
 msgid "Display Breadcrumbs in User Profile"
 msgstr "Broodkruimels weergeven in gebruikersprofiel"
 
-#: configurations/customizer/layout.php:1441
+#: configurations/customizer/layout.php:1456
 msgid "Display Copyright"
 msgstr "Toon Copyright"
 
-#: configurations/customizer/layout.php:1260
+#: configurations/customizer/layout.php:1275
 msgid "Display Excerpt"
 msgstr "Toon excerpt"
 
-#: configurations/customizer/layout.php:1455
+#: configurations/customizer/layout.php:1470
 msgid "Display Footer Menu"
 msgstr "Toon Footer Menu"
 
-#: configurations/customizer/layout.php:195
+#: configurations/customizer/layout.php:190
 msgid "Display of Mobile Menu"
 msgstr "Weergave van het mobiele menu"
 
-#: configurations/customizer/layout.php:200
+#: configurations/customizer/layout.php:195
 msgid "Display on Mobile"
 msgstr "Toon op mobiel"
 
-#: configurations/customizer/layout.php:199
+#: configurations/customizer/layout.php:194
 msgid "Display on Tablets & Mobile"
 msgstr "Weergeven op tablets en telefoons"
 
-#: configurations/customizer/layout.php:893
+#: configurations/customizer/layout.php:908
 msgid "Display Post Type in Breadcrumbs"
 msgstr "Toon post-type in broodkruimels"
 
@@ -765,7 +781,7 @@ msgstr "Toon post-type in broodkruimels"
 msgid "Display Product Category in Breadcrumbs"
 msgstr "Toon productcategorie in broodkruimels"
 
-#: configurations/customizer/layout.php:1380
+#: configurations/customizer/layout.php:1395
 msgid "Display Searchform"
 msgstr "Toon zoekformulier"
 
@@ -773,15 +789,15 @@ msgstr "Toon zoekformulier"
 msgid "Display Searchform in Header"
 msgstr "Toon zoekformulier in Header"
 
-#: configurations/customizer/layout.php:1407
+#: configurations/customizer/layout.php:1422
 msgid "Display Sidebars"
 msgstr "Toon sidebars"
 
-#: configurations/customizer/layout.php:1461
+#: configurations/customizer/layout.php:1476
 msgid "Display Social Icons"
 msgstr "Toon sociale iconen"
 
-#: configurations/customizer/layout.php:1435
+#: configurations/customizer/layout.php:1450
 msgid "Display Socket"
 msgstr "Toon socket"
 
@@ -793,7 +809,7 @@ msgstr "Titelsectie weergeven"
 msgid "Display User Name as Title"
 msgstr "Gebruikersnaam weergeven als titel"
 
-#: configurations/customizer/layout.php:444
+#: configurations/customizer/layout.php:459
 msgid ""
 "Displays sharing buttons inside the title section. Please scroll to the "
 "footer settings to specify what social networks you want to show."
@@ -813,7 +829,7 @@ msgstr "Pijl omlaag"
 msgid "Dribble"
 msgstr "Dribble"
 
-#: configurations/customizer/general.php:153
+#: configurations/customizer/general.php:160
 msgid "Dribble Profile Url"
 msgstr "Dribble Profiel Url"
 
@@ -821,19 +837,27 @@ msgstr "Dribble Profiel Url"
 msgid "Elementor Notification"
 msgstr "Melding Elementor"
 
-#: configurations/customizer/layout.php:1518
+#: configurations/customizer/layout.php:1533
 msgid "Elementor Section Bottom Padding"
 msgstr "Elementor Sectie Bottom Padding"
 
-#: configurations/customizer/layout.php:1510
+#: configurations/customizer/layout.php:1525
 msgid "Elementor Section Top Padding"
 msgstr "Elementor Sectie Top Padding"
+
+#: classes/plugins/class-waterfall-elementor.php:206
+msgid ""
+"Elementor Settings for the Waterfall theme. If disabled sections do not-"
+"reappear, reload the editor after saving."
+msgstr ""
+"Elementor instellingen voor het Waterfall thema. Als uitgeschakelde secties "
+"niet terugkomen, dien je de editor te herladen."
 
 #: functions/utilities.php:324
 msgid "Email"
 msgstr "E-mail"
 
-#: configurations/customizer/general.php:87
+#: configurations/customizer/general.php:94
 msgid "Email Address"
 msgstr "E-mailadres"
 
@@ -857,7 +881,7 @@ msgstr "Schakel ElasticPress in"
 msgid "Enable ElasticPress for Related Posts"
 msgstr "ElasticPress inschakelen voor gerelateerde berichten"
 
-#: configurations/postmeta.php:53
+#: configurations/postmeta.php:54
 msgid "Enable Fullwidth Content"
 msgstr "Volledige breedte-inhoud inschakelen"
 
@@ -877,11 +901,11 @@ msgstr "Schakel lightbox in voor productafbeeldingen"
 msgid "Enable product images slider"
 msgstr "Schakel productafbeeldingen slider in"
 
-#: configurations/customizer/layout.php:401
+#: configurations/customizer/layout.php:416
 msgid "Enable the parallax effect to Title Sections"
 msgstr "Parallax voor titelsecties inschakelen"
 
-#: configurations/customizer/layout.php:456
+#: configurations/customizer/layout.php:471
 msgid "Enable the Scroll Button in Title Sections"
 msgstr "Activeer de Scroll-knop in de titelsecties"
 
@@ -896,29 +920,37 @@ msgstr ""
 "Schakel dit in om ElasticPress voor gerelateerde berichten in te schakelen. "
 "Om te kunnen functioneren zijn ElasticSearch en de ElasticPress plugin nodig."
 
-#: configurations/postmeta.php:65
+#: configurations/postmeta.php:67
 msgid "Enable Transparent Header"
 msgstr "Header transparantie inschakelen"
 
-#: configurations/customizer/layout.php:643
-#: configurations/customizer/layout.php:1108
-#: configurations/customizer/layout.php:1321
+#: configurations/customizer/layout.php:658
+#: configurations/customizer/layout.php:1123
+#: configurations/customizer/layout.php:1336
 msgid "Enlarge Featured Image on Hover"
 msgstr "Vergroot uitgelichte afbeelding bij Hover"
 
-#: configurations/options.php:146
+#: configurations/options.php:153
 msgid "Enqueue Comment JavaScript only on Comments"
 msgstr "Enqueue Comment JavaScript alleen bij Reacties"
 
-#: configurations/postmeta.php:166
+#: configurations/customizer/general.php:67
+msgid ""
+"Enter a custom link for the footer logo here. Defaults to the current site "
+"URL."
+msgstr ""
+"Voer hier een aangepaste link in voor het footer logo. Standaard is dat de "
+"URL van de huidige website."
+
+#: configurations/postmeta.php:174
 msgid "Enter the link for this button here."
 msgstr "Voer hier de link voor deze knop in."
 
-#: configurations/postmeta.php:159
+#: configurations/postmeta.php:167
 msgid "Enter the text for the button."
 msgstr "Voer de tekst voor de knop in."
 
-#: configurations/customizer/general.php:82
+#: configurations/customizer/general.php:89
 msgid "Enter your Social Media channels, so they can appear in the website."
 msgstr ""
 "Voer je Social Media kanalen in, zodat ze op de website kunnen verschijnen."
@@ -939,13 +971,13 @@ msgstr "Foutmelding link kleur"
 msgid "Error Message Text Color"
 msgstr "Foutmelding tekstkleur"
 
-#: configurations/customizer/general.php:186
+#: configurations/customizer/general.php:193
 msgid "Events Page"
 msgstr "Evenementenpagina"
 
-#: configurations/customizer/layout.php:618
-#: configurations/customizer/layout.php:1030
-#: configurations/customizer/layout.php:1257
+#: configurations/customizer/layout.php:633
+#: configurations/customizer/layout.php:1045
+#: configurations/customizer/layout.php:1272
 msgid "Excerpt"
 msgstr "Samenvatting"
 
@@ -953,15 +985,15 @@ msgstr "Samenvatting"
 msgid "Excerpt Length"
 msgstr "Lengte samenvatting"
 
-#: configurations/customizer/layout.php:1027
+#: configurations/customizer/layout.php:1042
 msgid "Excerpt within archive posts."
 msgstr "Samenvatting in archiefberichten."
 
-#: configurations/customizer/layout.php:615
+#: configurations/customizer/layout.php:630
 msgid "Excerpt within related posts."
 msgstr "Samenvatting in gerelateerde berichten."
 
-#: configurations/customizer/layout.php:1254
+#: configurations/customizer/layout.php:1269
 msgid "Excerpt within search page results."
 msgstr "Samenvatting in resultaten zoekpagina."
 
@@ -969,33 +1001,33 @@ msgstr "Samenvatting in resultaten zoekpagina."
 msgid "Facebook"
 msgstr "Facebook"
 
-#: configurations/customizer/general.php:99
+#: configurations/customizer/general.php:106
 msgid "Facebook Profile Url"
 msgstr "Facebook Profiel Url"
 
-#: configurations/customizer/layout.php:637
-#: configurations/customizer/layout.php:1102
+#: configurations/customizer/layout.php:652
+#: configurations/customizer/layout.php:1117
 msgid "Featured Image Float"
 msgstr " Float uitgelicht afbeelding"
 
-#: configurations/customizer/layout.php:355
+#: configurations/customizer/layout.php:370
 msgid "Featured Image Position"
 msgstr "Positie uitgelichte afbeelding"
 
-#: configurations/customizer/layout.php:629
-#: configurations/customizer/layout.php:1094
+#: configurations/customizer/layout.php:644
+#: configurations/customizer/layout.php:1109
 msgid "Featured Image Size"
 msgstr "Grootte uitgelichte afbeelding"
 
-#: configurations/customizer/layout.php:1091
+#: configurations/customizer/layout.php:1106
 msgid "Featured Image size within archive posts."
 msgstr "Grootte uitgelichte afbeelding bij archiefberichten."
 
-#: configurations/customizer/layout.php:626
+#: configurations/customizer/layout.php:641
 msgid "Featured Image size within related posts."
 msgstr "Grootte uitgelichte afbeelding bij gerelateerde berichten."
 
-#: configurations/customizer/layout.php:1304
+#: configurations/customizer/layout.php:1319
 msgid "Featured Image size within search page results."
 msgstr "Grootte uitgelichte afbeelding bij zoekresultaten."
 
@@ -1019,36 +1051,36 @@ msgstr "Vijf"
 msgid "Five columns"
 msgstr "Vijf kolommen"
 
-#: configurations/customizer/layout.php:1419
+#: configurations/customizer/layout.php:1434
 msgid "Five sidebars"
 msgstr "Vijf Sidebars"
 
-#: configurations/customizer/layout.php:780
+#: configurations/customizer/layout.php:795
 msgid "Fix sharing buttons to the left of the screen"
 msgstr "Fixeer sharing-knoppen aan de linkerkant"
 
-#: configurations/customizer/layout.php:212
+#: configurations/customizer/layout.php:207
 msgid "Fixed (Always Hamburger)"
 msgstr "Fixed (altijd hamburger)"
 
-#: configurations/customizer/layout.php:110
+#: configurations/customizer/layout.php:111
 msgid "Fixed Header"
 msgstr "Gefixeerde Header"
 
-#: configurations/customizer/layout.php:1099
+#: configurations/customizer/layout.php:1114
 msgid "Float of featured image within the posts."
 msgstr "Float van uitgelichte afbeelding bij berichten."
 
-#: configurations/customizer/layout.php:634
+#: configurations/customizer/layout.php:649
 msgid "Float of featured image within the related posts."
 msgstr "Float van uitgelichte afbeelding bij gerelateerde berichten."
 
-#: configurations/customizer/layout.php:1312
+#: configurations/customizer/layout.php:1327
 msgid "Float of featured image within the results."
 msgstr "Float van uitgelichte afbeelding bij zoekresultaten."
 
 #: configurations/customizer/colors.php:948
-#: configurations/customizer/layout.php:1389
+#: configurations/customizer/layout.php:1404
 #: configurations/customizer/typography.php:197
 msgid "Footer"
 msgstr "Footer"
@@ -1066,11 +1098,7 @@ msgstr "Footer kleuren"
 msgid "Footer Logo Image"
 msgstr "Footer Logo"
 
-#: configurations/register.php:29
-msgid "Footer Menu"
-msgstr "Footer Menu"
-
-#: configurations/customizer/layout.php:1421
+#: configurations/customizer/layout.php:1436
 msgid "Footer Sidebars"
 msgstr "Footer Sidebars"
 
@@ -1090,7 +1118,7 @@ msgstr "Footer Widget-sectie"
 msgid "Footer Widgets"
 msgstr "Footer Widgets"
 
-#: configurations/customizer/layout.php:1400
+#: configurations/customizer/layout.php:1415
 msgid "Footer Width"
 msgstr "Footer breedte"
 
@@ -1130,7 +1158,7 @@ msgstr "Vier"
 msgid "Four columns"
 msgstr "Vier kolommen"
 
-#: configurations/customizer/layout.php:1418
+#: configurations/customizer/layout.php:1433
 msgid "Four sidebars"
 msgstr "Vier Sidebars"
 
@@ -1154,11 +1182,11 @@ msgstr "Volledige breedte"
 msgid "Fullwidth Main Content"
 msgstr "Volledige breedte inhoud"
 
-#: configurations/customizer/layout.php:588
+#: configurations/customizer/layout.php:603
 msgid "Gap Width"
 msgstr "Breedte tussenruimte"
 
-#: classes/class-waterfall.php:243 configurations/options.php:30
+#: classes/class-waterfall.php:260 configurations/options.php:30
 #: configurations/customizer/general.php:14
 #: configurations/customizer/layout.php:79
 #: configurations/customizer/typography.php:16
@@ -1206,11 +1234,11 @@ msgstr "Algemene melding tekstkleur"
 msgid "Github"
 msgstr "Github"
 
-#: configurations/customizer/general.php:141
+#: configurations/customizer/general.php:148
 msgid "Github Url"
 msgstr "Github Url"
 
-#: configurations/postmeta.php:59
+#: configurations/postmeta.php:60
 msgid "Give this post or page a transparent header."
 msgstr "Geef deze post of pagina een transparante header."
 
@@ -1230,15 +1258,15 @@ msgstr "Google Maps API Key"
 msgid "Grid"
 msgstr "Raster"
 
-#: configurations/customizer/layout.php:1014
+#: configurations/customizer/layout.php:1029
 msgid "Grid Columns"
 msgstr "Aantal kolommen"
 
-#: configurations/customizer/layout.php:1022
+#: configurations/customizer/layout.php:1037
 msgid "Grid Gap Width"
 msgstr "Tussenruimte raster"
 
-#: configurations/customizer/layout.php:1006
+#: configurations/customizer/layout.php:1021
 msgid "Grid Style"
 msgstr "Stijl raster"
 
@@ -1292,8 +1320,8 @@ msgstr "HD (1280x720)"
 
 #: configurations/customizer/colors.php:948
 #: configurations/customizer/layout.php:68
-#: configurations/customizer/layout.php:1528
-#: configurations/customizer/layout.php:1528
+#: configurations/customizer/layout.php:1543
+#: configurations/customizer/layout.php:1543
 msgid "Header"
 msgstr "Header"
 
@@ -1302,7 +1330,7 @@ msgid "Header Colors"
 msgstr "Header kleuren"
 
 #: configurations/customizer/bbpress.php:61
-#: configurations/customizer/layout.php:909
+#: configurations/customizer/layout.php:924
 msgid "Header Height"
 msgstr "Header hoogte"
 
@@ -1310,11 +1338,11 @@ msgstr "Header hoogte"
 msgid "Header Menu"
 msgstr "Header Menu"
 
-#: configurations/customizer/layout.php:206
+#: configurations/customizer/layout.php:201
 msgid "Header Menu Style"
 msgstr "Header menustijl"
 
-#: configurations/customizer/layout.php:104
+#: configurations/customizer/layout.php:105
 msgid "Header Minimum Height"
 msgstr "Header minumum hoogte"
 
@@ -1322,18 +1350,18 @@ msgstr "Header minumum hoogte"
 msgid "Header Navigation Menu"
 msgstr "Header navigatiemenu"
 
-#: configurations/customizer/layout.php:1350
+#: configurations/customizer/layout.php:1365
 msgid "Header Text Align"
 msgstr "Header tekstuitlijning"
 
-#: configurations/postmeta.php:61
+#: configurations/postmeta.php:62
 msgid "Header Transparency"
 msgstr ""
 "Header transparantie\n"
 
 #: configurations/customizer/bbpress.php:53
-#: configurations/customizer/layout.php:96
-#: configurations/customizer/layout.php:901
+#: configurations/customizer/layout.php:97
+#: configurations/customizer/layout.php:916
 msgid "Header Width"
 msgstr "Header breedte"
 
@@ -1377,11 +1405,11 @@ msgstr "Heading 5"
 msgid "Heading 6"
 msgstr "Heading 6"
 
-#: configurations/customizer/layout.php:1177
+#: configurations/customizer/layout.php:1192
 msgid "Height of header in search archives."
 msgstr "Hoogte van de titelsectie in de zoekarchieven."
 
-#: configurations/customizer/layout.php:906
+#: configurations/customizer/layout.php:921
 msgid "Height of title section in posts archives."
 msgstr "Hoogte van de titelsectie in het berichtenarchief."
 
@@ -1396,6 +1424,11 @@ msgstr "Hoogte titelsectie."
 #: configurations/customizer/bbpress.php:147
 msgid "Hide for users that are not logged-in"
 msgstr "Verbergen voor gebruikers die niet zijn ingelogd"
+
+#: configurations/customizer/layout.php:129
+#| msgid "Collapse Header when Scrolling"
+msgid "Hide Header when Scrolling"
+msgstr "Header inklappen bij het scrollen"
 
 #: configurations/customizer/bbpress.php:174
 msgid "Hide profiles for users that are not logged-in"
@@ -1418,20 +1451,20 @@ msgstr "Hover"
 msgid "Hover Background Color"
 msgstr "Achtergrondkleur Hover"
 
-#: configurations/customizer/layout.php:1351
+#: configurations/customizer/layout.php:1366
 msgid "How should text be aligned within the 404 header?"
 msgstr "Hoe moet de tekst in de 404-kop worden uitgelijnd?"
 
-#: configurations/customizer/layout.php:916
+#: configurations/customizer/layout.php:931
 msgid "How should text be aligned within the archive header?"
 msgstr "Hoe moet de tekst in de kop van het archief worden uitgelijnd?"
 
-#: configurations/customizer/layout.php:1187
+#: configurations/customizer/layout.php:1202
 msgid "How should text be aligned within the search title section?"
 msgstr ""
 "Hoe moet de tekst binnen in de kop van de zoekpagina worden uitgelijnd?"
 
-#: configurations/customizer/layout.php:394
+#: configurations/customizer/layout.php:409
 msgid "How should text be aligned within the Title Section?"
 msgstr "Hoe moet de tekst in de titelsectie worden uitgelijnd?"
 
@@ -1455,7 +1488,7 @@ msgstr "Groot"
 msgid "Identity"
 msgstr "Identiteit"
 
-#: configurations/customizer/layout.php:1474
+#: configurations/customizer/layout.php:1489
 msgid ""
 "If you have defined a footer logo under Site Identity, it will appear in the "
 "bottom of your footer. Normally, it will center, but if this box is ticked "
@@ -1465,7 +1498,7 @@ msgstr ""
 "deze onder aan je Footer. Normaal gesproken zal dit log in het midden staan, "
 "maar als dit vakje is aangevinkt zal het boven de andere elementen staan."
 
-#: configurations/options.php:125
+#: configurations/options.php:132
 msgid ""
 "Improve the loading performance by enabling optimizations. Be aware that "
 "some optimizations can break functionality."
@@ -1493,7 +1526,7 @@ msgstr "Info-melding tekstkleur"
 msgid "Instagram"
 msgstr "Instagram"
 
-#: configurations/customizer/general.php:105
+#: configurations/customizer/general.php:112
 msgid "Instagram Profile Url"
 msgstr "Instagram Profiel Url"
 
@@ -1510,23 +1543,27 @@ msgstr "Large"
 msgid "Layout"
 msgstr "Layout"
 
+#: classes/plugins/class-waterfall-elementor.php:197
+msgid "Layout Settings"
+msgstr "Layout instellingen"
+
 #: functions/utilities.php:174
 msgid "LD (640x360)"
 msgstr "LD (640x360)"
 
-#: configurations/customizer/layout.php:764
+#: configurations/customizer/layout.php:779
 msgid "Leave a reply"
 msgstr "Laat een reactie achter"
 
 #: functions/utilities.php:264 functions/utilities.php:299
-#: configurations/customizer/layout.php:138
-#: configurations/customizer/layout.php:175
-#: configurations/customizer/layout.php:278
-#: configurations/customizer/layout.php:296
+#: configurations/customizer/layout.php:145
+#: configurations/customizer/layout.php:183
+#: configurations/customizer/layout.php:293
+#: configurations/customizer/layout.php:311
 msgid "Left"
 msgstr "Links"
 
-#: configurations/customizer/layout.php:213
+#: configurations/customizer/layout.php:208
 msgid "Left (Always Hamburger)"
 msgstr "Links (hamburger-menu)"
 
@@ -1534,15 +1571,15 @@ msgstr "Links (hamburger-menu)"
 msgid "Left Sidebar"
 msgstr "Sidebar Links"
 
-#: configurations/customizer/layout.php:484
+#: configurations/customizer/layout.php:499
 msgid "Limit content to readable width"
 msgstr "Beperk de inhoud tot de leesbare breedte"
 
-#: configurations/options.php:144
+#: configurations/options.php:151
 msgid "Limit Post Revisions to 5"
 msgstr "Beperk revisies tot 5"
 
-#: configurations/customizer/layout.php:485
+#: configurations/customizer/layout.php:500
 msgid ""
 "Limits paragraphs, lists and smaller titles to a readable width and centers "
 "them."
@@ -1606,7 +1643,7 @@ msgstr "Link Hover transparante header"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: configurations/customizer/general.php:117
+#: configurations/customizer/general.php:124
 msgid "LinkedIn Profile Url"
 msgstr "LinkedIn Profiel Url"
 
@@ -1614,12 +1651,12 @@ msgstr "LinkedIn Profiel Url"
 msgid "List"
 msgstr "Lijst"
 
-#: configurations/customizer/layout.php:134
+#: configurations/customizer/layout.php:141
 msgid "Logo Position"
 msgstr "Positie Logo"
 
 #: configurations/customizer/colors.php:417
-#: configurations/customizer/layout.php:463
+#: configurations/customizer/layout.php:478
 #: configurations/customizer/typography.php:51
 msgid "Main Content"
 msgstr "Main Content"
@@ -1656,7 +1693,7 @@ msgstr "Medium"
 msgid "Menu Colors"
 msgstr "Menukleuren"
 
-#: configurations/customizer/layout.php:171
+#: configurations/customizer/layout.php:179
 msgid "Menu Position"
 msgstr "Menupositie"
 
@@ -1678,15 +1715,15 @@ msgstr ""
 msgid "Meta Color"
 msgstr "Metakleur"
 
-#: configurations/customizer/layout.php:1083
+#: configurations/customizer/layout.php:1098
 msgid "Minimum height of posts in the archive in pixels."
 msgstr "Minimale hoogte van de berichten in het archief in pixels."
 
-#: configurations/customizer/layout.php:593
+#: configurations/customizer/layout.php:608
 msgid "Minimum height of related posts in pixels."
 msgstr "Minimumhoogte van gerelateerde berichten in pixels."
 
-#: configurations/customizer/layout.php:1297
+#: configurations/customizer/layout.php:1312
 msgid "Minimum height of results in the search page."
 msgstr "Minimale hoogte van de resultaten in de zoekpagina."
 
@@ -1698,11 +1735,11 @@ msgstr "Logo voor Mobiel"
 msgid "Mobile Menu Colors"
 msgstr "Mobile Menukleuren"
 
-#: configurations/options.php:136
+#: configurations/options.php:143
 msgid "Move the jQuery Script to Footer"
 msgstr "Verplaats het jQuery Script naar de Footer"
 
-#: configurations/customizer/layout.php:157
+#: configurations/customizer/layout.php:164
 #: configurations/customizer/woocommerce.php:15
 msgid "Navigation Menu"
 msgstr "Navigatiemenu"
@@ -1711,7 +1748,7 @@ msgstr "Navigatiemenu"
 msgid "Next Article &rsaquo;"
 msgstr "Volgende artikel &rsaquo;"
 
-#: configurations/customizer/layout.php:681
+#: configurations/customizer/layout.php:696
 msgid "Next Article &rsaquo; "
 msgstr "Volgende artikel &rsaquo; "
 
@@ -1729,9 +1766,9 @@ msgstr "Geen knop"
 msgid "No columns"
 msgstr "Geen kolommen"
 
-#: configurations/customizer/layout.php:619
-#: configurations/customizer/layout.php:1031
-#: configurations/customizer/layout.php:1258
+#: configurations/customizer/layout.php:634
+#: configurations/customizer/layout.php:1046
+#: configurations/customizer/layout.php:1273
 msgid "No excerpt"
 msgstr "Geen samenvatting"
 
@@ -1739,11 +1776,11 @@ msgstr "Geen samenvatting"
 msgid "No minimum height"
 msgstr "Geen minimumhoogte"
 
-#: configurations/customizer/layout.php:1078
+#: configurations/customizer/layout.php:1093
 msgid "No Posts Found Text"
 msgstr "Geen berichten gevonden tekst"
 
-#: configurations/customizer/layout.php:662
+#: configurations/customizer/layout.php:677
 msgid "No Related Posts Found"
 msgstr "Geen gerelateerde berichten gevonden"
 
@@ -1751,8 +1788,8 @@ msgstr "Geen gerelateerde berichten gevonden"
 msgid "No Sidebars"
 msgstr "Geen Sidebars"
 
-#: configurations/options.php:89 functions/utilities.php:212
-#: functions/utilities.php:300 configurations/customizer/layout.php:1483
+#: configurations/options.php:96 functions/utilities.php:212
+#: functions/utilities.php:300 configurations/customizer/layout.php:1498
 msgid "None"
 msgstr "Geen"
 
@@ -1760,15 +1797,15 @@ msgstr "Geen"
 msgid "Normal"
 msgstr "Normaal"
 
-#: configurations/customizer/layout.php:237
+#: configurations/customizer/layout.php:252
 msgid "Nothing Found Search Text"
 msgstr "Tekst niets gevonden op zoekpagina"
 
-#: classes/views/class-header.php:110 configurations/customizer/layout.php:235
+#: classes/views/class-header.php:114 configurations/customizer/layout.php:250
 msgid "Nothing found!"
 msgstr "Niets gevonden!"
 
-#: configurations/customizer/layout.php:601
+#: configurations/customizer/layout.php:616
 msgid "Number of related posts to show"
 msgstr "Aantal gerelateerde berichten om te laten zien"
 
@@ -1780,15 +1817,15 @@ msgstr "Salesbadge achtergrondkleur"
 msgid "On Sale Badge Text Color"
 msgstr "Salesbadge tekstkleur"
 
-#: configurations/customizer/layout.php:1485
+#: configurations/customizer/layout.php:1500
 msgid "On the center"
 msgstr "In het midden"
 
-#: configurations/customizer/layout.php:1484
+#: configurations/customizer/layout.php:1499
 msgid "On the left"
 msgstr "Links"
 
-#: configurations/customizer/layout.php:1486
+#: configurations/customizer/layout.php:1501
 msgid "On the right"
 msgstr "Rechts"
 
@@ -1811,15 +1848,15 @@ msgid_plural "%1$s Responses to %2$s"
 msgstr[0] "Eén reactie op %2$s"
 msgstr[1] "%1$s reacties op %2$s"
 
-#: configurations/customizer/layout.php:1415
+#: configurations/customizer/layout.php:1430
 msgid "One sidebar"
 msgstr "Eén Sidebar"
 
-#: configurations/options.php:90
+#: configurations/options.php:97
 msgid "Organization"
 msgstr "Organisatie"
 
-#: configurations/postmeta.php:191
+#: configurations/postmeta.php:199
 msgid "Overlay Color"
 msgstr "Overlay Color"
 
@@ -1827,15 +1864,23 @@ msgstr "Overlay Color"
 msgid "Page Title Headings"
 msgstr "Koppen paginatitel"
 
-#: configurations/customizer/layout.php:683
+#: configurations/customizer/layout.php:698
 msgid "Pagination Next Article Title"
 msgstr "Paginering titel volgende artikel "
 
-#: configurations/customizer/layout.php:675
+#: configurations/customizer/layout.php:690
 msgid "Pagination Previous Article Title"
 msgstr "Paginering titel vorige artikel "
 
-#: configurations/options.php:91
+#: configurations/options.php:79
+msgid ""
+"Paste your token here to set-up CloudFlare Web Analytics. You can retrieve "
+"it from the JS Snippet."
+msgstr ""
+"Plak hier je CloudFlare Web Analytics Token. Deze kan je uit het JS Snippet "
+"halen."
+
+#: configurations/options.php:98
 msgid "Person"
 msgstr "Persoon"
 
@@ -1843,7 +1888,7 @@ msgstr "Persoon"
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: configurations/customizer/general.php:129
+#: configurations/customizer/general.php:136
 msgid "Pinterest Url"
 msgstr "Pinterest Url"
 
@@ -1851,7 +1896,7 @@ msgstr "Pinterest Url"
 msgid "Please login to view this page."
 msgstr "Login om deze bladzijde te bekijken."
 
-#: configurations/customizer/layout.php:621
+#: configurations/customizer/layout.php:636
 msgid "Post Excerpt"
 msgstr "Samenvatting bericht"
 
@@ -1863,36 +1908,36 @@ msgstr "Titels berichten"
 msgid "Post Title Headings"
 msgstr "Koppen berichtentitel"
 
-#: configurations/customizer/layout.php:1040
+#: configurations/customizer/layout.php:1055
 msgid "Post Type in Posts"
 msgstr "Post-type in berichten"
 
-#: configurations/customizer/layout.php:1267
+#: configurations/customizer/layout.php:1282
 msgid "Post Type in Results"
 msgstr "Post type in resultaten"
 
-#: configurations/customizer/layout.php:603
+#: configurations/customizer/layout.php:618
 msgid "Posts Amount"
 msgstr "Aantal berichten"
 
-#: configurations/customizer/layout.php:1065
+#: configurations/customizer/layout.php:1080
 msgid "Posts Button Label"
 msgstr "Label knop berichten"
 
-#: configurations/customizer/layout.php:580
+#: configurations/customizer/layout.php:595
 msgid "Posts Columns"
 msgstr "Kolommen berichten"
 
-#: configurations/customizer/layout.php:977
+#: configurations/customizer/layout.php:992
 msgid "Posts Custom Width"
 msgstr "Berichten aangepaste breedte"
 
-#: configurations/customizer/layout.php:595
-#: configurations/customizer/layout.php:1085
+#: configurations/customizer/layout.php:610
+#: configurations/customizer/layout.php:1100
 msgid "Posts Height"
 msgstr "Hoogte berichten"
 
-#: configurations/customizer/layout.php:610
+#: configurations/customizer/layout.php:625
 msgid "Posts Style"
 msgstr "Stijl berichten"
 
@@ -1952,7 +1997,7 @@ msgstr "Producten"
 msgid "Profile"
 msgstr "Profiel"
 
-#: configurations/customizer/layout.php:1473
+#: configurations/customizer/layout.php:1488
 msgid "Put Footer Logo above other elements."
 msgstr "Zet Footer Logo boven andere elementen."
 
@@ -1968,7 +2013,7 @@ msgstr "Kwart van schermhoogte"
 msgid "Reddit"
 msgstr "Reddit"
 
-#: configurations/customizer/general.php:135
+#: configurations/customizer/general.php:142
 msgid "Reddit Url"
 msgstr "Reddit Url"
 
@@ -1976,7 +2021,7 @@ msgstr "Reddit Url"
 msgid "Related Post Title"
 msgstr "Titel gerelateerde berichtgen"
 
-#: configurations/customizer/layout.php:523
+#: configurations/customizer/layout.php:538
 msgid "Related Posts"
 msgstr "Gerelateerde berichten"
 
@@ -2001,32 +2046,32 @@ msgstr "Link kleur voor gerelateerde berichten."
 msgid "Related Section"
 msgstr "Gerelateerde sectie"
 
-#: configurations/customizer/layout.php:558
+#: configurations/customizer/layout.php:573
 msgid "Related Section Width"
 msgstr "Breedte gerelateerde sectie"
 
-#: configurations/options.php:147
+#: configurations/options.php:154
 msgid "Remove Additional Styling for Comments"
 msgstr "Verwijder extra styling voor Reacties."
 
-#: configurations/customizer/layout.php:1467
+#: configurations/customizer/layout.php:1482
 msgid "Remove Background in Social Icons"
 msgstr "Achtergrond in sociale iconen verwijderen"
 
 #: configurations/customizer/woocommerce.php:26
 msgid "Remove Borders from Shopping Cart"
-msgstr "Verwijder de Borders bij de winkelwagen"
+msgstr "Verwijder de randen bij de winkelwagen"
 
-#: configurations/customizer/layout.php:751
+#: configurations/customizer/layout.php:766
 msgid "Remove comments element when closed"
 msgstr "Verwijder het commentaar element wanneer commentaar gesloten is."
 
-#: configurations/options.php:143
+#: configurations/options.php:150
 #| msgid "Remove the WordPress Version from front-end"
 msgid "Remove the WordPress version from front-end"
 msgstr "Verwijder de WordPress-versie aan de voorkant"
 
-#: configurations/options.php:141
+#: configurations/options.php:148
 msgid "Remove WordPress Version Numbers from Scripts"
 msgstr "WordPress-versie nummers te verwijderen uit de scripts"
 
@@ -2038,19 +2083,19 @@ msgstr "Reactie"
 msgid "Respond"
 msgstr "Reageer"
 
-#: configurations/customizer/layout.php:1241
+#: configurations/customizer/layout.php:1256
 msgid "Results Style"
 msgstr "Stijl resultaten"
 
 #: functions/utilities.php:266 functions/utilities.php:301
-#: configurations/customizer/layout.php:139
-#: configurations/customizer/layout.php:176
-#: configurations/customizer/layout.php:279
-#: configurations/customizer/layout.php:297
+#: configurations/customizer/layout.php:146
+#: configurations/customizer/layout.php:184
+#: configurations/customizer/layout.php:294
+#: configurations/customizer/layout.php:312
 msgid "Right"
 msgstr "Rechts"
 
-#: configurations/customizer/layout.php:214
+#: configurations/customizer/layout.php:209
 msgid "Right (Always Hamburger)"
 msgstr "Rechts (hamburger-menu)"
 
@@ -2058,7 +2103,7 @@ msgstr "Rechts (hamburger-menu)"
 msgid "Right Sidebar"
 msgstr "Sidebar Rechts"
 
-#: configurations/customizer/layout.php:1496
+#: configurations/customizer/layout.php:1511
 msgid "Rounded"
 msgstr "Afgerond"
 
@@ -2082,11 +2127,11 @@ msgstr "Achtergrondkleur Scroll to Top"
 msgid "Scroll to Top Background Hover Color"
 msgstr "Achtergrondkleur Scroll to Top Hover"
 
-#: configurations/customizer/layout.php:1480
+#: configurations/customizer/layout.php:1495
 msgid "Scroll to Top Button"
 msgstr "Knop Scroll to Top"
 
-#: configurations/customizer/layout.php:1492
+#: configurations/customizer/layout.php:1507
 msgid "Scroll to Top Button Style"
 msgstr "Knopstijl Scroll to Top"
 
@@ -2094,31 +2139,31 @@ msgstr "Knopstijl Scroll to Top"
 msgid "SD (854x480)"
 msgstr "SD (854x480)"
 
-#: configurations/customizer/layout.php:220
+#: configurations/customizer/layout.php:235
 msgid "Search Element"
 msgstr "Zoekelement"
 
-#: configurations/customizer/layout.php:1139
+#: configurations/customizer/layout.php:1154
 msgid "Search Page"
 msgstr "Zoekpagina"
 
-#: configurations/customizer/layout.php:1315
+#: configurations/customizer/layout.php:1330
 msgid "Search Page Featured Image Float"
 msgstr "Zoekpagina Uitgelichte Afbeelding Float"
 
-#: configurations/customizer/layout.php:1292
+#: configurations/customizer/layout.php:1307
 msgid "Search Page Results Button Label"
 msgstr "Zoekpagina resultaten knop"
 
-#: configurations/customizer/layout.php:1299
+#: configurations/customizer/layout.php:1314
 msgid "Search Page Results Height"
 msgstr "Zoekpagina resultaten hoogte"
 
-#: configurations/customizer/layout.php:1307
+#: configurations/customizer/layout.php:1322
 msgid "Search Page Results Image Size"
 msgstr "Zoekpagina resultaten afbeeldingsformaat"
 
-#: configurations/customizer/layout.php:1201
+#: configurations/customizer/layout.php:1216
 msgid "Search Results Section"
 msgstr "Zoekresultaten Sectie"
 
@@ -2168,7 +2213,7 @@ msgstr ""
 "Stelt de maximale breedte van de inhoud in. Bij gebruik van waardes zonder "
 "pixels kan het nodig zijn om handmatige styling toe te voegen."
 
-#: configurations/customizer/layout.php:497
+#: configurations/customizer/layout.php:512
 msgid "Sets the width of the actual content within the main content section."
 msgstr "Past de breedte aan van de inhoud binnen deze sectie."
 
@@ -2176,13 +2221,13 @@ msgstr "Past de breedte aan van de inhoud binnen deze sectie."
 msgid "Sets the width of the actual content."
 msgstr "Bepaalt de breedte van de inhoud."
 
-#: configurations/customizer/layout.php:978
+#: configurations/customizer/layout.php:993
 msgid "Sets the width of the grid or list of posts."
 msgstr "Bepaalt de breedte van het raster of de lijst van berichten."
 
 #: configurations/customizer/bbpress.php:141
-#: configurations/customizer/layout.php:517
-#: configurations/customizer/layout.php:998
+#: configurations/customizer/layout.php:532
+#: configurations/customizer/layout.php:1013
 msgid "Sets the width of the sidebar."
 msgstr "Bepaalt de breedte van de sidebar"
 
@@ -2198,26 +2243,26 @@ msgstr "Delen"
 msgid "Shop Price Color"
 msgstr "Productenoverzicht prijskleur"
 
-#: configurations/customizer/layout.php:656
-#: configurations/customizer/layout.php:1071
+#: configurations/customizer/layout.php:671
+#: configurations/customizer/layout.php:1086
 msgid "Show Arrow Icon in Button upon Hover"
 msgstr "Toon pijl in knop bij Hover"
 
-#: configurations/customizer/layout.php:1052
-#: configurations/customizer/layout.php:1279
+#: configurations/customizer/layout.php:1067
+#: configurations/customizer/layout.php:1294
 msgid "Show Author Avatar in Posts"
 msgstr "Toon afbeelding van de auteur bij berichten"
 
-#: configurations/customizer/layout.php:1046
-#: configurations/customizer/layout.php:1273
+#: configurations/customizer/layout.php:1061
+#: configurations/customizer/layout.php:1288
 msgid "Show Author in Posts"
 msgstr "Toon de auteur"
 
-#: configurations/customizer/layout.php:737
+#: configurations/customizer/layout.php:752
 msgid "Show comments in the content footer"
 msgstr "Toon reacties in de Content Footer"
 
-#: configurations/customizer/layout.php:437
+#: configurations/customizer/layout.php:452
 msgid "Show Comments Indicator in Title Sections"
 msgstr "Toon reactie-icoon in titelsecties"
 
@@ -2225,68 +2270,68 @@ msgstr "Toon reactie-icoon in titelsecties"
 msgid "Show Empty Terms"
 msgstr "Toon lege Terms"
 
-#: configurations/customizer/layout.php:1033
+#: configurations/customizer/layout.php:1048
 msgid "Show Excerpt"
 msgstr "Toon samenvatting"
 
-#: configurations/customizer/layout.php:794
+#: configurations/customizer/layout.php:809
 msgid "Show Facebook sharing button"
 msgstr "Toon Facebook sharing-knop"
 
-#: configurations/customizer/layout.php:806
+#: configurations/customizer/layout.php:821
 msgid "Show LinkedIn sharing button"
 msgstr "Toon LinkedIn sharing-knop"
 
-#: configurations/customizer/layout.php:812
+#: configurations/customizer/layout.php:827
 msgid "Show Pinterest sharing button"
 msgstr "Toon Pinterest sharing-knop"
 
-#: configurations/customizer/layout.php:824
+#: configurations/customizer/layout.php:839
 msgid "Show Pocket sharing button"
 msgstr "Toon Pocket sharing-knop"
 
-#: configurations/customizer/layout.php:1058
-#: configurations/customizer/layout.php:1285
+#: configurations/customizer/layout.php:1073
+#: configurations/customizer/layout.php:1300
 msgid "Show Post Date in Posts"
 msgstr "Toon datum in berichten"
 
-#: configurations/customizer/layout.php:669
+#: configurations/customizer/layout.php:684
 msgid "Show post pagination"
 msgstr "Toont bericht-paginering"
 
-#: configurations/customizer/layout.php:818
+#: configurations/customizer/layout.php:833
 msgid "Show Reddit sharing button"
 msgstr "Toon Reddit sharing-knop"
 
-#: configurations/customizer/layout.php:564
+#: configurations/customizer/layout.php:579
 msgid "Show related posts"
 msgstr "Toon gerelateerde berichten"
 
-#: configurations/customizer/layout.php:774
+#: configurations/customizer/layout.php:789
 msgid "Show sharing buttons in posts"
 msgstr "Toon sharing-knoppen in berichten"
 
-#: configurations/customizer/layout.php:431
+#: configurations/customizer/layout.php:446
 msgid "Show Tags and Categories in Title Sections"
 msgstr "Toon tags en categorieën in titelsecties"
 
-#: configurations/customizer/layout.php:731
+#: configurations/customizer/layout.php:746
 msgid "Show the author in the content footer"
 msgstr "Toon de auteur in de Content Footer"
 
-#: configurations/customizer/layout.php:450
+#: configurations/customizer/layout.php:465
 msgid "Show the Author in Title Sections"
 msgstr "Toon de auteur in titelsecties"
 
-#: configurations/customizer/layout.php:425
+#: configurations/customizer/layout.php:440
 msgid "Show the Postdate in Title Sections"
 msgstr "Toon de datum in titelsecties"
 
-#: configurations/customizer/layout.php:800
+#: configurations/customizer/layout.php:815
 msgid "Show Twitter sharing button"
 msgstr "Toon Twitter sharing-knop"
 
-#: configurations/customizer/layout.php:830
+#: configurations/customizer/layout.php:845
 msgid "Show Whatsapp sharing button"
 msgstr "Toon Whatsapp sharing-knop"
 
@@ -2294,28 +2339,32 @@ msgstr "Toon Whatsapp sharing-knop"
 msgid "Shows terms with no posts attached."
 msgstr "Toont Terms zonder een bericht."
 
-#: configurations/customizer/layout.php:1038
+#: configurations/customizer/layout.php:1053
 msgid "Shows the post type under the title of each post."
 msgstr "Toont het type post onder de titel van elke post."
 
-#: configurations/customizer/layout.php:1265
+#: configurations/customizer/layout.php:1280
 msgid "Shows the post type under the title of each result."
 msgstr "Toont het type post onder de titel van elk resultaat."
 
+#: configurations/customizer/layout.php:135
+msgid "Shrink Header when Scrolling"
+msgstr "Header inkrimpen tijdens het scrollen"
+
 #: configurations/customizer/bbpress.php:140
-#: configurations/customizer/layout.php:516
-#: configurations/customizer/layout.php:997
+#: configurations/customizer/layout.php:531
+#: configurations/customizer/layout.php:1012
 msgid "Sidebar Custom Width "
 msgstr "Aangepaste breedte sidebar"
 
-#: configurations/customizer/layout.php:1429
+#: configurations/customizer/layout.php:1444
 msgid "Sidebar Gap Width"
 msgstr "Ruimte tussen Sidebars"
 
 #: configurations/customizer/bbpress.php:129
-#: configurations/customizer/layout.php:505
-#: configurations/customizer/layout.php:986
-#: configurations/customizer/layout.php:1225
+#: configurations/customizer/layout.php:520
+#: configurations/customizer/layout.php:1001
+#: configurations/customizer/layout.php:1240
 #: configurations/customizer/woocommerce.php:76
 #: configurations/customizer/woocommerce.php:135
 msgid "Sidebar Lay-Out"
@@ -2333,11 +2382,11 @@ msgstr "Breedte productweergave"
 msgid "Single Products"
 msgstr "Productweergave"
 
-#: configurations/customizer/layout.php:362
+#: configurations/customizer/layout.php:377
 msgid "Size Featured Image"
 msgstr "Grootte uitgelichte afbeelding"
 
-#: configurations/options.php:135
+#: configurations/options.php:142
 msgid "Slow Down Heartbeat Script"
 msgstr "Heartbeat Script vertragen"
 
@@ -2345,7 +2394,7 @@ msgstr "Heartbeat Script vertragen"
 msgid "Small"
 msgstr "Klein"
 
-#: configurations/customizer/general.php:81
+#: configurations/customizer/general.php:88
 msgid "Social Media"
 msgstr "Social Media"
 
@@ -2357,11 +2406,15 @@ msgstr "Socket"
 msgid "Socket Content"
 msgstr "Socket Content"
 
+#: configurations/register.php:29
+msgid "Socket Menu"
+msgstr "Socket Menu"
+
 #: configurations/customizer/typography.php:224
 msgid "Socket Navigation Menu"
 msgstr "Socket Navigatie-menu"
 
-#: configurations/customizer/layout.php:207
+#: configurations/customizer/layout.php:202
 msgid ""
 "Some styles always show a hamburger menu, while others are only visible in "
 "the mobile menu."
@@ -2389,20 +2442,20 @@ msgstr "Square LD (360x360)"
 msgid "Square SD (480x480)"
 msgstr "Square SD (480x480)"
 
-#: configurations/options.php:80
+#: configurations/options.php:87
 msgid "Structured Data"
 msgstr "Gestructureerde data"
 
-#: configurations/options.php:93
+#: configurations/options.php:100
 #| msgid "Microdata for Website Representation"
 msgid "Structured data for Website Representation"
 msgstr "Gestructureerde data voor representatie website"
 
-#: configurations/customizer/layout.php:1003
+#: configurations/customizer/layout.php:1018
 msgid "Style of posts in archives."
 msgstr "Stijl van de berichten in de archieven."
 
-#: configurations/customizer/layout.php:1238
+#: configurations/customizer/layout.php:1253
 msgid "Style of posts in the search page."
 msgstr "Stijl van de berichten op de zoekpagina."
 
@@ -2414,7 +2467,7 @@ msgstr "Stijlen"
 msgid "Submenu Colors"
 msgstr "Submenu Kleuren"
 
-#: configurations/postmeta.php:145
+#: configurations/postmeta.php:153
 msgid "Subtitle"
 msgstr "Ondertitel"
 
@@ -2426,11 +2479,11 @@ msgstr "Ondertitel typografie"
 msgid "Succesfully synced the options for each site in the network"
 msgstr "De opties zijn voor elke website in het network gesynchroniseerd."
 
-#: configurations/options.php:118
+#: configurations/options.php:125
 msgid "Synchronize"
 msgstr "Synchroniseer"
 
-#: configurations/options.php:120
+#: configurations/options.php:127
 msgid "Synchronize Settings"
 msgstr "Synchroniseer Instellingen"
 
@@ -2442,7 +2495,7 @@ msgstr "Taxonomie"
 msgid "Telephone"
 msgstr "Telefoon"
 
-#: configurations/customizer/general.php:93
+#: configurations/customizer/general.php:100
 msgid "Telephone Number"
 msgstr "Telefoonnummer"
 
@@ -2461,7 +2514,7 @@ msgstr "Tekstkleur Term"
 msgid "Terms"
 msgstr "Terms"
 
-#: configurations/customizer/layout.php:786
+#: configurations/customizer/layout.php:801
 msgid "Text before sharing buttons"
 msgstr "Tekst voor sharing-knoppen"
 
@@ -2479,15 +2532,15 @@ msgstr "Tekstkleur"
 msgid "Text Color with Image Background"
 msgstr "Tekstkleur bij achtergrondafbeelding"
 
-#: configurations/customizer/layout.php:743
+#: configurations/customizer/layout.php:758
 msgid "Text for closed comments"
 msgstr "Tekst als reacties gesloten zijn"
 
-#: configurations/customizer/layout.php:247
+#: configurations/customizer/layout.php:262
 msgid "Text for link to all the results"
 msgstr "Tekst voor link naar alle resultaten"
 
-#: configurations/customizer/layout.php:649
+#: configurations/customizer/layout.php:664
 msgid "Text of Related Posts Button"
 msgstr "Tekst in de knop van gerelateerde berichten"
 
@@ -2495,11 +2548,11 @@ msgstr "Tekst in de knop van gerelateerde berichten"
 msgid "Text Styling"
 msgstr "Tekststijlen"
 
-#: configurations/customizer/layout.php:238
+#: configurations/customizer/layout.php:253
 msgid "Text when nothing is found in search"
 msgstr "Tekst als er niets wordt gevonden in de zoekopdracht"
 
-#: configurations/customizer/layout.php:1122
+#: configurations/customizer/layout.php:1137
 #, php-format
 msgid ""
 "The %s archive is designed by the Elementor Theme Builder. Thus, no layout "
@@ -2514,7 +2567,7 @@ msgid "The %s footer column sidebar."
 msgstr "De %s Footer-kolom Sidebar."
 
 #: configurations/customizer/colors.php:957
-#: configurations/customizer/layout.php:1537
+#: configurations/customizer/layout.php:1552
 #, php-format
 msgid ""
 "The %s is designed by the Elementor Theme Builder. Thus, no settings are "
@@ -2523,7 +2576,7 @@ msgstr ""
 "%s is ontworpen door de Elementor Thema Bouwer. Er worden hier dus geen "
 "instellingen getoond."
 
-#: configurations/customizer/layout.php:843
+#: configurations/customizer/layout.php:858
 #, php-format
 msgid ""
 "The %s page is designed by the Elementor Theme Builder. Thus, no layout "
@@ -2532,7 +2585,7 @@ msgstr ""
 "De %s pagina is ontworpen door de Elementor Thema Bouwer. Er worden hier dus "
 "geen layout instellingen getoond."
 
-#: configurations/customizer/layout.php:1550
+#: configurations/customizer/layout.php:1565
 msgid ""
 "The 404 page is designed by the Elementor Theme Builder. Thus, no settings "
 "are shown here."
@@ -2540,12 +2593,12 @@ msgstr ""
 "De 404 pagina is ontworpen door de Elementor Thema Bouwer. Er worden hier "
 "dus geen instellingen getoond."
 
-#: configurations/customizer/layout.php:1011
+#: configurations/customizer/layout.php:1026
 msgid "The amount of columns used for displaying posts."
 msgstr ""
 "Het aantal kolommen dat wordt gebruikt voor het weergeven van berichten."
 
-#: configurations/postmeta.php:125
+#: configurations/postmeta.php:132
 msgid ""
 "The Content Footer usually shows elements such as comments, the author and "
 "so forth."
@@ -2553,26 +2606,26 @@ msgstr ""
 "De Content Footer toont meestal elementen zoals de reacties, de auteur, "
 "enzovoort."
 
-#: configurations/customizer/layout.php:1519
+#: configurations/customizer/layout.php:1534
 msgid "The default bottom padding for primary elementor sections."
 msgstr "De standaard bottom-padding voor Elementor Secties."
 
-#: configurations/customizer/layout.php:1511
+#: configurations/customizer/layout.php:1526
 msgid "The default top padding for primary elementor sections."
 msgstr "De standaard top-padding voor Elementor Secties."
 
-#: configurations/postmeta.php:81
+#: configurations/postmeta.php:84
 msgid ""
 "The Footer is the main footer of the site, usually containing widgets, "
 "copyright and more."
 msgstr ""
 "De Footer staat onderdaan de site, meestal met widgets, copyright en meer."
 
-#: configurations/customizer/layout.php:585
+#: configurations/customizer/layout.php:600
 msgid "The Gap Width Between the Related Posts,"
 msgstr "De ruimte tussen gerelateerde berichten."
 
-#: configurations/customizer/layout.php:1426
+#: configurations/customizer/layout.php:1441
 msgid "The gap width between the sidebars."
 msgstr "De ruimte tussen de Sidebars"
 
@@ -2584,15 +2637,15 @@ msgstr ""
 "De algemene instellingen voor het thema. Ben je op zoek naar lay-out "
 "instellingen? Deze staan in de Customizer."
 
-#: configurations/postmeta.php:70
+#: configurations/postmeta.php:72
 msgid ""
 "The Header is the main header of the site, usually containing the main "
 "navigation."
 msgstr ""
 "De Header is het begin van de site, meestal met daarin de hoofdnavigatie."
 
-#: configurations/customizer/layout.php:1063
-#: configurations/customizer/layout.php:1290
+#: configurations/customizer/layout.php:1078
+#: configurations/customizer/layout.php:1305
 msgid "The label for this button. Leave empty to remove the button."
 msgstr "Het label voor deze knop. Laat leeg om de knop te verwijderen."
 
@@ -2608,12 +2661,12 @@ msgstr ""
 msgid "The maximum number of words for excerpts in post archives."
 msgstr "Het maximum aantal woorden voor samenvattingen in postarchieven."
 
-#: configurations/postmeta.php:114
+#: configurations/postmeta.php:120
 msgid "The Related Section usually contains related posts and post navigation."
 msgstr ""
 "De gerelateerde sectie bevat meestal gerelateerde berichten en postnavigatie."
 
-#: configurations/customizer/layout.php:1562
+#: configurations/customizer/layout.php:1577
 msgid ""
 "The search page is designed by the Elementor Theme Builder. Thus, no "
 "settings are shown here."
@@ -2648,7 +2701,7 @@ msgstr "De sidebar voor de zoekpagina."
 msgid "The sidebar for the %s archives."
 msgstr "De sidebar voor de %s archieven."
 
-#: configurations/postmeta.php:103
+#: configurations/postmeta.php:108
 msgid "The sidebar is usually shown left or right of your pages."
 msgstr "De zijbalk wordt meestal links of rechts van je pagina's getoond."
 
@@ -2668,27 +2721,27 @@ msgstr "De tekst voor elke Term."
 msgid "The text for the first breadcrumb."
 msgstr "De tekst van de eerste broodkruimel."
 
-#: configurations/customizer/layout.php:1076
+#: configurations/customizer/layout.php:1091
 msgid "The text if no posts are found."
 msgstr "De tekst als er geen berichten worden gevonden."
 
-#: configurations/customizer/layout.php:663
+#: configurations/customizer/layout.php:678
 msgid "The text shown when no related posts are found."
 msgstr ""
 "De tekst die wordt weergegeven als er geen gerelateerde berichten worden "
 "gevonden."
 
-#: configurations/customizer/layout.php:650
+#: configurations/customizer/layout.php:665
 msgid "The title inside the buttons. Leave empty to remove the button."
 msgstr "De titel in de knoppen. Laat leeg om de knop te verwijderen."
 
-#: configurations/postmeta.php:137
+#: configurations/postmeta.php:145
 msgid ""
 "The title section displays your title, featured images, meta information and "
 "more."
 msgstr "De titelsectie toont uw titel, afbeeldingen, meta-informatie en meer."
 
-#: configurations/postmeta.php:92
+#: configurations/postmeta.php:96
 msgid ""
 "The Title Section usually shows elements such as the title, the featured "
 "image and so forth."
@@ -2696,11 +2749,11 @@ msgstr ""
 "De titelsectie toont meestal elementen zoals de titel, de uitgelichte "
 "afbeelding, enzovoort."
 
-#: configurations/customizer/layout.php:1019
+#: configurations/customizer/layout.php:1034
 msgid "The width of the gap between various posts."
 msgstr "De breedte van de ruimte tussen de verschillende berichten."
 
-#: configurations/options.php:153
+#: configurations/options.php:160
 msgid "Theme Optimizations"
 msgstr "Thema-optimalisaties"
 
@@ -2722,7 +2775,7 @@ msgstr ""
 msgid "This color applies to the default mobile menu."
 msgstr "Deze kleur is van toepassing op het standaard mobiele menu."
 
-#: configurations/options.php:86
+#: configurations/options.php:93
 #| msgid ""
 #| "This determines what microdata is used for the website logo, usually "
 #| "representing the organization. Select none to discard."
@@ -2734,7 +2787,7 @@ msgstr ""
 "logo, dat meestal de organisatie vertegenwoordigt. Selecteer geen om uit te "
 "schakelen."
 
-#: configurations/options.php:116
+#: configurations/options.php:123
 msgid ""
 "This function synchronizes Waterfall Customizer and Option settings for all "
 "the sites registered in a multisite network. It will use the options of the "
@@ -2760,7 +2813,7 @@ msgstr ""
 msgid "This logo is used if you have set up a transparent header."
 msgstr "Dit logo wordt gebruikt als je een transparante header hebt."
 
-#: configurations/options.php:99
+#: configurations/options.php:106
 #| msgid "This removes the microdata for the selected post types."
 msgid "This removes the Structured data for the selected post types."
 msgstr "Dit verwijdert de microdata voor de geselecteerde post-types."
@@ -2777,12 +2830,12 @@ msgstr ""
 msgid "This site is not a multisite!"
 msgstr "Deze website is niet een Multisite"
 
-#: configurations/customizer/layout.php:370
+#: configurations/customizer/layout.php:385
 msgid ""
 "This will be the minimum height when a page does not have a featured image."
 msgstr "Dit is de minimale hoogte wanneer een pagina geen afbeelding heeft."
 
-#: configurations/customizer/layout.php:378
+#: configurations/customizer/layout.php:393
 msgid ""
 "This will be the minimum height when a page or post has a featured image."
 msgstr ""
@@ -2800,7 +2853,7 @@ msgstr "Drie kolommen"
 msgid "Three quarter of screen height"
 msgstr "Driekwart van de schermhoogte"
 
-#: configurations/customizer/layout.php:1417
+#: configurations/customizer/layout.php:1432
 msgid "Three sidebars"
 msgstr "Drie Sidebars"
 
@@ -2812,15 +2865,15 @@ msgstr "Thumbnail"
 msgid "Tiny"
 msgstr "Zeer klein"
 
-#: configurations/customizer/layout.php:757
+#: configurations/customizer/layout.php:772
 msgid "Title above comments"
 msgstr "Titel boven reacties"
 
-#: configurations/customizer/layout.php:766
+#: configurations/customizer/layout.php:781
 msgid "Title above comments form"
 msgstr "Titel boven reactieformulier"
 
-#: configurations/customizer/layout.php:570
+#: configurations/customizer/layout.php:585
 msgid "Title Above Related Posts"
 msgstr "Titel boven gerelateerde berichten"
 
@@ -2839,47 +2892,47 @@ msgstr "Titelkleuren"
 msgid "Title Description"
 msgstr "Titel Beschrijving"
 
-#: configurations/postmeta.php:140 configurations/customizer/bbpress.php:23
+#: configurations/postmeta.php:148 configurations/customizer/bbpress.php:23
 #: configurations/customizer/colors.php:346
-#: configurations/customizer/layout.php:317
-#: configurations/customizer/layout.php:1144
+#: configurations/customizer/layout.php:332
+#: configurations/customizer/layout.php:1159
 msgid "Title Section"
 msgstr "Titelgedeelte"
 
-#: configurations/customizer/layout.php:369
-#: configurations/customizer/layout.php:1180
+#: configurations/customizer/layout.php:384
+#: configurations/customizer/layout.php:1195
 msgid "Title Section Height"
 msgstr "Hoogte titelsectie"
 
-#: configurations/customizer/layout.php:443
+#: configurations/customizer/layout.php:458
 msgid "Title Section Sharing Buttons"
 msgstr "Sharing-knoppen titelsectie"
 
 #: configurations/customizer/bbpress.php:67
-#: configurations/customizer/layout.php:393
-#: configurations/customizer/layout.php:915
-#: configurations/customizer/layout.php:1186
+#: configurations/customizer/layout.php:408
+#: configurations/customizer/layout.php:930
+#: configurations/customizer/layout.php:1201
 msgid "Title Section Text Align"
 msgstr "Tekstuitlijning titelsectie"
 
-#: configurations/customizer/layout.php:387
-#: configurations/customizer/layout.php:1172
+#: configurations/customizer/layout.php:402
+#: configurations/customizer/layout.php:1187
 msgid "Title Section Width"
 msgstr "Breedte titelsectie"
 
-#: configurations/customizer/layout.php:377
+#: configurations/customizer/layout.php:392
 msgid "Title Section with Featured Height"
 msgstr " Hoogte titelsectie met uitgelichte afbeelding"
 
-#: configurations/customizer/layout.php:285
+#: configurations/customizer/layout.php:300
 msgid "Top Description"
 msgstr "Topbeschrijving"
 
-#: configurations/customizer/layout.php:292
+#: configurations/customizer/layout.php:307
 msgid "Top Description Position"
 msgstr "Positie beschrijving"
 
-#: configurations/customizer/layout.php:255
+#: configurations/customizer/layout.php:270
 msgid "Top Header"
 msgstr "Top header"
 
@@ -2887,7 +2940,7 @@ msgstr "Top header"
 msgid "Top Menu"
 msgstr "Topmenu"
 
-#: configurations/customizer/layout.php:274
+#: configurations/customizer/layout.php:289
 msgid "Top Menu Position"
 msgstr "Positie Top Menu"
 
@@ -2895,7 +2948,7 @@ msgstr "Positie Top Menu"
 msgid "Topic"
 msgstr "Onderwerp"
 
-#: configurations/customizer/layout.php:128
+#: configurations/customizer/layout.php:117
 msgid "Transparent Header"
 msgstr "Transparente Header"
 
@@ -2907,7 +2960,7 @@ msgstr "Transparent Logo"
 msgid "Transparent Mobile Logo Image"
 msgstr "Transparant Logo Mobile"
 
-#: classes/views/class-nothing.php:60 configurations/customizer/layout.php:1364
+#: classes/views/class-nothing.php:60 configurations/customizer/layout.php:1379
 msgid "Try visiting another page or searching."
 msgstr "Probeer een andere pagina te bezoeken of te zoeken."
 
@@ -2915,7 +2968,7 @@ msgstr "Probeer een andere pagina te bezoeken of te zoeken."
 msgid "Twitter"
 msgstr "Twitter"
 
-#: configurations/customizer/general.php:111
+#: configurations/customizer/general.php:118
 msgid "Twitter Profile Url"
 msgstr "Twitter Profiel Url"
 
@@ -2927,7 +2980,7 @@ msgstr "Twee"
 msgid "Two columns"
 msgstr "Twee kolommen"
 
-#: configurations/customizer/layout.php:1416
+#: configurations/customizer/layout.php:1431
 msgid "Two sidebars"
 msgstr "Twee Sidebars"
 
@@ -2943,7 +2996,7 @@ msgstr "Typografie"
 msgid "UHD (3840x2560)"
 msgstr "UHD (3840x2560)"
 
-#: configurations/customizer/layout.php:758
+#: configurations/customizer/layout.php:773
 msgid ""
 "Use {number} and {title} tags to display the number of comments and post "
 "title respectively."
@@ -2951,19 +3004,19 @@ msgstr ""
 "Gebruik {number} en {titel} tags om respectievelijk het aantal opmerkingen "
 "en de bericht-titel weer te geven."
 
-#: classes/views/class-header.php:108 configurations/customizer/layout.php:244
+#: classes/views/class-header.php:112 configurations/customizer/layout.php:259
 msgid "View All Results"
 msgstr "Toon alle resultaten"
 
-#: configurations/customizer/layout.php:647
-#: configurations/customizer/layout.php:1062
-#: configurations/customizer/layout.php:1289
+#: configurations/customizer/layout.php:662
+#: configurations/customizer/layout.php:1077
+#: configurations/customizer/layout.php:1304
 msgid "View Post"
 msgstr "Bekijken"
 
 #. Name of the theme
 #: configurations/options.php:23
-#: classes/plugins/class-waterfall-elementor.php:97
+#: classes/plugins/class-waterfall-elementor.php:266
 #: configurations/customizer/general.php:10
 msgid "Waterfall"
 msgstr "Waterfall"
@@ -2976,7 +3029,7 @@ msgstr "Thema Instellingen"
 msgid "Whatsapp"
 msgstr "Whatsapp"
 
-#: configurations/customizer/general.php:159
+#: configurations/customizer/general.php:166
 msgid "Whatsapp Number"
 msgstr "Whatsapp nummer"
 
@@ -2988,19 +3041,19 @@ msgstr "Widget titels"
 msgid "Widgets"
 msgstr "Widgets"
 
-#: configurations/customizer/layout.php:963
+#: configurations/customizer/layout.php:978
 msgid "Width of container in posts archives."
 msgstr "Breedte van de container in archieven"
 
-#: configurations/customizer/layout.php:1169
+#: configurations/customizer/layout.php:1184
 msgid "Width of header in search archives."
 msgstr "Breedte van de titelsectie in de zoekarchieven."
 
-#: configurations/customizer/layout.php:1341
+#: configurations/customizer/layout.php:1356
 msgid "Width of the 404 Header"
 msgstr "Breedte van de 404 Header"
 
-#: configurations/customizer/layout.php:1230
+#: configurations/customizer/layout.php:1245
 msgid "Width of the container for search results."
 msgstr "Breedte van de container voor zoekresultaten"
 
@@ -3008,15 +3061,15 @@ msgstr "Breedte van de container voor zoekresultaten"
 msgid "Width of the container of the content section."
 msgstr "Breedte van de container in de content-sectie"
 
-#: configurations/customizer/layout.php:475
+#: configurations/customizer/layout.php:490
 msgid "Width of the container of the whole main content section."
 msgstr "Breedte van de container voor de gehele sectie,"
 
-#: configurations/customizer/layout.php:722
+#: configurations/customizer/layout.php:737
 msgid "Width of the content footer."
 msgstr "Breedte van de Content Footer"
 
-#: configurations/customizer/layout.php:384
+#: configurations/customizer/layout.php:399
 msgid "Width of the content in the Title Section"
 msgstr "Breedte van de inhoud in de titelsectie."
 
@@ -3028,11 +3081,11 @@ msgstr "Breedte van het grid met de producten en sidebar."
 msgid "Width of the product Display."
 msgstr "Breedte van de weergave van een product"
 
-#: configurations/customizer/layout.php:555
+#: configurations/customizer/layout.php:570
 msgid "Width of the related content section."
 msgstr "Breedte van Related Content sectie."
 
-#: configurations/customizer/layout.php:898
+#: configurations/customizer/layout.php:913
 msgid "Width of title section in posts archives."
 msgstr "Breedte van het titel gedeelte in bericht archieven."
 
@@ -3060,7 +3113,7 @@ msgstr "Producten Archief WooCommerce"
 msgid "Woocommerce Product Sidebar"
 msgstr "Zijbalk voor WooCommerce Producten"
 
-#: classes/views/class-nothing.php:51 configurations/customizer/layout.php:1356
+#: classes/views/class-nothing.php:51 configurations/customizer/layout.php:1371
 msgid "Woops! Nothing found here..."
 msgstr "Oeps! Hier is niets gevonden..."
 
@@ -3070,7 +3123,7 @@ msgstr "Oeps! Hier is niets gevonden..."
 msgid "Yes"
 msgstr "Ja"
 
-#: configurations/customizer/layout.php:568
+#: configurations/customizer/layout.php:583
 msgid "You also might like"
 msgstr "Misschien vind je dit ook leuk"
 
@@ -3078,6 +3131,6 @@ msgstr "Misschien vind je dit ook leuk"
 msgid "Youtube"
 msgstr "Youtube"
 
-#: configurations/customizer/general.php:123
+#: configurations/customizer/general.php:130
 msgid "Youtube Channel Url"
 msgstr "Url van Youtube kanaal"

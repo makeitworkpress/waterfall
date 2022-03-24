@@ -23,12 +23,14 @@ class Header extends Base {
                 'header_fixed',
                 'header_logo_float',
                 'header_headroom',
+                'header_menu_collapse',
                 'header_menu_float',
                 'header_menu_hamburger',
                 'header_menu_style',
                 'header_search',
                 'header_search_all',
                 'header_search_none',
+                'header_shrink',
                 'header_social',
                 'header_top_description',
                 'header_top_description_float',  
@@ -80,10 +82,11 @@ class Header extends Base {
                     'alt'                   => $alt,
                     'attributes'            => ['itemtype' => $represents === 'person' ? 'http://schema.org/Person' : 'http://schema.org/Organization'],
                     'float'                 => $this->layout['header_logo_float'] ? $this->layout['header_logo_float'] : 'left',
-                    'default'               => $logo ? $logo : ['src' => get_template_directory_uri() . '/assets/img/waterfall.png', 'height' => 64, 'width' => 306],
+                    'default'               => $logo,
                     'default_transparent'   => $this->customizer['logo_transparent'],
                     'mobile'                => $this->customizer['logo_mobile'], 
                     'mobile_transparent'    => $this->customizer['logo_mobile_transparent'],
+                    'mode'                  => $logo ? 'logo' : 'title',
                     'schema'                => $represents ? true : false
                 ]
             ],
@@ -91,6 +94,7 @@ class Header extends Base {
                 'atom'          => 'menu',
                 'properties'    => [
                     'args'          => ['theme_location' => 'header-menu'], 
+                    'collapse'      => $this->layout['header_menu_collapse'] ? true : false,
                     'float'         => $this->layout['header_menu_float'] ? $this->layout['header_menu_float'] : 'right',
                     'hamburger'     => $this->layout['header_menu_hamburger'] ? $this->layout['header_menu_hamburger'] : 'mobile',
                     'indicator'     => $this->layout['header_disable_arrow_down'] ? false : true,
@@ -142,11 +146,13 @@ class Header extends Base {
         }        
         
         // Disable logo or menu
-        if( $this->layout['header_disable_logo'] )
+        if( $this->layout['header_disable_logo'] ) {
             unset( $atoms['logo'] );    
+        }
     
-        if( $this->layout['header_disable_menu'] )
+        if( $this->layout['header_disable_menu'] ) {
             unset( $atoms['menu'] );
+        }
         
         // Set-up our transparency
         $transparent    = (isset($this->meta['transparent_header']) && $this->meta['transparent_header'] === true) ? true : $this->layout['header_transparent'];
@@ -166,6 +172,7 @@ class Header extends Base {
             'container'     => $this->layout['header_width'] === 'default' ? true : false,
             'headroom'      => $this->layout['header_headroom'],
             'fixed'         => $this->layout['header_fixed'],
+            'shrink'        => $this->layout['header_shrink'],
             'transparent'   => $transparent
         ];        
 

@@ -21,8 +21,9 @@ class Ajax {
         foreach( $methods as $method ) {
             
             // Skip our default methods
-            if( in_array($method, ['__construct', 'addMessage', 'addError', 'resolve', 'hasErrors']) )
+            if( in_array($method, ['__construct', 'addMessage', 'addError', 'resolve', 'hasErrors']) ) {
                 continue;
+            }
             
             // If a method is public, also add
             if( strpos($method, 'public') == 0 ) {
@@ -63,20 +64,10 @@ class Ajax {
             
             update_post_meta($id, 'components_rating_count', $newCount);
             update_post_meta($id, 'components_rating', $newRating);
-
-            $output = Build::atom( 'rate', ['count' => $newCount, 'value' => $newRating, 'id' => $id, 'max' => $max, 'min' => $min], false );
             
-            wp_send_json_success( ['rating' => $newRating, 'count' => $newCount, 'output' => $output] );
+            wp_send_json_success( ['rating' => $newRating, 'count' => $newCount] );
         
         }
-        
-    }
-    
-    /**
-     * Loads posts that are filtered
-     * @Todo implement
-     */
-    public function public_filter(): void {
         
     }
     

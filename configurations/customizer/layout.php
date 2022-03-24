@@ -84,6 +84,7 @@ $layout = [
                         'header_fixed',
                         'header_border',
                         'header_headroom',
+                        'header_shrink',
                         'header_transparent',
                         'header_logo_float',
                         'header_disable_logo',
@@ -112,6 +113,12 @@ $layout = [
                 ],
                 [
                     'default'       => '',
+                    'id'            => 'header_transparent',
+                    'title'         => __('Transparent Header', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                 
+                [
+                    'default'       => '',
                     'id'            => 'header_border',
                     'title'         => __('Disable Header Bottom Border', 'waterfall'),
                     'type'          => 'checkbox'
@@ -119,15 +126,15 @@ $layout = [
                 [
                     'default'       => '',
                     'id'            => 'header_headroom',
-                    'title'         => __('Collapse Header when Scrolling', 'waterfall'),
+                    'title'         => __('Hide Header when Scrolling', 'waterfall'),
                     'type'          => 'checkbox'
                 ], 
                 [
                     'default'       => '',
-                    'id'            => 'header_transparent',
-                    'title'         => __('Transparent Header', 'waterfall'),
+                    'id'            => 'header_shrink',
+                    'title'         => __('Shrink Header when Scrolling', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
+                ],                
                 [
                     'default'       => 'left',
                     'id'            => 'header_logo_float',
@@ -160,6 +167,7 @@ $layout = [
                         'header_menu_float',
                         'header_disable_arrow_down',
                         'header_disable_menu',
+                        'header_menu_collapse',
                         'header_menu_hamburger',
                         'header_menu_style',
                         'header_disable_menu'
@@ -176,19 +184,6 @@ $layout = [
                         'right'     => __('Right', 'waterfall'),
                     ]
                 ],
-                [
-                    'default'       => '',
-                    'id'            => 'header_disable_arrow_down',
-                    'title'         => __('Disable Dropdown Indicators', 'waterfall'),
-                    'description'   => __('Disables the downward arrow that appears for menu items with children.', 'waterfall'),
-                    'type'          => 'checkbox'
-                ],                                      
-                [
-                    'default'       => '',
-                    'id'            => 'header_disable_menu',
-                    'title'         => __('Disable Header Menu', 'waterfall'),
-                    'type'          => 'checkbox'
-                ],               
                 [
                     'default'       => 'mobile',
                     'id'            => 'header_menu_hamburger',
@@ -214,6 +209,26 @@ $layout = [
                         'right'     => __('Right (Always Hamburger)', 'waterfall'),
                     ]
                 ],
+                [
+                    'default'       => '',
+                    'id'            => 'header_menu_collapse',
+                    'title'         => __('Collapse Submenus', 'waterfall'),
+                    'description'   => __('Collapses submenus by default, which can be useful in mobile menus. Be aware that this makes parent items unclickable.', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                                
+                [
+                    'default'       => '',
+                    'id'            => 'header_disable_arrow_down',
+                    'title'         => __('Disable Dropdown Indicators', 'waterfall'),
+                    'description'   => __('Disables the downward arrow that appears for menu items with children.', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],                                      
+                [
+                    'default'       => '',
+                    'id'            => 'header_disable_menu',
+                    'title'         => __('Disable Header Menu', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],               
                 [
                     'default'       => '',
                     'id'            => 'header_search_header',

@@ -48,7 +48,14 @@
     .atom-logo-default_transparent, .atom-logo-tablet_transparent, .atom-logo-mobile_transparent {
         top: 8px;
     }
+    .atom-logo-title {
+        display: block;
+        font-size: 1.618em;
+        line-height: inherit;
+        margin: -@grid-space*0.25 @grid-space*0.5 -@grid-space*0.25 0;
+    }
     .atom-menu {
+        position: static;
         .atom-search-expanded .fa-circle-o-notch {
             top: @grid-space*0.5;
         }
@@ -77,7 +84,7 @@
         }
     }
     .atom-menu-hamburger {
-        margin: 17px 4px;
+        margin: 25px 4px;
     }
     .atom-search h4 {
         margin-bottom: 0;
@@ -115,4 +122,15 @@
             }     
         } 
     }   
+}
+
+/**
+ * Scrolling behaviour
+ */
+.molecule-header-scrolled {
+    &.molecule-header-shrink {
+        .atom-menu-hamburger {
+            margin: 17px 4px;
+        }       
+    }
 }

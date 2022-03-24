@@ -59,7 +59,14 @@ $customizer = [
                     'id'            => 'footer_logo',
                     'title'         => __('Footer Logo Image', 'waterfall'),
                     'type'          => 'media',
-                ]    
+                ],
+                [
+                    'default'       => '',
+                    'id'            => 'footer_logo_url',
+                    'title'         => __('Custom Footer Logo Link', 'waterfall'),
+                    'description'   => __('Enter a custom link for the footer logo here. Defaults to the current site URL.', 'waterfall'),
+                    'type'          => 'url',
+                ]                                                
             ]              
         ],
         'background_image' => [

@@ -42,7 +42,7 @@ class Boot {
         ] );
         
         // Define Constants
-        $folder = wp_normalize_path( substr( dirname(__FILE__), strpos(__FILE__, 'wp-content') + strlen('wp-content') ) );      
+        $folder = wp_normalize_path( substr( dirname(__DIR__, 1), strpos(__FILE__, 'wp-content') + strlen('wp-content') ) );    
         defined( 'WP_COMPONENTS_ASSETS' ) or define( 'WP_COMPONENTS_ASSETS', content_url() . $folder . '/assets/' );
         defined( 'WP_COMPONENTS_PATH' ) or define( 'WP_COMPONENTS_PATH', plugin_dir_path( __FILE__ ) );
         defined( 'WP_COMPONENTS_LANGUAGE' ) or define( 'WP_COMPONENTS_LANGUAGE', $this->configurations['language'] );
@@ -51,7 +51,7 @@ class Boot {
         $this->ajax = new Ajax();
 
         // Load our functions
-        require_once( WP_COMPONENTS_PATH . 'functions.php' );
+        require_once( WP_COMPONENTS_PATH . 'includes/functions.php' );
         
         // Register Hooks
         $this->hook();
@@ -64,39 +64,36 @@ class Boot {
      */
     private function hook(): void {
         
-        add_action( 'wp_enqueue_scripts', function() {
-
-            // If we are debugging, load the full scripts
-            $suffix = defined('WP_DEBUG') && WP_DEBUG ? '' : '.min';  
+        add_action( 'wp_enqueue_scripts', function(): void {
             
             // Enqueue tinyslider CSS and JS
             if( $this->configurations['tinyslider'] ) {
-                wp_enqueue_style( 'tinyslider-css', WP_COMPONENTS_ASSETS . 'css/vendor/tinyslider.min.css');
-                wp_enqueue_script( 'tinyslider-js', WP_COMPONENTS_ASSETS . 'js/vendor/tinyslider.min.js', [], NULL, true);
+                wp_enqueue_style( 'tinyslider-css', WP_COMPONENTS_ASSETS . 'vendor/css/tinyslider.min.css');
+                wp_enqueue_script( 'tinyslider-js', WP_COMPONENTS_ASSETS . 'vendor/js/tinyslider.min.js', [], NULL, true);
             }
             
             // Enqueue scrollreveal JS
             if( $this->configurations['scrollreveal'] ) {
-                wp_enqueue_script( 'scrollreveal-js', WP_COMPONENTS_ASSETS . 'js/vendor/scrollreveal.min.js', [], NULL, true);
+                wp_enqueue_script( 'scrollreveal-js', WP_COMPONENTS_ASSETS . 'vendor/js/scrollreveal.min.js', [], NULL, true);
             }           
             
             // Enqueue our default components CSS
             if( $this->configurations['css'] ) {
-                wp_enqueue_style( 'components-css', WP_COMPONENTS_ASSETS . 'css/wfc.min.css');
+                wp_enqueue_style( 'wpc-css', WP_COMPONENTS_ASSETS . 'css/wpc-styles.min.css');
             }
 
             if( $this->configurations['fontawesome'] ) {
-                wp_enqueue_style( 'font-awesome', WP_COMPONENTS_ASSETS . 'css/vendor/font-awesome.min.css');
+                wp_enqueue_style( 'font-awesome', WP_COMPONENTS_ASSETS . 'vendor/css/font-awesome.min.css');
             }
             
             // Enqueue our animate CSS
             if( $this->configurations['animate'] ) {
-                wp_enqueue_style( 'animate-css', WP_COMPONENTS_ASSETS . 'css/vendor/animate.min.css');
+                wp_enqueue_style( 'animate-css', WP_COMPONENTS_ASSETS . 'vendor/css/animate.min.css');
             } 
             
             // Enqueue our hover CSS
             if( $this->configurations['hover'] ) {
-                wp_enqueue_style( 'hover-css', WP_COMPONENTS_ASSETS . 'css/vendor/hover.min.css');
+                wp_enqueue_style( 'hover-css', WP_COMPONENTS_ASSETS . 'vendor/css/hover.min.css');
             }  
             
             // Registers the maps script
@@ -107,7 +104,7 @@ class Boot {
             // Enqueue our default components JS
             if( $this->configurations['js'] ) {
                 
-                wp_enqueue_script( 'wpc-js', WP_COMPONENTS_ASSETS . 'js/wpc' . $suffix . '.js', ['jquery'], NULL, true );
+                wp_enqueue_script( 'wpc-js', WP_COMPONENTS_ASSETS . 'js/wpc-scripts.js', ['jquery'], NULL, true );
 
                 // Localize our script
                 wp_localize_script( 'wpc-js', 'wpc', [
@@ -122,15 +119,13 @@ class Boot {
         } );     
         
         // Specific WooCommerce Based Actions
-        if( class_exists('WooCommerce') ) {
-            
+        if( class_exists('WooCommerce') ) { 
             // Counter that updates the mini cart with ajax
             add_filter('woocommerce_add_to_cart_fragments', function($fragments) {
                 $fragments['span.atom-cart-count'] = '<span class="atom-cart-count">' . WC()->cart->get_cart_contents_count() . '</span>'; 
                 
                 return $fragments;
-            });
-            
+            });  
         }        
         
     }   
