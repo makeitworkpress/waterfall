@@ -217,7 +217,7 @@ class Waterfall_View extends Waterfall_Base {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag("js", new Date());
-                gtag("config", "' . $analytics . '", {"anonymize_ip": true });
+                gtag("config", "' . esc_attr($analytics['analytics']) . '", {"anonymize_ip": true });
             </script>';
         }     
 
