@@ -266,7 +266,7 @@ class Singular extends Base {
         }
 
         // This is a button  
-        if( isset($this->meta['page_header_buttons'][0]['text']) && isset($this->meta['page_header_buttons'][0]['link']) ) {
+        if( isset($this->meta['page_header_buttons'][0]['text']) && $this->meta['page_header_buttons'][0]['text'] ) {
 
             $args['atoms']['buttons_open'] = ['atom' => 'string', 'properties' => ['string' => '<div class="main-header-buttons">']];
 
