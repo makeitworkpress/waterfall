@@ -180,7 +180,7 @@ $colors = [
                 ],                
                 [
                     'selector'      => [
-                        'min-width' => $menu === 'tablet' ? '1025px' : '768px',
+                        'min-width' => $menu === 'tablet' ? '1081px' : '768px',
                         'selector'  => '.molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-default .menu > li > a, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-search-expand',
                     ],
                     'default'       => '',
@@ -191,7 +191,7 @@ $colors = [
                 ],
                 [
                     'selector'      => [
-                        'min-width' => $menu === 'tablet' ? '1025px' : '768px',
+                        'min-width' => $menu === 'tablet' ? '1081px' : '768px',
                         'selector'  => '.molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-default .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-menu.atom-menu-dark .menu > li > a:hover, .molecule-header-top.molecule-header-transparent .molecule-header-atoms .atom-search-expand:hover',
                     ],
                     'default'       => '',
