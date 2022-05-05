@@ -231,7 +231,7 @@ class Singular extends Base {
                 'atom'              => 'date', 
                 'properties'        => [
                     'attributes'    => ['class' => 'entry-time'], 
-                    'date'          => $this->layout['header_date_prefix'] . ' ' . get_the_modified_date(),
+                    'date'          => $this->layout['header_date_prefix'] . ' ' . get_the_date(),
                     'schema'        => in_array($this->type, $this->no_schema) ? false : true
                 ]
             ];    
