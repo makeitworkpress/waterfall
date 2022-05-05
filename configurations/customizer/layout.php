@@ -345,6 +345,9 @@ if( $types ) {
                         $type . '_header_breadcrumbs_archive',
                         $type . '_header_breadcrumbs_terms',
                         $type . '_header_date',
+                        $type . '_header_date_prefix',
+                        $type . '_header_date_modified',
+                        $type . '_header_date_modified_prefix',
                         $type . '_header_terms',
                         $type . '_header_comments',
                         $type . '_header_share',
@@ -437,9 +440,27 @@ if( $types ) {
                 [
                     'default'       => '',
                     'id'            => $type . '_header_date',
-                    'title'         => __('Show the Postdate in Title Sections', 'waterfall'),
+                    'title'         => __('Show the Publication Date in Title Sections', 'waterfall'),
                     'type'          => 'checkbox'
                 ],
+                [
+                    'default'       => '',
+                    'id'            => $type . '_header_date_prefix',
+                    'title'         => __('Text in front of the Publication Date', 'waterfall'),
+                    'type'          => 'input'
+                ],                  
+                [
+                    'default'       => '',
+                    'id'            => $type . '_header_date_modified',
+                    'title'         => __('Show the Last Modified Date in Title Sections', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],
+                [
+                    'default'       => '',
+                    'id'            => $type . '_header_date_modified_prefix',
+                    'title'         => __('Text in front of the Last Modified Date', 'waterfall'),
+                    'type'          => 'input'
+                ],                                  
                 [
                     'default'       => '',
                     'id'            => $type . '_header_terms',

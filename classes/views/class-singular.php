@@ -58,6 +58,9 @@ class Singular extends Base {
                 'header_breadcrumbs_terms', 
                 'header_comments',
                 'header_date', 
+                'header_date_prefix', 
+                'header_date_modified', 
+                'header_date_modified_prefix', 
                 'header_disable_title', 
                 'header_featured', 
                 'header_height',
@@ -222,17 +225,34 @@ class Singular extends Base {
                 ]
             ];   
         }
-   
-        // Time
+        // Date Published
         if( $this->layout['header_date'] ) {
             $args['atoms']['date']      = [
                 'atom'              => 'date', 
                 'properties'        => [
                     'attributes'    => ['class' => 'entry-time'], 
+                    'date'          => $this->layout['header_date_prefix'] . ' ' . get_the_modified_date(),
                     'schema'        => in_array($this->type, $this->no_schema) ? false : true
                 ]
             ];    
         }
+
+        // Date Modified
+        if( $this->layout['header_date_modified'] ) {
+            $args['atoms']['date_modified']      = [
+                'atom'              => 'date', 
+                'properties'        => [
+                    'attributes'    => [
+                        'class'         => 'entry-time',
+                        'datetime'      => get_the_modified_date('c'),
+                        'itemprop'      => 'dateModified'                           
+                    ], 
+                    'date'          => $this->layout['header_date_modified_prefix'] . ' ' . get_the_modified_date(),
+                    'schema'        => in_array($this->type, $this->no_schema) ? false : true
+                ]
+            ];    
+        }        
+
     
         // Terms
         if( $this->layout['header_terms'] ) {

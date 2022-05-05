@@ -75,7 +75,16 @@ class Waterfall_Elementor extends Waterfall_Base {
      */
     private function set_shared_meta() {
 
-        $meta = ['content_width', 'header_disable', 'transparent_header', 'content_header_disable', 'content_sidebar_disable', 'content_related_disable', 'content_footer_disable', 'footer_disable'];
+        $meta = [
+            'content_width', 
+            'header_disable', 
+            'transparent_header', 
+            'content_header_disable', 
+            'content_sidebar_disable', 
+            'content_related_disable', 
+            'content_footer_disable', 
+            'footer_disable'
+        ];
         $fields = isset($this->options['options']['post_meta']['fields']['sections']['layout']['fields']) && $this->options['options']['post_meta']['fields']['sections']['layout']['fields'] ? $this->options['options']['post_meta']['fields']['sections']['layout']['fields'] : [];
 
         foreach($fields as $field ) {
@@ -148,7 +157,7 @@ class Waterfall_Elementor extends Waterfall_Base {
             return;
         }  
         
-        $origin_post_meta = (array) get_post_meta($post_id, $origin, true);
+        $origin_post_meta = (array) maybe_unserialize( get_post_meta($post_id, $origin, true) );
         $updated_meta = [];
 
         foreach( $this->shared_meta as $meta_key => $values ) {
@@ -159,7 +168,7 @@ class Waterfall_Elementor extends Waterfall_Base {
             }
         }
         
-        $target_meta = (array) get_post_meta($post_id, $target, true);
+        $target_meta = (array) maybe_unserialize( get_post_meta($post_id, $target, true) );
         foreach($updated_meta as $key => $value) {
             $target_meta[$key] = $value;   
         }
