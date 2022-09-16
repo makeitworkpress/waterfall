@@ -30,7 +30,7 @@ $layout = [
                 ],
                 [
                     'selector'      => [
-                        'selector'  => '.components-container, .elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container', 
+                        'selector'  => '.components-container, .elementor-top-section.elementor-section-boxed > .elementor-column-gap-no, .content > *:not(.alignfull, .alignwide, .elementor)',
                         'property'  => 'max-width'
                     ],
                     'default'       => '',

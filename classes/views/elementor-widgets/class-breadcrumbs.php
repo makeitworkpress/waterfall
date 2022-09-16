@@ -49,7 +49,7 @@ class Breadcrumbs extends Elementor\Widget_Base {
 	/**
 	 * Registers the custom widget controls. 
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 
         /**
          * Elements

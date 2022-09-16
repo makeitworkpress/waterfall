@@ -139,56 +139,38 @@ class Waterfall_View extends Waterfall_Base {
             if( did_action('elementor/loaded') ) { 
                 
                 // Width for elements with no gap
-                $styles .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container.elementor-column-gap-no {
+                $styles .= '.elementor-top-section.elementor-section-boxed > .elementor-column-gap-no {
                     max-width:' . $width['amount'] . $width['unit'] . ';
                 }';                
 
                 foreach( ['narrow' => 10, 'default' => 20, 'extended' => 30, 'wide' => 40, 'wider' => 60] as $gap => $value ) {
-                    
-                    // Default container styles
-                    $styles .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-container.elementor-column-gap-' . $gap . ' {
+                    $styles .= '.elementor-top-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
+                        margin: 0 -' . $value/2 . 'px;
                         max-width: calc(' . $width['amount'] . $width['unit'] . ' + ' . $value . 'px);
                     }';
 
-                    // Adapted media queries for our grid
-                    $media .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
-                        margin: 0 -' . $value/2 . 'px;
-                    }';
-
-                    // Resets our 1280px styling, which is applied to the media query for max-width:1280px;
-                    if( $width['unit'] === 'px' && ($width['amount'] < 1280) ) {
-                        $reset .= '.elementor-section-wrap > .elementor-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
-                            margin: 0 auto;
-                        }';   
-                    }
                 }
-
-                /**
-                 * If we have a larger grid in our settings, we have to adapt responsive containers more early.
-                 * Secondly, we need to redeclare mobile padding as the inline styling overwrites the whole range.
-                 */
-                if( $width['unit'] === 'px' && ($width['amount'] > 1280) ) {
-                    $styles .= '@media screen and (max-width: ' . $width['amount'] . $width['unit'] . ') {
-                        .waterfall-fullwidth-content .elementor-section-wrap > .elementor-section > .elementor-container, 
-                        [class*="elementor-location-"] .elementor-section-wrap > .elementor-section > .elementor-container {
-                            padding: 0 32px;
-                        }
-                    }
-                    @media screen and (max-width: 767px) {
-                        .waterfall-fullwidth-content .elementor-section-wrap > .elementor-section > .elementor-container, 
-                        [class*="elementor-location-"] .elementor-section-wrap > .elementor-section > .elementor-container {
-                            padding: 0 16px;
-                        }
-                    }';                    
-                }
-
-                // Reset media queries for 1280px if our containers are smaller than 1280px
-                if( $reset ) {
-                    $styles .= '@media screen and (max-width: 1280px) {' . $reset . '}';
-                }                
-
+              
                 // Adaptive queries depending on container width
-                $styles .= '@media screen and (max-width: ' . $width['amount'] . $width['unit'] . ') {' . $media . '}';
+                $styles .= '@media screen and (min-width: 768px) and (max-width: 1280px) {
+                    .waterfall-fullwidth-content .elementor-top-section > .elementor-container, 
+                    [class*="elementor-location-"] .elementor-top-section > .elementor-container {
+                        padding-left: 0;
+                        padding-right: 0;                        
+                    }    
+                }';               
+                $styles .= '@media screen and (min-width: 768px) and (max-width: ' . ($width['amount']) . $width['unit'] . ') {
+                    .waterfall-fullwidth-content .elementor-top-section > .elementor-container, 
+                    [class*="elementor-location-"] .elementor-top-section > .elementor-container {
+                        padding-left: 32px;
+                        padding-right: 32px;                        
+                    }    
+                }';
+                $styles .= '@media screen and (min-width: ' . ($width['amount']) . $width['unit'] . ') {
+                    .elementor-top-section.elementor-section-boxed > .elementor-container {
+                        margin: 0 auto;
+                    }
+                }';
 
             }
         
@@ -297,20 +279,19 @@ class Waterfall_View extends Waterfall_Base {
 
             // bbPress archives
             } elseif( class_exists('bbPress') && $type === 'forum' ) { 
-                $sidebar_position   = wf_get_data('bbpress', $type . '_archive_sidebar_position');
-                $sidebar            = $sidebar_position ? $sidebar_position : 'default';
+
+                $sidebar            = wf_get_data('bbpress', $type . '_archive_sidebar_position');
             
             // Default archives
             } else {
-                $sidebar_position   = wf_get_data('layout', $type . '_archive_sidebar_position');
-                $sidebar            = $sidebar_position ? $sidebar_position : 'default';
+                $sidebar            = wf_get_data('layout', $type . '_archive_sidebar_position');
             }
 
         }
         
         // Search Archives
         if( is_search() ) {
-            $sidebar = $data['layout']['search_sidebar_position'] ? $layout['search_sidebar_position'] : 'default';  
+            $sidebar = $data['layout']['search_sidebar_position'];  
         }
 
         // Single Posts and pages
@@ -347,8 +328,9 @@ class Waterfall_View extends Waterfall_Base {
             }
 
         }
-                    
-        $classes[] = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');
+             
+        $sidebar    = $sidebar ? $sidebar : 'default';
+        $classes[]  = apply_filters('waterfall_sidebar_class', 'waterfall-' . $sidebar . '-sidebar');
         
         return $classes;
         

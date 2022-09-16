@@ -204,14 +204,14 @@ input[type="submit"], input[type="submit"].button {
 }
 
 // Full-width sections
-.waterfall-bottom-sidebar, .waterfall-default-sidebar {
-    .alignfull {
+.alignfull {
+    width: 100vw;  
+    .waterfall-bottom-sidebar &, .waterfall-default-sidebar & {
         left: 50%;
         margin-left: -50vw;
         margin-right: -50vw;           
         position: relative;
         right: 50%;
-        width: 100vw;  
     }
 }
 

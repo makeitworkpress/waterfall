@@ -7,60 +7,35 @@
 /** 
  * Main Sections (NOT inner sections) do have some margins with lower resolutions (unless they are fullwidth sections)
  */
-.elementor-section-wrap > .elementor-section {
+.elementor-top-section {
     padding: @grid-space 0;
     .waterfall-fullwidth-content &, [class*="elementor-location-"] & {
-        @media screen and (max-width: 1280px) {
-            > .elementor-container {
-                padding: 0 @grid-space;   
-            } 
-        }
-        @media screen and (max-width: 767px) {
-            > .elementor-container {
-                padding: 0 @grid-space*0.5;    
+        > .elementor-container {
+            @media screen and (min-width: 768px) and (max-width: 1280px) {
+                padding-left: @grid-space;   
+                padding-right: @grid-space;   
+            }
+            @media screen and (max-width: 767px) {
+                max-width: none;
+                padding-left: @grid-space*0.5;    
+                padding-right: @grid-space*0.5;
             }
         }
-    }  
-}
-
-/**
- * Elementor full-width sections don't get a responsive padding
- * Inner-sections that have been loaded through a template don't get it either
- * This makes it easier to insert custom elementor templates using the template element
- *
- * Sections that have been loaded through a template in a boxed outer section don't get a padding either
- */
-.elementor > .elementor-inner > .elementor-section-wrap {
-    > .elementor-section-full_width > .elementor-container, 
-    > .elementor-section-boxed .elementor-template .elementor-section-wrap > .elementor-section > .elementor-container {
-        padding: 0;
     }
 }
 
-.elementor-template .elementor-section-wrap > .elementor-section.elementor-inner-section {
-    padding: 0;
-}
-
 /**
- * We need to align our rows with the rest of the theme; meaning that only direct child columns are aligned.
- * The below is the default width for containers. This can be altered in the themesettings.
- * 
- * First, this applies to top-level containers
- *
- * @since Changed from Rows to containers in Elementor 3.0.0
+ * Align rows with the rest of the theme; meaning that only direct child columns are aligned.
  */
-.elementor-section-wrap > .elementor-section.elementor-section-boxed {
-
+.elementor-top-section.elementor-section-boxed {
     // Inner sections inside a boxed section shouldn't have a limited max-width;
     .elementor-inner-section > .elementor-container {
         max-width: none;
     }
-
     // This is the default width of the theme
     > .elementor-column-gap-no {
         max-width: 1200px;
     }
-
     > .elementor-column-gap-narrow {
         max-width: 1210px;
         @media screen and (max-width: 1280px) {
@@ -94,9 +69,15 @@
 }
 
 /**
- * This theme extends inner sections that have fullwidth containers
- *
- * @since Changed since Elementor 3.0.0
+ * Adapts the default padding for containers in inner sections and sections in templates sections, which is always zero
+ */
+.elementor-section.elementor-inner-section .elementor-container, 
+.elementor-widget-template .elementor-template .elementor-container {
+    padding: 0 !important;
+}
+
+/**
+ * This theme extends inner sections that have fullwidth containers to have consistent alignment with outer containers
  */
 .elementor-inner-section.elementor-section-full_width {
     > .elementor-column-gap-narrow {
