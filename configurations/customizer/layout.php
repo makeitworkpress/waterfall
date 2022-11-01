@@ -1544,7 +1544,7 @@ if( did_action('elementor/loaded') ) {
         'default'       => '',
         'id'            => 'layout_elementor_padding_top',
         'title'         => __('Elementor Section Top Padding', 'waterfall'),
-        'description'   => __('The default top padding for primary elementor sections.', 'waterfall'),
+        'description'   => __('The top padding for elementor top sections.', 'waterfall'),
         'type'          => 'dimension'  
     ];
     $layout['sections']['global']['fields'][] = [
@@ -1552,7 +1552,7 @@ if( did_action('elementor/loaded') ) {
         'default'       => '',
         'id'            => 'layout_elementor_padding_bottom',
         'title'         => __('Elementor Section Bottom Padding', 'waterfall'),
-        'description'   => __('The default bottom padding for primary elementor sections.', 'waterfall'),
+        'description'   => __('The bottom padding for elementor top sections.', 'waterfall'),
         'type'          => 'dimension'  
     ];    
 }

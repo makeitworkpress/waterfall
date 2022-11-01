@@ -5,13 +5,14 @@
  * ----------------------------------------/
  
 /** 
- * Main Sections (NOT inner sections) do have some margins with lower resolutions (unless they are fullwidth sections)
+ * Main Sections (NOT inner sections) in full-width content do have some right and left margins with lower resolutions.
+ * Pages without fullwidth-content already have this margin baked in.
  */
 .elementor-top-section {
     padding: @grid-space 0;
     .waterfall-fullwidth-content &, [class*="elementor-location-"] & {
         > .elementor-container {
-            @media screen and (min-width: 768px) and (max-width: 1280px) {
+            @media screen and (min-width: 768px) and (max-width: 1279px) {
                 padding-left: @grid-space;   
                 padding-right: @grid-space;   
             }
@@ -38,31 +39,31 @@
     }
     > .elementor-column-gap-narrow {
         max-width: 1210px;
-        @media screen and (max-width: 1280px) {
+        @media screen and (max-width: 1279px) {
             margin: 0 -5px;
         }        
     }
     > .elementor-column-gap-default {
         max-width: 1220px;
-        @media screen and (max-width: 1280px) {
+        @media screen and (max-width: 1279px) {
             margin: 0 -10px;
         }          
     }
     > .elementor-column-gap-extended {
         max-width: 1230px;
-        @media screen and (max-width: 1280px) {
+        @media screen and (max-width: 1279px) {
             margin: 0 -15px;
         }          
     }
     > .elementor-column-gap-wide {
         max-width: 1240px;
-        @media screen and (max-width: 1280px) {
+        @media screen and (max-width: 1279px) {
             margin: 0 -20px;
         }          
     }    
     > .elementor-column-gap-wider {
         max-width: 1260px;
-        @media screen and (max-width: 1280px) {
+        @media screen and (max-width: 1279px) {
             margin: 0 -30px;
         }          
     }

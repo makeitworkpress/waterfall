@@ -128,8 +128,6 @@ class Waterfall_View extends Waterfall_Base {
      */
     public function wp_head_container_width() {
         
-        $media      = '';
-        $reset      = '';
         $styles     = '';
         $width      = wf_get_data('layout', 'layout_width');
 
@@ -143,29 +141,34 @@ class Waterfall_View extends Waterfall_Base {
                     max-width:' . $width['amount'] . $width['unit'] . ';
                 }';                
 
-                foreach( ['narrow' => 10, 'default' => 20, 'extended' => 30, 'wide' => 40, 'wider' => 60] as $gap => $value ) {
-                    $styles .= '.elementor-top-section.elementor-section-boxed > .elementor-column-gap-' . $gap . ' {
-                        margin: 0 -' . $value/2 . 'px;
-                        max-width: calc(' . $width['amount'] . $width['unit'] . ' + ' . $value . 'px);
+                foreach( ['narrow' => 5, 'default' => 10, 'extended' => 15, 'wide' => 20, 'wider' => 30] as $gap_name => $gap_width ) {
+                    $styles .= '.elementor-top-section.elementor-section-boxed > .elementor-column-gap-' . $gap_name . ' {
+                        margin: 0 -' . $gap_width . 'px;
+                        max-width: calc(' . $width['amount'] . $width['unit'] . ' + ' . $gap_width * 2 . 'px);
                     }';
 
                 }
-              
-                // Adaptive queries depending on container width
+
+                // Reset default queries  
                 $styles .= '@media screen and (min-width: 768px) and (max-width: 1280px) {
                     .waterfall-fullwidth-content .elementor-top-section > .elementor-container, 
                     [class*="elementor-location-"] .elementor-top-section > .elementor-container {
                         padding-left: 0;
                         padding-right: 0;                        
                     }    
-                }';               
-                $styles .= '@media screen and (min-width: 768px) and (max-width: ' . ($width['amount']) . $width['unit'] . ') {
+                }';                  
+              
+                // Adaptive queries depending on container width    
+                $buffer = $width['unit'] === 'px' ? 64 : 0;
+                $styles .= '@media screen and (min-width: 768px) and (max-width: ' . ($width['amount'] + $buffer) . $width['unit'] . ') {
                     .waterfall-fullwidth-content .elementor-top-section > .elementor-container, 
                     [class*="elementor-location-"] .elementor-top-section > .elementor-container {
                         padding-left: 32px;
                         padding-right: 32px;                        
                     }    
-                }';
+                }';               
+
+                // Reset the styles for any of the elements - center the containers by default
                 $styles .= '@media screen and (min-width: ' . ($width['amount']) . $width['unit'] . ') {
                     .elementor-top-section.elementor-section-boxed > .elementor-container {
                         margin: 0 auto;
