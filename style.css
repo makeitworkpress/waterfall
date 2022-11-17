@@ -2,7 +2,7 @@
  * Theme Name: Waterfall
  * Theme URI: https://makeitwork.press/wordpress-themes/waterfall/
  * Description: A versatile WordPress theme build for customization
- * Version: 2.9.7
+ * Version: 2.9.8
  * Author: Make it WorkPress (@makeitworkpress)
  * Author URI: https://makeitwork.press
  * Github Theme URI: https://github.com/makeitworkpress/waterfall
@@ -11,11 +11,11 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.htm
  * 
  * Requires at least: 5.8
- * Requires PHP: 7.4
- * Tested up to: 5.9
+ * Requires PHP: 8.0
+ * Tested up to: 6.1
  * Text Domain: waterfall
  *
  * Tags: blog, one-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks
+ *
+ * This file is only there to let Wordpress know there is a theme!
  */
-
-/* This file is only there to let Wordpress know there is a theme! */
