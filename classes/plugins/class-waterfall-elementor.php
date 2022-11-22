@@ -116,7 +116,7 @@ class Waterfall_Elementor extends Waterfall_Base {
 
         // Post types should match these supported by Elementor
         $elementor_post_types = get_option('elementor_cpt_support');
-        if( ! in_array($post_type, $elementor_post_types) ) {
+        if( ! $elementor_post_types || (is_array($elementor_post_types) && ! in_array($post_type, $elementor_post_types)) ) {
             return;
         }
 
