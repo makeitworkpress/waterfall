@@ -102,9 +102,9 @@ trait Validate {
         set_transient('wp_custom_fields_current_section_' . $frame_options['id'], $currentTab, 10); 
         
         /**
-         * Restore the fields for a current section
+         * Restore the fields for the current section
          */
-        if( isset($input[$frame_options['id'] . '_restore']) ) {
+        if( isset($input[$frame_options['id'] . '_restore']) || isset($input[$frame_options['id'] . '_restore_bottom']) ) {
                                           
             foreach( $frame_options['sections'] as $section ) { 
                 
@@ -129,7 +129,7 @@ trait Validate {
             }
             
             // Add a notification for option pages
-            if( $type == 'options' ) {
+            if( $type === 'options' ) {
                 self::add_error_message( $frame_options, 'restore' );
             }
             
@@ -138,7 +138,7 @@ trait Validate {
         }
         
         /**
-         * Restore the complete section
+         * Restore all options
          */
         if( isset($input[$frame_options['id'] . '_reset']) ) {
             
@@ -153,8 +153,8 @@ trait Validate {
                 
             }
             
-            if( $type == 'options' ) {
-                self::add_error_message( $frame_options['id'], 'reset' );
+            if( $type === 'options' ) {
+                self::add_error_message( $frame_options, 'reset' );
             }
             
             return $output;
@@ -168,7 +168,7 @@ trait Validate {
             
             $output = unserialize( base64_decode($input['import_value']) );
             
-            if( $type == 'options' ) {
+            if( $type === 'options' ) {
                 self::add_error_message( $frame_options, 'import' );
             }
             
@@ -193,8 +193,8 @@ trait Validate {
             
         }
         
-        // Add settings errors for option page (the update notification)
-        if( $type == 'options' ) {
+        // Add default settings errors for option page (the update notification)
+        if( $type === 'options' ) {
             self::add_error_message( $frame_options, 'update' );
         }
         
@@ -343,11 +343,6 @@ trait Validate {
                 global $allowedposttags;
                 $return_value = wp_kses( $field_value, $allowedposttags );
                 
-                break;  
-                
-            // Editor field    
-            case 'gallery':
-                $return_value = $return_value;
                 break; 
                  
             // Editor field    
@@ -534,7 +529,7 @@ trait Validate {
      * @param array $required   The array with required configuration keys
      * @return WP_Error|true    True if we pass the test, a WP_Error if we fail
      */
-    public function validate_configurations( array $options = [], array $required = [] ): bool | WP_Error {
+    public function validate_configurations( array $options = [], array $required = [] ) {
 
         foreach( $required as $requirement ) {
             if( ! isset($options[$requirement]) ) {
