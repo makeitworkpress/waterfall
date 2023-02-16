@@ -3,7 +3,7 @@
         'name' => 'makeitworkpress/waterfall',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '303b0e4c525ace3a5e1c9fb9ced4da24c5d6bc92',
+        'reference' => '24c4342d522ad814313952a3af9a03997ce9783b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'makeitworkpress/waterfall' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '303b0e4c525ace3a5e1c9fb9ced4da24c5d6bc92',
+            'reference' => '24c4342d522ad814313952a3af9a03997ce9783b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'makeitworkpress/wp-components' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '2a012beb18ee544e8759e0e002306b2d5752574e',
+            'reference' => 'c56769788453b828bbee73b77b3eed353e1f1d38',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-components',
             'aliases' => array(
@@ -44,7 +44,7 @@
         'makeitworkpress/wp-custom-fields' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '63d15af6433ec7b10064adce68c7541f698e83dd',
+            'reference' => 'ddfefb60ec800973aae4072f6f68d8be00f865b4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-custom-fields',
             'aliases' => array(

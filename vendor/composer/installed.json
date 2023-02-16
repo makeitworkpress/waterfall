@@ -7,18 +7,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-components.git",
-                "reference": "2a012beb18ee544e8759e0e002306b2d5752574e"
+                "reference": "c56769788453b828bbee73b77b3eed353e1f1d38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/2a012beb18ee544e8759e0e002306b2d5752574e",
-                "reference": "2a012beb18ee544e8759e0e002306b2d5752574e",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-components/zipball/c56769788453b828bbee73b77b3eed353e1f1d38",
+                "reference": "c56769788453b828bbee73b77b3eed353e1f1d38",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
-            "time": "2022-12-06T16:47:56+00:00",
+            "time": "2023-02-02T16:42:15+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
@@ -97,18 +97,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "63d15af6433ec7b10064adce68c7541f698e83dd"
+                "reference": "ddfefb60ec800973aae4072f6f68d8be00f865b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/63d15af6433ec7b10064adce68c7541f698e83dd",
-                "reference": "63d15af6433ec7b10064adce68c7541f698e83dd",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/ddfefb60ec800973aae4072f6f68d8be00f865b4",
+                "reference": "ddfefb60ec800973aae4072f6f68d8be00f865b4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
-            "time": "2022-12-06T16:53:47+00:00",
+            "time": "2023-02-14T15:53:13+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
