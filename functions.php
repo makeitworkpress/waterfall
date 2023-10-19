@@ -32,8 +32,7 @@ spl_autoload_register( function($class_name) {
     if( file_exists($child_class_file) ) {
         require_once( $child_class_file );
         return;
-    }  
-    
+    }
         
     // Require Vendor (composer) classes
     if( ! isset($class_names[0]) || $class_names[0] !== 'MakeitWorkPress' || ! isset($class_names[1]) ) {

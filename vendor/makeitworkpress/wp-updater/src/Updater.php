@@ -63,7 +63,7 @@ abstract class Updater {
         $this->config   = $config;
 
         // Determines which platform we are on. Returns the given platform and also sets $this->source to the source of the download.
-        $this->platform = $this->get_platform();        
+        $this->platform = $this->get_platform();
         
         // Initializes the updater from the child class, and defines the slug for the theme or plugin.
         $this->initialize();

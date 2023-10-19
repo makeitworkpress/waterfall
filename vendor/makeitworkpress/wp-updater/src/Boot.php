@@ -4,6 +4,8 @@
  */
 namespace MakeitWorkPress\WP_Updater;
 use WP_Error as WP_Error;
+use Plugin_Upgrader as Plugin_Upgrader;
+use Theme_Upgrader as Theme_Upgrader;
 use MakeitWorkPress\WP_Updater\Theme_Updater as Theme_Updater;
 use MakeitWorkPress\WP_Updater\Plugin_Updater as Plugin_Updater;
 
@@ -16,17 +18,23 @@ class Boot {
      * @access private
      */
     static private $instance = null;
+
+    /**
+     * Holds the remote source
+     * @access private
+     */
+    private $remote_source = null;    
     
     /**
      * Contains the updaters for the registered themes and plugins
      * @access public
      */
-    public $updaters = [];
+    public $updaters = [];    
     
     /**
      * Creates the instance, so this class is only booted once
      */
-    static public function instance(): Boot {
+    static public function instance() {
 
         if ( ! isset(self::$instance) ) {
             self::$instance = new self();
@@ -63,7 +71,7 @@ class Boot {
      *
      * @param array $config The configuration parameters to let this updater work.
      */
-    public function add( array $config = [] ): void {
+    public function add( Array $config = [] ) {
         
         // Default parameters 
         $config = wp_parse_args( $config, [
@@ -74,12 +82,13 @@ class Boot {
         ]);
 
         // Check for errors
-        $check = $this->check_config($config);
-        
+        $check = $this->checkConfig($config);
         if( is_wp_error($check) ) {
             echo $check->get_error_message();
             return;
-        }        
+        }     
+        
+        $this->remote_source = $config['source'];
 
         // Runs the scripts for updating a theme
         if( $config['type'] == 'theme' ) {
@@ -96,11 +105,11 @@ class Boot {
     /**
      * Filters our SSL verification to true
      * 
-     * @param array $args The arguments for the http request
-     * @param string $url  The url for the request
-     * @return array $args The modified arguments
+     * @param Array $args The arguments for the http request
+     * @param String $url  The url for the request
+     * @return Array $args The modified arguments
      */
-    public function verify_SSL( array $args, string $url ): array {
+    public function verify_SSL( $args, $url ) {
         $args[ 'sslverify' ] = true;
         return $args;
     }
@@ -108,49 +117,58 @@ class Boot {
     /**
      * Updates our source selection for the upgrader
      *
-     * @param string                        $source         The upgrading destination source
-     * @param string                        $remote_sourc   The remote source
-     * @param WP_Upgrader|Plugin_Upgrader   $upgrader       The upgrader object
-     * @param array                         $hook_extra     The extra hook
-     * @return string|WP_Error              $source         The source
+     * @param string    $source         The upgrading destination source
+     * @param string    $remote_sourc   The remote source
+     * @param object    $upgrader       The upgrader object
+     * @param array     $hook_extra     The extra hook
+     * @return string   $source         The source
      */
-    public function source_selection( string $source, string $remote_source = NULL, $upgrader = NULL, array $hook_extra = NULL ) {
+    public function source_selection( $source, $remote_source = NULL, $upgrader = NULL, $hook_extra = NULL ) {
 
-        if( isset($source, $remote_source) ) {
-
-            // Retrieves the source for themes
-            if( isset($upgrader->skin->theme_info->stylesheet) && $upgrader->skin->theme_info->stylesheet ) {
-                $correct_source = trailingslashit( $remote_source . '/' . $upgrader->skin->theme_info->stylesheet );
-            }
-
-            // Retrieves for plugins
-            if( isset($hook_extra['plugin']) && $hook_extra['plugin'] ) {
-                $correct_source = trailingslashit( $remote_source ) . dirname( $hook_extra['plugin'] );
-            } 
-
+        if( ! isset($source, $remote_source) ) {
+            return $source;
         }
-        
-        // We have an adjusted source
-        if( isset($correct_source) ) {   
-            if( rename($source, $correct_source) ) {
-                return $correct_source;
-            } else {
-                $upgrader->skin->feedback( __("Unable to rename downloaded theme or plugin.", "wp-updater") );
-                return new WP_Error();
+
+        // Renames sources for custom plugins
+        if( $upgrader instanceof Plugin_Upgrader ) {
+            $slug = explode('/', plugin_basename( __FILE__ ) )[0];
+
+            // We're updating an internal plugin, so return the original source
+            if( $slug !== dirname($hook_extra['plugin']) ) {
+                return $source;    
             }
-        }         
+
+            $correct_source = trailingslashit( $remote_source ) . dirname( $hook_extra['plugin'] );
+            
+        }             
+
+         // Renames sources for themes
+        if( $upgrader instanceof Theme_Upgrader ) {
+            $correct_source = trailingslashit( $remote_source . '/' . $hook_extra['theme'] );
+        } 
         
-        return $source;
+        if( ! isset($correct_source) ) {
+            return $source;
+        }
+
+        // We have an adjusted source       
+        if( rename($source, $correct_source) ) {
+            return trailingslashit( $correct_source );
+        } else {
+            $upgrader->skin->feedback( __("Unable to rename downloaded theme or plugin.", "wp-updater") );
+            return new WP_Error();
+        }
 
     }
     
     
     /**
-     * Checks our configurations and see if we have everything
+     * Checks our connfigurations and see if we have everything
+     * @todo Adds a sanitizer which checks urls, so that they are correct.
      *
-     * @return bool|WP_Error true upon success, object WP_Error upon failure
+     * @return boolean true upon success, object WP_Error upon failure
      */
-    private function check_config($config) {
+    private function checkConfig($config) {
         
         if( $config['type'] !== 'theme' && $config['type'] !== 'plugin' ) {
             return new WP_Error( 'wrong', __( "Your updater type is not theme or plugin!", "wp-updater" ) );  
