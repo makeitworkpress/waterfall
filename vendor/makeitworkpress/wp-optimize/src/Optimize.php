@@ -10,7 +10,7 @@ use WP_Error as WP_Error;
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 class Optimize {
-        
+         
     /**
      * Holds the configurations for the optimizations
      * 
@@ -18,6 +18,13 @@ class Optimize {
      * @access private
      */
     private $optimize = [];
+
+    /**
+     * Holds styles that are deferred
+     * @var array
+     * @access private
+     */
+    public $styles = [];
             
     /** 
      * Constructor

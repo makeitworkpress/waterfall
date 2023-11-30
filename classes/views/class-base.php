@@ -64,6 +64,21 @@ abstract class Base {
      * Contains the custom options from the Theme Settings Panel
      */
     protected $options = [];
+
+    /**
+     * Whether the content container should be rendered or not
+     */
+    public $content_container;
+
+    /**
+     * Whether the related container should be rendered or not
+     */
+    public $related_container;
+    
+    /**
+     * Whether the related section should be rendered or not
+     */ 
+    public $related_section;   
   
     /**
      * The initial state of our class

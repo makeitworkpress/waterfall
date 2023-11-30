@@ -3,7 +3,7 @@
         'name' => 'makeitworkpress/waterfall',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'd7364f4e105999048cde807d7e21322700289015',
+        'reference' => '64b979c8347f12329d407f053189239a07c8de1e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'makeitworkpress/waterfall' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'd7364f4e105999048cde807d7e21322700289015',
+            'reference' => '64b979c8347f12329d407f053189239a07c8de1e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'makeitworkpress/wp-components' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'c56769788453b828bbee73b77b3eed353e1f1d38',
+            'reference' => '37c142e21cd71a45c942550c41f5ec91e9339ed3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-components',
             'aliases' => array(
@@ -33,7 +33,7 @@
         'makeitworkpress/wp-config' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '336aa79a7db39ee4b000cdd0f585540431408b21',
+            'reference' => '756df5cf631c8e16654306d3be3d6de538261072',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-config',
             'aliases' => array(
@@ -44,7 +44,7 @@
         'makeitworkpress/wp-custom-fields' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'ddfefb60ec800973aae4072f6f68d8be00f865b4',
+            'reference' => 'eab464e9eea846408e18837b68e76090eba80f50',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-custom-fields',
             'aliases' => array(
@@ -55,7 +55,7 @@
         'makeitworkpress/wp-enqueue' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '950df7dee5dde04b15fbb8a0fb4ecc6cc193a801',
+            'reference' => '426f3bebc397c93db29c4714068799b35795ea3b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-enqueue',
             'aliases' => array(
@@ -66,7 +66,7 @@
         'makeitworkpress/wp-optimize' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'eba64e50a5955f5535e186ff15c7ee1567ae14e6',
+            'reference' => '23c28d3c2757bc4505b49b7de9c0316189c1c9cc',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-optimize',
             'aliases' => array(
@@ -77,7 +77,7 @@
         'makeitworkpress/wp-register' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '800fe6744f63587089f939e55ba1000e5d4785b2',
+            'reference' => '6ea543389d338e84cb5446f679d645d7a0220614',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-register',
             'aliases' => array(
@@ -88,7 +88,7 @@
         'makeitworkpress/wp-router' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'b2375d77b321e09a6d35c9ae9e8e631c6526aba0',
+            'reference' => '57b71db6e983fc167937f5f6c7c4b8ffe4c4d16e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-router',
             'aliases' => array(
@@ -99,7 +99,7 @@
         'makeitworkpress/wp-updater' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '436587bd57e16f8806bf6eac7056e9eca7e9744c',
+            'reference' => 'b31cd18b61116bce0d6905042987342f55f1bc2d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../makeitworkpress/wp-updater',
             'aliases' => array(

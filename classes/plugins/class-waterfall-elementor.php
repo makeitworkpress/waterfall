@@ -249,10 +249,10 @@ class Waterfall_Elementor extends Waterfall_Base {
             $template = '/templates/elementor/header-footer.php';
             
             // Check if our file exists
-            if ( file_exists( STYLESHEETPATH . $template ) ) {
-                $template = STYLESHEETPATH . $template;
-            } elseif ( file_exists( TEMPLATEPATH . $template ) ) {
-                $template = TEMPLATEPATH . $template;
+            if ( file_exists( get_stylesheet_directory() . $template ) ) {
+                $template = get_stylesheet_directory() . $template;
+            } elseif ( file_exists( get_template_directory() . $template ) ) {
+                $template = get_template_directory() . $template;
             }
 
         }
@@ -293,7 +293,7 @@ class Waterfall_Elementor extends Waterfall_Base {
                 continue;
             }
             
-            $widgets_manager->register_widget_type( new $widget() );
+            $widgets_manager->register( new $widget() );
 
         }
 

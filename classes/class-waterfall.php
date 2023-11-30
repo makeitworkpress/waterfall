@@ -9,39 +9,18 @@ defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 class Waterfall {
     
     /**
-     * Contains the ajax object
+     * Contains the ajax object, responsible for adding ajax functionalities
      *
      * @access public
      */
-    public $ajax;    
+    public $ajax;     
 
     /**
-     * Contains the bbPress object
+     * Contains the configurations object, containing all configurations for this theme
      *
      * @access public
      */
-    public $bbPress;    
-
-    /**
-     * Contains the configurations object
-     *
-     * @access public
-     */
-    public $config;  
-
-   /**
-     * Contains the elementor object
-     *
-     * @access public
-     */
-    public $elementor;       
-    
-    /**
-     * Contains the events object
-     *
-     * @access public
-     */
-    public $events;     
+    public $config;      
     
     /**
      * Determines whether a class has already been instanciated.
@@ -49,34 +28,20 @@ class Waterfall {
      * @access private
      */
     private static $instance = null;  
-    
+
     /**
-     * Contains the WP Optimize object
-     *
+     * Contains the intialized vendor and plugin modules
+     * @var array
      * @access public
      */
-    public $optimize;     
-      
-    /**
-     * Contains the updater object
-     *
-     * @access public
-     */
-    public $updater;
+    public $modules;
   
     /**
-     * Contains the view object
+     * Contains the view object that determines the display of templates and associated data
      *
      * @access public
      */
     public $view;    
-     
-    /**
-     * Contains the woocommerce object
-     *
-     * @access public
-     */
-    public $woocommerce;
     
     /**
      * Gets the single instance. Applies Singleton Pattern
@@ -171,8 +136,8 @@ class Waterfall {
      * Enables our theme to be updated through an external repository, in this case github
      */
     private function boot_updater() {
-        $this->updater = MakeitWorkPress\WP_Updater\Boot::instance();
-        $this->updater->add(['source' => 'https://github.com/makeitworkpress/waterfall', 'type' => 'theme']);
+        $this->modules['updater'] = MakeitWorkPress\WP_Updater\Boot::instance();
+        $this->modules['updater']->add(['source' => 'https://github.com/makeitworkpress/waterfall', 'type' => 'theme']);
     }    
         
     /**
@@ -187,19 +152,6 @@ class Waterfall {
     }
 
     /**
-     * Initializes the basic settings for a theme
-     */
-    private function enable_optimizations() {    
-
-        $optimizations = wf_get_data('options', 'optimize');
-
-        if( $optimizations ) {
-            $this->optimize = new MakeitWorkPress\WP_Optimize\Optimize( $optimizations );    
-        }
-    
-    }
-
-    /**
      * Initializes our ajax actions
      */
     private function setup_ajax() {     
@@ -211,14 +163,28 @@ class Waterfall {
      */
     private function setup_view() {     
         $this->view = new Waterfall_View();  
-    }     
+    } 
+
+    /**
+     * Initializes the optimizations component
+     */
+    private function enable_optimizations() {    
+
+        $optimizations = wf_get_data('options', 'optimize');
+
+        if( is_array($optimizations) ) {
+            $this->modules['optimize'] = new MakeitWorkPress\WP_Optimize\Optimize( $optimizations );    
+        }
+    
+    }
+
 
     /**
      * Initializes all WooCommerce related functions
      */
     private function setup_woocommerce() {     
         if( class_exists('WooCommerce') ) {
-            $this->woocommerce = new Plugins\Waterfall_WooCommerce();
+            $this->modules['woocommerce'] = new Plugins\Waterfall_WooCommerce();
         }
     } 
 
@@ -227,17 +193,16 @@ class Waterfall {
      */
     private function setup_bbpress() {     
         if( class_exists('bbPress') ) {
-            $this->bbPress = new Plugins\Waterfall_bbPress();
+            $this->modules['bbPress'] = new Plugins\Waterfall_bbPress();
         }
     } 
-    
     
     /**
      * Initializes all Elementor Related functions
      */
     private function setup_elementor() {     
         if( did_action('elementor/loaded') ) {
-            $this->elementor = new Plugins\Waterfall_Elementor($this->config->configurations);
+            $this->modules['elementor'] = new Plugins\Waterfall_Elementor($this->config->configurations);
         }
     }     
     
@@ -246,7 +211,7 @@ class Waterfall {
      */
     private function setup_events_calendar() {     
         if( class_exists('Tribe__Events__Main') ) {
-            $this->events = new Plugins\Waterfall_Events();
+            $this->modules['events'] = new Plugins\Waterfall_Events();
         }
     }    
     
@@ -370,6 +335,8 @@ class Waterfall {
         $lightbox       = wf_get_data('customizer', 'lightbox');
         $sidebars       = wf_get_data('layout', 'footer_sidebars') ? wf_get_data('layout', 'footer_sidebars') : 'third';
         $slider         = wf_get_data('woocommerce', 'product_content_slider');
+
+        // The above variables are used in below configuratoins
         require_once( get_template_directory() . '/configurations/enqueue.php' );
         require_once( get_template_directory() . '/configurations/register.php' );
         
@@ -482,8 +449,8 @@ class Waterfall {
             if( $key === 'options' ) {
                 
                 // Custom Fields framework
-                $params       = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
-                $customFields = MakeitWorkPress\WP_Custom_Fields\Framework::instance($params);
+                $params         = isset($this->config->configurations['options']['params']) ? $this->config->configurations['options']['params'] : [];
+                $custom_fields = MakeitWorkPress\WP_Custom_Fields\Framework::instance($params);
                 
                 // Walk through all the option types for the back-end
                 if( is_admin() || is_customize_preview() ) {
@@ -494,14 +461,14 @@ class Waterfall {
                             continue;
                         }
                         
-                        $customFields->add( $options['frame'], $options['fields'] );
+                        $custom_fields->add( $options['frame'], $options['fields'] );
 
                     }  
                 
                 }
                 
             } else {
-                $this->{$key} = new $methods[$key]( $this->config->configurations[$key] );    
+                $this->modules[$key] = new $methods[$key]( $this->config->configurations[$key] );    
             }
             
         }

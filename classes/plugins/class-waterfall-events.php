@@ -34,10 +34,10 @@ class Waterfall_Events extends Waterfall_Base {
             $template = '/templates/events-calendar/events-template.php';
             
             // Check if our file exists
-            if ( file_exists( STYLESHEETPATH . $template ) ) {
-                $template = STYLESHEETPATH . $template;
-            } elseif ( file_exists( TEMPLATEPATH . $template ) ) {
-                $template = TEMPLATEPATH . $template;
+            if ( file_exists( get_stylesheet_directory() . $template ) ) {
+                $template = get_stylesheet_directory() . $template;
+            } elseif ( file_exists( get_template_directory() . $template ) ) {
+                $template = get_template_directory() . $template;
             }
 
         }

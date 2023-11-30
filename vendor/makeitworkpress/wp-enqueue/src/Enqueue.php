@@ -19,6 +19,41 @@ class Enqueue {
     public $assets;
 
     /**
+     * Holding front-end assets
+     * @var array
+     * @access private
+     */
+    private $front_assets;
+
+    /**
+     * Holding admin assets
+     * @var array
+     * @access private
+     */
+    private $admin_assets;
+    
+    /**
+     * Holding login assets
+     * @var array
+     * @access private
+     */
+    private $login_assets;
+    
+    /**
+     * Holding block editor assets
+     * @var array
+     * @access private
+     */
+    private $block_editor_assets;   
+
+    /**
+     * Holding block assets
+     * @var array
+     * @access private
+     */
+    private $block_assets;    
+
+    /**
      * Set the initial state of the class
      *
      * @param array $assets The array with the assets, namely scripts or styles, to be enqueued

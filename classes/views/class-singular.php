@@ -25,7 +25,13 @@ class Singular extends Base {
      * Holds the post types for which schemes are disabled
      * @access public
      */
-    public $no_schema;      
+    public $no_schema;     
+    
+    /**
+     * Holds the classes for this post
+     * @access public
+     */
+    public $post_class;
 
     /**
      * Holds the primary microdata schema for a singular post or page (that is used in the article tag)

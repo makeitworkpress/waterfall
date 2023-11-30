@@ -31,8 +31,7 @@ class Config {
         // If the configuration parameter is a string, we expect that it is a file path
         if( is_string($configuration) ) {
             
-            $this->load( $configuration );
-
+            $this->configurations = $this->load( $configuration );
             if( is_wp_error($this->configurations) ) {
                 echo $this->configurations->get_error_message();
             }
@@ -91,7 +90,7 @@ class Config {
         if( file_exists( $configuration ) ) {
 
             $data = require_once(  $configuration  );
-            $this->configurations = $data ? (array) $data : [];
+            return $data ? (array) $data : [];
 
         } else {
             return new WP_Error( 'missing', __('Could not load the configuration file for your theme or plugin!', 'wp-config') );
