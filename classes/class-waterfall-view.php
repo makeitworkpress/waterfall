@@ -11,14 +11,14 @@ class Waterfall_View extends Waterfall_Base {
      *
      * @access public
      */
-    public $components;      
+    public $components;
     
     /**
      * Contains the templates that are routed to the /templates/ folder
      *
      * @access private
      */
-    private $files; 
+    private $files;
 
     /**
      * Initialize our view functions
@@ -27,22 +27,22 @@ class Waterfall_View extends Waterfall_Base {
         
         // Template files used by Waterfall
         $this->files = apply_filters(
-            'waterfall_templates', 
+            'waterfall_templates',
             [
-                '404', 
-                'archive', 
-                'author', 
-                'category', 
+                '404',
+                'archive',
+                'author',
+                'category',
                 'tag',
-                'taxonomy', 
-                'date', 
-                'home', 
-                'frontpage', 
-                'page', 
-                'paged', 
-                'search', 
-                'single', 
-                'singular', 
+                'taxonomy',
+                'date',
+                'home',
+                'frontpage',
+                'page',
+                'paged',
+                'search',
+                'single',
+                'singular',
                 'attachment',
                 'embed',
                 'bbpress',
@@ -134,35 +134,35 @@ class Waterfall_View extends Waterfall_Base {
 
         if( isset($width['amount']) && $width['amount'] && $width['unit'] ) {
 
-            /** For Elementor */
+            /** For Elementor, dynamic container widths */
             if( did_action('elementor/loaded') ) { 
                 
                 // Width for elements with no gap
-                $styles .= '.elementor-top-section.elementor-section-boxed > .elementor-column-gap-no {
+                $styles .= '.waterfall-elementor-align-enabled .elementor-top-section.elementor-section-boxed > .elementor-column-gap-no {
                     max-width:' . $width['amount'] . $width['unit'] . ';
                 }';                
 
                 foreach( ['narrow' => 5, 'default' => 10, 'extended' => 15, 'wide' => 20, 'wider' => 30] as $gap_name => $gap_width ) {
-                    $styles .= '.elementor-top-section.elementor-section-boxed > .elementor-column-gap-' . $gap_name . ' {
+                    $styles .= '.waterfall-elementor-align-enabled .elementor-top-section.elementor-section-boxed > .elementor-column-gap-' . $gap_name . ' {
                         margin: 0 -' . $gap_width . 'px;
                         max-width: calc(' . $width['amount'] . $width['unit'] . ' + ' . $gap_width * 2 . 'px);
                     }';
 
                 }
 
-                // Reset default queries  
+                // Reset default queries
                 $styles .= '@media screen and (min-width: 768px) and (max-width: 1280px) {
-                    .waterfall-fullwidth-content .elementor-top-section > .elementor-container, 
+                    .waterfall-fullwidth-content.waterfall-elementor-align-enabled .elementor-top-section > .elementor-container, 
                     [class*="elementor-location-"] .elementor-top-section > .elementor-container {
                         padding-left: 0;
-                        padding-right: 0;                        
-                    }    
-                }';                  
+                        padding-right: 0;
+                    }
+                }';
               
                 // Adaptive queries depending on container width    
                 $buffer = $width['unit'] === 'px' ? 64 : 0;
                 $styles .= '@media screen and (min-width: 768px) and (max-width: ' . ($width['amount'] + $buffer) . $width['unit'] . ') {
-                    .waterfall-fullwidth-content .elementor-top-section > .elementor-container, 
+                    .waterfall-fullwidth-content.waterfall-elementor-align-enabled .elementor-top-section > .elementor-container, 
                     [class*="elementor-location-"] .elementor-top-section > .elementor-container {
                         padding-left: 32px;
                         padding-right: 32px;                        
@@ -171,7 +171,7 @@ class Waterfall_View extends Waterfall_Base {
 
                 // Reset the styles for any of the elements - center the containers by default
                 $styles .= '@media screen and (min-width: ' . ($width['amount']) . $width['unit'] . ') {
-                    .elementor-top-section.elementor-section-boxed > .elementor-container {
+                    .waterfall-elementor-align-enabled .elementor-top-section.elementor-section-boxed > .elementor-container {
                         margin: 0 auto;
                     }
                 }';
@@ -242,7 +242,7 @@ class Waterfall_View extends Waterfall_Base {
         $types      = [
             'customizer'    => ['lightbox'],
             'colors'        => ['content_sidebar_background'],
-            'layout'        => ['layout', 'search_sidebar_position'],
+            'layout'        => ['layout', 'search_sidebar_position', 'layout_elementor_container_align'],
             'meta'          => ['content_width', 'page_header_overlay', 'content_sidebar_disable']
         ];
 
@@ -256,7 +256,12 @@ class Waterfall_View extends Waterfall_Base {
         }
 
         if( $data['colors']['content_sidebar_background'] ) {
-            $classes[]  = 'waterfall-colored-sidebar';    
+            $classes[]  = 'waterfall-colored-sidebar';
+        }
+
+        // For elementor, alignment of containers with default containers
+        if( did_action('elementor/loaded') ) {
+            $classes[]  = $data['layout']['layout_elementor_container_align'] === 'disabled' ? 'waterfall-elementor-align-disabled' : 'waterfall-elementor-align-enabled';
         }
         
         // Initialize lightbox
@@ -328,7 +333,7 @@ class Waterfall_View extends Waterfall_Base {
             }
 
             if( isset($data['meta']['content_sidebar_disable']) && $data['meta']['content_sidebar_disable'] === true ) {
-                $sidebar    = 'default';   
+                $sidebar    = 'default';
             }
 
         }
@@ -342,9 +347,9 @@ class Waterfall_View extends Waterfall_Base {
 
     /**
      * Alters the excerpt length based on our settings
-     * 
+     *
      * @param Int $length The excerpt length
-     */    
+     */
     public function modify_excerpt_length($length) {
 
         $excerpt_length = wf_get_data('customizer', 'excerpt_length');
@@ -364,18 +369,16 @@ class Waterfall_View extends Waterfall_Base {
         
         add_theme_support( 'align-wide' );
         add_theme_support( 'automatic-feed-links' );
-        add_theme_support( 'custom-background' ); 
-        add_theme_support( 'custom-logo' ); 
+        add_theme_support( 'custom-background' );
+        add_theme_support( 'custom-logo' );
         add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'html5', ['caption', 'comment-list', 'comment-form', 'gallery', 'search-form' ] );
-		add_theme_support( 'post-thumbnails' ); 
+		add_theme_support( 'post-thumbnails' );
         add_theme_support( 'responsive-embeds' );
-        add_theme_support( 'title-tag' ); 
-        add_theme_support( 'wp-block-styles' );   
+        add_theme_support( 'title-tag' );
+        add_theme_support( 'wp-block-styles' );
         
         // @todo Add support for dynamic gutenberg color palettes (add theme support for editor-color-palette) and dynamic gradients (editor-gradient-preset)
-        // Also incorporate this with the colorpicker in the customizer (using default colors)
-        // Someday, use the default pallette kit from gutenberg to merge this all.
        
     }    
     

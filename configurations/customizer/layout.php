@@ -17,7 +17,7 @@ $layout = [
         'global' => [
             'id'            => 'style_global',
             'title'         => __('Global', 'waterfall'),
-            'fields'    => [                                                
+            'fields'    => [
                 [
                     'default'       => 'default',
                     'id'            => 'layout',
@@ -26,18 +26,18 @@ $layout = [
                     'choices'       => [
                         'default' => __('Default Layout', 'waterfall'),
                         'boxed'   => __('Boxed Layout', 'waterfall'),
-                    ]    
+                    ]
                 ],
                 [
                     'selector'      => [
-                        'selector'  => '.components-container, .elementor-top-section.elementor-section-boxed > .elementor-column-gap-no, .content > *:not(.alignfull, .alignwide, .elementor)',
+                        'selector'  => '.components-container, .waterfall-elementor-align-enabled .elementor-top-section.elementor-section-boxed > .elementor-column-gap-no, .content > *:not(.alignfull, .alignwide, .elementor)',
                         'property'  => 'max-width'
                     ],
                     'default'       => '',
                     'id'            => 'layout_width',
                     'title'         => __('Maximum Width of Content', 'waterfall'),
                     'description'   => __('Sets maximum width of content and page builders containers. If using non-pixel values, you may have to add manual styling.', 'waterfall'),
-                    'type'          => 'dimension'  
+                    'type'          => 'dimension'
                 ], 
                 [
                     'selector'      => [
@@ -48,8 +48,8 @@ $layout = [
                     'id'            => 'layout_boxed_width',
                     'title'         => __('Maximum Width of Boxed Layout', 'waterfall'),
                     'description'   => __('Adapts the maximum width of the boxed layout.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ],                 
+                    'type'          => 'dimension'
+                ],
                 [
                     'selector'     => [
                         'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-element .elementor-button, .elementor-field-type-submit button, .woocommerce input.button .woocommerce input.button.alt, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .widget_shopping_cart_content .button', 
@@ -1530,8 +1530,8 @@ $layout['sections']['footer'] = [
             'choices'       => [
                 'default'   => __('Default', 'waterfall'),
                 'rounded'   => __('Rounded', 'waterfall')
-            ],            
-        ]                                      
+            ],
+        ]
     ]              
 ];
 
@@ -1539,6 +1539,17 @@ $layout['sections']['footer'] = [
  * Page Builder Section Paddings
  */
 if( did_action('elementor/loaded') ) {
+    $layout['sections']['global']['fields'][] = [
+        'default'       => 'enabled',
+        'id'            => 'layout_elementor_container_align',
+        'title'         => __('Elementor Container Alignment', 'waterfall'),
+        'description'   => __('Align Elementor Sections and fullwidth Inner Sections with the rest of the theme.', 'waterfall'),
+        'type'          => 'select',
+        'choices'       => [
+            'enabled'       => __('Enable', 'waterfall'),
+            'disabled'      => __('Disable', 'waterfall')
+        ],
+    ];
     $layout['sections']['global']['fields'][] = [
         'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-top'],
         'default'       => '',
@@ -1554,7 +1565,7 @@ if( did_action('elementor/loaded') ) {
         'title'         => __('Elementor Section Bottom Padding', 'waterfall'),
         'description'   => __('The bottom padding for elementor top sections.', 'waterfall'),
         'type'          => 'dimension'  
-    ];    
+    ];
 }
 
 /**

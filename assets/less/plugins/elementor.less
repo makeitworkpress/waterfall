@@ -28,7 +28,7 @@
 /**
  * Align rows with the rest of the theme; meaning that only direct child columns are aligned.
  */
-.elementor-top-section.elementor-section-boxed {
+.waterfall-elementor-align-enabled .elementor-top-section.elementor-section-boxed {
     // Inner sections inside a boxed section shouldn't have a limited max-width;
     .elementor-inner-section > .elementor-container {
         max-width: none;
@@ -70,17 +70,9 @@
 }
 
 /**
- * Adapts the default padding for containers in inner sections and sections in templates sections, which is always zero
- */
-.elementor-section.elementor-inner-section .elementor-container, 
-.elementor-widget-template .elementor-template .elementor-container {
-    padding: 0 !important;
-}
-
-/**
  * This theme extends inner sections that have fullwidth containers to have consistent alignment with outer containers
  */
-.elementor-inner-section.elementor-section-full_width {
+.waterfall-elementor-align-enabled .elementor-inner-section.elementor-section-full_width {
     > .elementor-column-gap-narrow {
         margin: 0 -5px;
     }
@@ -97,6 +89,14 @@
         margin: 0 -30px;
     }
 }  
+
+/**
+ * Adapts the default padding for containers in inner sections and sections in templates sections, which is always zero
+ */
+.elementor-section.elementor-inner-section .elementor-container, 
+.elementor-widget-template .elementor-template .elementor-container {
+    padding: 0 !important;
+}
 
 /** 
  * Images

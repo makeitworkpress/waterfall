@@ -1,7 +1,7 @@
 <?php
 /**
  * Loads our option configurations
- */  
+ */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
 // Default posts types supported in customzer
@@ -10,7 +10,7 @@ if( class_exists('Waterfall_Reviews\Plugin') ) {
     $defaultPosts[] = 'reviews';
 }
 if( class_exists('Waterfall_Events\Plugin') ) {
-    $defaultPosts[] = 'events';   
+    $defaultPosts[] = 'events';
 }
 
 // The options
@@ -18,7 +18,7 @@ $options = [
     'capability'    => 'manage_options',
     'class'         => 'tabs-left',
     'id'            => 'waterfall_options',
-    'location'      => 'menu', 
+    'location'      => 'menu',
     'menu_icon'     => 'dashicons-admin-generic',
     'menu_title'    => __('Waterfall', 'waterfall'),
     'menu_position' => 60,
@@ -29,9 +29,9 @@ $options = [
             'id'            => 'general',
             'title'         => __('General', 'waterfall'),
             'description'   => __('The general settings for the theme. Are you looking for lay-out options? Those can be found in the Customizer.', 'waterfall'),
-            'fields'        => [ 
+            'fields'        => [
                 [
-                    'columns'       => 'half',
+                    'columns'       => 'third',
                     'default'       => $defaultPosts,
                     'description'   => __('For these post types, lay-out settings will be available in the customizer, and a sidebar under widgets.', 'waterfall'),
                     'id'            => 'customizer_post_types',
@@ -41,7 +41,7 @@ $options = [
                     'type'          => 'select'
                 ],
                 [
-                    'columns'       => 'half',
+                    'columns'       => 'third',
                     'description'   => __('Enable this to Enable ElasticPress for Related Posts. ElasticSearch and the ElasticPress plugin are required.', 'waterfall'),
                     'id'            => 'enable_elastic_related',
                     'title'         => __('Enable ElasticPress for Related Posts', 'waterfall'),
@@ -51,13 +51,25 @@ $options = [
                     'options'       => [
                         'enable' => ['label' => __('Enable ElasticPress', 'waterfall')],
                     ]
-                ],   
+                ],
+                [
+                    'columns'       => 'third',
+                    'description'   => __('By default, Waterfall aligns Elementor containers and inner sections with the rest of the theme. This disables it.', 'waterfall'),
+                    'id'            => 'disable_elementor_spacing',
+                    'title'         => __('Disable Elementor Container Alignment', 'waterfall'),
+                    'single'        => true,
+                    'type'          => 'checkbox',
+                    'style'         => 'switcher switcher-disable',
+                    'options'       => [
+                        'enable' => ['label' => __('Disable Outer Alignment', 'waterfall')],
+                    ]
+                ],
                 [
                     'default'       => '',
                     'id'            => 'integrations_heading',
                     'title'         => __('Integrations', 'waterfall'),
                     'type'          => 'heading'
-                ],                                                
+                ],
                 [
                     'columns'       => 'half',
                     'default'       => '',
@@ -65,7 +77,7 @@ $options = [
                     'id'            => 'analytics',
                     'title'         => __('Google Analytics Tracking ID', 'waterfall'),
                     'type'          => 'input'
-                ], 
+                ],
                 [
                     'columns'       => 'half',
                     'default'       => '',
@@ -80,13 +92,13 @@ $options = [
                     'id'            => 'cf_analytics',
                     'title'         => __('CloudFlare Analytics Token', 'waterfall'),
                     'type'          => 'input'
-                ],                
+                ],
                 [
                     'default'       => '',
                     'id'            => 'structured_data_heading',
                     'title'         => __('Structured Data', 'waterfall'),
                     'type'          => 'heading'
-                ],                                                                                   
+                ],
                 [
                     'columns'       => 'half',
                     'default'       => '',
@@ -99,7 +111,7 @@ $options = [
                     ],
                     'title'         => __('Structured data for Website Representation', 'waterfall'),
                     'type'          => 'select'
-                ],              
+                ],
                 [
                     'columns'       => 'half',
                     'default'       => [],
@@ -117,7 +129,7 @@ $options = [
             'id'            => 'advanced',
             'title'         => __('Advanced', 'waterfall'),
             'description'   => __('Advanced theme settings', 'waterfall'),
-            'fields'        => [                  
+            'fields'        => [
                 [
                     'action'        => 'sync_multisite_options',
                     'description'   => __('This function synchronizes Waterfall Customizer and Option settings for all the sites registered in a multisite network. It will use the options of the current site.', 'waterfall'),
@@ -144,23 +156,23 @@ $options = [
                         'disable_jquery'            => ['label' => __('Disable jQuery', 'waterfall')],
                         'disable_jquery_migrate'    => ['label' => __('Disable jQuery Migrate', 'waterfall')],
                         'disable_RSD'               => ['label' => __('Disable RSD', 'waterfall')],
-                        'disable_shortlinks'        => ['label' => __('Disable WordPress Shortlinks', 'waterfall')],                      
-                        'disable_version_numbers'   => ['label' => __('Remove WordPress Version Numbers from Scripts', 'waterfall')],            
+                        'disable_shortlinks'        => ['label' => __('Disable WordPress Shortlinks', 'waterfall')],
+                        'disable_version_numbers'   => ['label' => __('Remove WordPress Version Numbers from Scripts', 'waterfall')],
                         'disable_WLW_manifest'      => ['label' => __('Disable the WLW Manifest', 'waterfall')],
-                        'disable_WP_version'        => ['label' => __('Remove the WordPress version from front-end', 'waterfall')],           
+                        'disable_WP_version'        => ['label' => __('Remove the WordPress version from front-end', 'waterfall')],
                         'limit_revisions'           => ['label' => __('Limit Post Revisions to 5', 'waterfall')],
-                        'disable_comments'          => ['label' => __('Disable Comments', 'waterfall')],                      
+                        'disable_comments'          => ['label' => __('Disable Comments', 'waterfall')],
                         'limit_comments_JS'         => ['label' => __('Enqueue Comment JavaScript only on Comments', 'waterfall')],
                         'remove_comments_style'     => ['label' => __('Remove Additional Styling for Comments', 'waterfall')],
                         'disable_embed'             => ['label' => __('Disable Embed Scripts (breaks video embedding).', 'waterfall')],
-                        'disable_XMLRPC'            => ['label' => __('Disable XMLRPC (can break some functionalities)', 'waterfall')],                        
+                        'disable_XMLRPC'            => ['label' => __('Disable XMLRPC (can break some functionalities)', 'waterfall')],
                         'block_external_HTTP'       => ['label' => __('Block external HTTP Requests (breaks external embeds and many plugins).', 'waterfall')],
                     
                     ],
                     'title'         => __('Theme Optimizations', 'waterfall'),
                     'type'          => 'checkbox'
-                ]                
+                ]
             ]
-        ]        
-    ] 
+        ]
+    ]
 ];
