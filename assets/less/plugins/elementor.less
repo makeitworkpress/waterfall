@@ -25,81 +25,90 @@
     }
 }
 
-/**
- * Align rows with the rest of the theme; meaning that only direct child columns are aligned.
- */
-.waterfall-elementor-align-enabled .elementor-top-section.elementor-section-boxed {
-    // Inner sections inside a boxed section shouldn't have a limited max-width;
-    .elementor-inner-section > .elementor-container {
-        max-width: none;
-    }
-    // This is the default width of the theme
-    > .elementor-column-gap-no {
-        max-width: 1200px;
-    }
-    > .elementor-column-gap-narrow {
-        max-width: 1210px;
-        @media screen and (max-width: 1279px) {
+.waterfall-elementor-align-enabled {
+
+    /**
+     * CLASSIC SECTION SETUP
+     */
+
+    /**
+     * Align rows with the rest of the theme; meaning that only direct child columns are aligned.
+     */
+    .elementor-top-section.elementor-section-boxed {
+        // Inner sections inside a boxed section shouldn't have a limited max-width;
+        .elementor-inner-section > .elementor-container {
+            max-width: none;
+        }
+        // This is the default width of the theme
+        > .elementor-column-gap-no {
+            max-width: 1200px;
+        }
+        > .elementor-column-gap-narrow {
+            max-width: 1210px;
+            @media screen and (max-width: 1279px) {
+                margin: 0 -5px;
+            }        
+        }
+        > .elementor-column-gap-default {
+            max-width: 1220px;
+            @media screen and (max-width: 1279px) {
+                margin: 0 -10px;
+            }          
+        }
+        > .elementor-column-gap-extended {
+            max-width: 1230px;
+            @media screen and (max-width: 1279px) {
+                margin: 0 -15px;
+            }          
+        }
+        > .elementor-column-gap-wide {
+            max-width: 1240px;
+            @media screen and (max-width: 1279px) {
+                margin: 0 -20px;
+            }          
+        }    
+        > .elementor-column-gap-wider {
+            max-width: 1260px;
+            @media screen and (max-width: 1279px) {
+                margin: 0 -30px;
+            }          
+        }
+    }  
+
+    /**
+     * This theme extends inner sections that have fullwidth containers to have consistent alignment with outer containers
+     */     
+    .elementor-inner-section.elementor-section-full_width {
+        > .elementor-column-gap-narrow {
             margin: 0 -5px;
-        }        
-    }
-    > .elementor-column-gap-default {
-        max-width: 1220px;
-        @media screen and (max-width: 1279px) {
+        }
+        > .elementor-column-gap-default {
             margin: 0 -10px;
-        }          
-    }
-    > .elementor-column-gap-extended {
-        max-width: 1230px;
-        @media screen and (max-width: 1279px) {
+        }
+        > .elementor-column-gap-extended {
             margin: 0 -15px;
-        }          
-    }
-    > .elementor-column-gap-wide {
-        max-width: 1240px;
-        @media screen and (max-width: 1279px) {
+        }
+        > .elementor-column-gap-wide {
             margin: 0 -20px;
-        }          
-    }    
-    > .elementor-column-gap-wider {
-        max-width: 1260px;
-        @media screen and (max-width: 1279px) {
+        }    
+        > .elementor-column-gap-wider {
             margin: 0 -30px;
-        }          
-    }
-}
+        }
+    }  
 
-/**
- * This theme extends inner sections that have fullwidth containers to have consistent alignment with outer containers
- */
-.waterfall-elementor-align-enabled .elementor-inner-section.elementor-section-full_width {
-    > .elementor-column-gap-narrow {
-        margin: 0 -5px;
-    }
-    > .elementor-column-gap-default {
-        margin: 0 -10px;
-    }
-    > .elementor-column-gap-extended {
-        margin: 0 -15px;
-    }
-    > .elementor-column-gap-wide {
-        margin: 0 -20px;
-    }    
-    > .elementor-column-gap-wider {
-        margin: 0 -30px;
-    }
-}  
 
-/**
- * Adapts the default padding for containers in inner sections and sections in templates sections, which is always zero
- */
-.elementor-section.elementor-inner-section .elementor-container, 
-.elementor-widget-template .elementor-template .elementor-container {
-    padding: 0 !important;
+    /**
+    * Adapts the default padding for containers in inner sections and sections in templates sections, which is always zero
+    */
+    .elementor-section.elementor-inner-section .elementor-container, 
+    .elementor-widget-template .elementor-template .elementor-container {
+        padding: 0 !important;
+    }
+
 }
 
 /** 
- * Images
+ * Remove margin bottom for images
  */
 .elementor-widget img {
     margin-bottom: 0;
