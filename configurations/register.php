@@ -1,10 +1,10 @@
 <?php
 /**
  * Loads our register configurations
- */  
+ */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
-// Default registrations 
+// Default registrations
 $register = [
     'image_sizes' => [
         ['name' => 'square-ld', 'width' => 360, 'height' => 360, 'crop' => true],
@@ -29,8 +29,24 @@ $register = [
         'footer-menu'   => __('Socket Menu', 'waterfall'),
         'top-menu'      => __('Top Menu', 'waterfall')
     ],
-    'sidebars' => [],    
+    'sidebars' => [],
 ];
+
+/**
+ * Additional post types based on settings
+ */
+$post_types_args = wf_get_type_args_from_options('post_types');
+if($post_types_args) {
+    $register['post_types'] = $post_types_args;
+}
+
+/**
+ * Additional taxonomies based on settings
+ */
+$taxonomies_args = wf_get_type_args_from_options('taxonomies');
+if($taxonomies_args) {
+    $register['taxonomies'] = $taxonomies_args;
+}
 
 /**
  * Additional sidebar registrations based on post types
@@ -40,8 +56,8 @@ $types = wf_get_post_types( false, true );
 if( $types ) {
     foreach( $types as $type => $properties ) {
         $register['sidebars'][] = [
-            'id'            => $type, 
-            'name'          => sprintf( __('%s Sidebar', 'waterfall'), $properties['singular'] ), 
+            'id'            => $type,
+            'name'          => sprintf( __('%s Sidebar', 'waterfall'), $properties['singular'] ),
             'description'   => sprintf( __('The sidebar for a single %s.', 'waterfall'), $properties['singular'] )
         ];
 
@@ -51,9 +67,9 @@ if( $types ) {
         }
 
         $register['sidebars'][] = [
-            'id'            => $type . '_archive', 
-            'name'          => sprintf( __('%s Archive Sidebar', 'waterfall'), $properties['singular'] ), 
-            'description'   => sprintf( __('The sidebar for the %s archives.', 'waterfall'), $properties['singular'] ) 
+            'id'            => $type . '_archive',
+            'name'          => sprintf( __('%s Archive Sidebar', 'waterfall'), $properties['singular'] ),
+            'description'   => sprintf( __('The sidebar for the %s archives.', 'waterfall'), $properties['singular'] )
         ];
 
     }
@@ -65,11 +81,11 @@ if( $types ) {
 if( class_exists('bbPress') ) {
     foreach( wf_get_bbpress_types() as $type => $label ) {
         $register['sidebars'][] = [
-            'id'            => $type, 
-            'name'          => sprintf( __('%s Sidebar', 'waterfall'), $label ), 
+            'id'            => $type,
+            'name'          => sprintf( __('%s Sidebar', 'waterfall'), $label ),
             'description'   => sprintf( __('The sidebar for a bbPress %s.', 'waterfall'), $label )
         ];
-    }    
+    }
 }
 
 /**
@@ -82,18 +98,18 @@ $register['sidebars'][] = ['id' => 'search', 'name' => __('Search Sidebar', 'wat
  * $sidebars is retrieved from classes/waterfall.php
  */
 $columns    = [
-    'full'      => ['one', __('One', 'waterfall'), __('first', 'waterfall')], 
-    'half'      => ['two', __('Two', 'waterfall'), __('second', 'waterfall')], 
-    'third'     => ['three', __('Three', 'waterfall'), __('third', 'waterfall')], 
-    'fourth'    => ['four', __('Four', 'waterfall'), __('fourth', 'waterfall')], 
+    'full'      => ['one', __('One', 'waterfall'), __('first', 'waterfall')],
+    'half'      => ['two', __('Two', 'waterfall'), __('second', 'waterfall')],
+    'third'     => ['three', __('Three', 'waterfall'), __('third', 'waterfall')],
+    'fourth'    => ['four', __('Four', 'waterfall'), __('fourth', 'waterfall')],
     'fifth'     => ['five', __('Five', 'waterfall'), __('fifth', 'waterfall')]
-];  
+];
 
 foreach( $columns as $key => $column ) {
     if( in_array($sidebars, array_keys($columns)) ) {
         $register['sidebars'][] = [
-            'id'            => 'footer-' . $column[0], 
-            'name'          => sprintf( __('Footer %s', 'waterfall'), $column[1]), 
+            'id'            => 'footer-' . $column[0],
+            'name'          => sprintf( __('Footer %s', 'waterfall'), $column[1]),
             'description'   => sprintf( __('The %s footer column sidebar.', 'waterfall'), $column[2])
         ];
     }
@@ -103,15 +119,15 @@ foreach( $columns as $key => $column ) {
 /**
  * Woocommerce sidebars
  */
-if( class_exists( 'WooCommerce' ) ) {    
+if( class_exists( 'WooCommerce' ) ) {
     $register['sidebars'][] = [
-        'id'            => 'product-archive', 
-        'name'          => __('Woocommerce Product Archive', 'waterfall'), 
-        'description'   => __('The sidebar for product archives, also known as the shop page.', 'waterfall') 
+        'id'            => 'product-archive',
+        'name'          => __('Woocommerce Product Archive', 'waterfall'),
+        'description'   => __('The sidebar for product archives, also known as the shop page.', 'waterfall')
     ];
     $register['sidebars'][] = [
-        'id'            => 'product', 
-        'name'          => __('Woocommerce Product Sidebar', 'waterfall'), 
-        'description'   => __('The sidebar for products.', 'waterfall') 
+        'id'            => 'product',
+        'name'          => __('Woocommerce Product Sidebar', 'waterfall'),
+        'description'   => __('The sidebar for products.', 'waterfall')
     ];
 }

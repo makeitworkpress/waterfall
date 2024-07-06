@@ -3,6 +3,8 @@
 *.gitmodules
 *.gitignore
 *git/
+node_modules
+/node_modules
 
 wp-config.php
 wp-content/advanced-cache.php

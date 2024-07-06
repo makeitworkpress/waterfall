@@ -59,10 +59,10 @@ $layout = [
                     'id'            => 'border_radius',
                     'title'         => __('Border radius for buttons', 'waterfall'),
                     'description'   => __('Adapts the border radius for all buttons on the site.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ]                                
+                    'type'          => 'dimension'
+                ]
             ]
-        ],        
+        ],
         'header' => [
             'id'            => 'style_header',
             'title'         => __('Header', 'waterfall'),
@@ -293,7 +293,7 @@ $layout = [
                         'left'      => __('Left', 'waterfall'),
                         'right'     => __('Right', 'waterfall'),
                     ]
-                ],                 
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_top_description',
@@ -311,8 +311,8 @@ $layout = [
                         'left'      => __('Left', 'waterfall'),
                         'right'     => __('Right', 'waterfall'),
                     ]
-                ]                                                   
-            ]              
+                ]
+            ]
         ]
     ]
 ]; 
@@ -504,8 +504,8 @@ if( $types ) {
                         $type . '_content_sidebar_width',
                         $type . '_sidebar_position',
                         $type . '_sidebar_width'
-                    ]                    
-                ],             
+                    ]
+                ],
                 [
                     'default'       => 'default',
                     'description'   => __('Width of the container of the whole main content section.', 'waterfall'),
@@ -531,8 +531,8 @@ if( $types ) {
                     'id'            => $type . '_content_sidebar_width',
                     'title'         => __('Content Custom Width', 'waterfall'),
                     'description'   => __('Sets the width of the actual content within the main content section.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ],                     
+                    'type'          => 'dimension'
+                ],
                 [
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out.', 'waterfall'),
@@ -551,8 +551,8 @@ if( $types ) {
                     'id'            => $type . '_sidebar_width',
                     'title'         => __('Sidebar Custom Width ', 'waterfall'),
                     'description'   => __('Sets the width of the sidebar.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ],                
+                    'type'          => 'dimension' 
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_main_content_related_header',

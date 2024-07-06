@@ -445,6 +445,60 @@ function wf_get_post_types( $simple = false, $available = false ) {
 }
 
 /**
+ * Retrieves a custom type saved in the options of waterfall
+ * 
+ * @param string $type The type, accepts post_types or taxonomies
+ * @return array The formatted array of types that can be used for registration in the configuration (or anywhere else)
+ */
+function wf_get_type_args_from_options($type = '') {
+    if ( ! in_array($type, ['post_types', 'taxonomies']) ) {
+        return [];
+    }
+
+    $custom_type_args = wf_get_data('options', $type);
+    $formatted_args = [];
+
+    if ( empty($custom_type_args) ) {
+        return [];
+    }
+
+    foreach ( $custom_type_args as $arg ) {
+        if( ! $arg['singular'] || ! $arg['plural'] || ! $arg['slug'] ) {
+            continue;
+        }
+        if( $type === 'taxonomies' && ! $arg['object'] ) {
+            continue;
+        }
+
+        $slug = sanitize_title($arg['slug']);
+        $default_args = [
+            'singular'  => $arg['singular'],
+            'plural'    => $arg['plural'],
+            'name'      => $slug,
+            'slug'      => $slug,
+            'args'      => ['show_in_rest' => true]
+        ];
+
+        if ( $type === 'post_types' ) {
+            $default_args['args']['has_archive'] = true;
+            $default_args['args']['menu_icon'] = $arg['dashicon'] ? $arg['dashicon'] : 'dashicons-admin-post';
+            $default_args['args']['rewrite']['with_front'] = false;
+            $default_args['args']['supports'] = ['author', 'comments', 'editor', 'excerpt', 'title', 'thumbnail'];
+        }
+
+        if ( $type === 'taxonomies' ) {
+            $default_args['object'] = $arg['object'];
+            $default_args['args']['hierarchical'] = $arg['hierarchical'];
+            $default_args['args']['show_admin_column'] = true;
+        }
+
+        $formatted_args[$slug] = $default_args;
+    }
+
+    return $formatted_args;
+}
+
+/**
  * Returns bbPress archives and post types
  * 
  * @return Array $types The bbPress types

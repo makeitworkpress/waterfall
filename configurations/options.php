@@ -171,7 +171,103 @@ $options = [
                     ],
                     'title'         => __('Theme Optimizations', 'waterfall'),
                     'type'          => 'checkbox'
-                ]
+                ],
+            ]
+        ],
+        'types'   => [
+            'icon'          => 'push_pin',
+            'id'            => 'types',
+            'title'         => __('Types', 'waterfall'),
+            'description'   => __('Settings for defining additional custom post types and taxonomies.', 'waterfall'),
+            'fields'        => [
+                [
+                    'description'   => __('Add additional post types as a dynamic option', 'waterfall'),
+                    'id'            => 'post_types',
+                    'title'         => __('Custom Post Types', 'waterfall'),
+                    'type'          => 'repeatable',
+                    'labels'        =>  [
+                        'add'           => __('Add New Row', 'waterfall'),
+                        'remove'        => __('Remove Latest', 'waterfall'),
+                    ],
+                    'fields'        => [
+                        [
+                            'columns'       => 'fourth',
+                            'id'            => 'singular',
+                            'title'         => __('Singular Name', 'waterfall'),
+                            'type'          => 'input'
+                        ],
+                        [
+                            'columns'       => 'fourth',
+                            'id'            => 'plural',
+                            'title'         => __('Plural Name', 'waterfall'),
+                            'type'          => 'input'
+                        ],
+                        [
+                            'columns'       => 'fourth',
+                            'id'            => 'slug',
+                            'title'         => __('Slug', 'waterfall'),
+                            'description'   => __('Lowercase, changing removes existing posts.', 'waterfall'),
+                            'type'          => 'input'
+                        ],
+                        [
+                            'columns'       => 'fourth',
+                            'id'            => 'dashicon',
+                            'title'         => __('Post Type Dashicon', 'wfr'),
+                            'description'   => __('https://developer.wordpress.org/resource/dashicons/', 'wfr'),
+                            'type'          => 'input',
+                        ],
+                    ]
+                ],
+                [
+                    'description'   => __('Add additional custom categories to any post type.', 'waterfall'),
+                    'id'            => 'taxonomies',
+                    'title'         => __('Custom Taxonomies', 'waterfall'),
+                    'type'          => 'repeatable',
+                    'labels'        =>  [
+                        'add'           => __('Add New Row', 'waterfall'),
+                        'remove'        => __('Remove Latest', 'waterfall'),
+                    ],
+                    'fields'        => [
+                        [
+                            'columns'       => 'fifth',
+                            'id'            => 'singular',
+                            'title'         => __('Singular Name', 'waterfall'),
+                            'type'          => 'input'
+                        ],
+                        [
+                            'columns'       => 'fifth',
+                            'id'            => 'plural',
+                            'title'         => __('Plural Name', 'waterfall'),
+                            'type'          => 'input'
+                        ],
+                        [
+                            'columns'       => 'fifth',
+                            'id'            => 'slug',
+                            'title'         => __('Slug', 'waterfall'),
+                            'description'   => __('Lowercase, changing removes existing.', 'waterfall'),
+                            'type'          => 'input'
+                        ],
+                        [
+                            'columns'       => 'fifth',
+                            'id'            => 'object',
+                            'title'         => __('Target Objects', 'waterfall'),
+                            'options'       => wf_get_post_types(true),
+                            'multiple'      => true,
+                            'type'          => 'select'
+                        ],
+                        [
+                            'columns'       => 'fifth',
+                            'id'            => 'hierarchical',
+                            'title'         => __('Hierarchical', 'wfr'),
+                            'description'   => __('Taxonomy can have children (like categories, unlike tags)', 'wfr'),
+                            'single'        => true,
+                            'type'          => 'checkbox',
+                            'options'       => [
+                                'enable'        => ['label' => __('Hierarchical', 'waterfall')]
+                            ]
+                        ],
+                    ]
+                ],
             ]
         ]
     ]
