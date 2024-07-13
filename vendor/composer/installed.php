@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '7b370d8c07406edd8eee2f03d9072c86cd3bea31',
+        'reference' => '6e26dcad3400aad6e4a6e5dcea23408eb22f0666',
         'name' => 'makeitworkpress/waterfall',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '7b370d8c07406edd8eee2f03d9072c86cd3bea31',
+            'reference' => '6e26dcad3400aad6e4a6e5dcea23408eb22f0666',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-components' => array(
@@ -27,7 +27,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '37c142e21cd71a45c942550c41f5ec91e9339ed3',
+            'reference' => '2d1ce449fd2d80a986a8b673629fdc3d031f4ac5',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-config' => array(
@@ -49,7 +49,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '0a3bd659c664d863b603e5d679eececac20d0de2',
+            'reference' => 'beb6d180623f94ebef0364906e990620ef212328',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-enqueue' => array(

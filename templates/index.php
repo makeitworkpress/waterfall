@@ -1,6 +1,6 @@
 <?php 
     /**
-     * Displays the archive page 
+     * Displays the archive page
      *
      * Retrieves our header
      */

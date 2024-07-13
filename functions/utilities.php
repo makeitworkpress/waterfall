@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Utility functions that are used by the waterfall theme
  */
@@ -9,9 +10,10 @@
  * @param   String    $type The type of view to retrieve
  * @return  Object   The view object for the specified type
  */
-function wf_get_view($type) {
-    
-    switch($type) {
+function wf_get_view($type)
+{
+
+    switch ($type) {
         case 'header':
             $view = new Views\Header();
             break;
@@ -23,13 +25,13 @@ function wf_get_view($type) {
             break;
         case 'product':
             $view = new Views\Plugins\Product();
-            break;              
+            break;
         case 'events':
             $view = new Views\Plugins\Events();
-            break;              
+            break;
         case 'bbpress':
             $view = new Views\Plugins\bbPress();
-            break;  
+            break;
         case 'archive':
             $view = new Views\Index();
             break;
@@ -50,7 +52,8 @@ function wf_get_view($type) {
  * Retrieves the theme header
  * Replaces the standard get_header call that WordPress uses (required because our templates are in the templates folder)
  */
-function wf_get_theme_header() {
+function wf_get_theme_header()
+{
     get_template_part('templates/header');
 }
 
@@ -58,7 +61,8 @@ function wf_get_theme_header() {
  * Retrieves the theme footer
  * Replaces the standard get_footer call that WordPress uses (required because our templates are in the templates folder)
  */
-function wf_get_theme_footer() {
+function wf_get_theme_footer()
+{
     get_template_part('templates/footer');
 }
 
@@ -71,15 +75,16 @@ function wf_get_theme_footer() {
  *
  * @return  Array/String    $options   The array with options; 
  */
-function wf_get_data( $type = '', $keys = '', $prefix = '') {
+function wf_get_data($type = '', $keys = '', $prefix = '')
+{
 
     /**
      * Retrieves our data from the instance
      * This ensures data is only queried once
      */
-    $type   = ! $type ? 'options' : $type;
+    $type   = !$type ? 'options' : $type;
 
-    if( ! in_array($type, ['bbpress', 'colors', 'customizer', 'layout', 'meta', 'options', 'woocommerce']) ) {
+    if (!in_array($type, ['bbpress', 'colors', 'customizer', 'layout', 'meta', 'options', 'woocommerce'])) {
         return [];
     }
 
@@ -90,17 +95,16 @@ function wf_get_data( $type = '', $keys = '', $prefix = '') {
      * Allows only to return a certain set of options. 
      * Either receive a single option or multiple at once, but not all
      */
-    if( is_array($keys) ) {
+    if (is_array($keys)) {
         $formatted = array();
-        foreach( $keys as $key ) {
+        foreach ($keys as $key) {
             $formatted[$key] = isset($options[$prefix . $key]) ? $options[$prefix . $key] : false;
-        }        
-    } elseif( $keys ) {
+        }
+    } elseif ($keys) {
         $formatted = isset($options[$prefix . $keys]) ? $options[$prefix . $keys] : false;
     }
-    
-    return isset($formatted) ? $formatted : $options;
 
+    return isset($formatted) ? $formatted : $options;
 }
 
 /**
@@ -113,60 +117,62 @@ function wf_get_data( $type = '', $keys = '', $prefix = '') {
  *
  * @return  Array/String    $options   The array with options; 
  */
-function wf_get_theme_option( $type = '', $keys = '', $prefix = '' ) {
-    return wf_get_data($type, $keys, $prefix);   
+function wf_get_theme_option($type = '', $keys = '', $prefix = '')
+{
+    return wf_get_data($type, $keys, $prefix);
 }
 
 /**
  * Retrieves the main microdata for a theme
  */
-function wf_get_main_schema() {
-    
-    $blogTypes  = apply_filters( 'waterfall_blog_schema_post_types', ['post'] );
+function wf_get_main_schema()
+{
+
+    $blogTypes  = apply_filters('waterfall_blog_schema_post_types', ['post']);
     $disabled   = wf_get_data('options', 'scheme_post_types_disable') ? wf_get_data('options', 'scheme_post_types_disable') : [];
     $schema     = 'http://schema.org/WebPageElement';
 
-    if( is_singular($blogTypes) ) {
+    if (is_singular($blogTypes)) {
         global $post;
-        if( in_array($post->post_type, $blogTypes) && ! in_array($post->post_type, $disabled) ) {
+        if (in_array($post->post_type, $blogTypes) && !in_array($post->post_type, $disabled)) {
             $schema = 'https://schema.org/Blog';
         }
     }
 
     // Archive blog schemes
     $archive    = wf_get_archive_post_type();
-    if( is_archive() && in_array($archive, $blogTypes) && ! in_array($archive, $disabled) ) {
+    if (is_archive() && in_array($archive, $blogTypes) && !in_array($archive, $disabled)) {
         $schema = 'https://schema.org/Blog';
-    }    
-        
-    if( is_search() ) {
+    }
+
+    if (is_search()) {
         $schema = 'https://schema.org/SearchResultsPage';
     }
-        
+
     return apply_filters('waterfall_main_schema', $schema);
-    
 }
 
 /**
  * Checks if we are displaying a custom template
  * Works properly after the template_include hook.
  */
-function wf_is_custom() {
-    
+function wf_is_custom()
+{
+
     global $wp_query;
-    
-    if( isset($wp_query->is_custom) && $wp_query->is_custom )
+
+    if (isset($wp_query->is_custom) && $wp_query->is_custom)
         return true;
-    
+
     return false;
-    
 }
 
 /**
  * Retrieves all image sizes for this theme
  */
-function wf_get_image_sizes() {
-    return apply_filters( 'waterfall_image_sizes', [
+function wf_get_image_sizes()
+{
+    return apply_filters('waterfall_image_sizes', [
         'thumbnail'     => __('Thumbnail', 'waterfall'),
         'medium'        => __('Medium', 'waterfall'),
         'large'         => __('Large', 'waterfall'),
@@ -186,28 +192,30 @@ function wf_get_image_sizes() {
         'square-ld'     => __('Square LD (360x360)', 'waterfall'),
         'square-sd'     => __('Square SD (480x480)', 'waterfall'),
         'square-hd'     => __('Square HD (720x720)', 'waterfall'),
-        'square-fhd'    => __('Square FHD (1080x1080)', 'waterfall')          
-    ] );
+        'square-fhd'    => __('Square FHD (1080x1080)', 'waterfall')
+    ]);
 }
 
 /**
  * Retrieves the default grid columns of the grid system
  */
-function wf_get_column_options() {
-    return apply_filters( 'waterfall_column_options', [
+function wf_get_column_options()
+{
+    return apply_filters('waterfall_column_options', [
         'full'      => __('No columns', 'waterfall'),
         'half'      => __('Two columns', 'waterfall'),
         'third'     => __('Three columns', 'waterfall'),
         'fourth'    => __('Four columns', 'waterfall'),
         'fifth'     => __('Five columns', 'waterfall')
-    ] );
+    ]);
 }
 
 /**
  * Retrieves the default grid columns of the grid system
  */
-function wf_get_grid_gaps() {
-    return apply_filters( 'waterfall_grid_gaps', [
+function wf_get_grid_gaps()
+{
+    return apply_filters('waterfall_grid_gaps', [
         'default'   => __('Default', 'waterfall'),
         'none'      => __('None', 'waterfall'),
         'tiny'      => __('Tiny', 'waterfall'),
@@ -215,37 +223,40 @@ function wf_get_grid_gaps() {
         'medium'    => __('Medium', 'waterfall'),
         'large'     => __('Large', 'waterfall'),
         'huge'      => __('Huge', 'waterfall')
-    ] );
+    ]);
 }
 
 /**
  * Retrieve options for displaying the sidebar
  */
-function wf_get_sidebar_options() {
-    return apply_filters( 'waterfall_sidebar_options', [
+function wf_get_sidebar_options()
+{
+    return apply_filters('waterfall_sidebar_options', [
         'default'   => __('No Sidebars', 'waterfall'),
         'left'      => __('Left Sidebar', 'waterfall'),
         'right'     => __('Right Sidebar', 'waterfall'),
         'bottom'    => __('Bottom Sidebar', 'waterfall'),
-    ] );      
+    ]);
 }
 
 /**
  * Retrieve options for container/fullwidth
  */
-function wf_get_container_options() {
-    return apply_filters( 'waterfall_container_options', [
+function wf_get_container_options()
+{
+    return apply_filters('waterfall_container_options', [
         ''          => __('Select Option', 'waterfall'),
         'default'   => __('Default', 'waterfall'),
         'full'      => __('Fullwidth', 'waterfall')
-    ] );  
+    ]);
 }
-                         
+
 /**
  * Retrieves screen heights
  */
-function wf_get_height_options() {
-    return apply_filters( 'waterfall_height_options', [
+function wf_get_height_options()
+{
+    return apply_filters('waterfall_height_options', [
         'default'   => __('No minimum height', 'waterfall'),
         'full'      => __('Fullscreen height', 'waterfall'),
         'normal'    => __('Three quarter of screen height', 'waterfall'),
@@ -253,63 +264,68 @@ function wf_get_height_options() {
         'half'      => __('Half of screen height', 'waterfall'),
         'third'     => __('Third of screen height', 'waterfall'),
         'quarter'   => __('Quarter of screen height', 'waterfall')
-    ] );  
+    ]);
 }
 
 /**
  * Retrieves alignments
  */
-function wf_get_align_options() {
-    return apply_filters( 'waterfall_align_options', [
+function wf_get_align_options()
+{
+    return apply_filters('waterfall_align_options', [
         'left'    => __('Left', 'waterfall'),
         'center'  => __('Center', 'waterfall'),
         'right'   => __('Right', 'waterfall')
-    ] );  
+    ]);
 }
 
 /**
  * Retrieves button options
  */
-function wf_get_button_options() {
-    return apply_filters( 'waterfall_button_options', [
+function wf_get_button_options()
+{
+    return apply_filters('waterfall_button_options', [
         'none'      => __('No button', 'waterfall'),
         'default'   => __('Default button', 'waterfall'),
         'arrow'     => __('Downwards Arrow', 'waterfall')
-    ] );  
+    ]);
 }
 
 /**
  * Retrieves background options
  */
-function wf_get_background_options() {
-    return apply_filters( 'waterfall_background_options', [
+function wf_get_background_options()
+{
+    return apply_filters('waterfall_background_options', [
         'background'    => __('As background of the title section', 'waterfall'),
         'before'        => __('Before the page title in the title section', 'waterfall'),
         'after'         => __('After the page title in the title section', 'waterfall'),
         'none'          => __('Do not use the featured image in the title section', 'waterfall')
-    ] );  
+    ]);
 }
 
 /**
  * Retrieves float options
  */
-function wf_get_float_options() {
-    return apply_filters( 'waterfall_float_options', [
+function wf_get_float_options()
+{
+    return apply_filters('waterfall_float_options', [
         'center' => __('Center', 'waterfall'),
         'left'   => __('Left', 'waterfall'),
         'none'   => __('None', 'waterfall'),
         'right'  => __('Right', 'waterfall')
-     ] );  
+    ]);
 }
 
 /**
  * Retrieves grid view options
  */
-function wf_get_grid_options() {
-    return apply_filters( 'waterfall_grid_options', [
+function wf_get_grid_options()
+{
+    return apply_filters('waterfall_grid_options', [
         'grid'      => __('Grid', 'waterfall'),
-        'list'      => __('List', 'waterfall')
-    ] );
+        'list'      => __('List', 'waterfall'),
+    ]);
 }
 
 /**
@@ -317,32 +333,33 @@ function wf_get_grid_options() {
  *
  * @return array $urls The array with social network urls as values, and their sanitized names as keys
  */
-function wf_get_social_networks() {
-    
-    $networks   = apply_filters( 'waterfall_social_loaded_networks', [
-        'telephone'     => __('Telephone', 'waterfall'), 
-        'email'         => __('Email', 'waterfall'), 
-        'facebook'      => __('Facebook', 'waterfall'), 
-        'instagram'     => __('Instagram', 'waterfall'), 
-        'twitter'       => __('Twitter', 'waterfall'), 
-        'linkedin'      => __('LinkedIn', 'waterfall'), 
-        'youtube'       => __('Youtube', 'waterfall'), 
-        'pinterest'     => __('Pinterest', 'waterfall'), 
-        'behance'       => __('Behance', 'waterfall'), 
-        'dribble'       => __('Dribble', 'waterfall'), 
-        'reddit'        => __('Reddit', 'waterfall'),   
-        'github'        => __('Github', 'waterfall'),   
-        'whatsapp'      => __('Whatsapp', 'waterfall')           
-    ] );
-    
+function wf_get_social_networks()
+{
+
+    $networks   = apply_filters('waterfall_social_loaded_networks', [
+        'telephone'     => __('Telephone', 'waterfall'),
+        'email'         => __('Email', 'waterfall'),
+        'facebook'      => __('Facebook', 'waterfall'),
+        'instagram'     => __('Instagram', 'waterfall'),
+        'twitter'       => __('Twitter', 'waterfall'),
+        'linkedin'      => __('LinkedIn', 'waterfall'),
+        'youtube'       => __('Youtube', 'waterfall'),
+        'pinterest'     => __('Pinterest', 'waterfall'),
+        'behance'       => __('Behance', 'waterfall'),
+        'dribble'       => __('Dribble', 'waterfall'),
+        'reddit'        => __('Reddit', 'waterfall'),
+        'github'        => __('Github', 'waterfall'),
+        'whatsapp'      => __('Whatsapp', 'waterfall')
+    ]);
+
     $options    = wf_get_data('customizer', array_keys($networks));
     $urls       = [];
-    
-    foreach( $networks as $network => $label ) {
-        if( isset($options[$network]) && $options[$network] )
-            $urls[$network] = $options[$network];        
+
+    foreach ($networks as $network => $label) {
+        if (isset($options[$network]) && $options[$network])
+            $urls[$network] = $options[$network];
     }
-    
+
     return $urls;
 }
 
@@ -352,52 +369,68 @@ function wf_get_social_networks() {
  * 
  * @return string $type the post type
  */
-function wf_get_archive_post_type() {
+function wf_get_archive_post_type()
+{
 
     $type = 'post';
-    
+
     global $wp_query;
-    
+
     // Default post type archives
-    if( isset($wp_query->query['post_type']) ) {
+    if (isset($wp_query->query['post_type'])) {
         $type = $wp_query->query['post_type'];
-    
-    // The page set-up as blog page
-    } elseif( isset($wp_query->queried_object->ID) && (int) $wp_query->queried_object->ID === (int) get_option('page_for_posts') ) {
+
+        // The page set-up as blog page
+    } elseif (isset($wp_query->queried_object->ID) && (int) $wp_query->queried_object->ID === (int) get_option('page_for_posts')) {
         $type = 'post';
-    
-    // bbPress search (will equal forums archive)
-    } elseif( isset($wp_query->bbp_is_search) && $wp_query->bbp_is_search ) {
+
+        // bbPress search (will equal forums archive)
+    } elseif (isset($wp_query->bbp_is_search) && $wp_query->bbp_is_search) {
         $type = 'forum';
-    
-    // Taxonomy archives
-    } elseif( isset($wp_query->tax_query->queried_terms) && $wp_query->tax_query->queried_terms ) {
+
+        // Taxonomy archives
+    } elseif (isset($wp_query->tax_query->queried_terms) && $wp_query->tax_query->queried_terms) {
 
         // Get the first of the queried taxonomies
-        foreach( $wp_query->tax_query->queried_terms as $key => $vars ) {
-            
+        foreach ($wp_query->tax_query->queried_terms as $key => $vars) {
+
             // If our key is language (from polylang), we skip it
-            if( $key === 'language' ) {
+            if ($key === 'language') {
                 continue;
             }
 
             $taxonomy = $key;
             break;
-            
         }
 
         // If our taxonomy is a string, get the object first
-        if( isset($taxonomy) && is_string($taxonomy) ) {
+        if (isset($taxonomy) && is_string($taxonomy)) {
             $taxonomy = get_taxonomy($taxonomy);
         }
 
-        if( isset($taxonomy->object_type[0]) ) {
+        if (isset($taxonomy->object_type[0])) {
             $type = $taxonomy->object_type[0];
-        }       
-
+        }
     }
 
     return apply_filters('waterfall_archive_post_type', $type);
+}
+
+/**
+ * Returns the taxonomies that are associated with a post type
+  * @param string $post_type The post type
+ */
+function wf_get_taxonomies_for_type($post_type) {
+    $taxonomies = get_object_taxonomies($post_type, 'objects');
+    $options = [
+        'none' => __('None', 'waterfall')
+    ];
+
+    foreach ($taxonomies as $name => $taxonomy) {
+        $options[$name] = $taxonomy->label;
+    }
+
+    return $options;
 
 }
 
@@ -409,39 +442,36 @@ function wf_get_archive_post_type() {
  * 
  * @return array $posts The array with post types
  */
-function wf_get_post_types( $simple = false, $available = false ) {
+function wf_get_post_types($simple = false, $available = false)
+{
 
     $db     = get_option('waterfall_post_types');
 
     $saved  = $db && is_array($db) ? $db : [];
     $types  = [];
 
-    if( $simple ) {
+    if ($simple) {
 
-        foreach( $saved as $name => $type ) {
+        foreach ($saved as $name => $type) {
             $types[$name] = $type['name'];
         }
-
     } else {
         $types = $saved;
     }
 
-    if( $available ) {
+    if ($available) {
         $options = get_option('waterfall_options');
         $allowed = isset($options['customizer_post_types']) && is_array($options['customizer_post_types']) ? $options['customizer_post_types'] : ['post', 'page', 'reviews'];
 
-        foreach( $types as $name => $type ) {
+        foreach ($types as $name => $type) {
 
-            if( ! in_array($name, $allowed) ) {
+            if (!in_array($name, $allowed)) {
                 unset($types[$name]);
             }
-
         }
-
     }
 
     return $types;
-
 }
 
 /**
@@ -450,23 +480,24 @@ function wf_get_post_types( $simple = false, $available = false ) {
  * @param string $type The type, accepts post_types or taxonomies
  * @return array The formatted array of types that can be used for registration in the configuration (or anywhere else)
  */
-function wf_get_type_args_from_options($type = '') {
-    if ( ! in_array($type, ['post_types', 'taxonomies']) ) {
+function wf_get_type_args_from_options($type = '')
+{
+    if (!in_array($type, ['post_types', 'taxonomies'])) {
         return [];
     }
 
     $custom_type_args = wf_get_data('options', $type);
     $formatted_args = [];
 
-    if ( empty($custom_type_args) ) {
+    if (empty($custom_type_args)) {
         return [];
     }
 
-    foreach ( $custom_type_args as $arg ) {
-        if( ! $arg['singular'] || ! $arg['plural'] || ! $arg['slug'] ) {
+    foreach ($custom_type_args as $arg) {
+        if (!$arg['singular'] || !$arg['plural'] || !$arg['slug']) {
             continue;
         }
-        if( $type === 'taxonomies' && ! $arg['object'] ) {
+        if ($type === 'taxonomies' && !$arg['object']) {
             continue;
         }
 
@@ -479,14 +510,14 @@ function wf_get_type_args_from_options($type = '') {
             'args'      => ['show_in_rest' => true]
         ];
 
-        if ( $type === 'post_types' ) {
+        if ($type === 'post_types') {
             $default_args['args']['has_archive'] = true;
             $default_args['args']['menu_icon'] = $arg['dashicon'] ? $arg['dashicon'] : 'dashicons-admin-post';
             $default_args['args']['rewrite']['with_front'] = false;
             $default_args['args']['supports'] = ['author', 'comments', 'editor', 'excerpt', 'title', 'thumbnail'];
         }
 
-        if ( $type === 'taxonomies' ) {
+        if ($type === 'taxonomies') {
             $default_args['object'] = $arg['object'];
             $default_args['args']['hierarchical'] = $arg['hierarchical'];
             $default_args['args']['show_admin_column'] = true;
@@ -503,11 +534,12 @@ function wf_get_type_args_from_options($type = '') {
  * 
  * @return Array $types The bbPress types
  */
-function wf_get_bbpress_types() {
+function wf_get_bbpress_types()
+{
     return apply_filters('waterfall_bbpress_types', [
-        'forum_archive' => __('Forums Page', 'waterfall'), 
-        'forum'         => __('Forum', 'waterfall'), 
-        'topic'         => __('Topic', 'waterfall'), 
+        'forum_archive' => __('Forums Page', 'waterfall'),
+        'forum'         => __('Forum', 'waterfall'),
+        'topic'         => __('Topic', 'waterfall'),
         'reply'         => __('Reply', 'waterfall')
     ]);
 }
@@ -521,10 +553,11 @@ function wf_get_bbpress_types() {
  * @param string $location  The theme location of the template
  * @param string $type      The optional condition type, such as a post type or post type archive display (use post type name or 404) or search or author
  */
-function wf_elementor_theme_has_location( $location, $type = '' ) {
+function wf_elementor_theme_has_location($location, $type = '')
+{
 
     // Elementor should be active
-    if( ! did_action('elementor/loaded') ) {
+    if (!did_action('elementor/loaded')) {
         return false;
     }
 
@@ -532,74 +565,70 @@ function wf_elementor_theme_has_location( $location, $type = '' ) {
     $shown      = false;
 
     // There should be something to show
-    if( ! isset($conditions[$location]) || empty($conditions[$location]) || ! is_array($conditions[$location]) ) {
+    if (!isset($conditions[$location]) || empty($conditions[$location]) || !is_array($conditions[$location])) {
         return $shown;
     }
 
-    switch($location) {
+    switch ($location) {
         case 'header':
         case 'footer':
-            foreach( $conditions[$location] as $condition ) {
-                if( $condition[0] === 'include/general' ) {
+            foreach ($conditions[$location] as $condition) {
+                if ($condition[0] === 'include/general') {
                     $shown = true;
                 }
             }
             break;
         case 'single':
-            foreach( $conditions[$location] as $condition ) {
-                              
+            foreach ($conditions[$location] as $condition) {
+
                 // For single template applying to all types
-                if( $condition[0] === 'include/singular' ) {
+                if ($condition[0] === 'include/singular') {
                     $shown = true;
                 }
 
-                if( $condition[0] === 'include/singular/not_found404' && $type === '404' ) {
+                if ($condition[0] === 'include/singular/not_found404' && $type === '404') {
                     $shown = true;
-                }                
+                }
 
                 // For single template applying to products
-                if( $condition[0] === 'include/product' && $type === 'product' ) {
-                    $shown = true;
-                }                
-
-                // For a single templates applying to a specific type
-                if( $condition[0] === 'include/singular/' . $type ) {
+                if ($condition[0] === 'include/product' && $type === 'product') {
                     $shown = true;
                 }
 
+                // For a single templates applying to a specific type
+                if ($condition[0] === 'include/singular/' . $type) {
+                    $shown = true;
+                }
             }
             break;
         case 'archive':
 
-            foreach( $conditions[$location] as $condition ) {
+            foreach ($conditions[$location] as $condition) {
 
                 // For an archive template applying to all types
-                if( $condition[0] === 'include/archive' ) {
+                if ($condition[0] === 'include/archive') {
                     $shown = true;
                 }
 
                 // For a search, author or date templates 
-                if( $condition[0] === 'include/archive/' . $type ) {
-                    $shown = true;
-                } 
-
-                // For condition archives
-                if( $condition[0] === 'include/product_archive' && $type === 'product' ) {
-                    $shown = true;
-                }                 
-
-                // For a specific post type 
-                if( $condition[0] === 'include/archive/' . $type . '_archive' ) {
+                if ($condition[0] === 'include/archive/' . $type) {
                     $shown = true;
                 }
 
-            }                 
+                // For condition archives
+                if ($condition[0] === 'include/product_archive' && $type === 'product') {
+                    $shown = true;
+                }
 
-        break;
+                // For a specific post type 
+                if ($condition[0] === 'include/archive/' . $type . '_archive') {
+                    $shown = true;
+                }
+            }
 
+            break;
     }
 
-   
+
     return $shown;
-    
 }

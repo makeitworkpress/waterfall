@@ -317,8 +317,23 @@ trait Validate {
                  
             // Code field    
             case 'code':
-                $return_value = htmlentities(stripslashes($field_value));
-                break; 
+                global $allowedposttags;
+                $allowed = apply_filters(
+                    'wpcf_code_field_allowed_tags', 
+                    array_merge($allowedposttags, [
+                        'script'    => [],
+                        'style'     => [],
+                    ]
+                ));
+
+                $return_value = wp_kses(wp_unslash($input), $allowed);
+
+                // Remove potential harmful JavaScript in attributes
+                $return_value = preg_replace_callback('/<(.*?)>/i', function ($matches) {
+                    return str_replace(array('javascript:', 'onload=', 'onerror='), '', $matches[0]);
+                }, $return_value);
+                
+                break;
                 
             // Colorpicker     
             case 'colorpicker':

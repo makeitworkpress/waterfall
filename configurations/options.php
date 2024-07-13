@@ -178,7 +178,7 @@ $options = [
             'icon'          => 'push_pin',
             'id'            => 'types',
             'title'         => __('Types', 'waterfall'),
-            'description'   => __('Settings for defining additional custom post types and taxonomies.', 'waterfall'),
+            'description'   => __('Define any additional custom post types or taxonomies.', 'waterfall'),
             'fields'        => [
                 [
                     'description'   => __('Add additional post types as a dynamic option', 'waterfall'),
@@ -212,7 +212,7 @@ $options = [
                         [
                             'columns'       => 'fourth',
                             'id'            => 'dashicon',
-                            'title'         => __('Post Type Dashicon', 'wfr'),
+                            'title'         => __('Post Type Dashicon (Optional)', 'wfr'),
                             'description'   => __('https://developer.wordpress.org/resource/dashicons/', 'wfr'),
                             'type'          => 'input',
                         ],
@@ -259,7 +259,7 @@ $options = [
                             'columns'       => 'fifth',
                             'id'            => 'hierarchical',
                             'title'         => __('Hierarchical', 'wfr'),
-                            'description'   => __('Taxonomy can have children (like categories, unlike tags)', 'wfr'),
+                            'description'   => __('Taxonomy can have children.', 'wfr'),
                             'single'        => true,
                             'type'          => 'checkbox',
                             'options'       => [

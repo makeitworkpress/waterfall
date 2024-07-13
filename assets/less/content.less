@@ -24,8 +24,21 @@
 .main-header {
     overflow: hidden;
     padding-top: @grid-space*2;
+    &.archive-header {
+        overflow: visible;
+    }
     &.components-image-background {
+        color: @white;
         padding-top: @grid-space;
+        h1, h2, h3, h4, h5, h6, a, a:hover {
+            color: @white;
+        }
+        ~ .main-content {
+            padding-top: @grid-space*2;
+        }        
+    }
+    &.components-center-align .atom-image {
+        margin: @grid-space*0.5 -50%;
     }
     .atom-description {
         font-size: 1.5em;
@@ -33,9 +46,6 @@
     }
     .atom-breadcrumbs {
         font-size: @small-fontsize;
-    }
-    &.components-center-align .atom-image {
-        margin: @grid-space*0.5 -50%;
     }
     .atom-image {
         margin: @grid-space*0.5 0;
@@ -69,15 +79,6 @@
         display: inline-block;
         margin-bottom: 0.25*@grid-space;
         text-align: center;
-    }
-    &.components-image-background {
-        color: @white;
-        h1, h2, h3, h4, h5, h6, a, a:hover {
-            color: @white;
-        }
-        ~ .main-content {
-            padding-top: @grid-space*2;
-        }
     }
 }
 
@@ -133,7 +134,7 @@
         padding: 0 0 0 1.5em;
     }
     p, ul, ol, h2, h3, h4, code, pre, .wp-block-buttons, table { 
-        + h2, + h3, + h4, + h2, + h3, + h4, + h2, + h3, + h4, + h2, + h3, + h4, + h3, + h4, + h4 {
+        + h2, + h3, + h4 {
             margin-top: 1em;    
         } 
     }
@@ -202,8 +203,14 @@ body.elementor-page, body.woocommerce-page {
     color: inherit; // Required to comply with Theme Requirements
 }
 
-/* Posts Arcives and Post Grids
+/* Posts Archives and Post Grids
 ----------------------*/
+.archive-content {
+    > .components-container > .atom-terms, > .atom-terms {
+        margin-bottom: 4em;    
+    }
+}
+
 .molecule-post {
     .entry-author {
         display: inline-block;

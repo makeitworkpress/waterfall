@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Adds extensive settings for the layout
  */
-defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
+defined('ABSPATH') or die('Go eat veggies!');
 
 // Receive our public post types
-$types  = wf_get_post_types( true, true );
+$types  = wf_get_post_types(true, true);
 
 // Set-up the settings array
 $layout = [
@@ -38,7 +39,7 @@ $layout = [
                     'title'         => __('Maximum Width of Content', 'waterfall'),
                     'description'   => __('Sets maximum width of content and page builders containers. If using non-pixel values, you may have to add manual styling.', 'waterfall'),
                     'type'          => 'dimension'
-                ], 
+                ],
                 [
                     'selector'      => [
                         'selector'  => '.waterfall-boxed-layout .header, .waterfall-boxed-layout .main, .waterfall-boxed-layout .footer',
@@ -52,7 +53,7 @@ $layout = [
                 ],
                 [
                     'selector'     => [
-                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-element .elementor-button, .elementor-field-type-submit button, .woocommerce input.button .woocommerce input.button.alt, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .widget_shopping_cart_content .button', 
+                        'selector' => '.atom-button, input[type=\'submit\'], input[type=\'submit\'].button, input[type=\'reset\'], input[type=\'button\'], button, input.button, .wp-block-file .wp-block-file__button, .wp-block-button__link, .elementor-element .elementor-button, .elementor-field-type-submit button, .woocommerce input.button .woocommerce input.button.alt, .woocommerce button.button, .woocommerce a.button, .woocommerce #respond input#submit, .widget_shopping_cart_content .button',
                         'property' => 'border-radius'
                     ],
                     'default'       => '',
@@ -66,13 +67,13 @@ $layout = [
         'header' => [
             'id'            => 'style_header',
             'title'         => __('Header', 'waterfall'),
-            'fields'    => [ 
+            'fields'    => [
                 [
                     'default'       => '',
                     'id'            => 'header_disable',
                     'title'         => __('Disable Header', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_general_header',
@@ -90,7 +91,7 @@ $layout = [
                         'header_disable_logo',
                         'header_social'
                     ]
-                ],                   
+                ],
                 [
                     'default'       => 'full',
                     'id'            => 'header_width',
@@ -104,7 +105,7 @@ $layout = [
                     'id'            => 'header_height',
                     'title'         => __('Header Minimum Height', 'waterfall'),
                     'type'          => 'dimension'
-                    ],                
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_fixed',
@@ -116,25 +117,25 @@ $layout = [
                     'id'            => 'header_transparent',
                     'title'         => __('Transparent Header', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                 
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_border',
                     'title'         => __('Disable Header Bottom Border', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                 
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_headroom',
                     'title'         => __('Hide Header when Scrolling', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_shrink',
                     'title'         => __('Shrink Header when Scrolling', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                
+                ],
                 [
                     'default'       => 'left',
                     'id'            => 'header_logo_float',
@@ -151,13 +152,13 @@ $layout = [
                     'id'            => 'header_disable_logo',
                     'title'         => __('Disable Header Logo', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_social',
                     'title'         => __('Add Social Icons to the Header', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                               
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_menu_header',
@@ -172,7 +173,7 @@ $layout = [
                         'header_menu_style',
                         'header_disable_menu'
                     ]
-                ],                               
+                ],
                 [
                     'default'       => 'right',
                     'id'            => 'header_menu_float',
@@ -215,20 +216,20 @@ $layout = [
                     'title'         => __('Collapse Submenus', 'waterfall'),
                     'description'   => __('Collapses submenus by default, which can be useful in mobile menus. Be aware that this makes parent items unclickable.', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                                
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_disable_arrow_down',
                     'title'         => __('Disable Dropdown Indicators', 'waterfall'),
                     'description'   => __('Disables the downward arrow that appears for menu items with children.', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                                      
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_disable_menu',
                     'title'         => __('Disable Header Menu', 'waterfall'),
                     'type'          => 'checkbox'
-                ],               
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_search_header',
@@ -239,7 +240,7 @@ $layout = [
                         'header_search_none',
                         'header_search_all'
                     ]
-                ],                                       
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_search',
@@ -252,7 +253,7 @@ $layout = [
                     'title'         => __('Nothing Found Search Text', 'waterfall'),
                     'description'   => __('Text when nothing is found in search', 'waterfall'),
                     'selector'      => ['selector' => '.atom-search-results .atom-posts-none', 'html' => true],
-                    'transport'     => 'postMessage',                    
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
                 ],
                 [
@@ -261,7 +262,7 @@ $layout = [
                     'title'         => __('All Results Search Text', 'waterfall'),
                     'description'   => __('Text for link to all the results', 'waterfall'),
                     'selector'      => ['selector' => '.atom-search-results .atom-search-all', 'html' => true],
-                    'transport'     => 'postMessage',                      
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
                 ],
                 [
@@ -275,7 +276,7 @@ $layout = [
                         'header_top_description',
                         'header_top_description_float'
                     ]
-                ],                                 
+                ],
                 [
                     'default'       => '',
                     'id'            => 'header_top_menu',
@@ -315,12 +316,12 @@ $layout = [
             ]
         ]
     ]
-]; 
+];
 
 // Based on our post types, we add variable settings if supported
-if( $types ) {
+if ($types) {
 
-    foreach( $types as $type => $name ) {
+    foreach ($types as $type => $name) {
 
         $layout['sections'][$type . '_content'] = [
             'id'        => $type . '_content',
@@ -354,33 +355,33 @@ if( $types ) {
                         $type . '_header_author',
                         $type . '_header_scroll'
                     ]
-                ],             
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_header_disable',
                     'title'         => __('Disable Title Section', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
+                ],
                 [
                     'default'       => false,
                     'id'            => $type . '_header_disable_title',
                     'title'         => __('Disable post title in Title Section', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                  
+                ],
                 [
                     'default'       => 'after',
                     'id'            => $type . '_header_featured',
                     'title'         => __('Featured Image Position', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => wf_get_background_options()
-                ],   
+                ],
                 [
                     'default'       => 'half-hd',
                     'id'            => $type . '_header_size',
                     'title'         => __('Size Featured Image', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => wf_get_image_sizes()
-                ],    
+                ],
                 [
                     'default'       => 'quarter',
                     'id'            => $type . '_header_height',
@@ -396,7 +397,7 @@ if( $types ) {
                     'description'   => __('This will be the minimum height when a page or post has a featured image.', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => wf_get_height_options()
-                ], 
+                ],
                 [
                     'default'       => 'default',
                     'description'   => __('Width of the content in the Title Section', 'waterfall'),
@@ -404,7 +405,7 @@ if( $types ) {
                     'choices'       => wf_get_container_options(),
                     'title'         => __('Title Section Width', 'waterfall'),
                     'type'          => 'select'
-                ],     
+                ],
                 [
                     'default'       => 'left',
                     'id'            => $type . '_header_align',
@@ -412,7 +413,7 @@ if( $types ) {
                     'description'   => __('How should text be aligned within the Title Section?', 'waterfall'),
                     'type'          => 'select',
                     'choices'       => wf_get_align_options()
-                ],    
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_header_parallax',
@@ -424,7 +425,7 @@ if( $types ) {
                     'id'            => $type . '_header_breadcrumbs',
                     'title'         => __('Display Breadcrumbs', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_header_breadcrumbs_archive',
@@ -436,7 +437,7 @@ if( $types ) {
                     'id'            => $type . '_header_breadcrumbs_terms',
                     'title'         => __('Display Associated Terms in Breadcrumbs', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                                 
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_header_date',
@@ -448,7 +449,7 @@ if( $types ) {
                     'id'            => $type . '_header_date_prefix',
                     'title'         => __('Text in front of the Publication Date', 'waterfall'),
                     'type'          => 'input'
-                ],                  
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_header_date_modified',
@@ -460,7 +461,7 @@ if( $types ) {
                     'id'            => $type . '_header_date_modified_prefix',
                     'title'         => __('Text in front of the Last Modified Date', 'waterfall'),
                     'type'          => 'input'
-                ],                                  
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_header_terms',
@@ -472,20 +473,20 @@ if( $types ) {
                     'id'            => $type . '_header_comments',
                     'title'         => __('Show Comments Indicator in Title Sections', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                
+                ],
                 [
                     'default'       => false,
                     'id'            => $type . '_header_share',
                     'title'         => __('Title Section Sharing Buttons', 'waterfall'),
                     'description'   => __('Displays sharing buttons inside the title section. Please scroll to the footer settings to specify what social networks you want to show.', 'waterfall'),
                     'type'          => 'checkbox'
-                ],            
+                ],
                 [
                     'default'       => false,
                     'id'            => $type . '_header_author',
                     'title'         => __('Show the Author in Title Sections', 'waterfall'),
                     'type'          => 'checkbox'
-                ],               
+                ],
                 [
                     'default'       => 'none',
                     'id'            => $type . '_header_scroll',
@@ -551,7 +552,7 @@ if( $types ) {
                     'id'            => $type . '_sidebar_width',
                     'title'         => __('Sidebar Custom Width ', 'waterfall'),
                     'description'   => __('Sets the width of the sidebar.', 'waterfall'),
-                    'type'          => 'dimension' 
+                    'type'          => 'dimension'
                 ],
                 [
                     'default'       => '',
@@ -578,14 +579,14 @@ if( $types ) {
                         $type . '_related_pagination',
                         $type . '_related_pagination_prev',
                         $type . '_related_pagination_next'
-                    ]                      
-                ],            
+                    ]
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_related_disable',
                     'title'         => __('Disable the related content section', 'waterfall'),
                     'type'          => 'checkbox'
-                ],    
+                ],
                 [
                     'default'       => 'default',
                     'description'   => __('Width of the related content section.', 'waterfall'),
@@ -593,7 +594,7 @@ if( $types ) {
                     'choices'       => wf_get_container_options(),
                     'title'         => __('Related Section Width', 'waterfall'),
                     'type'          => 'select'
-                ],    
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_related_posts',
@@ -605,9 +606,9 @@ if( $types ) {
                     'id'            => $type . '_related_title',
                     'title'         => __('Title Above Related Posts', 'waterfall'),
                     'selector'      => ['selector' => '.main-related > h3,  .main-related .components-container > h3', 'html' => true],
-                    'transport'     => 'postMessage',                  
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
-                ],  
+                ],
                 [
                     'default'       => 'third',
                     'description'   => __('Amount of grid columns for posts.', 'waterfall'),
@@ -623,29 +624,29 @@ if( $types ) {
                     'choices'       => wf_get_grid_gaps(),
                     'title'         => __('Gap Width', 'waterfall'),
                     'type'          => 'select'
-                ],                 
+                ],
                 [
                     'default'       => '',
                     'description'   => __('Minimum height of related posts in pixels.', 'waterfall'),
                     'id'            => $type . '_related_height',
                     'title'         => __('Posts Height', 'waterfall'),
-                    'selector'      => ['selector' => '.main-related .molecule-post', 'property' => 'min-height'],              
+                    'selector'      => ['selector' => '.main-related .molecule-post', 'property' => 'min-height'],
                     'type'          => 'number'
-                ],     
+                ],
                 [
                     'default'       => 3,
                     'description'   => __('Number of related posts to show', 'waterfall'),
                     'id'            => $type . '_related_number',
                     'title'         => __('Posts Amount', 'waterfall'),
                     'type'          => 'number'
-                ], 
+                ],
                 [
                     'default'       => 'grid',
                     'id'            => $type . '_related_style',
                     'choices'       => wf_get_grid_options(),
                     'title'         => __('Posts Style', 'waterfall'),
                     'type'          => 'select'
-                ],                    
+                ],
                 [
                     'default'       => '',
                     'description'   => __('Excerpt within related posts.', 'waterfall'),
@@ -656,7 +657,7 @@ if( $types ) {
                     ],
                     'title'         => __('Post Excerpt', 'waterfall'),
                     'type'          => 'select'
-                ],    
+                ],
                 [
                     'default'       => '',
                     'description'   => __('Featured Image size within related posts.', 'waterfall'),
@@ -664,7 +665,7 @@ if( $types ) {
                     'choices'       => wf_get_image_sizes(),
                     'title'         => __('Featured Image Size', 'waterfall'),
                     'type'          => 'select'
-                ],    
+                ],
                 [
                     'default'       => '',
                     'description'   => __('Float of featured image within the related posts.', 'waterfall'),
@@ -678,12 +679,12 @@ if( $types ) {
                     'id'            => $type . '_related_image_enlarge',
                     'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                 
+                ],
                 [
                     'default'       => __('View Post', 'waterfall'),
                     'id'            => $type . '_related_button',
                     'title'         => __('Text of Related Posts Button', 'waterfall'),
-                    'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'),              
+                    'description'   => __('The title inside the buttons. Leave empty to remove the button.', 'waterfall'),
                     'type'          => 'input'
                 ],
                 [
@@ -691,14 +692,14 @@ if( $types ) {
                     'id'            => $type . '_related_button_icon',
                     'title'         => __('Show Arrow Icon in Button upon Hover', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                 
+                ],
                 [
                     'default'       => __('Bummer! No related posts have been found.', 'waterfall'),
                     'id'            => $type . '_related_none',
                     'title'         => __('No Related Posts Found', 'waterfall'),
-                    'description'   => __('The text shown when no related posts are found.', 'waterfall'),                  
+                    'description'   => __('The text shown when no related posts are found.', 'waterfall'),
                     'type'          => 'input'
-                ],                
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_related_pagination',
@@ -710,7 +711,7 @@ if( $types ) {
                     'id'            => $type . '_related_pagination_prev',
                     'title'         => __('Pagination Previous Article Title', 'waterfall'),
                     'selector'      => ['selector' => '.main-related .atom-pagination a[rel=\'prev\'] span', 'html' => true],
-                    'transport'     => 'postMessage',                  
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
                 ],
                 [
@@ -718,7 +719,7 @@ if( $types ) {
                     'id'            => $type . '_related_pagination_next',
                     'title'         => __('Pagination Next Article Title', 'waterfall'),
                     'selector'      => ['selector' => '.main-related .atom-pagination a[rel=\'next\'] span', 'html' => true],
-                    'transport'     => 'postMessage',                   
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
                 ],
                 [
@@ -745,14 +746,14 @@ if( $types ) {
                         $type . '_share_reddit',
                         $type . '_share_pocket',
                         $type . '_share_whatsapp'
-                    ]                     
-                ],       
+                    ]
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_footer_disable',
                     'title'         => __('Disable content footer', 'waterfall'),
                     'type'          => 'checkbox'
-                ],     
+                ],
                 [
                     'default'       => 'default',
                     'description'   => __('Width of the content footer.', 'waterfall'),
@@ -760,7 +761,7 @@ if( $types ) {
                     'choices'       => wf_get_container_options(),
                     'title'         => __('Content Footer Width', 'waterfall'),
                     'type'          => 'select'
-                ],     
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_footer_author',
@@ -772,13 +773,13 @@ if( $types ) {
                     'id'            => $type . '_footer_comments',
                     'title'         => __('Show comments in the content footer', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
+                ],
                 [
                     'default'       => __('Comments are closed.', 'waterfall'),
                     'id'            => $type . '_footer_comments_closed',
                     'title'         => __('Text for closed comments', 'waterfall'),
                     'selector'      => ['selector' => '.main-footer .atom-comments-closed', 'html' => true],
-                    'transport'     => 'postMessage',                  
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
                 ],
                 [
@@ -786,22 +787,22 @@ if( $types ) {
                     'id'            => $type . '_footer_comments_closed_disable',
                     'title'         => __('Remove comments element when closed', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                 
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_footer_comments_title',
                     'title'         => __('Title above comments', 'waterfall'),
                     'description'   => __('Use {number} and {title} tags to display the number of comments and post title respectively.', 'waterfall'),
                     'selector'      => ['selector' => '.main-footer .atom-comments-title', 'html' => true],
-                    'transport'     => 'postMessage',                  
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
-                ],  
+                ],
                 [
                     'default'       => __('Leave a reply', 'waterfall'),
                     'id'            => $type . '_footer_comments_reply',
                     'title'         => __('Title above comments form', 'waterfall'),
                     'selector'      => ['selector' => '.main-footer .comment-reply-title', 'html' => true],
-                    'transport'     => 'postMessage',                  
+                    'transport'     => 'postMessage',
                     'type'          => 'input'
                 ],
                 [
@@ -815,7 +816,7 @@ if( $types ) {
                     'id'            => $type . '_footer_share_fixed',
                     'title'         => __('Fix sharing buttons to the left of the screen', 'waterfall'),
                     'type'          => 'checkbox'
-                ],  
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_text',
@@ -823,68 +824,68 @@ if( $types ) {
                     'type'          => 'input',
                     'transport'     => 'postMessage',
                     'selector'      => ['selector' => '.atom-share-title', 'html' => true]
-                ],                           
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_facebook',
                     'title'         => __('Show Facebook sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                     
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_twitter',
                     'title'         => __('Show Twitter sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                     
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_linkedin',
                     'title'         => __('Show LinkedIn sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                  
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_pinterest',
                     'title'         => __('Show Pinterest sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                     
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_reddit',
                     'title'         => __('Show Reddit sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                   
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_pocket',
                     'title'         => __('Show Pocket sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                      
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_share_whatsapp',
                     'title'         => __('Show Whatsapp sharing button', 'waterfall'),
                     'type'          => 'checkbox'
-                ]   
+                ]
             ]
         ];
 
         /**
          * If a page has been designed by elementor, we only show one field.
          */
-        if( wf_elementor_theme_has_location('single', $type) ) {
+        if (wf_elementor_theme_has_location('single', $type)) {
             $layout['sections'][$type . '_content']['fields'] = [
                 [
                     'id'            => $type . '_content_elementor',
-                    'description'   => sprintf( __('The %s page is designed by the Elementor Theme Builder. Thus, no layout settings are shown here.', 'waterfall'), $name ),
+                    'description'   => sprintf(__('The %s page is designed by the Elementor Theme Builder. Thus, no layout settings are shown here.', 'waterfall'), $name),
                     'title'         => __('Designed by Elementor', 'waterfall'),
                     'type'          => 'heading'
-                ] 
-            ];  
-        }       
+                ]
+            ];
+        }
 
         // Skip archives for pages
-        if( $type === 'page' ) {
+        if ($type === 'page') {
             continue;
         }
 
@@ -893,7 +894,7 @@ if( $types ) {
          */
         $layout['sections'][$type . '_archives'] = [
             'id'        => $type . '_archives',
-            'title'     => sprintf( __('%s Archives', 'waterfall'), $name ),
+            'title'     => sprintf(__('%s Archives', 'waterfall'), $name),
             'fields'    => [
                 [
                     'default'       => '',
@@ -908,9 +909,10 @@ if( $types ) {
                         $type . '_archive_header_height',
                         $type . '_archive_header_align',
                         $type . '_archive_header_title',
-                        $type . '_archive_header_description'
-                    ]                    
-                ],            
+                        $type . '_archive_header_description',
+                        $type . '_archive_header_search'
+                    ]
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_archive_header_disable',
@@ -928,7 +930,7 @@ if( $types ) {
                     'id'            => $type . '_archive_header_breadcrumbs_posts',
                     'title'         => __('Display Post Type in Breadcrumbs', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                
+                ],
                 [
                     'default'       => 'default',
                     'description'   => __('Width of title section in posts archives.', 'waterfall'),
@@ -944,7 +946,7 @@ if( $types ) {
                     'choices'       => wf_get_height_options(),
                     'title'         => __('Header Height', 'waterfall'),
                     'type'          => 'select'
-                ],    
+                ],
                 [
                     'default'       => 'left',
                     'id'            => $type . '_archive_header_align',
@@ -959,14 +961,21 @@ if( $types ) {
                     'title'         => __('Default Archives Page Title ', 'waterfall'),
                     'description'   => __('Add a custom title for the default archives page. Shown if no category, tag, term, author or date is queried.', 'waterfall'),
                     'type'          => 'input'
-                ],   
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_archive_header_description',
                     'title'         => __('Archives Page Description', 'waterfall'),
-                    'description'   => __('Add a custom title description for the given archive. Use {description} to use the term description in taxonomy archives.', 'waterfall'),
+                    'description'   => __('Add a custom description for the given archive. Use {description} to use the term description in taxonomy archives.', 'waterfall'),
                     'type'          => 'textarea'
-                ],                               
+                ],
+                [
+                    'default'       => '',
+                    'id'            => $type . '_archive_header_search',
+                    'title'         => __('Show Searchform in Header', 'waterfall'),
+                    'description'   => __('Shows a searchform that can search for posts in the given post type.', 'waterfall'),
+                    'type'          => 'checkbox'
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_archive_posts_header',
@@ -975,6 +984,7 @@ if( $types ) {
                     'choices'       => [
                         $type . '_archive_content_width',
                         $type . '_archive_content_sidebar_width',
+                        $type . '_archive_content_filter',
                         $type . '_archive_sidebar_position',
                         $type . '_archive_sidebar_width',
                         $type . '_archive_content_style',
@@ -991,9 +1001,9 @@ if( $types ) {
                         $type . '_archive_content_height',
                         $type . '_archive_content_image',
                         $type . '_archive_content_image_float',
-                        $type . '_archive_content_image_enlarge'                       
+                        $type . '_archive_content_image_enlarge'
                     ]
-                ], 
+                ],
                 [
                     'default'       => 'default',
                     'description'   => __('Width of container in posts archives.', 'waterfall'),
@@ -1012,8 +1022,8 @@ if( $types ) {
                     'id'            => $type . '_archive_content_sidebar_width',
                     'title'         => __('Posts Custom Width', 'waterfall'),
                     'description'   => __('Sets the width of the grid or list of posts.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ],                                               
+                    'type'          => 'dimension'
+                ],
                 [
                     'default'       => 'full',
                     'description'   => __('Choose the sidebar lay-out for archives.', 'waterfall'),
@@ -1032,8 +1042,16 @@ if( $types ) {
                     'id'            => $type . '_archive_sidebar_width',
                     'title'         => __('Sidebar Custom Width ', 'waterfall'),
                     'description'   => __('Sets the width of the sidebar.', 'waterfall'),
-                    'type'          => 'dimension'  
-                ],                  
+                    'type'          => 'dimension'
+                ],
+                [
+                    'default'       => 'grid',
+                    'description'   => __('Adds filter buttons for all terms in the selected taxonomy.', 'waterfall'),
+                    'id'            => $type . '_archive_content_filter',
+                    'choices'       => wf_get_taxonomies_for_type($type),
+                    'title'         => __('Add Taxonomy Filter', 'waterfall'),
+                    'type'          => 'select'
+                ],
                 [
                     'default'       => 'grid',
                     'description'   => __('Style of posts in archives.', 'waterfall'),
@@ -1041,7 +1059,7 @@ if( $types ) {
                     'choices'       => wf_get_grid_options(),
                     'title'         => __('Grid Style', 'waterfall'),
                     'type'          => 'select'
-                ],   
+                ],
                 [
                     'default'       => 'third',
                     'description'   => __('The amount of columns used for displaying posts.', 'waterfall'),
@@ -1049,7 +1067,7 @@ if( $types ) {
                     'choices'       => wf_get_column_options(),
                     'title'         => __('Grid Columns', 'waterfall'),
                     'type'          => 'select'
-                ],   
+                ],
                 [
                     'default'       => 'third',
                     'description'   => __('The width of the gap between various posts.', 'waterfall'),
@@ -1057,7 +1075,7 @@ if( $types ) {
                     'choices'       => wf_get_grid_gaps(),
                     'title'         => __('Grid Gap Width', 'waterfall'),
                     'type'          => 'select'
-                ],                   
+                ],
                 [
                     'default'       => 'excerpt',
                     'description'   => __('Excerpt within archive posts.', 'waterfall'),
@@ -1075,7 +1093,7 @@ if( $types ) {
                     'id'            => $type . '_archive_content_type',
                     'title'         => __('Post Type in Posts', 'waterfall'),
                     'type'          => 'checkbox'
-                ], 
+                ],
                 [
                     'default'       => '',
                     'id'            => $type . '_archive_content_meta_author',
@@ -1093,12 +1111,12 @@ if( $types ) {
                     'id'            => $type . '_archive_content_meta_date',
                     'title'         => __('Show Post Date in Posts', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                                                      
+                ],
                 [
                     'default'       => __('View Post', 'waterfall'),
                     'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
                     'id'            => $type . '_archive_content_button',
-                    'title'         => __('Posts Button Label', 'waterfall'),                 
+                    'title'         => __('Posts Button Label', 'waterfall'),
                     'type'          => 'input'
                 ],
                 [
@@ -1106,22 +1124,22 @@ if( $types ) {
                     'id'            => $type . '_archive_content_button_icon',
                     'title'         => __('Show Arrow Icon in Button upon Hover', 'waterfall'),
                     'type'          => 'checkbox'
-                ],                 
+                ],
                 [
                     'default'       => __('Bummer! No posts found.', 'waterfall'),
                     'description'   => __('The text if no posts are found.', 'waterfall'),
                     'id'            => $type . '_archive_content_none',
-                    'title'         => __('No Posts Found Text', 'waterfall'),                 
+                    'title'         => __('No Posts Found Text', 'waterfall'),
                     'type'          => 'input'
-                ],                
+                ],
                 [
                     'default'       => '',
                     'description'   => __('Minimum height of posts in the archive in pixels.', 'waterfall'),
                     'id'            => $type . '_archive_content_height',
                     'title'         => __('Posts Height', 'waterfall'),
-                    'selector'      => ['selector' => '.archive-posts .molecule-post.' . $type, 'property' => 'min-height'],                 
+                    'selector'      => ['selector' => '.archive-posts .molecule-post.' . $type, 'property' => 'min-height'],
                     'type'          => 'number'
-                ],    
+                ],
                 [
                     'default'       => 'medium',
                     'description'   => __('Featured Image size within archive posts.', 'waterfall'),
@@ -1129,7 +1147,7 @@ if( $types ) {
                     'choices'       => wf_get_image_sizes(),
                     'title'         => __('Featured Image Size', 'waterfall'),
                     'type'          => 'select'
-                ],    
+                ],
                 [
                     'default'       => 'none',
                     'description'   => __('Float of featured image within the posts.', 'waterfall'),
@@ -1143,27 +1161,24 @@ if( $types ) {
                     'id'            => $type . '_archive_content_image_enlarge',
                     'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
                     'type'          => 'checkbox'
-                ]                        
-            ]              
+                ]
+            ]
         ];
 
         /**
          * If a page has been designed by elementor, we only show one field.
          */
-        if( wf_elementor_theme_has_location('archive', $type) ) {
+        if (wf_elementor_theme_has_location('archive', $type)) {
 
             $layout['sections'][$type . '_archives']['fields'] = [
                 [
                     'id'            => $type . '_archives_elementor',
-                    'description'   => sprintf( __('The %s archive is designed by the Elementor Theme Builder. Thus, no layout settings are shown here.', 'waterfall'), $name ),
+                    'description'   => sprintf(__('The %s archive is designed by the Elementor Theme Builder. Thus, no layout settings are shown here.', 'waterfall'), $name),
                     'title'         => __('Designed by Elementor', 'waterfall'),
                     'type'          => 'heading'
-                ] 
-            ];          
-
+                ]
+            ];
         }
-
-
     }
 }
 
@@ -1180,13 +1195,13 @@ $layout['sections']['search_page'] = [
             'title'         => __('Title Section', 'waterfall'),
             'type'          => 'heading',
             'choices'       => [
-                'search_header_disable',                  
-                'search_header_breadcrumbs',                  
-                'search_header_width',                  
-                'search_header_height',                  
-                'search_header_align',                  
-                'search_header_title'                  
-            ]            
+                'search_header_disable',
+                'search_header_breadcrumbs',
+                'search_header_width',
+                'search_header_height',
+                'search_header_align',
+                'search_header_title'
+            ]
         ],
         [
             'default'       => '',
@@ -1215,7 +1230,7 @@ $layout['sections']['search_page'] = [
             'choices'       => wf_get_height_options(),
             'title'         => __('Title Section Height', 'waterfall'),
             'type'          => 'select'
-        ],    
+        ],
         [
             'default'       => 'left',
             'id'            => 'search_header_align',
@@ -1230,29 +1245,29 @@ $layout['sections']['search_page'] = [
             'title'         => __('Custom Title for the Search Page', 'waterfall'),
             'description'   => __('Add a custom title for the search page. The {term} and {number} tags may be used to display the search term and number of results respectively.', 'waterfall'),
             'type'          => 'input'
-        ],          
+        ],
         [
             'default'       => '',
             'id'            => 'search_posts_header',
             'title'         => __('Search Results Section', 'waterfall'),
             'type'          => 'heading',
             'choices'       => [
-                'search_sidebar_position',                  
-                'search_content_width',                  
-                'search_content_style',                  
-                'search_content_columns',                  
+                'search_sidebar_position',
+                'search_content_width',
+                'search_content_style',
+                'search_content_columns',
                 'search_content_content',
                 'search_content_meta_author',
                 'search_content_meta_avatar',
-                'search_content_meta_date',                                  
-                'search_content_type',                  
-                'search_content_button',                  
-                'search_content_height',                  
-                'search_content_image',                  
-                'search_content_image_float',                  
-                'search_content_image_enlarge'                  
-            ]            
-        ],           
+                'search_content_meta_date',
+                'search_content_type',
+                'search_content_button',
+                'search_content_height',
+                'search_content_image',
+                'search_content_image_float',
+                'search_content_image_enlarge'
+            ]
+        ],
         [
             'default'       => 'full',
             'description'   => __('Choose the sidebar lay-out for the search page.', 'waterfall'),
@@ -1260,7 +1275,7 @@ $layout['sections']['search_page'] = [
             'choices'       => wf_get_sidebar_options(),
             'title'         => __('Sidebar Lay-Out', 'waterfall'),
             'type'          => 'select'
-        ], 
+        ],
         [
             'default'       => 'default',
             'description'   => __('Width of the container for search results.', 'waterfall'),
@@ -1268,7 +1283,7 @@ $layout['sections']['search_page'] = [
             'choices'       => wf_get_container_options(),
             'title'         => __('Container Width', 'waterfall'),
             'type'          => 'select'
-        ],    
+        ],
         [
             'default'       => 'list',
             'description'   => __('Style of posts in the search page.', 'waterfall'),
@@ -1284,7 +1299,7 @@ $layout['sections']['search_page'] = [
             'choices'       => wf_get_column_options(),
             'title'         => __('Columns', 'waterfall'),
             'type'          => 'select'
-        ],    
+        ],
         [
             'default'       => 'excerpt',
             'description'   => __('Excerpt within search page results.', 'waterfall'),
@@ -1320,21 +1335,21 @@ $layout['sections']['search_page'] = [
             'id'            => 'search_content_meta_date',
             'title'         => __('Show Post Date in Posts', 'waterfall'),
             'type'          => 'checkbox'
-        ],         
+        ],
         [
             'default'       => __('View Post', 'waterfall'),
             'description'   => __('The label for this button. Leave empty to remove the button.', 'waterfall'),
             'id'            => 'search_content_button',
             'title'         => __('Search Page Results Button Label', 'waterfall'),
             'type'          => 'input'
-        ],     
+        ],
         [
             'default'       => '',
             'description'   => __('Minimum height of results in the search page.', 'waterfall'),
             'id'            => 'search_content_height',
             'title'         => __('Search Page Results Height', 'waterfall'),
             'type'          => 'number'
-        ],    
+        ],
         [
             'default'       => 'thumbnail',
             'description'   => __('Featured Image size within search page results.', 'waterfall'),
@@ -1342,7 +1357,7 @@ $layout['sections']['search_page'] = [
             'choices'       => wf_get_image_sizes(),
             'title'         => __('Search Page Results Image Size', 'waterfall'),
             'type'          => 'select'
-        ],    
+        ],
         [
             'default'       => 'left',
             'description'   => __('Float of featured image within the results.', 'waterfall'),
@@ -1356,15 +1371,15 @@ $layout['sections']['search_page'] = [
             'id'            => 'search_content_image_enlarge',
             'title'         => __('Enlarge Featured Image on Hover', 'waterfall'),
             'type'          => 'checkbox'
-        ]                  
-    ]             
+        ]
+    ]
 ];
 
 // 404 Page
 $layout['sections']['404_page'] = [
     'id'            => '404_page',
     'title'         => __('404 Page', 'waterfall'),
-    'fields'    => [       
+    'fields'    => [
         [
             'default'       => 'half',
             'id'            => '404_header_height',
@@ -1379,7 +1394,7 @@ $layout['sections']['404_page'] = [
             'choices'       => wf_get_container_options(),
             'title'         => __('404 Header Width', 'waterfall'),
             'type'          => 'select'
-        ],      
+        ],
         [
             'default'       => 'left',
             'id'            => '404_header_align',
@@ -1393,7 +1408,7 @@ $layout['sections']['404_page'] = [
             'id'            => '404_header_title',
             'title'         => __('Default 404 Title', 'waterfall'),
             'selector'      => ['selector' => '.nothing-title', 'html' => true],
-            'transport'     => 'postMessage',             
+            'transport'     => 'postMessage',
             'type'          => 'input'
         ],
         [
@@ -1401,9 +1416,9 @@ $layout['sections']['404_page'] = [
             'id'            => '404_header_description',
             'title'         => __('Default 404 Description', 'waterfall'),
             'selector'      => ['selector' => '.nothing-description', 'html' => true],
-            'transport'     => 'postMessage',            
+            'transport'     => 'postMessage',
             'type'          => 'textarea'
-        ],     
+        ],
         [
             'default'       => '',
             'id'            => '404_header_breadcrumbs',
@@ -1415,10 +1430,10 @@ $layout['sections']['404_page'] = [
             'id'            => '404_header_search',
             'title'         => __('Display Searchform', 'waterfall'),
             'type'          => 'checkbox'
-        ]    
-    ]              
+        ]
+    ]
 ];
-    
+
 // Footer   
 $layout['sections']['footer'] = [
     'id'            => 'styling_footer',
@@ -1429,7 +1444,7 @@ $layout['sections']['footer'] = [
             'id'            => 'footer_disable',
             'title'         => __('Disable Footer', 'waterfall'),
             'type'          => 'checkbox'
-        ],                
+        ],
         [
             'default'       => 'default',
             'id'            => 'footer_width',
@@ -1442,7 +1457,7 @@ $layout['sections']['footer'] = [
             'id'            => 'footer_display_sidebars',
             'title'         => __('Display Sidebars', 'waterfall'),
             'type'          => 'checkbox'
-        ],    
+        ],
         [
             'default'       => 'third',
             'description'   => __('Amount of sidebars in the footer.', 'waterfall'),
@@ -1456,7 +1471,7 @@ $layout['sections']['footer'] = [
             ],
             'title'         => __('Footer Sidebars', 'waterfall'),
             'type'          => 'select'
-        ], 
+        ],
         [
             'default'       => 'default',
             'description'   => __('The gap width between the sidebars.', 'waterfall'),
@@ -1464,13 +1479,13 @@ $layout['sections']['footer'] = [
             'choices'       => wf_get_grid_gaps(),
             'title'         => __('Sidebar Gap Width', 'waterfall'),
             'type'          => 'select'
-        ],        
+        ],
         [
             'default'       => '',
             'id'            => 'footer_display_socket',
             'title'         => __('Display Socket', 'waterfall'),
             'type'          => 'checkbox'
-        ],    
+        ],
         [
             'default'       => '',
             'id'            => 'footer_copyright',
@@ -1502,7 +1517,7 @@ $layout['sections']['footer'] = [
             'id'            => 'footer_social_background',
             'title'         => __('Remove Background in Social Icons', 'waterfall'),
             'type'          => 'checkbox'
-        ], 
+        ],
         [
             'default'       => '',
             'id'            => 'footer_logo_stack',
@@ -1520,8 +1535,8 @@ $layout['sections']['footer'] = [
                 'left'      => __('On the left', 'waterfall'),
                 'center'    => __('On the center', 'waterfall'),
                 'right'     => __('On the right', 'waterfall')
-            ]            
-        ],  
+            ]
+        ],
         [
             'default'       => 'default',
             'id'            => 'footer_scroll_style',
@@ -1532,13 +1547,13 @@ $layout['sections']['footer'] = [
                 'rounded'   => __('Rounded', 'waterfall')
             ],
         ]
-    ]              
+    ]
 ];
 
 /**
  * Page Builder Section Paddings
  */
-if( did_action('elementor/loaded') ) {
+if (did_action('elementor/loaded')) {
     $layout['sections']['global']['fields'][] = [
         'default'       => 'enabled',
         'id'            => 'layout_elementor_container_align',
@@ -1556,7 +1571,7 @@ if( did_action('elementor/loaded') ) {
         'id'            => 'layout_elementor_padding_top',
         'title'         => __('Elementor Section Top Padding', 'waterfall'),
         'description'   => __('The top padding for elementor top sections.', 'waterfall'),
-        'type'          => 'dimension'  
+        'type'          => 'dimension'
     ];
     $layout['sections']['global']['fields'][] = [
         'selector'      => ['selector' => '.elementor-section-wrap > .elementor-section', 'property' => 'padding-bottom'],
@@ -1564,7 +1579,7 @@ if( did_action('elementor/loaded') ) {
         'id'            => 'layout_elementor_padding_bottom',
         'title'         => __('Elementor Section Bottom Padding', 'waterfall'),
         'description'   => __('The bottom padding for elementor top sections.', 'waterfall'),
-        'type'          => 'dimension'  
+        'type'          => 'dimension'
     ];
 }
 
@@ -1572,43 +1587,42 @@ if( did_action('elementor/loaded') ) {
  * Other conditional settings. 
  * If some areas are designed by elementor, their display is conditional
  */
-foreach(['header' => __('Header', 'waterfall'), 'footer' => __('Header', 'waterfall')] as $part => $label ) {
-    
-    if( ! wf_elementor_theme_has_location($part) ) {
+foreach (['header' => __('Header', 'waterfall'), 'footer' => __('Header', 'waterfall')] as $part => $label) {
+
+    if (!wf_elementor_theme_has_location($part)) {
         continue;
     }
 
     $layout['sections'][$part]['fields'] = [
         [
             'id'            => $part . '_elementor',
-            'description'   => sprintf( __('The %s is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'), $label ),
+            'description'   => sprintf(__('The %s is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'), $label),
             'title'         => __('Designed by Elementor', 'waterfall'),
             'type'          => 'heading'
-        ] 
-    ]; 
-
+        ]
+    ];
 }
 
 // 404 Page
-if( wf_elementor_theme_has_location('single', '404') ) {
+if (wf_elementor_theme_has_location('single', '404')) {
     $layout['sections']['404_page']['fields'] = [
         [
             'id'            => '404_page_elementor',
             'description'   => __('The 404 page is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'),
             'title'         => __('Designed by Elementor', 'waterfall'),
             'type'          => 'heading'
-        ] 
-    ];     
+        ]
+    ];
 }
 
 // Search Page
-if( wf_elementor_theme_has_location('archive', 'search') ) {
+if (wf_elementor_theme_has_location('archive', 'search')) {
     $layout['sections']['search_page']['fields'] = [
         [
             'id'            => 'search_page_elementor',
             'description'   => __('The search page is designed by the Elementor Theme Builder. Thus, no settings are shown here.', 'waterfall'),
             'title'         => __('Designed by Elementor', 'waterfall'),
             'type'          => 'heading'
-        ] 
-    ];     
+        ]
+    ];
 }

@@ -21,15 +21,18 @@ class Code implements Field {
         
         $id         = esc_attr( $field['id'] );
         $name       = esc_attr( $field['name'] );
-        $mode       = isset($field['mode']) ? esc_attr($field['mode']) : 'htmlmixed';
-        $values     = html_entity_decode( $field['values'] );
+        $mode       = isset($field['mode']) ? esc_attr($field['mode']) : 'text/html';
+        $settings   = json_encode( wp_enqueue_code_editor( ['type' => $mode] ) );
+        $values     = $field['values'];
         
         // Only Enqueue if it is not enqueued yet
-        if( apply_filters('wp_custom_fields_code_field_js', true) && ! wp_script_is('mirror-js', 'enqueued') ) {
-            wp_enqueue_script('mirror-js');
-        } ?>
+        if( apply_filters('wp_custom_fields_code_field_js', true) && ! wp_script_is('wp-theme-plugin-editor', 'enqueued') ) {
+            wp_enqueue_script('wp-theme-plugin-editor');
+            wp_enqueue_style('wp-codemirror');
+        } 
+        ?>
         
-            <textarea class="wpcf-code-editor-value" id="<?php echo $id; ?>" name="<?php echo $name; ?>" data-mode="<?php echo $mode; ?>"><?php echo $values; ?></textarea>
+            <textarea class="wpcf-code-editor-value" id="<?php echo $id; ?>" name="<?php echo $name; ?>" data-settings='<?php echo $settings; ?>'><?php echo $values; ?></textarea>
 
         <?php 
 

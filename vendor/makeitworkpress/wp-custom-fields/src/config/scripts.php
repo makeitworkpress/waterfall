@@ -11,7 +11,7 @@ if ( ! defined('ABSPATH') ) {
 $scripts[] = [
     'handle'    => 'alpha-color-picker',
     'src'       => WP_CUSTOM_FIELDS_ASSETS_URL . 'js/vendor/alpha-color-picker.min.js',
-    'deps'      => [ 'jquery', 'wp-color-picker' ],
+    'deps'      => ['jquery', 'wp-color-picker' ],
     'ver'       => '',
     'in_footer' => 'true', 
     'action'    => 'register',
@@ -19,10 +19,10 @@ $scripts[] = [
 
 $scripts[] = [
     'handle'    => 'wp-custom-fields-js',
-    'src'       => WP_CUSTOM_FIELDS_ASSETS_URL . 'js/wpcf.min.js',
-    'deps'      => [ 'jquery', 'wp-color-picker' ],
+    'src'       => WP_CUSTOM_FIELDS_ASSETS_URL . 'js/wpcf.js',
+    'deps'      => ['jquery', 'wp-color-picker' ],
     'ver'       => null,
-    'in_footer' => true,  
+    'in_footer' => true, 
     'action'    => 'register',
     'localize'  => [
         'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
@@ -53,15 +53,6 @@ $scripts[] = [
 $scripts[] = [
     'handle'    => 'flatpicker-i18n-nl',
     'src'       => WP_CUSTOM_FIELDS_ASSETS_URL . 'js/vendor/flatpicker-i18n/nl.js',
-    'deps'      => [],
-    'ver'       => null,
-    'in_footer' => true,  
-    'action'    => 'register'
-];
-
-$scripts[] = [
-    'handle'    => 'mirror-js',
-    'src'       => WP_CUSTOM_FIELDS_ASSETS_URL . 'js/vendor/codemirror.min.js',
     'deps'      => [],
     'ver'       => null,
     'in_footer' => true,  
