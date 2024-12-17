@@ -134,8 +134,7 @@ class Terms extends Elementor\Widget_Base {
 		$this->add_group_control(
 			Elementor\Group_Control_Typography::get_type(),
 			[
-				'name' => 'typography',
-				'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_3,
+				'name' => 'typography'
 			]
 		);
 		
