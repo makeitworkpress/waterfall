@@ -13,10 +13,9 @@
     "homepage": "https://github.com/makeitworkpress/wp-optimize",
     "authors": [ 
         {
-            "name": "Michiel Tramper",
-            "email": "michiel@makeitworkpress.com",
-            "homepage": "https://www.makeitworkpress.com"
-
+            "name": "Make it WorkPress",
+            "email": "hello@makeitwork.press",
+            "homepage": "https://makeitwork.press"
         } 
     ]           
 }

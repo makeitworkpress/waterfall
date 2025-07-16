@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '6e89e1a7ab1fa26059e658e14855f1bf838d1509',
+        'reference' => '139d6755b290c587e1d2b61c47380d690ec48a28',
         'name' => 'makeitworkpress/waterfall',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '6e89e1a7ab1fa26059e658e14855f1bf838d1509',
+            'reference' => '139d6755b290c587e1d2b61c47380d690ec48a28',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-components' => array(
@@ -27,7 +27,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '2d1ce449fd2d80a986a8b673629fdc3d031f4ac5',
+            'reference' => 'f99fc700fe0731e40b29e2105ff78525031521ce',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-config' => array(
@@ -38,7 +38,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '756df5cf631c8e16654306d3be3d6de538261072',
+            'reference' => '91a3739cf7cb193994e333b7f62c5333b83b88ec',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-custom-fields' => array(
@@ -49,7 +49,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '9ca333c9c0389434130f10d1136d6a86ff621394',
+            'reference' => '901e56643b9fb2d71dadf7a826eccc13dfcc5a8b',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-enqueue' => array(
@@ -60,7 +60,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '426f3bebc397c93db29c4714068799b35795ea3b',
+            'reference' => '93c29cb5329a43efb6a25903b5edc8e48d06960f',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-optimize' => array(
@@ -71,7 +71,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '23c28d3c2757bc4505b49b7de9c0316189c1c9cc',
+            'reference' => 'b86c595c5a2bf1a66e7f874ec0983ea088901a7d',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-register' => array(
@@ -82,7 +82,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '6ea543389d338e84cb5446f679d645d7a0220614',
+            'reference' => 'b686e2f2514a23a77cf4dc8670c9e690c4fdf333',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-router' => array(
@@ -93,7 +93,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '57b71db6e983fc167937f5f6c7c4b8ffe4c4d16e',
+            'reference' => '8002cb17fdd056b675b1c43a64b3b84777837a46',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-updater' => array(
@@ -104,7 +104,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '92267b5dae7538f8893b34d1551ccfa30da0bc73',
+            'reference' => 'adb685528dbc574af531ab4751f4f7d500aec379',
             'dev_requirement' => false,
         ),
     ),

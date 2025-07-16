@@ -2,7 +2,7 @@
 /**
  * Class wrapper for enqueing scripts and styles
  *
- * @author Michiel Tramper - https://michieltramper.com & https://www.makeitworkpress.com
+ * @author Make it WorkPress - https://michieltramper.com & https://www.makeitworkpress.com
  */
 namespace MakeitWorkPress\WP_Enqueue;
 
